@@ -26,17 +26,27 @@
 {# ── PROFILE HERO ── #}
 <div class="prof-hero">
 
+  {# Resolve profile photo: crawler data takes precedence over front matter field #}
+  {% set _crawlerProfile = photosBySlug[slug].profile[0] if (photosBySlug[slug] and photosBySlug[slug].profile and photosBySlug[slug].profile.length) else null %}
+  {% if _crawlerProfile %}
+    {% set _heroPhotoSrc = "/soldiers/" + slug + "/photos/profile/" + _crawlerProfile.filename %}
+  {% elif profile_photo %}
+    {% set _heroPhotoSrc = "/soldiers/" + slug + "/photos/profile/" + profile_photo %}
+  {% else %}
+    {% set _heroPhotoSrc = null %}
+  {% endif %}
+
   {# Photo column #}
   <div class="prof-photo-col">
     <div class="prof-photo-frame">
-      {% if profile_photo %}
+      {% if _heroPhotoSrc %}
         <img
-          src="/soldiers/{{ slug }}/photos/profile/{{ profile_photo }}"
+          src="{{ _heroPhotoSrc }}"
           alt="{{ first_name }} {{ last_name }}"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
         >
       {% endif %}
-      <div class="prof-photo-placeholder" {% if profile_photo %}style="display:none"{% endif %}>
+      <div class="prof-photo-placeholder" {% if _heroPhotoSrc %}style="display:none"{% endif %}>
         {{ first_name[0] }}{{ last_name[0] }}
       </div>
     </div>
@@ -274,9 +284,10 @@
     </script>
 
     {# ── Gallery 1: Photos he took ── #}
+    {# Only photos explicitly marked photographer: unknown (soldier took it themselves) #}
     {% set tookPhotos = [] %}
     {% for photo in allPhotos %}
-      {% if photo.photographer != "unknown-of" and photo.photographer != "known-of" %}
+      {% if photo.photographer == "unknown" %}
         {% set tookPhotos = (tookPhotos.push(photo), tookPhotos) %}
       {% endif %}
     {% endfor %}
@@ -300,9 +311,10 @@
     {% endif %}
 
     {# ── Gallery 2: Photos others took of him ── #}
+    {# Includes unknown-of, known-of, empty/null photographer (origin unknown = not him) #}
     {% set ofPhotos = [] %}
     {% for photo in allPhotos %}
-      {% if photo.photographer == "unknown-of" or photo.photographer == "known-of" %}
+      {% if photo.photographer != "unknown" %}
         {% set ofPhotos = (ofPhotos.push(photo), ofPhotos) %}
       {% endif %}
     {% endfor %}

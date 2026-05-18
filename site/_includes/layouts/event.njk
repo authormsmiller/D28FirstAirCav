@@ -89,7 +89,8 @@
   {% if anecdote.data.event == slug %}{% set hasAnecdotes = true %}{% endif %}
 {% endfor %}
 
-{% set hasImages = images and images.length %}
+{% set crawlerPhotos = photosByEvent[slug] if photosByEvent[slug] else [] %}
+{% set hasImages = (images and images.length) or crawlerPhotos.length %}
 
 {# ── TAB BAR ── #}
 <div class="tabs-bar">
@@ -510,27 +511,51 @@
 <div class="tab-content" id="tab-evt-images" style="display:none">
   {% if hasImages %}
 
+    {# Build unified slide list: front matter images first, then crawler photos #}
     <script>
       var EVT_IMAGE_SLIDES = [
-        {% for img in images %}
+        {% if images %}
+          {% for img in images %}
+          {
+            src: "{{ img.src }}",
+            caption: {{ (img.caption or img.filename or "") | dump | safe }},
+            credit: {{ (img.credit or "") | dump | safe }},
+            date: {{ (img.date or "") | dump | safe }}
+          },
+          {% endfor %}
+        {% endif %}
+        {% for photo in crawlerPhotos %}
         {
-          src: "{{ img.src }}",
-          caption: {{ (img.caption or img.filename or "") | dump | safe }},
-          credit: {{ (img.credit or "") | dump | safe }},
-          date: {{ (img.date or "") | dump | safe }}
+          src: {{ photo.url | dump | safe }},
+          caption: {{ (photo.caption or photo.filename or "") | dump | safe }},
+          credit: {{ (photo.credit or "") | dump | safe }},
+          date: {{ (photo.date or "") | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
     </script>
 
     <div class="photo-grid">
-      {% for img in images %}
-        <div class="photo-card" onclick="lbOpen({{ loop.index0 }}, EVT_IMAGE_SLIDES)">
-          <img src="{{ img.src }}" alt="{{ img.caption if img.caption else img.filename }}" loading="lazy">
+      {% set slideIdx = 0 %}
+      {% if images %}
+        {% for img in images %}
+          <div class="photo-card" onclick="lbOpen({{ slideIdx }}, EVT_IMAGE_SLIDES)">
+            <img src="{{ img.src }}" alt="{{ img.caption if img.caption else img.filename }}" loading="lazy">
+            <div class="photo-overlay">
+              <div class="photo-cap-text">{{ img.caption if img.caption else img.filename }}</div>
+            </div>
+          </div>
+          {% set slideIdx = slideIdx + 1 %}
+        {% endfor %}
+      {% endif %}
+      {% for photo in crawlerPhotos %}
+        <div class="photo-card" onclick="lbOpen({{ slideIdx }}, EVT_IMAGE_SLIDES)">
+          <img src="{{ photo.url }}" alt="{{ photo.caption_short if photo.caption_short else photo.filename }}" loading="lazy">
           <div class="photo-overlay">
-            <div class="photo-cap-text">{{ img.caption if img.caption else img.filename }}</div>
+            <div class="photo-cap-text">{{ photo.caption_short if photo.caption_short else photo.filename }}</div>
           </div>
         </div>
+        {% set slideIdx = slideIdx + 1 %}
       {% endfor %}
     </div>
 

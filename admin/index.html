@@ -568,6 +568,9 @@
       <!-- RAW PANE -->
       <div id="ph-pane-raw" class="ph-pane">
         <div class="ph-sidebar">
+          <div class="ph-sidebar-toolbar">
+            <button class="btn btn-secondary btn-sm" onclick="phOpenCreateStubModal()">+ New Stub</button>
+          </div>
           <div id="ph-raw-list"><p class="ph-placeholder">Loading…</p></div>
         </div>
         <div class="ph-main" id="ph-raw-detail">
@@ -1695,6 +1698,14 @@ function escHtml(s) {
   overflow-y: auto;
   padding: 8px;
 }
+.ph-sidebar-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--rule, #e0e0e0);
+  margin-bottom: 6px;
+}
+.btn-sm { font-size: 0.78rem; padding: 3px 10px; }
 .ph-sidebar-heading {
   font-size: 0.72rem;
   font-weight: 700;
@@ -1747,7 +1758,33 @@ function escHtml(s) {
   border-radius: 3px;
   padding: 2px 6px;
 }
-.ph-stage-form { display: flex; flex-direction: column; gap: 8px; max-width: 480px; }
+.ph-stage-form { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── Staging folder header (slug + revert) ── */
+.ph-staging-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule, #e0e0e0);
+}
+.ph-staging-slug {
+  font-size: 0.82rem;
+  font-family: monospace;
+  color: var(--ink-muted, #888);
+}
+.btn-revert {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--red, #c0392b);
+  border: 1px solid var(--red, #c0392b);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn-revert:hover { background: var(--red, #c0392b); color: #fff; }
 
 /* ── Per-photo form ── */
 .ph-photo-nav {
@@ -1773,7 +1810,7 @@ function escHtml(s) {
   color: var(--ink-muted, #888);
   margin-bottom: 14px;
 }
-.ph-form-grid { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+.ph-form-grid { display: flex; flex-direction: column; gap: 10px; }
 .ph-field { display: flex; flex-direction: column; gap: 3px; }
 .ph-field-row { flex-direction: row; gap: 16px; align-items: flex-end; }
 .ph-field-row > div { display: flex; flex-direction: column; gap: 3px; }
@@ -1907,7 +1944,8 @@ const PH = {
   selectedStagingSlug: null,
   stagingDetail:       null,
   photoIdx: 0,
-  buffer:   {}   // filename → form value object
+  buffer:   {},  // filename → form value object
+  pendingStageSlugs: null  // set when stub modal is opened from phStage()
 };
 
 // ─── Boot ────────────────────────────────────────────────────────────────────
@@ -1998,7 +2036,10 @@ function phRenderRawDetail(d) {
         <input type="text" id="ph-slug-input" class="ph-input" list="ph-slug-dl"
                placeholder="Type slug or pick from suggestions…" />
         <small style="font-size:0.75rem;color:var(--ink-muted,#888)">Suggestions: ${d.suggestions.join(', ') || 'none'}</small>
-        <button class="btn btn-commit" onclick="phStage()" style="margin-top:6px">Move to Staging →</button>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="btn btn-commit" onclick="phStage()">Move to Staging →</button>
+          <button class="btn btn-secondary" onclick="phCancelRaw()">Cancel</button>
+        </div>
       </div>
     </div>`;
 }
@@ -2006,6 +2047,19 @@ function phRenderRawDetail(d) {
 async function phStage() {
   const slug = document.getElementById('ph-slug-input')?.value.trim();
   if (!slug) { alert('Enter a soldier slug first.'); return; }
+
+  // Stub check: warn before staging if this soldier has no profile yet
+  try {
+    const chk = await fetch(`/api/soldiers/check?slugs=${encodeURIComponent(slug)}`);
+    const { missing } = await chk.json();
+    if (missing && missing.length) {
+      phOpenCreateStubModal(slug);
+      // Store slug so the modal can proceed to stage after creating stub
+      PH.pendingStageSlugs = slug;
+      return;
+    }
+  } catch(e) { /* non-fatal — proceed anyway */ }
+
   try {
     const result = await api('POST', '/photos/raw/stage', { folder: PH.selectedRawFolder, slug });
     if (result.ok) {
@@ -2019,6 +2073,13 @@ async function phStage() {
       alert(`Stage failed: ${result.error}`);
     }
   } catch(e) { alert('Stage failed: ' + e.message); }
+}
+
+function phCancelRaw() {
+  PH.selectedRawFolder = null;
+  PH.rawDetail = null;
+  document.getElementById('ph-raw-detail').innerHTML = '<p class="ph-placeholder">Select a folder to review</p>';
+  phRenderRawList(); // clears active highlight in sidebar
 }
 
 // ─── Staging pane ────────────────────────────────────────────────────────────
@@ -2065,6 +2126,22 @@ async function phSelectStagingSlug(slug) {
   }
 }
 
+async function phRevertStaging() {
+  const slug = PH.selectedStagingSlug;
+  if (!slug) return;
+  if (!confirm(`Delete the staging folder for "${slug}"?\n\nYour raw folder is untouched — you can re-stage it at any time.`)) return;
+  try {
+    await api('DELETE', `/photos/staging/${encodeURIComponent(slug)}`);
+    toast(`Staging for "${slug}" reverted`, 'success');
+    PH.selectedStagingSlug = null;
+    PH.stagingDetail = null;
+    PH.buffer = {};
+    PH.photoIdx = 0;
+    document.getElementById('ph-staging-detail').innerHTML = '<p class="ph-placeholder">Select a staging folder to tag photos</p>';
+    await phLoadStaging();
+  } catch(e) { alert('Revert failed: ' + e.message); }
+}
+
 // ─── Per-photo form ───────────────────────────────────────────────────────────
 function phRenderPhoto(idx) {
   const d    = PH.stagingDetail;
@@ -2090,6 +2167,10 @@ function phRenderPhoto(idx) {
 
   detail.innerHTML = `
     <div class="ph-photo-form">
+      <div class="ph-staging-header">
+        <span class="ph-staging-slug">${escHtml(slug)}</span>
+        <button class="btn btn-revert" onclick="phRevertStaging()">⤺ Revert folder</button>
+      </div>
       ${d.notesContent ? `
       <div class="ph-notes">
         <strong style="display:block;margin-bottom:4px;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-muted,#888)">Notes</strong>${escHtml(d.notesContent)}
@@ -2393,8 +2474,8 @@ async function phCheckSubjectSlug() {
 }
 
 // ─── Create stub mini-modal ───────────────────────────────────────────────────
-function phOpenCreateStubModal() {
-  const slug = (document.getElementById('ph-subject-slug')?.value || '').trim();
+function phOpenCreateStubModal(slugOverride) {
+  const slug = slugOverride || (document.getElementById('ph-subject-slug')?.value || '').trim();
   let modal = document.getElementById('ph-create-stub-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -2421,7 +2502,10 @@ function phOpenCreateStubModal() {
       </div>`;
     document.body.appendChild(modal);
   }
-  document.getElementById('ph-csb-slug').value   = slug;
+  const _slugInput = document.getElementById('ph-csb-slug');
+  _slugInput.value    = slug;
+  _slugInput.readOnly = !!slug; // editable when opened standalone, locked when pre-filled
+  _slugInput.style.background = slug ? 'var(--hover,#f0ede6)' : '';
   document.getElementById('ph-csb-name').value   = '';
   document.getElementById('ph-csb-rank').value   = '';
   document.getElementById('ph-csb-status').value = 'researching';
@@ -2433,6 +2517,7 @@ function phOpenCreateStubModal() {
 function phCloseCreateStubModal() {
   const modal = document.getElementById('ph-create-stub-modal');
   if (modal) modal.style.display = 'none';
+  PH.pendingStageSlugs = null;
 }
 
 async function phCreateStub() {
@@ -2457,8 +2542,27 @@ async function phCreateStub() {
       return;
     }
     phCloseCreateStubModal();
-    document.getElementById('ph-stub-warn').style.display = 'none';
+    const warnEl = document.getElementById('ph-stub-warn');
+    if (warnEl) warnEl.style.display = 'none';
     toast(`Stub created: ${slug}`, 'success');
+
+    // If called from phStage(), proceed to move the folder now
+    if (PH.pendingStageSlugs === slug) {
+      PH.pendingStageSlugs = null;
+      try {
+        const result = await api('POST', '/photos/raw/stage', { folder: PH.selectedRawFolder, slug });
+        if (result.ok) {
+          toast(`Staged to ${slug}`, 'success');
+          PH.selectedRawFolder = null;
+          document.getElementById('ph-raw-detail').innerHTML = '<p class="ph-placeholder">Select a folder to review</p>';
+          await phLoadRaw();
+          await phLoadStaging();
+          phSwitchSubTab('staging');
+        } else {
+          alert(`Stage failed: ${result.error}`);
+        }
+      } catch(e2) { alert('Stage failed: ' + e2.message); }
+    }
   } catch(e) {
     errEl.textContent = 'Request failed: ' + e.message;
     errEl.style.display = '';

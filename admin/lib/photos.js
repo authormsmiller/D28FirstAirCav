@@ -120,11 +120,13 @@ function getRawFolderDetail(folderName) {
 // Move raw folder to staging
 // ---------------------------------------------------------------------------
 async function moveToStaging(folderName, soldierSlug) {
-  if (logHasStage(folderName)) {
-    return { ok: false, error: `${folderName} has already been moved to staging.` };
-  }
   const srcDir = path.join(RAW_PHOTOS, folderName);
   const destDir = path.join(STAGING_PHOTOS, soldierSlug);
+  // Block re-staging only if the log says it was staged AND the staging folder
+  // still exists. If the folder was reverted (deleted), allow re-staging.
+  if (logHasStage(folderName) && fs.existsSync(destDir)) {
+    return { ok: false, error: `${folderName} has already been moved to staging.` };
+  }
   if (!fs.existsSync(srcDir)) return { ok: false, error: 'Raw folder not found.' };
 
   await fsp.mkdir(destDir, { recursive: true });
@@ -385,6 +387,22 @@ export function registerPhotosRoutes(app) {
       const detail = getStagingFolderDetail(req.params.slug);
       if (!detail) return res.status(404).json({ error: 'Staging folder not found' });
       res.json(detail);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // DELETE /api/photos/staging/:slug — revert (delete) a staging folder
+  // The raw folder is untouched; the caller can re-stage it at any time.
+  app.delete('/api/photos/staging/:slug', async (req, res) => {
+    try {
+      const { slug } = req.params;
+      if (!slug) return res.status(400).json({ error: 'slug required' });
+      const folderPath = path.join(STAGING_PHOTOS, slug);
+      if (!fs.existsSync(folderPath)) return res.status(404).json({ error: 'Staging folder not found' });
+      await fsp.rm(folderPath, { recursive: true, force: true });
+      appendLog({ slug, action: 'reverted' });
+      res.json({ ok: true });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
