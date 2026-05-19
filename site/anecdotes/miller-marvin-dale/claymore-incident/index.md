@@ -15,7 +15,7 @@ contains:
   - neal-bill
 tagged:
   - fishell-larry
-status: draft
+status: published
 permalink: /anecdotes/miller-marvin-dale/claymore-incident/
 ---
 

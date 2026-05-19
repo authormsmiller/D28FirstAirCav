@@ -42,7 +42,7 @@ casualties:
       note: Survived crash with wounds
 
 contains:
-  - slug: garvin-james
+  - slug: garvin-jim
     name: James Garvin
     note: Bumped from the flight before takeoff; survived by chance; wrote firsthand account
 

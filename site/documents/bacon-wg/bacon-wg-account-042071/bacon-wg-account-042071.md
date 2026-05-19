@@ -6,7 +6,7 @@ author: bacon-wg
 event: contact-fsb-fontaine-1971-04-20
 date: '1971-07-17'
 type: account
-status: draft
+status: published
 contains:
   - neal-bill
   - caruthers-tom
