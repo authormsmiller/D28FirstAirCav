@@ -1377,6 +1377,13 @@ footer { background: var(--blk); border-top: 4px solid var(--y); padding: 20px 4
   letter-spacing: 0.03em;
 }
 
+.result-photo--square {
+  border-radius: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* ── Result body ── */
 
 .result-body {
@@ -1400,6 +1407,16 @@ footer { background: var(--blk); border-top: 4px solid var(--y); padding: 20px 4
 .result-excerpt {
   font-size: 0.8rem;
   color: var(--ink2);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-context {
+  font-size: 0.75rem;
+  color: var(--ink2);
+  opacity: 0.8;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;

@@ -9,8 +9,9 @@ permalink: /search/
   <div class="search-header">
     <h1 class="search-title">Search Records</h1>
     <p class="search-subtitle">
-      Search by name, nickname, platoon, or unit. Firebase and location
-      search coming as those records are added to the archive.
+      Search by name, nickname, platoon, location, or unit.
+      Events and documents are cross-referenced by soldier — searching a name
+      surfaces every record that mentions them.
     </p>
   </div>
 
@@ -21,7 +22,7 @@ permalink: /search/
         id="search-input"
         name="q"
         class="search-input"
-        placeholder="Name, nickname, platoon…"
+        placeholder="Name, nickname, platoon, location…"
         autocomplete="off"
         spellcheck="false"
       />
@@ -52,8 +53,22 @@ permalink: /search/
     return platoon ? platoon.replace(/\s*\([^)]*\)/, "") : "";
   }
 
-  let lunrIndex = null;
-  let records   = {};
+  // Look up soldier display names from a space-separated slug string.
+  // Returns up to `max` names (default 3).
+  function soldierNames(slugStr, max) {
+    if (!slugStr) return [];
+    max = max || 3;
+    var names = [];
+    slugStr.split(" ").filter(Boolean).forEach(function (slug) {
+      if (names.length >= max) return;
+      var r = records[slug];
+      if (r && r.type === "soldier") names.push(r.name);
+    });
+    return names;
+  }
+
+  var lunrIndex = null;
+  var records   = {};
 
   fetch("/search-index.json")
     .then(function (r) { return r.json(); })
@@ -67,15 +82,18 @@ permalink: /search/
         this.field("last_name", { boost: 8  });
         this.field("nickname",  { boost: 8  });
         this.field("platoon",   { boost: 4  });
+        this.field("contains",  { boost: 6  });
+        this.field("tagged",    { boost: 4  });
         this.field("rank",      { boost: 2  });
         this.field("mos",       { boost: 2  });
         this.field("hometown",  { boost: 2  });
+        this.field("location",  { boost: 3  });
         this.field("excerpt",   { boost: 1  });
 
         data.forEach(function (s) { this.add(s); }, this);
       });
 
-      const q = getParam("q");
+      var q = getParam("q");
       if (q) {
         qs("#search-input").value = q;
         runSearch(q);
@@ -88,11 +106,11 @@ permalink: /search/
     });
 
   function runSearch(query) {
-    const container = qs("#search-results");
+    var container = qs("#search-results");
     if (!query.trim()) { container.innerHTML = ""; return; }
-    if (!lunrIndex)    { container.innerHTML = '<p class="search-status">Index loading\u2026</p>'; return; }
+    if (!lunrIndex)    { container.innerHTML = '<p class="search-status">Index loading…</p>'; return; }
 
-    let hits;
+    var hits;
     try {
       hits = lunrIndex.search(query + "*");
       if (!hits.length) hits = lunrIndex.search(query + "~1");
@@ -100,65 +118,153 @@ permalink: /search/
       hits = [];
     }
 
-    const soldiers = hits.map(function (h) { return records[h.ref]; }).filter(Boolean);
-    renderResults(query, soldiers, container);
+    var allHits   = hits.map(function (h) { return records[h.ref]; }).filter(Boolean);
+    var soldiers  = allHits.filter(function (r) { return r.type === "soldier"; });
+    var events    = allHits.filter(function (r) { return r.type === "event"; });
+    var documents = allHits.filter(function (r) { return r.type === "document"; });
+    var anecdotes = allHits.filter(function (r) { return r.type === "anecdote"; });
+
+    renderResults(query, soldiers, events, documents, anecdotes, container);
   }
 
-  function renderResults(query, soldiers, container) {
-    if (!soldiers.length) {
+  // ── Renderers ─────────────────────────────────────────────────────────────
+
+  function renderResults(query, soldiers, events, documents, anecdotes, container) {
+    var total = soldiers.length + events.length + documents.length + anecdotes.length;
+    if (!total) {
       container.innerHTML =
         '<p class="search-no-results">No records found for <strong>' +
         escHtml(query) + '</strong>.</p>';
       return;
     }
 
-    let html = "";
+    var html = "";
+    if (soldiers.length)  html += renderSoldierGroup(soldiers);
+    if (events.length)    html += renderEventGroup(events);
+    if (documents.length) html += renderDocumentGroup(documents);
+    if (anecdotes.length) html += renderAnecdoteGroup(anecdotes);
 
-    html += '<section class="result-group">';
+    container.innerHTML = html;
+  }
+
+  function renderSoldierGroup(soldiers) {
+    var html = '<section class="result-group">';
     html += '<h2 class="result-group-label">Soldiers <span class="result-count">' + soldiers.length + '</span></h2>';
     html += '<ul class="result-list">';
 
     soldiers.forEach(function (s) {
-      const photo = photoPath(s);
-      const platoon = platoonShort(s.platoon);
-      const meta = [s.rank, platoon, s.hometown].filter(Boolean).join(" \u00b7 ");
+      var photo   = photoPath(s);
+      var platoon = platoonShort(s.platoon);
+      var meta    = [s.rank, platoon, s.hometown].filter(Boolean).join(" · ");
 
       html += '<li class="result-item">';
-      html += '  <a href="/soldiers/' + s.slug + '/" class="result-link">';
+      html += '<a href="' + escHtml(s.url) + '" class="result-link">';
 
       if (photo) {
-        html += '  <div class="result-photo">';
-        html += '    <img src="' + escHtml(photo) + '" alt="' + escHtml(s.name) + '" loading="lazy" />';
-        html += '  </div>';
+        html += '<div class="result-photo">';
+        html += '<img src="' + escHtml(photo) + '" alt="' + escHtml(s.name) + '" loading="lazy" />';
+        html += '</div>';
       } else {
-        html += '  <div class="result-photo result-photo--placeholder">';
-        html += '    <span>' + initials(s) + '</span>';
-        html += '  </div>';
+        html += '<div class="result-photo result-photo--placeholder">';
+        html += '<span>' + initials(s) + '</span>';
+        html += '</div>';
       }
 
-      html += '  <div class="result-body">';
-      html += '    <p class="result-name">' + escHtml(s.name) + '</p>';
-      if (meta) html += '    <p class="result-meta">' + escHtml(meta) + '</p>';
-      if (s.excerpt) html += '    <p class="result-excerpt">' + escHtml(truncate(s.excerpt, 120)) + '</p>';
-      html += '  </div>';
-      html += '  </a>';
+      html += '<div class="result-body">';
+      html += '<p class="result-name">' + escHtml(s.name) + '</p>';
+      if (meta)      html += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (s.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(s.excerpt, 120)) + '</p>';
+      html += '</div>';
+      html += '</a>';
       html += '</li>';
     });
 
     html += '</ul></section>';
-
-    html += '<section class="result-group result-group--coming-soon">';
-    html += '<h2 class="result-group-label">Verbal Accounts <span class="result-coming">coming soon</span></h2>';
-    html += '<p class="result-stub-note">Verbal accounts and recorded testimony will appear here as they are added to the archive.</p>';
-    html += '</section>';
-
-    html += '<section class="result-group result-group--coming-soon">';
-    html += '<h2 class="result-group-label">Locations &amp; Firebases <span class="result-coming">coming soon</span></h2>';
-    html += '<p class="result-stub-note">Firebase and location records will appear here once those pages are built.</p>';
-    html += '</section>';
-
-    container.innerHTML = html;
+    return html;
   }
+
+  function renderEventGroup(events) {
+    var html = '<section class="result-group">';
+    html += '<h2 class="result-group-label">Events <span class="result-count">' + events.length + '</span></h2>';
+    html += '<ul class="result-list">';
+
+    events.forEach(function (ev) {
+      var meta      = [ev.date, ev.location].filter(Boolean).join(" · ");
+      var mentioned = soldierNames(ev.contains, 3);
+      var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
+
+      html += '<li class="result-item">';
+      html += '<a href="' + escHtml(ev.url) + '" class="result-link">';
+      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>EV</span></div>';
+      html += '<div class="result-body">';
+      html += '<p class="result-name">' + escHtml(ev.name) + '</p>';
+      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (ev.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(ev.excerpt, 120)) + '</p>';
+      html += '</div>';
+      html += '</a>';
+      html += '</li>';
+    });
+
+    html += '</ul></section>';
+    return html;
+  }
+
+  function renderDocumentGroup(documents) {
+    var html = '<section class="result-group">';
+    html += '<h2 class="result-group-label">Documents <span class="result-count">' + documents.length + '</span></h2>';
+    html += '<ul class="result-list">';
+
+    documents.forEach(function (doc) {
+      var meta      = [doc.date, doc.contributor].filter(Boolean).join(" · ");
+      var mentioned = soldierNames(doc.contains, 3);
+      var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
+
+      html += '<li class="result-item">';
+      html += '<a href="' + escHtml(doc.url) + '" class="result-link">';
+      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>DC</span></div>';
+      html += '<div class="result-body">';
+      html += '<p class="result-name">' + escHtml(doc.name) + '</p>';
+      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (doc.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(doc.excerpt, 120)) + '</p>';
+      html += '</div>';
+      html += '</a>';
+      html += '</li>';
+    });
+
+    html += '</ul></section>';
+    return html;
+  }
+
+  function renderAnecdoteGroup(anecdotes) {
+    var html = '<section class="result-group">';
+    html += '<h2 class="result-group-label">Verbal Accounts <span class="result-count">' + anecdotes.length + '</span></h2>';
+    html += '<ul class="result-list">';
+
+    anecdotes.forEach(function (ac) {
+      var meta      = ac.date ? ac.date : "";
+      var mentioned = soldierNames(ac.contains, 3);
+      var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
+
+      html += '<li class="result-item">';
+      html += '<a href="' + escHtml(ac.url) + '" class="result-link">';
+      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>VA</span></div>';
+      html += '<div class="result-body">';
+      html += '<p class="result-name">' + escHtml(ac.name) + '</p>';
+      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (ac.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(ac.excerpt, 120)) + '</p>';
+      html += '</div>';
+      html += '</a>';
+      html += '</li>';
+    });
+
+    html += '</ul></section>';
+    return html;
+  }
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
 
   function escHtml(str) {
     return String(str)
@@ -170,21 +276,21 @@ permalink: /search/
 
   function truncate(str, len) {
     if (!str || str.length <= len) return str;
-    return str.slice(0, len).replace(/\s+\S*$/, "") + "\u2026";
+    return str.slice(0, len).replace(/\s+\S*$/, "") + "…";
   }
 
   function initials(s) {
-    const f = s.first_name ? s.first_name[0] : "";
-    const l = s.last_name  ? s.last_name[0]  : "";
+    var f = s.first_name ? s.first_name[0] : "";
+    var l = s.last_name  ? s.last_name[0]  : "";
     return (f + l).toUpperCase();
   }
 
   qs("#search-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    const q = qs("#search-input").value.trim();
+    var q = qs("#search-input").value.trim();
     if (!q) return;
 
-    const url = new URL(window.location.href);
+    var url = new URL(window.location.href);
     url.searchParams.set("q", q);
     history.pushState({}, "", url);
 
