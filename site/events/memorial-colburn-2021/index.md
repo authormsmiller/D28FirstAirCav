@@ -10,7 +10,7 @@ date_note: Year confirmed; specific date not known to this archive.
 location: Unknown; civilian venue
 
 contains:
-  - slug: garvin-james
+  - slug: garvin-jim
     name: James Garvin
     note: >
       Attended memorial and provided account; was bumped from the April 24,
