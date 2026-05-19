@@ -4,91 +4,387 @@ title: Contribute
 permalink: /contribute/
 ---
 
-<div class="contrib-hed">
-  <div class="contrib-title">Contribute to<br><span>the Archive</span></div>
-  <div class="contrib-deck">
-    If you served with D Co. 2/8 CAV, or have materials from a family member who did,
-    we want to hear from you. All submissions are reviewed before being added.
+<div class="contrib-hero">
+  <div class="contrib-hero-inner">
+    <div class="contrib-dateline">D Co. 2/8 CAV Archive · Contribute</div>
+    <h1 class="contrib-hed">Add to the <span>Archive</span></h1>
+    <p class="contrib-deck">Photos, letters, documents — anything from a soldier's service. Originals stay with you. We work from copies.</p>
   </div>
 </div>
 
-<div class="contrib-grid">
+<div class="contrib-body">
 
-  {# MEMORY / ACCOUNT FORM #}
-  <div class="contrib-panel">
-    <div class="contrib-panel-hed">Submit a Memory or Account</div>
-    <p class="contrib-panel-deck">A story, anecdote, or firsthand account involving a soldier or event from D Co. 2/8 CAV.</p>
-
-    <form name="memory-submission" method="POST" action="https://formspree.io/f/xbdwjrkn">
-      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
-
-      <div class="fg"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
-      <div class="fg">
-        <label>Your Relationship to the Unit</label>
-        <select name="relationship" required>
-          <option value="">Select...</option>
-          <option>I served with D Co. 2/8 CAV</option>
-          <option>Family member of a soldier</option>
-          <option>Researcher / Historian</option>
-          <option>Other</option>
-        </select>
+  <!-- CONTINUATION BANNER (shown if returning session found) -->
+  <div class="contrib-continuation" id="contribContinuation" style="display:none">
+    <div class="cc-inner">
+      <div class="cc-text">
+        <div class="cc-label">Continuing submission</div>
+        <div class="cc-name" id="ccSoldierName"></div>
       </div>
-      <div class="fg"><label>Soldier This Involves (if applicable)</label>
-        <input type="text" name="soldier_name" placeholder="Name as you knew them"></div>
-      <div class="fg"><label>Account or Memory</label>
-        <textarea name="account" placeholder="Share as much detail as you're comfortable with — dates, locations, names, circumstances." required></textarea></div>
-      <div class="fg"><label>Your Email (not published)</label>
-        <input type="email" name="email" placeholder="For follow-up questions only" required></div>
-      <div class="fg">
-        <label>Permission to Publish</label>
-        <select name="permission" required>
-          <option value="">Select...</option>
-          <option>Yes — publish under my name</option>
-          <option>Yes — publish anonymously</option>
-          <option>No — for research use only</option>
-        </select>
-      </div>
-      <button class="submit-btn" type="submit">Submit Account</button>
-      <div class="priv-note">Your email will not be published. Contact details for living veterans are held in restricted access only and never appear in any public view.</div>
-    </form>
+      <button class="cc-clear" onclick="clearSession()">Start a new submission instead</button>
+    </div>
   </div>
 
-  {# PHOTO / DOCUMENT FORM #}
-  <div class="contrib-panel">
-    <div class="contrib-panel-hed">Submit a Photo or Document</div>
-    <p class="contrib-panel-deck">Photographs, letters, military documents, field notes, or other materials related to D Co. 2/8 CAV.</p>
+  <!-- TYPE SELECTOR -->
+  <div class="contrib-type-section" id="contribTypeSection">
+    <div class="contrib-type-label">What are you contributing?</div>
+    <div class="contrib-type-grid">
+      <button class="contrib-type-card" id="typePhotos" onclick="selectContribType('photos')">
+        <div class="ctc-icon">⬡</div>
+        <div class="ctc-title">Photos</div>
+        <div class="ctc-body">In-country shots, unit photos, portraits — any photographs from his service years. Phone photos of prints work fine.</div>
+      </button>
+      <button class="contrib-type-card" id="typeDocs" onclick="selectContribType('documents')">
+        <div class="ctc-icon">✎</div>
+        <div class="ctc-title">Documents</div>
+        <div class="ctc-body">Letters home, DD-214, orders, newsletters, field notes, citations — anything on paper.</div>
+      </button>
+    </div>
+  </div>
 
-    <form name="material-submission" method="POST" action="https://formspree.io/f/xbdwjrkn"
-          enctype="multipart/form-data">
-      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+  <!-- FORM PANEL -->
+  <div class="contrib-form-panel" id="contribFormPanel" style="display:none">
 
-      <div class="fg"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
-      <div class="fg">
-        <label>Type of Material</label>
-        <select name="material_type" required>
-          <option value="">Select...</option>
-          <option>Photograph</option>
-          <option>Letter (original)</option>
-          <option>Military document (DD-214, orders, etc.)</option>
-          <option>Newsletter or publication</option>
-          <option>Field notes or diary</option>
-          <option>Other</option>
-        </select>
+    <div class="contrib-form-header">
+      <button class="contrib-back" onclick="clearContribType()">← Back</button>
+      <div class="contrib-form-title" id="contribFormTitle"></div>
+    </div>
+
+    <form class="contrib-form" id="contribForm" onsubmit="submitContrib(event)">
+
+      <!-- Shared fields -->
+      <div class="contrib-field-group">
+        <div class="contrib-field">
+          <label class="contrib-label" for="cName">Your name <span class="contrib-req">*</span></label>
+          <input class="contrib-input" type="text" id="cName" name="submitter_name" required autocomplete="name">
+        </div>
+        <div class="contrib-field">
+          <label class="contrib-label" for="cContact">How to reach you <span class="contrib-req">*</span></label>
+          <input class="contrib-input" type="text" id="cContact" name="submitter_contact" required
+            placeholder="Email or phone — your choice" autocomplete="email">
+        </div>
+        <div class="contrib-field">
+          <label class="contrib-label" for="cSoldier">Soldier's name <span class="contrib-req">*</span></label>
+          <input class="contrib-input" type="text" id="cSoldier" name="soldier_name" required
+            placeholder="Name as you knew them">
+        </div>
+        <div class="contrib-field">
+          <label class="contrib-label" for="cPermission">Permission to share <span class="contrib-req">*</span></label>
+          <select class="contrib-select" id="cPermission" name="permission" required>
+            <option value="">— Select —</option>
+            <option value="yes-named">Yes — with my name</option>
+            <option value="yes-anon">Yes — anonymously</option>
+            <option value="research-only">No — research use only</option>
+          </select>
+        </div>
       </div>
-      <div class="fg"><label>Soldier This Belongs To</label>
-        <input type="text" name="soldier_name" placeholder="Name"></div>
-      <div class="fg"><label>Approximate Date</label>
-        <input type="text" name="approx_date" placeholder="e.g. Spring 1971, or best guess"></div>
-      <div class="fg"><label>Caption or Description</label>
-        <textarea name="description" placeholder="What does this show? Who is in it? Where was it taken?"></textarea></div>
-      <div class="fg"><label>Your Email (not published)</label>
-        <input type="email" name="email" placeholder="For follow-up questions only" required></div>
-      <div class="fg">
-        <div class="priv-note" style="margin-top:0;">To submit photos or documents directly, email <a href="mailto:authormsmiller@gmail.com">the archive team</a> — include a brief description and we'll follow up.</div>
+
+      <!-- Photos-specific fields -->
+      <div class="contrib-type-fields" id="contrib-fields-photos" style="display:none">
+        <div class="contrib-field">
+          <label class="contrib-label">Photos <span class="contrib-req">*</span></label>
+          <div class="contrib-dropzone" id="photoDropzone">
+            <div class="cdz-icon">⬡</div>
+            <div class="cdz-text">Drag photos here, or</div>
+            <label class="cdz-btn" for="photoFiles">Choose Files</label>
+            <input type="file" id="photoFiles" name="files" multiple accept="image/*,.pdf"
+              style="display:none" onchange="handleFiles(this.files)">
+            <div class="cdz-hint">JPG, PNG, HEIC, PDF · Any size · Phone photos welcome</div>
+          </div>
+          <div class="contrib-file-list" id="fileList"></div>
+        </div>
+        <div class="contrib-field">
+          <label class="contrib-label" for="cPhotoNotes">Tell us what you know <span class="contrib-opt">(optional)</span></label>
+          <textarea class="contrib-textarea" id="cPhotoNotes" name="notes" rows="3"
+            placeholder="Captions, names in photos, approximate dates, location — whatever you can share"></textarea>
+        </div>
       </div>
-      <button class="submit-btn" type="submit">Submit Material</button>
-      <div class="priv-note">Originals will never be requested without explicit consent. You retain ownership of all submitted materials.</div>
+
+      <!-- Documents-specific fields -->
+      <div class="contrib-type-fields" id="contrib-fields-documents" style="display:none">
+        <div class="contrib-field">
+          <label class="contrib-label">Upload files <span class="contrib-opt">(optional if using Drive link)</span></label>
+          <div class="contrib-dropzone" id="docDropzone">
+            <div class="cdz-icon">✎</div>
+            <div class="cdz-text">Drag files here, or</div>
+            <label class="cdz-btn" for="docFiles">Choose Files</label>
+            <input type="file" id="docFiles" name="files" multiple accept="image/*,.pdf,.doc,.docx,.txt"
+              style="display:none" onchange="handleFiles(this.files)">
+            <div class="cdz-hint">PDF, JPG, Word, or phone photos of documents</div>
+          </div>
+          <div class="contrib-file-list" id="fileList"></div>
+        </div>
+        <div class="contrib-field">
+          <label class="contrib-label" for="cDriveLink">Or share a Drive link <span class="contrib-opt">(optional)</span></label>
+          <input class="contrib-input" type="url" id="cDriveLink" name="notes"
+            placeholder="https://drive.google.com/...">
+          <div class="contrib-hint">Make sure your link is set to "Anyone with the link can view."</div>
+        </div>
+      </div>
+
+      <!-- Provenance -->
+      <div class="contrib-provenance">
+        <label class="contrib-check-label">
+          <input type="checkbox" id="cProvenance" name="provenance_confirmed" value="true" required>
+          <span>I have the right to share this material.</span>
+        </label>
+      </div>
+
+      <!-- Progress bar (hidden until upload starts) -->
+      <div class="contrib-progress" id="contribProgress" style="display:none">
+        <div class="cp-bar"><div class="cp-fill" id="cpFill"></div></div>
+        <div class="cp-label" id="cpLabel">Uploading…</div>
+      </div>
+
+      <div class="contrib-actions">
+        <button class="contrib-submit" type="submit" id="contribSubmitBtn">Send</button>
+      </div>
+
     </form>
+
+    <!-- SUCCESS -->
+    <div class="contrib-success" id="contribSuccess" style="display:none">
+      <div class="cs-icon">✓</div>
+      <div class="cs-hed">Received.</div>
+      <div class="cs-body">We'll be in touch. If you have more materials to add, you can submit again and they'll be added to the same folder.</div>
+      <button class="contrib-submit" style="margin-top:24px" onclick="contribAgain()">Submit more</button>
+      <button class="contrib-back-link" onclick="clearSession()">Start a different submission</button>
+    </div>
+
+    <!-- ERROR -->
+    <div class="contrib-error" id="contribError" style="display:none">
+      <div class="contrib-error-msg" id="contribErrorMsg"></div>
+      <button class="contrib-submit" onclick="clearContribError()">Try again</button>
+    </div>
+
   </div>
 
 </div>
+
+<script>
+const LS_FOLDER  = 'd28_contrib_folder_id';
+const LS_EMAIL   = 'd28_contrib_email_sent';
+const LS_NAME    = 'd28_contrib_name';
+const LS_CONTACT = 'd28_contrib_contact';
+const LS_SOLDIER = 'd28_contrib_soldier';
+
+let selectedFiles = [];
+let contribType   = null;
+
+// ── On load: check for continuation session ──────────────────────────────
+(async function init() {
+  // Handle ?c= continuation link (cross-device)
+  const params = new URLSearchParams(window.location.search);
+  const cParam = params.get('c');
+  if (cParam) {
+    const exists = await checkFolder(cParam);
+    if (exists) localStorage.setItem(LS_FOLDER, cParam);
+  }
+
+  // Handle ?type= pre-selection
+  const typeParam = params.get('type');
+
+  const folderId = localStorage.getItem(LS_FOLDER);
+  if (folderId) {
+    const exists = await checkFolder(folderId);
+    if (exists) {
+      showContinuation();
+    } else {
+      clearSessionSilent();
+    }
+  }
+
+  if (typeParam === 'photos' || typeParam === 'documents') {
+    selectContribType(typeParam);
+  }
+})();
+
+async function checkFolder(id) {
+  try {
+    const res = await fetch(`/submit/check?folder=${encodeURIComponent(id)}`);
+    const data = await res.json();
+    return data.exists;
+  } catch { return false; }
+}
+
+function showContinuation() {
+  const soldier = localStorage.getItem(LS_SOLDIER) || 'previous submission';
+  document.getElementById('ccSoldierName').textContent = soldier;
+  document.getElementById('contribContinuation').style.display = 'block';
+  // Pre-fill fields if visible
+  prefillFields();
+}
+
+function prefillFields() {
+  const name    = localStorage.getItem(LS_NAME);
+  const contact = localStorage.getItem(LS_CONTACT);
+  const soldier = localStorage.getItem(LS_SOLDIER);
+  if (name    && document.getElementById('cName'))    document.getElementById('cName').value    = name;
+  if (contact && document.getElementById('cContact')) document.getElementById('cContact').value = contact;
+  if (soldier && document.getElementById('cSoldier')) document.getElementById('cSoldier').value = soldier;
+}
+
+// ── Type selection ────────────────────────────────────────────────────────
+function selectContribType(type) {
+  contribType = type;
+  document.querySelectorAll('.contrib-type-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(type === 'photos' ? 'typePhotos' : 'typeDocs').classList.add('active');
+  document.getElementById('contribFormTitle').textContent = type === 'photos' ? 'Submit Photos' : 'Submit Documents';
+  document.querySelectorAll('.contrib-type-fields').forEach(el => el.style.display = 'none');
+  document.getElementById('contrib-fields-' + type).style.display = 'block';
+  document.getElementById('contribFormPanel').style.display = 'block';
+  document.getElementById('contribForm').style.display = 'block';
+  document.getElementById('contribSuccess').style.display = 'none';
+  document.getElementById('contribError').style.display = 'none';
+  prefillFields();
+  document.getElementById('contribFormPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearContribType() {
+  contribType = null;
+  selectedFiles = [];
+  document.querySelectorAll('.contrib-type-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('contribFormPanel').style.display = 'none';
+  document.getElementById('contribTypeSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── File handling ─────────────────────────────────────────────────────────
+function handleFiles(fileList) {
+  selectedFiles = [...selectedFiles, ...Array.from(fileList)];
+  renderFileList();
+}
+
+function removeFile(index) {
+  selectedFiles.splice(index, 1);
+  renderFileList();
+}
+
+function renderFileList() {
+  const el = document.getElementById('fileList');
+  if (!selectedFiles.length) { el.innerHTML = ''; return; }
+  el.innerHTML = selectedFiles.map((f, i) =>
+    `<div class="cfl-item">
+      <span class="cfl-name">${f.name}</span>
+      <span class="cfl-size">${(f.size / 1024 / 1024).toFixed(1)} MB</span>
+      <button type="button" class="cfl-remove" onclick="removeFile(${i})">✕</button>
+    </div>`
+  ).join('');
+}
+
+// Drag and drop
+['photoDropzone','docDropzone'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
+  el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+  el.addEventListener('drop', e => {
+    e.preventDefault();
+    el.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  });
+});
+
+// ── Submit ────────────────────────────────────────────────────────────────
+async function submitContrib(e) {
+  e.preventDefault();
+  if (!contribType) return;
+
+  const btn = document.getElementById('contribSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Uploading…';
+
+  const formEl = document.getElementById('contribForm');
+  const fd = new FormData(formEl);
+
+  // Swap out files with our tracked array
+  fd.delete('files');
+  for (const f of selectedFiles) fd.append('files', f);
+
+  fd.set('type', contribType);
+
+  // Attach existing folder_id if continuing
+  const existingFolder = localStorage.getItem(LS_FOLDER);
+  if (existingFolder) fd.set('folder_id', existingFolder);
+
+  // Show progress
+  document.getElementById('contribProgress').style.display = 'block';
+  const fill = document.getElementById('cpFill');
+  const label = document.getElementById('cpLabel');
+
+  try {
+    // Use XMLHttpRequest for progress events
+    const result = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/submit/contribute');
+      xhr.upload.addEventListener('progress', ev => {
+        if (ev.lengthComputable) {
+          const pct = Math.round((ev.loaded / ev.total) * 100);
+          fill.style.width = pct + '%';
+          label.textContent = `Uploading… ${pct}%`;
+        }
+      });
+      xhr.addEventListener('load', () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject(new Error('Server error ' + xhr.status));
+        }
+      });
+      xhr.addEventListener('error', () => reject(new Error('Network error')));
+      xhr.send(fd);
+    });
+
+    // Store session in localStorage
+    localStorage.setItem(LS_FOLDER,  result.folderId);
+    localStorage.setItem(LS_NAME,    fd.get('submitter_name') || '');
+    localStorage.setItem(LS_CONTACT, fd.get('submitter_contact') || '');
+    localStorage.setItem(LS_SOLDIER, fd.get('soldier_name') || '');
+
+    label.textContent = 'Done.';
+    fill.style.width = '100%';
+
+    document.getElementById('contribForm').style.display = 'none';
+    document.getElementById('contribSuccess').style.display = 'block';
+    showContinuation();
+
+  } catch (err) {
+    document.getElementById('contribProgress').style.display = 'none';
+    document.getElementById('contribErrorMsg').textContent =
+      'Something went wrong uploading. Please try again, or email admin@angryskipperarchive.org directly.';
+    document.getElementById('contribError').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send';
+  }
+}
+
+function clearContribError() {
+  document.getElementById('contribError').style.display = 'none';
+  document.getElementById('contribSubmitBtn').disabled = false;
+  document.getElementById('contribSubmitBtn').textContent = 'Send';
+  document.getElementById('contribProgress').style.display = 'none';
+}
+
+function contribAgain() {
+  selectedFiles = [];
+  document.getElementById('contribForm').reset();
+  document.getElementById('fileList').innerHTML = '';
+  document.getElementById('contribProgress').style.display = 'none';
+  document.getElementById('cpFill').style.width = '0%';
+  document.getElementById('contribSuccess').style.display = 'none';
+  document.getElementById('contribForm').style.display = 'block';
+  prefillFields();
+}
+
+function clearSession() {
+  clearSessionSilent();
+  document.getElementById('contribContinuation').style.display = 'none';
+  document.getElementById('contribFormPanel').style.display = 'none';
+  contribType = null;
+  selectedFiles = [];
+  document.querySelectorAll('.contrib-type-card').forEach(c => c.classList.remove('active'));
+}
+
+function clearSessionSilent() {
+  [LS_FOLDER, LS_EMAIL, LS_NAME, LS_CONTACT, LS_SOLDIER].forEach(k => localStorage.removeItem(k));
+}
+</script>

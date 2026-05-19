@@ -6,6 +6,7 @@
  * API at http://localhost:3001/api/*
  */
 
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -17,8 +18,10 @@ import { sessionStatus, ensureWorkingBranch, commitChanges, pushBranch } from '.
 import { registerPhotosRoutes } from './lib/photos.js';
 import { registerSoldiersRoutes } from './lib/soldiers.js';
 import registerTodoRoutes from './lib/todo.js';
+import { registerSubmissionsRoutes } from './lib/submissions.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = path.resolve(__dirname, '..');
 const app = express();
 const PORT = 3001;
 
@@ -262,6 +265,10 @@ registerSoldiersRoutes(app);
 // ─── tab 5: todo / flags ──────────────────────────────────────────────────────
 
 registerTodoRoutes(app);
+
+// ─── infra-task-068: submissions pull ────────────────────────────────────────
+
+registerSubmissionsRoutes(app, REPO_ROOT);
 
 // ─── start ────────────────────────────────────────────────────────────────────
 
