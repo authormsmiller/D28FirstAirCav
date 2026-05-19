@@ -54,7 +54,6 @@ permalink: /search/
   }
 
   // Look up soldier display names from a space-separated slug string.
-  // Returns up to `max` names (default 3).
   function soldierNames(slugStr, max) {
     if (!slugStr) return [];
     max = max || 3;
@@ -65,6 +64,20 @@ permalink: /search/
       if (r && r.type === "soldier") names.push(r.name);
     });
     return names;
+  }
+
+  // Wrap a result group in a <details> element.
+  // Open by default when there are fewer than 5 results.
+  function detailsWrap(label, countOrNull, bodyHtml, forceOpen) {
+    var count = countOrNull !== null ? countOrNull : 0;
+    var isOpen = forceOpen || count < 5;
+    var countBadge = countOrNull !== null
+      ? '<span class="result-count">' + count + '</span>'
+      : '';
+    return '<details class="result-group"' + (isOpen ? ' open' : '') + '>' +
+      '<summary class="result-group-label">' + label + ' ' + countBadge + '</summary>' +
+      bodyHtml +
+      '</details>';
   }
 
   var lunrIndex = null;
@@ -138,130 +151,152 @@ permalink: /search/
       return;
     }
 
+    // Identify the top soldier match for the contribute footer
+    var topSoldier = soldiers.length ? soldiers[0] : null;
+
     var html = "";
-    if (soldiers.length)  html += renderSoldierGroup(soldiers);
+    if (soldiers.length)  html += renderProfileGroup(soldiers);
     if (events.length)    html += renderEventGroup(events);
     if (documents.length) html += renderDocumentGroup(documents);
     if (anecdotes.length) html += renderAnecdoteGroup(anecdotes);
+    html += renderContribute(topSoldier);
 
     container.innerHTML = html;
   }
 
-  function renderSoldierGroup(soldiers) {
-    var html = '<section class="result-group">';
-    html += '<h2 class="result-group-label">Soldiers <span class="result-count">' + soldiers.length + '</span></h2>';
-    html += '<ul class="result-list">';
+  function renderProfileGroup(soldiers) {
+    var body = '<ul class="result-list">';
 
     soldiers.forEach(function (s) {
       var photo   = photoPath(s);
       var platoon = platoonShort(s.platoon);
       var meta    = [s.rank, platoon, s.hometown].filter(Boolean).join(" · ");
 
-      html += '<li class="result-item">';
-      html += '<a href="' + escHtml(s.url) + '" class="result-link">';
+      body += '<li class="result-item">';
+      body += '<a href="' + escHtml(s.url) + '" class="result-link">';
 
       if (photo) {
-        html += '<div class="result-photo">';
-        html += '<img src="' + escHtml(photo) + '" alt="' + escHtml(s.name) + '" loading="lazy" />';
-        html += '</div>';
+        body += '<div class="result-photo">';
+        body += '<img src="' + escHtml(photo) + '" alt="' + escHtml(s.name) + '" loading="lazy" />';
+        body += '</div>';
       } else {
-        html += '<div class="result-photo result-photo--placeholder">';
-        html += '<span>' + initials(s) + '</span>';
-        html += '</div>';
+        body += '<div class="result-photo result-photo--placeholder">';
+        body += '<span>' + initials(s) + '</span>';
+        body += '</div>';
       }
 
-      html += '<div class="result-body">';
-      html += '<p class="result-name">' + escHtml(s.name) + '</p>';
-      if (meta)      html += '<p class="result-meta">' + escHtml(meta) + '</p>';
-      if (s.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(s.excerpt, 120)) + '</p>';
-      html += '</div>';
-      html += '</a>';
-      html += '</li>';
+      body += '<div class="result-body">';
+      body += '<p class="result-name">' + escHtml(s.name) + '</p>';
+      if (meta) body += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (s.excerpt) body += '<p class="result-excerpt">' + escHtml(truncate(s.excerpt, 120)) + '</p>';
+
+      // Photos button or contribute CTA — always shown
+      if (s.photo_count > 0) {
+        body += '<p class="result-photos">';
+        body += '<a href="' + escHtml(s.url) + '#photos" class="result-photos-btn">';
+        body += 'Photos (' + s.photo_count + ')';
+        body += '</a></p>';
+      } else {
+        body += '<p class="result-photos">';
+        body += '<a href="/contribute/?soldier=' + escHtml(s.slug) + '&amp;type=photos" class="result-photos-btn result-photos-btn--cta">';
+        body += 'Have a photo of ' + escHtml(s.first_name || s.name) + '? Add it here';
+        body += '</a></p>';
+      }
+
+      body += '</div>';
+      body += '</a>';
+      body += '</li>';
     });
 
-    html += '</ul></section>';
-    return html;
+    body += '</ul>';
+    return detailsWrap("Profile", soldiers.length, body);
   }
 
   function renderEventGroup(events) {
-    var html = '<section class="result-group">';
-    html += '<h2 class="result-group-label">Events <span class="result-count">' + events.length + '</span></h2>';
-    html += '<ul class="result-list">';
+    var body = '<ul class="result-list">';
 
     events.forEach(function (ev) {
       var meta      = [ev.date, ev.location].filter(Boolean).join(" · ");
       var mentioned = soldierNames(ev.contains, 3);
       var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
 
-      html += '<li class="result-item">';
-      html += '<a href="' + escHtml(ev.url) + '" class="result-link">';
-      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>EV</span></div>';
-      html += '<div class="result-body">';
-      html += '<p class="result-name">' + escHtml(ev.name) + '</p>';
-      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
-      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
-      else if (ev.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(ev.excerpt, 120)) + '</p>';
-      html += '</div>';
-      html += '</a>';
-      html += '</li>';
+      body += '<li class="result-item">';
+      body += '<a href="' + escHtml(ev.url) + '" class="result-link">';
+      body += '<div class="result-photo result-photo--placeholder result-photo--square"><span>EV</span></div>';
+      body += '<div class="result-body">';
+      body += '<p class="result-name">' + escHtml(ev.name) + '</p>';
+      if (meta)    body += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) body += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (ev.excerpt) body += '<p class="result-excerpt">' + escHtml(truncate(ev.excerpt, 120)) + '</p>';
+      body += '</div>';
+      body += '</a>';
+      body += '</li>';
     });
 
-    html += '</ul></section>';
-    return html;
+    body += '</ul>';
+    return detailsWrap("Events", events.length, body);
   }
 
   function renderDocumentGroup(documents) {
-    var html = '<section class="result-group">';
-    html += '<h2 class="result-group-label">Documents <span class="result-count">' + documents.length + '</span></h2>';
-    html += '<ul class="result-list">';
+    var body = '<ul class="result-list">';
 
     documents.forEach(function (doc) {
       var meta      = [doc.date, doc.contributor].filter(Boolean).join(" · ");
       var mentioned = soldierNames(doc.contains, 3);
       var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
 
-      html += '<li class="result-item">';
-      html += '<a href="' + escHtml(doc.url) + '" class="result-link">';
-      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>DC</span></div>';
-      html += '<div class="result-body">';
-      html += '<p class="result-name">' + escHtml(doc.name) + '</p>';
-      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
-      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
-      else if (doc.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(doc.excerpt, 120)) + '</p>';
-      html += '</div>';
-      html += '</a>';
-      html += '</li>';
+      body += '<li class="result-item">';
+      body += '<a href="' + escHtml(doc.url) + '" class="result-link">';
+      body += '<div class="result-photo result-photo--placeholder result-photo--square"><span>DC</span></div>';
+      body += '<div class="result-body">';
+      body += '<p class="result-name">' + escHtml(doc.name) + '</p>';
+      if (meta)    body += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) body += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (doc.excerpt) body += '<p class="result-excerpt">' + escHtml(truncate(doc.excerpt, 120)) + '</p>';
+      body += '</div>';
+      body += '</a>';
+      body += '</li>';
     });
 
-    html += '</ul></section>';
-    return html;
+    body += '</ul>';
+    return detailsWrap("Documents", documents.length, body);
   }
 
   function renderAnecdoteGroup(anecdotes) {
-    var html = '<section class="result-group">';
-    html += '<h2 class="result-group-label">Verbal Accounts <span class="result-count">' + anecdotes.length + '</span></h2>';
-    html += '<ul class="result-list">';
+    var body = '<ul class="result-list">';
 
     anecdotes.forEach(function (ac) {
-      var meta      = ac.date ? ac.date : "";
+      var meta      = ac.date || "";
       var mentioned = soldierNames(ac.contains, 3);
       var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
 
-      html += '<li class="result-item">';
-      html += '<a href="' + escHtml(ac.url) + '" class="result-link">';
-      html += '<div class="result-photo result-photo--placeholder result-photo--square"><span>VA</span></div>';
-      html += '<div class="result-body">';
-      html += '<p class="result-name">' + escHtml(ac.name) + '</p>';
-      if (meta)    html += '<p class="result-meta">' + escHtml(meta) + '</p>';
-      if (context) html += '<p class="result-context">' + escHtml(context) + '</p>';
-      else if (ac.excerpt) html += '<p class="result-excerpt">' + escHtml(truncate(ac.excerpt, 120)) + '</p>';
-      html += '</div>';
-      html += '</a>';
-      html += '</li>';
+      body += '<li class="result-item">';
+      body += '<a href="' + escHtml(ac.url) + '" class="result-link">';
+      body += '<div class="result-photo result-photo--placeholder result-photo--square"><span>VA</span></div>';
+      body += '<div class="result-body">';
+      body += '<p class="result-name">' + escHtml(ac.name) + '</p>';
+      if (meta)    body += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) body += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (ac.excerpt) body += '<p class="result-excerpt">' + escHtml(truncate(ac.excerpt, 120)) + '</p>';
+      body += '</div>';
+      body += '</a>';
+      body += '</li>';
     });
 
-    html += '</ul></section>';
-    return html;
+    body += '</ul>';
+    return detailsWrap("Verbal Accounts", anecdotes.length, body);
+  }
+
+  function renderContribute(soldier) {
+    var href, text;
+    if (soldier) {
+      href = "/contribute/?soldier=" + encodeURIComponent(soldier.slug);
+      text = "Know something we’re missing about " + escHtml(soldier.name) + "? Contribute →";
+    } else {
+      href = "/contribute/";
+      text = "Something missing from these results? Contribute →";
+    }
+    return '<div class="result-contribute"><a href="' + escHtml(href) + '">' + text + '</a></div>';
   }
 
   // ── Helpers ────────────────────────────────────────────────────────────────

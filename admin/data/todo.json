@@ -1092,7 +1092,7 @@
       ],
       "created": "2026-05-18",
       "epic": "INFRA-EPIC-20260518000060"
-    }
+    },
     {
       "id": "SITE-TASK-20260519000071",
       "parent_id": null,
@@ -1100,8 +1100,8 @@
       "type": "task",
       "scope": "site",
       "status": "open",
-      "title": "Search rebuild — events, documents, contains/tagged indexing",
-      "notes": "Current search only returns soldiers. Three issues: (1) CRLF fix already applied to searchIndex.js — unlocks all 36 soldiers. (2) Events and documents are in the index JSON but the search UI renders them as 'coming soon' placeholders — need to add result rendering for events and documents. (3) contains/tagged fields are not declared as Lunr fields, so searching a soldier name does not surface events/documents they appear in. Fix requires: add contains, tagged, location, title to Lunr field declarations; add event/document result rendering to search/index.njk; show context line (e.g. 'Larry Cate appears in this event'). Data tagging is generally good — Chieu Hoi has Cate in contains correctly. This is a search engine + UI problem, not primarily a data problem.",
+      "title": "Search rebuild \u2014 events, documents, contains/tagged indexing",
+      "notes": "Current search only returns soldiers. Three issues: (1) CRLF fix already applied to searchIndex.js \u2014 unlocks all 36 soldiers. (2) Events and documents are in the index JSON but the search UI renders them as 'coming soon' placeholders \u2014 need to add result rendering for events and documents. (3) contains/tagged fields are not declared as Lunr fields, so searching a soldier name does not surface events/documents they appear in. Fix requires: add contains, tagged, location, title to Lunr field declarations; add event/document result rendering to search/index.njk; show context line (e.g. 'Larry Cate appears in this event'). Data tagging is generally good \u2014 Chieu Hoi has Cate in contains correctly. This is a search engine + UI problem, not primarily a data problem.",
       "created": "2026-05-19",
       "completed": null,
       "promoted_from": null
@@ -1113,8 +1113,53 @@
       "type": "task",
       "scope": "admin",
       "status": "open",
-      "title": "Health check — pending unpublished changes",
-      "notes": "Add a scan/health check to Tab 5 that monitors local changes not yet built and deployed to the live site. Intended to surface soldier profiles, photos, documents, and other content that has been processed locally but hasn't gone live yet. May be complex — needs design before build. Possibly compares local _site build state vs. last wrangler deploy, or tracks a manifest of pending items.",
+      "title": "Health check \u2014 pending unpublished changes",
+      "notes": "Add a scan/health check to Tab 5 that monitors local changes not yet built and deployed to the live site. Intended to surface soldier profiles, photos, documents, and other content that has been processed locally but hasn't gone live yet. May be complex \u2014 needs design before build. Possibly compares local _site build state vs. last wrangler deploy, or tracks a manifest of pending items.",
+      "created": "2026-05-19",
+      "completed": null,
+      "promoted_from": null
+    },
+    {
+      "id": "SITE-TASK-20260519000072",
+      "parent_id": null,
+      "relates_to": [
+        "SITE-TASK-20260519000071"
+      ],
+      "type": "task",
+      "scope": "site",
+      "status": "open",
+      "title": "Search \u2014 Served Alongside: investigate, spec, and improve",
+      "notes": "Once the master soldier index is built (Pass 1 + Pass 2 across events, documents, anecdotes, and photo index files), investigate what Served Alongside data we have. Two soldiers are candidates if they share an event contains/tagged/casualties entry. Spec the scoring logic (shared event count, role weight, etc.), evaluate result quality with real data, and improve before surfacing in the Served With search section. Do not ship until results are meaningful \u2014 a sparse index will produce misleading connections.",
+      "created": "2026-05-19",
+      "completed": null,
+      "promoted_from": null
+    },
+    {
+      "id": "SITE-TASK-20260519000074",
+      "parent_id": null,
+      "relates_to": [
+        "SITE-TASK-20260519000072"
+      ],
+      "type": "task",
+      "scope": "site",
+      "status": "open",
+      "title": "Album page — ‘Your Vietnam Story’ aggregation page per soldier",
+      "notes": "Build a page at /soldiers/[slug]/album/ that aggregates every piece of content referencing a soldier’s slug — photos, events, documents, anecdotes, and any future content types. This is the end-state destination for the Photos button on search results (currently links to profile #photos tab as interim). Motivation: contributors have a DD-214 and assemble the story piecemeal as data arrives — the album should give someone the whole picture immediately on search.\n\nDesign notes:\n- Content is filtered slug-first: anything where soldier slug appears in contains, tagged, or as the owning soldier\n- Display grouped by content type (Photos, Events, Documents, Anecdotes, Letters) with optional chronological view\n- Each card shows the same metadata used in search results (date, location, excerpt, context)\n- Should include a printable/exportable layout for the Build My Album feature (future)\n\nArchitectural constraint: all future content types MUST use contains/tagged as the canonical soldier-reference fields. Do not introduce new field names (soldiers, people, mentions, etc.) — any new type that follows contains/tagged slots into the album automatically without retrofit.\n\nMVP unlock: once album page exists, update search result Photos button from /soldiers/[slug]/#photos to /soldiers/[slug]/album/, and add ‘View full album →’ link to the Photos tab on the soldier profile.",
+      "created": "2026-05-19",
+      "completed": null,
+      "promoted_from": null
+    },
+    {
+      "id": "DATA-TASK-20260519000073",
+      "parent_id": null,
+      "relates_to": [
+        "DATA-EPIC-20260518000002"
+      ],
+      "type": "task",
+      "scope": "data",
+      "status": "open",
+      "title": "Soldier profile standardization pass",
+      "notes": "Several soldier profiles were created before the current front matter schema was finalized (miller-marvin-dale being the oldest). Do a full pass across all soldiers/[slug]/[slug].md files to: (1) ensure every profile has a closing --- delimiter, (2) verify all required fields are present and in the current order (identity, service, profile_photo, decorations, family_contact, timeline_source, timeline), (3) confirm photos are in separate photos/[subfolder]/index.md files rather than embedded in the main profile, (4) normalize any field naming inconsistencies. Use data-standards.md as the reference. miller-marvin-dale, plus any profiles created in early sessions, are the most likely to need updates.",
       "created": "2026-05-19",
       "completed": null,
       "promoted_from": null

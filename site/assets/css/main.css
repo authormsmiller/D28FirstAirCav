@@ -1278,6 +1278,31 @@ footer { background: var(--blk); border-top: 4px solid var(--y); padding: 20px 4
   margin-bottom: 2.5rem;
 }
 
+/* details/summary collapsible — remove browser defaults */
+details.result-group > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+details.result-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Collapse indicator pushed to the right */
+details.result-group > summary.result-group-label::after {
+  content: "−";
+  margin-left: auto;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink2);
+  opacity: 0.5;
+}
+details.result-group:not([open]) > summary.result-group-label::after {
+  content: "+";
+}
+
 .result-group-label {
   font-size: 0.75rem;
   font-weight: 600;
@@ -1421,6 +1446,58 @@ footer { background: var(--blk); border-top: 4px solid var(--y); padding: 20px 4
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.result-photos {
+  margin: 0.35rem 0 0;
+}
+
+.result-photos-btn {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.15rem 0.5rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+.result-photos-btn:hover {
+  border-color: var(--ink2);
+  color: var(--ink);
+}
+
+.result-photos-btn--cta {
+  border-style: dashed;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.7;
+}
+.result-photos-btn--cta:hover {
+  opacity: 1;
+}
+
+/* ── Contribute footer ── */
+
+.result-contribute {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.result-contribute a {
+  font-size: 0.85rem;
+  color: var(--ink2);
+  text-decoration: none;
+}
+.result-contribute a:hover {
+  color: var(--ink);
+  text-decoration: underline;
 }
 
 /* ── States ── */
