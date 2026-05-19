@@ -563,11 +563,17 @@
         <button class="ph-subtab" id="ph-tab-staging" onclick="phSwitchSubTab('staging')">
           Staging <span class="tab-badge" id="ph-staging-badge" style="display:none"></span>
         </button>
+        <button class="ph-subtab" id="ph-tab-submissions" onclick="phSwitchSubTab('submissions')">
+          Submissions <span class="tab-badge" id="ph-submissions-badge" style="display:none"></span>
+        </button>
       </div>
 
       <!-- RAW PANE -->
       <div id="ph-pane-raw" class="ph-pane">
         <div class="ph-sidebar">
+          <div class="ph-sidebar-toolbar">
+            <button class="btn btn-secondary btn-sm" onclick="phOpenCreateStubModal()">+ New Stub</button>
+          </div>
           <div id="ph-raw-list"><p class="ph-placeholder">Loading…</p></div>
         </div>
         <div class="ph-main" id="ph-raw-detail">
@@ -585,6 +591,16 @@
         </div>
         <div class="ph-main" id="ph-staging-detail">
           <p class="ph-placeholder">Select a staging folder to tag photos</p>
+        </div>
+      </div>
+
+      <!-- SUBMISSIONS PANE -->
+      <div id="ph-pane-submissions" class="ph-pane ph-submissions-pane" style="display:none">
+        <div class="ph-submissions-toolbar">
+          <button class="btn btn-secondary btn-sm" onclick="phLoadSubmissions()">↻ Refresh</button>
+        </div>
+        <div id="ph-submissions-list" class="ph-submissions-list">
+          <p class="ph-placeholder">Loading…</p>
         </div>
       </div>
 
@@ -1695,6 +1711,14 @@ function escHtml(s) {
   overflow-y: auto;
   padding: 8px;
 }
+.ph-sidebar-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--rule, #e0e0e0);
+  margin-bottom: 6px;
+}
+.btn-sm { font-size: 0.78rem; padding: 3px 10px; }
 .ph-sidebar-heading {
   font-size: 0.72rem;
   font-weight: 700;
@@ -1747,7 +1771,182 @@ function escHtml(s) {
   border-radius: 3px;
   padding: 2px 6px;
 }
-.ph-stage-form { display: flex; flex-direction: column; gap: 8px; max-width: 480px; }
+.ph-stage-form { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── Crop preview ── */
+.ph-crop-wrap {
+  position: relative;
+  display: inline-block;
+  cursor: crosshair;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+.ph-crop-img {
+  display: block;
+  max-width: 100%;
+  max-height: 340px;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+.ph-crop-overlay {
+  position: absolute;
+  inset: 0;
+}
+.ph-crop-rect {
+  position: absolute;
+  border: 2px solid #f5c800;
+  background: rgba(245,200,0,0.08);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.ph-crop-section {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule, #eee);
+}
+.ph-crop-section:last-child { border-bottom: none; }
+.ph-crop-fname {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted, #888);
+  margin-bottom: 6px;
+}
+.ph-crop-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.ph-crop-coords {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--ink-muted, #aaa);
+}
+
+/* ── Rename table ── */
+.ph-rename-table {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 4px 8px;
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+}
+.ph-rename-orig {
+  font-family: monospace;
+  color: var(--ink-muted, #888);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ph-rename-arrow { color: var(--ink-muted, #aaa); user-select: none; }
+.ph-rename-input {
+  font-family: monospace;
+  font-size: 0.78rem;
+  padding: 3px 6px;
+  border: 1px solid var(--rule, #ccc);
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ph-rename-input.is-changed {
+  border-color: var(--yellow, #f5c800);
+  background: #fffde7;
+}
+
+/* ── Submissions pane ── */
+.ph-submissions-pane {
+  flex-direction: column;
+  overflow: hidden;
+}
+.ph-submissions-toolbar {
+  padding: 8px 16px 6px;
+  border-bottom: 1px solid var(--rule, #ccc);
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+.ph-submissions-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ph-sub-card {
+  border: 1px solid var(--rule, #ccc);
+  border-radius: 6px;
+  padding: 14px 16px;
+  background: var(--paper, #fff);
+}
+.ph-sub-card.ph-sub-pulled {
+  border-color: #4caf50;
+  background: #f6fff6;
+}
+.ph-sub-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.ph-sub-soldier {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.ph-sub-meta {
+  font-size: 0.78rem;
+  color: var(--ink-muted, #888);
+  margin-bottom: 2px;
+}
+.ph-sub-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.ph-sub-pulled-label {
+  font-size: 0.8rem;
+  color: #4caf50;
+  font-weight: 600;
+}
+.ph-sub-notes {
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  max-height: 80px;
+  overflow-y: auto;
+}
+.ph-error { color: #c0392b; font-size: 0.85rem; }
+
+/* ── Staging folder header (slug + revert) ── */
+.ph-staging-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule, #e0e0e0);
+}
+.ph-staging-slug {
+  font-size: 0.82rem;
+  font-family: monospace;
+  color: var(--ink-muted, #888);
+}
+.btn-revert {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--red, #c0392b);
+  border: 1px solid var(--red, #c0392b);
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn-revert:hover { background: var(--red, #c0392b); color: #fff; }
 
 /* ── Per-photo form ── */
 .ph-photo-nav {
@@ -1773,7 +1972,7 @@ function escHtml(s) {
   color: var(--ink-muted, #888);
   margin-bottom: 14px;
 }
-.ph-form-grid { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
+.ph-form-grid { display: flex; flex-direction: column; gap: 10px; }
 .ph-field { display: flex; flex-direction: column; gap: 3px; }
 .ph-field-row { flex-direction: row; gap: 16px; align-items: flex-end; }
 .ph-field-row > div { display: flex; flex-direction: column; gap: 3px; }
@@ -1907,7 +2106,8 @@ const PH = {
   selectedStagingSlug: null,
   stagingDetail:       null,
   photoIdx: 0,
-  buffer:   {}   // filename → form value object
+  buffer:   {},  // filename → form value object
+  pendingStageSlugs: null  // set when stub modal is opened from phStage()
 };
 
 // ─── Boot ────────────────────────────────────────────────────────────────────
@@ -1933,12 +2133,13 @@ async function phInit() {
 // ─── Sub-tab switching ───────────────────────────────────────────────────────
 function phSwitchSubTab(tab) {
   PH.activeSubTab = tab;
-  ['raw', 'staging'].forEach(t => {
+  ['raw', 'staging', 'submissions'].forEach(t => {
     const btn  = document.getElementById(`ph-tab-${t}`);
     const pane = document.getElementById(`ph-pane-${t}`);
     if (btn)  btn.classList.toggle('active', t === tab);
     if (pane) pane.style.display = t === tab ? 'flex' : 'none';
   });
+  if (tab === 'submissions' && !PH.submissionsLoaded) phLoadSubmissions();
 }
 
 // ─── Raw pane ────────────────────────────────────────────────────────────────
@@ -1986,28 +2187,195 @@ async function phSelectRawFolder(folder) {
 function phRenderRawDetail(d) {
   const detail = document.getElementById('ph-raw-detail');
   const slugOpts = d.allSlugs.map(s => `<option value="${escHtml(s)}">`).join('');
+
+  // Per-photo crop + rename sections
+  const photoSections = d.photos.map(p => {
+    const imgSrc = `/api/photos/raw/${encodeURIComponent(d.folderName)}/image/${encodeURIComponent(p)}`;
+    const safeId = p.replace(/[^a-z0-9]/gi, '_');
+    return `
+      <div class="ph-crop-section" id="crop-section-${safeId}">
+        <div class="ph-crop-fname">${escHtml(p)}</div>
+        <div class="ph-crop-wrap" id="crop-wrap-${safeId}">
+          <img class="ph-crop-img" id="crop-img-${safeId}" src="${imgSrc}" draggable="false" />
+          <div class="ph-crop-overlay" id="crop-overlay-${safeId}">
+            <div class="ph-crop-rect" id="crop-rect-${safeId}" style="display:none"></div>
+          </div>
+        </div>
+        <div class="ph-crop-actions">
+          <button class="btn btn-secondary btn-sm" id="crop-btn-${safeId}">Crop</button>
+          <button class="btn btn-secondary btn-sm" onclick="phCropReset('${safeId}')">Reset</button>
+          <span class="ph-crop-coords" id="crop-coords-${safeId}">drag to select</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Rename table
+  const renameRows = d.photos.map(p => `
+    <span class="ph-rename-orig" title="${escHtml(p)}">${escHtml(p)}</span>
+    <span class="ph-rename-arrow">→</span>
+    <input class="ph-rename-input" data-orig="${escHtml(p)}" value="${escHtml(p)}"
+           oninput="this.classList.toggle('is-changed', this.value.trim() !== this.dataset.orig)" />`
+  ).join('');
+
   detail.innerHTML = `
     <div>
       <h3 class="ph-detail-title">${escHtml(d.displayName)}</h3>
       <div class="ph-detail-meta">${d.photos.length} photo${d.photos.length !== 1 ? 's' : ''}${d.notesContent ? ' · has notes' : ''}</div>
       ${d.notesContent ? `<div class="ph-notes">${escHtml(d.notesContent)}</div>` : ''}
-      <div class="ph-photos-list">${d.photos.map(p => `<span class="ph-photo-name">${escHtml(p)}</span>`).join('')}</div>
+      ${photoSections}
+      <div class="ph-label" style="margin-bottom:4px">Rename files (edit any name before staging)</div>
+      <div class="ph-rename-table">${renameRows}</div>
       <div class="ph-stage-form">
         <label class="ph-label">Assign to soldier slug</label>
         <datalist id="ph-slug-dl">${slugOpts}</datalist>
         <input type="text" id="ph-slug-input" class="ph-input" list="ph-slug-dl"
                placeholder="Type slug or pick from suggestions…" />
         <small style="font-size:0.75rem;color:var(--ink-muted,#888)">Suggestions: ${d.suggestions.join(', ') || 'none'}</small>
-        <button class="btn btn-commit" onclick="phStage()" style="margin-top:6px">Move to Staging →</button>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="btn btn-commit" onclick="phStage()">Move to Staging →</button>
+          <button class="btn btn-secondary" onclick="phCancelRaw()">Cancel</button>
+        </div>
       </div>
     </div>`;
+
+  // Wire crop events programmatically — avoids e.currentTarget=null in inline handlers
+  phBindCropEvents(d.folderName, d.photos);
+}
+
+// ─── Crop UI ─────────────────────────────────────────────────────────────────
+
+const CROP = {
+  active:   false,
+  folder:   null,
+  filename: null,
+  safeId:   null,
+  startX:   0,
+  startY:   0,
+  imgRect:  null,
+  rect:     null,   // { x, y, w, h } as 0..1 fractions
+};
+
+function phBindCropEvents(folderName, photos) {
+  photos.forEach(filename => {
+    const safeId = filename.replace(/[^a-z0-9]/gi, '_');
+    const wrap   = document.getElementById(`crop-wrap-${safeId}`);
+    const btn    = document.getElementById(`crop-btn-${safeId}`);
+    if (!wrap) return;
+
+    wrap.addEventListener('mousedown', e => {
+      const img = wrap.querySelector('.ph-crop-img');
+      if (!img || !img.complete || !img.naturalWidth) return;
+      e.preventDefault();
+      CROP.active   = true;
+      CROP.folder   = folderName;
+      CROP.filename = filename;
+      CROP.safeId   = safeId;
+      CROP.imgRect  = img.getBoundingClientRect();
+      CROP.startX   = e.clientX;
+      CROP.startY   = e.clientY;
+      CROP.rect     = null;
+      const r = document.getElementById(`crop-rect-${safeId}`);
+      if (r) r.style.display = 'none';
+    });
+
+    wrap.addEventListener('mousemove', e => {
+      if (!CROP.active || CROP.safeId !== safeId) return;
+      e.preventDefault();
+      const ib = CROP.imgRect;
+      const wb = wrap.getBoundingClientRect();
+      const x1 = Math.max(ib.left,   Math.min(CROP.startX, e.clientX));
+      const y1 = Math.max(ib.top,    Math.min(CROP.startY, e.clientY));
+      const x2 = Math.min(ib.right,  Math.max(CROP.startX, e.clientX));
+      const y2 = Math.min(ib.bottom, Math.max(CROP.startY, e.clientY));
+
+      const r = document.getElementById(`crop-rect-${safeId}`);
+      if (r) {
+        r.style.display = 'block';
+        r.style.left    = (x1 - wb.left) + 'px';
+        r.style.top     = (y1 - wb.top)  + 'px';
+        r.style.width   = (x2 - x1) + 'px';
+        r.style.height  = (y2 - y1) + 'px';
+      }
+
+      CROP.rect = {
+        x: (x1 - ib.left) / ib.width,
+        y: (y1 - ib.top)  / ib.height,
+        w: (x2 - x1)      / ib.width,
+        h: (y2 - y1)      / ib.height,
+      };
+      const coords = document.getElementById(`crop-coords-${safeId}`);
+      if (coords) {
+        const pct = v => Math.round(v * 100);
+        coords.textContent = `${pct(CROP.rect.w)}×${pct(CROP.rect.h)}%`;
+      }
+    });
+
+    wrap.addEventListener('mouseup', () => {
+      if (!CROP.active || CROP.safeId !== safeId) return;
+      CROP.active = false;
+      if (!CROP.rect || CROP.rect.w < 0.02 || CROP.rect.h < 0.02) phCropReset(safeId);
+    });
+
+    if (btn) btn.addEventListener('click', () => phCropApply(folderName, filename, safeId));
+  });
+}
+
+function phCropReset(safeId) {
+  const r = document.getElementById(`crop-rect-${safeId}`);
+  const c = document.getElementById(`crop-coords-${safeId}`);
+  if (r) r.style.display = 'none';
+  if (c) c.textContent = 'drag to select';
+  if (CROP.safeId === safeId) CROP.rect = null;
+}
+
+async function phCropApply(folder, filename, safeId) {
+  if (!CROP.rect || CROP.safeId !== safeId) {
+    toast('Draw a selection first.', 'error'); return;
+  }
+  const { x, y, w, h } = CROP.rect;
+  if (w < 0.02 || h < 0.02) { toast('Selection too small.', 'error'); return; }
+  try {
+    const r = await api('POST', '/photos/raw/crop', { folder, filename, x, y, w, h });
+    if (!r.ok) throw new Error(r.error);
+    const img = document.getElementById(`crop-img-${safeId}`);
+    if (img) img.src = img.src.split('?')[0] + '?t=' + Date.now();
+    phCropReset(safeId);
+    toast('Cropped.');
+  } catch(e) {
+    toast('Crop failed: ' + e.message, 'error');
+  }
+}
+
+// Collect { originalName: newName } from the rename inputs.
+// Only includes entries where the name actually changed.
+function phGetRenames() {
+  const renames = {};
+  document.querySelectorAll('.ph-rename-input').forEach(input => {
+    const orig = input.dataset.orig;
+    const next = input.value.trim();
+    if (next && next !== orig) renames[orig] = next;
+  });
+  return renames;
 }
 
 async function phStage() {
   const slug = document.getElementById('ph-slug-input')?.value.trim();
   if (!slug) { alert('Enter a soldier slug first.'); return; }
+
+  // Stub check: warn before staging if this soldier has no profile yet
   try {
-    const result = await api('POST', '/photos/raw/stage', { folder: PH.selectedRawFolder, slug });
+    const chk = await fetch(`/api/soldiers/check?slugs=${encodeURIComponent(slug)}`);
+    const { missing } = await chk.json();
+    if (missing && missing.length) {
+      phOpenCreateStubModal(slug);
+      // Store slug so the modal can proceed to stage after creating stub
+      PH.pendingStageSlugs = slug;
+      return;
+    }
+  } catch(e) { /* non-fatal — proceed anyway */ }
+
+  try {
+    const result = await api('POST', '/photos/raw/stage', { folder: PH.selectedRawFolder, slug, renames: phGetRenames() });
     if (result.ok) {
       toast(`Staged to ${slug}`, 'success');
       PH.selectedRawFolder = null;
@@ -2019,6 +2387,13 @@ async function phStage() {
       alert(`Stage failed: ${result.error}`);
     }
   } catch(e) { alert('Stage failed: ' + e.message); }
+}
+
+function phCancelRaw() {
+  PH.selectedRawFolder = null;
+  PH.rawDetail = null;
+  document.getElementById('ph-raw-detail').innerHTML = '<p class="ph-placeholder">Select a folder to review</p>';
+  phRenderRawList(); // clears active highlight in sidebar
 }
 
 // ─── Staging pane ────────────────────────────────────────────────────────────
@@ -2065,6 +2440,22 @@ async function phSelectStagingSlug(slug) {
   }
 }
 
+async function phRevertStaging() {
+  const slug = PH.selectedStagingSlug;
+  if (!slug) return;
+  if (!confirm(`Delete the staging folder for "${slug}"?\n\nYour raw folder is untouched — you can re-stage it at any time.`)) return;
+  try {
+    await api('DELETE', `/photos/staging/${encodeURIComponent(slug)}`);
+    toast(`Staging for "${slug}" reverted`, 'success');
+    PH.selectedStagingSlug = null;
+    PH.stagingDetail = null;
+    PH.buffer = {};
+    PH.photoIdx = 0;
+    document.getElementById('ph-staging-detail').innerHTML = '<p class="ph-placeholder">Select a staging folder to tag photos</p>';
+    await phLoadStaging();
+  } catch(e) { alert('Revert failed: ' + e.message); }
+}
+
 // ─── Per-photo form ───────────────────────────────────────────────────────────
 function phRenderPhoto(idx) {
   const d    = PH.stagingDetail;
@@ -2090,6 +2481,10 @@ function phRenderPhoto(idx) {
 
   detail.innerHTML = `
     <div class="ph-photo-form">
+      <div class="ph-staging-header">
+        <span class="ph-staging-slug">${escHtml(slug)}</span>
+        <button class="btn btn-revert" onclick="phRevertStaging()">⤺ Revert folder</button>
+      </div>
       ${d.notesContent ? `
       <div class="ph-notes">
         <strong style="display:block;margin-bottom:4px;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-muted,#888)">Notes</strong>${escHtml(d.notesContent)}
@@ -2393,8 +2788,8 @@ async function phCheckSubjectSlug() {
 }
 
 // ─── Create stub mini-modal ───────────────────────────────────────────────────
-function phOpenCreateStubModal() {
-  const slug = (document.getElementById('ph-subject-slug')?.value || '').trim();
+function phOpenCreateStubModal(slugOverride) {
+  const slug = slugOverride || (document.getElementById('ph-subject-slug')?.value || '').trim();
   let modal = document.getElementById('ph-create-stub-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -2421,7 +2816,10 @@ function phOpenCreateStubModal() {
       </div>`;
     document.body.appendChild(modal);
   }
-  document.getElementById('ph-csb-slug').value   = slug;
+  const _slugInput = document.getElementById('ph-csb-slug');
+  _slugInput.value    = slug;
+  _slugInput.readOnly = !!slug; // editable when opened standalone, locked when pre-filled
+  _slugInput.style.background = slug ? 'var(--hover,#f0ede6)' : '';
   document.getElementById('ph-csb-name').value   = '';
   document.getElementById('ph-csb-rank').value   = '';
   document.getElementById('ph-csb-status').value = 'researching';
@@ -2433,6 +2831,7 @@ function phOpenCreateStubModal() {
 function phCloseCreateStubModal() {
   const modal = document.getElementById('ph-create-stub-modal');
   if (modal) modal.style.display = 'none';
+  PH.pendingStageSlugs = null;
 }
 
 async function phCreateStub() {
@@ -2457,8 +2856,27 @@ async function phCreateStub() {
       return;
     }
     phCloseCreateStubModal();
-    document.getElementById('ph-stub-warn').style.display = 'none';
+    const warnEl = document.getElementById('ph-stub-warn');
+    if (warnEl) warnEl.style.display = 'none';
     toast(`Stub created: ${slug}`, 'success');
+
+    // If called from phStage(), proceed to move the folder now
+    if (PH.pendingStageSlugs === slug) {
+      PH.pendingStageSlugs = null;
+      try {
+        const result = await api('POST', '/photos/raw/stage', { folder: PH.selectedRawFolder, slug, renames: phGetRenames() });
+        if (result.ok) {
+          toast(`Staged to ${slug}`, 'success');
+          PH.selectedRawFolder = null;
+          document.getElementById('ph-raw-detail').innerHTML = '<p class="ph-placeholder">Select a folder to review</p>';
+          await phLoadRaw();
+          await phLoadStaging();
+          phSwitchSubTab('staging');
+        } else {
+          alert(`Stage failed: ${result.error}`);
+        }
+      } catch(e2) { alert('Stage failed: ' + e2.message); }
+    }
   } catch(e) {
     errEl.textContent = 'Request failed: ' + e.message;
     errEl.style.display = '';
@@ -2473,6 +2891,107 @@ async function phCreateStub() {
     if (name === 'photos') phInit();
   };
 })();
+
+// ─── Submissions pane ─────────────────────────────────────────────────────────
+
+PH.submissions      = [];
+PH.submissionsLoaded = false;
+
+async function phLoadSubmissions() {
+  PH.submissionsLoaded = true;
+  const el = document.getElementById('ph-submissions-list');
+  el.innerHTML = '<p class="ph-placeholder">Fetching from R2…</p>';
+  try {
+    const d = await api('GET', '/submissions/list');
+    PH.submissions = d.folders || [];
+    phRenderSubmissions();
+    // Badge count
+    const badge = document.getElementById('ph-submissions-badge');
+    if (PH.submissions.length) {
+      badge.textContent = PH.submissions.length;
+      badge.style.display = 'inline-block';
+    } else {
+      badge.style.display = 'none';
+    }
+  } catch(e) {
+    el.innerHTML = `<p class="ph-error">Error: ${escHtml(e.message)}</p>`;
+  }
+}
+
+function phRenderSubmissions() {
+  const el = document.getElementById('ph-submissions-list');
+  if (!PH.submissions.length) {
+    el.innerHTML = '<p class="ph-placeholder">No pending submissions in R2.</p>';
+    return;
+  }
+  el.innerHTML = PH.submissions.map(f => {
+    const meta     = f.metadata || {};
+    const soldier  = meta.soldier_name || meta.soldier || '—';
+    const submitter = meta.submitter_name || meta.name || '—';
+    const submitted = meta.submitted ? new Date(meta.submitted).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) : '—';
+    const fileCount = f.files ? f.files.length : 0;
+    const notes    = (meta.notes || '').trim();
+    const pulled   = f._pulled;  // set locally after a successful pull
+
+    return `<div class="ph-sub-card${pulled ? ' ph-sub-pulled' : ''}" id="subcard-${escHtml(f.id)}">
+      <div class="ph-sub-card-header">
+        <div>
+          <div class="ph-sub-soldier">${escHtml(soldier)}</div>
+          <div class="ph-sub-meta">From ${escHtml(submitter)} · ${submitted} · ${fileCount} file${fileCount !== 1 ? 's' : ''}</div>
+          <div class="ph-sub-meta" style="font-family:monospace;font-size:0.72rem;color:var(--muted,#aaa)">${escHtml(f.id)}</div>
+        </div>
+        <div class="ph-sub-actions">
+          ${pulled
+            ? `<span class="ph-sub-pulled-label">✓ Pulled to Raw</span>
+               <button class="btn btn-danger btn-sm" onclick="phDiscardSubmission('${escHtml(f.id)}')">Discard from R2</button>`
+            : `<button class="btn btn-primary btn-sm" onclick="phPullSubmission('${escHtml(f.id)}')">Pull to Raw →</button>`
+          }
+        </div>
+      </div>
+      ${notes ? `<div class="ph-notes ph-sub-notes">${escHtml(notes)}</div>` : ''}
+      ${f.files && f.files.length ? `<div class="ph-photos-list">${f.files.map(fi => `<span class="ph-photo-name">${escHtml(fi.filename)}</span>`).join('')}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+async function phPullSubmission(id) {
+  const card = document.getElementById(`subcard-${id}`);
+  const btn  = card ? card.querySelector('.btn-primary') : null;
+  if (btn) { btn.disabled = true; btn.textContent = 'Pulling…'; }
+
+  try {
+    const r = await api('POST', `/submissions/pull/${encodeURIComponent(id)}`);
+    // Mark the card as pulled in local state
+    const f = PH.submissions.find(s => s.id === id);
+    if (f) f._pulled = true;
+    phRenderSubmissions();
+    // Reload the Raw list so the new folder shows up immediately
+    await phLoadRaw();
+    toast(`Pulled to raw — switch to Raw tab to process.`);
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Pull to Raw →'; }
+    toast(`Pull failed: ${e.message}`, 'error');
+  }
+}
+
+async function phDiscardSubmission(id) {
+  if (!confirm(`Delete folder "${id}" from R2?\n\nOnly do this after the photos have been fully processed.`)) return;
+  try {
+    await api('POST', `/submissions/discard/${encodeURIComponent(id)}`);
+    PH.submissions = PH.submissions.filter(s => s.id !== id);
+    phRenderSubmissions();
+    // Update badge
+    const badge = document.getElementById('ph-submissions-badge');
+    if (PH.submissions.length) {
+      badge.textContent = PH.submissions.length;
+    } else {
+      badge.style.display = 'none';
+    }
+    toast('Submission discarded from R2.');
+  } catch(e) {
+    toast(`Discard failed: ${e.message}`, 'error');
+  }
+}
 </script>
 
 

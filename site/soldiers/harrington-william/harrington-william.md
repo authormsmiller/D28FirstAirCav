@@ -7,7 +7,7 @@ breadcrumb: William Harrington
 # ── IDENTITY ──────────────────────────────────────
 first_name: William
 last_name: Harrington
-nickname: 
+nickname: Mississippi
 middle_name: 
 rank: 
 mos: 
