@@ -146,13 +146,30 @@ Deferred — site is not being shown publicly yet. Broken links not urgent.
 
 ---
 
+## Search — State at End of Session
+
+### CRLF fix applied — `site/_data/searchIndex.js`
+The front matter regex used `\n` but most soldier files have Windows CRLF (`\r\n`) line endings. 34 of 37 soldiers were silently skipped. Fixed to `\r?\n` — index now returns all 36 soldiers. **This fix is in the local file but not yet built or deployed.**
+
+### Remaining search issues (SITE-TASK-20260519000071)
+Three problems remain after the CRLF fix:
+
+1. **Events and documents not rendered** — search UI has them hardcoded as "coming soon" placeholders. They exist in the index JSON but are never shown.
+2. **`contains`/`tagged` not Lunr fields** — events and documents are indexed but `contains`, `tagged`, and `location` are not declared as Lunr fields. Searching a soldier name does not surface events they appear in.
+3. **No cross-reference results** — searching "Cate" should surface the Chieu Hoi event (Cate is in `contains`). It doesn't.
+
+Data tagging is generally solid — the issue is the search engine and UI, not the data. Full rebuild needed: add fields to Lunr, add event/document rendering, add context lines.
+
+---
+
 ## Next Session Priorities
 
-1. **Photo URL fix (Option A)** — Fix template URL generation so Garvin's photos display. Quick win before any public sharing.
-2. **SITE-TASK-069** — Wire form touch points: add `?soldier=`, `?type=` query params to 19 existing links; add new Correction links on soldier/event/document heroes; add footer "Report an issue" link.
-3. **Contribute thank-you email** — Finish INFRA-TASK-067: send thank-you to submitter on `isNew`, include continuation link.
-4. **Tab 5 build** — Todo/Flags UI per Session 32 spec. Design is complete and ready to build.
-5. **Garvin stubs** — `garvin-jim` profile exists but soldiers tagged in his photos need stubs: Catterson, Collins (Gary "Indian"), Holtzclaw, Fairchild (Joe "Meatball"). Dillon and Graham already have stubs.
+1. **Search rebuild (SITE-TASK-071)** — Add `contains`, `tagged`, `location` to Lunr fields; render event/document results; show context ("Larry Cate appears in this event"). High value for MVP.
+2. **Photo URL fix (Option A)** — Fix template URL generation so Garvin's photos display. Quick win before any public sharing.
+3. **SITE-TASK-069** — Wire form touch points: add `?soldier=`, `?type=` query params to 19 existing links; add new Correction links on soldier/event/document heroes; add footer "Report an issue" link.
+4. **Contribute thank-you email** — Finish INFRA-TASK-067: send thank-you to submitter on `isNew`, include continuation link.
+5. **Tab 5 build** — Todo/Flags UI per Session 32 spec. Design is complete and ready to build.
+6. **Garvin stubs** — `garvin-jim` profile exists but soldiers tagged in his photos need stubs: Catterson, Collins (Gary "Indian"), Holtzclaw, Fairchild (Joe "Meatball"). Dillon and Graham already have stubs.
 
 ---
 
@@ -170,4 +187,5 @@ Deferred — site is not being shown publicly yet. Broken links not urgent.
 | `admin/.env.example` | New file — R2 credentials template |
 | `admin/.gitignore` | Added .env |
 | `admin/data/todo.json` | Added ADMIN-TASK-20260519000070 (pending publish health check) |
+| `site/_data/searchIndex.js` | CRLF fix — `\n` → `\r?\n` in front matter regex; unlocks all 36 soldiers |
 | `_sessions/Session_38_Handoff.md` | This file |

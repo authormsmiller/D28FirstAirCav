@@ -16,7 +16,7 @@ const yaml = require("js-yaml");
 // Parse front matter from a raw .md string.
 // Returns parsed data object or null on failure.
 function parseFrontMatter(raw, label) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return null;
   try {
     return yaml.load(match[1]);

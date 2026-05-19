@@ -1094,6 +1094,19 @@
       "epic": "INFRA-EPIC-20260518000060"
     }
     {
+      "id": "SITE-TASK-20260519000071",
+      "parent_id": null,
+      "relates_to": [],
+      "type": "task",
+      "scope": "site",
+      "status": "open",
+      "title": "Search rebuild — events, documents, contains/tagged indexing",
+      "notes": "Current search only returns soldiers. Three issues: (1) CRLF fix already applied to searchIndex.js — unlocks all 36 soldiers. (2) Events and documents are in the index JSON but the search UI renders them as 'coming soon' placeholders — need to add result rendering for events and documents. (3) contains/tagged fields are not declared as Lunr fields, so searching a soldier name does not surface events/documents they appear in. Fix requires: add contains, tagged, location, title to Lunr field declarations; add event/document result rendering to search/index.njk; show context line (e.g. 'Larry Cate appears in this event'). Data tagging is generally good — Chieu Hoi has Cate in contains correctly. This is a search engine + UI problem, not primarily a data problem.",
+      "created": "2026-05-19",
+      "completed": null,
+      "promoted_from": null
+    },
+    {
       "id": "ADMIN-TASK-20260519000070",
       "parent_id": null,
       "relates_to": [],
