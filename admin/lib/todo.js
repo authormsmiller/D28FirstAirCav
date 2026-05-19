@@ -94,7 +94,7 @@ async function scanOpenQuestions() {
 
 async function scanMissingFirstName() {
   const results = [];
-  const files = await glob('soldiers/**/index.md', { cwd: SITE_PATH, absolute: true });
+  const files = await glob('soldiers/*/*.md', { cwd: SITE_PATH, absolute: true });
   for (const file of files) {
     try {
       const raw     = await fs.readFile(file, 'utf-8');
@@ -117,7 +117,7 @@ async function scanBrokenSlugRefs() {
   const soldiers = new Set();
 
   // Build known soldier slugs
-  const soldierDirs = await glob('soldiers/*/index.md', { cwd: SITE_PATH, absolute: true });
+  const soldierDirs = await glob('soldiers/*/*.md', { cwd: SITE_PATH, absolute: true });
   for (const f of soldierDirs) {
     soldiers.add(path.basename(path.dirname(f)));
   }
@@ -155,7 +155,7 @@ async function scanBrokenSlugRefs() {
 async function scanNameDuplicates() {
   const results = [];
   const seen    = {};  // normalized name → { slug, path }
-  const files   = await glob('soldiers/*/index.md', { cwd: SITE_PATH, absolute: true });
+  const files   = await glob('soldiers/*/*.md', { cwd: SITE_PATH, absolute: true });
 
   for (const file of files) {
     try {

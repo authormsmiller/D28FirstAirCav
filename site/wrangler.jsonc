@@ -13,6 +13,13 @@
   ],
   "r2_buckets": [
     { "binding": "PHOTOS", "bucket_name": "angryskipperarchive-photos" },
-    { "binding": "DOCUMENTS", "bucket_name": "angryskipperarchive-documents" }
+    { "binding": "DOCUMENTS", "bucket_name": "angryskipperarchive-documents" },
+    { "binding": "SUBMISSIONS", "bucket_name": "angryskipperarchive-submissions" }
+  ],
+  "send_email": [
+    {
+      "name": "SEND_EMAIL",
+      "destination_address": "admin@angryskipperarchive.org"
+    }
   ]
 }

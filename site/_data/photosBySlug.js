@@ -52,10 +52,11 @@ const MEDIA_BASE = "/media/photos/soldiers";
 
 // Subfolders we recognize. Order matters for profile photo resolution:
 // the first matching subfolder with a photo is used as profile_photo fallback.
+// Note: field/events is NOT listed here — it is scanned dynamically below
+// because event photos live one level deeper: field/events/[event-slug]/index.md
 const KNOWN_SUBFOLDERS = [
   "profile",
   "field",
-  "field/events",
 ];
 
 // ---------------------------------------------------------------------------
@@ -125,6 +126,7 @@ module.exports = function () {
   const result = {};
   const byContains = {};
   const byTagged = {};
+  const byEvent = {};
 
   // Guard: soldiers directory must exist
   if (!fs.existsSync(SOLDIERS_DIR)) {
@@ -162,29 +164,55 @@ module.exports = function () {
             if (!byTagged[slug]) byTagged[slug] = [];
             byTagged[slug].push(photo);
           }
+          if (photo.event) {
+            if (!byEvent[photo.event]) byEvent[photo.event] = [];
+            byEvent[photo.event].push(photo);
+          }
         }
       }
     }
 
-    // Also check for any unexpected subfolders (non-destructive scan)
-    const unexpectedSubfolders = [];
-    if (fs.existsSync(photosRoot)) {
-      const topLevel = fs.readdirSync(photosRoot, { withFileTypes: true })
+    // Dynamic scan: field/events/[event-slug]/index.md
+    // Each event slug gets its own subfolder path for correct URL generation.
+    // All entries are accumulated under the "field/events" key so templates
+    // that iterate photosBySlug[slug]["field/events"] continue to work.
+    const eventsDir = path.join(photosRoot, "field", "events");
+    if (fs.existsSync(eventsDir)) {
+      const eventSlugs = fs.readdirSync(eventsDir, { withFileTypes: true })
         .filter(d => d.isDirectory())
         .map(d => d.name);
-      for (const dir of topLevel) {
-        if (!KNOWN_SUBFOLDERS.includes(dir)) {
-          // Recurse one level (e.g., field/events is already covered above
-          // but a new 'documents' subfolder would appear here)
-          unexpectedSubfolders.push(dir);
+
+      const allEventPhotos = [];
+      for (const eventSlug of eventSlugs) {
+        const subfolderPath = `field/events/${eventSlug}`;
+        const indexPath = path.join(eventsDir, eventSlug, "index.md");
+        const rawEntries = parsePhotoIndex(indexPath);
+        const resolved = rawEntries
+          .map(entry => resolvePhoto(entry, soldierSlug, subfolderPath))
+          .filter(Boolean);
+
+        // Build reverse lookup maps
+        for (const photo of resolved) {
+          for (const slug of photo.contains) {
+            if (!byContains[slug]) byContains[slug] = [];
+            byContains[slug].push(photo);
+          }
+          for (const slug of photo.tagged) {
+            if (!byTagged[slug]) byTagged[slug] = [];
+            byTagged[slug].push(photo);
+          }
+          if (photo.event) {
+            if (!byEvent[photo.event]) byEvent[photo.event] = [];
+            byEvent[photo.event].push(photo);
+          }
         }
+
+        allEventPhotos.push(...resolved);
       }
-    }
-    if (unexpectedSubfolders.length > 0) {
-      console.warn(
-        `[photosBySlug] Unknown photo subfolders for ${soldierSlug}: ${unexpectedSubfolders.join(", ")}` +
-        ` — add to KNOWN_SUBFOLDERS in photosBySlug.js to index them`
-      );
+
+      if (allEventPhotos.length > 0) {
+        soldierPhotos["field/events"] = allEventPhotos;
+      }
     }
 
     if (Object.keys(soldierPhotos).length > 0) {
@@ -196,6 +224,7 @@ module.exports = function () {
   // so templates can use photosBySlug._byContains["weaver-ken"]
 result.byContains = byContains;
 result.byTagged = byTagged;
+result.byEvent = byEvent;
 
 return result;
 };

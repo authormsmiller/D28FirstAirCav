@@ -1,7 +1,7 @@
 ---
 slug: bee-incident-1971-03-22
 title: Bee Incident — Medevac at FB Mace
-status: draft
+status: published
 
 date: "1971-03-22"
 date_known: true

@@ -235,3 +235,30 @@ photos:
       - cate-larry
     tagged: []
 ---
+
+  - filename: bill-small-vn-reararea.jpg
+    caption: >
+      Bill Small in a rear area, relaxing
+    caption_short: "Bill Small in a rear area, relaxing"
+    credit: "Photographed by Marvin Millers"
+    photographer: "miller-marvin-dale"
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - small-bill
+    tagged: []
+  - filename: marvin-miller-shades.jpg
+    caption: >
+      Marvin Miller enjoying some time in the sun with his new aviator shades.
+    caption_short: "Marvin Miller relaxing in the sun"
+    credit: "From the collection of Marvin Miller"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - miller-marvin-dale
+    tagged: []

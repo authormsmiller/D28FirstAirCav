@@ -7,7 +7,7 @@ author: neal-bill
 date: "1971-04-20"
 date_known: true
 source: "Written account submitted by Capt. Bill Neal"
-status: draft
+status: published
 event: contact-fsb-fontaine-1971-04-20
 contains:
   - slug: dillon-stan

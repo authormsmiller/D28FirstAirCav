@@ -9,7 +9,7 @@ event: "bunker-complex-1971-06-24"
 date: 1971-06-00
 date_known: false
 source: "Walking Point, Issue 18, January 2013"
-status: draft
+status: published
 contains:
   - guidara-frank
   - martin-michael

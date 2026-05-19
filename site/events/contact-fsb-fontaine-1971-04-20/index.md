@@ -136,6 +136,17 @@ archivist_notes:
     - interviewwithlindamartintranscript.pdf
 accounts:
   - bacon-wg-account-042071
+contains:
+  - bott-bill
+  - cardwell-james
+  - collins-gary
+  - davis-kirk
+  - dillon-stan
+  - drinkard-danny
+  - hall-joseph
+  - neal-bill
+  - sargent-stan
+  - schneck-steve
 ---
 
 ## Summary

@@ -12,7 +12,7 @@ platoons:
   - name: Cat Platoon
     role: Escorted the rallier from Highway 331 to FSB Fontaine
 contains:
-  - slug: alloway-dennis
+  - slug: alloway-denny
     name: Dennis Alloway
     role: Cat Platoon RTO
     note: |
@@ -46,7 +46,7 @@ images:
     date_approx: 1971-05
     date_known: false
     contains:
-      - alloway-dennis
+      - alloway-denny
       - small-bill
       - cate-larry
       - sells-leroy

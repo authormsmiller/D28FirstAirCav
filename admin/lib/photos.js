@@ -1,7 +1,6 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
-import { execSync } from 'child_process';
 
 // ---------------------------------------------------------------------------
 // Paths — all relative to repo root (two levels up from admin/lib/)
@@ -119,12 +118,14 @@ function getRawFolderDetail(folderName) {
 // ---------------------------------------------------------------------------
 // Move raw folder to staging
 // ---------------------------------------------------------------------------
-async function moveToStaging(folderName, soldierSlug) {
-  if (logHasStage(folderName)) {
-    return { ok: false, error: `${folderName} has already been moved to staging.` };
-  }
+async function moveToStaging(folderName, soldierSlug, renames = {}) {
   const srcDir = path.join(RAW_PHOTOS, folderName);
   const destDir = path.join(STAGING_PHOTOS, soldierSlug);
+  // Block re-staging only if the log says it was staged AND the staging folder
+  // still exists. If the folder was reverted (deleted), allow re-staging.
+  if (logHasStage(folderName) && fs.existsSync(destDir)) {
+    return { ok: false, error: `${folderName} has already been moved to staging.` };
+  }
   if (!fs.existsSync(srcDir)) return { ok: false, error: 'Raw folder not found.' };
 
   await fsp.mkdir(destDir, { recursive: true });
@@ -140,8 +141,9 @@ async function moveToStaging(folderName, soldierSlug) {
       const separator = `\n\n--- Submission: ${folderName} ---\n\n`;
       await fsp.appendFile(destNotes, separator + content, 'utf-8');
     } else {
-      // Copy photo — skip if filename already exists (collision: keep existing)
-      const dest = path.join(destDir, file);
+      // Apply rename if one was provided, otherwise keep original name
+      const destName = renames[file] || file;
+      const dest = path.join(destDir, destName);
       if (!fs.existsSync(dest)) {
         await fsp.copyFile(src, dest);
       }
@@ -325,6 +327,51 @@ async function flushBuffer(slug, buffer) {
 // ---------------------------------------------------------------------------
 export function registerPhotosRoutes(app) {
 
+  // GET /api/photos/raw/:folder/image/:filename — serve a raw photo file
+  app.get('/api/photos/raw/:folder/image/:filename', (req, res) => {
+    try {
+      const { folder, filename } = req.params;
+      const filePath = path.join(RAW_PHOTOS, folder, filename);
+      if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File not found' });
+      res.sendFile(filePath);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // POST /api/photos/raw/crop — crop a raw photo in place
+  // Body: { folder, filename, x, y, w, h } — all as 0..1 fractions of image dimensions
+  app.post('/api/photos/raw/crop', async (req, res) => {
+    try {
+      const { folder, filename, x, y, w, h } = req.body;
+      if (!folder || !filename || x == null || y == null || w == null || h == null) {
+        return res.status(400).json({ error: 'folder, filename, x, y, w, h required' });
+      }
+      const filePath = path.join(RAW_PHOTOS, folder, filename);
+      if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File not found' });
+
+      // Use sharp (Node.js) to crop — no Python dependency.
+      // Read into a buffer first so sharp never holds the file open on Windows,
+      // which would cause UNKNOWN error when we try to overwrite the same path.
+      const { default: sharp } = await import('sharp');
+      const inputBuf = fs.readFileSync(filePath);
+      const meta = await sharp(inputBuf).metadata();
+      const left   = Math.round(x * meta.width);
+      const top    = Math.round(y * meta.height);
+      const width  = Math.round(w * meta.width);
+      const height = Math.round(h * meta.height);
+      const buf = await sharp(inputBuf)
+        .extract({ left, top, width, height })
+        .jpeg({ quality: 92 })
+        .toBuffer();
+      fs.writeFileSync(filePath, buf);
+      res.json({ ok: true });
+    } catch (err) {
+      console.error('[crop error]', err);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // GET /api/photos/staging/:slug/image/:filename — serve a staging photo file
   app.get('/api/photos/staging/:slug/image/:filename', (req, res) => {
     try {
@@ -358,12 +405,13 @@ export function registerPhotosRoutes(app) {
   });
 
   // POST /api/photos/raw/stage — move raw folder to staging
-  // Body: { folder, slug }
+  // Body: { folder, slug, renames? }
+  // renames: { [originalFilename]: newFilename } — optional, applied during copy
   app.post('/api/photos/raw/stage', async (req, res) => {
     try {
-      const { folder, slug } = req.body;
+      const { folder, slug, renames } = req.body;
       if (!folder || !slug) return res.status(400).json({ error: 'folder and slug required' });
-      const result = await moveToStaging(folder, slug);
+      const result = await moveToStaging(folder, slug, renames || {});
       res.json(result);
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -385,6 +433,22 @@ export function registerPhotosRoutes(app) {
       const detail = getStagingFolderDetail(req.params.slug);
       if (!detail) return res.status(404).json({ error: 'Staging folder not found' });
       res.json(detail);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // DELETE /api/photos/staging/:slug — revert (delete) a staging folder
+  // The raw folder is untouched; the caller can re-stage it at any time.
+  app.delete('/api/photos/staging/:slug', async (req, res) => {
+    try {
+      const { slug } = req.params;
+      if (!slug) return res.status(400).json({ error: 'slug required' });
+      const folderPath = path.join(STAGING_PHOTOS, slug);
+      if (!fs.existsSync(folderPath)) return res.status(404).json({ error: 'Staging folder not found' });
+      await fsp.rm(folderPath, { recursive: true, force: true });
+      appendLog({ slug, action: 'reverted' });
+      res.json({ ok: true });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

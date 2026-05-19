@@ -1,0 +1,319 @@
+---
+layout: base.njk
+title: Contact the Archive
+permalink: /request/
+---
+
+<div class="req-hero">
+  <div class="req-hero-inner">
+    <div class="req-dateline">D Co. 2/8 CAV Archive · Contact</div>
+    <h1 class="req-hed">Contact the <span>Archive</span></h1>
+    <p class="req-deck">Corrections, missing soldiers, contact requests, or anything else — we read every message.</p>
+  </div>
+</div>
+
+<div class="req-body">
+
+  <!-- TYPE SELECTOR -->
+  <div class="req-type-section" id="typeSection">
+    <div class="req-type-label">What brings you here?</div>
+    <div class="req-type-grid">
+
+      <button class="req-type-card" data-type="correction" onclick="selectType('correction')">
+        <div class="rtc-icon">✎</div>
+        <div class="rtc-title">Something is wrong</div>
+        <div class="rtc-body">A name is misspelled, a date is off, a fact needs correcting.</div>
+      </button>
+
+      <button class="req-type-card" data-type="contact" onclick="selectType('contact')">
+        <div class="rtc-icon">⬡</div>
+        <div class="rtc-title">Find a veteran</div>
+        <div class="rtc-body">You'd like to reconnect with someone whose contact info is in the archive.</div>
+      </button>
+
+      <button class="req-type-card" data-type="add" onclick="selectType('add')">
+        <div class="rtc-icon">+</div>
+        <div class="rtc-title">Missing soldier</div>
+        <div class="rtc-body">Your father, grandfather, or buddy served with Delta Company but isn't in the archive.</div>
+      </button>
+
+      <button class="req-type-card" data-type="broken" onclick="selectType('broken')">
+        <div class="rtc-icon">⚠</div>
+        <div class="rtc-title">Something is broken</div>
+        <div class="rtc-body">A link didn't work, a page showed an error, something looks wrong.</div>
+      </button>
+
+      <button class="req-type-card" data-type="privacy" onclick="selectType('privacy')">
+        <div class="rtc-icon">⊘</div>
+        <div class="rtc-title">Remove information</div>
+        <div class="rtc-body">A family member wants something taken down or corrected for privacy reasons.</div>
+      </button>
+
+      <button class="req-type-card" data-type="general" onclick="selectType('general')">
+        <div class="rtc-icon">✉</div>
+        <div class="rtc-title">General message</div>
+        <div class="rtc-body">Doesn't fit the other categories — appreciation, offers to help, research inquiries.</div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- FORM PANEL — shown after type selection -->
+  <div class="req-form-panel" id="formPanel" style="display:none">
+
+    <div class="req-form-header">
+      <button class="req-back" onclick="clearType()">← Back</button>
+      <div class="req-form-title" id="formTitle"></div>
+    </div>
+
+    <form class="req-form" id="reqForm" onsubmit="submitRequest(event)">
+
+      <!-- Shared: submitter info -->
+      <div class="req-field-group">
+        <div class="req-field">
+          <label class="req-label" for="submitterName">Your name <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="submitterName" name="submitter_name" required autocomplete="name">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="submitterContact">How to reach you <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="submitterContact" name="submitter_contact" required
+            placeholder="Email or phone — your choice" autocomplete="email">
+        </div>
+      </div>
+
+      <!-- TYPE: correction -->
+      <div class="req-type-fields" id="fields-correction" style="display:none">
+        <div class="req-field">
+          <label class="req-label" for="corrRecordType">Type of record</label>
+          <select class="req-select" id="corrRecordType" name="record_type">
+            <option value="">— Select —</option>
+            <option value="soldier">Soldier Profile</option>
+            <option value="event">Event</option>
+            <option value="document">Document</option>
+            <option value="roster">Roster</option>
+          </select>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="corrRecord">Which record?</label>
+          <input class="req-input" type="text" id="corrRecord" name="record_slug" placeholder="Name or page URL">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="corrField">Which field?</label>
+          <input class="req-input" type="text" id="corrField" name="field" placeholder="e.g. Rank, Date, Hometown">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="corrValue">What it should say <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="corrValue" name="correction" required>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="corrSource">How do you know? <span class="req-opt">(optional)</span></label>
+          <input class="req-input" type="text" id="corrSource" name="source" placeholder="e.g. DD-214 in hand, family records">
+        </div>
+      </div>
+
+      <!-- TYPE: contact -->
+      <div class="req-type-fields" id="fields-contact" style="display:none">
+        <div class="req-notice">We hold veteran contact details in restricted access. We'll reach out to your buddy and let him decide if he wants to connect.</div>
+        <div class="req-field">
+          <label class="req-label" for="contactLooking">Who are you looking for? <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="contactLooking" name="looking_for" required placeholder="Name or partial name">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="contactRelationship">How do you know them?</label>
+          <input class="req-input" type="text" id="contactRelationship" name="relationship" placeholder="e.g. Served together in Cat Platoon">
+        </div>
+      </div>
+
+      <!-- TYPE: add -->
+      <div class="req-type-fields" id="fields-add" style="display:none">
+        <div class="req-field">
+          <label class="req-label" for="addName">Soldier's name <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="addName" name="missing_soldier" required>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="addConnection">Your connection to them <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="addConnection" name="connection" required placeholder="e.g. Son, daughter, served alongside">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="addNotes">Anything useful <span class="req-opt">(optional)</span></label>
+          <textarea class="req-textarea" id="addNotes" name="notes" rows="3"
+            placeholder="Rank, MOS, approximate dates, platoon — whatever you know"></textarea>
+        </div>
+      </div>
+
+      <!-- TYPE: broken -->
+      <div class="req-type-fields" id="fields-broken" style="display:none">
+        <div class="req-field">
+          <label class="req-label" for="brokenDesc">What happened? <span class="req-req">*</span></label>
+          <textarea class="req-textarea" id="brokenDesc" name="description" rows="3" required
+            placeholder="Brief description — what were you trying to do, what went wrong"></textarea>
+        </div>
+      </div>
+
+      <!-- TYPE: privacy -->
+      <div class="req-type-fields" id="fields-privacy" style="display:none">
+        <div class="req-field">
+          <label class="req-label" for="privRecord">Which record or page? <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="privRecord" name="which_record" required placeholder="Soldier name or page URL">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="privWhat">What do you want removed? <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="privWhat" name="what_to_remove" required>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="privReason">Why <span class="req-opt">(optional)</span></label>
+          <textarea class="req-textarea" id="privReason" name="reason" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- TYPE: general -->
+      <div class="req-type-fields" id="fields-general" style="display:none">
+        <div class="req-field">
+          <label class="req-label" for="generalMsg">Message <span class="req-req">*</span></label>
+          <textarea class="req-textarea" id="generalMsg" name="message" rows="5" required></textarea>
+        </div>
+      </div>
+
+      <div class="req-actions">
+        <button class="req-submit" type="submit" id="submitBtn">Send</button>
+      </div>
+
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div class="req-success" id="reqSuccess" style="display:none">
+      <div class="req-success-icon">✓</div>
+      <div class="req-success-hed">Received.</div>
+      <div class="req-success-body" id="reqSuccessBody"></div>
+      <button class="req-back-link" onclick="resetForm()">Send another message</button>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="req-error" id="reqError" style="display:none">
+      <div class="req-error-msg" id="reqErrorMsg"></div>
+      <button class="req-submit" onclick="clearError()">Try again</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const TYPE_LABELS = {
+  correction: "Correction",
+  contact:    "Contact Info Request",
+  add:        "Add a Missing Soldier",
+  broken:     "Something is Broken",
+  privacy:    "Privacy / Takedown Request",
+  general:    "General Message",
+};
+
+const TYPE_CONFIRMS = {
+  correction: "We'll review the correction and update the record if it checks out.",
+  contact:    "We'll reach out to the veteran on your behalf. He'll decide whether to connect.",
+  add:        "We'll follow up — by interview or by sending a link to the Contribute form.",
+  broken:     "Thanks for the heads-up. We'll take a look.",
+  privacy:    "We handle these case by case. We'll be in touch.",
+  general:    "We read every message.",
+};
+
+let selectedType = null;
+
+function selectType(type) {
+  selectedType = type;
+
+  // Highlight selected card
+  document.querySelectorAll('.req-type-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.type === type);
+  });
+
+  // Show form panel, hide type section on mobile
+  document.getElementById('formPanel').style.display = 'block';
+  document.getElementById('formTitle').textContent = TYPE_LABELS[type];
+
+  // Hide all type-specific field blocks, show the right one
+  document.querySelectorAll('.req-type-fields').forEach(el => el.style.display = 'none');
+  const block = document.getElementById('fields-' + type);
+  if (block) block.style.display = 'block';
+
+  // Reset states
+  document.getElementById('reqForm').style.display = 'block';
+  document.getElementById('reqSuccess').style.display = 'none';
+  document.getElementById('reqError').style.display = 'none';
+
+  // Scroll to form
+  document.getElementById('formPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearType() {
+  selectedType = null;
+  document.querySelectorAll('.req-type-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('formPanel').style.display = 'none';
+  document.getElementById('typeSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function submitRequest(e) {
+  e.preventDefault();
+  if (!selectedType) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form));
+
+  // Remove empty strings
+  for (const k in data) { if (data[k] === '') delete data[k]; }
+
+  const payload = {
+    type:              selectedType,
+    ...data,
+    page_url:          window.location.href,
+    referrer_url:      document.referrer || null,
+  };
+
+  try {
+    const res = await fetch('/submit/request', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    if (!res.ok) throw new Error('Server error ' + res.status);
+
+    // Success
+    document.getElementById('reqForm').style.display = 'none';
+    document.getElementById('reqError').style.display = 'none';
+    document.getElementById('reqSuccessBody').textContent = TYPE_CONFIRMS[selectedType] || '';
+    document.getElementById('reqSuccess').style.display = 'block';
+
+  } catch (err) {
+    document.getElementById('reqErrorMsg').textContent =
+      'Something went wrong. Please try again, or email admin@angryskipperarchive.org directly.';
+    document.getElementById('reqError').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send';
+  }
+}
+
+function clearError() {
+  document.getElementById('reqError').style.display = 'none';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = 'Send';
+}
+
+function resetForm() {
+  document.getElementById('reqForm').reset();
+  document.getElementById('reqSuccess').style.display = 'none';
+  document.getElementById('reqForm').style.display = 'block';
+  clearType();
+}
+
+// Pre-select type from query string e.g. /request/?type=general
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const t = params.get('type');
+  if (t && TYPE_LABELS[t]) selectType(t);
+})();
+</script>
