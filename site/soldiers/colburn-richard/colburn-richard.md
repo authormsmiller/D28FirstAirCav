@@ -3,6 +3,8 @@ layout: layouts/soldier.njk
 title: Richard Colburn
 slug: colburn-richard
 breadcrumb: Richard Colburn
+associated: true
+associated_unit: HHC 2/8 CAV (Armor)
 
 # ── IDENTITY ──────────────────────────────────────
 first_name: Richard

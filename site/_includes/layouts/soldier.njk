@@ -375,74 +375,156 @@
 </div>
 
 {# ── TAB: SERVED ALONGSIDE ── #}
+{#
+  Data source: site/_data/alongside.js
+  alongside[slug] = { tier1: [], tier2: [], tier3: [] }
+
+  Tier 1 — auto-detected from photo/document contains[] arrays (build-time, never persisted)
+            High confidence: personally identified together. Best leads for family researchers.
+  Tier 2 — same-platoon manual links (from _alongside.json or relationships.json)
+  Tier 3 — broader manual links: verbal-account, same-company, etc.
+
+  Tier 1 is always computed fresh; any slug in Tier 1 is deduplicated out of Tier 2/3.
+  Admin tool writes to soldiers/{slug}/_alongside.json for Tier 2/3 entries only.
+
+  Empty state: always show the tab; display "Researching connections..." when no data yet.
+#}
 <div class="tab-content" id="tab-alongside" style="display:none">
-  {% set relatedSoldiers = [] %}
-  {% for rel in relationships %}
-    {% if slug in rel.soldiers %}
-      {% set otherSlug = "" %}
-      {% for s in rel.soldiers %}
-        {% if s != slug %}{% set otherSlug = s %}{% endif %}
-      {% endfor %}
-      {% if otherSlug %}
-        {% set relatedSoldiers = relatedSoldiers.concat([{ slug: otherSlug, basis: rel.basis, notes: rel.notes }]) %}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
 
-  {% if relatedSoldiers.length %}
-    <div class="alongside-grid">
-      {% for rel in relatedSoldiers %}
-        {% set otherProfile = null %}
-        {% for page in collections.all %}
-          {% if page.data.slug == rel.slug %}
-            {% set otherProfile = page.data %}
-          {% endif %}
-        {% endfor %}
-        <div class="alongside-card">
-          <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
-            <div class="alongside-photo">
-              {% if otherProfile and otherProfile.profile_photo %}
-                <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ otherProfile.profile_photo }}"
-                     alt="{{ rel.slug }}"
-                     style="width:100%;height:100%;object-fit:cover;"
-                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <span style="display:none">{{ rel.slug | upper | truncate(2, true, "") }}</span>
-              {% else %}
-                {% if otherProfile %}{{ otherProfile.first_name[0] }}{{ otherProfile.last_name[0] }}
-                {% else %}?{% endif %}
-              {% endif %}
+  {# ── Pull tiers from data (default to empty arrays if soldier has no entry) ── #}
+  {% set t1 = alongside[slug].tier1 if alongside[slug] else [] %}
+  {% set t2 = alongside[slug].tier2 if alongside[slug] else [] %}
+  {% set t3 = alongside[slug].tier3 if alongside[slug] else [] %}
+
+  {# ── Card macro (inlined — Nunjucks macros can't be defined mid-template) ── #}
+  {# Renders one soldier card given a rel object { slug, basis, source }       #}
+
+  {# ── Reusable card snippet — inlined per tier (Nunjucks: no mid-template macros) ── #}
+
+  {% if t1.length or t2.length or t3.length %}
+
+    {# ── Tier 1: In the same photos or documents ── #}
+    {% if t1.length %}
+      <details class="alongside-section" open>
+        <summary>
+          <span class="alongside-tier-heading">In the same photos or documents</span>
+          <span class="alongside-count">{{ t1.length }}</span>
+        </summary>
+        <div class="alongside-grid">
+          {% for rel in t1 %}
+            {% set op = null %}
+            {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            <div class="alongside-card">
+              <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
+                <div class="alongside-photo">
+                  {% if op and op.profile_photo %}
+                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                         alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
+                  {% else %}
+                    {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+                  {% endif %}
+                </div>
+              </a>
+              <div class="alongside-name">
+                <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
+                  {% if op %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}
+                </a>
+              </div>
+              {% if op and op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
             </div>
-          </a>
-          <div class="alongside-name">
-            <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
-              {% if otherProfile %}{{ otherProfile.first_name }} {{ otherProfile.last_name }}
-              {% else %}{{ rel.slug }}{% endif %}
-            </a>
-          </div>
-          {% if otherProfile %}
-            <div class="alongside-meta">{{ otherProfile.platoon }}{% if otherProfile.arrived %} · {{ otherProfile.arrived }}–{{ otherProfile.departed }}{% endif %}</div>
-          {% endif %}
-          <div class="alongside-meta" style="font-style:italic;">{{ rel.basis | replace("-", " ") }}</div>
+          {% endfor %}
         </div>
-      {% endfor %}
+      </details>
+    {% endif %}
 
-      {# Know someone prompt card #}
-      <div class="alongside-card">
-        <a href="/contribute/" style="text-decoration:none;">
-          <div class="alongside-photo" style="background:transparent;border-style:dashed;font-size:20px;color:var(--dim);">+</div>
-        </a>
-        <div class="alongside-name" style="color:var(--dim);">
-          <a href="/contribute/" style="color:var(--dim);text-decoration:none;">Know someone?</a>
+    {# ── Tier 2: Same platoon ── #}
+    {% if t2.length %}
+      <details class="alongside-section" open>
+        <summary>
+          <span class="alongside-tier-heading">Same platoon</span>
+          <span class="alongside-count">{{ t2.length }}</span>
+        </summary>
+        <div class="alongside-grid">
+          {% for rel in t2 %}
+            {% set op = null %}
+            {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            <div class="alongside-card">
+              <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
+                <div class="alongside-photo">
+                  {% if op and op.profile_photo %}
+                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                         alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
+                  {% else %}
+                    {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+                  {% endif %}
+                </div>
+              </a>
+              <div class="alongside-name">
+                <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
+                  {% if op %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}
+                </a>
+              </div>
+              {% if op and op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
+            </div>
+          {% endfor %}
         </div>
-        <div class="alongside-meta">Tell us →</div>
-      </div>
+      </details>
+    {% endif %}
+
+    {# ── Tier 3: Also in the company ── #}
+    {% if t3.length %}
+      <details class="alongside-section" open>
+        <summary>
+          <span class="alongside-tier-heading">Also in the company</span>
+          <span class="alongside-count">{{ t3.length }}</span>
+        </summary>
+        <div class="alongside-grid">
+          {% for rel in t3 %}
+            {% set op = null %}
+            {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            <div class="alongside-card">
+              <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
+                <div class="alongside-photo">
+                  {% if op and op.profile_photo %}
+                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                         alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
+                  {% else %}
+                    {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+                  {% endif %}
+                </div>
+              </a>
+              <div class="alongside-name">
+                <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
+                  {% if op %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}
+                </a>
+              </div>
+              {% if op and op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </details>
+    {% endif %}
+
+    {# ── Contribute prompt ── #}
+    <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--dim);">
+      Know someone else who served alongside {{ first_name }}?
+      <a href="/contribute/">Tell us →</a>
     </div>
+
   {% else %}
+    {# ── Empty state ── #}
     <div class="tab-empty">
-      No confirmed connections on record yet.<br>
+      Researching connections…<br>
       <a href="/contribute/">Know someone who served alongside {{ first_name }}? Tell us →</a>
     </div>
   {% endif %}
+
 </div>
 
 {# ── TAB: VERBAL ACCOUNTS ── #}
