@@ -1,18 +1,17 @@
 ---
-soldier: garvin-jim
-subfolder: profile
+soldier: davis-kirk
+subfolder: field
 photos:
-  - filename: garvin-james.png
+  - filename: davis-kirk-field-binh-tuy-1971.png
     caption: >
       
     caption_short: ""
-    credit: "From the collection of Jim Garvin"
+    credit: ""
     photographer: ""
     date: 
     date_known: false
     event: ""
     quality: 
-    contains:
-      - garvin-jim
+    contains: []
     tagged: []
 ---

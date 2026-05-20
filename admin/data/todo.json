@@ -1150,6 +1150,62 @@
       "promoted_from": null
     },
     {
+      "id": "ADMIN-EPIC-20260519000076",
+      "parent_id": null,
+      "relates_to": [],
+      "type": "epic",
+      "scope": "admin",
+      "status": "complete",
+      "title": "Flush-to-R2: photos never land in git",
+      "notes": "Redesign the Tab 4 flush pipeline so image files go directly to the R2 angryskipperarchive-photos bucket rather than into the repo. The repo holds only index.md metadata. Eliminates git binary bloat and makes photos immediately live after flush without a separate build+deploy cycle.",
+      "created": "2026-05-19",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "ADMIN-TASK-20260519000077",
+      "parent_id": "ADMIN-EPIC-20260519000076",
+      "relates_to": [],
+      "type": "task",
+      "scope": "admin",
+      "status": "complete",
+      "title": "Flush — upload image files to R2 instead of writing to repo",
+      "notes": "On flush, upload each image file to angryskipperarchive-photos at key soldiers/[slug]/[subfolder]/[filename] using the existing R2 credentials in admin/.env. Do not write image files to site/soldiers/. Only write index.md to the repo. Implementation: use @aws-sdk/client-s3 (already a dependency) with PutObjectCommand. Atomic success rule: only write index.md and clear staging after ALL uploads for the folder succeed. If any upload fails, report which files failed, leave staging intact, do not write index.md. This lets the archivist simply try again from staging without data loss.",
+      "created": "2026-05-19",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "ADMIN-TASK-20260519000078",
+      "parent_id": "ADMIN-EPIC-20260519000076",
+      "relates_to": [
+        "ADMIN-TASK-20260519000077"
+      ],
+      "type": "task",
+      "scope": "admin",
+      "status": "complete",
+      "title": "Gitignore — exclude image files from site/soldiers/",
+      "notes": "Add patterns to .gitignore to exclude binary image files under site/soldiers/. Metadata files (index.md, *.md) must still be tracked. Suggested patterns: site/soldiers/**/*.jpg, site/soldiers/**/*.jpeg, site/soldiers/**/*.png, site/soldiers/**/*.gif, site/soldiers/**/*.webp. Also remove any existing committed image files from git history using git rm --cached after the flush pipeline is confirmed working.",
+      "created": "2026-05-19",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "ADMIN-TASK-20260519000079",
+      "parent_id": "ADMIN-EPIC-20260519000076",
+      "relates_to": [
+        "ADMIN-TASK-20260519000077"
+      ],
+      "type": "task",
+      "scope": "admin",
+      "status": "complete",
+      "title": "Backfill — upload existing committed photo files to R2",
+      "notes": "One-time migration. Walk site/soldiers/[slug]/photos/ and upload all existing image files to R2 at the correct key path. Confirm each file resolves correctly at /media/photos/soldiers/[slug]/[subfolder]/[filename] before removing from repo. Run as a script (not via admin UI). After confirming, run git rm --cached on all matched image files and commit the removal.",
+      "created": "2026-05-19",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
       "id": "SITE-TASK-20260519000075",
       "parent_id": null,
       "relates_to": [],
@@ -1157,22 +1213,63 @@
       "scope": "site",
       "status": "complete",
       "title": "Our Mission page — initial build",
-      "notes": "Built site/our-mission/index.njk. Two-column layout: personal narrative on left, four goals in yellow side column. Added mission-goals CSS to main.css. Updated masthead nav label from 'Request a Profile' to 'Request'. Our Mission tab live in both desktop nav and mobile drawer with active-state highlighting.",
+      "notes": "Built site/our-mission/index.njk. Two-column layout: personal narrative on left, four goals in yellow side column. Added mission-goals CSS to main.css. Updated masthead nav label from 'Request a Profile' to 'Request'. Our Mission tab live in both desktop nav and mobile nav.",
       "created": "2026-05-19",
       "completed": "2026-05-19",
       "promoted_from": null
     },
     {
-      "id": "SITE-BUG-20260519000076",
+      "id": "SITE-TASK-20260520000080",
+      "parent_id": "ADMIN-EPIC-20260519000076",
+      "relates_to": [],
+      "type": "task",
+      "scope": "site",
+      "status": "complete",
+      "title": "Gallery rewrite — soldier.njk per data-standards.md V2 spec",
+      "notes": "Replaced three-gallery split (tookPhotos/ofPhotos/crossPhotos) with two-gallery system. Gallery 1 (Photos of [First]): byContains reverse map entries where photographer != slug. Gallery 2 (Photos Taken By [First]): photographer == slug. Gallery 2 hidden entirely when empty. Separate PHOTO_SLIDES_1 and PHOTO_SLIDES_2 lightbox arrays. Cross-folder photos merge automatically via crawler byContains map.",
+      "created": "2026-05-20",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "ADMIN-TASK-20260520000081",
+      "parent_id": null,
+      "relates_to": [
+        "ADMIN-TASK-20260518000053"
+      ],
+      "type": "task",
+      "scope": "admin",
+      "status": "complete",
+      "title": "Photo Intake — Edit subtab for production photo metadata",
+      "notes": "Added Edit subtab to Tab 4 Photo Intake. Sidebar lists all soldiers with indexed photos. Main pane shows photo image preview (via GET /api/photos/edit/:slug/image), all index.md fields editable (caption, caption_short, credit, photographer, date, date_known, event, quality, contains, tagged), prev/next navigation, and Save. PATCH /api/photos/edit/:slug rewrites entire subfolder index.md atomically. Backend helpers: readIndexMd(), listEditableSoldiers(), getSoldierPhotosForEdit(), updateSoldierPhotos(). Allows editing contains, photographer, and all other fields on production photos without touching YAML manually. Partially addresses ADMIN-TASK-20260518000053.",
+      "created": "2026-05-20",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "ADMIN-TASK-20260520000082",
       "parent_id": null,
       "relates_to": [],
-      "type": "bug",
-      "scope": "site",
-      "status": "open",
-      "title": "Flushed photos not rendering on soldier profile page",
-      "notes": "Photos flushed via Tab 4 to site/soldiers/[slug]/photos/field/ land correctly on disk but do not appear on the profile page (not even as placeholders). Confirmed with miller-marvin-dale: bill-small-vn-reararea.jpg and marvin-miller-shades.jpg present on disk, absent from profile. Likely causes: (1) photo index.md not being picked up by crawler — verify subfolder scan covers field/ directly, (2) R2 upload step not yet run so serving path is dead, or (3) template rendering condition not met. Investigate crawler output first, then check template. Pairs with SITE-BUG-20260518000026 (hero photo path) and SITE-TASK-20260518000055 (remove photos: array fallback).",
-      "created": "2026-05-19",
-      "completed": null,
+      "type": "task",
+      "scope": "data",
+      "status": "complete",
+      "title": "Photo index audit — backfill stub entries for unindexed image files",
+      "notes": "Python scan of site/soldiers/*/photos/**/ found 17 image files not listed in any index.md across 7 soldiers (miller-marvin-dale, weaver-ken, cate-larry, davis-kirk, romani-val, sells-leroy). Stub entries added to all affected index.md files. All stubs now visible in Edit tab for metadata entry.",
+      "created": "2026-05-20",
+      "completed": "2026-05-20",
+      "promoted_from": null
+    },
+    {
+      "id": "DATA-TASK-20260520000083",
+      "parent_id": null,
+      "relates_to": [],
+      "type": "task",
+      "scope": "data",
+      "status": "complete",
+      "title": "Scaffold new soldier stubs — kint-joe, fishell-larry (Pops), fults-john (Peanut)",
+      "notes": "All three created with status: researching. fishell-larry has nickname: Pops, fults-john has nickname: Peanut. Scaffolded in response to photo review identifying these soldiers in existing collections.",
+      "created": "2026-05-20",
+      "completed": "2026-05-20",
       "promoted_from": null
     }
   ]

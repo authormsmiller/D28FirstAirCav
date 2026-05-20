@@ -1,6 +1,52 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import yaml from 'js-yaml';
+
+// ---------------------------------------------------------------------------
+// R2 upload client
+// ---------------------------------------------------------------------------
+const ACCOUNT_ID    = 'a147c21894e80723027ad746a073a7e9';
+const PHOTOS_BUCKET = 'angryskipperarchive-photos';
+
+function getR2Client() {
+  const accessKeyId     = process.env.R2_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
+  if (!accessKeyId || !secretAccessKey) {
+    throw new Error('R2 credentials not set. Add R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY to admin/.env');
+  }
+  return new S3Client({
+    region: 'auto',
+    endpoint: `https://${ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: { accessKeyId, secretAccessKey },
+  });
+}
+
+/**
+ * Upload a single file to R2.
+ * key format: soldiers/[slug]/[subfolder]/[filename]
+ */
+async function uploadToR2(localPath, r2Key) {
+  const client = getR2Client();
+  const body   = await fsp.readFile(localPath);
+  const ext    = path.extname(localPath).toLowerCase();
+  const contentTypeMap = {
+    '.jpg':  'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png':  'image/png',
+    '.gif':  'image/gif',
+    '.webp': 'image/webp',
+    '.tiff': 'image/tiff',
+  };
+  const contentType = contentTypeMap[ext] || 'application/octet-stream';
+  await client.send(new PutObjectCommand({
+    Bucket:      PHOTOS_BUCKET,
+    Key:         r2Key,
+    Body:        body,
+    ContentType: contentType,
+  }));
+}
 
 // ---------------------------------------------------------------------------
 // Paths — all relative to repo root (two levels up from admin/lib/)
@@ -219,10 +265,9 @@ function yamlStr(val) {
 // ---------------------------------------------------------------------------
 async function flushBuffer(slug, buffer) {
   const stagingDir = path.join(STAGING_PHOTOS, slug);
-  const soldiersDir = path.join(SITE_SOLDIERS, slug);
 
-  // Group by destination
-  // Profile entries use subjectSlug override if provided, otherwise fall back to folder slug
+  // Group by destination.
+  // Profile entries use subjectSlug override if provided, otherwise fall back to folder slug.
   const byDest = { field: [], profile: {}, event: {} };
   for (const entry of buffer) {
     if (entry.dest === 'profile') {
@@ -238,31 +283,73 @@ async function flushBuffer(slug, buffer) {
     }
   }
 
-  const results = { moved: [], written: [], errors: [] };
+  // ── Phase 1: collect upload jobs ───────────────────────────────────────────
+  // Build a flat list of { entry, photosSubdir, effectiveSlug, r2Key, localPath }
+  // before touching anything on disk.
+  const uploadJobs = [];
 
-  // Helper: ensure dir, copy photo, append to index.md
-  // targetSlug: optional override for which soldier folder to write into (for profile subject overrides)
-  async function processEntries(entries, photosSubdir, targetSlug) {
-    if (!entries.length) return;
-    const targetSoldiersDir = targetSlug ? path.join(SITE_SOLDIERS, targetSlug) : soldiersDir;
-    const destPhotoDir = path.join(targetSoldiersDir, 'photos', photosSubdir);
+  function collectJobs(entries, photosSubdir, targetSlug) {
+    const effectiveSlug = targetSlug || slug;
+    for (const e of entries) {
+      uploadJobs.push({
+        entry:         e,
+        photosSubdir,
+        effectiveSlug,
+        r2Key:         `soldiers/${effectiveSlug}/${photosSubdir}/${e.filename}`,
+        localPath:     path.join(stagingDir, e.filename),
+      });
+    }
+  }
+
+  collectJobs(byDest.field, 'field', null);
+  for (const [subject, entries] of Object.entries(byDest.profile)) {
+    collectJobs(entries, 'profile', subject);
+  }
+  for (const [eventSlug, entries] of Object.entries(byDest.event)) {
+    collectJobs(entries, `field/events/${eventSlug}`, null);
+  }
+
+  // ── Phase 2: upload all images to R2 ──────────────────────────────────────
+  // Atomic rule: if ANY upload fails, return errors immediately.
+  // Do NOT write index.md or clear staging.
+  const uploadErrors = [];
+  const uploaded = [];
+
+  for (const job of uploadJobs) {
+    try {
+      await uploadToR2(job.localPath, job.r2Key);
+      uploaded.push(job.r2Key);
+    } catch (err) {
+      uploadErrors.push(`R2 upload failed for ${job.entry.filename}: ${err.message}`);
+    }
+  }
+
+  if (uploadErrors.length) {
+    return { moved: [], written: [], errors: uploadErrors, uploaded };
+  }
+
+  // ── Phase 3: write index.md files (only reached if all uploads succeeded) ──
+  const results = { moved: uploaded, written: [], errors: [] };
+
+  // Group jobs by (effectiveSlug, photosSubdir) for index.md writing.
+  const indexGroups = new Map();
+  for (const job of uploadJobs) {
+    const key = `${job.effectiveSlug}::${job.photosSubdir}`;
+    if (!indexGroups.has(key)) {
+      indexGroups.set(key, { effectiveSlug: job.effectiveSlug, photosSubdir: job.photosSubdir, entries: [] });
+    }
+    indexGroups.get(key).entries.push(job.entry);
+  }
+
+  for (const { effectiveSlug, photosSubdir, entries } of indexGroups.values()) {
+    const destPhotoDir = path.join(SITE_SOLDIERS, effectiveSlug, 'photos', photosSubdir);
     await fsp.mkdir(destPhotoDir, { recursive: true });
     const indexPath = path.join(destPhotoDir, 'index.md');
 
-    // Build YAML entries
     const yamlBlocks = [];
     for (const e of entries) {
-      const srcPhoto = path.join(stagingDir, e.filename);
-      const destPhoto = path.join(destPhotoDir, e.filename);
-      try {
-        await fsp.copyFile(srcPhoto, destPhoto);
-        results.moved.push(`${photosSubdir}/${e.filename}`);
-      } catch (err) {
-        results.errors.push(`Failed to copy ${e.filename}: ${err.message}`);
-        continue;
-      }
       const contains = e.contains ? e.contains.split(',').map(s => s.trim()).filter(Boolean) : [];
-      const tagged = e.tagged ? e.tagged.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const tagged   = e.tagged   ? e.tagged.split(',').map(s => s.trim()).filter(Boolean)   : [];
       const block = [
         `  - filename: ${e.filename}`,
         `    caption: >`,
@@ -275,19 +362,17 @@ async function flushBuffer(slug, buffer) {
         `    event: ${e.eventSlug || '""'}`,
         `    quality: ${e.quality || ''}`,
         contains.length ? `    contains:\n${contains.map(c => `      - ${c}`).join('\n')}` : `    contains: []`,
-        tagged.length ? `    tagged:\n${tagged.map(t => `      - ${t}`).join('\n')}` : `    tagged: []`,
+        tagged.length   ? `    tagged:\n${tagged.map(t => `      - ${t}`).join('\n')}`     : `    tagged: []`,
       ].join('\n');
       yamlBlocks.push(block);
     }
 
-    if (!yamlBlocks.length) return;
+    if (!yamlBlocks.length) continue;
 
-    // Append to index.md or create it
     if (!fs.existsSync(indexPath)) {
-      const header = `---\nsoldier: ${targetSlug || slug}\nsubfolder: ${photosSubdir}\nphotos:\n`;
+      const header = `---\nsoldier: ${effectiveSlug}\nsubfolder: ${photosSubdir}\nphotos:\n`;
       await fsp.writeFile(indexPath, header + yamlBlocks.join('\n') + '\n---\n', 'utf-8');
     } else {
-      // Insert before closing ---
       let existing = await fsp.readFile(indexPath, 'utf-8');
       const closeMarker = '\n---\n';
       if (existing.endsWith(closeMarker)) {
@@ -301,25 +386,148 @@ async function flushBuffer(slug, buffer) {
     results.written.push(indexPath);
   }
 
-  await processEntries(byDest.field, 'field');
-  for (const [subject, entries] of Object.entries(byDest.profile)) {
-    await processEntries(entries, 'profile', subject);
-  }
-  for (const [eventSlug, entries] of Object.entries(byDest.event)) {
-    await processEntries(entries, `field/events/${eventSlug}`);
-  }
-
-  // Clean up staging folder after successful flush
-  if (!results.errors.length) {
-    try {
-      await fsp.rm(stagingDir, { recursive: true, force: true });
-      appendLog({ slug, action: 'flushed', photoCount: buffer.length });
-    } catch (err) {
-      results.errors.push(`Staging cleanup failed: ${err.message}`);
-    }
+  // ── Phase 4: clear staging ─────────────────────────────────────────────────
+  try {
+    await fsp.rm(stagingDir, { recursive: true, force: true });
+    appendLog({ slug, action: 'flushed', photoCount: buffer.length });
+  } catch (err) {
+    results.errors.push(`Staging cleanup failed: ${err.message}`);
   }
 
   return results;
+}
+
+// ---------------------------------------------------------------------------
+// Edit — read / write production photo metadata
+// ---------------------------------------------------------------------------
+
+/**
+ * Parse a photo index.md and return the photos array.
+ * Returns [] if file missing, empty, or malformed.
+ */
+function readIndexMd(indexPath) {
+  if (!fs.existsSync(indexPath)) return [];
+  const raw = fs.readFileSync(indexPath, 'utf-8');
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return [];
+  try {
+    const parsed = yaml.load(match[1]);
+    return Array.isArray(parsed?.photos) ? parsed.photos : [];
+  } catch { return []; }
+}
+
+/**
+ * List all soldiers who have at least one photo index.md.
+ */
+function listEditableSoldiers() {
+  if (!fs.existsSync(SITE_SOLDIERS)) return [];
+  const result = [];
+  for (const entry of fs.readdirSync(SITE_SOLDIERS, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const slug      = entry.name;
+    const photosRoot = path.join(SITE_SOLDIERS, slug, 'photos');
+    if (!fs.existsSync(photosRoot)) continue;
+
+    let count = 0;
+    count += readIndexMd(path.join(photosRoot, 'profile', 'index.md')).length;
+    count += readIndexMd(path.join(photosRoot, 'field', 'index.md')).length;
+    const eventsDir = path.join(photosRoot, 'field', 'events');
+    if (fs.existsSync(eventsDir)) {
+      for (const ev of fs.readdirSync(eventsDir, { withFileTypes: true })) {
+        if (ev.isDirectory()) {
+          count += readIndexMd(path.join(eventsDir, ev.name, 'index.md')).length;
+        }
+      }
+    }
+    if (count > 0) result.push({ slug, photoCount: count });
+  }
+  return result.sort((a, b) => a.slug.localeCompare(b.slug));
+}
+
+/**
+ * Return all photos for a soldier flattened with subfolder metadata.
+ * Each entry includes all photo fields plus `subfolder`.
+ */
+function getSoldierPhotosForEdit(slug) {
+  const photosRoot = path.join(SITE_SOLDIERS, slug, 'photos');
+  if (!fs.existsSync(photosRoot)) return [];
+  const result = [];
+
+  function loadSubfolder(subfolder, indexPath) {
+    for (const p of readIndexMd(indexPath)) {
+      result.push({ ...p, subfolder });
+    }
+  }
+
+  loadSubfolder('profile', path.join(photosRoot, 'profile', 'index.md'));
+  loadSubfolder('field',   path.join(photosRoot, 'field',   'index.md'));
+  const eventsDir = path.join(photosRoot, 'field', 'events');
+  if (fs.existsSync(eventsDir)) {
+    for (const ev of fs.readdirSync(eventsDir, { withFileTypes: true })) {
+      if (ev.isDirectory()) {
+        loadSubfolder(`field/events/${ev.name}`,
+          path.join(eventsDir, ev.name, 'index.md'));
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * Write updated photo entries back to their index.md files.
+ * `updates` is a flat array of photo objects, each with a `subfolder` field.
+ * Each index.md is fully rewritten from the updated entries for that subfolder.
+ */
+async function updateSoldierPhotos(slug, updates) {
+  const photosRoot = path.join(SITE_SOLDIERS, slug, 'photos');
+
+  // Group by subfolder
+  const bySubfolder = {};
+  for (const photo of updates) {
+    const sf = photo.subfolder;
+    if (!bySubfolder[sf]) bySubfolder[sf] = [];
+    bySubfolder[sf].push(photo);
+  }
+
+  const written = [];
+  for (const [subfolder, photos] of Object.entries(bySubfolder)) {
+    let indexPath;
+    if      (subfolder === 'profile')                      indexPath = path.join(photosRoot, 'profile', 'index.md');
+    else if (subfolder === 'field')                        indexPath = path.join(photosRoot, 'field',   'index.md');
+    else if (subfolder.startsWith('field/events/')) {
+      const eventSlug = subfolder.slice('field/events/'.length);
+      indexPath = path.join(photosRoot, 'field', 'events', eventSlug, 'index.md');
+    } else {
+      continue; // unrecognised subfolder — skip
+    }
+
+    const yamlBlocks = photos.map(p => {
+      const contains = Array.isArray(p.contains) ? p.contains
+        : (p.contains ? String(p.contains).split(',').map(s => s.trim()).filter(Boolean) : []);
+      const tagged = Array.isArray(p.tagged) ? p.tagged
+        : (p.tagged ? String(p.tagged).split(',').map(s => s.trim()).filter(Boolean) : []);
+      return [
+        `  - filename: ${p.filename}`,
+        `    caption: >`,
+        `      ${(p.caption || '').replace(/\r?\n/g, '\n      ')}`,
+        `    caption_short: ${yamlStr(p.caption_short)}`,
+        `    credit: ${yamlStr(p.credit)}`,
+        `    photographer: ${yamlStr(p.photographer)}`,
+        `    date: ${p.date || ''}`,
+        `    date_known: ${p.date_known === true || p.date_known === 'true' ? 'true' : 'false'}`,
+        `    event: ${p.event ? yamlStr(p.event) : '""'}`,
+        `    quality: ${p.quality || ''}`,
+        contains.length ? `    contains:\n${contains.map(c => `      - ${c}`).join('\n')}` : `    contains: []`,
+        tagged.length   ? `    tagged:\n${tagged.map(t => `      - ${t}`).join('\n')}`     : `    tagged: []`,
+      ].join('\n');
+    });
+
+    await fsp.mkdir(path.dirname(indexPath), { recursive: true });
+    const header = `---\nsoldier: ${slug}\nsubfolder: ${subfolder}\nphotos:\n`;
+    await fsp.writeFile(indexPath, header + yamlBlocks.join('\n') + '\n---\n', 'utf-8');
+    written.push(indexPath);
+  }
+  return written;
 }
 
 // ---------------------------------------------------------------------------
@@ -497,6 +705,58 @@ export function registerPhotosRoutes(app) {
         ? fs.readdirSync(STAGING_PHOTOS, { withFileTypes: true }).filter(d => d.isDirectory()).length
         : 0;
       res.json({ raw, staging, total: raw + staging });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ── Edit routes ─────────────────────────────────────────────────────────────
+
+  // GET /api/photos/edit/soldiers — list all soldiers with at least one photo index.md
+  app.get('/api/photos/edit/soldiers', (req, res) => {
+    try {
+      res.json({ soldiers: listEditableSoldiers() });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/photos/edit/:slug — all photos for a soldier (flattened, with subfolder)
+  app.get('/api/photos/edit/:slug', (req, res) => {
+    try {
+      const photos     = getSoldierPhotosForEdit(req.params.slug);
+      const rosterSlugs = getRosterSlugs();
+      res.json({ photos, rosterSlugs });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // PATCH /api/photos/edit/:slug — write updated photos back to index.md files
+  // Body: { updates: [...photo objects, each with subfolder field] }
+  app.patch('/api/photos/edit/:slug', async (req, res) => {
+    try {
+      const { updates } = req.body;
+      if (!Array.isArray(updates)) return res.status(400).json({ error: 'updates array required' });
+      const written = await updateSoldierPhotos(req.params.slug, updates);
+      res.json({ ok: true, written });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/photos/edit/:slug/image — serve a production photo for preview
+  // Query: ?subfolder=field&filename=photo.jpg
+  // Tries disk first (site/soldiers/); redirects to live R2 URL if not on disk.
+  app.get('/api/photos/edit/:slug/image', (req, res) => {
+    try {
+      const { slug }             = req.params;
+      const { subfolder, filename } = req.query;
+      if (!subfolder || !filename) return res.status(400).json({ error: 'subfolder and filename required' });
+      const filePath = path.join(SITE_SOLDIERS, slug, 'photos', subfolder, filename);
+      if (fs.existsSync(filePath)) return res.sendFile(filePath);
+      // Not on disk — redirect to live R2 URL
+      res.redirect(`https://angryskipperarchive.org/media/photos/soldiers/${slug}/${subfolder}/${filename}`);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

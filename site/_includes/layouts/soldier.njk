@@ -225,10 +225,9 @@
 <div class="tab-content" id="tab-photos" style="display:none">
 
   {#
-    Pull from crawler output first.
-    photosBySlug is keyed by soldier slug; each entry has subfolders as keys.
-    Flatten all subfolders into a single allPhotos array for the PHOTO_SLIDES
-    script and the gallery loops.
+    Own photos — flatten all subfolders into allPhotos.
+    Used as the source for Gallery 2 (photos taken by this soldier).
+    Fallback to front matter photos array if no index.md files exist yet.
   #}
   {% set crawlerEntry = photosBySlug[slug] %}
   {% set allPhotos = [] %}
@@ -243,118 +242,97 @@
       {% for p in crawlerEntry["field/events"] %}{% set allPhotos = (allPhotos.push(p), allPhotos) %}{% endfor %}
     {% endif %}
   {% else %}
-    {# Fallback: no index.md files yet — use old front matter photos array #}
     {% set allPhotos = photos %}
   {% endif %}
 
   {#
-    Cross-soldier photos — this soldier appears in another soldier's collection.
-    Sourced from photosBySlug.byContains[slug], built by the crawler across all
-    soldiers' index.md files. Runs independently of whether this soldier has
-    their own photos — a stub profile with no index.md can still show up here.
+    Gallery 1 — "Photos of [First]"
+    Source: byContains reverse map — every photo in the archive where this
+    soldier's slug appears in contains:, EXCEPT photos he took himself
+    (photographer == slug). Those are selfies and belong in Gallery 2.
+    Covers own collection + any other soldier's folder automatically.
   #}
-  {% set crossPhotos = [] %}
+  {% set photosOfMe = [] %}
   {% if photosBySlug.byContains and photosBySlug.byContains[slug] %}
     {% for photo in photosBySlug.byContains[slug] %}
-      {% if photo.soldier_slug != slug %}
-        {% set crossPhotos = (crossPhotos.push(photo), crossPhotos) %}
+      {% if photo.photographer != slug %}
+        {% set photosOfMe = (photosOfMe.push(photo), photosOfMe) %}
       {% endif %}
     {% endfor %}
   {% endif %}
 
-  {% if (allPhotos and allPhotos.length) or crossPhotos.length %}
+  {#
+    Gallery 2 — "Photos Taken By [First]"
+    Source: own photos only, where photographer == slug.
+    Includes photos with no soldiers in the frame (he's behind the camera)
+    and selfies (photographer == slug AND slug also in contains).
+    Hidden entirely if no photos qualify.
+  #}
+  {% set photosByMe = [] %}
+  {% for photo in allPhotos %}
+    {% if photo.photographer == slug %}
+      {% set photosByMe = (photosByMe.push(photo), photosByMe) %}
+    {% endif %}
+  {% endfor %}
+
+  {% if photosOfMe.length or photosByMe.length %}
 
     {% if photo_intro %}
       <p class="timeline-intro" style="font-style:italic;">{{ photo_intro }}</p>
     {% endif %}
 
-    {# PHOTO_SLIDES — includes own photos only (cross-photos use inline lb() call) #}
-    {% if allPhotos and allPhotos.length %}
+    {# ── Gallery 1: Photos of [First] ── #}
+    {% if photosOfMe.length %}
     <script>
-      var PHOTO_SLIDES = [
-        {% for photo in allPhotos %}
+      var PHOTO_SLIDES_1 = [
+        {% for photo in photosOfMe %}
         {
-          src: {{ (photo.url if photo.url else ("/media/photos/soldiers/" + slug + "/" + photo.subfolder + "/" + photo.filename)) | dump | safe }},
+          src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or photo.date_approx or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
     </script>
-
-    {# ── Gallery 1: Photos he took ── #}
-    {# Only photos explicitly marked photographer: unknown (soldier took it themselves) #}
-    {% set tookPhotos = [] %}
-    {% for photo in allPhotos %}
-      {% if photo.photographer == "unknown" %}
-        {% set tookPhotos = (tookPhotos.push(photo), tookPhotos) %}
-      {% endif %}
-    {% endfor %}
-
-    {% if tookPhotos.length %}
-      <div class="gallery-sublabel">Through His Eyes — Photographs He Took</div>
-      <div class="photo-grid">
-        {% for photo in tookPhotos %}
-          {% set photoSrc = photo.url if photo.url else ("/media/photos/soldiers/" + slug + "/" + photo.subfolder + "/" + photo.filename) %}
-          <div class="photo-card {{ 'wide' if photo.wide }}"
-               onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES)">
-            <img src="{{ photoSrc }}"
-                 alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
-                 loading="lazy">
-            <div class="photo-overlay">
-              <div class="photo-cap-text">{{ photo.caption_short if photo.caption_short else photo.filename }}</div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
+    <div class="gallery-sublabel">Photos of {{ first_name }}</div>
+    <div class="photo-grid">
+      {% for photo in photosOfMe %}
+        <div class="photo-card {{ 'wide' if photo.wide }}"
+             onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES_1)">
+          <img src="{{ photo.url }}"
+               alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
+               loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
     {% endif %}
 
-    {# ── Gallery 2: Photos others took of him ── #}
-    {# Includes unknown-of, known-of, empty/null photographer (origin unknown = not him) #}
-    {% set ofPhotos = [] %}
-    {% for photo in allPhotos %}
-      {% if photo.photographer != "unknown" %}
-        {% set ofPhotos = (ofPhotos.push(photo), ofPhotos) %}
-      {% endif %}
-    {% endfor %}
-
-    {% if ofPhotos.length %}
-      <div class="gallery-sublabel">Among His Brothers — Photographs Others Took of {{ first_name }}</div>
-      <div class="photo-grid">
-        {% for photo in ofPhotos %}
-          {% set photoSrc = photo.url if photo.url else ("/media/photos/soldiers/" + slug + "/" + photo.subfolder + "/" + photo.filename) %}
-          <div class="photo-card {{ 'wide' if photo.wide }}"
-               onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES)">
-            <img src="{{ photoSrc }}"
-                 alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
-                 loading="lazy">
-            <div class="photo-overlay">
-              <div class="photo-cap-text">{{ photo.caption_short if photo.caption_short else photo.filename }}</div>
-            </div>
-          </div>
+    {# ── Gallery 2: Photos Taken By [First] — hidden if empty ── #}
+    {% if photosByMe.length %}
+    <script>
+      var PHOTO_SLIDES_2 = [
+        {% for photo in photosByMe %}
+        {
+          src: {{ photo.url | dump | safe }},
+          caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
+          credit: {{ (photo.credit or "") | dump | safe }},
+          date: {{ (photo.date or "") | dump | safe }}
+        }{% if not loop.last %},{% endif %}
         {% endfor %}
-      </div>
-    {% endif %}
-    {% endif %}{# end if allPhotos #}
-
-    {# ── Gallery 3: Cross-soldier photos ── #}
-    {% if crossPhotos.length %}
-      <div class="gallery-sublabel">Photographs by Fellow Soldiers</div>
-      <div class="photo-grid">
-        {% for photo in crossPhotos %}
-          <div class="photo-card {{ 'wide' if photo.wide }}"
-               onclick="lb('{{ photo.url }}','{{ photo.caption_short if photo.caption_short else photo.filename }}','{{ photo.credit }}')">
-            <img src="{{ photo.url }}"
-                 alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
-                 loading="lazy">
-            <div class="photo-overlay">
-              <div class="photo-cap-text">{{ photo.caption_short if photo.caption_short else photo.filename }}</div>
-              <div class="photo-cap-credit">From the {{ photo.soldier_slug | replace("-", " ") | title }} collection</div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
+      ];
+    </script>
+    <div class="gallery-sublabel">Photos Taken by {{ first_name }}</div>
+    <div class="photo-grid">
+      {% for photo in photosByMe %}
+        <div class="photo-card {{ 'wide' if photo.wide }}"
+             onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES_2)">
+          <img src="{{ photo.url }}"
+               alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
+               loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
     {% endif %}
 
     {% if wartime_content_notice %}

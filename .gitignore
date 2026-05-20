@@ -3,7 +3,12 @@ _site/
 .wrangler/state/
 site/site_OLD/
 
-.dev.vars*
-!.dev.vars.example
-.env*
-!.env.example
+# Photo image files live in R2, not in the repo.
+# Only index.md metadata files are tracked.
+site/soldiers/**/*.jpg
+site/soldiers/**/*.jpeg
+site/soldiers/**/*.png
+site/soldiers/**/*.gif
+site/soldiers/**/*.webp
+site/soldiers/**/*.tiff
+site/soldiers/**/*.tif
