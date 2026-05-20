@@ -1,18 +1,18 @@
 ---
-soldier: garvin-jim
+soldier: weaver-ken
 subfolder: profile
 photos:
-  - filename: garvin-james.png
+  - filename: weaver-off-the-line.jpg
     caption: >
       
     caption_short: ""
-    credit: "From the collection of Jim Garvin"
+    credit: ""
     photographer: ""
-    date: 
+    date: 1971
     date_known: false
     event: ""
     quality: 
     contains:
-      - garvin-jim
+      - weaver-ken
     tagged: []
 ---

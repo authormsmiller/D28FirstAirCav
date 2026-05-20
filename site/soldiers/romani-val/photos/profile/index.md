@@ -1,18 +1,18 @@
 ---
-soldier: garvin-jim
+soldier: romani-val
 subfolder: profile
 photos:
-  - filename: garvin-james.png
+  - filename: val_romani2.jpg
     caption: >
       
     caption_short: ""
-    credit: "From the collection of Jim Garvin"
-    photographer: ""
-    date: 
+    credit: ""
+    photographer: "miller-marvin-dale"
+    date: 1971
     date_known: false
     event: ""
     quality: 
     contains:
-      - garvin-jim
+      - romani-val
     tagged: []
 ---

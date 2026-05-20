@@ -1,6 +1,6 @@
 # D Co. 2/8 CAV Archive — Data Standards
 *Canonical reference. Do not retrofit after this is committed.*
-*Last updated: Session 16, May 11, 2026*
+*Last updated: Session 42, May 19, 2026*
 
 ---
 
@@ -213,6 +213,54 @@ these index files. Do not add new photos to the soldier profile `photos:` array.
 Upload scripts to be rewritten clean against this structure — do not patch
 existing scripts.
 
+### photographer: field
+
+`photographer:` is always a soldier slug or empty string. It is never a magic
+word (`unknown`, `unknown-of`, etc.) — those values are deprecated and must be
+removed on sight.
+
+- **Soldier slug** (e.g. `photographer: miller-marvin-dale`) — this soldier
+  pressed the shutter. Used for attribution display and as a gallery routing
+  signal (see below).
+- **Empty** (`photographer: ""`) — attribution unknown. Has no routing effect;
+  gallery placement is determined entirely by `contains:`.
+
+### Gallery routing rules
+
+⚠️ **Implementation note:** The current template uses `photographer: unknown` /
+`photographer: unknown-of` as routing signals. These must be replaced with the
+logic below when the Photos tab is next rebuilt. Do not patch the existing
+logic — rewrite it cleanly against these rules.
+
+Two galleries are rendered on the Photos tab of a soldier profile:
+
+**1. "Photos of [First]"** *(rendered first)*
+All photos — from any soldier's folder — where this soldier's slug appears in
+`contains:`, **except** photos where `photographer:` equals this soldier's slug
+(those are selfies and belong in Gallery 2).
+
+Sources:
+- This soldier's own subfolders (`field/`, `field/events/`, `profile/`)
+- Any other soldier's subfolders via the crawler's `byContains` reverse map
+
+**2. "Photos Taken By [First]"** *(rendered second; hidden if empty)*
+Photos where `photographer:` equals this soldier's slug. Covers both:
+- Photos with no identifiable soldiers in the frame (he's behind the camera)
+- Selfies: `photographer: [this slug]` AND slug is also in `contains:`
+
+This gallery is hidden entirely if no photos qualify. This will be the common
+case — most soldiers have no personal collection in the archive.
+
+### location: field
+
+`location:` is an optional free-text field on individual photo entries.
+Use it when the physical setting is identifiable with reasonable confidence
+(a named FSB, a known R&R location, a recognizable base feature). Leave empty
+if the location is uncertain or generic.
+
+Consistent location values feed the Lunr search index, making photos
+discoverable alongside events that share the same location name.
+
 ```yaml
 ---
 soldier: miller-marvin-dale
@@ -225,24 +273,26 @@ photos:
       first people on scene.
     caption_short: Huey wreckage — FSB Fontaine, April 24, 1971
     credit: "Photographed by Marvin D. Miller · April 24, 1971"
+    photographer: miller-marvin-dale
     date: 1971-04-24
     date_known: true
+    location: FSB Fontaine, Long Khanh Province, RVN
     event: crash-fsb-fontaine-1971-04-24
-    contains:              # soldiers visible in the frame
+    contains:              # soldiers visually identifiable in the frame
       - colburn-richard
-    tagged:                # soldiers likely present but not visible
-      - fanning-martin
+    tagged:                # soldiers implied by context but not visually confirmed
 
   - filename: 042471-hueycrash4.jpg
     caption: Recovery of the downed Huey.
     caption_short: Huey recovery — FSB Fontaine, April 24, 1971
     credit: "Photographed by Marvin D. Miller · April 24, 1971"
+    photographer: miller-marvin-dale
     date: 1971-04-24
     date_known: true
+    location: FSB Fontaine, Long Khanh Province, RVN
     event: crash-fsb-fontaine-1971-04-24
     contains: []
-    tagged:
-      - fanning-martin
+    tagged: []
 ---
 ```
 
@@ -282,8 +332,10 @@ Transcription body here.
 | Field | Events | Documents | Anecdotes | Photos | Letters |
 |---|---|---|---|---|---|
 | `casualties:` | ✓ KIA/DOW/WIA only | — | — | — | — |
-| `contains:` | ✓ confirmed present, unhurt | ✓ named in text | ✓ named in story | ✓ visible in frame | ✓ named in letter |
-| `tagged:` | ✓ implied present | ✓ implied connection | ✓ implied connection | ✓ likely in frame | ✓ implied connection |
+| `contains:` | ✓ confirmed present, unhurt | ✓ named in text | ✓ named in story | ✓ visually identifiable in frame | ✓ named in letter |
+| `tagged:` | ✓ implied present | ✓ implied connection | ✓ implied connection | ✓ implied by context, not visually confirmed | ✓ implied connection |
+| `photographer:` | — | — | — | ✓ slug or empty; drives gallery routing | — |
+| `location:` | ✓ | — | — | ✓ optional; named place if identifiable | — |
 | `event:` | — (IS the event) | ✓ | ✓ | ✓ | ✓ |
 | `date` + `date_known` | ✓ | ✓ | ✓ | ✓ per photo | ✓ |
 | `status:` | ✓ | ✓ | ✓ | — | ✓ |

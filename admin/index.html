@@ -676,6 +676,9 @@
         <button class="ph-subtab" id="ph-tab-submissions" onclick="phSwitchSubTab('submissions')">
           Submissions <span class="tab-badge" id="ph-submissions-badge" style="display:none"></span>
         </button>
+        <button class="ph-subtab" id="ph-tab-edit" onclick="phSwitchSubTab('edit')">
+          Edit
+        </button>
       </div>
 
       <!-- RAW PANE -->
@@ -711,6 +714,19 @@
         </div>
         <div id="ph-submissions-list" class="ph-submissions-list">
           <p class="ph-placeholder">Loading…</p>
+        </div>
+      </div>
+
+      <!-- EDIT PANE -->
+      <div id="ph-pane-edit" class="ph-pane" style="display:none">
+        <div class="ph-sidebar">
+          <input type="text" id="phe-soldier-filter" class="ph-filter-input"
+                 placeholder="Filter soldiers…"
+                 oninput="pheFilterSoldiers(this.value)" />
+          <div id="phe-soldier-list"><p class="ph-placeholder">Loading…</p></div>
+        </div>
+        <div class="ph-main" id="phe-main">
+          <p class="ph-placeholder">Select a soldier to edit their photos</p>
         </div>
       </div>
 
@@ -2704,13 +2720,14 @@ async function phInit() {
 // ─── Sub-tab switching ───────────────────────────────────────────────────────
 function phSwitchSubTab(tab) {
   PH.activeSubTab = tab;
-  ['raw', 'staging', 'submissions'].forEach(t => {
+  ['raw', 'staging', 'submissions', 'edit'].forEach(t => {
     const btn  = document.getElementById(`ph-tab-${t}`);
     const pane = document.getElementById(`ph-pane-${t}`);
     if (btn)  btn.classList.toggle('active', t === tab);
     if (pane) pane.style.display = t === tab ? 'flex' : 'none';
   });
   if (tab === 'submissions' && !PH.submissionsLoaded) phLoadSubmissions();
+  if (tab === 'edit'        && !PHE.soldiersLoaded)   pheLoadSoldiers();
 }
 
 // ─── Raw pane ────────────────────────────────────────────────────────────────
@@ -3561,6 +3578,248 @@ async function phDiscardSubmission(id) {
     toast('Submission discarded from R2.');
   } catch(e) {
     toast(`Discard failed: ${e.message}`, 'error');
+  }
+}
+
+// ─── Photo Edit tab (PHE) ─────────────────────────────────────────────────────
+
+const PHE = {
+  soldiersLoaded:  false,
+  soldiers:        [],
+  filteredSoldiers:[],
+  selectedSlug:    null,
+  photos:          [],
+  photoIdx:        0,
+};
+
+// ── Soldier list ──────────────────────────────────────────────────────────────
+
+async function pheLoadSoldiers() {
+  const listEl = document.getElementById('phe-soldier-list');
+  listEl.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const d = await api('GET', '/photos/edit/soldiers');
+    PHE.soldiers        = d.soldiers || [];
+    PHE.filteredSoldiers = PHE.soldiers;
+    PHE.soldiersLoaded  = true;
+    pheRenderSoldierList();
+  } catch(e) {
+    listEl.innerHTML = `<p class="ph-placeholder" style="color:var(--red,#c00)">Error: ${escHtml(e.message)}</p>`;
+  }
+}
+
+function pheFilterSoldiers(value) {
+  const q = value.toLowerCase();
+  PHE.filteredSoldiers = q ? PHE.soldiers.filter(s => s.slug.includes(q)) : PHE.soldiers;
+  pheRenderSoldierList();
+}
+
+function pheRenderSoldierList() {
+  const listEl = document.getElementById('phe-soldier-list');
+  if (!PHE.filteredSoldiers.length) {
+    listEl.innerHTML = '<p class="ph-placeholder">No soldiers found</p>';
+    return;
+  }
+  listEl.innerHTML = PHE.filteredSoldiers.map(s =>
+    `<div class="ph-folder-item${PHE.selectedSlug === s.slug ? ' active' : ''}"
+          onclick="pheSelectSoldier('${escHtml(s.slug)}')">
+       <span class="ph-folder-name">${escHtml(s.slug)}</span>
+       <span class="ph-folder-meta">${s.photoCount} photo${s.photoCount !== 1 ? 's' : ''}</span>
+     </div>`
+  ).join('');
+}
+
+async function pheSelectSoldier(slug) {
+  PHE.selectedSlug = slug;
+  PHE.photos       = [];
+  PHE.photoIdx     = 0;
+  pheRenderSoldierList();
+  const mainEl = document.getElementById('phe-main');
+  mainEl.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const d = await api('GET', `/photos/edit/${encodeURIComponent(slug)}`);
+    PHE.photos = d.photos || [];
+    if (d.rosterSlugs && d.rosterSlugs.length) PH.rosterSlugs = d.rosterSlugs;
+    if (!PHE.photos.length) {
+      mainEl.innerHTML = '<p class="ph-placeholder">No photos found for this soldier.</p>';
+      return;
+    }
+    pheRenderPhoto(0);
+  } catch(e) {
+    mainEl.innerHTML = `<p class="ph-placeholder" style="color:var(--red,#c00)">Error: ${escHtml(e.message)}</p>`;
+  }
+}
+
+// ── Photo navigator ───────────────────────────────────────────────────────────
+
+function pheRenderPhoto(idx) {
+  const mainEl = document.getElementById('phe-main');
+  if (!PHE.photos.length) return;
+  PHE.photoIdx = idx;
+  const photo   = PHE.photos[idx];
+  const slug    = PHE.selectedSlug;
+  const isFirst = idx === 0;
+  const isLast  = idx === PHE.photos.length - 1;
+
+  const imgSrc   = `/api/photos/edit/${encodeURIComponent(slug)}/image?subfolder=${encodeURIComponent(photo.subfolder)}&filename=${encodeURIComponent(photo.filename)}`;
+  const rosterDl = PH.rosterSlugs.map(s => `<option value="${escHtml(s)}">`).join('');
+  const eventOpts = PH.events.map(e => `<option value="${escHtml(e)}">`).join('');
+
+  const contains = Array.isArray(photo.contains) ? photo.contains : [];
+  const tagged   = Array.isArray(photo.tagged)   ? photo.tagged   : [];
+  const splitContains = {
+    known: contains.filter(s =>  PH.rosterSlugs.includes(s)),
+    extra: contains.filter(s => !PH.rosterSlugs.includes(s)).join(', ')
+  };
+  const splitTagged = {
+    known: tagged.filter(s =>  PH.rosterSlugs.includes(s)),
+    extra: tagged.filter(s => !PH.rosterSlugs.includes(s)).join(', ')
+  };
+
+  mainEl.innerHTML = `
+    <div class="ph-photo-form">
+      <div class="ph-staging-header">
+        <span class="ph-staging-slug">${escHtml(slug)}</span>
+        <span style="font-size:0.78rem;color:var(--ink-muted,#888);margin-left:8px">${escHtml(photo.subfolder)}</span>
+      </div>
+
+      <div class="ph-photo-nav">
+        <button class="btn btn-secondary" onclick="pheNav(-1)" ${isFirst ? 'disabled' : ''}>&#8592; Back</button>
+        <span class="ph-photo-counter">Photo ${idx + 1} of ${PHE.photos.length}</span>
+        <button class="btn btn-secondary" onclick="pheNav(1)" ${isLast ? 'disabled' : ''}>Next &#8594;</button>
+      </div>
+
+      <div class="ph-photo-preview">
+        <img src="${imgSrc}" alt="${escHtml(photo.filename)}" class="ph-preview-img"
+             onerror="this.style.display='none'" />
+        <div class="ph-filename">${escHtml(photo.filename)}</div>
+      </div>
+
+      <div class="ph-form-grid">
+
+        <div class="ph-field">
+          <label class="ph-label">Caption</label>
+          <textarea id="phe-caption" class="ph-textarea" rows="3">${escHtml(photo.caption || '')}</textarea>
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Caption Short</label>
+          <input type="text" id="phe-caption-short" class="ph-input" value="${escHtml(photo.caption_short || '')}" />
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Photographer</label>
+          <datalist id="phe-roster-dl">${rosterDl}</datalist>
+          <input type="text" id="phe-photographer" class="ph-input"
+                 value="${escHtml(photo.photographer || '')}"
+                 list="phe-roster-dl" placeholder="soldier-slug or empty" />
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Credit <span class="ph-muted">(display string)</span></label>
+          <input type="text" id="phe-credit" class="ph-input" value="${escHtml(photo.credit || '')}" />
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Contains <span class="ph-muted">(soldiers pictured)</span></label>
+          <input type="text" class="ph-filter-input" placeholder="Filter roster…"
+                 oninput="phFilterCheckboxList(this, 'phe-contains-cbl')" />
+          <div id="phe-contains-cbl" class="ph-checkbox-list"></div>
+          <input type="text" id="phe-contains-extra" class="ph-input ph-extra-input"
+                 value="${escHtml(splitContains.extra)}"
+                 placeholder="Extra slugs not in roster (comma-separated)" />
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Tagged <span class="ph-muted">(soldiers referenced)</span></label>
+          <input type="text" class="ph-filter-input" placeholder="Filter roster…"
+                 oninput="phFilterCheckboxList(this, 'phe-tagged-cbl')" />
+          <div id="phe-tagged-cbl" class="ph-checkbox-list"></div>
+          <input type="text" id="phe-tagged-extra" class="ph-input ph-extra-input"
+                 value="${escHtml(splitTagged.extra)}"
+                 placeholder="Extra slugs not in roster (comma-separated)" />
+        </div>
+
+        <div class="ph-field ph-field-row">
+          <div>
+            <label class="ph-label">Quality <span class="ph-muted">1&#8211;5</span></label>
+            <input type="number" id="phe-quality" class="ph-input ph-input-sm"
+                   min="1" max="5" value="${escHtml(String(photo.quality || ''))}" />
+          </div>
+          <div>
+            <label class="ph-label">Date</label>
+            <input type="text" id="phe-date" class="ph-input"
+                   value="${escHtml(photo.date || '')}" placeholder="YYYY or YYYY-MM-DD" />
+          </div>
+          <div>
+            <label class="ph-label">Date Known</label>
+            <input type="checkbox" id="phe-date-known"
+                   ${photo.date_known === true ? 'checked' : ''} />
+          </div>
+        </div>
+
+        <div class="ph-field">
+          <label class="ph-label">Event</label>
+          <datalist id="phe-events-dl">${eventOpts}</datalist>
+          <input type="text" id="phe-event" class="ph-input"
+                 value="${escHtml(photo.event || '')}"
+                 list="phe-events-dl" placeholder="event-slug" />
+        </div>
+
+      </div><!-- /.ph-form-grid -->
+
+      <div class="ph-form-actions" style="margin-top:14px;display:flex;gap:8px;align-items:center">
+        <button class="btn btn-commit" onclick="pheSave()">Save</button>
+        <span id="phe-save-confirm" style="font-size:0.8rem;color:var(--ink-muted,#888);display:none">Saved &#10003;</span>
+        <span id="phe-save-error"   style="font-size:0.8rem;color:var(--red,#c00);display:none"></span>
+      </div>
+    </div>`;
+
+  phPopulateCheckboxList('phe-contains-cbl', splitContains.known);
+  phPopulateCheckboxList('phe-tagged-cbl',   splitTagged.known);
+}
+
+function pheNav(dir) {
+  const next = PHE.photoIdx + dir;
+  if (next >= 0 && next < PHE.photos.length) pheRenderPhoto(next);
+}
+
+// ── Save ──────────────────────────────────────────────────────────────────────
+
+async function pheSave() {
+  const photo = PHE.photos[PHE.photoIdx];
+  if (!photo) return;
+
+  photo.caption       = document.getElementById('phe-caption')?.value       || '';
+  photo.caption_short = document.getElementById('phe-caption-short')?.value || '';
+  photo.photographer  = document.getElementById('phe-photographer')?.value.trim()  || '';
+  photo.credit        = document.getElementById('phe-credit')?.value        || '';
+  photo.quality       = document.getElementById('phe-quality')?.value       || '';
+  photo.date          = document.getElementById('phe-date')?.value          || '';
+  photo.date_known    = document.getElementById('phe-date-known')?.checked  || false;
+  photo.event         = document.getElementById('phe-event')?.value.trim()  || '';
+
+  const containsStr = phGetCheckboxList('phe-contains-cbl', 'phe-contains-extra');
+  const taggedStr   = phGetCheckboxList('phe-tagged-cbl',   'phe-tagged-extra');
+  photo.contains = containsStr ? containsStr.split(',').map(s => s.trim()).filter(Boolean) : [];
+  photo.tagged   = taggedStr   ? taggedStr.split(',').map(s => s.trim()).filter(Boolean)   : [];
+
+  const confirmEl = document.getElementById('phe-save-confirm');
+  const errorEl   = document.getElementById('phe-save-error');
+  if (confirmEl) confirmEl.style.display = 'none';
+  if (errorEl)   errorEl.style.display   = 'none';
+
+  try {
+    await api('PATCH', `/photos/edit/${encodeURIComponent(PHE.selectedSlug)}`, { updates: PHE.photos });
+    if (confirmEl) {
+      confirmEl.style.display = 'inline';
+      setTimeout(() => { confirmEl.style.display = 'none'; }, 1800);
+    }
+  } catch(e) {
+    if (errorEl) {
+      errorEl.textContent   = `Save failed: ${e.message}`;
+      errorEl.style.display = 'inline';
+    }
   }
 }
 </script>
