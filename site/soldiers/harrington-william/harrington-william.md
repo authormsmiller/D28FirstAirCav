@@ -21,7 +21,7 @@ character_of_service: Honorable
 status: researching
 
 # ── PROFILE PHOTO ─────────────────────────────────
-profile_photo:
+profile_photo: harrington-william.jpg
 
 # ── DECORATIONS ───────────────────────────────────
 decorations:

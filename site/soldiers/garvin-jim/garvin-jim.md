@@ -24,7 +24,7 @@ character_of_service: Honorable
 status: veteran
 
 # ── PROFILE PHOTO ─────────────────────────────────
-profile_photo:
+profile_photo: garvin-james.png
 
 # ── DECORATIONS ───────────────────────────────────
 decorations:
@@ -54,5 +54,4 @@ documents:
 
 # ── BROTHERS IN ARMS ──────────────────────────────
 brothers:
-
 ---

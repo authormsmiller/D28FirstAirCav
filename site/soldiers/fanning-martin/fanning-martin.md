@@ -3,6 +3,8 @@ layout: layouts/soldier.njk
 title: CPT Martin Fanning
 slug: fanning-martin
 breadcrumb: Martin Fanning
+associated: true
+associated_unit: A/229 AVN
 
 # ── IDENTITY ──────────────────────────────────────
 first_name: Martin

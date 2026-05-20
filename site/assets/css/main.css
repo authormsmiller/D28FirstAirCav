@@ -756,6 +756,65 @@ table.rtable { width: 100%; border-collapse: collapse; background: var(--pg); }
   color: var(--ink);
 }
 /* -- ALONGSIDE -- */
+.alongside-section {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.alongside-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.alongside-section > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.4rem 0 0.9rem;
+  user-select: none;
+}
+.alongside-section > summary::-webkit-details-marker { display: none; }
+.alongside-section > summary::before {
+  content: '▾';
+  font-size: 0.7rem;
+  color: var(--dim);
+  display: inline-block;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.alongside-section:not([open]) > summary::before {
+  transform: rotate(-90deg);
+}
+.alongside-tier-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.alongside-count {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: var(--y);
+  color: var(--blk);
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+}
+.alongside-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 16px 10px;
+}
+.alongside-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
 .alongside-photo {
   width: 60px;
   height: 60px;
@@ -766,17 +825,29 @@ table.rtable { width: 100%; border-collapse: collapse; background: var(--pg); }
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--blk);
 }
-
 .alongside-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.alongside-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.alongside-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.25;
+  word-break: break-word;
+}
+.alongside-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  color: var(--ink2);
+  line-height: 1.2;
 }
 /* ── Tab overrides ─────────────────────────── */
 #tab-documents .section-title {
