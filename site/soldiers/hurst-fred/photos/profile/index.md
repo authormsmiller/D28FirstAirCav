@@ -1,18 +1,17 @@
 ---
-soldier: garvin-jim
+soldier: hurst-fred
 subfolder: profile
 photos:
-  - filename: garvin-james.png
+  - filename: hurst-profile.jpg
     caption: >
       
     caption_short: ""
-    credit: "From the collection of Jim Garvin"
-    photographer: ""
+    credit: ""
+    photographer: "miller-marvin-dale"
     date: 
     date_known: false
     event: ""
     quality: 
-    contains:
-      - garvin-jim
+    contains: []
     tagged: []
 ---

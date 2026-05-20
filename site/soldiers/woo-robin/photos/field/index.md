@@ -1,12 +1,14 @@
 ---
-solider: woo-robin
+soldier: woo-robin
 subfolder: field
 photos:
   - filename: Blagg1971_1972.jpg
     caption: >
       Col. Thomas Blagg
-    caption_short: Col. Blagg walking with a USO performer 
+      
+    caption_short: "Col. Blagg walking with a USO performer"
     credit: "Photographed by Robin Woo · 1971"
+    photographer: "woo-robin"
     date: 
     date_known: false
     event: ""
@@ -17,8 +19,10 @@ photos:
   - filename: Blagg_Kutter1971_1972.jpg
     caption: >
       Col. Thomas Blagg (left) and Capt. Wolf Kutter in the bush
-    caption_short: Col. Thomas Blagg (left) and Capt. Wolf Kutter
+      
+    caption_short: "Col. Thomas Blagg (left) and Capt. Wolf Kutter"
     credit: "Photographed by Robin Woo · 1971-1972"
+    photographer: "woo-robin"
     date: 
     date_known: false
     event: ""
@@ -30,8 +34,10 @@ photos:
   - filename: LogDay1971_1972.jpg
     caption: >
       "Log Day" - fresh supplies for Air Mobile troopers on combat assault included water, food, fresh uniforms and other needed supplies
-    caption_short: Angry Skipper receiving fresh supplies in the bush
+      
+    caption_short: "Angry Skipper receiving fresh supplies in the bush"
     credit: "Photographed by Robin Woo · 1971-1972"
+    photographer: "woo-robin"
     date: 
     date_known: false
     event: ""
@@ -41,13 +47,15 @@ photos:
   - filename: VungTaoR&R_ctr_Nov71_Kutter_right.jpg
     caption: >
       Capt. Wolf Kutter (right) and a trooper enjoying some R&R at Vung Tao along the South China Sea
-    caption_short: Capt. Wolf Kutter (right) and a trooper enjoying some R&R at Vung Tao
+      
+    caption_short: "Capt. Wolf Kutter (right) and a trooper enjoying some R&R at Vung Tao"
     credit: "Photographed by Robin Woo · 1971"
+    photographer: ""
     date: 
     date_known: false
     event: ""
     quality: 
     contains:
-      - blagg-thomas
+      - kutter-wolf
     tagged: []
 ---

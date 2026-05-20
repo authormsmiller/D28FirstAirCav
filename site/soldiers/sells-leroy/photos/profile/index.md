@@ -1,18 +1,18 @@
 ---
-soldier: garvin-jim
+soldier: sells-leroy
 subfolder: profile
 photos:
-  - filename: garvin-james.png
+  - filename: sells-leroy-profile.jpg
     caption: >
       
     caption_short: ""
-    credit: "From the collection of Jim Garvin"
+    credit: ""
     photographer: ""
     date: 
     date_known: false
     event: ""
     quality: 
     contains:
-      - garvin-jim
+      - sells-leroy
     tagged: []
 ---
