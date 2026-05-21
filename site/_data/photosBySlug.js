@@ -72,15 +72,30 @@ const KNOWN_SUBFOLDERS = [
 function parsePhotoIndex(indexPath) {
   if (!fs.existsSync(indexPath)) return [];
 
-  const raw = fs.readFileSync(indexPath, "utf8");
+  let raw;
+  try {
+    raw = fs.readFileSync(indexPath, "utf8");
+  } catch (e) {
+    // existsSync can return true on some filesystems even when the file
+    // cannot actually be opened (phantom entries). Treat as missing.
+    return [];
+  }
 
-  // Extract front matter between --- delimiters
-  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return [];
+  // Extract front matter — support both closed (---...---) and
+  // front-matter-only files (opening --- with no closing delimiter).
+  let content = null;
+  const closed = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (closed) {
+    content = closed[1];
+  } else if (raw.match(/^---\r?\n/)) {
+    content = raw.replace(/^---\r?\n/, "");
+  }
+
+  if (!content) return [];
 
   let parsed;
   try {
-    parsed = yaml.load(match[1]);
+    parsed = yaml.load(content);
   } catch (e) {
     console.warn(`[photosBySlug] YAML parse error in ${indexPath}:`, e.message);
     return [];

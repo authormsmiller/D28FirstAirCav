@@ -47,4 +47,3 @@ photos:
       - miller-marvin-dale
       - small-bill
     tagged: []
----
