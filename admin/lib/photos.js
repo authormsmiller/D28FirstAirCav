@@ -1,8 +1,12 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import yaml from 'js-yaml';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
 
 // ---------------------------------------------------------------------------
 // R2 upload client
@@ -51,7 +55,7 @@ async function uploadToR2(localPath, r2Key) {
 // ---------------------------------------------------------------------------
 // Paths — all relative to repo root (two levels up from admin/lib/)
 // ---------------------------------------------------------------------------
-const REPO_ROOT = path.resolve(process.cwd(), '..');
+const REPO_ROOT = path.resolve(__dirname, '../..');
 const INTAKE_ROOT = path.join(REPO_ROOT, '_intake');
 const RAW_PHOTOS = path.join(INTAKE_ROOT, 'raw', 'photos');
 const STAGING_PHOTOS = path.join(INTAKE_ROOT, 'staging', 'photos');
@@ -761,4 +765,4 @@ export function registerPhotosRoutes(app) {
       res.status(500).json({ error: err.message });
     }
   });
-}
+}

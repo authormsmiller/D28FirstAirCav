@@ -99,23 +99,30 @@ async function listSubmissions() {
  * Returns the local path it was written to.
  */
 async function pullSubmission(folderId, repoRoot) {
+  console.log(`[pull] starting — folderId="${folderId}" repoRoot="${repoRoot}"`);
+
   const client  = getClient();
   const folders = await listSubmissions();
   const folder  = folders.find(f => f.id === folderId);
 
   if (!folder) throw new Error(`Folder not found: ${folderId}`);
+  console.log(`[pull] folder found — type="${folder.type}" files=${folder.files.length}`);
 
   const localDir = path.join(repoRoot, '_intake', 'raw', folder.type, folderId);
+  console.log(`[pull] localDir="${localDir}"`);
   fs.mkdirSync(localDir, { recursive: true });
+  console.log(`[pull] directory created`);
 
   // Download all files
   const allKeys = folder.files.map(f => f.key);
   // Also get metadata.json
   allKeys.push(`submissions/${folder.type}/${folderId}/metadata.json`);
+  console.log(`[pull] keys to download (${allKeys.length}):`, allKeys);
 
   for (const key of allKeys) {
     const filename  = key.split('/').slice(3).join('/');
     const localPath = path.join(localDir, filename);
+    console.log(`[pull] downloading "${key}" → "${localPath}"`);
 
     // Ensure subdirectory exists
     fs.mkdirSync(path.dirname(localPath), { recursive: true });
@@ -124,8 +131,10 @@ async function pullSubmission(folderId, repoRoot) {
     const res = await client.send(cmd);
     const out = fs.createWriteStream(localPath);
     await pipeline(Readable.from(res.Body), out);
+    console.log(`[pull] wrote "${filename}"`);
   }
 
+  console.log(`[pull] done — ${allKeys.length} file(s) written to "${localDir}"`);
   return localDir;
 }
 

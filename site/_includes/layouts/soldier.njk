@@ -50,7 +50,7 @@
         {{ first_name[0] }}{{ last_name[0] }}
       </div>
     </div>
-    <div class="prof-photo-cap">Then &amp; Now</div>
+
   </div>
 
   {# Info column #}
@@ -93,7 +93,7 @@
     <div class="prof-actions">
       <a class="prof-btn prof-btn-primary" href="/contribute/">Share a Memory</a>
       {% if family_contact %}
-        <a class="prof-btn prof-btn-ghost" href="mailto:{{ site.contact_email }}?subject=Re: {{ first_name }} {{ last_name }}">Contact Family</a>
+        <button class="prof-btn prof-btn-ghost" onclick="openContactModal()">Family Contact on File</button>
       {% endif %}
     </div>
 
@@ -109,7 +109,7 @@
   <div class="tab" data-tab="documents">Documents</div>
   <div class="tab" data-tab="letters">Letters</div>
   <div class="tab" data-tab="service">Service record</div>
-  <div class="tab" data-tab="external">External resources</div>
+  <div class="tab" data-tab="external" style="display:none">External resources</div>
 </div>
 
 {# ── TAB: TIMELINE ── #}
@@ -409,73 +409,67 @@
       </details>
     {% endif %}
 
-    {# ── Tier 2: Same platoon ── #}
+    {# ── Tier 2: Same platoon — row list ── #}
     {% if t2.length %}
       <details class="alongside-section" open>
         <summary>
           <span class="alongside-tier-heading">Same platoon</span>
           <span class="alongside-count">{{ t2.length }}</span>
         </summary>
-        <div class="alongside-grid">
+        <div class="alongside-row-list">
           {% for rel in t2 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
-            <div class="alongside-card">
-              <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
-                <div class="alongside-photo">
-                  {% if op and op.profile_photo %}
-                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
-                         alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
-                  {% else %}
-                    {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
-                  {% endif %}
-                </div>
-              </a>
-              <div class="alongside-name">
-                <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
-                  {% if op %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}
-                </a>
+            <a class="alongside-row" href="/soldiers/{{ rel.slug }}/">
+              <div class="alongside-row-avatar">
+                {% if op and op.profile_photo %}
+                  <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                       alt="" style="width:100%;height:100%;object-fit:cover;"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
+                {% else %}
+                  {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+                {% endif %}
               </div>
-              {% if op and op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
-            </div>
+              <div class="alongside-row-info">
+                <div class="alongside-row-name">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}</div>
+                {% if op and op.platoon %}<div class="alongside-row-meta">{{ op.platoon }}</div>{% endif %}
+                {% if rel.notes %}<div class="alongside-row-note">{{ rel.notes }}</div>{% endif %}
+              </div>
+            </a>
           {% endfor %}
         </div>
       </details>
     {% endif %}
 
-    {# ── Tier 3: Also in the company ── #}
+    {# ── Tier 3: Also in the company — row list, collapsed by default ── #}
     {% if t3.length %}
-      <details class="alongside-section" open>
+      <details class="alongside-section">
         <summary>
           <span class="alongside-tier-heading">Also in the company</span>
           <span class="alongside-count">{{ t3.length }}</span>
         </summary>
-        <div class="alongside-grid">
+        <div class="alongside-row-list">
           {% for rel in t3 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
-            <div class="alongside-card">
-              <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
-                <div class="alongside-photo">
-                  {% if op and op.profile_photo %}
-                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
-                         alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
-                  {% else %}
-                    {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
-                  {% endif %}
-                </div>
-              </a>
-              <div class="alongside-name">
-                <a href="/soldiers/{{ rel.slug }}/" style="color:inherit;text-decoration:none;">
-                  {% if op %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}
-                </a>
+            <a class="alongside-row" href="/soldiers/{{ rel.slug }}/">
+              <div class="alongside-row-avatar">
+                {% if op and op.profile_photo %}
+                  <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                       alt="" style="width:100%;height:100%;object-fit:cover;"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
+                {% else %}
+                  {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+                {% endif %}
               </div>
-              {% if op and op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
-            </div>
+              <div class="alongside-row-info">
+                <div class="alongside-row-name">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}</div>
+                {% if op and op.platoon %}<div class="alongside-row-meta">{{ op.platoon }}</div>{% endif %}
+                {% if rel.notes %}<div class="alongside-row-note">{{ rel.notes }}</div>{% endif %}
+              </div>
+            </a>
           {% endfor %}
         </div>
       </details>
@@ -502,7 +496,7 @@
   {# ── Archive-assembled anecdotes (collections.anecdotes) ── #}
   {% set soldierAnecdotes = [] %}
   {% for anecdote in collections.anecdotes %}
-    {% if anecdote.data.soldiers and slug in anecdote.data.soldiers %}
+    {% if anecdote.data.contains and slug in anecdote.data.contains %}
       {% set soldierAnecdotes = soldierAnecdotes.concat([anecdote]) %}
     {% endif %}
   {% endfor %}
@@ -685,29 +679,25 @@
 
 {# ── TAB: LETTERS ── #}
 <div class="tab-content" id="tab-letters" style="display:none">
-  {% set soldierDocs = documentsBySlug[slug] %}
-  {% set letters = [] %}
+  {% set soldierLetters = [] %}
+  {% for letter in collections.letters %}
+    {% if letter.data.contains and slug in letter.data.contains %}
+      {% set soldierLetters = soldierLetters.concat([letter]) %}
+    {% endif %}
+  {% endfor %}
 
-  {% if soldierDocs %}
-    {% for doc in soldierDocs.authored %}
-      {% if doc.type == "letter" %}
-        {% set letters = letters.concat([doc]) %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
-  {% if letters.length %}
+  {% if soldierLetters.length %}
     <div class="doc-list">
-      {% for doc in letters %}
+      {% for letter in soldierLetters %}
         <div class="doc-item">
           <div class="doc-icon">✉️</div>
           <div style="flex:1;">
-            <a class="doc-title doc-link" href="/documents/{{ doc.path }}/">{{ doc.title if doc.title else doc.slug }}</a>
+            <a class="doc-title doc-link" href="{{ letter.data.permalink }}">{{ letter.data.title if letter.data.title else letter.data.slug }}</a>
             <div class="doc-meta">
-              {% if doc.doc_date %}{{ doc.doc_date }}{% endif %}
-              {% if not doc.date_known %}<span class="doc-badge doc-badge-pending">Date unknown</span>{% endif %}
+              {% if letter.data.doc_date %}{{ letter.data.doc_date }}{% endif %}
+              {% if not letter.data.date_known %}<span class="doc-badge doc-badge-pending">Date unknown</span>{% endif %}
             </div>
-            {% if doc.source %}<div class="doc-meta">{{ doc.source }}</div>{% endif %}
+            {% if letter.data.source %}<div class="doc-meta">{{ letter.data.source }}</div>{% endif %}
           </div>
         </div>
       {% endfor %}
@@ -785,6 +775,153 @@
 
 </main>
 
+<style>
+.cr-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 900;
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.cr-modal {
+  background: #111110; border: 1px solid #222; max-width: 520px; width: 100%;
+  max-height: 90vh; overflow-y: auto; padding: 32px; position: relative;
+}
+.cr-modal-header {
+  display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px;
+}
+.cr-modal-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--y);
+}
+.cr-close {
+  background: none; border: none; color: var(--dim); font-size: 14px;
+  cursor: pointer; padding: 0; line-height: 1; flex-shrink: 0; margin-left: 16px;
+}
+.cr-close:hover { color: #f0edd8; }
+.cr-notice {
+  font-family: 'Crimson Pro', serif; font-size: 15px; color: var(--dim);
+  line-height: 1.65; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #1e1e1c;
+}
+.cr-checkgroup { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.cr-check-label {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--dim);
+}
+.cr-check-label input { accent-color: var(--y); width: 14px; height: 14px; }
+.cr-actions { margin-top: 24px; padding-top: 24px; border-top: 1px solid #1e1e1c; }
+.cr-submit {
+  background: var(--y); color: #000; font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  border: none; padding: 12px 24px; cursor: pointer; width: 100%;
+}
+.cr-submit:hover:not(:disabled) { background: var(--y2); }
+.cr-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.cr-success { text-align: center; padding: 16px 0; }
+.cr-success-icon { font-size: 36px; color: var(--y); margin-bottom: 12px; line-height: 1; }
+.cr-success-hed {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #f0edd8; margin-bottom: 8px;
+}
+.cr-success-body {
+  font-family: 'Crimson Pro', serif; font-size: 16px; color: var(--dim); line-height: 1.6;
+}
+.cr-error-msg {
+  font-family: 'Crimson Pro', serif; font-size: 15px; color: #c0392b; margin-bottom: 16px;
+}
+/* Override req-label color for dark modal context */
+.cr-modal .req-label {
+  color: #c8c0a0;
+}
+</style>
+
+<div class="cr-overlay" id="crOverlay" style="display:none" onclick="crOverlayClick(event)">
+  <div class="cr-modal" role="dialog" aria-modal="true" aria-labelledby="crModalTitle">
+
+    <div class="cr-modal-header">
+      <div class="cr-modal-title" id="crModalTitle">Request Contact Information</div>
+      <button class="cr-close" onclick="closeCrModal()" aria-label="Close">✕ CLOSE</button>
+    </div>
+
+    <div class="cr-notice">
+      We hold veteran and family contact details in restricted access. Submit your
+      request below — we'll review it and follow up with you directly.
+    </div>
+
+    <form id="crForm" onsubmit="submitContactRequest(event)" style="display:block">
+
+      <input type="hidden" name="soldier_slug" value="{{ slug }}">
+      <input type="hidden" name="soldier_name" value="{{ first_name }} {{ last_name }}">
+
+      <div class="req-field-group">
+        <div class="req-field">
+          <label class="req-label" for="crName">Your name <span class="req-req">*</span></label>
+          <input class="req-input" type="text" id="crName" name="submitter_name" required autocomplete="name">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="crEmail">Email address <span class="req-req">*</span></label>
+          <input class="req-input" type="email" id="crEmail" name="submitter_contact" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="req-field">
+        <label class="req-label" for="crPhone">Phone <span class="req-opt">(optional)</span></label>
+        <input class="req-input" type="tel" id="crPhone" name="submitter_phone"
+          autocomplete="tel" oninput="crTogglePhone(this.value)">
+      </div>
+
+      <div class="req-field" id="crPreferredWrap" style="display:none">
+        <div class="req-label">Preferred contact method</div>
+        <div class="cr-checkgroup">
+          <label class="cr-check-label">
+            <input type="checkbox" name="preferred_contact" value="text"> Text
+          </label>
+          <label class="cr-check-label">
+            <input type="checkbox" name="preferred_contact" value="call"> Call
+          </label>
+          <label class="cr-check-label">
+            <input type="checkbox" name="preferred_contact" value="email"> Email
+          </label>
+        </div>
+      </div>
+
+      <div class="req-field">
+        <label class="req-label" for="crReason">Reason for request <span class="req-req">*</span></label>
+        <select class="req-select" id="crReason" name="reason_category" required>
+          <option value="">— Select —</option>
+          <option value="Family member">Family member</option>
+          <option value="Fellow veteran / family of">Fellow veteran or family of</option>
+          <option value="Researcher">Researcher</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="req-field">
+        <label class="req-label" for="crDetail">
+          Additional detail <span class="req-opt">(optional)</span>
+        </label>
+        <textarea class="req-textarea" id="crDetail" name="reason_detail" rows="3"
+          placeholder="Any context that helps us prioritize your request"></textarea>
+      </div>
+
+      <div class="cr-actions">
+        <button class="cr-submit" type="submit" id="crSubmitBtn">Send Request</button>
+      </div>
+
+    </form>
+
+    <div class="cr-success" id="crSuccess" style="display:none">
+      <div class="cr-success-icon">✓</div>
+      <div class="cr-success-hed">Request received.</div>
+      <div class="cr-success-body">We'll review it and follow up with you directly.</div>
+      <div class="cr-actions" style="border-top:none; padding-top:0; margin-top:24px;">
+        <button class="cr-submit" onclick="closeCrModal()">Close</button>
+      </div>
+    </div>
+
+    <div id="crError" style="display:none; margin-top:16px;">
+      <div class="cr-error-msg" id="crErrorMsg"></div>
+      <button class="cr-submit" onclick="crClearError()">Try again</button>
+    </div>
+
+  </div>
+</div>
+
 <div class="toast" id="toastEl"></div>
 <div class="lightbox" id="lightbox" onclick="lbClose(event)">
   <div class="lb-inner">
@@ -830,6 +967,81 @@ document.querySelectorAll('.tab').forEach(function(tab) {
   var hash = window.location.hash.replace('#', '');
   if (hash) activateTab(hash);
 })();
+
+// ── Contact request modal ─────────────────────────────────────────────────
+
+function openContactModal() {
+  var overlay = document.getElementById('crOverlay');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // Reset to form state each time it's opened
+  document.getElementById('crForm').style.display = 'block';
+  document.getElementById('crSuccess').style.display = 'none';
+  document.getElementById('crError').style.display = 'none';
+  document.getElementById('crSubmitBtn').disabled = false;
+  document.getElementById('crSubmitBtn').textContent = 'Send Request';
+}
+
+function crOverlayClick(e) {
+  if (e.target === document.getElementById('crOverlay')) closeCrModal();
+}
+
+function closeCrModal() {
+  document.getElementById('crOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function crTogglePhone(val) {
+  document.getElementById('crPreferredWrap').style.display = val.trim() ? 'block' : 'none';
+}
+
+async function submitContactRequest(e) {
+  e.preventDefault();
+  var btn = document.getElementById('crSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  var form = document.getElementById('crForm');
+  var fd = new FormData(form);
+  var data = {};
+  fd.forEach(function(v, k) {
+    if (k === 'preferred_contact') {
+      if (!data[k]) data[k] = [];
+      data[k].push(v);
+    } else {
+      if (v !== '') data[k] = v;
+    }
+  });
+
+  var payload = Object.assign({ type: 'contact' }, data, {
+    page_url:     window.location.href,
+    referrer_url: document.referrer || null,
+  });
+
+  try {
+    var res = await fetch('/submit/request', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('Server error ' + res.status);
+    document.getElementById('crForm').style.display = 'none';
+    document.getElementById('crError').style.display = 'none';
+    document.getElementById('crSuccess').style.display = 'block';
+  } catch (err) {
+    document.getElementById('crErrorMsg').textContent =
+      'Something went wrong. Please try again, or email admin@angryskipperarchive.org directly.';
+    document.getElementById('crError').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send Request';
+  }
+}
+
+function crClearError() {
+  document.getElementById('crError').style.display = 'none';
+  document.getElementById('crSubmitBtn').disabled = false;
+  document.getElementById('crSubmitBtn').textContent = 'Send Request';
+}
 </script>
 
 </body>

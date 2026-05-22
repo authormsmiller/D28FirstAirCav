@@ -13,7 +13,7 @@ contains:
   - miller-marvin-dale
 tagged:
   - weaver-ken
-status: draft
+status: published
 permalink: /anecdotes/miller-marvin-dale/platoon-names/
 ---
 

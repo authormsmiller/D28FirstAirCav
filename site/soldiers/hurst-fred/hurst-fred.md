@@ -18,7 +18,7 @@ departed: null
 hometown: null
 character_of_service: Honorable
 status: veteran
-profile_photo: null
+profile_photo: hurst-fred-profile.jpg
 decorations: null
 distinguished_decorations: null
 family_contact: false
