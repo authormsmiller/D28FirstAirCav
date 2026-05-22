@@ -849,6 +849,71 @@ table.rtable { width: 100%; border-collapse: collapse; background: var(--pg); }
   color: var(--ink2);
   line-height: 1.2;
 }
+.alongside-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+}
+.alongside-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.1s;
+}
+.alongside-row:hover {
+  background: var(--pg2);
+}
+.alongside-row-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--parchment-mid, #d9c89e);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink2);
+  overflow: hidden;
+}
+.alongside-row-info {
+  flex: 1;
+  min-width: 0;
+}
+.alongside-row-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.alongside-row:hover .alongside-row-name {
+  color: var(--y2);
+}
+.alongside-row-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  color: var(--dim);
+  margin-top: 1px;
+  line-height: 1.3;
+}
+.alongside-row-note {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.63rem;
+  color: var(--dim);
+  margin-top: 2px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /* ── Tab overrides ─────────────────────────── */
 #tab-documents .section-title {
   color: var(--ink) !important;
@@ -1149,7 +1214,7 @@ table.rtable { width: 100%; border-collapse: collapse; background: var(--pg); }
 /* ═══════════════════════════════════════════
    CONTRIBUTE VIEW
 ═══════════════════════════════════════════ */
-.contrib-hed { background: var(--blk); padding: 40px 48px; border-bottom: 4px solid var(--y); display: flex; justify-content: space-between; align-items: flex-end; }
+.contrib-hed { background: var(--blk); padding: 40px 48px; border-bottom: 4px solid var(--y); }
 .contrib-title { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 2px; color: #F0EDD8; line-height: 1; }
 .contrib-title span { color: var(--y); }
 .contrib-deck { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 18px; color: rgba(240,237,216,0.6); max-width: 360px; line-height: 1.65; text-align: right; }
@@ -1706,9 +1771,36 @@ html { overflow-x: hidden; }
   .ov-stat { border-right: none; margin-right: 0; padding-right: 0; width: calc(50% - 10px); }
 
   /* Profile hero */
-  .prof-hero { padding: 28px 20px; }
-  .prof-grid { grid-template-columns: 1fr; }
-  .prof-name { font-size: 48px; }
+  .prof-hero { display: block; overflow: hidden; padding: 0; }
+  .prof-photo-col {
+    float: left;
+    width: auto;
+    padding: 16px 14px 0 16px;
+    border-right: none;
+    background: transparent;
+  }
+  .prof-photo-frame {
+    width: 66px;
+    height: 66px;
+    padding: 3px;
+    overflow: hidden;
+    box-shadow: 2px 2px 0 var(--y);
+  }
+  .prof-photo-frame img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .prof-photo-placeholder {
+    width: 60px;
+    height: 60px;
+    aspect-ratio: unset;
+    font-size: 18px;
+  }
+  .prof-info { padding: 14px 16px 0 16px; }
+  .prof-name { font-size: 28px; margin-bottom: 4px; }
+  .prof-grid { clear: left; grid-template-columns: 1fr 1fr; margin-top: 14px; }
+  .prof-actions { flex-direction: column; }
 
   /* Tab bar */
   .tab-bar { padding-left: 16px; overflow-x: auto; white-space: nowrap; }
@@ -2138,4 +2230,3 @@ html { overflow-x: hidden; }
 @media (max-width: 480px) {
   .req-type-grid { grid-template-columns: 1fr; }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

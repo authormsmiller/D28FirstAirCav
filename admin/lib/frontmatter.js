@@ -28,6 +28,23 @@ const ARRAY_FIELDS = new Set([
   'platoons',
   'records',
   'images',
+  // soldier-specific array fields
+  'decorations',
+  'distinguished_decorations',
+  'brothers',
+  'documents',
+]);
+
+/**
+ * Fields that hold YAML booleans.
+ * String values 'true'/'false' from the admin form should be coerced to
+ * actual JS booleans before writing so js-yaml emits `true` / `false`
+ * rather than quoted strings.
+ */
+export const BOOLEAN_FIELDS = new Set([
+  'family_contact',
+  'wartime_content_notice',
+  'associated',
 ]);
 
 /**
@@ -48,6 +65,10 @@ export function isArrayField(field) {
 
 export function isReadonlyField(field) {
   return READONLY_FIELDS.has(field);
+}
+
+export function isBooleanField(field) {
+  return BOOLEAN_FIELDS.has(field);
 }
 
 // ─── public API ──────────────────────────────────────────────────────────────

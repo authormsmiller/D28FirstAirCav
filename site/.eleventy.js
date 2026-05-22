@@ -36,6 +36,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("anecdotes", function(collectionApi) {
   return collectionApi.getFilteredByGlob("./anecdotes/**/*.md");
   });
+  eleventyConfig.addCollection("letters", function(collectionApi) {
+  return collectionApi.getFilteredByGlob("./soldiers/*/letters/*.md");
+  });
   eleventyConfig.addCollection("events", function(collectionApi) {
   return collectionApi.getFilteredByGlob("./events/**/*.md");
   });

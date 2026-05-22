@@ -32,7 +32,7 @@ decorations:
 distinguished_decorations:
 
 # ── FAMILY CONTACT ────────────────────────────────
-family_contact: false
+family_contact: true
 
 # ── TIMELINE SOURCE NOTE ──────────────────────────
 timeline_source: >

@@ -13,7 +13,7 @@ contains:
   - miller-marvin-dale
   - romani-val
 tagged: []
-status: draft
+status: published
 permalink: /anecdotes/miller-marvin-dale/romani-testimony/
 ---
 
