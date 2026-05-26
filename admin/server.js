@@ -12,8 +12,9 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { resolvePath, listSlugs } from './lib/records.js';
-import { readRecord, attachValue, detachValue, writeRecord, isArrayField, isReadonlyField } from './lib/frontmatter.js';
+import { promises as fs } from 'fs';
+import { resolvePath, listSlugs, SITE_ROOT } from './lib/records.js';
+import { readRecord, attachValue, detachValue, writeRecord, isArrayField, isReadonlyField, isBooleanField } from './lib/frontmatter.js';
 import { sessionStatus, ensureWorkingBranch, commitChanges, pushBranch } from './lib/session.js';
 import { registerPhotosRoutes } from './lib/photos.js';
 import { registerSoldiersRoutes } from './lib/soldiers.js';
@@ -26,7 +27,7 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '25mb' }));
 
 // Serve the admin UI static files from admin/
 app.use(express.static(__dirname));
@@ -215,10 +216,13 @@ app.post('/api/edit', async (req, res) => {
 
     const { data, content } = await readRecord(filePath);
     const previousValue = data[field];
-    data[field] = value;
+    const coercedValue = isBooleanField(field) && typeof value === 'string'
+      ? (value === 'true' ? true : value === 'false' ? false : value)
+      : value;
+    data[field] = coercedValue;
     await writeRecord(filePath, data, content);
 
-    res.json({ ok: true, field, previousValue, newValue: value, filePath });
+    res.json({ ok: true, field, previousValue, newValue: coercedValue, filePath });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -258,6 +262,89 @@ app.post('/api/remove-from-array', async (req, res) => {
 });
 
 // ─── tab 4: photo intake ──────────────────────────────────────────────────────
+
+// ─── profile photo ────────────────────────────────────────────────────────────
+
+/**
+ * POST /api/soldier/profile-photo
+ * Body: { slug, imageData (base64 data URL), crop: {x,y,w,h}|null, credit, photographer }
+ *
+ * 1. Decodes base64 → sharp → optional crop → saves as {slug}-profile.jpg
+ * 2. Writes site/soldiers/{slug}/photos/profile/index.md
+ * 3. Sets profile_photo: {slug}-profile.jpg in the soldier stub
+ */
+app.post('/api/soldier/profile-photo', async (req, res) => {
+  try {
+    const { slug, imageData, crop, credit = '', photographer = '' } = req.body;
+    if (!slug || !imageData) {
+      return res.status(400).json({ error: 'slug and imageData are required' });
+    }
+
+    // Decode base64 data URL
+    const matches = imageData.match(/^data:image\/(\w+);base64,(.+)$/s);
+    if (!matches) return res.status(400).json({ error: 'Invalid image data URL' });
+    const buffer = Buffer.from(matches[2], 'base64');
+
+    // Ensure profile directory exists
+    const profileDir = path.join(SITE_ROOT, 'soldiers', slug, 'photos', 'profile');
+    await fs.mkdir(profileDir, { recursive: true });
+
+    const filename = `${slug}-profile.jpg`;
+    const outPath  = path.join(profileDir, filename);
+
+    // Crop + convert with sharp (dynamic import — avoids Windows binary path issues)
+    const { default: sharp } = await import('sharp');
+    let pipeline = sharp(buffer);
+
+    if (crop && crop.w > 0.02 && crop.h > 0.02) {
+      const meta = await pipeline.metadata();
+      pipeline = pipeline.extract({
+        left:   Math.round(crop.x * meta.width),
+        top:    Math.round(crop.y * meta.height),
+        width:  Math.round(crop.w * meta.width),
+        height: Math.round(crop.h * meta.height),
+      });
+    }
+
+    await pipeline.jpeg({ quality: 90 }).toFile(outPath);
+
+    // Write profile/index.md
+    const creditStr       = credit      ? `"${credit.replace(/"/g, '\\"')}"` : '""';
+    const photographerStr = photographer ? `"${photographer}"` : '""';
+    const indexMd =
+`---
+soldier: ${slug}
+subfolder: profile
+photos:
+  - filename: ${filename}
+    caption: >
+
+    caption_short: ""
+    credit: ${creditStr}
+    photographer: ${photographerStr}
+    date:
+    date_known: false
+    event: ""
+    quality:
+    contains: []
+    tagged: []
+---
+`;
+    await fs.writeFile(path.join(profileDir, 'index.md'), indexMd, 'utf8');
+
+    // Update soldier stub: set profile_photo field
+    const soldierPath = await resolvePath('soldier', slug);
+    if (soldierPath) {
+      const { data, content } = await readRecord(soldierPath);
+      data.profile_photo = filename;
+      await writeRecord(soldierPath, data, content);
+    }
+
+    res.json({ ok: true, filename });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 registerPhotosRoutes(app);
 registerSoldiersRoutes(app);

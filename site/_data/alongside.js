@@ -148,19 +148,20 @@ module.exports = function () {
     }
   }
 
+  // t2Entries / t3Entries: { soldierSlug: Map<otherSlug, { notes }> }
   const t2Entries = {};
   const t3Entries = {};
 
-  function addManual(a, b, isSamePlatoon) {
+  function addManual(a, b, isSamePlatoon, notes) {
     if (!a || !b || a === b) return;
     const store = isSamePlatoon ? t2Entries : t3Entries;
-    if (!store[a]) store[a] = new Set();
-    store[a].add(b);
+    if (!store[a]) store[a] = new Map();
+    if (!store[a].has(b)) store[a].set(b, { notes: notes || "" });
   }
 
-  function addManualPair(a, b, isSamePlatoon) {
-    addManual(a, b, isSamePlatoon);
-    addManual(b, a, isSamePlatoon);
+  function addManualPair(a, b, isSamePlatoon, notesForA, notesForB) {
+    addManual(a, b, isSamePlatoon, notesForA || "");
+    addManual(b, a, isSamePlatoon, notesForB || "");
   }
 
   if (fs.existsSync(RELATIONSHIPS_FILE)) {
@@ -191,7 +192,9 @@ module.exports = function () {
 
       for (const entry of entries) {
         if (!entry.slug) continue;
-        addManualPair(soldierSlug, entry.slug, entry.basis === "same-platoon");
+        // Notes are directional: attach to this soldier's view of the other only
+        addManual(soldierSlug, entry.slug, entry.basis === "same-platoon", entry.notes || "");
+        addManual(entry.slug, soldierSlug, entry.basis === "same-platoon", "");
       }
     }
   }
@@ -208,16 +211,16 @@ module.exports = function () {
     const t1set = tier1Map[slug] || new Set();
     const tier1 = Array.from(t1set).map(s => ({ slug: s }));
 
-    const t2set = t2Entries[slug] || new Set();
-    const tier2 = Array.from(t2set)
-      .filter(s => !t1set.has(s))
-      .map(s => ({ slug: s }));
+    const t2map = t2Entries[slug] || new Map();
+    const tier2 = Array.from(t2map.entries())
+      .filter(([s]) => !t1set.has(s))
+      .map(([s, data]) => ({ slug: s, notes: data.notes || "" }));
 
-    const t3set = t3Entries[slug] || new Set();
+    const t3map = t3Entries[slug] || new Map();
     const tier2slugs = new Set(tier2.map(e => e.slug));
-    const tier3 = Array.from(t3set)
-      .filter(s => !t1set.has(s) && !tier2slugs.has(s))
-      .map(s => ({ slug: s }));
+    const tier3 = Array.from(t3map.entries())
+      .filter(([s]) => !t1set.has(s) && !tier2slugs.has(s))
+      .map(([s, data]) => ({ slug: s, notes: data.notes || "" }));
 
     result[slug] = { tier1, tier2, tier3 };
   }

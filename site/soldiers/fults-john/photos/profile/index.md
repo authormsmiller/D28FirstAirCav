@@ -1,8 +1,8 @@
 ---
-soldier: hurst-fred
+soldier: fults-john
 subfolder: profile
 photos:
-  - filename: hurst-fred-profile.jpg
+  - filename: fults-john-profile.jpg
     caption: >
 
     caption_short: ""

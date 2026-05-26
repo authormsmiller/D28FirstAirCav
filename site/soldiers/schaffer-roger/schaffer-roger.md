@@ -1,11 +1,14 @@
 ---
 layout: layouts/soldier.njk
-title: John Fults
-slug: fults-john
-breadcrumb: John Fults
-first_name: John
-last_name: Fults
-nickname: Peanut
+title: Roger Schaffer
+slug: schaffer-roger
+breadcrumb: Roger Schaffer
+permalink: /soldiers/schaffer-roger/
+tags:
+  - soldier
+first_name: Roger
+last_name: Schaffer
+nickname: null
 middle_name: null
 rank: null
 mos: null
@@ -14,13 +17,13 @@ arrived: null
 departed: null
 hometown: null
 character_of_service: Honorable
-status: researching
-profile_photo: fults-john-profile.jpg
+status: deceased
+profile_photo: schaffer-roger-profile.jpg
 decorations: null
 distinguished_decorations: null
 family_contact: false
 timeline_source: |
-  Service timeline not yet compiled. If you served with or knew John Fults, please use the contribute form to share what you remember.
+  Service timeline not yet compiled. If you served with or knew Roger Schaffer, please use the contribute form to share what you remember.
 timeline: null
 photo_intro: |
   Photographs pending.

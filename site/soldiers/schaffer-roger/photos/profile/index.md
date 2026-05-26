@@ -1,13 +1,13 @@
 ---
-soldier: hurst-fred
+soldier: schaffer-roger
 subfolder: profile
 photos:
-  - filename: hurst-fred-profile.jpg
+  - filename: schaffer-roger-profile.jpg
     caption: >
 
     caption_short: ""
-    credit: "Photographed by Marvin Miller"
-    photographer: "miller-marvin-dale"
+    credit: "Photographed by Larry Randt"
+    photographer: "randt-larry"
     date:
     date_known: false
     event: ""
