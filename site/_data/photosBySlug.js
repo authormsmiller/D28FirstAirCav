@@ -187,17 +187,45 @@ module.exports = function () {
       }
     }
 
-    // Dynamic scan: field/events/[event-slug]/index.md
-    // Each event slug gets its own subfolder path for correct URL generation.
+    // Dynamic scan: field/events/index.md (flat) OR field/events/[event-slug]/index.md (nested)
+    // Both patterns are supported:
+    //   Flat:   field/events/index.md — all event photos in one file, subfolder = "field/events"
+    //   Nested: field/events/[slug]/index.md — one file per event, subfolder = "field/events/[slug]"
     // All entries are accumulated under the "field/events" key so templates
     // that iterate photosBySlug[slug]["field/events"] continue to work.
     const eventsDir = path.join(photosRoot, "field", "events");
     if (fs.existsSync(eventsDir)) {
+      const allEventPhotos = [];
+
+      // Pattern A — flat index.md directly inside field/events/
+      const flatIndexPath = path.join(eventsDir, "index.md");
+      if (fs.existsSync(flatIndexPath)) {
+        const rawEntries = parsePhotoIndex(flatIndexPath);
+        const resolved = rawEntries
+          .map(entry => resolvePhoto(entry, soldierSlug, "field/events"))
+          .filter(Boolean);
+        for (const photo of resolved) {
+          for (const slug of photo.contains) {
+            if (!byContains[slug]) byContains[slug] = [];
+            byContains[slug].push(photo);
+          }
+          for (const slug of photo.tagged) {
+            if (!byTagged[slug]) byTagged[slug] = [];
+            byTagged[slug].push(photo);
+          }
+          if (photo.event) {
+            if (!byEvent[photo.event]) byEvent[photo.event] = [];
+            byEvent[photo.event].push(photo);
+          }
+        }
+        allEventPhotos.push(...resolved);
+      }
+
+      // Pattern B — nested: field/events/[event-slug]/index.md
       const eventSlugs = fs.readdirSync(eventsDir, { withFileTypes: true })
         .filter(d => d.isDirectory())
         .map(d => d.name);
 
-      const allEventPhotos = [];
       for (const eventSlug of eventSlugs) {
         const subfolderPath = `field/events/${eventSlug}`;
         const indexPath = path.join(eventsDir, eventSlug, "index.md");

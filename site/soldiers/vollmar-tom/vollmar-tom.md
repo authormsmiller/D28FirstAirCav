@@ -11,7 +11,7 @@ nickname:
 middle_name: 
 rank: 
 mos: 
-platoon: "Range Platoon"
+platoon: Range
 
 # ── SERVICE ───────────────────────────────────────
 arrived:

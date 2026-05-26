@@ -1,12 +1,18 @@
 module.exports = function(eleventyConfig) {
 
+  // Exclude archivist notes files from build output
+  eleventyConfig.ignores.add("**/_notes.md");
+
   // Pass static assets through unchanged
   eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy("soldiers");
-  eleventyConfig.addPassthroughCopy("documents");
-  eleventyConfig.addPassthroughCopy("anecdotes");
-  eleventyConfig.addPassthroughCopy("events");
+  // Source content dirs (soldiers, documents, anecdotes, events, admin) are processed
+  // as templates and do not need passthrough copies. Passthrough disabled to avoid
+  // EPERM on unlink when building on a FUSE-mounted filesystem.
+  // eleventyConfig.addPassthroughCopy("admin");
+  // eleventyConfig.addPassthroughCopy("soldiers");
+  // eleventyConfig.addPassthroughCopy("documents");
+  // eleventyConfig.addPassthroughCopy("anecdotes");
+  // eleventyConfig.addPassthroughCopy("events");
   eleventyConfig.addWatchTarget("assets/");
 
   // Collections
@@ -29,8 +35,10 @@ module.exports = function(eleventyConfig) {
   });
 
   // Document pages — sorted by contributor then slug
+  // _notes.md files are archivist research notes, not renderable pages
   eleventyConfig.addCollection("documents", function(collectionApi) {
-  return collectionApi.getFilteredByGlob("./documents/**/*.md");
+  return collectionApi.getFilteredByGlob("./documents/**/*.md")
+    .filter(p => !p.inputPath.includes("/_notes.md"));
   });
 
   eleventyConfig.addCollection("anecdotes", function(collectionApi) {

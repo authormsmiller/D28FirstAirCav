@@ -9,15 +9,18 @@ nickname: null
 middle_name: null
 rank: null
 mos: null
-platoon: Range Platoon
+platoon: Range
 arrived: August 1971
 departed: October 21, 1971 (KIA)
 hometown: Buffalo, NY
 character_of_service: Honorable
 status: kia
 profile_photo: null
-decorations: null
-distinguished_decorations: null
+decorations:
+  - National Defense Service Medal
+  - Vietnam Service Medal
+  - Vietnam Campaign Medal
+distinguished_decorations:
 family_contact: false
 timeline_source: |
   Service timeline not yet compiled. If you served with or knew William Makowski, please use the contribute form to share what you remember.

@@ -374,12 +374,17 @@ async function flushBuffer(slug, buffer) {
       await fsp.writeFile(indexPath, header + yamlBlocks.join('\n') + '\n---\n', 'utf-8');
     } else {
       let existing = await fsp.readFile(indexPath, 'utf-8');
+      // Normalize CRLF → LF so the closing-marker check works regardless of
+      // whether the file was written on Windows (CRLF) or Unix (LF).
+      existing = existing.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       const closeMarker = '\n---\n';
       if (existing.endsWith(closeMarker)) {
         existing = existing.slice(0, -closeMarker.length);
         existing += '\n' + yamlBlocks.join('\n') + closeMarker;
       } else {
-        existing += '\n' + yamlBlocks.join('\n') + '\n';
+        // No closing marker — file may be front-matter-only (no trailing ---).
+        // Ensure we're inserting inside the photos: list, not after stray content.
+        existing = existing.trimEnd() + '\n' + yamlBlocks.join('\n') + '\n---\n';
       }
       await fsp.writeFile(indexPath, existing, 'utf-8');
     }

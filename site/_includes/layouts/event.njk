@@ -516,8 +516,9 @@
       var EVT_IMAGE_SLIDES = [
         {% if images %}
           {% for img in images %}
+          {% set _evtImgSrc = img.src if img.src else ("/media/photos/soldiers/" + img.credit_slug + "/field/events/" + slug + "/" + img.filename if img.credit_slug else "") %}
           {
-            src: "{{ img.src }}",
+            src: "{{ _evtImgSrc }}",
             caption: {{ (img.caption or img.filename or "") | dump | safe }},
             credit: {{ (img.credit or "") | dump | safe }},
             date: {{ (img.date or "") | dump | safe }}
@@ -539,8 +540,9 @@
       {% set slideIdx = 0 %}
       {% if images %}
         {% for img in images %}
+          {% set _evtImgSrc = img.src if img.src else ("/media/photos/soldiers/" + img.credit_slug + "/field/events/" + slug + "/" + img.filename if img.credit_slug else "") %}
           <div class="photo-card" onclick="lbOpen({{ slideIdx }}, EVT_IMAGE_SLIDES)">
-            <img src="{{ img.src }}" alt="{{ img.caption if img.caption else img.filename }}" loading="lazy">
+            <img src="{{ _evtImgSrc }}" alt="{{ img.caption if img.caption else img.filename }}" loading="lazy">
             <div class="photo-overlay">
               <div class="photo-cap-text">{{ img.caption if img.caption else img.filename }}</div>
             </div>

@@ -1,5 +1,5 @@
 ---
-slug: garvin-james-account-042472
+slug: garvin-james-account-042471
 title: "I Watched the Chopper Fall Out of the Sky"
 type: account
 status: published
@@ -17,8 +17,13 @@ contains:
   - slug: stanfield-nathan
     name: Nathan Stanfield
     note: Door gunner; arm pinned under skid; survived
-tagged: []
-permalink: /documents/garvin-james/garvin-james-account-042472/
+tagged:
+  - slug: fanning-martin
+    name: CPT Martin Fanning
+  - slug: jeffries-gabriel
+    name: LT Gabriel Jeffries
+    note: Co-pilot; killed in the crash
+permalink: /documents/garvin-james/garvin-james-account-042471/
 ---
 
 

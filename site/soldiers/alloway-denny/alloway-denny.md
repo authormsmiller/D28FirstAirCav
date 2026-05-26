@@ -9,7 +9,7 @@ nickname: null
 middle_name: null
 rank: null
 mos: null
-platoon: Cat Platoon
+platoon: Cat
 arrived: null
 departed: null
 hometown: null

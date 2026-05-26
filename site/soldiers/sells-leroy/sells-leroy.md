@@ -11,7 +11,7 @@ nickname:
 middle_name:
 rank:
 mos:
-platoon: "Cat (Wild Cat) Platoon · 3rd"
+platoon: Cat
 
 # ── SERVICE ───────────────────────────────────────
 arrived:

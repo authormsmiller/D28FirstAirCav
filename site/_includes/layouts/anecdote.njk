@@ -15,8 +15,15 @@
 <div class="breadcrumb show">
   <a class="bc-link" href="/">Archive</a>
   <span class="bc-sep">›</span>
-  <a class="bc-link" href="/soldiers/miller-marvin-dale/">Marvin Dale Miller</a>
-  <span class="bc-sep">›</span>
+  {% if soldiers and soldiers.length %}
+    {% set primarySlug = soldiers[0] %}
+    {% for s in collections.soldiers %}
+      {% if s.data.slug == primarySlug %}
+        <a class="bc-link" href="/soldiers/{{ primarySlug }}/">{{ s.data.first_name }} {{ s.data.last_name }}</a>
+        <span class="bc-sep">›</span>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
   <span>{{ title }}</span>
 </div>
 

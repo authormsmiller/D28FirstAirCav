@@ -45,9 +45,16 @@ module.exports = function crawlDocuments() {
       .map(e => e.name);
 
     for (const docSlug of docSlugs) {
-      const docFile = path.join(topDir, docSlug, `${docSlug}.md`);
+      // Accept either the canonical ${docSlug}.md naming or index.md.
+      // index.md is a valid alternative for documents that pre-date the
+      // naming convention or were authored that way intentionally.
+      const docFileCanonical = path.join(topDir, docSlug, `${docSlug}.md`);
+      const docFileIndex     = path.join(topDir, docSlug, 'index.md');
+      const docFile = fs.existsSync(docFileCanonical) ? docFileCanonical
+                    : fs.existsSync(docFileIndex)     ? docFileIndex
+                    : null;
 
-      if (!fs.existsSync(docFile)) continue;
+      if (!docFile) continue;
 
       const { data: fm } = matter(fs.readFileSync(docFile, 'utf8'));
 
@@ -57,7 +64,7 @@ module.exports = function crawlDocuments() {
         topSlug,
         title:      fm.title      || '',
         type:       fm.type       || '',
-        date:       fm.doc_date   || '',
+        date:       fm.doc_date   || fm.date || '',
         date_known: fm.date_known !== false, // missing field defaults to true
         status:     fm.status     || 'draft',
         source:     fm.source     || '',
@@ -72,18 +79,24 @@ module.exports = function crawlDocuments() {
       }
 
       // ── referenced (contains:) ──────────────────────────────────────────────
+      // contains: items may be plain strings OR {slug, name} objects
       if (Array.isArray(fm.contains)) {
-        for (const slug of fm.contains) {
-          ensureSlug(slug);
-          bySlug[slug].referenced.push(doc);
+        for (const item of fm.contains) {
+          const slugStr = (typeof item === 'string') ? item : (item && item.slug);
+          if (!slugStr) continue;
+          ensureSlug(slugStr);
+          bySlug[slugStr].referenced.push(doc);
         }
       }
 
       // ── tagged ──────────────────────────────────────────────────────────────
+      // Items may be plain strings OR {slug, name, ...} objects (same as contains).
       if (Array.isArray(fm.tagged)) {
-        for (const slug of fm.tagged) {
-          ensureSlug(slug);
-          bySlug[slug].tagged.push(doc);
+        for (const item of fm.tagged) {
+          const slugStr = (typeof item === 'string') ? item : (item && item.slug);
+          if (!slugStr) continue;
+          ensureSlug(slugStr);
+          bySlug[slugStr].tagged.push(doc);
         }
       }
 

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body>
+<body{% if status %} class="status-{{ status }}"{% endif %}>
 
 {% include "partials/masthead.njk" %}
 
@@ -29,9 +29,9 @@
   {# Resolve profile photo: crawler data takes precedence over front matter field #}
   {% set _crawlerProfile = photosBySlug[slug].profile[0] if (photosBySlug[slug] and photosBySlug[slug].profile and photosBySlug[slug].profile.length) else null %}
   {% if _crawlerProfile %}
-    {% set _heroPhotoSrc = "/soldiers/" + slug + "/photos/profile/" + _crawlerProfile.filename %}
+    {% set _heroPhotoSrc = "/media/photos/soldiers/" + slug + "/profile/" + _crawlerProfile.filename %}
   {% elif profile_photo %}
-    {% set _heroPhotoSrc = "/soldiers/" + slug + "/photos/profile/" + profile_photo %}
+    {% set _heroPhotoSrc = "/media/photos/soldiers/" + slug + "/profile/" + profile_photo %}
   {% else %}
     {% set _heroPhotoSrc = null %}
   {% endif %}
@@ -50,22 +50,20 @@
         {{ first_name[0] }}{{ last_name[0] }}
       </div>
     </div>
-    <div class="prof-photo-cap">Then &amp; Now</div>
+    {% if status in ["kia", "dow", "mia"] %}
+    <div class="prof-kia-star">★</div>
+    {% endif %}
   </div>
 
   {# Info column #}
   <div class="prof-info">
 
-    {% if status == "Deceased" or status == "KIA" %}
-      <div class="prof-deceased">
-        {% if status == "KIA" %}KIA · Vietnam
-        {% else %}Deceased{% if year_deceased %} · {{ year_deceased }}{% endif %}
-        {% endif %}
-      </div>
-    {% endif %}
-
     <div class="prof-name">{{ first_name }}<br>{{ last_name }}</div>
     <div class="prof-rank">{{ rank }} &nbsp;·&nbsp; {{ platoon }} &nbsp;·&nbsp; {{ mos }}</div>
+
+    {% if status in ["kia", "dow", "mia"] %}
+    <div class="prof-kia-line">{{ status | upper }}{% if departed %} · {{ departed }}{% endif %}</div>
+    {% endif %}
 
     {% if nickname %}
       <div class="prof-nickname">Known as <span class="prof-nickname-val">"{{ nickname }}"</span></div>
@@ -275,7 +273,18 @@
     {% endif %}
   {% endfor %}
 
-  {% if photosOfMe.length or photosByMe.length %}
+  {#
+    Gallery 3 — "Related Photographs"
+    Source: byTagged reverse map — photos where this soldier has a meaningful,
+    documentable connection but does not appear in the frame.
+    Displayed after Galleries 1 and 2 so wreckage/aftermath follows the person.
+  #}
+  {% set relatedPhotos = [] %}
+  {% if photosBySlug.byTagged and photosBySlug.byTagged[slug] %}
+    {% set relatedPhotos = photosBySlug.byTagged[slug] %}
+  {% endif %}
+
+  {% if photosOfMe.length or photosByMe.length or relatedPhotos.length %}
 
     {% if photo_intro %}
       <p class="timeline-intro" style="font-style:italic;">{{ photo_intro }}</p>
@@ -327,6 +336,34 @@
       {% for photo in photosByMe %}
         <div class="photo-card {{ 'wide' if photo.wide }}"
              onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES_2)">
+          <img src="{{ photo.url }}"
+               alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
+               loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {# ── Gallery 3: Related Photographs — hidden if empty ── #}
+    {% if relatedPhotos.length %}
+    <script>
+      var PHOTO_SLIDES_3 = [
+        {% for photo in relatedPhotos %}
+        {
+          src: {{ photo.url | dump | safe }},
+          caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
+          credit: {{ (photo.credit or "") | dump | safe }},
+          date: {{ (photo.date or "") | dump | safe }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ];
+    </script>
+    <div class="gallery-sublabel">Related Photographs</div>
+    <p class="timeline-intro" style="font-style:italic;">These photographs are connected to {{ first_name }}'s service but do not show {{ first_name }} directly.</p>
+    <div class="photo-grid">
+      {% for photo in relatedPhotos %}
+        <div class="photo-card {{ 'wide' if photo.wide }}"
+             onclick="lbOpen({{ loop.index0 }}, PHOTO_SLIDES_3)">
           <img src="{{ photo.url }}"
                alt="{{ photo.caption_short if photo.caption_short else photo.filename }}"
                loading="lazy">
@@ -509,6 +546,7 @@
 
   {# ── First-person verbal documents (documentsBySlug crawler) ── #}
   {% set verbalDocs = [] %}
+  {% set referencedVerbalDocs = [] %}
   {% set soldierDocs = documentsBySlug[slug] %}
   {% if soldierDocs %}
     {% for doc in soldierDocs.authored %}
@@ -516,9 +554,14 @@
         {% set verbalDocs = verbalDocs.concat([doc]) %}
       {% endif %}
     {% endfor %}
+    {% for doc in soldierDocs.referenced %}
+      {% if doc.type == "verbal" %}
+        {% set referencedVerbalDocs = referencedVerbalDocs.concat([doc]) %}
+      {% endif %}
+    {% endfor %}
   {% endif %}
 
-  {% if soldierAnecdotes.length or verbalDocs.length %}
+  {% if soldierAnecdotes.length or verbalDocs.length or referencedVerbalDocs.length %}
 
     {% if verbalDocs.length %}
       <div class="section-header">
@@ -544,8 +587,32 @@
       </div>
     {% endif %}
 
-    {% if soldierAnecdotes.length %}
+    {% if referencedVerbalDocs.length %}
       <div class="section-header" {% if verbalDocs.length %}style="margin-top:24px;"{% endif %}>
+        <div class="section-title" style="font-size:13px;">Accounts Mentioning {{ first_name }}</div>
+        <div class="section-rule"></div>
+        <div class="section-meta">{{ referencedVerbalDocs.length }} Account{% if referencedVerbalDocs.length != 1 %}s{% endif %}</div>
+      </div>
+      <div class="doc-list">
+        {% for doc in referencedVerbalDocs %}
+          <div class="doc-item">
+            <div class="doc-icon">📜</div>
+            <div style="flex:1;">
+              <a class="doc-title doc-link" href="/documents/{{ doc.path }}/">{{ doc.title if doc.title else doc.slug }}</a>
+              <div class="doc-meta">
+                {% if doc.date %}{{ doc.date }}{% endif %}
+                {% if not doc.date_known %}<span class="doc-badge doc-badge-pending">Date unknown</span>{% endif %}
+              </div>
+              {% if doc.source %}<div class="doc-meta">{{ doc.source }}</div>{% endif %}
+            </div>
+            <div class="doc-type">Verbal</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if soldierAnecdotes.length %}
+      <div class="section-header" {% if verbalDocs.length or referencedVerbalDocs.length %}style="margin-top:24px;"{% endif %}>
         <div class="section-title" style="font-size:13px;">Archive Accounts</div>
         <div class="section-rule"></div>
         <div class="section-meta">{{ soldierAnecdotes.length }} Account{% if soldierAnecdotes.length != 1 %}s{% endif %}</div>
@@ -764,10 +831,57 @@
 
 {# ── TAB: EXTERNAL RESOURCES ── #}
 <div class="tab-content" id="tab-external" style="display:none">
-  <div class="tab-empty">
-    No external resources on record.<br>
-    <a href="/contribute/">Know of something that should be here? →</a>
-  </div>
+
+  {% set hasExternal = (links and (links.wall or (links.other and links.other.length))) %}
+
+  {% if hasExternal %}
+
+    {% if links.wall %}
+      <div class="section-header">
+        <div class="section-title" style="font-size:13px;">Vietnam Veterans Memorial</div>
+        <div class="section-rule"></div>
+      </div>
+      <div class="doc-list">
+        <div class="doc-item">
+          <div class="doc-icon">🪨</div>
+          <div style="flex:1;">
+            <a class="doc-title doc-link" href="{{ links.wall }}" target="_blank" rel="noopener">
+              Wall of Faces — {{ first_name }} {{ last_name }}
+            </a>
+            <div class="doc-meta">Vietnam Veterans Memorial Fund</div>
+          </div>
+          <div class="doc-type">VVMF</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if links.other and links.other.length %}
+      <div class="section-header" {% if links.wall %}style="margin-top:24px;"{% endif %}>
+        <div class="section-title" style="font-size:13px;">Other Records</div>
+        <div class="section-rule"></div>
+        <div class="section-meta">{{ links.other.length }}</div>
+      </div>
+      <div class="doc-list">
+        {% for link in links.other %}
+          <div class="doc-item">
+            <div class="doc-icon">🔗</div>
+            <div style="flex:1;">
+              <a class="doc-title doc-link" href="{{ link.url }}" target="_blank" rel="noopener">
+                {{ link.label }}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  {% else %}
+    <div class="tab-empty">
+      No external resources on record.<br>
+      <a href="/contribute/">Know of something that should be here? →</a>
+    </div>
+  {% endif %}
+
 </div>
 
 {# ── PROFILE CTA ── #}

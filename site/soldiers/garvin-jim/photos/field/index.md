@@ -61,4 +61,82 @@ photos:
       - fairchild-joe
       - graham-ray
     tagged: []
+  - filename: ready-to-head-out-colburn.jpg
+    caption: >
+      Richard Colburn, ready to head into the jungle
+    caption_short: "Richard Colburn, ready to head into the jungle"
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
+  - filename: richard-colburn-in-class-a-uniform-7_orig.jpg
+    caption: >
+      Richard Colburn in his Class A uniform
+    caption_short: "Richard Colburn in his Class A uniform"
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
+  - filename: richard-colburn-shaking-hands-with-officer.jpg
+    caption: >
+      Richard Colburn getting a thank you from the brass for a job well done
+    caption_short: "Richard Colburn getting a thank you from the brass for a job well done"
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
+  - filename: richard-relaxing.jpg
+    caption: >
+      Richard Colburn taking a break from his duties
+    caption_short: "Richard Colburn taking a break from his duties"
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
+  - filename: taking-a-break-on-sandbags.jpg
+    caption: >
+      Richard Colburn getting off his seat in the most common seat in Vietnam, a pile of sandbags.
+    caption_short: "Richard Colburn getting off his seat in the most common seat in Vietnam, a pile of sandbags."
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
+  - filename: taking-a-smoke-colburn.jpg
+    caption: >
+      Richard Colburn unwinding with a smoke. Cigarettes were standard issue in the Army during Vietnam, even guys who didn't smoke as civilians often took up the habit while in the military.
+    caption_short: "Richard Colburn unwinding with a smoke."
+    credit: "From the collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - colburn-richard
+    tagged: []
 ---

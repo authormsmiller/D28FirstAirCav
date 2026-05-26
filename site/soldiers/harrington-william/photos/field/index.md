@@ -14,5 +14,6 @@ photos:
     quality: 
     contains:
       - guidara-frank
+      - harrington-william
     tagged: []
 ---

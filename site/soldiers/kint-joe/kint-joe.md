@@ -11,7 +11,7 @@ nickname:
 middle_name: 
 rank: 
 mos: 
-platoon: 
+platoon: Cat
 
 # ── SERVICE ───────────────────────────────────────
 arrived:

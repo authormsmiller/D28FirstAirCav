@@ -11,7 +11,7 @@ nickname:
 middle_name: Stanton Gerald
 rank: PFC
 mos: 
-platoon: "Range Platoon"
+platoon: Range
 
 # ── SERVICE ───────────────────────────────────────
 arrived:

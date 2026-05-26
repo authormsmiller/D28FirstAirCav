@@ -15,24 +15,24 @@ units:
       name: D Company, 2nd Battalion, 8th Cavalry (Airmobile)
       role: Personnel aboard; post-contact operations following April 20 engagement
   supporting:
-    - name: 2/8 CAV Battalion Aviation
+    - name: A Company, 229th Assault Helicopter Battalion, 1st Cavalry Division
       role: UH-1H (tail number 69-15692) on resupply/personnel mission
 
 casualties:
   kia:
     - slug: fanning-martin
-      name: CW2 Martin Fanning
+      name: CPT Martin Fanning
       role: Pilot, UH-1H 69-15692
       date: 1971-04-24
       note: Killed in crash; FSB subsequently renamed Fanning in his honor
     - slug: jeffries-gabriel
-      name: CW2 Gabriel Jeffries
+      name: WO1 Gabriel Augustus Jeffries Jr.
       role: Co-pilot
       date: 1971-04-24
       note: Killed in crash
     - slug: colburn-richard
-      name: Richard Colburn
-      role: Battalion Armor; passenger
+      name: SGT Richard Colburn
+      role: Battalion Armor (HQ Co., 2nd Bn., 8th Cavalry); passenger
       date: 1971-04-24
       note: Not organic to D Co.; was not originally scheduled on the flight
   wia:
@@ -45,6 +45,13 @@ contains:
   - slug: garvin-jim
     name: James Garvin
     note: Bumped from the flight before takeoff; survived by chance; wrote firsthand account
+  - name: "O2 CJ McCoy"
+    note: >
+      Passenger aboard UH-1H 69-15692; survived the crash. Listed as a survivor
+      in VHPA incident record 710424101ACD. His son Dusty McCoy posted a tribute
+      to Richard Colburn's Facebook memorial on the 53rd anniversary (April 24,
+      2024), identifying his father as a passenger who survived. Potential family
+      contact — if you are connected to the McCoy family, please reach out.
 
 tagged:
   - slug: miller-marvin-dale
@@ -80,7 +87,13 @@ open_questions:
       you know who else was originally scheduled, or the circumstances that
       placed Colburn aboard, please contact us.
   - id: oq-02
-    publish: true
+    publish: false
+    resolved: true
+    resolution: >
+      VHPA incident record 710424101ACD documents the cause: engine failure
+      shortly after departure, total loss of power at 100–200 feet. Pilot
+      attempted autorotation; left skid caught a tree at the clearing edge,
+      pitching nose-down. Aircraft impacted logs and rolled onto its right side.
     question: >
       The cause of the crash has not been formally documented in sources
       available to this archive. If you were present at FSB Fontaine on
@@ -94,30 +107,43 @@ open_questions:
       photographs exist in family or unit collections.
   - id: oq-04
     publish: false
+    resolved: true
+    resolution: >
+      VHPA incident record 710424101ACD located and reviewed. Crew records
+      confirm: CPT Martin Fanning (pilot), WO1 Gabriel Augustus Jeffries Jr.
+      (co-pilot), SGT Richard Colburn (passenger). Survivor roster includes
+      O2 CJ McCoy and eight others. NARA accident investigation report
+      remains outstanding.
     question: >
       NARA request: accident investigation report for UH-1H 69-15692. Also
       check VHPA database for crew records and supplemental incident documentation.
 
 archivist_notes:
   created: 2026-05-11
+  last_updated: 2026-05-22
   session: 18
   sources:
     - garvin-james-account-042471 (not yet created as document record)
-    - vhpa-incident-uh1h-69-15692 (external)
+    - "VHPA incident record 710424101ACD — https://www.vhpa.org/KIA/incident/710424101ACD.HTM"
     - McGrew calendar — April 24, 1971 entry: "Downed chopper"
+  mccoy_thread: >
+    VHPA record lists O2 CJ McCoy as a survivor aboard 69-15692. His son
+    Dusty McCoy posted a tribute to Richard Colburn's Facebook memorial group
+    on April 24, 2024 (53rd anniversary), identifying his father as a passenger
+    who survived. Potential living contact thread through the McCoy family.
   context_note: >
-    FSB Fontaine was renamed FSB Fanning after this crash, in honor of CW2
+    FSB Fontaine was renamed FSB Fanning after this crash, in honor of CPT
     Martin Fanning. Any reference to FSB Fanning in accounts of the April 20
     contact is a retrospective error — the name did not exist until after April 24.
 ---
 
 ## Summary
 
-On April 24, 1971 — four days after the contact near FSB Fontaine that killed three soldiers and wounded approximately fifteen — a UH-1H helicopter (tail number 69-15692) crashed at or near FSB Fontaine. The crash killed both crew members, CW2 Martin Fanning (pilot) and CW2 Gabriel Jeffries (co-pilot), as well as passenger Richard Colburn of Battalion Armor. The door gunner, Nathan Stanfield, survived with wounds.
+On April 24, 1971 — four days after the contact near FSB Fontaine that killed three soldiers and wounded approximately fifteen — a UH-1H helicopter (tail number 69-15692) crashed at or near FSB Fontaine. The crash killed both crew members, CPT Martin Fanning (pilot) and WO1 Gabriel Jeffries (co-pilot), as well as passenger SGT Richard Colburn of Battalion Armor, HQ Co., 2nd Bn., 8th Cavalry. The door gunner, Nathan Stanfield, survived with wounds.
 
 James Garvin, originally manifested on the flight, was bumped before takeoff and survived by chance. Howard McGrew's 1971 calendar records "Downed chopper" on April 24, corroborating the date.
 
-The fire support base was subsequently renamed FSB Fanning in honor of CW2 Martin Fanning. The renaming is visible in McGrew's calendar: entries before May 2 use Fontaine; from May 7 forward the base is referred to as Fanning.
+The fire support base was subsequently renamed FSB Fanning in honor of CPT Martin Fanning. The renaming is visible in McGrew's calendar: entries before May 2 use Fontaine; from May 7 forward the base is referred to as Fanning.
 
 ## Context and Contested Details
 

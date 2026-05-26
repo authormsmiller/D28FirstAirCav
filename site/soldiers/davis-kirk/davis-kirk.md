@@ -11,7 +11,7 @@ nickname:
 middle_name:
 rank:
 mos:
-platoon: "Range (Rifle Range) Platoon · 2nd"
+platoon: Range
 
 # ── SERVICE ───────────────────────────────────────
 arrived: "1971"
@@ -28,6 +28,28 @@ profile_photo: davis-kirk-field-binh-tuy-1971.png
 decorations:
 
 distinguished_decorations:
+
+# ── SERVICE RECORD ────────────────────────────────
+service_record:
+  induction:
+    status: 
+    location: 
+    date: 
+  assignments:
+    - type: other
+      label: "Company Clerk"
+      unit: 
+      location: "Vietnam"
+      from:
+      to:
+      notes: "Served as company clerk for several months; exact dates unknown"
+    - type: other
+      label: "Range Platoon"
+      unit: 
+      location: "Vietnam"
+      from:
+      to:
+      notes: "Primary assignment"
 
 # ── CONTACT ───────────────────────────────────────
 # Full contact details live in _private/contacts.json (gitignored)
