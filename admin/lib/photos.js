@@ -1,12 +1,8 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import yaml from 'js-yaml';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
 
 // ---------------------------------------------------------------------------
 // R2 upload client
@@ -55,7 +51,7 @@ async function uploadToR2(localPath, r2Key) {
 // ---------------------------------------------------------------------------
 // Paths — all relative to repo root (two levels up from admin/lib/)
 // ---------------------------------------------------------------------------
-const REPO_ROOT = path.resolve(__dirname, '../..');
+const REPO_ROOT = path.resolve(process.cwd(), '..');
 const INTAKE_ROOT = path.join(REPO_ROOT, '_intake');
 const RAW_PHOTOS = path.join(INTAKE_ROOT, 'raw', 'photos');
 const STAGING_PHOTOS = path.join(INTAKE_ROOT, 'staging', 'photos');
@@ -378,12 +374,17 @@ async function flushBuffer(slug, buffer) {
       await fsp.writeFile(indexPath, header + yamlBlocks.join('\n') + '\n---\n', 'utf-8');
     } else {
       let existing = await fsp.readFile(indexPath, 'utf-8');
+      // Normalize CRLF → LF so the closing-marker check works regardless of
+      // whether the file was written on Windows (CRLF) or Unix (LF).
+      existing = existing.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       const closeMarker = '\n---\n';
       if (existing.endsWith(closeMarker)) {
         existing = existing.slice(0, -closeMarker.length);
         existing += '\n' + yamlBlocks.join('\n') + closeMarker;
       } else {
-        existing += '\n' + yamlBlocks.join('\n') + '\n';
+        // No closing marker — file may be front-matter-only (no trailing ---).
+        // Ensure we're inserting inside the photos: list, not after stray content.
+        existing = existing.trimEnd() + '\n' + yamlBlocks.join('\n') + '\n---\n';
       }
       await fsp.writeFile(indexPath, existing, 'utf-8');
     }
@@ -765,4 +766,4 @@ export function registerPhotosRoutes(app) {
       res.status(500).json({ error: err.message });
     }
   });
-}
+}

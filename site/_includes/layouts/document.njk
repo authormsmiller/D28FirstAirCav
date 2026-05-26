@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ title }} — {{ site.title }}</title>
-<meta name="description" content="Archive document: {{ title }}{% if author %}, authored by {{ author }}{% endif %}{% if doc_date %}, {{ doc_date }}{% endif %}.">
+<meta name="description" content="Archive document: {{ title }}{% if author %}, authored by {{ author }}{% endif %}{% if doc_date or date %}, {{ doc_date or date }}{% endif %}.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -25,7 +25,7 @@
 <div class="doc-hero">
   <div class="doc-hero-meta">
     <span class="doc-type-pill">{{ type | capitalize }}</span>
-    {% if doc_date %}<span class="doc-hero-date">{{ doc_date }}</span>{% endif %}
+    {% if doc_date or date %}<span class="doc-hero-date">{{ doc_date or date }}</span>{% endif %}
   </div>
   <h1 class="doc-hero-title">{{ title }}</h1>
   {% if author %}
@@ -118,15 +118,15 @@
     <div class="dmt-row">
       <div class="dmt-label">Date</div>
       <div class="dmt-value">
-        {% if doc_date %}{{ doc_date }}{% else %}<span class="dim">Unknown</span>{% endif %}
+        {% if doc_date or date %}{{ doc_date or date }}{% else %}<span class="dim">Unknown</span>{% endif %}
         {% if not date_known %}<span class="doc-badge doc-badge-pending">Date uncertain</span>{% endif %}
       </div>
     </div>
 
-    {% if source %}
+    {% if source or source_note %}
     <div class="dmt-row">
       <div class="dmt-label">Source</div>
-      <div class="dmt-value">{{ source }}</div>
+      <div class="dmt-value">{{ source or source_note }}</div>
     </div>
     {% endif %}
 
@@ -194,7 +194,8 @@
       <div class="section-meta">{{ contains.length }} Soldier{% if contains.length != 1 %}s{% endif %}</div>
     </div>
     <div class="alongside-grid" style="margin-bottom:24px;">
-      {% for soldierSlug in contains %}
+      {% for item in contains %}
+        {% set soldierSlug = item.slug if item.slug else item %}
         {% for s in collections.soldiers %}
           {% if s.data.slug == soldierSlug %}
             <div class="alongside-card">

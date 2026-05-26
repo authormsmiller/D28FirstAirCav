@@ -13,10 +13,12 @@ photos:
     date: 1971-04-24
     date_known: true
     event: crash-fsb-fontaine-1971-04-24
-    contains:
-      - colburn-richard
+    contains: []
     tagged:
       - fanning-martin
+      - jeffries-gabriel
+      - stanfield-nathan
+      - colburn-richard
 
   - filename: 042471-hueycrash4.jpg
     caption: >
@@ -29,7 +31,10 @@ photos:
     event: crash-fsb-fontaine-1971-04-24
     contains: []
     tagged:
+      - colburn-richard
       - fanning-martin
+      - jeffries-gabriel
+      - stanfield-nathan
 
   - filename: vc-prisoner-retouch.jpg
     caption: A Viet Cong prisoner attended to by soldiers. Historical documentation of ground combat operations.
@@ -38,6 +43,7 @@ photos:
     date: 1971-00-00
     date_known: false
     event: ""
-    contains: []
+    contains: 
+      - cate-larry
     tagged: []
 ---

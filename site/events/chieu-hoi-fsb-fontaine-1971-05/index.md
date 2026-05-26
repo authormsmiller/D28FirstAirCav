@@ -38,7 +38,8 @@ tagged:
   - hilts-doug
   - weaver-ken
 images:
-  - filename: HLMVietnam1971_0147positiveEdit.jpg
+  - filename: vc-prisoner-retouch.jpg
+    src: /media/photos/soldiers/miller-marvin-dale/field/events/vc-prisoner-retouch.jpg
     caption: |
       Chieu Hoi rallier escorted by Cat Platoon along Highway 331 toward FSB Fontaine. Contemporary handwritten caption names Alloway, Small, Cate, and Sells. Intelligence officer in clean uniform visible; unidentified.
     credit: Photographed by SGT Marvin D. Miller
@@ -108,6 +109,6 @@ An intelligence officer in a clean uniform appears in the photographs but has no
 
 **Location source:** An earlier oral account placed this event at FSB Fanning. The contemporary handwritten caption on the Miller photograph states Highway 331, FSB Fontaine. The photograph caption supersedes later recollection. Fontaine is used throughout this record.
 
-**Date precision:** Alloway's presence establishes an upper bound — he died before August 4, 1971. The month (May) is approximate based on operational sequence in McGrew's calendar. The day is unknown.
+**Date precision:** The month (May) is approximate based on operational sequence in McGrew's calendar. The day is unknown.
 
 **Woodblock stamp:** The stamp has never been inked since coming into the family's possession. Printing it would recover the actual propaganda impression — potentially a unique document of what the VC were distributing in Long Khanh Province in 1971.

@@ -11,7 +11,7 @@ nickname:
 middle_name: 
 rank: 
 mos: 
-platoon: ""
+platoon:
 
 # ── SERVICE ───────────────────────────────────────
 arrived:
@@ -42,7 +42,7 @@ timeline:
 photo_intro: >
   Photographs pending.
 
-wartime_content_notice: false
+wartime_content_notice: true
 
 photos:
 

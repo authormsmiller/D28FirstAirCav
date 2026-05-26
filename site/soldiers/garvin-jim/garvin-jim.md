@@ -1,58 +1,140 @@
 ---
 layout: layouts/soldier.njk
-title: Jim Garvin
+title: SP4 Jim Garvin
 slug: garvin-jim
 breadcrumb: Jim Garvin
 permalink: /soldiers/garvin-jim/
 tags:
   - soldier
 
-# ── IDENTITY ──────────────────────────────────────
+# ── IDENTITY ──────────────────────────────────────────────────
 first_name: Jim
 last_name: Garvin
-nickname: 
 middle_name: 
-rank: 
-mos: 
-platoon: 
+suffix: 
+nickname: 
+birth_year: 
 
-# ── SERVICE ───────────────────────────────────────
-arrived:
-departed:
-hometown: 
+# ── RANK & ASSIGNMENT ─────────────────────────────────
+rank: SP4
+mos: 
+platoon: Range
+# ── SERVICE ───────────────────────────────────────────
+arrived: 
+departed: 
 character_of_service: Honorable
 status: veteran
 
-# ── PROFILE PHOTO ─────────────────────────────────
-profile_photo:
+# ── POST-SERVICE ──────────────────────────────────────
+hometown: 
+current_location: 
+year_deceased: 
+cause_of_death: 
 
-# ── DECORATIONS ───────────────────────────────────
+# ── PROFILE PHOTO ─────────────────────────────────────
+profile_photo: garvin-james.png
+
+# ── DECORATIONS ───────────────────────────────────────
 decorations:
 
 distinguished_decorations:
 
-# ── FAMILY CONTACT ────────────────────────────────
-family_contact: true
+# ── SERVICE RECORD ────────────────────────────────────
+service_record:
+  induction:
+    status: 
+    location: 
+    date: 
+  assignments:
+    - role: "Company Armor"
+      unit: "D Co., 2nd Bn., 8th Cavalry, 1st Cav Div"
+      date_from: "1971-02"
+      date_to: 
+      notes: "Pulled from field in February 1971; assigned to inventory and maintain company weapons"
 
-# ── TIMELINE SOURCE NOTE ──────────────────────────
+# ── CONTACT ───────────────────────────────────────────
+# Phone, email, and address live in _private/contacts.json (gitignored).
+# This block carries only what is safe to commit.
+share_contact: false
+contact:
+  name: Jim Garvin
+  relation: 
+  last_verified: 
+
+# ── EXTERNAL LINKS ────────────────────────────────────
+links:
+  wall: 
+  other:
+
+# ── TIMELINE SOURCE NOTE ──────────────────────────────
 timeline_source: >
-  Service timeline not yet compiled. If you served with or knew Jim Garvin, please use the contribute form to share what you remember.
+  Partial timeline sourced from Garvin's firsthand written account of the
+  April 24, 1971 helicopter crash at FSB Fontaine.
 
-# ── SERVICE TIMELINE ──────────────────────────────
+# ── SERVICE TIMELINE ─────────────────────────────────
+# phase values: training | staging | in-country | post-service
 timeline:
+  - date: "1971-02"
+    phase: in-country
+    type: assignment
+    headline: Reassigned as Company Armor
+    body: >
+      Pulled from the field and assigned as Company Armor for D Co., 2/8 CAV.
+      Responsible for inventorying and maintaining company weapons; traveled
+      to the field on log days carrying spare parts and extra weapons.
 
-# ── PHOTOS ────────────────────────────────────────
+  - date: "1971-04-24"
+    phase: in-country
+    type: event
+    headline: Bumped from crash flight — FSB Fontaine
+    body: >
+      Garvin had traveled to FSB Fontaine with Richard Colburn, the Battalion
+      Armor, to complete weapons repairs. At the last moment, the loadmaster
+      bumped Garvin from the return flight. He watched the UH-1H (69-15692)
+      take off and fall out of the sky. CPT Martin Fanning, WO1 Gabriel Jeffries,
+      and SGT Richard Colburn were killed. Garvin's survival was entirely
+      circumstantial.
+    source_notice: >
+      Sourced from Garvin's firsthand written account, submitted to the archive.
+
+# ── PHOTOS ───────────────────────────────────────────────
+# Canonical photo metadata lives in photos/[subfolder]/index.md.
+# The photos array below is retained for template compatibility only.
+# Do not add new photos here — add them to the index files only.
 photo_intro: >
-  Photographs pending.
+  Jim Garvin contributed photographs to the archive from his time in Vietnam.
+  His collection includes field images from 1971, including a photo taken on
+  the day he received his SP4 promotion at CLC (November 4, 1971).
 
 wartime_content_notice: false
 
 photos:
 
-# ── DOCUMENTS ─────────────────────────────────────
+# ── DOCUMENTS ─────────────────────────────────────────────
 documents:
+  - title: '"I Watched the Chopper Fall Out of the Sky"'
+    meta: "Firsthand account · Written by James Garvin · Submitted to archive"
+    type: account
+    icon: "📄"
+    access: public
+    url: /documents/garvin-james/garvin-james-account-042471/
 
-# ── BROTHERS IN ARMS ──────────────────────────────
+# ── RELATED ───────────────────────────────────────────────
 brothers:
+
+related_events:
+  - crash-fsb-fontaine-1971-04-24
+
+# ── ADMIN ─────────────────────────────────────────────────
+date_added: 
+last_updated: 2026-05-22
+contributed_by: 
+notes: >
+  SP4, Company Armor, D Co. 2/8 CAV. Promoted to SP4 as top CLC graduate
+  (photo dated 1971-11-04). Not in roster.json — no roster entry on file.
+  Firsthand account document uses author slug garvin-james; profile slug is
+  garvin-jim — cross-link may not resolve correctly; audit if documents tab
+  is empty on his profile. Attended/organized Colburn memorial in 2021.
+  Hometown, birth year, MOS, arrived/departed dates, and service ID not on file.
 
 ---

@@ -3,53 +3,104 @@ layout: layouts/soldier.njk
 title: William Harrington
 slug: harrington-william
 breadcrumb: William Harrington
+permalink: /soldiers/harrington-william/
+tags:
+  - soldier
 
-# ── IDENTITY ──────────────────────────────────────
+# ── IDENTITY ──────────────────────────────────────────────────
 first_name: William
 last_name: Harrington
-nickname: Mississippi
 middle_name: 
+suffix: 
+nickname: Mississippi
+birth_year: 
+
+# ── RANK & ASSIGNMENT ─────────────────────────────────
 rank: 
 mos: 
-platoon: "Range Platoon"
+platoon: Range
 
-# ── SERVICE ───────────────────────────────────────
-arrived:
-departed:
-hometown:
+# ── SERVICE ───────────────────────────────────────────
+arrived: 
+departed: 
 character_of_service: Honorable
 status: researching
 
-# ── PROFILE PHOTO ─────────────────────────────────
+# ── POST-SERVICE ──────────────────────────────────────
+hometown: 
+current_location: 
+year_deceased: 
+cause_of_death: 
+
+# ── PROFILE PHOTO ─────────────────────────────────────
 profile_photo:
 
-# ── DECORATIONS ───────────────────────────────────
+# ── DECORATIONS ───────────────────────────────────────
 decorations:
 
 distinguished_decorations:
 
-# ── FAMILY CONTACT ────────────────────────────────
-family_contact: false
+# ── SERVICE RECORD ────────────────────────────────────
+service_record:
+  induction:
+    status: 
+    location: 
+    date: 
+  assignments:
 
-# ── TIMELINE SOURCE NOTE ──────────────────────────
+# ── CONTACT ───────────────────────────────────────────
+# Phone, email, and address live in _private/contacts.json (gitignored).
+# This block carries only what is safe to commit.
+share_contact: false
+contact:
+  name: William Harrington
+  relation: 
+  last_verified: 
+
+# ── EXTERNAL LINKS ────────────────────────────────────
+links:
+  wall: 
+  other:
+    - label: "Angry Skipper Association"
+      url: "https://www.angryskipperassociation.org/Guidara_Harrington.htm"
+
+# ── TIMELINE SOURCE NOTE ──────────────────────────────
 timeline_source: >
-  Service timeline not yet compiled. If you served with or knew William Harrington, please use the contribute form to share what you remember.
+  Service timeline not yet compiled. If you served with or knew William
+  Harrington, please use the contribute form to share what you remember.
 
-# ── SERVICE TIMELINE ──────────────────────────────
+# ── SERVICE TIMELINE ─────────────────────────────────
+# phase values: training | staging | in-country | post-service
 timeline:
 
-# ── PHOTOS ────────────────────────────────────────
+# ── PHOTOS ───────────────────────────────────────────────
+# Canonical photo metadata lives in photos/[subfolder]/index.md.
+# The photos array below is retained for template compatibility only.
+# Do not add new photos here — add them to the index files only.
 photo_intro: >
-  Photographs pending.
+  A field photograph of William Harrington with Lt. Frank Guidara (Range 6)
+  is on file, sourced from the Angry Skipper Association.
 
 wartime_content_notice: false
 
 photos:
 
-# ── DOCUMENTS ─────────────────────────────────────
+# ── DOCUMENTS ─────────────────────────────────────────────
 documents:
 
-# ── BROTHERS IN ARMS ──────────────────────────────
+# ── RELATED ───────────────────────────────────────────────
 brothers:
+
+related_events:
+
+# ── ADMIN ─────────────────────────────────────────────────
+date_added: 
+last_updated: 2026-05-22
+contributed_by: 
+notes: >
+  Range Platoon; nickname Mississippi. Not in roster.json. Photo on file
+  with Guidara (range-guidara-harrington.jpg) sourced from Angry Skipper
+  Association. Harrington contributed Guidara's profile photo to the archive.
+  Rank, MOS, dates, hometown, birth year, and service ID not on file.
 
 ---

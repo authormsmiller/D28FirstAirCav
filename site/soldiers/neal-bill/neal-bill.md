@@ -11,7 +11,7 @@ nickname:
 middle_name: 
 rank: CPT
 mos: 
-platoon: "Headquarters"
+platoon: HQ
 
 # ── SERVICE ───────────────────────────────────────
 arrived:

@@ -9,7 +9,7 @@ nickname: null
 middle_name: null
 rank: null
 mos: null
-platoon: Cat (Wild Cat) Platoon · 3rd
+platoon: Cat
 arrived: null
 departed: null
 hometown: Powell, TN

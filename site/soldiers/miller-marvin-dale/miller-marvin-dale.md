@@ -11,7 +11,7 @@ nickname:
 middle_name: Dale
 rank: Sergeant
 mos: "Recon · 11F40"
-platoon: "Cat (Wild Cat) Platoon · 3rd"
+platoon: Cat
 
 # ── SERVICE ───────────────────────────────────────
 arrived: "4 Dec 1970"
