@@ -302,4 +302,53 @@ photos:
     quality: 
     contains: []
     tagged: []
+
+  - filename: training-barracks-1970.jpg
+    caption: >
+      Marvin Miller at a desk inside a military building during stateside training, 1970.
+      Steel pot on the shelf behind him. Likely Fort Dix (AIT) or Fort Benning (NCOC),
+      prior to his deployment to Vietnam in December 1970.
+    caption_short: "Marvin Miller — stateside training, 1970"
+    credit: "Photographer unknown · 1970"
+    photographer: "unknown-of"
+    date: 1970
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - miller-marvin-dale
+    tagged: []
+
+  - filename: training-desk-1970.jpg
+    caption: >
+      Marvin Miller on the steps of Barracks 80 during stateside training, 1970.
+      Likely Fort Dix (AIT) or Fort Benning (NCOC), prior to his deployment to
+      Vietnam in December 1970.
+    caption_short: "Marvin Miller — Barracks 80, stateside training, 1970"
+    credit: "Photographer unknown · 1970"
+    photographer: "unknown-of"
+    date: 1970
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - miller-marvin-dale
+    tagged: []
+
+  - filename: uso-1.jpg
+    caption: >
+      Four female performers in matching yellow dresses on a wooden stage platform at a
+      fire support base, Vietnam, 1971. Guitarist visible at left; red laterite dirt and
+      tropical treeline in the background. Photographed by Marvin Miller. Two USO shows
+      are documented during his tour — January 24, 1971 at FSB Silver, and approximately
+      September 5–6, 1971 near FSB Jeffreys.
+    caption_short: "USO show at a fire support base — 1971"
+    credit: "Photographed by Marvin D. Miller · 1971"
+    photographer: "miller-marvin-dale"
+    date: 1971
+    date_known: false
+    event: ""
+    quality: 
+    contains: []
+    tagged: []
 ---

@@ -21,5 +21,8 @@
       "name": "SEND_EMAIL",
       "destination_address": "admin@angryskipperarchive.org"
     }
-  ]
+  ],
+  "triggers": {
+    "crons": ["1 0 * * *"]
+  }
 }

@@ -29,8 +29,28 @@ export default {
       return withCors(await handleRequest(request, env));
     }
 
+    // INFRA-TASK-068 — Account survey submission
+    if (path === "/submit/account" && method === "POST") {
+      return withCors(await handleAccount(request, env));
+    }
+
+    // Skipper Stories — submit a story
+    if (path === "/submit/skipper-story" && method === "POST") {
+      return withCors(await handleSkipperStory(request, env));
+    }
+
+    // Skipper Stories — list published stories by tab (client-side page load)
+    if (path === "/api/skipper-stories/published" && method === "GET") {
+      return withCors(await handleSkipperStoriesPublished(request, env));
+    }
+
     // Everything else — pass through to static assets
     return env.ASSETS.fetch(request);
+  },
+
+  // Nightly cron: promote pending skipper stories to published
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(publishPendingSkipperStories(env));
   },
 };
 
@@ -111,7 +131,12 @@ async function handleContribute(request, env) {
       { httpMetadata: { contentType: "application/json" } }
     );
 
-    // Email (thank-you on isNew) — wired in INFRA-TASK-067
+    // Notification email to admin — non-fatal
+    try {
+      await sendContributeNotificationEmail(env, metadata, folderId, isNew);
+    } catch (emailErr) {
+      console.error("Contribute email failed:", emailErr.message);
+    }
 
     return jsonResponse({ folderId, isNew });
   } catch (err) {
@@ -249,6 +274,362 @@ async function sendNotificationEmail(env, payload) {
   );
 
   await env.SEND_EMAIL.send(message);
+}
+
+// ---------------------------------------------------------------------------
+// INFRA-TASK-068 — POST /submit/account
+// Accepts a survey response JSON and writes to SUBMISSIONS bucket under
+// submissions/accounts/[event-slug]-[platoon]-[lastname]-[timestamp].json
+// ---------------------------------------------------------------------------
+async function handleAccount(request, env) {
+  try {
+    const body = await request.json();
+
+    const eventSlug  = (body.event_slug  || "unknown").replace(/[^a-z0-9-]/g, "-");
+    const platoon    = (body.platoon     || "unknown").replace(/[^a-z0-9-]/g, "-");
+    const lastName   = (body.last_name   || "anonymous")
+                         .toLowerCase()
+                         .replace(/[^a-z0-9]+/g, "-")
+                         .replace(/^-|-$/g, "");
+    const timestamp  = Date.now();
+
+    const key = `submissions/accounts/${eventSlug}-${platoon}-${lastName}-${timestamp}.json`;
+
+    const payload = {
+      ...body,
+      submitted: new Date().toISOString(),
+      user_id:   null,
+    };
+
+    await env.SUBMISSIONS.put(
+      key,
+      JSON.stringify(payload, null, 2),
+      { httpMetadata: { contentType: "application/json" } }
+    );
+
+    // Notification email — non-fatal if it fails
+    try {
+      await sendAccountNotificationEmail(env, payload, key);
+    } catch (emailErr) {
+      console.error("Account email send failed:", emailErr.message);
+    }
+
+    return jsonResponse({ ok: true, key });
+  } catch (err) {
+    return jsonResponse({ error: err.message }, 500);
+  }
+}
+
+async function sendAccountNotificationEmail(env, payload, key) {
+  const { EmailMessage } = await import("cloudflare:email");
+
+  const subject = `[Archive Account] ${payload.event_slug || "unknown"} — ${payload.platoon || ""} — ${payload.last_name || "anonymous"}`;
+
+  const body = [
+    `New account survey submission`,
+    ``,
+    `Event:    ${payload.event_slug || "(unknown)"}`,
+    `Platoon:  ${payload.platoon    || "(unknown)"}`,
+    `Name:     ${payload.first_name || ""} ${payload.last_name || ""}`.trim(),
+    `Contact:  ${payload.contact    || "(none provided)"}`,
+    `Submitted: ${payload.submitted}`,
+    ``,
+    `R2 key: ${key}`,
+    ``,
+    `Review in the admin panel or fetch directly from R2.`,
+  ].join("\n");
+
+  const raw = [
+    `From: D Co. Archive <admin@angryskipperarchive.org>`,
+    `To: admin@angryskipperarchive.org`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=utf-8`,
+    ``,
+    body,
+  ].join("\r\n");
+
+  const encoder = new TextEncoder();
+  const { readable, writable } = new TransformStream();
+  const writer = writable.getWriter();
+  writer.write(encoder.encode(raw));
+  writer.close();
+
+  const message = new EmailMessage(
+    "admin@angryskipperarchive.org",
+    "admin@angryskipperarchive.org",
+    readable
+  );
+
+  await env.SEND_EMAIL.send(message);
+}
+
+// ---------------------------------------------------------------------------
+// INFRA-TASK-067 (contribute email) — Admin notification for contribute uploads
+// Fires on every submission (new folder or appended). Non-fatal.
+// ---------------------------------------------------------------------------
+async function sendContributeNotificationEmail(env, metadata, folderId, isNew) {
+  const { EmailMessage } = await import("cloudflare:email");
+
+  const typeLabel = metadata.type === "photos" ? "Photos" : "Documents";
+  const action    = isNew ? "New folder" : "Files added to existing folder";
+  const subject   = `[Contribute] ${typeLabel} — ${metadata.soldier_name || "(unknown)"} — ${metadata.submitter_name || "anonymous"}`;
+
+  const body = [
+    `${action}`,
+    ``,
+    `Type:        ${typeLabel}`,
+    `Soldier:     ${metadata.soldier_name    || "(not provided)"}`,
+    `From:        ${metadata.submitter_name  || "(anonymous)"}`,
+    `Contact:     ${metadata.submitter_contact || "(none)"}`,
+    `Permission:  ${metadata.permission     || "(not set)"}`,
+    `Provenance:  ${metadata.provenance_confirmed ? "Confirmed" : "Not confirmed"}`,
+    `Notes:       ${metadata.notes          || "(none)"}`,
+    `Submitted:   ${metadata.submitted}`,
+    ``,
+    `R2 folder: submissions/${metadata.type}/${folderId}/`,
+    ``,
+    `Review in the admin panel (Site Feedback → Documents).`,
+  ].join("\n");
+
+  const raw = [
+    `From: D Co. Archive <admin@angryskipperarchive.org>`,
+    `To: admin@angryskipperarchive.org`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=utf-8`,
+    ``,
+    body,
+  ].join("\r\n");
+
+  const encoder = new TextEncoder();
+  const { readable, writable } = new TransformStream();
+  const writer = writable.getWriter();
+  writer.write(encoder.encode(raw));
+  writer.close();
+
+  const message = new EmailMessage(
+    "admin@angryskipperarchive.org",
+    "admin@angryskipperarchive.org",
+    readable
+  );
+
+  await env.SEND_EMAIL.send(message);
+}
+
+// ---------------------------------------------------------------------------
+// Skipper Stories — POST /submit/skipper-story
+// Writes story JSON to SUBMISSIONS submissions/skipper-stories/pending/
+// ---------------------------------------------------------------------------
+async function handleSkipperStory(request, env) {
+  try {
+    const body = await request.json();
+
+    if (!body.name || !body.response || !body.prompt_id) {
+      return jsonResponse({ error: "Missing required fields: name, response, prompt_id" }, 400);
+    }
+
+    const nanoid    = await generateNanoid();
+    const timestamp = Date.now();
+    const storyId   = `${timestamp}-${nanoid}`;
+    const key        = `submissions/skipper-stories/pending/${storyId}.json`;
+
+    const payload = {
+      ...body,
+      story_id:  storyId,
+      submitted: new Date().toISOString(),
+      status:    "pending",
+    };
+
+    await env.SUBMISSIONS.put(
+      key,
+      JSON.stringify(payload, null, 2),
+      { httpMetadata: { contentType: "application/json" } }
+    );
+
+    // Notification email to admin — non-fatal
+    try {
+      await sendSkipperStoryNotificationEmail(env, payload, key);
+    } catch (emailErr) {
+      console.error("Skipper story email failed:", emailErr.message);
+    }
+
+    return jsonResponse({ ok: true, story_id: storyId });
+  } catch (err) {
+    return jsonResponse({ error: err.message }, 500);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Skipper Stories — GET /api/skipper-stories/published?tab=wtr
+// Returns published stories for a given tab (or all if no tab param).
+// ---------------------------------------------------------------------------
+async function handleSkipperStoriesPublished(request, env) {
+  try {
+    const url    = new URL(request.url);
+    const tabId  = url.searchParams.get("tab") || null;
+
+    const prefix = "submissions/skipper-stories/published/";
+    const items  = [];
+    let continuationToken;
+
+    do {
+      const list = await env.SUBMISSIONS.list({
+        prefix,
+        cursor: continuationToken,
+        limit:  1000,
+      });
+      for (const obj of list.objects || []) {
+        try {
+          const obj2 = await env.SUBMISSIONS.get(obj.key);
+          if (!obj2) continue;
+          const data = JSON.parse(await obj2.text());
+          if (data.publication === "archive") continue;  // never send archive-only
+          if (data.status === "withdrawn") continue;    // soft-deleted — excluded from feed
+          if (tabId && data.tab_id !== tabId) continue;
+          items.push(data);
+        } catch { /* skip malformed */ }
+      }
+      continuationToken = list.truncated ? list.cursor : null;
+    } while (continuationToken);
+
+    // Newest first
+    items.sort((a, b) => (b.submitted || "").localeCompare(a.submitted || ""));
+
+    return jsonResponse({ stories: items });
+  } catch (err) {
+    return jsonResponse({ error: err.message }, 500);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Skipper Stories — Cron: promote pending → published
+// Runs at 00:01 nightly. Moves stories submitted before midnight to published/.
+// ---------------------------------------------------------------------------
+async function publishPendingSkipperStories(env) {
+  const prefix    = "submissions/skipper-stories/pending/";
+  const midnight  = new Date();
+  midnight.setHours(0, 0, 0, 0);
+  const cutoff    = midnight.getTime();
+
+  let continuationToken;
+  const promoted = [];
+
+  do {
+    const list = await env.SUBMISSIONS.list({
+      prefix,
+      cursor: continuationToken,
+      limit:  1000,
+    });
+
+    for (const obj of list.objects || []) {
+      try {
+        const obj2 = await env.SUBMISSIONS.get(obj.key);
+        if (!obj2) continue;
+        const data = JSON.parse(await obj2.text());
+
+        // Only promote stories submitted before tonight's midnight
+        const submittedMs = new Date(data.submitted || 0).getTime();
+        if (submittedMs >= cutoff) continue;
+
+        // Skip if already held (admin flagged it)
+        if (data.status === "held") continue;
+
+        // Write to published/
+        const storyId    = data.story_id || obj.key.split("/").pop().replace(".json", "");
+        const publishKey = `submissions/skipper-stories/published/${storyId}.json`;
+        const publishedPayload = { ...data, status: "published", published_at: new Date().toISOString() };
+
+        await env.SUBMISSIONS.put(
+          publishKey,
+          JSON.stringify(publishedPayload, null, 2),
+          { httpMetadata: { contentType: "application/json" } }
+        );
+
+        // Delete from pending
+        await env.SUBMISSIONS.delete(obj.key);
+        promoted.push(storyId);
+
+      } catch (err) {
+        console.error("Failed to promote story:", obj.key, err.message);
+      }
+    }
+
+    continuationToken = list.truncated ? list.cursor : null;
+  } while (continuationToken);
+
+  console.log(`Skipper Stories cron: promoted ${promoted.length} stories to published.`);
+}
+
+// ---------------------------------------------------------------------------
+// Skipper Stories — Email notification
+// ---------------------------------------------------------------------------
+async function sendSkipperStoryNotificationEmail(env, payload, key) {
+  const { EmailMessage } = await import("cloudflare:email");
+
+  const displayName = payload.publication === "anonymous"
+    ? "Anonymous"
+    : (payload.name || "(no name)");
+
+  const subject = `[Skipper Story] ${payload.tab_label || payload.tab_id || "Unknown tab"} — ${displayName}`;
+
+  const body = [
+    `New Skipper Story submission`,
+    ``,
+    `Tab:       ${payload.tab_label || payload.tab_id || "(unknown)"}`,
+    `Prompt:    ${payload.prompt_text || payload.prompt_id || "(unknown)"}`,
+    `Name:      ${payload.name || "(none)"}`,
+    `Platoon:   ${payload.platoon || "(none)"}`,
+    `Years:     ${payload.years || "(none)"}`,
+    `Email:     ${payload.email || "(none)"}`,
+    `Phone:     ${payload.phone || "(none)"}`,
+    `Publish:   ${payload.publication || "(not set)"}`,
+    `Submitted: ${payload.submitted}`,
+    ``,
+    `Response:`,
+    `----------`,
+    payload.response || "(empty)",
+    `----------`,
+    ``,
+    `R2 key: ${key}`,
+    ``,
+    `Pending — will auto-publish at 00:01 unless held in admin panel.`,
+  ].join("\n");
+
+  const raw = [
+    `From: D Co. Archive <admin@angryskipperarchive.org>`,
+    `To: admin@angryskipperarchive.org`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=utf-8`,
+    ``,
+    body,
+  ].join("\r\n");
+
+  const encoder = new TextEncoder();
+  const { readable, writable } = new TransformStream();
+  const writer = writable.getWriter();
+  writer.write(encoder.encode(raw));
+  writer.close();
+
+  const message = new EmailMessage(
+    "admin@angryskipperarchive.org",
+    "admin@angryskipperarchive.org",
+    readable
+  );
+
+  await env.SEND_EMAIL.send(message);
+}
+
+// ---------------------------------------------------------------------------
+// Nanoid-lite — generates a short random ID without importing nanoid
+// ---------------------------------------------------------------------------
+async function generateNanoid(size = 10) {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const bytes = crypto.getRandomValues(new Uint8Array(size));
+  let id = "";
+  for (const b of bytes) id += chars[b % chars.length];
+  return id;
 }
 
 // ---------------------------------------------------------------------------

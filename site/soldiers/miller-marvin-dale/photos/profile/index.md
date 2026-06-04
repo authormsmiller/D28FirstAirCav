@@ -14,18 +14,6 @@ photos:
     event: ""
     quality: 
     contains:
-      - mil
-    tagged: []
-  - filename: marvin-miller-selfie.jpeg
-    caption: >
-      
-    caption_short: ""
-    credit: ""
-    photographer: ""
-    date: 
-    date_known: false
-    event: ""
-    quality: 
-    contains: []
+      - miller-marvin-dale
     tagged: []
 ---

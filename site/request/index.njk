@@ -49,6 +49,12 @@ permalink: /request/
         <div class="rtc-body">A family member wants something taken down or corrected for privacy reasons.</div>
       </button>
 
+      <button class="req-type-card" data-type="removal" onclick="selectType('removal')" id="typecard-removal">
+        <div class="rtc-icon">✕</div>
+        <div class="rtc-title">Remove a story</div>
+        <div class="rtc-body">Remove a Skipper Story you submitted, or request removal of a story about you.</div>
+      </button>
+
       <button class="req-type-card" data-type="general" onclick="selectType('general')">
         <div class="rtc-icon">✉</div>
         <div class="rtc-title">General message</div>
@@ -103,7 +109,7 @@ permalink: /request/
         </div>
         <div class="req-field">
           <label class="req-label" for="corrValue">What it should say <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="corrValue" name="correction" required>
+          <input class="req-input" type="text" id="corrValue" name="correction" data-req="true">
         </div>
         <div class="req-field">
           <label class="req-label" for="corrSource">How do you know? <span class="req-opt">(optional)</span></label>
@@ -116,7 +122,7 @@ permalink: /request/
         <div class="req-notice">We hold veteran contact details in restricted access. We'll reach out to your buddy and let him decide if he wants to connect.</div>
         <div class="req-field">
           <label class="req-label" for="contactLooking">Who are you looking for? <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="contactLooking" name="looking_for" required placeholder="Name or partial name">
+          <input class="req-input" type="text" id="contactLooking" name="looking_for" data-req="true" placeholder="Name or partial name">
         </div>
         <div class="req-field">
           <label class="req-label" for="contactRelationship">How do you know them?</label>
@@ -128,11 +134,11 @@ permalink: /request/
       <div class="req-type-fields" id="fields-add" style="display:none">
         <div class="req-field">
           <label class="req-label" for="addName">Soldier's name <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="addName" name="missing_soldier" required>
+          <input class="req-input" type="text" id="addName" name="missing_soldier" data-req="true">
         </div>
         <div class="req-field">
           <label class="req-label" for="addConnection">Your connection to them <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="addConnection" name="connection" required placeholder="e.g. Son, daughter, served alongside">
+          <input class="req-input" type="text" id="addConnection" name="connection" data-req="true" placeholder="e.g. Son, daughter, served alongside">
         </div>
         <div class="req-field">
           <label class="req-label" for="addNotes">Anything useful <span class="req-opt">(optional)</span></label>
@@ -145,7 +151,7 @@ permalink: /request/
       <div class="req-type-fields" id="fields-broken" style="display:none">
         <div class="req-field">
           <label class="req-label" for="brokenDesc">What happened? <span class="req-req">*</span></label>
-          <textarea class="req-textarea" id="brokenDesc" name="description" rows="3" required
+          <textarea class="req-textarea" id="brokenDesc" name="description" rows="3" data-req="true"
             placeholder="Brief description — what were you trying to do, what went wrong"></textarea>
         </div>
       </div>
@@ -154,11 +160,11 @@ permalink: /request/
       <div class="req-type-fields" id="fields-privacy" style="display:none">
         <div class="req-field">
           <label class="req-label" for="privRecord">Which record or page? <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="privRecord" name="which_record" required placeholder="Soldier name or page URL">
+          <input class="req-input" type="text" id="privRecord" name="which_record" data-req="true" placeholder="Soldier name or page URL">
         </div>
         <div class="req-field">
           <label class="req-label" for="privWhat">What do you want removed? <span class="req-req">*</span></label>
-          <input class="req-input" type="text" id="privWhat" name="what_to_remove" required>
+          <input class="req-input" type="text" id="privWhat" name="what_to_remove" data-req="true">
         </div>
         <div class="req-field">
           <label class="req-label" for="privReason">Why <span class="req-opt">(optional)</span></label>
@@ -166,11 +172,31 @@ permalink: /request/
         </div>
       </div>
 
+      <!-- TYPE: removal (Skipper Stories) -->
+      <div class="req-type-fields" id="fields-removal" style="display:none">
+        <div class="req-notice">We'll remove the story within 24 hours of receiving your request. No explanation required.</div>
+        <div class="req-field">
+          <label class="req-label" for="removalStoryId">Story ID <span class="req-opt">(optional — from the removal link)</span></label>
+          <input class="req-input" type="text" id="removalStoryId" name="story_id"
+            placeholder="The ID from the link you saved at submission">
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="removalDesc">Which story? <span class="req-req">*</span></label>
+          <textarea class="req-textarea" id="removalDesc" name="description" rows="3" data-req="true"
+            placeholder="Brief description — whose story, which prompt, approximate date submitted"></textarea>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="removalReason">Reason <span class="req-opt">(optional)</span></label>
+          <input class="req-input" type="text" id="removalReason" name="reason"
+            placeholder="Changed my mind, incorrect details, privacy concern, etc.">
+        </div>
+      </div>
+
       <!-- TYPE: general -->
       <div class="req-type-fields" id="fields-general" style="display:none">
         <div class="req-field">
           <label class="req-label" for="generalMsg">Message <span class="req-req">*</span></label>
-          <textarea class="req-textarea" id="generalMsg" name="message" rows="5" required></textarea>
+          <textarea class="req-textarea" id="generalMsg" name="message" rows="5" data-req="true"></textarea>
         </div>
       </div>
 
@@ -205,6 +231,7 @@ const TYPE_LABELS = {
   add:        "Add a Missing Soldier",
   broken:     "Something is Broken",
   privacy:    "Privacy / Takedown Request",
+  removal:    "Remove a Skipper Story",
   general:    "General Message",
 };
 
@@ -214,6 +241,7 @@ const TYPE_CONFIRMS = {
   add:        "We'll follow up — by interview or by sending a link to the Contribute form.",
   broken:     "Thanks for the heads-up. We'll take a look.",
   privacy:    "We handle these case by case. We'll be in touch.",
+  removal:    "We'll remove the story within 24 hours. No follow-up needed unless we have a question.",
   general:    "We read every message.",
 };
 
@@ -232,9 +260,15 @@ function selectType(type) {
   document.getElementById('formTitle').textContent = TYPE_LABELS[type];
 
   // Hide all type-specific field blocks, show the right one
-  document.querySelectorAll('.req-type-fields').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.req-type-fields').forEach(el => {
+    el.style.display = 'none';
+    el.querySelectorAll('[data-req]').forEach(f => f.required = false);
+  });
   const block = document.getElementById('fields-' + type);
-  if (block) block.style.display = 'block';
+  if (block) {
+    block.style.display = 'block';
+    block.querySelectorAll('[data-req]').forEach(f => f.required = true);
+  }
 
   // Reset states
   document.getElementById('reqForm').style.display = 'block';
@@ -311,9 +345,19 @@ function resetForm() {
 }
 
 // Pre-select type from query string e.g. /request/?type=general
+// Also handles /request/?type=removal&story=[story-id] from Skipper Stories
 (function () {
-  const params = new URLSearchParams(window.location.search);
-  const t = params.get('type');
-  if (t && TYPE_LABELS[t]) selectType(t);
+  const params  = new URLSearchParams(window.location.search);
+  const t       = params.get('type');
+  const storyId = params.get('story');
+
+  if (t && TYPE_LABELS[t]) {
+    selectType(t);
+    // Pre-fill story ID if present
+    if (t === 'removal' && storyId) {
+      const el = document.getElementById('removalStoryId');
+      if (el) el.value = storyId;
+    }
+  }
 })();
 </script>

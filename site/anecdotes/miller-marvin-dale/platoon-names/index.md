@@ -11,6 +11,7 @@ source_short: "SGT Marvin Dale Miller · son's recollection"
 event: ""
 contains:
   - miller-marvin-dale
+  - rosenberg-kenneth
 tagged:
   - weaver-ken
 status: published
@@ -33,7 +34,7 @@ He said nothing further. The conversation ended there.
 
 ---
 
-Marvin was referring to two specific events. The helicopter crash that killed most of Skull Platoon occurred on May 10, 1972 — after Marvin had left Vietnam. His discharge was effective December 2, 1971. He knew about it, which means news of it reached him after his return — most likely through Larry Cate, his only sustained postwar friendship from the unit.
+Marvin was referring to two specific events. The helicopter crash that killed most of Skull Platoon occurred on May 10, 1972 — also killing CPT Kenneth Rosenberg, the Company Commander (Skipper 6) — after Marvin had left Vietnam. His discharge was effective December 2, 1971. He knew about it, which means news of it reached him after his return — most likely through Larry Cate, his only sustained postwar friendship from the unit.
 
 The ambush that destroyed Range Platoon was the engagement of April 20, 1971 — the event that killed three men and wounded many more, documented elsewhere in this archive through multiple firsthand accounts. Marvin was in the unit when it happened. "Range was wiped out by an ambush" is the only direct statement he ever made about that day to his son. He did not repeat it.
 

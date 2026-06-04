@@ -1,12 +1,51 @@
 ---
 slug: contact-fsb-fontaine-1971-04-20
 title: Enemy Contact Near FSB Fontaine
+images:
+  - src: "/media/photos/events/contact-fsb-fontaine-1971-04-20/diagram-positions-noon.jpg"
+    caption: "Platoon positions just after noon, April 20, 1971 (Neal reconstruction). Skull label disputed — see notes."
+    caption_short: "Platoon positions just after noon"
+    credit: "William D. Neal / Michael Maxey (maxey.info)"
+    date: ""
+  - src: "/media/photos/events/contact-fsb-fontaine-1971-04-20/diagram-positions-firefight.jpg"
+    caption: "Platoon positions during the firefight, April 20, 1971 (Neal reconstruction). Skull label disputed — see notes."
+    caption_short: "Platoon positions during the firefight"
+    credit: "William D. Neal / Michael Maxey (maxey.info)"
+    date: ""
+  - src: "/media/photos/events/contact-fsb-fontaine-1971-04-20/topo-map-xuan-loc-suoi-gia-ui.jpg"
+    caption: "Military topographic map annotated to show the Suoi Gia Ui firefight location (circled). Pre-dam — the most reliable source for 1971 stream topography."
+    caption_short: "Annotated topo map — Suoi Gia Ui firefight location"
+    credit: "Michael Maxey (maxey.info)"
+    date: ""
+  - src: "/media/photos/events/contact-fsb-fontaine-1971-04-20/satellite-gia-ray-firefight-site.jpg"
+    caption: "Google Earth view of the Gia Ray area with firefight placemark (~2009). Note: Suoi Gia Ui was subsequently dammed to form Hồ Gia Ui — this image may show post-dam conditions."
+    caption_short: "Satellite view — Gia Ray firefight site"
+    credit: "Google Earth / Michael Maxey (maxey.info)"
+    date: "2009"
 status: published
 type: contact
 date: "1971-04-20"
 date_end: 1971-04-23T00:00:00.000Z
 date_known: true
-location: Near FSB Fontaine, Long Khanh Province, RVN
+location: Suối Gia Ui, Long Khanh Province, RVN
+locations_draft:
+  - label: "Firefight Area — Suối Gia Ui"
+    lat: 10.860500
+    lon: 107.498639
+    note: "Approximate center of firefight area per Maxey account and Google Earth placemark. ~12km SE of Gia Ray village, ~2km north of QL 1."
+  - label: "Stream Crossover / CP Line"
+    lat: 10.860200
+    lon: 107.497500
+    note: "Approximate — where Range crossed to the north bank. Needs re-derivation from Suoi Gia Ui satellite imagery."
+  - label: "Medevac LZ (South Bank)"
+    lat: 10.858500
+    lon: 107.497500
+    note: "Approximate — canopy opening south of stream. Needs re-derivation from Suoi Gia Ui satellite imagery."
+  - label: "NVA Bunker Complex / Ambush Site"
+    lat: 10.860800
+    lon: 107.501500
+    note: "Approximate — north bank, ~400m east of crossover per Neal. Needs re-derivation from Suoi Gia Ui satellite imagery."
+location_precision: "Approximate — center point confirmed from Maxey account and Google Earth placemark (10°51'37.8\"N, 107°29'55.1\"E). Important caveat: Suối Gia Ui was subsequently dammed to form Hồ Gia Ui reservoir. Modern satellite imagery reflects the reservoir, not the 1971 stream course. The pre-dam military topographic map (included in event photos) is the most reliable source for the 1971 stream path, bank topography, and approach routes. Tactical sub-points (crossover, LZ, bunker complex) should be derived from the topo map rather than modern satellite imagery."
 units:
   primary:
     - slug: d-co-2-8-cav
@@ -44,7 +83,7 @@ casualties:
       note: Moved forward from rear of column to assist Dillon; killed covering the withdrawal
   dow:
     - slug: sargent-stan
-      name: PFC Stanton Gerald Sargent
+      name: CPL Stanton Gerald Sargent
       date_wounded: 1971-04-20T00:00:00.000Z
       date_of_death: 1971-04-21T00:00:00.000Z
       note: Severely wounded by Chicom mine; medevaced; died April 21
@@ -112,8 +151,24 @@ open_questions:
       Hall, Collins, and Schneck all performed actions that multiple accounts describe in terms consistent with valor citations. We have found no award documentation for any of them. If you have copies of citations or know what awards were issued for April 20, 1971, please contact us.
   - id: oq-03
     publish: false
+    resolved: true
+    resolved_date: 2026-06-03
     question: |
-      Can the ambush site be mapped? Bacon's description — stream, flat heavily vegetated terrain, north of HWY 1, Long Khanh Province — may be sufficient to identify it on period maps. Check against 1971 topographic maps and aerial imagery at NARA.
+      Can the ambush site be mapped?
+    resolution: |
+      Center point confirmed 2026-06-03 as Suối Gia Ui, Long Khanh Province.
+      Geographic coordinates: 10°51'37.8"N, 107°29'55.1"E (decimal: 10.860500N, 107.498639E).
+      MGRS approx. YS 728014 to YS 745013. Location is ~12km SE of Gia Ray village, ~2km north of QL 1.
+      Source: Maxey account Google Earth placemark corroborated by geographic analysis (June 2026).
+      Note: Previous coordinates (107.560E, derived from Suoi Tầm Bông) were incorrect — that stream is a
+      separate tributary ~6km west feeding into the Suoi Gia Ui basin.
+      Critical caveat: Suối Gia Ui was subsequently dammed to form Hồ Gia Ui reservoir. The 2009 Google Earth
+      image used by Maxey already shows the reservoir, so the dam predates 2009. Construction was almost
+      certainly post-1975 (the area was not under stable government control until the fall of Saigon). Modern
+      satellite imagery shows standing water, not the 1971 stream course. The pre-dam military topographic map
+      in the event photo archive is the only available source for the 1971 stream path, bank topography, and
+      approach routes. Tactical sub-points should be derived from that map, not from modern satellite imagery.
+      Exact dam construction date not yet confirmed.
   - id: oq-04
     publish: false
     question: |
@@ -126,14 +181,43 @@ open_questions:
     publish: false
     question: |
       Wayne Robinson is mentioned by Davis as having given a disputed account of the initial contact. Has his account been collected? Check ASA roster for contact information.
+  - id: oq-08
+    publish: false
+    resolved: partial
+    resolved_date: 2026-06-03
+    question: |
+      The Maxey document (stan-sargent-story.pdf) attributes the flanking movement during the firefight
+      (moving west along the stream, crossing, coming in behind Range) to "Skull Platoon," with diagrams
+      showing Skull on the south bank at the crossover. This conflicted with all other accounts placing
+      Skull as a late-afternoon reinforcement.
+    resolution: |
+      Partially resolved 2026-06-03. Neal confirms Skull was not present at the engagement — they were
+      operating on a separate assignment nearby (location not specified by Neal). Skull's absence is now
+      confirmed from the primary source. The unit labeled "Skull" in the Maxey diagrams and narrative
+      is a misidentification; the flanking unit was Cat's trail squad or a Cat element. The Maxey
+      diagrams and corresponding narrative references to Skull during the firefight should be read as
+      Cat trail squad throughout.
+      Remaining open: Neal has not specified where Skull was operating or how far away. The identity of
+      the Cat element that executed the flanking movement has not been confirmed by name from participant
+      accounts.
+
+  - id: oq-07
+    publish: false
+    question: |
+      What was the fire support base actually called on April 20, 1971? Bacon's deposition uses "FSB Fanning" — the name the base received after the 4/24 crash — when describing events that morning. This has been treated as a retrospective slip, and the record uses "Fontaine" throughout. McGrew's calendar, kept in real time, places a CA to "Fontaine" on April 23, lending that name more authority than either Neal's or Bacon's retrospective accounts. One possibility: if the base was unnamed or informally designated on April 20, Neal may have used the next official name he associated with it (Fanning), and Bacon — writing from Neal's account or from the same recalled frame — may have followed. This remains unresolved. A veteran who was at the base in April 1971 could confirm whether "Fontaine" was the working name during operations.
 archivist_notes:
   created: 2026-05-11T00:00:00.000Z
   session: 16
+  location_research: "Center point confirmed 2026-06-03 as Suoi Gia Ui (10.860500N, 107.498639E) from Maxey account Google Earth placemark and geographic analysis. Previous coordinates (107.560E) were derived from Suoi Tầm Bông — a separate tributary ~6km west — and have been superseded. Suoi Tầm Bông feeds into the Suoi Gia Ui basin northwest of the ambush site (approx. 10°51'54\"N, 107°28'42\"E). Tactical sub-points (crossover, LZ, bunker complex) are pending re-derivation from Suoi Gia Ui satellite imagery."
   sources:
     - 20Apr71_Cap_Neal_Deposition.docx
     - 20Apr71_Stan_Dillon_Deposition.docx
     - davis-kirk-account-042071.docx
     - interviewwithlindamartintranscript.pdf
+    - sargent-stan-silver-star-story.pdf  # Maxey account — contains Neal account, Dillon phone interview (2005),
+                                          # tactical diagrams, and topo/satellite maps. Note: "Skull" label in
+                                          # diagrams and narrative is disputed — working theory is misidentification
+                                          # of Cat's trail squad. See oq-08.
 accounts:
   - bacon-wg-account-042071
 contains:
@@ -151,11 +235,13 @@ contains:
 
 ## Summary
 
-On April 20, 1971, a reconnaissance patrol from Range Platoon, D Company, 2/8 Cavalry walked into an NVA bunker complex near a stream in Long Khanh Province, approximately 1–2 km from FSB Fontaine. The lead elements were ambushed by tree-mounted, command-detonated Chicom mines and heavy automatic weapons fire from the bunkers. Three soldiers — CPL James Cardwell, CPL Danny Drinkard, and CPL Joseph Hall — were killed in action. A fourth, PFC Stanton Sargent, was severely wounded and died the following day. An estimated fifteen soldiers were wounded, including Range Platoon Sergeant SSG Stan Dillon and platoon leader LT Bill Bott.
+On April 20, 1971, D Company, 2/8 Cavalry air-assaulted into an area near Gia Ray, Long Khanh Province. Range Platoon, moving along the Suối Gia Ui stream approximately 12 kilometers southeast of Gia Ray and 2 kilometers north of Highway 1, walked into the fortified base camp of the 83rd NVA rear service unit and its security detachment. The lead elements — CPL James Cardwell and CPL Danny Drinkard walking point — were killed instantly by tree-mounted, command-detonated Chicom claymore mines. Heavy automatic weapons fire from bunkers with six feet of mud and log overhead cover pinned the platoon. Range suffered nearly 90% casualties: three killed, approximately eighteen wounded, with only three men uninjured.
 
-The surviving elements of Range Platoon withdrew across the stream under fire. Cat Platoon fired from the south bank to hold enemy attention while Range extracted its wounded. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered in a combat assault on April 23.
+CPL Joseph Hall moved forward to assist the wounded and was killed. With SSG Stan Dillon, the platoon sergeant, down with multiple wounds, CPL Stanton Sargent took over the M-60 machine gun and held the enemy at bay with sustained fire while wounded soldiers were evacuated across the stream. Company Commander CPT William Neal later recalled hearing the M-60 and thinking, "I hoped it was one of ours." Sargent was struck by shrapnel from a Chicom claymore and was medevacked unconscious. He died the following day. Four members of Range Platoon were awarded the Silver Star for their actions: Sargent, SSG Dillon, and the two men on the second M-60.
 
-The night of April 20–21 was spent in a defensive perimeter east of the bunker complex, with continuous artillery fire directed through the night by Capt. Neal and acting FO SGT Steve Kahnke. Skull Platoon was choppered in to reconstitute D Company's strength. The event directly precipitated the helicopter crash four days later that killed pilot CW2 Martin Fanning, for whom the next FSB was named.
+The surviving elements of Range Platoon withdrew across the stream under fire. The terrain compounded every difficulty: the north bank of Suối Gia Ui is significantly higher than the south, a product of centuries of drainage off Núi Chứa Chan cutting a recessed channel into the rising ground. The 83rd NVA had built their bunker complex into this elevated reverse slope, giving them direct downward fire onto the stream crossing and the south bank. Cat Platoon on the lower south bank was effectively firing straight up into a steep earthen wall; their rounds hit the bank face while the enemy fired down from prepared positions on the lip above. Cat Platoon maintained suppressing fire from the south bank, but the elevation differential meant the direct fire support Range most needed could not reach the bunkers. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered in a combat assault on April 23.
+
+The night of April 20–21 was spent in a defensive perimeter east of the bunker complex, with continuous artillery fire directed through the night by Capt. Neal and acting FO SGT Steve Kahnke. Skull Platoon was choppered in as a late-afternoon reinforcement to reconstitute D Company's strength. The event directly precipitated the helicopter crash four days later that killed pilot CW2 Martin Fanning, for whom the next FSB was named.
 
 ## Context and Contested Details
 
@@ -166,3 +252,9 @@ The night of April 20–21 was spent in a defensive perimeter east of the bunker
 **Contested — Neal's position during the firefight:** Davis states (in a section redacted from his published account) that Neal and Cat Platoon remained on the south bank throughout the firefight and provided no direct support to Range. Neal's own account describes actively managing the withdrawal, directing medevacs, and ordering Cat's trail squad across the stream to flank behind Range. These accounts are not fully reconciled. Davis's characterization is retained in the archive repository but is not part of his published account.
 
 **Sargent DOW date:** Davis states Sargent "died the next day." The Linda Martin oral history (widow's testimony, Angelo State University, 2018) confirms April 21 as the date of death. The Honor Roll entry for Sargent should reflect April 21.
+
+**Stream name — resolved as Suối Gia Ui:** The firefight took place on Suối Gia Ui, not Suối Tầm Bông. Geographic analysis (June 2026) confirms these are two distinct streams: Suối Gia Ui is the main stream flowing east out of Chứa Chan Mountain, running north of QL 1, at approximately 10°51'37.8"N, 107°29'55.1"E. Suối Tầm Bông is a smaller tributary that feeds into the Suoi Gia Ui basin from the northwest, located approximately 6km west at 10°51'54"N, 107°28'42"E. SSG Dillon's 2005 interview and the Maxey account both use Suoi Gia Ui, which aligns with Neal's directional descriptions. The record and all coordinates have been updated accordingly.
+
+**Terrain — north bank elevation:** The north bank of Suối Gia Ui is significantly higher than the south bank at the firefight location. This asymmetry is the result of eastward stream flow combined with drainage off Núi Chứa Chan building upslope ground to the north. The 83rd NVA rear service unit exploited this by constructing their bunker complex into the elevated reverse slope of the north bank, with firing positions looking directly down onto the stream crossing and south bank. For Cat Platoon on the south bank, this meant firing upward into a steep earthen wall — rounds hit the bank face rather than the bunkers. This terrain feature is the primary reason Cat's direct fire could not suppress the NVA position from the south, and why the withdrawal required a lateral flanking movement to find a break in the high bank. This also directly supports the oq-08 working theory: the crossing action attributed to Skull in the Maxey account (moving west along the stream to find a crossing point) is precisely the kind of maneuver Cat's trailing squad would have had to execute to get across that high-banked stream.
+
+**Skull Platoon's role — Maxey account vs. other sources:** The Maxey document attributes a crossing action to Skull Platoon during the firefight, with diagrams showing Skull on the south bank at the crossover. This conflicts with all other accounts, which place Skull as a late-afternoon reinforcement choppered in after the engagement. Working theory: Maxey (or his source) misidentified Cat's trail squad as Skull. The crossing action described in the Maxey text — moving west along the stream and coming in behind Range — is consistent with Neal's account of Cat's trail squad. The Maxey diagrams are included in the event photo archive with this caveat noted in the captions. See oq-08.

@@ -665,7 +665,7 @@ body.status-mia .prof-photo-frame {
 .tl-dot.combat { border-color: var(--red); background: var(--red); }
 .tl-dot.move { border-color: var(--ink2); background: var(--ink2); }
 .tl-dot.personal { border-color: var(--y2); background: var(--y2); }
-.tl-date { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
+.tl-date { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--ink2); margin-bottom: 5px; }
 .tl-hed { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--ink); margin-bottom: 6px; }
 .tl-body { font-family: 'Crimson Pro', serif; font-size: 17px; line-height: 1.8; color: var(--dim); max-width: 680px; }
 .tl-tag {
@@ -873,6 +873,20 @@ body.status-mia .prof-photo-frame {
   color: var(--ink2);
   line-height: 1.2;
 }
+
+.alongside-row-list { display: flex; flex-direction: column; margin-top: 0.25rem; }
+.plt-badge {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 2px 8px;
+}
+.plt-cat   { background: #E1F5EE; color: #0F6E56; }
+.plt-range { background: #E6F1FB; color: #185FA5; }
+.plt-recon { background: #FAEEDA; color: #854F0B; }
+.plt-hq    { background: var(--pg2); color: var(--dim); }
+.plt-other { background: var(--pg2); color: var(--dim); }
 /* ── Tab overrides ─────────────────────────── */
 #tab-documents .section-title {
   color: var(--ink) !important;
@@ -933,7 +947,45 @@ body.status-mia .prof-photo-frame {
   font-family: 'Crimson Pro', serif;
   font-size: 18px;
   color: rgba(240,237,216,0.6);
-  margin-bottom: 22px;
+  margin-bottom: 10px;
+}
+.evt-map-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--y);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.evt-map-link:hover { text-decoration: underline; }
+.evt-map-points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.evt-map-point-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--y);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.evt-map-point-link:hover .evt-map-point-label { text-decoration: underline; }
+.evt-map-point-label { flex: 1; }
+.evt-map-point-arrow { opacity: 0.6; font-size: 11px; }
+.evt-coords-note {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  color: rgba(240,237,216,0.35);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
 }
 .doc-hero-link {
   color: var(--y);
@@ -2164,4 +2216,596 @@ html { overflow-x: hidden; }
 @media (max-width: 480px) {
   .req-type-grid { grid-template-columns: 1fr; }
 }
+
+/* ── ACCOUNT SURVEY MODAL ──────────────────────── */
+.survey-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(10,10,8,0.88);
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.survey-modal.open { display: flex; }
+
+.sv-shell {
+  background: var(--pg);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--y);
+  width: 100%; max-width: 640px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+
+.sv-header {
+  background: var(--blk);
+  padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.sv-header-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--y);
+}
+.sv-close {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  padding: 4px 0;
+}
+.sv-close:hover { color: rgba(255,255,255,0.85); }
+
+#survey-card {
+  overflow-y: auto;
+  flex: 1;
+  padding: 28px 28px 0;
+}
+
+.sv-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 1px;
+  color: var(--ink); margin-bottom: 4px;
+}
+.sv-card-meta {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 20px;
+}
+.sv-card-body { padding-bottom: 8px; }
+.sv-card-footer {
+  padding: 16px 28px 24px;
+  border-top: 1px solid var(--rule);
+  display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
+  background: var(--pg);
+  position: sticky; bottom: 0;
+}
+
+.sv-intro-text {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px; line-height: 1.65;
+  color: var(--ink2); margin-bottom: 24px;
+}
+
+/* Questions */
+.sv-question {
+  margin-bottom: 20px;
+}
+.sv-question-text {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px; line-height: 1.5;
+  color: var(--ink); margin-bottom: 8px;
+}
+.sv-helper {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+  color: var(--dim); margin-bottom: 8px; font-style: italic;
+}
+.sv-follow-up-label { margin-bottom: 6px; }
+
+.sv-field-group { margin-bottom: 16px; }
+.sv-label {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 6px;
+}
+.sv-optional {
+  font-weight: 400; text-transform: none; letter-spacing: 0;
+  color: var(--rule); font-size: 11px;
+}
+.sv-privacy-note {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+  color: var(--dim); margin-top: 6px; font-style: italic;
+  letter-spacing: 0;
+}
+.sv-contact-needed {
+  border-top: 2px solid var(--y);
+  padding-top: 14px; margin-top: 4px;
+}
+.sv-required {
+  font-weight: 400; text-transform: none; letter-spacing: 0;
+  color: var(--red); font-size: 11px;
+}
+.sv-field-error {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+  color: var(--red); margin-top: 5px; min-height: 0;
+}
+.sv-input {
+  width: 100%;
+  background: white; border: 1px solid var(--rule2);
+  padding: 9px 12px;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink);
+  outline: none;
+}
+.sv-input:focus { border-color: var(--y2); }
+.sv-textarea {
+  width: 100%; resize: vertical;
+  background: white; border: 1px solid var(--rule2);
+  padding: 9px 12px;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink); line-height: 1.5;
+  outline: none;
+}
+.sv-textarea:focus { border-color: var(--y2); }
+
+.sv-radio-group, .sv-checkbox-group {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.sv-radio-label, .sv-check-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink); cursor: pointer; line-height: 1.4;
+}
+.sv-radio-label input, .sv-check-label input {
+  margin-top: 3px; flex-shrink: 0;
+  accent-color: var(--y2);
+}
+.sv-other-input { margin-top: 6px; }
+
+/* Skip bar */
+.sv-skip-bar {
+  padding: 12px 28px 16px;
+  border-top: 1px solid var(--rule2);
+}
+.sv-btn-skip {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim); padding: 0; text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sv-btn-skip:hover { color: var(--ink2); }
+
+.sv-skip-reasons {
+  margin-top: 12px;
+  padding: 16px;
+  background: var(--pg2); border: 1px solid var(--rule);
+}
+.sv-skip-reasons-label {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 10px;
+}
+.sv-btn-skip-confirm {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--ink2); color: var(--y);
+  border: none; padding: 8px 16px; cursor: pointer; margin-right: 10px;
+}
+.sv-btn-skip-confirm:hover { background: var(--blk); }
+.sv-btn-skip-cancel {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--dim);
+}
+
+/* Buttons */
+.sv-btn-primary {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--y); color: var(--blk);
+  border: none; padding: 11px 24px; cursor: pointer;
+}
+.sv-btn-primary:hover { background: var(--y2); }
+.sv-btn-primary:disabled {
+  background: var(--rule); color: var(--dim); cursor: default;
+}
+
+/* Error / thanks */
+.sv-error {
+  padding: 10px 28px;
+  background: var(--red-pale); border-top: 2px solid var(--red);
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+  color: var(--red);
+}
+.sv-thanks {
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 17px;
+  line-height: 1.65; color: var(--ink2);
+}
+.sv-thanks p { margin-bottom: 12px; }
+
+/* Trigger button on event page */
+.evt-survey-btn {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--y); color: var(--blk);
+  border: none; padding: 10px 20px; cursor: pointer;
+  margin-top: 20px;
+}
+.evt-survey-btn:hover { background: var(--y2); }
+
+@media (max-width: 640px) {
+  .survey-modal { padding: 0; align-items: flex-end; }
+  .sv-shell { max-height: 96vh; }
+}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+
+/* ── SKIPPER STORIES ─────────────────────────────────────────────────────── */
+
+.ss-hero {
+  background: var(--blk);
+  border-bottom: 3px solid var(--y);
+  padding: 48px 40px 40px;
+}
+.ss-hero-inner { max-width: 900px; margin: 0 auto; }
+.ss-dateline {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 12px;
+}
+.ss-hed {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px; letter-spacing: 3px; color: white;
+  line-height: 1; margin-bottom: 14px;
+}
+.ss-hed span { color: var(--y); }
+.ss-deck {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 20px; color: rgba(255,255,255,0.7); line-height: 1.5;
+}
+
+.ss-body {
+  background: var(--pg);
+  min-height: 60vh;
+}
+
+.ss-intro {
+  max-width: 900px; margin: 0 auto;
+  padding: 32px 40px 0;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 18px; color: var(--ink2); line-height: 1.65;
+}
+
+/* ── TABS ── */
+.ss-tabs {
+  max-width: 900px; margin: 0 auto;
+  padding: 28px 40px 0;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  border-bottom: 2px solid var(--rule);
+}
+.ss-tab {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--dim);
+  background: transparent; border: 1px solid var(--rule);
+  padding: 8px 18px; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  position: relative;
+}
+.ss-tab:hover { color: var(--ink2); border-color: var(--rule2); }
+.ss-tab.active {
+  background: var(--blk); color: var(--y);
+  border-color: var(--blk);
+}
+
+/* ── PANELS ── */
+.ss-panel {
+  max-width: 900px; margin: 0 auto;
+  padding: 0 40px 60px;
+  display: none;
+}
+.ss-panel.active { display: block; }
+.ss-panel-description {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; color: var(--dim); letter-spacing: 0.5px;
+  padding: 20px 0 24px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 28px;
+}
+
+/* ── PROMPT CARDS ── */
+.ss-prompts {
+  display: flex; flex-direction: column; gap: 16px;
+  margin-bottom: 48px;
+}
+.ss-prompt-card {
+  background: white;
+  border: 1px solid var(--rule2);
+  padding: 20px 24px;
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.ss-prompt-text {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 18px; color: var(--ink); line-height: 1.55;
+  flex: 1;
+}
+.ss-share-btn {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--y); color: var(--blk);
+  border: none; padding: 10px 18px; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0; align-self: center;
+  transition: background 0.15s;
+}
+.ss-share-btn:hover { background: var(--y2); }
+
+/* ── PUBLISHED STORIES ── */
+.ss-stories-section { margin-top: 8px; }
+.ss-stories-hed {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 20px;
+  border-top: 2px solid var(--rule);
+  padding-top: 24px;
+}
+.ss-story-group { margin-bottom: 36px; }
+.ss-story-group-prompt {
+  font-family: 'Crimson Pro', Georgia, serif; font-style: italic;
+  font-size: 16px; color: var(--dim); line-height: 1.5;
+  margin-bottom: 14px;
+  padding-left: 14px;
+  border-left: 2px solid var(--rule);
+}
+.ss-story-card {
+  background: white; border: 1px solid var(--rule2);
+  padding: 20px 24px; margin-bottom: 12px;
+}
+.ss-story-response {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px; color: var(--ink); line-height: 1.65;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+}
+.ss-story-meta {
+  display: flex; gap: 14px; align-items: baseline;
+  margin-bottom: 10px;
+}
+.ss-story-name {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 13px; color: var(--ink2);
+}
+.ss-story-detail {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; color: var(--dim);
+}
+.ss-story-footer {
+  display: flex; align-items: center; gap: 20px;
+  border-top: 1px solid var(--rule2); padding-top: 10px;
+}
+.ss-share-version-btn {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--y); color: var(--blk);
+  border: none; padding: 7px 14px; cursor: pointer;
+  transition: background 0.15s;
+}
+.ss-share-version-btn:hover { background: var(--y2); }
+.ss-story-removal {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; color: var(--dim);
+  text-decoration: underline; text-underline-offset: 3px;
+  margin-left: auto;
+}
+.ss-story-removal:hover { color: var(--ink2); }
+
+/* ── MODAL ── */
+.ss-modal-overlay {
+  position: fixed; inset: 0; z-index: 800;
+  background: rgba(10,10,8,0.72);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.ss-modal {
+  background: var(--pg);
+  border-top: 4px solid var(--y);
+  width: 100%; max-width: 640px;
+  position: relative;
+  padding-bottom: 32px;
+}
+.ss-modal-close {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 2px; cursor: pointer;
+  font-size: 18px; color: rgba(255,255,255,0.85);
+  padding: 4px 10px; line-height: 1; z-index: 1;
+}
+.ss-modal-close:hover { background: rgba(255,255,255,0.25); color: #fff; }
+.ss-modal-header {
+  background: var(--blk);
+  padding: 24px 28px 20px;
+  margin-bottom: 0;
+}
+.ss-modal-eyebrow {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--y); margin-bottom: 10px;
+}
+.ss-modal-prompt-display {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 19px; color: rgba(255,255,255,0.9); line-height: 1.5;
+}
+
+/* ── FORM ── */
+.ss-form { padding: 28px 28px 0; }
+.ss-field-row { margin-bottom: 18px; }
+.ss-field-row--two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ss-field { display: flex; flex-direction: column; gap: 6px; }
+.ss-label {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink2);
+}
+.ss-req { color: var(--red); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 12px; }
+.ss-opt { color: var(--dim); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; }
+.ss-input, .ss-select {
+  background: white; border: 1px solid var(--rule2);
+  padding: 9px 12px;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink); outline: none; width: 100%;
+}
+.ss-input:focus, .ss-select:focus { border-color: var(--y2); }
+.ss-textarea {
+  background: white; border: 1px solid var(--rule2);
+  padding: 9px 12px; resize: vertical;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink); line-height: 1.5; outline: none; width: 100%;
+}
+.ss-textarea:focus { border-color: var(--y2); }
+.ss-anon-check {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+  color: var(--dim); cursor: pointer; margin-top: 6px;
+}
+.ss-anon-check input { accent-color: var(--y2); }
+.ss-radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.ss-radio-label {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Crimson Pro', Georgia, serif; font-size: 16px;
+  color: var(--ink); cursor: pointer;
+}
+.ss-radio-label input { accent-color: var(--y2); flex-shrink: 0; }
+.ss-form-actions {
+  padding: 24px 28px 0;
+  display: flex; align-items: center; gap: 20px;
+}
+.ss-submit-btn {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--y); color: var(--blk);
+  border: none; padding: 12px 26px; cursor: pointer;
+  transition: background 0.15s;
+}
+.ss-submit-btn:hover { background: var(--y2); }
+.ss-submit-btn:disabled { background: var(--rule); color: var(--dim); cursor: default; }
+.ss-cancel-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--dim);
+  text-decoration: underline; text-underline-offset: 3px; padding: 0;
+}
+.ss-cancel-btn:hover { color: var(--ink2); }
+
+/* ── SUCCESS / ERROR ── */
+.ss-success {
+  padding: 40px 28px; text-align: center;
+}
+.ss-success-icon {
+  font-size: 32px; color: var(--y2); margin-bottom: 12px;
+}
+.ss-success-hed {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; letter-spacing: 2px; color: var(--ink);
+  margin-bottom: 10px;
+}
+.ss-success-body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px; color: var(--ink2); line-height: 1.6;
+  margin-bottom: 16px;
+}
+.ss-success-removal {
+  margin-bottom: 24px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--dim);
+}
+.ss-removal-link { color: var(--dim); text-decoration: underline; text-underline-offset: 3px; }
+.ss-removal-link:hover { color: var(--ink2); }
+.ss-error {
+  padding: 20px 28px;
+  background: var(--red-pale); border-top: 2px solid var(--red);
+}
+.ss-error-msg {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+  color: var(--red); margin-bottom: 16px;
+}
+
+@media (max-width: 700px) {
+  .ss-hero { padding: 32px 20px 28px; }
+  .ss-hed { font-size: 40px; }
+  .ss-intro { padding: 24px 20px 0; }
+  .ss-tabs { padding: 20px 20px 0; }
+  .ss-panel { padding: 0 20px 40px; }
+  .ss-prompt-card { flex-direction: column; gap: 14px; }
+  .ss-share-btn { align-self: flex-start; }
+  .ss-field-row--two { grid-template-columns: 1fr; }
+  .ss-modal-overlay { padding: 0; align-items: flex-end; }
+  .ss-modal { max-height: 96vh; overflow-y: auto; }
+  .ss-form { padding: 20px 20px 0; }
+  .ss-form-actions { padding: 20px 20px 0; }
+  .ss-modal-header { padding: 20px 20px 16px; }
+}
+
+
+/* ── OVERVIEW: Recently Added side panel ─────────────────────────────────── */
+/* Cards are dark on yellow — flipped to dark background with light text */
+
+.ov-recent-section {
+  margin-bottom: 18px;
+}
+.ov-recent-type {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.ov-recent-card {
+  display: block;
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  background: var(--blk2);
+  border: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ov-recent-card:hover {
+  background: #1a1a16;
+  border-color: rgba(255,255,255,0.12);
+}
+.ov-recent-card-name {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 15px; color: rgba(255,255,255,0.92);
+  margin-bottom: 3px;
+}
+.ov-recent-card-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; color: rgba(255,255,255,0.55);
+}
+.ov-recent-card-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  margin-top: 4px;
+}
+/* Contact variant */
+.ov-recent-card--contact { border-color: rgba(245,196,0,0.15); }
+.ov-recent-card--contact:hover { border-color: rgba(245,196,0,0.3); }
+.ov-recent-card-contact-note {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; color: var(--y);
+  margin-top: 5px;
+}
+/* Story variant */
+.ov-recent-card--story { border-color: rgba(255,255,255,0.05); }
+.ov-recent-card-story-prompt {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--y2); margin-bottom: 5px;
+}
+.ov-recent-card-story-preview {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 15px; color: rgba(255,255,255,0.75);
+  line-height: 1.5; margin-bottom: 5px;
+}

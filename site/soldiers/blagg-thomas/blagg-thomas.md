@@ -16,7 +16,7 @@ nickname:
 birth_year: 
 
 # ── RANK & ASSIGNMENT ─────────────────────────────
-rank: LTC
+rank: COL     # Kutter speech (2021) and memorial booklet both use "Col. Tom Blagg"; LTC is typical Vietnam-era battalion commander rank — see notes
 mos: 
 platoon: HQ
 
@@ -49,6 +49,16 @@ service_record:
     location: 
     date: 
   assignments:
+    - type: other
+      label: "Battalion Commander, 2nd Battalion, 8th Cavalry"
+      unit: "2nd Battalion, 8th Cavalry (Airmobile), 1st Cavalry Division"
+      location: "Vietnam — Firebase Jefferies area"
+      from:
+      to:
+      notes: >
+        Commander at time of Nui Ba Mountains contact (Oct 21, 1971). When medevac refused
+        to fly due to ongoing firefight, flew his own helicopter to extract PFC Makowski's body.
+        Sources: Kutter commemoration speech (2021), memorial booklet (2021).
 
 # ── CONTACT ───────────────────────────────────────
 # Phone, email, and address live in _private/contacts.json (gitignored).
@@ -91,11 +101,17 @@ documents:
 brothers:
 
 related_events:
+  - contact-nui-ba-1971-10-21
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 
-last_updated: 2026-05-22
+last_updated: 2026-05-27
 contributed_by: 
-notes: 
+notes: >
+  Rank: Both the Kutter speech (2021) and the memorial booklet use "Col. Tom Blagg."
+  Vietnam-era battalion commanders were typically LTC. COL may reflect his final rank or
+  a senior assignment. Needs verification against service records or NPRC.
+  Kutter served 30 years (per his 2021 speech) — Blagg's career length unknown.
+  Title field: "first_name: Thomas" but known as "Tom" — nickname should be added when confirmed.
 
 ---

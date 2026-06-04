@@ -123,7 +123,7 @@ archivist_notes:
   last_updated: 2026-05-22
   session: 18
   sources:
-    - garvin-james-account-042471 (not yet created as document record)
+    - garvin-jim-account-042471 (not yet created as document record)
     - "VHPA incident record 710424101ACD — https://www.vhpa.org/KIA/incident/710424101ACD.HTM"
     - McGrew calendar — April 24, 1971 entry: "Downed chopper"
   mccoy_thread: >

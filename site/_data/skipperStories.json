@@ -1,0 +1,236 @@
+{
+  "tabs": [
+    {
+      "id": "wtr",
+      "label": "WTR?",
+      "title": "What the Ruck?",
+      "description": "Gear, food, load, the physical daily grind.",
+      "prompts": [
+        {
+          "id": "wtr-1",
+          "text": "What was the one non-issue item that went in your ruck no matter what? The thing that weighed too much but wasn't negotiable."
+        },
+        {
+          "id": "wtr-2",
+          "text": "What was your go-to C-ration combination, and what did you add to make it edible? What was the pack you tried to trade away the moment you saw it?"
+        },
+        {
+          "id": "wtr-3",
+          "text": "What did you eventually figure out to drop from your load — and what did you add that wasn't on any issued list?"
+        },
+        {
+          "id": "wtr-4",
+          "text": "What piece of issued gear did everyone in your platoon quietly modify, and how?"
+        },
+        {
+          "id": "wtr-5",
+          "text": "Where and when did you get your best sleep in Vietnam?"
+        },
+        {
+          "id": "wtr-6",
+          "text": "What was the first thing you did when you got back to the firebase after a patrol?"
+        }
+      ]
+    },
+    {
+      "id": "cast",
+      "label": "Cast & Crew",
+      "title": "Cast & Crew",
+      "description": "Nicknames, personalities, characters, unit dynamics.",
+      "prompts": [
+        {
+          "id": "cast-1",
+          "text": "What was your nickname in the unit? Who gave it to you, and does the story behind it still track?"
+        },
+        {
+          "id": "cast-2",
+          "text": "Who was the guy in your platoon that everyone went to when something needed fixing — gear, a situation, a morale problem? What did he do that nobody else could?"
+        },
+        {
+          "id": "cast-3",
+          "text": "Who was the character — the one guy whose stories always got told at reunions? What's the one you'd tell?"
+        },
+        {
+          "id": "cast-4",
+          "text": "Who surprised you? Someone who seemed one way and turned out to be completely different when it mattered."
+        },
+        {
+          "id": "cast-5",
+          "text": "Who kept everyone loose when things got heavy? What did he do?"
+        },
+        {
+          "id": "cast-6",
+          "text": "Is there someone from your time with D Company you've thought about over the years and never been able to track down?"
+        }
+      ]
+    },
+    {
+      "id": "mail",
+      "label": "Mail Call",
+      "title": "Mail Call",
+      "description": "Letters, care packages, cassette tapes, the connection to home.",
+      "prompts": [
+        {
+          "id": "mail-1",
+          "text": "What was the one thing you requested most in your letters home?"
+        },
+        {
+          "id": "mail-2",
+          "text": "Do you remember a specific letter, care package, or cassette tape that shifted the mood of your squad or platoon when it arrived?"
+        },
+        {
+          "id": "mail-3",
+          "text": "Who was the best correspondent — the person back home whose letters everyone ended up hearing parts of?"
+        },
+        {
+          "id": "mail-4",
+          "text": "What did you write home about, and what did you leave out?"
+        },
+        {
+          "id": "mail-5",
+          "text": "Did you ever get something in a care package that made no sense for where you were — something that made you laugh?"
+        },
+        {
+          "id": "mail-6",
+          "text": "Joe Kint received formal English assignments from an 8th grade class throughout his tour. Other soldiers in his unit wanted to read them. Did you receive anything unexpected that became something the whole platoon shared?"
+        },
+        {
+          "id": "mail-7",
+          "text": "What did mail call feel like on a day you didn't get anything?"
+        }
+      ]
+    },
+    {
+      "id": "locals",
+      "label": "The Locals",
+      "title": "The Locals",
+      "description": "JoJo, Vietnamese civilians encountered, interpreters, Kit Carson scouts, children, animals adopted or encountered in the field.",
+      "prompts": [
+        {
+          "id": "locals-1",
+          "text": "JoJo was a monkey who lived at one of the D Company firebases. Do you remember JoJo — how he came to be there, how the men treated him, what happened to him?"
+        },
+        {
+          "id": "locals-2",
+          "text": "Were there other animals — at any firebase or on any operation — that the unit adopted or that just showed up and stayed?"
+        },
+        {
+          "id": "locals-3",
+          "text": "Did you have an interpreter or Kit Carson scout attached to your unit? What do you remember about him?"
+        },
+        {
+          "id": "locals-4",
+          "text": "Did you interact with Vietnamese civilians — in villages, on patrol, at the wire — in a way that stayed with you?"
+        },
+        {
+          "id": "locals-5",
+          "text": "Children gathered near the firebases. Do you remember a specific interaction with a Vietnamese child?"
+        },
+        {
+          "id": "locals-6",
+          "text": "What surprised you most about the Vietnamese people you encountered — something that didn't match what you expected going in?"
+        }
+      ]
+    },
+    {
+      "id": "ao",
+      "label": "The AO",
+      "title": "The AO",
+      "description": "FSB life, the bush, field postings, operational terrain.",
+      "prompts": [
+        {
+          "id": "ao-1",
+          "text": "Which firebase did you spend the most time on? What do you remember most about it — the layout, the smell, the sounds at night?"
+        },
+        {
+          "id": "ao-2",
+          "text": "What did the jungle sound like before first light?"
+        },
+        {
+          "id": "ao-3",
+          "text": "What was the strangest or most unexpected thing you came across on patrol?"
+        },
+        {
+          "id": "ao-4",
+          "text": "Every firebase had its own personality. What made yours different from the others you passed through?"
+        },
+        {
+          "id": "ao-5",
+          "text": "Relay Mountain had a reputation. What do you remember about being posted there?"
+        },
+        {
+          "id": "ao-6",
+          "text": "What did it feel like to come back to the wire after a long patrol?"
+        },
+        {
+          "id": "ao-7",
+          "text": "What's something about operating in that terrain that you've never been able to fully explain to someone who wasn't there?"
+        }
+      ]
+    },
+    {
+      "id": "rr",
+      "label": "R&R",
+      "title": "R&R",
+      "description": "Vũng Tàu, the rear at Biên Hòa, in-country and out-of-country R&R.",
+      "prompts": [
+        {
+          "id": "rr-1",
+          "text": "Where did you go for R&R, and what's the first thing you did when you got there?"
+        },
+        {
+          "id": "rr-2",
+          "text": "What do you remember about Vũng Tàu — the beach, the strip, a specific bar or meal?"
+        },
+        {
+          "id": "rr-3",
+          "text": "What was the hardest part about going back to the field after R&R?"
+        },
+        {
+          "id": "rr-4",
+          "text": "What did the rear feel like after time in the bush — did it ever feel normal, or always slightly wrong?"
+        },
+        {
+          "id": "rr-5",
+          "text": "Did anything happen on R&R that you've dined out on ever since?"
+        }
+      ]
+    },
+    {
+      "id": "realworld",
+      "label": "The Real World",
+      "title": "The Real World",
+      "description": "Going home, DEROS, things missed while away, the public mood, reentry.",
+      "prompts": [
+        {
+          "id": "rw-1",
+          "text": "What's the one thing that happened back home while you were gone that you still feel like you missed — a championship, a birth, a moment that everyone else has as a shared memory and you have as a news clipping?"
+        },
+        {
+          "id": "rw-2",
+          "text": "What was the first thing you did, ate, or saw when you got back stateside?"
+        },
+        {
+          "id": "rw-3",
+          "text": "What surprised you most about coming home — from people, from the country, from your own reaction to ordinary things?"
+        },
+        {
+          "id": "rw-4",
+          "text": "Did anyone say something to you when you got back that you've never forgotten — good or bad?"
+        },
+        {
+          "id": "rw-5",
+          "text": "What music, film, or news had piled up while you were gone that hit you differently because of where you'd been?"
+        },
+        {
+          "id": "rw-6",
+          "text": "What felt normal right away, and what felt permanently wrong?"
+        },
+        {
+          "id": "rw-7",
+          "text": "How long before you felt like you were actually home — not just back?"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+name: Sync photos to R2
+
+# Runs whenever photo files are pushed to any branch.
+# Only image files get uploaded — index.md files are skipped by the script.
+# Requires CLOUDFLARE_API_TOKEN to be set as a repository secret:
+#   GitHub → repo Settings → Secrets and variables → Actions → New repository secret
+
+on:
+  # Runs automatically whenever photo files are pushed
+  push:
+    paths:
+      - 'site/soldiers/**/photos/**'
+
+  # Also triggerable manually from GitHub.com → Actions tab → "Run workflow"
+  workflow_dispatch:
+
+jobs:
+  sync-photos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler@4
+
+      - name: Upload photos to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: bash ./scripts/upload-photos-v2.sh --remote

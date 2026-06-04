@@ -107,7 +107,7 @@
   <div class="tab" data-tab="documents">Documents</div>
   <div class="tab" data-tab="letters">Letters</div>
   <div class="tab" data-tab="service">Service record</div>
-  <div class="tab" data-tab="external" style="display:none">External resources</div>
+  {% if links and (links.wall or (links.other and links.other.length)) %}<div class="tab" data-tab="external">External resources</div>{% endif %}
 </div>
 
 {# ── TAB: TIMELINE ── #}
@@ -453,29 +453,29 @@
           <span class="alongside-tier-heading">Same platoon</span>
           <span class="alongside-count">{{ t2.length }}</span>
         </summary>
-        <div class="alongside-row-list">
+        <table class="rtable">
+          <thead><tr><th>Name</th><th>Platoon</th><th>Notes</th></tr></thead>
+          <tbody>
           {% for rel in t2 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
-            <a class="alongside-row" href="/soldiers/{{ rel.slug }}/">
-              <div class="alongside-row-avatar">
-                {% if op and op.profile_photo %}
-                  <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
-                       alt="" style="width:100%;height:100%;object-fit:cover;"
-                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                  <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
-                {% else %}
-                  {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+            {% set platoonKey = op.platoon | lower if op.platoon else "" %}
+            <tr>
+              <td><div class="rname"><a href="/soldiers/{{ rel.slug }}/">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.last_name }}, {{ op.first_name }}{% else %}{{ rel.slug }}{% endif %}</a></div></td>
+              <td>
+                {% if op and op.platoon %}
+                  {% if "cat" in platoonKey %}<span class="plt-badge plt-cat">Cat</span>
+                  {% elif "range" in platoonKey %}<span class="plt-badge plt-range">Range</span>
+                  {% elif "recon" in platoonKey %}<span class="plt-badge plt-recon">Recon</span>
+                  {% elif "hq" in platoonKey or "skipper" in platoonKey %}<span class="plt-badge plt-hq">HQ</span>
+                  {% else %}<span class="plt-badge plt-other">{{ op.platoon }}</span>{% endif %}
                 {% endif %}
-              </div>
-              <div class="alongside-row-info">
-                <div class="alongside-row-name">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}</div>
-                {% if op and op.platoon %}<div class="alongside-row-meta">{{ op.platoon }}</div>{% endif %}
-                {% if rel.notes %}<div class="alongside-row-note">{{ rel.notes }}</div>{% endif %}
-              </div>
-            </a>
+              </td>
+              <td>{{ rel.notes if rel.notes else "" }}</td>
+            </tr>
           {% endfor %}
-        </div>
+          </tbody>
+        </table>
       </details>
     {% endif %}
 
@@ -486,29 +486,29 @@
           <span class="alongside-tier-heading">Also in the company</span>
           <span class="alongside-count">{{ t3.length }}</span>
         </summary>
-        <div class="alongside-row-list">
+        <table class="rtable">
+          <thead><tr><th>Name</th><th>Platoon</th><th>Notes</th></tr></thead>
+          <tbody>
           {% for rel in t3 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
-            <a class="alongside-row" href="/soldiers/{{ rel.slug }}/">
-              <div class="alongside-row-avatar">
-                {% if op and op.profile_photo %}
-                  <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
-                       alt="" style="width:100%;height:100%;object-fit:cover;"
-                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                  <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
-                {% else %}
-                  {% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}
+            {% set platoonKey = op.platoon | lower if op.platoon else "" %}
+            <tr>
+              <td><div class="rname"><a href="/soldiers/{{ rel.slug }}/">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.last_name }}, {{ op.first_name }}{% else %}{{ rel.slug }}{% endif %}</a></div></td>
+              <td>
+                {% if op and op.platoon %}
+                  {% if "cat" in platoonKey %}<span class="plt-badge plt-cat">Cat</span>
+                  {% elif "range" in platoonKey %}<span class="plt-badge plt-range">Range</span>
+                  {% elif "recon" in platoonKey %}<span class="plt-badge plt-recon">Recon</span>
+                  {% elif "hq" in platoonKey or "skipper" in platoonKey %}<span class="plt-badge plt-hq">HQ</span>
+                  {% else %}<span class="plt-badge plt-other">{{ op.platoon }}</span>{% endif %}
                 {% endif %}
-              </div>
-              <div class="alongside-row-info">
-                <div class="alongside-row-name">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.first_name }} {{ op.last_name }}{% else %}{{ rel.slug }}{% endif %}</div>
-                {% if op and op.platoon %}<div class="alongside-row-meta">{{ op.platoon }}</div>{% endif %}
-                {% if rel.notes %}<div class="alongside-row-note">{{ rel.notes }}</div>{% endif %}
-              </div>
-            </a>
+              </td>
+              <td>{{ rel.notes if rel.notes else "" }}</td>
+            </tr>
           {% endfor %}
-        </div>
+          </tbody>
+        </table>
       </details>
     {% endif %}
 

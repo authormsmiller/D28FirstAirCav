@@ -249,7 +249,7 @@ documents:
     type: address
     icon: "📄"
     access: public
-    url: /documents/garvin-james/garvin-james-one-mans-story-colburn/
+    url: /documents/garvin-jim/garvin-jim-one-mans-story-colburn/
   - title: "Commemoration of Sergeant Richard Eugene Colburn"
     meta: "Commemoration address · Written and delivered by Wolf D. Kutter, Col USA (Ret.) · 2021"
     type: address
@@ -287,9 +287,4 @@ notes: >
   VVMF photo: https://www.vvmf.org/wp-content/uploads/2020/01/Colburn-Richard-E..jpg
   Connected to: fanning-martin (pilot, KIA), jeffries-gabriel (co-pilot, KIA),
   garvin-jim (bumped from flight), stanfield-nathan (door gunner, survived).
-  Survivor O2 CJ McCoy (from VHPA record) identified via Facebook — his son
-  Dusty McCoy posted a tribute to Colburn's memorial group on 24 Apr 2024,
-  the 53rd anniversary. Potential living contact thread through the McCoy family.
-  W.J. Brooks (27th Maintenance BN) — also on flight, survived; no profile yet.
-
----
+  Survivor O2 CJ McCoy (from VHPA
