@@ -34,7 +34,23 @@
   <h1 class="doc-hero-title">{{ title }}</h1>
 
   {% if location %}
-    <div class="doc-hero-byline">{{ location }}</div>
+    <div class="doc-hero-byline">{{ location }}{% if lat and lon and not locations %} &nbsp;<a class="evt-map-link" href="https://maps.google.com/?q={{ lat }},{{ lon }}" target="_blank" rel="noopener">View on map →</a>{% endif %}</div>
+  {% endif %}
+
+  {% if locations and locations.length %}
+    <div class="evt-map-points">
+      {% for loc in locations %}
+        <a class="evt-map-point-link" href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lon }}" target="_blank" rel="noopener">
+          <span class="evt-map-point-label">{{ loc.label }}</span>
+          <span class="evt-map-point-arrow">↗</span>
+        </a>
+      {% endfor %}
+    </div>
+    {% if location_precision %}
+      <div class="evt-coords-note">{{ location_precision }}</div>
+    {% endif %}
+  {% elif lat and lon and location_precision %}
+    <div class="evt-coords-note">{{ location_precision }}</div>
   {% endif %}
 
   {# ── CASUALTIES SUMMARY ── #}
@@ -67,8 +83,19 @@
 
   <div class="doc-hero-actions">
     <button class="doc-btn doc-btn-share" onclick="evtShare()">Share</button>
+    {% set surveyKey = slug | replace("contact-", "") %}
+    {% if surveys[slug] %}
+      <button class="evt-survey-btn" onclick="surveyOpen()">Share Your Account</button>
+    {% endif %}
   </div>
 </div>
+
+{# ── SURVEY CONFIG injection ── #}
+{% if surveys[slug] %}
+<script>
+window.SURVEY_CONFIG = {{ surveys[slug] | dump | safe }};
+</script>
+{% endif %}
 
 {# ── DETERMINE WHICH TABS SHOW ── #}
 
@@ -572,6 +599,17 @@
 {% include "partials/footer.njk" %}
 
 </main>
+
+{# ── ACCOUNT SURVEY MODAL ── #}
+<div class="survey-modal" id="survey-modal" onclick="if(event.target===this)surveyClose()">
+  <div class="sv-shell">
+    <div class="sv-header">
+      <span class="sv-header-title">Share Your Account — {{ title }}</span>
+      <button class="sv-close" onclick="surveyClose()">✕ Close</button>
+    </div>
+    <div id="survey-card"></div>
+  </div>
+</div>
 
 {# ── LIGHTBOX ── #}
 <div class="lightbox" id="lightbox" onclick="lbClose(event)">

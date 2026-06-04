@@ -30,32 +30,46 @@ title: Overview
   </div>
 
   <div class="ov-hero-side">
-    <div class="ov-side-label">
-      {% if collections.soldiers | length == 1 %}Soldier Profile — Example
-      {% else %}Recent Profiles{% endif %}
+    <div class="ov-side-label">Recently Added</div>
+
+    {# ── Skipper Stories — loaded client-side ── #}
+    <div class="ov-recent-section" id="ov-stories-section" style="display:none">
+      <div class="ov-recent-type">Stories</div>
+      <div id="ov-stories-list"></div>
     </div>
-    {% for soldier in collections.soldiers | reverse | limit(1) %}
-      <div class="ov-soldier-card" onclick="window.location='{{ soldier.url }}'">
-        <div class="ov-soldier-init">{{ soldier.data.first_name | first }}{{ soldier.data.last_name | first }}{{ soldier.data.middle_name | first }}</div>
-        <div class="ov-soldier-name">{{ soldier.data.first_name }} {{ soldier.data.last_name }}</div>
-        <div class="ov-soldier-rank">{{ soldier.data.rank }} · {{ soldier.data.platoon }}</div>
-        <div class="ov-soldier-field">
-          <div class="osfl">In-Country</div>
-          <div class="osfv">{{ soldier.data.arrived }} – {{ soldier.data.departed }}</div>
-        </div>
-        <div class="ov-soldier-field">
-          <div class="osfl">Home of Record</div>
-          <div class="osfv">{{ soldier.data.hometown }}</div>
-        </div>
-        {% if soldier.data.decorations %}
-          <div class="ov-soldier-field">
-            <div class="osfl">Decorations</div>
-            <div class="osfv">{{ soldier.data.distinguished_decorations | join(" · ") }}</div>
-          </div>
+
+    {# ── Recent Profiles ── #}
+    {% set recentSoldiers = collections.soldiers | sortByData("date_added") | limit(3) %}
+    {% if recentSoldiers | length %}
+    <div class="ov-recent-section">
+      <div class="ov-recent-type">Profiles</div>
+      {% for soldier in recentSoldiers %}
+        {% if soldier.data.date_added %}
+        <a class="ov-recent-card" href="{{ soldier.url }}">
+          <div class="ov-recent-card-name">{{ soldier.data.first_name }} {{ soldier.data.last_name }}</div>
+          <div class="ov-recent-card-meta">{{ soldier.data.platoon }}{% if soldier.data.rank %} · {{ soldier.data.rank }}{% endif %}</div>
+          <div class="ov-recent-card-date">Added {{ soldier.data.date_added | isoDate }}</div>
+        </a>
         {% endif %}
-        <div class="ov-see-profile">View full profile</div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {# ── Contact Info Now on File ── #}
+    {% set contactSoldiers = collections.soldiers | whereData("share_contact", true) | sortByData("date_added") | limit(3) %}
+    {% if contactSoldiers | length %}
+    <div class="ov-recent-section">
+      <div class="ov-recent-type">Contact Info on File</div>
+      {% for soldier in contactSoldiers %}
+        <a class="ov-recent-card ov-recent-card--contact" href="{{ soldier.url }}">
+          <div class="ov-recent-card-name">{{ soldier.data.first_name }} {{ soldier.data.last_name }}</div>
+          <div class="ov-recent-card-meta">{{ soldier.data.platoon }}</div>
+          <div class="ov-recent-card-contact-note">✉ Contact info now available — request via archive</div>
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="ov-side-notice">Contact details for living veterans are held in restricted access only and do not appear in any public view.</div>
   </div>
 </div>
@@ -104,4 +118,37 @@ title: Overview
     </div>
   </div>
 </div>
+
+<script>
+(async function loadRecentStories() {
+  try {
+    const res = await fetch('/api/skipper-stories/published');
+    if (!res.ok) return;
+    const { stories } = await res.json();
+    if (!stories || !stories.length) return;
+
+    const recent = stories.slice(0, 2);
+    const section = document.getElementById('ov-stories-section');
+    const list    = document.getElementById('ov-stories-list');
+    if (!section || !list) return;
+
+    list.innerHTML = recent.map(s => {
+      const name    = s.publication === 'anonymous' ? 'Anonymous' : (s.name || 'Anonymous');
+      const preview = (s.response || '').slice(0, 120).trim();
+      const ellipsis = s.response && s.response.length > 120 ? '…' : '';
+      return `<a class="ov-recent-card ov-recent-card--story" href="/skipper-stories/?tab=${encodeURIComponent(s.tab_id || '')}">
+        <div class="ov-recent-card-story-prompt">${escOv(s.tab_label || s.tab_id || 'Skipper Stories')}</div>
+        <div class="ov-recent-card-story-preview">${escOv(preview)}${ellipsis}</div>
+        <div class="ov-recent-card-meta">${escOv(name)}</div>
+      </a>`;
+    }).join('');
+
+    section.style.display = 'block';
+  } catch (e) { /* fail silently */ }
+})();
+
+function escOv(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
 

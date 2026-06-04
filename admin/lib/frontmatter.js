@@ -43,6 +43,7 @@ const ARRAY_FIELDS = new Set([
  */
 export const BOOLEAN_FIELDS = new Set([
   'family_contact',
+  'share_contact',
   'wartime_content_notice',
   'associated',
 ]);
@@ -64,11 +65,47 @@ export function isArrayField(field) {
 }
 
 export function isReadonlyField(field) {
-  return READONLY_FIELDS.has(field);
+  // For dot paths (e.g. "contact.name"), check the top-level key only
+  const topKey = field.split('.')[0];
+  return READONLY_FIELDS.has(topKey);
 }
 
 export function isBooleanField(field) {
-  return BOOLEAN_FIELDS.has(field);
+  // For dot paths, check the leaf key (e.g. "contact.share_contact" → "share_contact")
+  const leafKey = field.split('.').pop();
+  return BOOLEAN_FIELDS.has(leafKey);
+}
+
+// ─── nested field helpers ─────────────────────────────────────────────────────
+
+/**
+ * Get a value from a (possibly nested) field path.
+ * "contact.name" → data.contact?.name
+ */
+export function getNestedValue(data, field) {
+  return field.split('.').reduce((obj, key) => (obj != null ? obj[key] : undefined), data);
+}
+
+/**
+ * Set a value on a (possibly nested) field path, creating intermediate
+ * objects as needed.
+ * "contact.name" → data.contact = { ...data.contact, name: value }
+ */
+export function setNestedValue(data, field, value) {
+  const keys = field.split('.');
+  if (keys.length === 1) {
+    data[field] = value;
+    return;
+  }
+  let obj = data;
+  for (let i = 0; i < keys.length - 1; i++) {
+    const key = keys[i];
+    if (obj[key] == null || typeof obj[key] !== 'object') {
+      obj[key] = {};
+    }
+    obj = obj[key];
+  }
+  obj[keys[keys.length - 1]] = value;
 }
 
 // ─── public API ──────────────────────────────────────────────────────────────

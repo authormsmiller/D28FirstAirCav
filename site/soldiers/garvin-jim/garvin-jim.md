@@ -39,6 +39,8 @@ decorations:
 
 distinguished_decorations:
 
+decorations_unconfirmed:    # probable based on documented evidence — not yet sourced
+
 # ── SERVICE RECORD ────────────────────────────────────
 service_record:
   induction:
@@ -46,11 +48,13 @@ service_record:
     location: 
     date: 
   assignments:
-    - role: "Company Armor"
-      unit: "D Co., 2nd Bn., 8th Cavalry, 1st Cav Div"
-      date_from: "1971-02"
-      date_to: 
-      notes: "Pulled from field in February 1971; assigned to inventory and maintain company weapons"
+    - type: other
+      label: "Company Armor"
+      unit: "D Company, 2nd Battalion, 8th Cavalry (Airmobile), 1st Cavalry Division"
+      location: "Vietnam"
+      from: "1971-02"
+      to:
+      notes: "Pulled from field in February 1971; assigned to inventory and maintain company weapons. Traveled to field on log days. Promoted SP4 as top CLC graduate, November 4, 1971."
 
 # ── CONTACT ───────────────────────────────────────────
 # Phone, email, and address live in _private/contacts.json (gitignored).
@@ -58,8 +62,8 @@ service_record:
 share_contact: false
 contact:
   name: Jim Garvin
-  relation: 
-  last_verified: 
+  relation: self
+  last_verified:    # YYYY-MM-DD
 
 # ── EXTERNAL LINKS ────────────────────────────────────
 links:
@@ -117,7 +121,7 @@ documents:
     type: account
     icon: "📄"
     access: public
-    url: /documents/garvin-james/garvin-james-account-042471/
+    url: /documents/garvin-jim/garvin-jim-account-042471/
 
 # ── RELATED ───────────────────────────────────────────────
 brothers:
@@ -126,15 +130,13 @@ related_events:
   - crash-fsb-fontaine-1971-04-24
 
 # ── ADMIN ─────────────────────────────────────────────────
-date_added: 
-last_updated: 2026-05-22
+date_added: 2026-05-22
+last_updated: 2026-05-27
 contributed_by: 
 notes: >
   SP4, Company Armor, D Co. 2/8 CAV. Promoted to SP4 as top CLC graduate
   (photo dated 1971-11-04). Not in roster.json — no roster entry on file.
-  Firsthand account document uses author slug garvin-james; profile slug is
-  garvin-jim — cross-link may not resolve correctly; audit if documents tab
-  is empty on his profile. Attended/organized Colburn memorial in 2021.
+  Attended/organized Colburn memorial in 2021.
   Hometown, birth year, MOS, arrived/departed dates, and service ID not on file.
 
 ---

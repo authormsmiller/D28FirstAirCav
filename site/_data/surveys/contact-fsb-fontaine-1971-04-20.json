@@ -1,0 +1,603 @@
+{
+  "event_slug": "contact-fsb-fontaine-1971-04-20",
+  "event_title": "Enemy Contact Near FSB Fontaine — April 20, 1971",
+  "intro_shared": "On April 20, 1971, D Company suffered significant casualties in contact near FSB Fontaine. Much of what happened that day has never been fully recorded. If you were with D Company on April 20–23, 1971, your account — whatever you can share — is an important part of this record.",
+  "intro_by_platoon": {
+    "skull": "Skull Platoon was called in as reinforcement and arrived that afternoon, helping reconstitute the company's strength and hold the perimeter through the night. If you were with Skull Platoon on April 20–23, 1971, your account of those days is one that only you can give.",
+    "cat": "Cat Platoon held the south bank of the stream while Range was engaged on the north bank. What Cat could see, hear, and do from that position — and what happened when Range withdrew across the stream — is an important and distinct part of this record.",
+    "range": "Range Platoon walked into an NVA ambush near a stream in Long Khanh Province. What followed — the contact, the firefight, the withdrawal, and the night that came after — has been partially documented through a handful of accounts. But much of what happened that day has never been recorded. If you were with Range Platoon on that patrol, your account is a central part of this record.\n\nIf you were with Range Platoon but not on the patrol that day, contact us here to share what you remember."
+  },
+  "platoons": [
+    { "id": "skull", "label": "Skull Platoon" },
+    { "id": "cat",   "label": "Cat Platoon"   },
+    { "id": "range", "label": "Range Platoon" }
+  ],
+  "sections": [
+
+    {
+      "id": "skull-mobilization",
+      "platoons": ["skull"],
+      "title": "Before you moved out",
+      "questions": [
+        {
+          "id": "sk-q1",
+          "type": "textarea",
+          "text": "Where were you and what was your unit doing when you received orders to move?"
+        },
+        {
+          "id": "sk-q2",
+          "type": "radio",
+          "text": "How did the order reach you?",
+          "options": [
+            "An officer briefed us directly",
+            "A radio call came through",
+            "Word traveled through the ranks",
+            "I don't remember"
+          ],
+          "other": true
+        },
+        {
+          "id": "sk-q3",
+          "type": "textarea",
+          "text": "What were you told to expect when you arrived?"
+        }
+      ]
+    },
+
+    {
+      "id": "skull-transit",
+      "platoons": ["skull"],
+      "title": "Getting there",
+      "questions": [
+        {
+          "id": "sk-q4",
+          "type": "textarea",
+          "text": "What do you remember about the helicopter ride out?",
+          "helper": "The mood among the men, what you could hear or see, how long it took."
+        },
+        {
+          "id": "sk-q5",
+          "type": "textarea",
+          "text": "What did you see as you came in to land?"
+        }
+      ]
+    },
+
+    {
+      "id": "skull-arrival",
+      "platoons": ["skull"],
+      "title": "Arrival",
+      "questions": [
+        {
+          "id": "sk-q6",
+          "type": "radio",
+          "text": "Approximately what time of day did your platoon arrive?",
+          "options": [
+            "Morning",
+            "Early afternoon",
+            "Late afternoon",
+            "Evening",
+            "After dark",
+            "I don't remember"
+          ]
+        },
+        {
+          "id": "sk-q7",
+          "type": "textarea",
+          "text": "What was the first thing you saw or heard when you landed?"
+        },
+        {
+          "id": "sk-q8",
+          "type": "textarea",
+          "text": "What was the state of the unit when you arrived?"
+        },
+        {
+          "id": "sk-q9",
+          "type": "textarea",
+          "text": "What were you told had happened before your arrival?"
+        }
+      ]
+    },
+
+    {
+      "id": "skull-night",
+      "platoons": ["skull"],
+      "title": "The night of April 20–21",
+      "questions": [
+        {
+          "id": "sk-q10",
+          "type": "short-text",
+          "text": "Where were you positioned in the perimeter that night?"
+        },
+        {
+          "id": "sk-q11",
+          "type": "textarea",
+          "text": "What do you remember about the night?",
+          "helper": "Artillery fire, sounds, the men around you."
+        }
+      ]
+    },
+
+    {
+      "id": "cat-position",
+      "platoons": ["cat"],
+      "title": "Your position",
+      "questions": [
+        {
+          "id": "cat-q1",
+          "type": "radio",
+          "text": "Where were you when the contact started?",
+          "options": [
+            "On the south bank of the stream with Cat Platoon",
+            "Elsewhere with Cat Platoon",
+            "I don't remember exactly"
+          ],
+          "conditional_detail": {
+            "if_value": "Elsewhere with Cat Platoon",
+            "id": "cat-q1-where",
+            "type": "short-text",
+            "text": "Where?"
+          }
+        },
+        {
+          "id": "cat-q2",
+          "type": "textarea",
+          "text": "What did you first hear or see that told you Range had made contact?"
+        },
+        {
+          "id": "cat-q3",
+          "type": "textarea",
+          "text": "What could you see from your position?"
+        }
+      ]
+    },
+
+    {
+      "id": "cat-before-contact",
+      "platoons": ["cat"],
+      "title": "Before the contact",
+      "questions": [
+        {
+          "id": "cat-q4",
+          "type": "yes-no",
+          "text": "Before the firefight started, did you see or become aware of enemy soldiers in or near the stream?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "cat-q4-detail",
+            "type": "textarea",
+            "text": "What did you see — where were they, and what were they doing?"
+          }
+        },
+        {
+          "id": "cat-q5",
+          "type": "textarea",
+          "text": "What happened next — who did you report to, and what orders came down?",
+          "condition": { "if": "cat-q4", "eq": "Yes" }
+        },
+        {
+          "id": "cat-q6",
+          "type": "short-text",
+          "text": "At what point did you first hear gunfire or explosions?",
+          "condition": { "if": "cat-q4", "eq": "Yes" }
+        }
+      ]
+    },
+
+    {
+      "id": "cat-during",
+      "platoons": ["cat"],
+      "title": "During the firefight",
+      "questions": [
+        {
+          "id": "cat-q7",
+          "type": "checkbox",
+          "text": "Which of the following was your platoon doing during the engagement? (Select all that apply)",
+          "options": [
+            "Returning fire across the stream",
+            "Directing or assisting with artillery",
+            "Coordinating medevac",
+            "Providing cover for the withdrawal",
+            "Waiting for orders",
+            "I don't remember"
+          ],
+          "other": true
+        },
+        {
+          "id": "cat-q8",
+          "type": "yes-no",
+          "text": "Did anyone from Cat Platoon cross the stream during the firefight?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "cat-q8-detail",
+            "type": "textarea",
+            "text": "Who crossed, approximately when, and what were they doing?"
+          }
+        },
+        {
+          "id": "cat-q9",
+          "type": "textarea",
+          "text": "What do you remember hearing from across the stream — voices, commands, anything specific that was said?"
+        }
+      ]
+    },
+
+    {
+      "id": "cat-after-crossing",
+      "platoons": ["cat"],
+      "title": "When Range crossed to your side",
+      "questions": [
+        {
+          "id": "cat-q10",
+          "type": "yes-no",
+          "text": "Did you see Range Platoon withdrawing across the stream?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "cat-q10-detail",
+            "type": "textarea",
+            "text": "What do you remember about that?"
+          }
+        },
+        {
+          "id": "cat-q11",
+          "type": "textarea",
+          "text": "What was the condition of the men who crossed?"
+        },
+        {
+          "id": "cat-q12",
+          "type": "yes-no",
+          "text": "Were you involved in assisting or treating any of the wounded after they crossed?",
+          "options": ["Yes", "No"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "cat-q12-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "cat-night",
+      "platoons": ["cat"],
+      "title": "The night of April 20–21",
+      "questions": [
+        {
+          "id": "cat-q13",
+          "type": "short-text",
+          "text": "Where were you positioned in the perimeter that night?"
+        },
+        {
+          "id": "cat-q14",
+          "type": "textarea",
+          "text": "What do you remember about the night?",
+          "helper": "Artillery fire, sounds, the state of the men around you."
+        }
+      ]
+    },
+
+    {
+      "id": "range-position",
+      "platoons": ["range"],
+      "title": "Your position in the column",
+      "questions": [
+        {
+          "id": "rng-q1",
+          "type": "radio",
+          "text": "Where in the column were you when the contact started?",
+          "options": [
+            "Near the front, close to the point element",
+            "Middle of the column",
+            "Rear of the column",
+            "I don't remember"
+          ]
+        },
+        {
+          "id": "rng-q2",
+          "type": "yes-no",
+          "text": "Were you wounded on April 20?",
+          "options": ["Yes", "No"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q2-detail",
+            "type": "textarea",
+            "text": "What happened, and were you treated on site or medevaced?"
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "range-contact",
+      "platoons": ["range"],
+      "title": "The point of contact",
+      "questions": [
+        {
+          "id": "rng-q3-front",
+          "type": "textarea",
+          "text": "What do you remember about the mine blast?",
+          "condition": { "if": "rng-q1", "eq": "Near the front, close to the point element" }
+        },
+        {
+          "id": "rng-q4-front",
+          "type": "textarea",
+          "text": "What did you see happen to the men at the front of the column?",
+          "condition": { "if": "rng-q1", "eq": "Near the front, close to the point element" }
+        },
+        {
+          "id": "rng-q3-mid",
+          "type": "textarea",
+          "text": "What did you first hear that told you something had happened at the front?",
+          "condition": { "if": "rng-q1", "eq": "Middle of the column" }
+        },
+        {
+          "id": "rng-q4-mid",
+          "type": "short-text",
+          "text": "How quickly did you understand what was happening?",
+          "condition": { "if": "rng-q1", "eq": "Middle of the column" }
+        },
+        {
+          "id": "rng-q3-rear",
+          "type": "textarea",
+          "text": "What did you hear first?",
+          "condition": { "if": "rng-q1", "eq": "Rear of the column" }
+        },
+        {
+          "id": "rng-q4-rear",
+          "type": "textarea",
+          "text": "How did information reach you about what was happening at the front?",
+          "condition": { "if": "rng-q1", "eq": "Rear of the column" }
+        },
+        {
+          "id": "rng-q5",
+          "type": "textarea",
+          "text": "What were you doing in the first moments after contact started?"
+        }
+      ]
+    },
+
+    {
+      "id": "range-firefight",
+      "platoons": ["range"],
+      "title": "During the firefight",
+      "questions": [
+        {
+          "id": "rng-q6",
+          "type": "yes-no",
+          "text": "Do you remember Schneck on the M60 after he was wounded?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q6-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q7",
+          "type": "yes-no",
+          "text": "Do you remember Collins taking over the M60 from Schneck?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q7-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q8",
+          "type": "yes-no",
+          "text": "Do you remember Hall moving toward the front of the column?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q8-detail",
+            "type": "textarea",
+            "text": "What do you remember about what happened to him?"
+          }
+        },
+        {
+          "id": "rng-q9",
+          "type": "yes-no",
+          "text": "Do you remember Dillon being carried toward the stream?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q9-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q10",
+          "type": "yes-no",
+          "text": "Do you remember Doc Brothers treating wounds at the stream?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q10-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q11",
+          "type": "textarea",
+          "text": "Who around you do you remember being wounded that day?",
+          "helper": "Names, roles, anything you can recall."
+        }
+      ]
+    },
+
+    {
+      "id": "range-withdrawal",
+      "platoons": ["range"],
+      "title": "The withdrawal",
+      "questions": [
+        {
+          "id": "rng-q12",
+          "type": "textarea",
+          "text": "What do you remember about the stream crossing?"
+        },
+        {
+          "id": "rng-q13",
+          "type": "radio",
+          "text": "Where were you in the crossing — among the first over, the middle, or the last?",
+          "options": [
+            "Among the first",
+            "Middle",
+            "Among the last",
+            "I don't remember"
+          ]
+        },
+        {
+          "id": "rng-q14",
+          "type": "yes-no",
+          "text": "LT Bott was the last man across the stream. Do you remember that?",
+          "options": ["Yes", "No", "I don't remember"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q14-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q15",
+          "type": "textarea",
+          "text": "Three of the men killed could not be brought back from the ambush site that day. What do you remember about that?"
+        }
+      ]
+    },
+
+    {
+      "id": "range-recognition",
+      "platoons": ["range"],
+      "title": "Recognition",
+      "questions": [
+        {
+          "id": "rng-q16",
+          "type": "yes-no",
+          "text": "Were you or anyone you know recognized with a decoration for actions on April 20, 1971?",
+          "options": ["Yes", "No", "I don't know"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q16-detail",
+            "type": "textarea",
+            "text": "Who, and what decoration if you know?"
+          }
+        },
+        {
+          "id": "rng-q17",
+          "type": "yes-no",
+          "text": "Were there actions on April 20 that you believe deserved recognition that, to your knowledge, were never formally awarded?",
+          "options": ["Yes", "No", "I'd prefer to share this in a conversation"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "rng-q17-detail",
+            "type": "textarea",
+            "text": "What would you like to share?"
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "range-after",
+      "platoons": ["range"],
+      "title": "After the withdrawal",
+      "questions": [
+        {
+          "id": "rng-q18",
+          "type": "textarea",
+          "text": "What was the scene when you reached Cat's side of the stream?"
+        },
+        {
+          "id": "rng-q19",
+          "type": "yes-no",
+          "text": "What do you remember about Skull Platoon arriving as reinforcement?",
+          "options": ["Yes, I remember", "No / I don't remember"],
+          "follow_up": {
+            "if_value": "Yes, I remember",
+            "id": "rng-q19-detail",
+            "type": "textarea",
+            "text": "What do you remember?"
+          }
+        },
+        {
+          "id": "rng-q20",
+          "type": "short-text",
+          "text": "Where were you positioned in the perimeter that night?"
+        },
+        {
+          "id": "rng-q21",
+          "type": "textarea",
+          "text": "What do you remember about the night of April 20–21?",
+          "helper": "The artillery through the night, sounds, the men around you."
+        }
+      ]
+    },
+
+    {
+      "id": "shared-april23",
+      "platoons": ["skull", "cat", "range"],
+      "title": "April 23 — Recovery mission",
+      "questions": [
+        {
+          "id": "apr23-q1",
+          "type": "yes-no",
+          "text": "Were you present for the mission to recover the fallen soldiers on April 23?",
+          "options": ["Yes", "No", "I'm not sure"],
+          "follow_up": {
+            "if_value": "Yes",
+            "id": "apr23-q1-detail",
+            "type": "textarea",
+            "text": "What do you remember about that mission?"
+          }
+        }
+      ]
+    }
+
+  ],
+
+  "closing_questions": [
+    {
+      "id": "closing-permission",
+      "type": "radio",
+      "text": "How may the archive use this account?",
+      "options": [
+        "This account may be published on the site",
+        "This account is for archive and research use only — not for public publication",
+        "I'd like to discuss how this account is used before anything is published"
+      ]
+    },
+    {
+      "id": "closing-q2",
+      "type": "yes-no",
+      "text": "Do you have photos, documents, or letters from this period you'd like to share with the archive?",
+      "options": ["Yes", "No"],
+      "follow_up": {
+        "if_value": "Yes",
+        "id": "closing-q2-detail",
+        "type": "short-text",
+        "text": "We'll follow up to arrange a way to share them."
+      }
+    },
+    {
+      "id": "closing-q3",
+      "type": "textarea",
+      "text": "Is there anything else from April 20–23, 1971 you'd like to add?"
+    }
+  ],
+
+  "skip_reasons": [
+    "I cannot remember the details",
+    "I'm not yet ready to share my memories of this",
+    "This part of the event doesn't apply to my experience",
+    "I'd prefer to share this in a conversation instead"
+  ]
+}

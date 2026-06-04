@@ -30,7 +30,7 @@ What had been happening: a sniper was firing at the men on the culvert. The roun
 
 The men got down.
 
-The incident most likely occurred in mid-to-late July 1971, before Cate's reassignment. It was told to Marvin's son by Cate in the years before Cate's death in 2011, and is reproduced here from that conversation. There is no other known record of it.
+The incident most likely occurred in mid-to-late July 1971, before Cate transitioned to a door gunner position — he remained in-country through late 1971, but in a different role. It was told to Marvin's son by Cate in the years before Cate's death in 2011, and is reproduced here from that conversation. There is no other known record of it.
 
 When Marvin's son recounted the story to his father, Marvin was uncertain it had happened. He said he felt he would have known the sound of bullets passing nearby. His son noted a counterpoint: the sound of a distant sniper round at longer range is not the same as the crack of an AK-47 in a close firefight, which is what Marvin's experience would have conditioned him to recognize. The crack of a near-supersonic round at close range and the lower tone of a round in flight at distance are different sounds. Cate's description — buzzing, then thump — is consistent with the latter.
 

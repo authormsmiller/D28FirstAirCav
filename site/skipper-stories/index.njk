@@ -1,0 +1,178 @@
+---
+layout: base.njk
+title: Skipper Stories
+permalink: /skipper-stories/
+---
+
+<div class="ss-hero">
+  <div class="ss-hero-inner">
+    <div class="ss-dateline">D Co. 2/8 CAV Archive · Skipper Stories</div>
+    <h1 class="ss-hed">Skipper <span>Stories</span></h1>
+    <p class="ss-deck">No wrong answers. No official account required. Say as much or as little as you want.</p>
+  </div>
+</div>
+
+<div class="ss-body">
+
+  <div class="ss-intro">
+    <p>These prompts are for anyone who served with Delta Company — any platoon, any MOS, any year. Pick a question that catches you. The stories that come back from these pages are what this archive is actually built for.</p>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="ss-tabs" id="ssTabs" role="tablist">
+    {% for tab in skipperStories.tabs %}
+    <button
+      class="ss-tab{% if loop.first %} active{% endif %}"
+      id="ss-tab-{{ tab.id }}"
+      role="tab"
+      aria-selected="{% if loop.first %}true{% else %}false{% endif %}"
+      aria-controls="ss-panel-{{ tab.id }}"
+      onclick="ssSelectTab('{{ tab.id }}')"
+    >{{ tab.label }}</button>
+    {% endfor %}
+  </div>
+
+  <!-- TAB PANELS -->
+  {% for tab in skipperStories.tabs %}
+  <div
+    class="ss-panel{% if loop.first %} active{% endif %}"
+    id="ss-panel-{{ tab.id }}"
+    role="tabpanel"
+    aria-labelledby="ss-tab-{{ tab.id }}"
+    {% if not loop.first %}hidden{% endif %}
+  >
+    <div class="ss-panel-description"><strong>{{ tab.title }}</strong> — {{ tab.description }}</div>
+
+    <!-- PROMPTS LIST -->
+    <div class="ss-prompts" id="ss-prompts-{{ tab.id }}">
+      {% for prompt in tab.prompts %}
+      <div class="ss-prompt-card" id="prompt-{{ prompt.id }}">
+        <div class="ss-prompt-text">{{ prompt.text }}</div>
+        <button
+          class="ss-share-btn"
+          onclick="ssOpenModal('{{ prompt.id }}', {{ loop.index }})"
+          data-prompt-id="{{ prompt.id }}"
+          data-tab-id="{{ tab.id }}"
+        >Share your answer</button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- PUBLISHED STORIES for this tab — loaded client-side -->
+    <div class="ss-stories-section" id="ss-stories-{{ tab.id }}" style="display:none">
+      <div class="ss-stories-hed">What others shared</div>
+      <div class="ss-stories-list" id="ss-stories-list-{{ tab.id }}"></div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>
+
+<!-- SUBMISSION MODAL -->
+<div class="ss-modal-overlay" id="ssModalOverlay" style="display:none" onclick="ssCloseModalOnOverlay(event)">
+  <div class="ss-modal" id="ssModal" role="dialog" aria-modal="true" aria-labelledby="ssModalTitle">
+
+    <button class="ss-modal-close" onclick="ssCloseModal()" aria-label="Close">✕</button>
+
+    <div class="ss-modal-header">
+      <div class="ss-modal-eyebrow" id="ssModalEyebrow"></div>
+      <div class="ss-modal-prompt-display" id="ssModalPromptDisplay"></div>
+    </div>
+
+    <!-- FORM -->
+    <form class="ss-form" id="ssForm" onsubmit="ssSubmit(event)">
+
+      <div class="ss-field-row">
+        <div class="ss-field">
+          <label class="ss-label" for="ssName">Your name <span class="ss-req">*</span></label>
+          <input class="ss-input" type="text" id="ssName" name="name" required autocomplete="name"
+            placeholder="Full name, first name, or nickname">
+          <label class="ss-anon-check">
+            <input type="checkbox" id="ssAnonCheck" onchange="ssSyncAnon(this)"> Publish anonymously
+          </label>
+        </div>
+      </div>
+
+      <div class="ss-field-row ss-field-row--two">
+        <div class="ss-field">
+          <label class="ss-label" for="ssEmail">Email <span class="ss-opt">(optional)</span></label>
+          <input class="ss-input" type="email" id="ssEmail" name="email" autocomplete="email"
+            placeholder="Never shared">
+        </div>
+        <div class="ss-field">
+          <label class="ss-label" for="ssPhone">Phone <span class="ss-opt">(optional)</span></label>
+          <input class="ss-input" type="tel" id="ssPhone" name="phone" autocomplete="tel"
+            placeholder="Never shared">
+        </div>
+      </div>
+
+      <div class="ss-field-row ss-field-row--two">
+        <div class="ss-field">
+          <label class="ss-label" for="ssPlatoon">Platoon</label>
+          <select class="ss-select" id="ssPlatoon" name="platoon">
+            <option value="">— Select —</option>
+            <option value="Skull">Skull</option>
+            <option value="Cat">Cat</option>
+            <option value="Range">Range</option>
+            <option value="HQ">HQ</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="ss-field">
+          <label class="ss-label" for="ssYears">Year(s) with D Company</label>
+          <input class="ss-input" type="text" id="ssYears" name="years"
+            placeholder="e.g. 1970–71">
+        </div>
+      </div>
+
+      <div class="ss-field">
+        <label class="ss-label" for="ssResponse">Your answer <span class="ss-req">*</span></label>
+        <textarea class="ss-textarea" id="ssResponse" name="response" required rows="7"
+          placeholder="Say as much or as little as you'd like."></textarea>
+      </div>
+
+      <div class="ss-field">
+        <div class="ss-label">Publication preference</div>
+        <div class="ss-radio-group" role="radiogroup">
+          <label class="ss-radio-label">
+            <input type="radio" name="publication" value="publish" id="ssPubPublish" required>
+            Publish with my name
+          </label>
+          <label class="ss-radio-label">
+            <input type="radio" name="publication" value="anonymous" id="ssPubAnon">
+            Publish anonymously
+          </label>
+          <label class="ss-radio-label">
+            <input type="radio" name="publication" value="archive" id="ssPubArchive">
+            Archive use only — don't publish
+          </label>
+        </div>
+      </div>
+
+      <div class="ss-form-actions">
+        <button class="ss-submit-btn" type="submit" id="ssSubmitBtn">Share this story</button>
+        <button class="ss-cancel-btn" type="button" onclick="ssCloseModal()">Cancel</button>
+      </div>
+
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="ss-success" id="ssSuccess" style="display:none">
+      <div class="ss-success-icon">✓</div>
+      <div class="ss-success-hed">Received. Thank you.</div>
+      <div class="ss-success-body">Your story will appear on the page once it's reviewed — usually within a day or two.</div>
+      <div class="ss-success-removal" id="ssSuccessRemoval"></div>
+      <button class="ss-cancel-btn" onclick="ssCloseModal()">Close</button>
+    </div>
+
+    <!-- ERROR -->
+    <div class="ss-error" id="ssError" style="display:none">
+      <div class="ss-error-msg" id="ssErrorMsg"></div>
+      <button class="ss-submit-btn" onclick="ssRetry()">Try again</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="/assets/js/skipper-stories.js"></script>

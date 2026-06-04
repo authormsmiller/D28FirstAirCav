@@ -7,7 +7,9 @@
 import fs from 'fs';
 import path from 'path';
 
-const SITE_SOLDIERS = path.resolve('..', 'site', 'soldiers');
+const SITE_SOLDIERS  = path.resolve('..', 'site', 'soldiers');
+const SITE_ANECDOTES = path.resolve('..', 'site', 'anecdotes');
+const SITE_DOCUMENTS = path.resolve('..', 'site', 'documents');
 
 // ---------------------------------------------------------------------------
 // buildSoldierStub(slug, fm)
@@ -16,13 +18,14 @@ const SITE_SOLDIERS = path.resolve('..', 'site', 'soldiers');
 // Middle names/particles stay in first_name: "Marvin Dale" → first=Marvin Dale, last=Miller.
 // ---------------------------------------------------------------------------
 export function buildSoldierStub(slug, fm) {
-  const fullName = fm.name || '';
-  const parts    = fullName.trim().split(/\s+/);
-  const lastName  = parts.length > 1 ? parts[parts.length - 1] : fullName;
-  const firstName = parts.length > 1 ? parts.slice(0, -1).join(' ') : '';
-  const rank      = fm.rank || '';
+  // Support either a pre-split first/last or a single name string.
+  const firstName = fm.first_name || (fm.name ? fm.name.trim().split(/\s+/).slice(0, -1).join(' ') : '');
+  const lastName  = fm.last_name  || (fm.name ? fm.name.trim().split(/\s+/).slice(-1)[0] : '');
+  const fullName  = [firstName, lastName].filter(Boolean).join(' ');
+  const rank      = fm.rank   || '';
   const title     = rank ? `${rank} ${fullName}` : fullName;
   const status    = fm.status || 'researching';
+  const today     = new Date().toISOString().slice(0, 10);
 
   return [
     '---',
@@ -37,18 +40,27 @@ export function buildSoldierStub(slug, fm) {
     '# ── IDENTITY ──────────────────────────────────────',
     `first_name: ${firstName}`,
     `last_name: ${lastName}`,
-    'nickname: ',
-    'middle_name: ',
+    `middle_name: ${fm.middle_name || ''}`,
+    `suffix: ${fm.suffix || ''}`,
+    `nickname: ${fm.nickname || ''}`,
+    `birth_year: ${fm.birth_year || ''}`,
+    '',
+    '# ── RANK & ASSIGNMENT ─────────────────────────────',
     `rank: ${rank}`,
-    'mos: ',
+    `mos: ${fm.mos || ''}`,
     `platoon: ${fm.platoon || ''}`,
     '',
     '# ── SERVICE ───────────────────────────────────────',
-    'arrived:',
-    'departed:',
-    `hometown: ${fm.hometown || ''}`,
-    'character_of_service: Honorable',
+    `arrived: ${fm.arrived || ''}`,
+    `departed: ${fm.departed || ''}`,
+    `character_of_service: ${fm.character_of_service || 'Honorable'}`,
     `status: ${status}`,
+    '',
+    '# ── POST-SERVICE ──────────────────────────────────',
+    `hometown: ${fm.hometown || ''}`,
+    `current_location: ${fm.current_location || ''}`,
+    `year_deceased: ${fm.year_deceased || ''}`,
+    `cause_of_death: ${fm.cause_of_death || ''}`,
     '',
     '# ── PROFILE PHOTO ─────────────────────────────────',
     'profile_photo:',
@@ -58,8 +70,27 @@ export function buildSoldierStub(slug, fm) {
     '',
     'distinguished_decorations:',
     '',
-    '# ── FAMILY CONTACT ────────────────────────────────',
-    'family_contact: false',
+    'decorations_unconfirmed:',
+    '',
+    '# ── SERVICE RECORD ────────────────────────────────',
+    'service_record:',
+    '  induction:',
+    '    status:',
+    '    location:',
+    '    date:',
+    '  assignments:',
+    '',
+    '# ── CONTACT ───────────────────────────────────────',
+    `share_contact: ${fm.share_contact || 'false'}`,
+    'contact:',
+    `  name: ${fm.contact_name || ''}`,
+    `  relation: ${fm.contact_relation || ''}`,
+    '  last_verified:',
+    '',
+    '# ── EXTERNAL LINKS ────────────────────────────────',
+    'links:',
+    '  wall:',
+    '  other:',
     '',
     '# ── TIMELINE SOURCE NOTE ──────────────────────────',
     'timeline_source: >',
@@ -79,8 +110,16 @@ export function buildSoldierStub(slug, fm) {
     '# ── DOCUMENTS ─────────────────────────────────────',
     'documents:',
     '',
-    '# ── BROTHERS IN ARMS ──────────────────────────────',
+    '# ── RELATED ───────────────────────────────────────',
     'brothers:',
+    '',
+    'related_events:',
+    '',
+    '# ── ADMIN ─────────────────────────────────────────',
+    `date_added: ${today}`,
+    'last_updated:',
+    `contributed_by: ${fm.contributed_by || ''}`,
+    'notes:',
     '',
     '---',
     '',
@@ -129,11 +168,23 @@ export function registerSoldiersRoutes(app) {
     }
 
     try {
-      const soldierDir = path.join(SITE_SOLDIERS, slug);
+      const soldierDir  = path.join(SITE_SOLDIERS,  slug);
+      const anecdoteDir = path.join(SITE_ANECDOTES, slug);
+      const documentDir = path.join(SITE_DOCUMENTS, slug);
+
+      // soldiers/[slug]/photos/profile + field
       fs.mkdirSync(path.join(soldierDir, 'photos', 'profile'), { recursive: true });
       fs.mkdirSync(path.join(soldierDir, 'photos', 'field'),   { recursive: true });
       fs.writeFileSync(path.join(soldierDir, 'photos', 'profile', '.gitkeep'), '');
       fs.writeFileSync(path.join(soldierDir, 'photos', 'field',   '.gitkeep'), '');
+
+      // anecdotes/[slug]/
+      fs.mkdirSync(anecdoteDir, { recursive: true });
+      fs.writeFileSync(path.join(anecdoteDir, '.gitkeep'), '');
+
+      // documents/[slug]/
+      fs.mkdirSync(documentDir, { recursive: true });
+      fs.writeFileSync(path.join(documentDir, '.gitkeep'), '');
 
       const filePath = path.join(soldierDir, `${slug}.md`);
       fs.writeFileSync(filePath, buildSoldierStub(slug, fm), 'utf8');

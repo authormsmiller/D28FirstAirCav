@@ -3,23 +3,34 @@ layout: layouts/soldier.njk
 title: Kirk Davis
 slug: davis-kirk
 breadcrumb: Kirk Davis
+permalink: /soldiers/davis-kirk/
+tags:
+  - soldier
 
 # ── IDENTITY ──────────────────────────────────────
 first_name: Kirk
 last_name: Davis
-nickname:
 middle_name:
-rank:
+suffix:             # Jr. | Sr. | III | IV
+nickname:
+birth_year:         # YYYY
+
+# ── RANK & ASSIGNMENT ─────────────────────────────
+rank:               # not confirmed
 mos:
 platoon: Range
 
 # ── SERVICE ───────────────────────────────────────
 arrived: "1971"
 departed:
-hometown:
-current_location: "Lake Jackson, TX"
 character_of_service:
 status: veteran
+
+# ── POST-SERVICE ──────────────────────────────────
+hometown:
+current_location: "Lake Jackson, TX"
+year_deceased:      # YYYY
+cause_of_death:     # natural | kia | accident | unknown
 
 # ── PROFILE PHOTO ─────────────────────────────────
 profile_photo: davis-kirk-field-binh-tuy-1971.png
@@ -29,35 +40,43 @@ decorations:
 
 distinguished_decorations:
 
+decorations_unconfirmed:    # probable based on documented evidence — not yet sourced
+
 # ── SERVICE RECORD ────────────────────────────────
 service_record:
   induction:
-    status: 
-    location: 
-    date: 
+    status:         # drafted | enlisted | ra (regular army) | commissioned (reserve/ROTC/OCS)
+    location:
+    date:
   assignments:
     - type: other
       label: "Company Clerk"
-      unit: 
+      unit:
       location: "Vietnam"
       from:
       to:
       notes: "Served as company clerk for several months; exact dates unknown"
     - type: other
-      label: "Range Platoon"
-      unit: 
+      label: "Range Platoon, D Company"
+      unit: "D Company, 2nd Battalion, 8th Cavalry (Airmobile), 1st Cavalry Division"
       location: "Vietnam"
       from:
       to:
-      notes: "Primary assignment"
+      notes: "Primary assignment. Participated in Binh Tuy bunker complex raid, late June 1971."
 
 # ── CONTACT ───────────────────────────────────────
-# Full contact details live in _private/contacts.json (gitignored)
-# This block carries only what is safe to commit
+# Phone, email, and address live in _private/contacts.json (gitignored).
+# This block carries only what is safe to commit.
 share_contact: false
 contact:
   name: Kirk Davis
-  relation:
+  relation: self
+  last_verified:    # YYYY-MM-DD
+
+# ── EXTERNAL LINKS ────────────────────────────────
+links:
+  wall:             # not KIA — no wall entry
+  other:
 
 # ── TIMELINE SOURCE NOTE ──────────────────────────
 timeline_source: >
@@ -66,9 +85,11 @@ timeline_source: >
   Frank Guidara, Mike Martin, and Bill Neal.
 
 # ── SERVICE TIMELINE ──────────────────────────────
+# phase values: training | staging | in-country | post-service
 timeline:
 
   - date: "Late Jun 1971"
+    phase: in-country
     type: combat
     tags:
       - { type: c, label: Combat Action }
@@ -86,6 +107,9 @@ timeline:
       camo beret. Echo Recon assisted with the lift-out over several days.
 
 # ── PHOTOS ────────────────────────────────────────
+# Canonical photo metadata lives in photos/[subfolder]/index.md.
+# The photos array below is retained for template compatibility only.
+# Do not add new photos here — add them to the index files only.
 photo_intro: >
   Photographs of Kirk Davis from his tour with Range Platoon, 1971.
 
@@ -115,4 +139,23 @@ documents:
     meta: "Personal essay · Walking Point Issue 25 · January 2017"
     type: Essay
     icon: "✍️"
+
+# ── RELATED ───────────────────────────────────────
+brothers:
+
+related_events:
+  - chieu-hoi-fsb-fontaine-1971-05
+
+# ── ADMIN ─────────────────────────────────────────
+date_added: 2026-05-27
+last_updated: 2026-05-27
+contributed_by:
+notes: >
+  Migrated to canonical template. Range Platoon, 1971.
+  Published two essays in Walking Point (Issues 18 and 25).
+  Chieu Hoi photo (19710500-chieu-hoi-fsb-fontaine.png) registered in
+  site/soldiers/davis-kirk/photos/field/index.md — awaiting R2 backfill.
+  Current location: Lake Jackson, TX (last known).
+  Character of service not confirmed in sources — left blank pending verification.
+
 ---

@@ -1,12 +1,12 @@
 ---
-slug: garvin-james-account-042471
+slug: garvin-jim-account-042471
 title: "I Watched the Chopper Fall Out of the Sky"
 type: account
 status: published
 doc_date: "Unknown"
 date_known: false
 
-author: garvin-james
+author: garvin-jim
 event: crash-fsb-fontaine-1971-04-24
 
 source: Written account submitted by James Garvin
@@ -23,7 +23,7 @@ tagged:
   - slug: jeffries-gabriel
     name: LT Gabriel Jeffries
     note: Co-pilot; killed in the crash
-permalink: /documents/garvin-james/garvin-james-account-042471/
+permalink: /documents/garvin-jim/garvin-jim-account-042471/
 ---
 
 

@@ -1,18 +1,13 @@
 module.exports = function(eleventyConfig) {
 
-  // Exclude archivist notes files from build output
+  // Exclude archivist notes files and template scaffolding from build output
   eleventyConfig.ignores.add("**/_notes.md");
+  eleventyConfig.ignores.add("**/_template.md");
 
-  // Pass static assets through unchanged
-  eleventyConfig.addPassthroughCopy("assets");
-  // Source content dirs (soldiers, documents, anecdotes, events, admin) are processed
-  // as templates and do not need passthrough copies. Passthrough disabled to avoid
-  // EPERM on unlink when building on a FUSE-mounted filesystem.
-  // eleventyConfig.addPassthroughCopy("admin");
-  // eleventyConfig.addPassthroughCopy("soldiers");
-  // eleventyConfig.addPassthroughCopy("documents");
-  // eleventyConfig.addPassthroughCopy("anecdotes");
-  // eleventyConfig.addPassthroughCopy("events");
+  // Assets passthrough disabled — _site/assets/ is managed manually to avoid
+  // EPERM on Windows when files are held open by the browser or dev server.
+  // Run: xcopy /E /Y assets _site\assets to sync manually when assets change.
+  // eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addWatchTarget("assets/");
 
   // Collections
@@ -96,6 +91,44 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("limit", function(arr, n) {
     if (!arr || !Array.isArray(arr)) return [];
     return arr.slice(0, n);
+  });
+
+  // Format a date value (string or Date object) as YYYY-MM-DD
+  eleventyConfig.addFilter("isoDate", function(val) {
+    if (!val) return "";
+    let d;
+    if (val instanceof Date) {
+      d = val;
+    } else {
+      const parts = String(val).slice(0, 10).split("-");
+      d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    }
+    if (isNaN(d)) return String(val).slice(0, 10);
+    return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  });
+
+  // Sort collection by a data field, descending. Blanks sort to end.
+  eleventyConfig.addFilter("sortByData", function(arr, key) {
+    if (!arr || !Array.isArray(arr)) return [];
+    const toStr = v => {
+      if (!v) return "";
+      if (v instanceof Date) return v.toISOString().slice(0, 10);
+      return String(v);
+    };
+    return [...arr].sort((a, b) => {
+      const va = toStr(a.data?.[key]);
+      const vb = toStr(b.data?.[key]);
+      if (!va && !vb) return 0;
+      if (!va) return 1;
+      if (!vb) return -1;
+      return vb.localeCompare(va);
+    });
+  });
+
+  // Filter collection to items where a data field matches a value
+  eleventyConfig.addFilter("whereData", function(arr, key, value) {
+    if (!arr || !Array.isArray(arr)) return [];
+    return arr.filter(item => item.data?.[key] === value);
   });
   return {
     dir: {

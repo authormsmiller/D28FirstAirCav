@@ -34,5 +34,32 @@
     "basis": "verbal-account",
     "source": "romani-testimony",
     "notes": "Romani provided verbal account of service alongside Miller"
+  },
+  {
+    "soldiers": [
+      "freitag-dieter",
+      "aguilar-oscar",
+      "boatright-william",
+      "bowersock-steven",
+      "burnett-edward",
+      "flores-david",
+      "groves-james",
+      "henson-frank",
+      "howell-donald",
+      "jackson-freddie",
+      "jensen-james",
+      "monteleone-gary",
+      "phillips-dean",
+      "ray-jackie",
+      "ridgeway-richard",
+      "sablan-john",
+      "saulsberry-clarence",
+      "shiko-raymond",
+      "sulser-david",
+      "wood-thomas"
+    ],
+    "basis": "same-platoon",
+    "source": "chinook-crash-1972-05-10",
+    "notes": "All killed together \u2014 Chinook crash 1972-05-10"
   }
 ]

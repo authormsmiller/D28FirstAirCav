@@ -1,7 +1,7 @@
 ---
 layout: layouts/document.njk
-permalink: /documents/garvin-james/garvin-james-one-mans-story-colburn/
-slug: garvin-james-one-mans-story-colburn
+permalink: /documents/garvin-jim/garvin-jim-one-mans-story-colburn/
+slug: garvin-jim-one-mans-story-colburn
 title: "Richard Colburn — One Man's Story"
 author: garvin-jim
 event: memorial-colburn-2021
@@ -24,7 +24,7 @@ source_note: >
   This document also references W.J. Brooks, 27th Maintenance Battalion, as a
   previously undocumented passenger who survived the April 24, 1971 crash.
   Colburn's first tour is described here as the 35th Infantry Division; Garvin's
-  other account (garvin-james-account-042471) states the 4th Division — discrepancy
+  other account (garvin-jim-account-042471) states the 4th Division — discrepancy
   unresolved; both are preserved.
 ---
 
@@ -102,10 +102,4 @@ During our time in country, soldiers had no time to grieve! It didn't matter if 
 
 Today I came to say, Rest in Peace Sgt Richard Colburn. Thank you for your sacrifice to your Country, to the men of Delta Company and your generosity to me.
 
-We know that we were not the only recipients of your selfless service to others, but we do know we were the last and we want to express our thanks to you.
-
-Today we remember you and say Welcome Home
-
-*Richard Eugene Colburn*
-
-*A TRUE AMERICAN HERO!*
+We know that we were not the only recipients of your selfless service to others, but we do know we were the last and we want to express our thanks

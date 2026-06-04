@@ -395,6 +395,306 @@
   }
   .changelog-entry.warn { border-color: var(--yellow); background: #fefce8; }
 
+
+
+
+  .np-ext-kia-only {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-style: italic;
+  }
+  .np-archive-thumb {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+  }
+  .np-archive-thumb:hover { border-color: var(--blue); }
+  .np-ext-link-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 12px;
+  }
+  .np-ext-link-row a {
+    color: var(--blue);
+    text-decoration: none;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .np-ext-link-label {
+    font-weight: 600;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+  .np-ext-remove {
+    background: none;
+    border: none;
+    color: var(--red);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  .np-dec-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0 14px;
+  }
+  .np-dec-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 12px 14px;
+  }
+  .np-dec-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .np-dec-item input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ── new profile sub-tabs ── */
+  .np-subtab-nav {
+    display: flex;
+    gap: 2px;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .np-subtab {
+    padding: 5px 14px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+  }
+  .np-subtab:hover { color: var(--ink); }
+  .np-subtab.active { color: var(--ink); border-bottom-color: var(--yellow); }
+  .np-subtab-pane { }
+  .np-stub-msg {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 20px 0 0;
+  }
+
+  /* ── new profile panel ── */
+  .np-mode-row {
+    margin-bottom: 20px;
+  }
+  .np-mode-toggle {
+    display: inline-flex;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .np-mode-btn {
+    padding: 6px 18px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    cursor: pointer;
+  }
+  .np-mode-btn.active {
+    background: var(--ink);
+    color: var(--yellow);
+  }
+  .np-slug-block {
+    margin-bottom: 4px;
+  }
+  .np-section {
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .np-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .np-section .form-grid {
+    padding: 14px 14px 8px;
+    margin-bottom: 0;
+  }
+  .np-save-btn {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
+  .np-status-bar {
+    min-height: 0;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .np-status-bar.error { color: var(--red); }
+  .np-status-bar.info  { color: var(--blue); }
+  .np-section-msg {
+    font-size: 11px;
+    padding: 4px 14px 10px;
+    color: var(--green);
+  }
+  .np-section-msg.error { color: var(--red); }
+  .np-private-block {
+    border-top: 1px dashed var(--rule);
+    background: #fefce8;
+  }
+  .np-private-block .form-grid {
+    padding: 12px 14px 4px;
+  }
+  .np-private-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #92400e;
+    padding: 6px 14px 0;
+  }
+
+
+  /* ── photo session defaults ── */
+  .ph-session-defaults {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 16px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .ph-session-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .ph-session-fields {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .ph-session-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ph-session-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .ph-session-field input {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: #fff;
+    width: 240px;
+  }
+
+  /* ── photo upload drop zone ── */
+  .ph-upload-zone {
+    border: 2px dashed var(--rule);
+    border-radius: 3px;
+    margin: 8px 0 0;
+    background: #fafaf8;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .ph-upload-zone.drag-over {
+    border-color: var(--blue);
+    background: rgba(26,58,92,0.04);
+  }
+  .ph-upload-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+  }
+  .ph-upload-icon {
+    font-size: 20px;
+    color: var(--rule);
+    line-height: 1;
+  }
+  .ph-upload-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .ph-upload-sub {
+    font-size: 11px;
+    color: var(--rule);
+  }
+  .ph-upload-btn {
+    cursor: pointer;
+    display: inline-block;
+  }
+  .ph-upload-label-input {
+    flex: 1;
+    min-width: 160px;
+    padding: 5px 8px;
+    font-size: 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: #fff;
+  }
+  .ph-upload-status {
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .ph-upload-status.ok    { color: var(--green); }
+  .ph-upload-status.error { color: var(--red); }
   /* ── toast ── */
   .toast {
     position: fixed;
@@ -498,10 +798,14 @@
       Photo Intake
       <span class="tab-badge" id="ph-tab-badge" style="display:none"></span>
     </button>
-    <button class="tab-btn disabled" title="Coming soon">New Record</button>
+    <button class="tab-btn" onclick="switchTab('newprofile')" id="tab-btn-newprofile">New Profile</button>
     <button class="tab-btn" onclick="switchTab('todo')" id="tab-btn-todo">
       Todo / Flags
       <span class="tab-badge" id="todo-badge" style="display:none"></span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('feedback')" id="tab-btn-feedback">
+      Site Feedback
+      <span class="tab-badge" id="fb-tab-badge" style="display:none"></span>
     </button>
     <button class="tab-btn add-issue-btn" onclick="openAddIssueModal()" id="btn-add-issue"
       title="Log a new issue or task">
@@ -662,8 +966,513 @@
 
     </div>
 
+    <!-- Tab 3: New Profile -->
+    <div class="panel" id="panel-newprofile">
+      <h1 class="section-head">New Profile</h1>
+      <p class="section-desc">Create a new soldier profile or edit an existing one. Each section saves independently — fill what you have and come back for the rest.</p>
+
+      <!-- Mode toggle + slug row -->
+      <div class="np-mode-row">
+        <div class="np-mode-toggle">
+          <button class="np-mode-btn active" id="np-btn-new" onclick="npSetMode('new')">New Profile</button>
+          <button class="np-mode-btn" id="np-btn-edit" onclick="npSetMode('edit')">Edit Existing</button>
+        </div>
+      </div>
+
+      <!-- Slug entry (New mode) -->
+      <div id="np-slug-new" class="np-slug-block">
+        <div class="form-grid">
+          <label class="form-label">Slug</label>
+          <div class="form-field">
+            <input type="text" id="np-slug-input" placeholder="lastname-firstname  e.g. miller-marvin" oninput="npSlugInput()" autocomplete="off">
+            <span class="form-hint" id="np-slug-hint">lowercase letters, numbers, and hyphens only</span>
+          </div>
+          <label class="form-label"></label>
+          <div class="form-field">
+            <button class="btn btn-primary" id="np-create-btn" onclick="npCreate()" disabled>Create Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slug picker (Edit mode) -->
+      <div id="np-slug-edit" class="np-slug-block" style="display:none">
+        <div class="form-grid">
+          <label class="form-label">Soldier</label>
+          <div class="form-field">
+            <select id="np-slug-select" onchange="npLoadExisting()">
+              <option value="">— select soldier —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- All sections — hidden until profile is active -->
+      <div id="np-sections" style="display:none">
+
+        <!-- Sub-tab nav -->
+        <div class="np-subtab-nav">
+          <button class="np-subtab active" id="np-st-frontmatter" onclick="npSwitchSubTab('frontmatter')">Frontmatter</button>
+          <button class="np-subtab" id="np-st-photos"       onclick="npSwitchSubTab('photos')">Photos</button>
+          <button class="np-subtab" id="np-st-documents"    onclick="npSwitchSubTab('documents')">Documents</button>
+          <button class="np-subtab" id="np-st-servicerecord" onclick="npSwitchSubTab('servicerecord')">Service Record</button>
+          <button class="np-subtab" id="np-st-decorations"  onclick="npSwitchSubTab('decorations')">Decorations</button>
+          <button class="np-subtab" id="np-st-timeline"     onclick="npSwitchSubTab('timeline')">Timeline</button>
+          <button class="np-subtab" id="np-st-alongside"    onclick="npSwitchSubTab('alongside')">Alongside</button>
+          <button class="np-subtab" id="np-st-external"     onclick="npSwitchSubTab('external')">External</button>
+        </div>
+
+        <!-- Status bar -->
+        <div class="np-status-bar" id="np-status-bar"></div>
+
+        <!-- ── FRONTMATTER PANE ── -->
+        <div id="np-pane-frontmatter" class="np-subtab-pane">
+
+        <!-- ── IDENTITY ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Identity</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('identity')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">First name</label>
+            <div class="form-field"><input type="text" id="np-first_name" placeholder="Marvin Dale"></div>
+            <label class="form-label">Last name</label>
+            <div class="form-field"><input type="text" id="np-last_name" placeholder="Miller"></div>
+            <label class="form-label">Middle name</label>
+            <div class="form-field"><input type="text" id="np-middle_name"></div>
+            <label class="form-label">Suffix</label>
+            <div class="form-field">
+              <select id="np-suffix">
+                <option value=""></option>
+                <option>Jr.</option><option>Sr.</option><option>II</option><option>III</option><option>IV</option>
+              </select>
+            </div>
+            <label class="form-label">Nickname</label>
+            <div class="form-field"><input type="text" id="np-nickname"></div>
+            <label class="form-label">Birth year</label>
+            <div class="form-field"><input type="text" id="np-birth_year" placeholder="1950"></div>
+          </div>
+        </div>
+
+        <!-- ── RANK & ASSIGNMENT ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Rank &amp; Assignment</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('rank')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">Rank</label>
+            <div class="form-field">
+              <select id="np-rank">
+                <option value=""></option>
+                <option>PVT</option><option>PFC</option><option>SP4</option><option>SP5</option><option>SP6</option>
+                <option>SGT</option><option>SSG</option><option>SFC</option><option>MSG</option><option>1SG</option><option>SGM</option>
+                <option>WO1</option><option>WO2</option><option>WO3</option><option>WO4</option>
+                <option>2LT</option><option>1LT</option><option>CPT</option><option>MAJ</option><option>LTC</option><option>COL</option>
+              </select>
+            </div>
+            <label class="form-label">MOS</label>
+            <div class="form-field"><input type="text" id="np-mos" placeholder="67N20"></div>
+            <label class="form-label">Platoon</label>
+            <div class="form-field">
+              <select id="np-platoon">
+                <option value=""></option>
+                <option>Range</option>
+                <option>Cat</option>
+                <option>Skull</option>
+                <option>HQ</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SERVICE ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Service</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('service')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">Arrived</label>
+            <div class="form-field"><input type="text" id="np-arrived" placeholder="1971-03"></div>
+            <label class="form-label">Departed</label>
+            <div class="form-field"><input type="text" id="np-departed" placeholder="1972-03"></div>
+            <label class="form-label">Status</label>
+            <div class="form-field">
+              <select id="np-status">
+                <option value="researching">researching</option>
+                <option value="veteran">veteran</option>
+                <option value="deceased">deceased</option>
+                <option value="kia">kia</option>
+                <option value="mia">mia</option>
+              </select>
+            </div>
+            <label class="form-label">Character of service</label>
+            <div class="form-field">
+              <select id="np-character_of_service">
+                <option value="Honorable">Honorable</option>
+                <option value="General">General</option>
+                <option value="Other Than Honorable">Other Than Honorable</option>
+                <option value="Bad Conduct">Bad Conduct</option>
+                <option value="Dishonorable">Dishonorable</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── POST-SERVICE ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Post-service</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('postservice')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">Hometown</label>
+            <div class="form-field"><input type="text" id="np-hometown" placeholder="Dayton, OH"></div>
+            <label class="form-label">Current location</label>
+            <div class="form-field"><input type="text" id="np-current_location" placeholder="last known city/state"></div>
+            <label class="form-label">Year deceased</label>
+            <div class="form-field"><input type="text" id="np-year_deceased" placeholder="YYYY"></div>
+            <label class="form-label">Cause of death</label>
+            <div class="form-field">
+              <select id="np-cause_of_death">
+                <option value=""></option>
+                <option value="natural">natural</option>
+                <option value="kia">kia</option>
+                <option value="accident">accident</option>
+                <option value="unknown">unknown</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTACT ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Contact</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('contact')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">Share contact</label>
+            <div class="form-field">
+              <select id="np-share_contact">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+              <span class="form-hint">Whether to display contact info on the site</span>
+            </div>
+            <label class="form-label">Contact name</label>
+            <div class="form-field"><input type="text" id="np-contact.name" placeholder="Jane Miller"></div>
+            <label class="form-label">Relation</label>
+            <div class="form-field">
+              <select id="np-contact.relation">
+                <option value=""></option>
+                <option value="son">son</option>
+                <option value="daughter">daughter</option>
+                <option value="spouse">spouse</option>
+                <option value="self">self</option>
+                <option value="other">other</option>
+              </select>
+            </div>
+            <label class="form-label">Last verified</label>
+            <div class="form-field"><input type="text" id="np-contact.last_verified" placeholder="YYYY-MM-DD"></div>
+          </div>
+          <div class="np-private-block">
+            <div class="np-private-label">Private — stored in _private/contacts.json, not committed to git</div>
+            <div class="form-grid">
+              <label class="form-label">Email</label>
+              <div class="form-field"><input type="text" id="np-private-email" placeholder="jane@example.com" autocomplete="off"></div>
+              <label class="form-label">Phone</label>
+              <div class="form-field"><input type="text" id="np-private-phone" placeholder="555-123-4567" autocomplete="off"></div>
+              <label class="form-label">Address</label>
+              <div class="form-field"><input type="text" id="np-private-address" autocomplete="off"></div>
+              <label class="form-label">Notes</label>
+              <div class="form-field"><input type="text" id="np-private-notes" placeholder="best time to call, preferred contact method…"></div>
+            </div>
+            <div class="action-row" style="padding: 0 14px 12px;">
+              <button class="btn btn-secondary np-save-btn" onclick="npSavePrivateContact()">Save Private</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ADMIN ── -->
+        <div class="np-section">
+          <div class="np-section-head">
+            <span>Admin</span>
+            <button class="btn btn-secondary np-save-btn" onclick="npSaveSection('admin')">Save</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-label">Date added</label>
+            <div class="form-field"><input type="text" id="np-date_added" readonly></div>
+            <label class="form-label">Contributed by</label>
+            <div class="form-field"><input type="text" id="np-contributed_by"></div>
+            <label class="form-label">Notes</label>
+            <div class="form-field"><input type="text" id="np-notes"></div>
+          </div>
+        </div>
+
+        </div><!-- /np-pane-frontmatter -->
+
+        <!-- ── PHOTOS PANE ── -->
+        <div id="np-pane-photos" class="np-subtab-pane" style="display:none">
+          <div class="np-section">
+            <div class="np-section-head"><span>Profile Photo</span></div>
+            <div id="np-ph-profile"><p class="np-stub-msg">No profile loaded.</p></div>
+          </div>
+          <div class="np-section">
+            <div class="np-section-head"><span>Use Archive Photo</span></div>
+            <p class="form-hint" style="margin-bottom:8px">Find photos already in the archive that contain this soldier, then crop one as the profile photo.</p>
+            <button class="btn btn-secondary btn-sm" onclick="npPhLoadContaining()">Search archive photos</button>
+            <div id="np-ph-containing" style="margin-top:12px"></div>
+          </div>
+          <div class="np-section">
+            <div class="np-section-head"><span>Field Photos</span></div>
+            <div id="np-ph-field"><p class="np-stub-msg">No profile loaded.</p></div>
+            <p class="form-hint" style="margin-top:8px">To add photos, use the main <strong>Photos</strong> tab and set the subject slug to this soldier.</p>
+          </div>
+        </div>
+
+        <!-- ── DOCUMENTS PANE ── -->
+        <div id="np-pane-documents" class="np-subtab-pane" style="display:none">
+          <div class="np-section">
+            <div class="np-section-head"><span>Documents</span></div>
+            <div id="np-doc-list"><p class="np-stub-msg">No profile loaded.</p></div>
+          </div>
+          <div class="np-section">
+            <div class="np-section-head"><span>Create Document Stub</span></div>
+            <p class="form-hint" style="margin-bottom:8px">Creates <code>site/documents/[soldier]/[doc-slug]/index.md</code> and attaches it.</p>
+            <div class="form-grid">
+              <label class="form-label">Doc Slug</label>
+              <div class="form-field"><input type="text" id="np-doc-add-slug" placeholder="e.g. smith-john-account-010171" autocomplete="off"></div>
+              <label class="form-label">Title</label>
+              <div class="form-field"><input type="text" id="np-doc-add-title" placeholder="Short descriptive title"></div>
+              <label class="form-label">Type</label>
+              <div class="form-field">
+                <select id="np-doc-add-type">
+                  <option value="account">Account</option>
+                  <option value="letter">Letter</option>
+                  <option value="order">Order</option>
+                  <option value="report">Report</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="npDocCreate()">Create Stub</button>
+            <span id="np-doc-add-msg" class="np-section-msg" style="margin-left:8px"></span>
+          </div>
+        </div>
+
+        <!-- ── SERVICE RECORD PANE ── -->
+        <div id="np-pane-servicerecord" class="np-subtab-pane" style="display:none">
+
+          <!-- Induction -->
+          <div class="np-section">
+            <div class="np-section-head">
+              <span>Induction</span>
+              <button class="btn btn-secondary np-save-btn" onclick="npSrSaveInduction()">Save</button>
+            </div>
+            <div class="form-grid">
+              <label class="form-label">Status</label>
+              <div class="form-field">
+                <select id="np-sr-ind-status">
+                  <option value="">--</option>
+                  <option value="drafted">Drafted</option>
+                  <option value="enlisted">Enlisted</option>
+                  <option value="ra">Regular Army (RA)</option>
+                  <option value="commissioned">Commissioned</option>
+                </select>
+              </div>
+              <label class="form-label">Location</label>
+              <div class="form-field"><input type="text" id="np-sr-ind-location" placeholder="Fort Jackson, SC"></div>
+              <label class="form-label">Date</label>
+              <div class="form-field"><input type="text" id="np-sr-ind-date" placeholder="YYYY-MM-DD or YYYY-MM"></div>
+            </div>
+          </div>
+
+          <!-- Assignments list -->
+          <div class="np-section">
+            <div class="np-section-head"><span>Assignments</span></div>
+            <div id="np-sr-assignments-list"><p class="np-stub-msg">No profile loaded.</p></div>
+          </div>
+
+          <!-- Add assignment -->
+          <div class="np-section">
+            <div class="np-section-head"><span>Add Assignment</span></div>
+            <div class="form-grid">
+              <label class="form-label">Type</label>
+              <div class="form-field">
+                <select id="np-sr-add-type">
+                  <option value="">--</option>
+                  <option value="basic">Basic Combat Training</option>
+                  <option value="ait">AIT</option>
+                  <option value="ncoc">NCOC</option>
+                  <option value="ocs">OCS</option>
+                  <option value="staging">Staging</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <label class="form-label">Label</label>
+              <div class="form-field"><input type="text" id="np-sr-add-label" placeholder="Advanced Individual Training"></div>
+              <label class="form-label">Unit</label>
+              <div class="form-field"><input type="text" id="np-sr-add-unit" placeholder="Co. A, 1st Bn, 3rd Training Bde"></div>
+              <label class="form-label">Location</label>
+              <div class="form-field"><input type="text" id="np-sr-add-location" placeholder="Fort Polk, LA"></div>
+              <label class="form-label">From</label>
+              <div class="form-field"><input type="text" id="np-sr-add-from" placeholder="YYYY-MM-DD"></div>
+              <label class="form-label">To</label>
+              <div class="form-field"><input type="text" id="np-sr-add-to" placeholder="YYYY-MM-DD"></div>
+              <label class="form-label">Notes</label>
+              <div class="form-field"><input type="text" id="np-sr-add-notes"></div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="npSrAddAssignment()">Add Assignment</button>
+            <span id="np-sr-add-msg" class="np-section-msg" style="margin-left:8px"></span>
+          </div>
+
+        </div>
+
+        <!-- ── DECORATIONS PANE ── -->
+        <div id="np-pane-decorations" class="np-subtab-pane" style="display:none">
+          <div class="np-dec-toolbar">
+            <button class="btn btn-secondary" id="np-dec-baseset-btn" onclick="npDecApplyBaseSet()">Apply Base Set</button>
+            <span class="form-hint">NDSM &middot; Vietnam Service Medal &middot; Vietnam Campaign Medal &middot; Vietnam Gallantry Cross (unconfirmed)</span>
+          </div>
+          <div id="np-dec-content"></div>
+        </div>
+
+        <!-- ── TIMELINE PANE ── -->
+        <div id="np-pane-timeline" class="np-subtab-pane" style="display:none">
+
+          <div class="np-section">
+            <div class="np-section-head">
+              <span>Source Note</span>
+              <button class="btn btn-secondary np-save-btn" onclick="npTlSaveSource()">Save</button>
+            </div>
+            <div class="form-grid">
+              <label class="form-label">timeline_source</label>
+              <div class="form-field"><textarea id="np-tl-source" rows="3" style="width:100%;box-sizing:border-box"></textarea></div>
+            </div>
+          </div>
+
+          <div class="np-section">
+            <div class="np-section-head"><span>Entries</span></div>
+            <div id="np-tl-list"><p class="np-stub-msg">No profile loaded.</p></div>
+          </div>
+
+          <div class="np-section">
+            <div class="np-section-head"><span>Add Entry</span></div>
+            <div class="form-grid">
+              <label class="form-label">Date</label>
+              <div class="form-field"><input type="text" id="np-tl-add-date" placeholder="YYYY-MM-DD"></div>
+              <label class="form-label">Phase</label>
+              <div class="form-field">
+                <select id="np-tl-add-phase">
+                  <option value="">--</option>
+                  <option value="training">Training</option>
+                  <option value="staging">Staging</option>
+                  <option value="in-country">In-Country</option>
+                  <option value="post-service">Post-Service</option>
+                </select>
+              </div>
+              <label class="form-label">Type</label>
+              <div class="form-field">
+                <select id="np-tl-add-type">
+                  <option value="service">Service</option>
+                  <option value="combat">Combat</option>
+                  <option value="personal">Personal</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <label class="form-label">Headline</label>
+              <div class="form-field"><input type="text" id="np-tl-add-headline"></div>
+              <label class="form-label">Body</label>
+              <div class="form-field"><textarea id="np-tl-add-body" rows="3" style="width:100%;box-sizing:border-box"></textarea></div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="npTlAddEntry()">Add Entry</button>
+            <span id="np-tl-add-msg" class="np-section-msg" style="margin-left:8px"></span>
+          </div>
+
+        </div>
+
+        <!-- ── ALONGSIDE PANE ── -->
+        <div id="np-pane-alongside" class="np-subtab-pane" style="display:none">
+          <div class="np-section">
+            <div class="np-section-head"><span>Brothers</span></div>
+            <p class="form-hint" style="margin-bottom:12px">Soldiers who served directly alongside this person — the <code>brothers</code> field.</p>
+            <div id="np-al-list"><p class="np-stub-msg">No profile loaded.</p></div>
+            <div class="form-grid" style="margin-top:12px">
+              <label class="form-label">Add Slug</label>
+              <div class="form-field">
+                <input type="text" id="np-al-add-slug" placeholder="e.g. bacon-wg" list="np-al-datalist" autocomplete="off">
+                <datalist id="np-al-datalist"></datalist>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="npAlAdd()">Add</button>
+            <span id="np-al-msg" class="np-section-msg" style="margin-left:8px"></span>
+          </div>
+        </div>
+
+        <!-- ── EXTERNAL RESOURCES PANE ── -->
+        <div id="np-pane-external" class="np-subtab-pane" style="display:none">
+
+          <!-- Wall of Faces -->
+          <div class="np-section" id="np-ext-wall-section">
+            <div class="np-section-head">
+              <span>Wall of Faces <span class="np-ext-kia-only">(KIA / MIA only)</span></span>
+              <button class="btn btn-secondary np-save-btn" onclick="npExtSaveWall()">Save</button>
+            </div>
+            <div class="form-grid">
+              <label class="form-label">URL</label>
+              <div class="form-field">
+                <input type="text" id="np-ext-wall" placeholder="https://www.vvmf.org/Wall-of-Faces/…" autocomplete="off">
+                <span class="form-hint">VVMF Wall of Faces profile URL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other links -->
+          <div class="np-section">
+            <div class="np-section-head">
+              <span>Other Links</span>
+            </div>
+            <div id="np-ext-other-list" style="padding: 8px 14px;"></div>
+            <div class="form-grid" style="padding: 0 14px 14px;">
+              <label class="form-label">Label</label>
+              <div class="form-field">
+                <input type="text" id="np-ext-new-label" placeholder="VHPA Incident Record, Honor States…" autocomplete="off">
+              </div>
+              <label class="form-label">URL</label>
+              <div class="form-field">
+                <input type="text" id="np-ext-new-url" placeholder="https://…" autocomplete="off">
+              </div>
+              <label class="form-label"></label>
+              <div class="form-field">
+                <button class="btn btn-secondary" onclick="npExtAddOther()">Add Link</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /np-sections -->
+    </div><!-- /panel-newprofile -->
+
     <!-- Tab 4: Photo Intake -->
     <div class="panel" id="panel-photos">
+
+      <!-- Session defaults -->
+      <div class="ph-session-defaults">
+        <div class="ph-session-label">Session defaults</div>
+        <div class="ph-session-fields">
+          <div class="ph-session-field">
+            <label class="ph-session-lbl">Credit</label>
+            <input type="text" id="ph-session-credit" placeholder="From the collection of…" autocomplete="off">
+          </div>
+          <div class="ph-session-field">
+            <label class="ph-session-lbl">Date</label>
+            <input type="text" id="ph-session-date" placeholder="YYYY" style="width:90px" autocomplete="off">
+          </div>
+        </div>
+      </div>
 
       <!-- Inner sub-tabs -->
       <div class="ph-subtabs">
@@ -682,6 +1491,23 @@
       </div>
 
       <!-- RAW PANE -->
+      <!-- Upload drop zone — above the pane split -->
+      <div class="ph-upload-zone" id="ph-upload-zone"
+           ondragover="phDragOver(event)" ondragleave="phDragLeave(event)" ondrop="phDrop(event)">
+        <div class="ph-upload-inner">
+          <span class="ph-upload-icon">&#8679;</span>
+          <span class="ph-upload-text">Drop photos here</span>
+          <span class="ph-upload-sub">or</span>
+          <label class="btn btn-secondary btn-sm ph-upload-btn">
+            Choose Folder
+            <input type="file" id="ph-folder-input" webkitdirectory multiple accept="image/*"
+                   style="display:none" onchange="phFolderPicked(this.files)">
+          </label>
+          <input type="text" id="ph-upload-label" placeholder="Collection name (optional)"
+                 class="ph-upload-label-input" autocomplete="off">
+          <div id="ph-upload-status" class="ph-upload-status"></div>
+        </div>
+      </div>
       <div id="ph-pane-raw" class="ph-pane">
         <div class="ph-sidebar">
           <div class="ph-sidebar-toolbar">
@@ -811,6 +1637,78 @@
       </div><!-- /.todo-layout -->
     </div><!-- /#panel-todo -->
 
+    <!-- Tab 6: Site Feedback -->
+    <div class="panel" id="panel-feedback">
+
+      <!-- Sub-tabs -->
+      <div class="ph-subtabs">
+        <button class="ph-subtab active" id="fb-tab-btn-requests" onclick="fbSwitchSubTab('requests')">
+          Requests <span class="tab-badge" id="fb-requests-badge" style="display:none"></span>
+        </button>
+        <button class="ph-subtab" id="fb-tab-btn-accounts" onclick="fbSwitchSubTab('accounts')">
+          Survey Responses <span class="tab-badge" id="fb-accounts-badge" style="display:none"></span>
+        </button>
+        <button class="ph-subtab" id="fb-tab-btn-documents" onclick="fbSwitchSubTab('documents')">
+          Document Contributions <span class="tab-badge" id="fb-documents-badge" style="display:none"></span>
+        </button>
+        <button class="ph-subtab" id="fb-tab-btn-stories" onclick="fbSwitchSubTab('stories')">
+          Skipper Stories <span class="tab-badge" id="fb-stories-badge" style="display:none"></span>
+        </button>
+      </div>
+
+      <!-- REQUESTS PANE -->
+      <div id="fb-pane-requests" class="fb-pane fb-pane-active">
+        <div class="ph-submissions-toolbar">
+          <button class="btn btn-secondary btn-sm" onclick="fbLoadRequests()">↻ Refresh</button>
+        </div>
+        <div id="fb-requests-list" class="fb-list">
+          <p class="ph-placeholder">Loading…</p>
+        </div>
+      </div>
+
+      <!-- ACCOUNTS PANE -->
+      <div id="fb-pane-accounts" class="fb-pane" style="display:none">
+        <div class="ph-submissions-toolbar">
+          <button class="btn btn-secondary btn-sm" onclick="fbLoadAccounts()">↻ Refresh</button>
+        </div>
+        <div id="fb-accounts-list" class="fb-list">
+          <p class="ph-placeholder">Loading…</p>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS PANE -->
+      <div id="fb-pane-documents" class="fb-pane" style="display:none">
+        <div class="ph-submissions-toolbar">
+          <button class="btn btn-secondary btn-sm" onclick="fbLoadDocuments()">↻ Refresh</button>
+        </div>
+        <div id="fb-documents-list" class="fb-list">
+          <p class="ph-placeholder">Loading…</p>
+        </div>
+      </div>
+
+      <!-- SKIPPER STORIES PANE -->
+      <div id="fb-pane-stories" class="fb-pane" style="display:none">
+        <div class="ph-submissions-toolbar">
+          <button class="btn btn-secondary btn-sm" onclick="fbLoadStories()">↻ Refresh</button>
+          <span class="ph-toolbar-hint">Pending stories auto-publish at 00:01. Approve to publish immediately, Hold to delay, Discard to delete.</span>
+        </div>
+        <div id="fb-stories-list" class="fb-list">
+          <p class="ph-placeholder">Loading…</p>
+        </div>
+        <details style="margin-top:1.5rem;">
+          <summary style="cursor:pointer;font-weight:600;padding:0.5rem 0;">Published &amp; Withdrawn</summary>
+          <div class="ph-submissions-toolbar" style="margin-top:0.5rem;">
+            <button class="btn btn-secondary btn-sm" onclick="fbLoadPublishedStories()">↻ Load</button>
+            <span class="ph-toolbar-hint">Withdraw removes a story from the public feed but keeps it in R2. Restore puts it back.</span>
+          </div>
+          <div id="fb-published-stories-list" class="fb-list">
+            <p class="ph-placeholder">Click Load to fetch published stories.</p>
+          </div>
+        </details>
+      </div>
+
+    </div><!-- /#panel-feedback -->
+
   </main>
 </div>
 
@@ -844,6 +1742,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSession();
   // Pre-load slug lists for autocomplete
   ['soldier', 'document', 'event', 'anecdote'].forEach(t => prefetchSlugs(t));
+  // Load feedback badge count
+  loadFeedbackCounts();
 });
 
 async function loadSession() {
@@ -1291,7 +2191,7 @@ function logChange(entry) {
 
 // ── tab switching ──────────────────────────────────────────────────────────
 function switchTab(name) {
-  const tabNames = ['attach', 'edit', 'photos', null, 'todo'];
+  const tabNames = ['attach', 'edit', 'photos', 'newprofile', 'todo', 'feedback', null];
   document.querySelectorAll('.tab-btn').forEach((b, i) => {
     b.classList.toggle('active', tabNames[i] === name);
   });
@@ -1346,8 +2246,11 @@ const EDIT_TABS = {
       { field: 'related_events',  type: 'array', source: 'event' },
     ],
     'Context': [
-      { field: 'date_note',       type: 'scalar' },
-      { field: 'location_note',   type: 'scalar' },
+      { field: 'date_note',          type: 'scalar' },
+      { field: 'location_note',      type: 'scalar' },
+      { field: 'lat',                type: 'scalar' },
+      { field: 'lon',                type: 'scalar' },
+      { field: 'location_precision', type: 'scalar' },
     ],
   },
   soldier: {
@@ -2008,11 +2911,11 @@ document.addEventListener('click', e => {
 });
 
 // ── profile photo modal ────────────────────────────────────────────────────
-const PPH = { file: null, dataUrl: null, crop: null, dragging: false, startX: 0, startY: 0, imgRect: null };
+const PPH = { file: null, dataUrl: null, crop: null, dragging: false, startX: 0, startY: 0, imgRect: null, fromExisting: null };
 
 function openProfilePhotoModal() {
   if (!editRecord) return;
-  Object.assign(PPH, { file: null, dataUrl: null, crop: null, dragging: false });
+  Object.assign(PPH, { file: null, dataUrl: null, crop: null, dragging: false, fromExisting: null });
   document.getElementById('pph-credit').value = '';
   document.getElementById('pph-photographer').value = '';
   document.getElementById('pph-file-input').value = '';
@@ -2114,15 +3017,22 @@ function pphCropReset() {
 }
 
 async function pphSave() {
-  const slug = editRecord?.slug;
-  if (!slug || !PPH.dataUrl) return;
+  const slug = PPH.fromExisting?.slug || editRecord?.slug;
+  if (!slug) return;
+  if (!PPH.fromExisting && !PPH.dataUrl) return;
 
   const credit       = document.getElementById('pph-credit').value.trim();
   const photographer = document.getElementById('pph-photographer').value.trim();
   const crop         = (PPH.crop && PPH.crop.w > 0.02 && PPH.crop.h > 0.02) ? PPH.crop : null;
 
   try {
-    const r = await api('POST', '/soldier/profile-photo', { slug, imageData: PPH.dataUrl, crop, credit, photographer });
+    let r;
+    if (PPH.fromExisting) {
+      const { sourceSlug, subfolder, filename } = PPH.fromExisting;
+      r = await api('POST', '/soldier/profile-photo/from-existing', { slug, sourceSlug, subfolder, filename, crop, credit, photographer });
+    } else {
+      r = await api('POST', '/soldier/profile-photo', { slug, imageData: PPH.dataUrl, crop, credit, photographer });
+    }
     toast('Profile photo saved.', 'success');
     logChange(`PROFILE PHOTO  ${slug}  → ${r.filename}`);
     pphClose();
@@ -3032,6 +3942,13 @@ function phRenderPhoto(idx) {
   const filename = d.photos[idx];
   const slug     = PH.selectedStagingSlug;
   const buf      = PH.buffer[filename] || {};
+  // Apply session defaults on first encounter (before any user edits)
+  if (!PH.buffer[filename]) {
+    const defCredit = document.getElementById('ph-session-credit')?.value.trim();
+    const defDate   = document.getElementById('ph-session-date')?.value.trim();
+    if (defCredit) buf.credit = defCredit;
+    if (defDate)   { buf.date = defDate; buf.date_known = false; }
+  }
   const dest     = buf.dest || 'field';
   const isFirst  = idx === 0;
   const isLast   = idx === d.photos.length - 1;
@@ -4533,12 +5450,13 @@ async function submitAddIssue() {
 }
 
 // ─── Hook into switchTab ──────────────────────────────────────────────────────
-// Intercept switchTab calls for 'todo' to trigger todoInit
+// Intercept switchTab calls for 'todo' to trigger todoInit, and 'feedback' to load data
 (function() {
   const _orig = typeof switchTab === 'function' ? switchTab : null;
   window.switchTab = function(name) {
     if (_orig) _orig(name);
     if (name === 'todo') todoInit();
+    if (name === 'feedback') fbInit();
   };
 })();
 </script>
@@ -4568,6 +5486,196 @@ async function submitAddIssue() {
     <button class="btn btn-primary btn-sm" onclick="fmPopoverAdd()">Add</button>
   </div>
 </div>
+
+<style>
+/* ── Site Feedback tab ── */
+.fb-pane {
+  flex-direction: column;
+  overflow: hidden;
+  display: none;
+  height: calc(100vh - 155px);
+}
+.fb-pane-active { display: flex; }
+.fb-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* Request type group headers */
+.fb-type-group { margin-bottom: 4px; }
+.fb-type-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 10px 0 6px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 8px;
+}
+/* Individual cards */
+.fb-card {
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.fb-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px 10px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+}
+.fb-card-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.fb-card-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.fb-card-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--yellow);
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.fb-card-body {
+  padding: 12px 16px;
+}
+/* Request message / raw text */
+.fb-message {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 10px;
+}
+/* Survey answer sections */
+.fb-section {
+  margin-bottom: 14px;
+}
+.fb-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.fb-qa {
+  margin-bottom: 8px;
+}
+.fb-q {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.fb-q.is-followup { padding-left: 12px; border-left: 2px solid var(--rule); }
+.fb-a {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* Skip info */
+.fb-skipped {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 4px;
+}
+/* Document file list */
+.fb-file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.fb-file-chip {
+  font-size: 0.75rem;
+  font-family: monospace;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 2px 8px;
+}
+/* Card action row */
+.fb-card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 8px 16px 12px;
+  border-top: 1px solid var(--rule);
+  margin-top: 8px;
+}
+.btn-danger-sm {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  background: none;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+}
+.btn-danger-sm:hover { background: var(--red); color: #fff; }
+.fb-pulled-tag {
+  font-size: 0.72rem;
+  color: var(--green);
+  font-style: italic;
+  align-self: center;
+  margin-right: auto;
+}
+/* Skipper Stories panel additions */
+.fb-story-tab {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.fb-story-response {
+  font-size: 0.9rem;
+  color: var(--ink, #14120c);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  background: #fafaf8;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.fb-card-meta-row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.ph-toolbar-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  align-self: center;
+}
+</style>
 
 <!-- PROFILE PHOTO MODAL -->
 <div id="pph-modal" class="modal-overlay" onclick="pphCloseBg(event)">
@@ -4619,5 +5727,1455 @@ async function submitAddIssue() {
     </div>
   </div>
 </div>
+<!-- SITE FEEDBACK JS -->
+<script>
+// ── Site Feedback state ──────────────────────────────────────────────────────
+const FB = {
+  loaded:       { requests: false, accounts: false, documents: false, stories: false },
+  accountItems: {},  // key → full item object for create-draft lookup
+};
+
+// ── Init / tab switch ────────────────────────────────────────────────────────
+function fbInit() {
+  // Load whichever subtab is currently active
+  const active = document.querySelector('#panel-feedback .ph-subtab.active');
+  const name = active ? active.id.replace('fb-tab-btn-', '') : 'requests';
+  if (!FB.loaded[name]) _fbLoad(name);
+}
+
+function fbSwitchSubTab(name) {
+  document.querySelectorAll('#panel-feedback .ph-subtab').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById(`fb-tab-btn-${name}`);
+  if (btn) btn.classList.add('active');
+
+  document.querySelectorAll('.fb-pane').forEach(p => {
+    p.style.display = 'none';
+    p.classList.remove('fb-pane-active');
+  });
+  const pane = document.getElementById(`fb-pane-${name}`);
+  if (pane) { pane.style.display = 'flex'; pane.classList.add('fb-pane-active'); }
+
+  if (!FB.loaded[name]) _fbLoad(name);
+}
+
+function _fbLoad(name) {
+  if (name === 'requests')  fbLoadRequests();
+  if (name === 'accounts')  fbLoadAccounts();
+  if (name === 'documents') fbLoadDocuments();
+  if (name === 'stories')   fbLoadStories();
+}
+
+// ── Badge rollup ─────────────────────────────────────────────────────────────
+async function loadFeedbackCounts() {
+  try {
+    const data = await api('GET', '/feedback/counts');
+    const badge = document.getElementById('fb-tab-badge');
+    if (badge) {
+      badge.textContent = data.total;
+      badge.style.display = data.total > 0 ? 'inline-block' : 'none';
+    }
+    _setSubBadge('requests',  data.requests);
+    _setSubBadge('accounts',  data.accounts);
+    _setSubBadge('documents', data.documents);
+    _setSubBadge('stories',   data.stories);
+  } catch (e) {
+    console.error('loadFeedbackCounts', e);
+  }
+}
+
+function _setSubBadge(name, count) {
+  const el = document.getElementById(`fb-${name}-badge`);
+  if (el) { el.textContent = count; el.style.display = count > 0 ? 'inline-block' : 'none'; }
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function _fbFmt(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) +
+    ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+function _fbSize(bytes) {
+  if (!bytes) return '';
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1048576) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / 1048576).toFixed(1)} MB`;
+}
+
+function _e(s) { return escHtml ? escHtml(s) : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Requests ─────────────────────────────────────────────────────────────────
+async function fbLoadRequests() {
+  FB.loaded.requests = false;
+  const list = document.getElementById('fb-requests-list');
+  list.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const data = await api('GET', '/feedback/requests');
+    FB.loaded.requests = true;
+    const items = data.items || [];
+    if (!items.length) {
+      list.innerHTML = '<p class="ph-placeholder">No pending requests.</p>';
+      return;
+    }
+    // Group by type_label
+    const groups = {};
+    items.forEach(item => {
+      const label = item.type_label || 'Unknown';
+      if (!groups[label]) groups[label] = [];
+      groups[label].push(item);
+    });
+    let html = '';
+    for (const [label, group] of Object.entries(groups)) {
+      html += `<div class="fb-type-group">`;
+      html += `<div class="fb-type-label">${_e(label)} <span style="font-weight:400;opacity:.7">(${group.length})</span></div>`;
+      group.forEach(item => { html += _fbRequestCard(item); });
+      html += `</div>`;
+    }
+    list.innerHTML = html;
+    _setSubBadge('requests', items.length);
+  } catch (e) {
+    list.innerHTML = `<p class="ph-placeholder" style="color:var(--red)">Error: ${_e(e.message)}</p>`;
+  }
+}
+
+function _fbRequestCard(item) {
+  const name    = item.name    ? _e(item.name)    : '<em style="color:var(--muted)">Anonymous</em>';
+  const contact = item.contact ? ` — ${_e(item.contact)}` : '';
+  const page    = item.page    ? `<span style="font-size:.78rem;color:var(--muted)"> on /${_e(item.page)}</span>` : '';
+  const msg     = item.message || item.details || '';
+
+  return `<div class="fb-card" data-key="${_e(item.key)}">
+  <div class="fb-card-header">
+    <div>
+      <div class="fb-card-name">${name}${contact}</div>
+      <div class="fb-card-meta">${_fbFmt(item.submitted)}${page}</div>
+    </div>
+    <span class="fb-card-badge">${_e(item.type_label || item.type || '?')}</span>
+  </div>
+  <div class="fb-card-body">
+    ${msg ? `<div class="fb-message">${_e(msg)}</div>` : ''}
+    ${item.soldier_name ? `<div style="font-size:.82rem;color:var(--muted)">Soldier: <strong>${_e(item.soldier_name)}</strong>${item.soldier_slug ? ` (${_e(item.soldier_slug)})` : ''}</div>` : ''}
+  </div>
+  <div class="fb-card-actions">
+    <button class="btn-danger-sm" onclick="fbDiscardRequest('${_e(item.key)}', this)">Discard</button>
+  </div>
+</div>`;
+}
+
+async function fbDiscardRequest(key, btn) {
+  if (!confirm('Delete this request from R2? This cannot be undone.')) return;
+  btn.disabled = true;
+  try {
+    await api('POST', '/feedback/discard/request', { key });
+    btn.closest('.fb-card').remove();
+    toast('Request discarded.', 'success');
+    loadFeedbackCounts();
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+// ── Survey Accounts ───────────────────────────────────────────────────────────
+async function fbLoadAccounts() {
+  FB.loaded.accounts = false;
+  const list = document.getElementById('fb-accounts-list');
+  list.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const data = await api('GET', '/feedback/accounts');
+    FB.loaded.accounts = true;
+    const items = data.items || [];
+    if (!items.length) {
+      list.innerHTML = '<p class="ph-placeholder">No survey responses.</p>';
+      return;
+    }
+    FB.accountItems = {};
+    items.forEach(item => { if (item.key) FB.accountItems[item.key] = item; });
+    list.innerHTML = items.map(item => _fbAccountCard(item)).join('');
+    _setSubBadge('accounts', items.length);
+  } catch (e) {
+    list.innerHTML = `<p class="ph-placeholder" style="color:var(--red)">Error: ${_e(e.message)}</p>`;
+  }
+}
+
+function _fbAccountCard(item) {
+  const fullName    = [item.first_name, item.last_name].filter(Boolean).map(s => _e(s)).join(' ') || '<em style="color:var(--muted)">Unknown</em>';
+  const platoon     = item.platoon  ? `<span class="fb-card-badge" style="margin-left:6px">${_e(item.platoon)}</span>` : '';
+  const eventTitle  = item.event_title || item.event_slug || '';
+
+  // Build answers HTML
+  const resolved = item.resolved_answers || [];
+  const skipped  = item.skipped_sections || {};
+  let answersHtml = '';
+
+  for (const section of resolved) {
+    answersHtml += `<div class="fb-section">
+      <div class="fb-section-title">${_e(section.sectionTitle)}</div>`;
+    for (const qa of section.answers) {
+      const answerText = Array.isArray(qa.answer) ? qa.answer.join(', ') : String(qa.answer);
+      answersHtml += `<div class="fb-qa">
+        <div class="fb-q${qa.isFollowUp ? ' is-followup' : ''}">${_e(qa.text)}</div>
+        <div class="fb-a">${_e(answerText)}</div>
+      </div>`;
+    }
+    answersHtml += `</div>`;
+  }
+
+  const skippedSections = Object.keys(skipped);
+  if (skippedSections.length) {
+    answersHtml += `<div class="fb-skipped">Skipped sections: ${skippedSections.map(s => _e(s)).join(', ')}</div>`;
+  }
+  if (!answersHtml) {
+    answersHtml = '<p class="ph-placeholder">No answers recorded.</p>';
+  }
+
+  const permAnswer = (item.answers || {})['closing-permission'] || '';
+  const shareLabel = permAnswer === 'publish' ? 'OK to publish' :
+                     permAnswer === 'restricted' ? 'Restricted' :
+                     permAnswer === 'discuss' ? 'Wants follow-up' : '';
+  const shareBadge = shareLabel ? `<span class="fb-card-badge" style="background:${permAnswer==='publish'?'var(--green);color:#fff':permAnswer==='discuss'?'#dbeafe;color:#1e40af':'#fee2e2;color:#991b1b'}">${shareLabel}</span>` : '';
+
+  return `<div class="fb-card" data-key="${_e(item.key)}">
+  <div class="fb-card-header">
+    <div>
+      <div class="fb-card-name">${fullName} ${platoon}</div>
+      <div class="fb-card-meta">${_fbFmt(item.submitted)}${eventTitle ? ' — ' + _e(eventTitle) : ''}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
+      ${shareBadge}
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+        ${item._pulled ? `<span class="fb-pulled-tag" style="align-self:center">✓ Pulled</span>` : ''}
+        <button class="btn btn-secondary btn-sm" onclick="fbCreateDraft('${_e(item.key)}', this)">Create Draft</button>
+        <button class="btn btn-secondary btn-sm" onclick="fbPullAccount('${_e(item.key)}', this)">Pull to _intake</button>
+        <button class="btn-danger-sm" onclick="fbDiscardAccount('${_e(item.key)}', this)">Discard</button>
+      </div>
+    </div>
+  </div>
+  <div class="fb-card-body">
+    ${answersHtml}
+  </div>
+</div>`;
+}
+
+async function fbCreateDraft(key, btn) {
+  const item = FB.accountItems[key];
+  if (!item) { toast('Item not found — try refreshing.', 'error'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating…';
+  try {
+    const result = await api('POST', '/feedback/create-draft/account', item);
+    btn.textContent = '✓ Draft created';
+    btn.style.borderColor = 'var(--green)';
+    btn.style.color = 'var(--green)';
+
+    // Show the file path inline under the card header
+    const card = btn.closest('.fb-card');
+    const body = card.querySelector('.fb-card-body');
+    const note = document.createElement('div');
+    note.style.cssText = 'font-size:.78rem;font-family:monospace;color:var(--green);margin-bottom:10px;padding:6px 8px;background:#f0fff0;border-radius:3px;border:1px solid #b2dfb2';
+    note.textContent = '✓ ' + result.filePath;
+    body.insertBefore(note, body.firstChild);
+
+    toast(`Draft created: ${result.filePath}`, 'success');
+  } catch (e) {
+    // 409 = already exists
+    if (e.message && e.message.includes('already exists')) {
+      btn.textContent = 'Draft exists';
+      btn.disabled = false;
+      toast(e.message, 'error');
+    } else {
+      toast('Error: ' + e.message, 'error');
+      btn.disabled = false;
+      btn.textContent = 'Create Draft';
+    }
+  }
+}
+
+async function fbPullAccount(key, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Pulling…';
+  try {
+    await api('POST', '/feedback/pull/account', { key });
+    btn.textContent = '✓ Pulled';
+    toast('Account pulled to _intake/accounts/', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Pull to _intake';
+  }
+}
+
+async function fbDiscardAccount(key, btn) {
+  if (!confirm('Delete this survey response from R2? This cannot be undone.')) return;
+  btn.disabled = true;
+  try {
+    await api('POST', '/feedback/discard/account', { key });
+    btn.closest('.fb-card').remove();
+    toast('Response discarded.', 'success');
+    loadFeedbackCounts();
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+// ── Document Contributions ────────────────────────────────────────────────────
+async function fbLoadDocuments() {
+  FB.loaded.documents = false;
+  const list = document.getElementById('fb-documents-list');
+  list.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const data = await api('GET', '/feedback/documents');
+    FB.loaded.documents = true;
+    const items = data.items || [];
+    if (!items.length) {
+      list.innerHTML = '<p class="ph-placeholder">No document contributions.</p>';
+      return;
+    }
+    list.innerHTML = items.map(item => _fbDocumentCard(item)).join('');
+    _setSubBadge('documents', items.length);
+  } catch (e) {
+    list.innerHTML = `<p class="ph-placeholder" style="color:var(--red)">Error: ${_e(e.message)}</p>`;
+  }
+}
+
+function _fbDocumentCard(item) {
+  const meta     = item.metadata || {};
+  const name     = meta.name    ? _e(meta.name)    : '<em style="color:var(--muted)">Unknown submitter</em>';
+  const contact  = meta.contact ? ` — ${_e(meta.contact)}` : '';
+  const desc     = meta.description || meta.message || '';
+  const files    = item.files || [];
+  const fileChips = files.map(f =>
+    `<span class="fb-file-chip">${_e(f.filename)} <span style="color:var(--muted)">${_fbSize(f.size)}</span></span>`
+  ).join('');
+
+  return `<div class="fb-card" data-id="${_e(item.id)}">
+  <div class="fb-card-header">
+    <div>
+      <div class="fb-card-name">${name}${contact}</div>
+      <div class="fb-card-meta">${_fbFmt(meta.submitted)} — ${files.length} file${files.length !== 1 ? 's' : ''}</div>
+    </div>
+    <span class="fb-card-badge">${files.length} file${files.length !== 1 ? 's' : ''}</span>
+  </div>
+  <div class="fb-card-body">
+    ${desc ? `<div class="fb-message">${_e(desc)}</div>` : ''}
+    ${fileChips ? `<div class="fb-file-list">${fileChips}</div>` : ''}
+    <div style="font-size:.75rem;color:var(--muted);font-family:monospace">ID: ${_e(item.id)}</div>
+  </div>
+  <div class="fb-card-actions">
+    <button class="btn btn-secondary btn-sm" onclick="fbPullDocument('${_e(item.id)}', this)">Pull to _intake</button>
+    <button class="btn-danger-sm" onclick="fbDiscardDocument('${_e(item.id)}', this)">Discard</button>
+  </div>
+</div>`;
+}
+
+async function fbPullDocument(id, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Pulling…';
+  try {
+    await api('POST', `/feedback/pull/document/${encodeURIComponent(id)}`);
+    btn.textContent = '✓ Pulled';
+    const card = btn.closest('.fb-card');
+    const actions = card.querySelector('.fb-card-actions');
+    const tag = document.createElement('span');
+    tag.className = 'fb-pulled-tag';
+    tag.textContent = '✓ Pulled to _intake';
+    actions.insertBefore(tag, actions.firstChild);
+    toast('Document pulled to _intake/documents/', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Pull to _intake';
+  }
+}
+
+async function fbDiscardDocument(id, btn) {
+  if (!confirm('Delete this document folder from R2? This cannot be undone.')) return;
+  btn.disabled = true;
+  try {
+    await api('POST', `/feedback/discard/document/${encodeURIComponent(id)}`);
+    btn.closest('.fb-card').remove();
+    toast('Document folder discarded.', 'success');
+    loadFeedbackCounts();
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+// ── Skipper Stories ───────────────────────────────────────────────────────────
+
+async function fbLoadStories() {
+  FB.loaded.stories = true;
+  const list = document.getElementById('fb-stories-list');
+  list.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const data = await api('GET', '/feedback/stories');
+    if (!data.items || data.items.length === 0) {
+      list.innerHTML = '<p class="ph-placeholder">No pending stories.</p>';
+      return;
+    }
+    list.innerHTML = data.items.map(renderStoryCard).join('');
+  } catch (e) {
+    list.innerHTML = `<p class="ph-placeholder" style="color:var(--danger)">Error: ${_e(e.message)}</p>`;
+  }
+}
+
+function renderStoryCard(item) {
+  const displayName = item.publication === 'anonymous' ? 'Anonymous' : _e(item.name || '(no name)');
+  const meta = [
+    item.platoon ? _e(item.platoon + ' Platoon') : null,
+    item.years   ? _e(item.years) : null,
+  ].filter(Boolean).join(' · ');
+
+  const pubLabel = {
+    publish:   'Publish with name',
+    anonymous: 'Publish anonymously',
+    archive:   'Archive only — do not publish',
+  }[item.publication] || item.publication || '(not set)';
+
+  const status = item.status || 'pending';
+  const statusLabel = { held: '⏸ Held', published: '✓ Published', withdrawn: '✗ Withdrawn' }[status] || '⌛ Pending';
+  const isPublished = status === 'published' || status === 'withdrawn';
+
+  return `<div class="fb-card" id="story-card-${_e(item.story_id || '')}">
+    <div class="fb-card-header">
+      <div class="fb-card-title">${displayName}${meta ? ` <span class="fb-card-meta">· ${meta}</span>` : ''}</div>
+      <div class="fb-card-date">${_fbFmt(item.submitted)} · ${statusLabel}</div>
+    </div>
+    <div class="fb-card-body">
+      <div class="fb-story-tab">${_e(item.tab_label || item.tab_id || '')} — <em>${_e(item.prompt_text || item.prompt_id || '')}</em></div>
+      <div class="fb-story-response">${_e(item.response || '')}</div>
+      <div class="fb-card-meta-row">
+        <span>Publication: <strong>${_e(pubLabel)}</strong></span>
+        ${item.email ? `<span>Email: ${_e(item.email)}</span>` : ''}
+        ${item.phone ? `<span>Phone: ${_e(item.phone)}</span>` : ''}
+      </div>
+    </div>
+    <div class="fb-card-actions">
+      ${!isPublished ? `<button class="btn btn-primary btn-sm" onclick="fbApproveStory('${_e(item.story_id || item.key || '')}', '${_e(item.key || '')}', this)">Approve</button>` : ''}
+      ${!isPublished ? `<button class="btn btn-secondary btn-sm" onclick="fbHoldStory('${_e(item.story_id || item.key || '')}', '${_e(item.key || '')}', this)">${status === 'held' ? 'Unhold' : 'Hold'}</button>` : ''}
+      ${status === 'published' ? `<button class="btn btn-secondary btn-sm" onclick="fbWithdrawStory('${_e(item.key || '')}', this)">Withdraw</button>` : ''}
+      ${status === 'withdrawn' ? `<button class="btn btn-primary btn-sm" onclick="fbRestoreStory('${_e(item.key || '')}', this)">Restore</button>` : ''}
+      ${!isPublished ? `<button class="btn btn-danger btn-sm" onclick="fbDiscardStory('${_e(item.key || '')}', this)">Discard</button>` : ''}
+    </div>
+  </div>`;
+}
+
+async function fbApproveStory(storyId, key, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Approving…';
+  try {
+    await api('POST', '/feedback/stories/approve', { story_id: storyId, key });
+    btn.closest('.fb-card').remove();
+    loadFeedbackCounts();
+    toast('Story approved and published.', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Approve';
+  }
+}
+
+async function fbHoldStory(storyId, key, btn) {
+  btn.disabled = true;
+  const isHold = btn.textContent.trim() === 'Hold';
+  btn.textContent = isHold ? 'Holding…' : 'Unholding…';
+  try {
+    await api('POST', '/feedback/stories/hold', { story_id: storyId, key, hold: isHold });
+    btn.disabled = false;
+    btn.textContent = isHold ? 'Unhold' : 'Hold';
+    toast(isHold ? 'Story held — will not auto-publish.' : 'Story unhold — will auto-publish tonight.', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = isHold ? 'Hold' : 'Unhold';
+  }
+}
+
+async function fbDiscardStory(key, btn) {
+  if (!confirm('Delete this story from R2? This cannot be undone.')) return;
+  btn.disabled = true;
+  try {
+    await api('POST', '/feedback/stories/discard', { key });
+    btn.closest('.fb-card').remove();
+    loadFeedbackCounts();
+    toast('Story discarded.', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+async function fbWithdrawStory(key, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Withdrawing…';
+  try {
+    await api('POST', '/feedback/stories/withdraw', { key });
+    btn.textContent = 'Withdrawn';
+    const card = btn.closest('.fb-card');
+    const dateEl = card.querySelector('.fb-card-date');
+    if (dateEl) dateEl.textContent = dateEl.textContent.replace('✓ Published', '✗ Withdrawn');
+    // Swap button to Restore
+    btn.className = 'btn btn-primary btn-sm';
+    btn.textContent = 'Restore';
+    btn.onclick = () => fbRestoreStory(key, btn);
+    btn.disabled = false;
+    toast('Story withdrawn — removed from public feed.', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Withdraw';
+  }
+}
+
+async function fbRestoreStory(key, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Restoring…';
+  try {
+    await api('POST', '/feedback/stories/restore', { key });
+    const card = btn.closest('.fb-card');
+    const dateEl = card.querySelector('.fb-card-date');
+    if (dateEl) dateEl.textContent = dateEl.textContent.replace('✗ Withdrawn', '✓ Published');
+    btn.className = 'btn btn-secondary btn-sm';
+    btn.textContent = 'Withdraw';
+    btn.onclick = () => fbWithdrawStory(key, btn);
+    btn.disabled = false;
+    toast('Story restored — live on public feed.', 'success');
+  } catch (e) {
+    toast('Error: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Restore';
+  }
+}
+
+async function fbLoadPublishedStories() {
+  const list = document.getElementById('fb-published-stories-list');
+  list.innerHTML = '<p class="ph-placeholder">Loading…</p>';
+  try {
+    const data = await api('GET', '/feedback/stories/published');
+    if (!data.items || data.items.length === 0) {
+      list.innerHTML = '<p class="ph-placeholder">No published stories.</p>';
+      return;
+    }
+    list.innerHTML = data.items.map(renderStoryCard).join('');
+  } catch (e) {
+    list.innerHTML = `<p class="ph-placeholder" style="color:var(--danger)">Error: ${_e(e.message)}</p>`;
+  }
+}
+</script>
+
 </body>
 </html>
+
+<script>
+// ─── New Profile Tab ──────────────────────────────────────────────────────────
+(function () {
+
+  var NP = { slug: null, mode: 'new' };
+
+  var NP_SUBTABS = ['frontmatter','photos','documents','servicerecord','decorations','timeline','alongside','external'];
+
+  window.npSwitchSubTab = function (name) {
+    NP_SUBTABS.forEach(function(t) {
+      var btn  = document.getElementById('np-st-' + t);
+      var pane = document.getElementById('np-pane-' + t);
+      if (btn)  btn.classList.toggle('active', t === name);
+      if (pane) pane.style.display = t === name ? '' : 'none';
+    });
+    if (!NP.slug) return;
+    if (name === 'decorations') npDecLoad();
+    if (name === 'external') {
+      api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug))
+        .then(function(d) { npExtLoad(d.data || d); })
+        .catch(function() {});
+    }
+    if (name === 'servicerecord') {
+      api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug))
+        .then(function(d) { npSrLoad(d.data || d); })
+        .catch(function() {});
+    }
+    if (name === 'timeline') {
+      api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug))
+        .then(function(d) { npTlLoad(d.data || d); })
+        .catch(function() {});
+    }
+    if (name === 'alongside') {
+      api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug))
+        .then(function(d) {
+          api('GET', '/slugs?type=soldier').then(function(slugs) {
+            var list = (Array.isArray(slugs) ? slugs : [])
+              .map(function(s) { return typeof s === 'object' ? s.slug : s; })
+              .filter(Boolean).sort();
+            npAlLoad(d.data || d, list);
+          }).catch(function() { npAlLoad(d.data || d, null); });
+        })
+        .catch(function() {});
+    }
+    if (name === 'photos') npPhLoad();
+    if (name === 'documents') npDocLoad();
+  };
+
+  window.npSetMode = function (mode) {
+    NP.mode = mode;
+    NP.slug = null;
+    document.getElementById('np-btn-new').classList.toggle('active', mode === 'new');
+    document.getElementById('np-btn-edit').classList.toggle('active', mode === 'edit');
+    document.getElementById('np-slug-new').style.display  = mode === 'new'  ? '' : 'none';
+    document.getElementById('np-slug-edit').style.display = mode === 'edit' ? '' : 'none';
+    document.getElementById('np-sections').style.display  = 'none';
+    npSetStatus('');
+    if (mode === 'edit') npPopulateEditSelect();
+  };
+
+  window.npSlugInput = function () {
+    var raw  = document.getElementById('np-slug-input').value.trim();
+    var hint = document.getElementById('np-slug-hint');
+    var btn  = document.getElementById('np-create-btn');
+    var valid = /^[a-z0-9-]+$/.test(raw);
+    hint.textContent = valid ? '' : 'lowercase letters, numbers, and hyphens only';
+    hint.style.color = valid ? '' : 'var(--red)';
+    btn.disabled = !valid || raw.length < 3;
+  };
+
+  window.npCreate = async function () {
+    var slug = document.getElementById('np-slug-input').value.trim();
+    if (!slug) return;
+    npSetStatus('Creating...', 'info');
+    try {
+      var d = await api('POST', '/soldiers/create', { slug: slug });
+      if (!d.ok) {
+        var msg = d.alreadyExists ? '"' + slug + '" already exists.' : d.error;
+        npSetStatus(msg, 'error');
+        toast(msg, 'error');
+        return;
+      }
+      NP.slug = slug;
+      document.getElementById('np-date_added').value = new Date().toISOString().slice(0, 10);
+      npSetStatus('Profile created: ' + slug, '');
+      document.getElementById('np-sections').style.display = '';
+      npLoadPrivateContact(slug);
+      npDecRefreshIfVisible();
+    } catch (e) {
+      npSetStatus(e.message, 'error');
+      toast(e.message, 'error');
+    }
+  };
+
+  async function npPopulateEditSelect() {
+    var sel = document.getElementById('np-slug-select');
+    sel.innerHTML = '<option value="">-- loading... --</option>';
+    try {
+      var items = await api('GET', '/slugs?type=soldier');
+      // /api/slugs returns [{slug, path}, ...] for soldiers
+      var slugs = (Array.isArray(items) ? items : [])
+                    .map(function(s) { return typeof s === 'object' ? s.slug : s; })
+                    .filter(Boolean).sort();
+      sel.innerHTML = '<option value="">-- select soldier --</option>' +
+        slugs.map(function(s) { return '<option value="' + s + '">' + s + '</option>'; }).join('');
+    } catch (e) {
+      sel.innerHTML = '<option value="">Error loading slugs</option>';
+      toast(e.message, 'error');
+    }
+  }
+
+  window.npLoadExisting = async function () {
+    var slug = document.getElementById('np-slug-select').value;
+    if (!slug) { document.getElementById('np-sections').style.display = 'none'; return; }
+    npSetStatus('Loading...', 'info');
+    try {
+      var d = await api('GET', '/record?type=soldier&slug=' + encodeURIComponent(slug));
+      NP.slug = slug;
+      var fm = d.data || d;
+      npPopulateForm(fm);
+      npExtLoad(fm);
+      npSrLoad(fm);
+      npTlLoad(fm);
+      npAlLoad(fm, null);
+      document.getElementById('np-sections').style.display = '';
+      npSetStatus('Editing: ' + slug, 'info');
+      npLoadPrivateContact(slug);
+      npDecRefreshIfVisible();
+    } catch (e) {
+      npSetStatus(e.message, 'error');
+      toast(e.message, 'error');
+    }
+  };
+
+  function npGetNestedValue(obj, path) {
+    return path.split('.').reduce(function(o, k) { return o != null ? o[k] : undefined; }, obj);
+  }
+
+  function npPopulateForm(fm) {
+    var fields = [
+      'first_name','last_name','middle_name','suffix','nickname','birth_year',
+      'rank','mos','platoon',
+      'arrived','departed','status','character_of_service',
+      'hometown','current_location','year_deceased','cause_of_death',
+      'share_contact','contact.name','contact.relation','contact.last_verified',
+      'date_added','contributed_by','notes',
+    ];
+    for (var i = 0; i < fields.length; i++) {
+      var f = fields[i];
+      var el = document.getElementById('np-' + f);
+      if (!el) continue;
+      var val = npGetNestedValue(fm, f);
+      if (val === undefined || val === null) continue;
+      el.value = String(val);
+    }
+  }
+
+  var SECTION_FIELDS = {
+    identity:    ['first_name','last_name','middle_name','suffix','nickname','birth_year'],
+    rank:        ['rank','mos','platoon'],
+    service:     ['arrived','departed','status','character_of_service'],
+    postservice: ['hometown','current_location','year_deceased','cause_of_death'],
+    contact:     ['share_contact','contact.name','contact.relation','contact.last_verified'],
+    admin:       ['contributed_by','notes'],
+  };
+
+  window.npSaveSection = async function (section) {
+    if (!NP.slug) { npSetStatus('No active profile -- create or load one first.', 'error'); return; }
+    var fields = SECTION_FIELDS[section];
+    if (!fields) return;
+    var edits = [];
+    for (var i = 0; i < fields.length; i++) {
+      var f = fields[i];
+      var el = document.getElementById('np-' + f);
+      if (!el) continue;
+      var val = el.value.trim();
+      if (val !== '') edits.push({ field: f, value: val });
+    }
+    if (!edits.length) { npSectionMsg(section, 'Nothing to save.', ''); return; }
+    npSectionMsg(section, 'Saving...', '');
+    // Sequential — concurrent writes to the same file cause race conditions
+    var errors = [];
+    for (var ei = 0; ei < edits.length; ei++) {
+      try {
+        await api('POST', '/edit', { type: 'soldier', slug: NP.slug, field: edits[ei].field, value: edits[ei].value });
+      } catch(err) { errors.push(err.message); }
+    }
+    if (errors.length) {
+      var msg = errors.length + ' field(s) failed: ' + errors.join('; ');
+      npSectionMsg(section, msg, 'error');
+      toast(msg, 'error');
+    } else {
+      npSectionMsg(section, 'Saved ' + edits.length + ' field(s).', '');
+    }
+  };
+
+  function npSetStatus(msg, type) {
+    var el = document.getElementById('np-status-bar');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'np-status-bar' + (type ? ' ' + type : '');
+  }
+
+  function npSectionMsg(section, msg, type) {
+    var btn = document.querySelector('.np-section button[onclick="npSaveSection(\'' + section + '\')"]');
+    if (!btn) return;
+    var sectionEl = btn.closest('.np-section');
+    if (!sectionEl) return;
+    var msgEl = sectionEl.querySelector('.np-section-msg');
+    if (!msgEl) {
+      msgEl = document.createElement('div');
+      msgEl.className = 'np-section-msg';
+      sectionEl.appendChild(msgEl);
+    }
+    msgEl.textContent = msg;
+    msgEl.className = 'np-section-msg' + (type === 'error' ? ' error' : '');
+    if (msg && type !== 'error') {
+      setTimeout(function() { if (msgEl.textContent === msg) msgEl.textContent = ''; }, 3000);
+    }
+  }
+
+  // ── Private contact load/save ─────────────────────────────────────────────
+  function npClearPrivateFields() {
+    ['email','phone','address','notes'].forEach(function(f) {
+      var el = document.getElementById('np-private-' + f);
+      if (el) el.value = '';
+    });
+  }
+
+  async function npLoadPrivateContact(slug) {
+    npClearPrivateFields();
+    if (!slug) return;
+    try {
+      var d = await api('GET', '/private/contact?slug=' + encodeURIComponent(slug));
+      ['email','phone','address','notes'].forEach(function(f) {
+        var el = document.getElementById('np-private-' + f);
+        if (el && d[f] != null) el.value = d[f];
+      });
+    } catch (e) {
+      // Non-fatal — private file may not exist yet
+    }
+  }
+
+  window.npSavePrivateContact = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var body = { slug: NP.slug };
+    ['email','phone','address','notes'].forEach(function(f) {
+      var el = document.getElementById('np-private-' + f);
+      if (el && el.value.trim() !== '') body[f] = el.value.trim();
+    });
+    try {
+      await api('POST', '/private/contact', body);
+      toast('Private contact saved.', 'success');
+    } catch (e) {
+      toast('Save failed: ' + e.message, 'error');
+    }
+  };
+
+  // ── Decorations ────────────────────────────────────────────────────────────
+  var NP_DECORATIONS = {
+    decorations: [
+      'National Defense Service Medal',
+      'Vietnam Service Medal',
+      'Vietnam Campaign Medal',
+      'Purple Heart',
+      'Army Commendation Medal',
+      'Army Commendation Medal for Heroism',
+      'Bronze Star Medal',
+      'Combat Infantryman Badge',
+      'Expert Marksmanship Badge',
+      'Marksmanship Badge',
+      'Air Medal',
+      'Presidential Unit Citation',
+      'Army Presidential Unit Citation',
+      'Vietnam Gallantry Cross',
+      'United States Army Aviator Badge',
+    ],
+    distinguished_decorations: [
+      'Purple Heart',
+      'Bronze Star Medal',
+      'Army Commendation Medal for Heroism',
+      'Silver Star',
+      'Distinguished Service Cross',
+    ],
+    decorations_unconfirmed: [
+      'Purple Heart',
+      'Combat Infantryman Badge',
+      'Vietnam Gallantry Cross',
+      'Army Presidential Unit Citation',
+      'Marksmanship Badge',
+      'Expert Marksmanship Badge',
+      'United States Army Aviator Badge',
+    ],
+    distinguished_decorations: [
+      'Purple Heart',
+      'Bronze Star Medal',
+      'Army Commendation Medal for Heroism',
+      'Silver Star',
+      'Distinguished Service Cross',
+    ],
+    decorations_unconfirmed: [
+      'Purple Heart',
+      'Combat Infantryman Badge',
+      'Vietnam Gallantry Cross',
+      'Army Presidential Unit Citation',
+      'Marksmanship Badge',
+      'Expert Marksmanship Badge',
+      'United States Army Aviator Badge',
+    ],
+  };
+
+  var NP_BASE_SET = {
+    decorations: [
+      'National Defense Service Medal',
+      'Vietnam Service Medal',
+      'Vietnam Campaign Medal',
+    ],
+    distinguished_decorations: [],
+    decorations_unconfirmed: [
+      'Vietnam Gallantry Cross',
+    ],
+  };
+
+  function npDecRefreshIfVisible() {
+    var pane = document.getElementById('np-pane-decorations');
+    if (pane && pane.style.display !== 'none') {
+      npDecLoad();
+    } else {
+      var el = document.getElementById('np-dec-content');
+      if (el) el.innerHTML = '';
+    }
+  }
+
+  async function npDecLoad() {
+    var el = document.getElementById('np-dec-content');
+    if (!el || !NP.slug) return;
+    el.innerHTML = '<p class="np-stub-msg">Loading...</p>';
+    try {
+      var d = await api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug));
+      var fm = d.data || d;
+      el.innerHTML = npDecRender(fm);
+    } catch(e) {
+      el.innerHTML = '<p class="np-stub-msg" style="color:var(--red)">' + e.message + '</p>';
+    }
+  }
+
+  window.npDecApplyBaseSet = async function() {
+    if (!NP.slug) return;
+    var btn = document.getElementById('np-dec-baseset-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Applying...'; }
+    var fields = Object.keys(NP_BASE_SET);
+    for (var fi = 0; fi < fields.length; fi++) {
+      var field = fields[fi];
+      var vals  = NP_BASE_SET[field];
+      for (var vi = 0; vi < vals.length; vi++) {
+        try {
+          await api('POST', '/attach', { type: 'soldier', slug: NP.slug, field: field, value: vals[vi] });
+        } catch(e) {}
+      }
+    }
+    await npDecLoad();
+    if (btn) { btn.disabled = false; btn.textContent = 'Apply Base Set'; }
+    toast('Base set applied.', 'success');
+  };
+
+  function npDecRender(fm) {
+    var sections = [
+      { key: 'decorations',               label: 'Decorations' },
+      { key: 'distinguished_decorations', label: 'Distinguished Decorations' },
+      { key: 'decorations_unconfirmed',   label: 'Unconfirmed' },
+    ];
+    return sections.map(function(s) {
+      var current = Array.isArray(fm[s.key]) ? fm[s.key].map(function(v) {
+        return String(v).replace(/[\u201c\u201d"]/g, '');
+      }) : [];
+      var opts = (NP_DECORATIONS[s.key] || []).slice();
+      current.forEach(function(v) { if (opts.indexOf(v) === -1) opts.push(v); });
+      var checkboxes = opts.map(function(val) {
+        var checked = current.indexOf(val) !== -1;
+        var idSafe  = 'np-dec-' + s.key + '-' + val.replace(/[^a-zA-Z0-9]/g, '_');
+        return '<label class="np-dec-item">' +
+          '<input type="checkbox" id="' + idSafe + '"' +
+          ' data-field="' + s.key + '" data-value="' + val + '"' +
+          (checked ? ' checked' : '') + ' onchange="npDecToggle(this)">' +
+          '<span>' + val + '</span></label>';
+      }).join('');
+      return '<div class="np-section">' +
+        '<div class="np-section-head"><span>' + s.label + '</span></div>' +
+        '<div class="np-dec-list">' + checkboxes + '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.npDecToggle = async function (cb) {
+    if (!NP.slug) return;
+    var field    = cb.dataset.field;
+    var value    = cb.dataset.value;
+    var endpoint = cb.checked ? '/attach' : '/detach';
+    cb.disabled  = true;
+    try {
+      await api('POST', endpoint, { type: 'soldier', slug: NP.slug, field: field, value: value });
+    } catch(e) {
+      toast(e.message, 'error');
+      cb.checked = !cb.checked;
+    } finally {
+      cb.disabled = false;
+    }
+  };
+
+  // External Resources
+  var NP_EXT = { wall: '', other: [] };
+
+  function npExtLoad(fm) {
+    var links = fm.links || {};
+    NP_EXT.wall  = links.wall  || '';
+    NP_EXT.other = Array.isArray(links.other) ? links.other : [];
+    var wallInput = document.getElementById('np-ext-wall');
+    if (wallInput) wallInput.value = NP_EXT.wall;
+    var wallSection = document.getElementById('np-ext-wall-section');
+    if (wallSection) {
+      var status = fm.status || '';
+      wallSection.style.display = (status === 'kia' || status === 'mia') ? '' : 'none';
+    }
+    npExtRenderOther();
+  }
+
+  function npExtRenderOther() {
+    var list = document.getElementById('np-ext-other-list');
+    if (!list) return;
+    if (!NP_EXT.other.length) {
+      list.innerHTML = '<p class="np-stub-msg" style="padding:0;margin-bottom:8px">No links yet.</p>';
+      return;
+    }
+    list.innerHTML = NP_EXT.other.map(function(item, i) {
+      return '<div class="np-ext-link-row">' +
+        '<span class="np-ext-link-label">' + escHtml(item.label || '') + '</span>' +
+        '<a href="' + escHtml(item.url || '') + '" target="_blank">' + escHtml(item.url || '') + '</a>' +
+        '<button class="np-ext-remove" title="Remove" onclick="npExtRemove(' + i + ')">&#215;</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.npExtSaveWall = async function () {
+    if (!NP.slug) return;
+    var val = document.getElementById('np-ext-wall').value.trim();
+    try {
+      await api('POST', '/edit', { type: 'soldier', slug: NP.slug, field: 'links.wall', value: val });
+      NP_EXT.wall = val;
+      toast('Wall URL saved.', 'success');
+    } catch(e) { toast(e.message, 'error'); }
+  };
+
+  window.npExtAddOther = async function () {
+    if (!NP.slug) return;
+    var label = document.getElementById('np-ext-new-label').value.trim();
+    var url   = document.getElementById('np-ext-new-url').value.trim();
+    if (!label || !url) { toast('Label and URL are both required.', 'error'); return; }
+    try {
+      var d = await api('POST', '/soldier/links/other/add', { slug: NP.slug, label: label, url: url });
+      NP_EXT.other = Array.isArray(d.links.other) ? d.links.other : [];
+      document.getElementById('np-ext-new-label').value = '';
+      document.getElementById('np-ext-new-url').value   = '';
+      npExtRenderOther();
+    } catch(e) { toast(e.message, 'error'); }
+  };
+
+  window.npExtRemove = async function (index) {
+    if (!NP.slug) return;
+    try {
+      var d = await api('POST', '/soldier/links/other/remove', { slug: NP.slug, index: index });
+      NP_EXT.other = Array.isArray(d.links.other) ? d.links.other : [];
+      npExtRenderOther();
+    } catch(e) { toast(e.message, 'error'); }
+  };
+
+  // Service Record
+
+  function npSrLoad(fm) {
+    var ind = (fm.service_record && fm.service_record.induction) || {};
+    var statusEl = document.getElementById('np-sr-ind-status');
+    var locEl    = document.getElementById('np-sr-ind-location');
+    var dateEl   = document.getElementById('np-sr-ind-date');
+    if (statusEl) statusEl.value = ind.status || '';
+    if (locEl)    locEl.value    = ind.location || '';
+    if (dateEl)   dateEl.value   = ind.date || '';
+    npSrRenderAssignments(
+      Array.isArray(fm.service_record && fm.service_record.assignments)
+        ? fm.service_record.assignments : []
+    );
+  }
+
+  function npSrRenderAssignments(assignments) {
+    var el = document.getElementById('np-sr-assignments-list');
+    if (!el) return;
+    if (!assignments.length) {
+      el.innerHTML = '<p class="np-stub-msg" style="padding:0;margin-bottom:8px">No assignments yet.</p>';
+      return;
+    }
+    el.innerHTML = assignments.map(function(a, i) {
+      var meta = [
+        a.unit     ? escHtml(a.unit)     : '',
+        a.location ? escHtml(a.location) : '',
+        (a.from || a.to) ? [a.from, a.to].filter(Boolean).join(' - ') : '',
+        a.notes ? '<em>' + escHtml(a.notes) + '</em>' : '',
+      ].filter(Boolean).join(' &middot; ');
+      return '<div class="np-ext-link-row">' +
+        '<span style="flex:1"><strong>' + escHtml(a.label || a.type || '?') + '</strong>' +
+        (meta ? ' &mdash; ' + meta : '') + '</span>' +
+        '<button class="np-ext-remove" title="Remove" onclick="npSrRemoveAssignment(' + i + ')">&#215;</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.npSrSaveInduction = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var body = {
+      slug:     NP.slug,
+      status:   document.getElementById('np-sr-ind-status').value,
+      location: document.getElementById('np-sr-ind-location').value.trim(),
+      date:     document.getElementById('np-sr-ind-date').value.trim(),
+    };
+    try {
+      await api('POST', '/soldier/service-record/induction', body);
+      toast('Induction saved.', 'success');
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  window.npSrAddAssignment = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var msgEl = document.getElementById('np-sr-add-msg');
+    var body = {
+      slug:     NP.slug,
+      type:     document.getElementById('np-sr-add-type').value,
+      label:    document.getElementById('np-sr-add-label').value.trim(),
+      unit:     document.getElementById('np-sr-add-unit').value.trim(),
+      location: document.getElementById('np-sr-add-location').value.trim(),
+      from:     document.getElementById('np-sr-add-from').value.trim(),
+      to:       document.getElementById('np-sr-add-to').value.trim(),
+      notes:    document.getElementById('np-sr-add-notes').value.trim(),
+    };
+    if (!body.type && !body.label) {
+      if (msgEl) { msgEl.textContent = 'Type or label required.'; msgEl.className = 'np-section-msg error'; }
+      return;
+    }
+    try {
+      var d = await api('POST', '/soldier/service-record/assignment/add', body);
+      npSrRenderAssignments(d.assignments || []);
+      ['np-sr-add-type','np-sr-add-label','np-sr-add-unit','np-sr-add-location',
+       'np-sr-add-from','np-sr-add-to','np-sr-add-notes'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.value = '';
+      });
+      if (msgEl) { msgEl.textContent = 'Added.'; msgEl.className = 'np-section-msg'; setTimeout(function() { msgEl.textContent = ''; }, 2000); }
+    } catch (e) {
+      if (msgEl) { msgEl.textContent = e.message; msgEl.className = 'np-section-msg error'; }
+    }
+  };
+
+  window.npSrRemoveAssignment = async function (index) {
+    if (!NP.slug) return;
+    if (!confirm('Remove this assignment?')) return;
+    try {
+      var d = await api('POST', '/soldier/service-record/assignment/remove', { slug: NP.slug, index: index });
+      npSrRenderAssignments(d.assignments || []);
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  // Timeline
+
+  function npTlLoad(fm) {
+    var srcEl = document.getElementById('np-tl-source');
+    if (srcEl) srcEl.value = fm.timeline_source || '';
+    npTlRenderEntries(Array.isArray(fm.timeline) ? fm.timeline : []);
+  }
+
+  function npTlRenderEntries(entries) {
+    var el = document.getElementById('np-tl-list');
+    if (!el) return;
+    if (!entries.length) {
+      el.innerHTML = '<p class="np-stub-msg" style="padding:0;margin-bottom:8px">No entries yet.</p>';
+      return;
+    }
+    el.innerHTML = entries.map(function(e, i) {
+      return '<div class="np-ext-link-row" style="align-items:flex-start;gap:8px">' +
+        '<div style="flex:1"><strong>' + escHtml(e.date || '?') + '</strong>' +
+        (e.phase ? ' <span class="np-ext-link-label">' + escHtml(e.phase) + '</span>' : '') +
+        (e.type  ? ' <span class="np-ext-link-label">' + escHtml(e.type)  + '</span>' : '') +
+        (e.headline ? '<br>' + escHtml(e.headline) : '') +
+        '</div>' +
+        '<button class="np-ext-remove" title="Remove" onclick="npTlRemoveEntry(' + i + ')">&#215;</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.npTlSaveSource = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var val = document.getElementById('np-tl-source').value.trim();
+    try {
+      await api('POST', '/edit', { type: 'soldier', slug: NP.slug, field: 'timeline_source', value: val });
+      toast('Source note saved.', 'success');
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  window.npTlAddEntry = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var msgEl = document.getElementById('np-tl-add-msg');
+    var body = {
+      slug:     NP.slug,
+      date:     document.getElementById('np-tl-add-date').value.trim(),
+      phase:    document.getElementById('np-tl-add-phase').value,
+      type:     document.getElementById('np-tl-add-type').value,
+      headline: document.getElementById('np-tl-add-headline').value.trim(),
+      body:     document.getElementById('np-tl-add-body').value.trim(),
+    };
+    if (!body.date) {
+      if (msgEl) { msgEl.textContent = 'Date required.'; msgEl.className = 'np-section-msg error'; }
+      return;
+    }
+    try {
+      var d = await api('POST', '/soldier/timeline/add', body);
+      npTlRenderEntries(d.timeline || []);
+      ['np-tl-add-date','np-tl-add-headline','np-tl-add-body'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.value = '';
+      });
+      if (msgEl) { msgEl.textContent = 'Added.'; msgEl.className = 'np-section-msg'; setTimeout(function() { msgEl.textContent = ''; }, 2000); }
+    } catch (e) {
+      if (msgEl) { msgEl.textContent = e.message; msgEl.className = 'np-section-msg error'; }
+    }
+  };
+
+  window.npTlRemoveEntry = async function (index) {
+    if (!NP.slug) return;
+    if (!confirm('Remove this timeline entry?')) return;
+    try {
+      var d = await api('POST', '/soldier/timeline/remove', { slug: NP.slug, index: index });
+      npTlRenderEntries(d.timeline || []);
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  // Alongside
+
+  function npAlLoad(fm, allSlugs) {
+    npAlRender(Array.isArray(fm.brothers) ? fm.brothers : []);
+    if (allSlugs) {
+      var dl = document.getElementById('np-al-datalist');
+      if (dl) dl.innerHTML = allSlugs.map(function(s) { return '<option value="' + s + '">'; }).join('');
+    }
+  }
+
+  function npAlRender(brothers) {
+    var el = document.getElementById('np-al-list');
+    if (!el) return;
+    if (!brothers.length) {
+      el.innerHTML = '<p class="np-stub-msg" style="padding:0;margin-bottom:8px">No brothers listed yet.</p>';
+      return;
+    }
+    el.innerHTML = brothers.map(function(slug) {
+      return '<div class="np-ext-link-row">' +
+        '<span style="flex:1;font-family:monospace">' + escHtml(slug) + '</span>' +
+        '<button class="np-ext-remove" title="Remove" onclick="npAlRemove(' + JSON.stringify(slug) + ')">&#215;</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.npAlAdd = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var msgEl = document.getElementById('np-al-msg');
+    var val = document.getElementById('np-al-add-slug').value.trim();
+    if (!val) { if (msgEl) { msgEl.textContent = 'Enter a slug.'; msgEl.className = 'np-section-msg error'; } return; }
+    try {
+      await api('POST', '/attach', { type: 'soldier', slug: NP.slug, field: 'brothers', value: val });
+      document.getElementById('np-al-add-slug').value = '';
+      if (msgEl) msgEl.textContent = '';
+      var d = await api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug));
+      npAlRender(Array.isArray((d.data || d).brothers) ? (d.data || d).brothers : []);
+    } catch (e) {
+      if (msgEl) { msgEl.textContent = e.message; msgEl.className = 'np-section-msg error'; }
+    }
+  };
+
+  window.npAlRemove = async function (brotherSlug) {
+    if (!NP.slug) return;
+    try {
+      await api('POST', '/detach', { type: 'soldier', slug: NP.slug, field: 'brothers', value: brotherSlug });
+      var d = await api('GET', '/record?type=soldier&slug=' + encodeURIComponent(NP.slug));
+      npAlRender(Array.isArray((d.data || d).brothers) ? (d.data || d).brothers : []);
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  // Photos
+
+  async function npPhLoad() {
+    if (!NP.slug) return;
+    var profEl  = document.getElementById('np-ph-profile');
+    var fieldEl = document.getElementById('np-ph-field');
+    try {
+      var d = await api('GET', '/soldier/photos?slug=' + encodeURIComponent(NP.slug));
+      if (profEl) {
+        profEl.innerHTML = d.profile_photo
+          ? '<p style="margin:0">&#10003; <strong>' + escHtml(d.profile_photo) + '</strong></p>'
+          : '<p class="np-stub-msg" style="padding:0">No profile photo set. Upload one via the Photos tab crop tool.</p>';
+      }
+      if (fieldEl) {
+        fieldEl.innerHTML = d.field_count
+          ? '<p style="margin:0"><strong>' + d.field_count + '</strong> field photo' + (d.field_count !== 1 ? 's' : '') + ' on disk.</p>' +
+            (d.field_files.length ? '<p class="form-hint" style="margin-top:4px">' + d.field_files.map(escHtml).join(', ') + '</p>' : '')
+          : '<p class="np-stub-msg" style="padding:0">No field photos yet.</p>';
+      }
+    } catch (e) {
+      if (profEl)  profEl.innerHTML  = '<p class="np-stub-msg" style="color:var(--red)">' + e.message + '</p>';
+      if (fieldEl) fieldEl.innerHTML = '';
+    }
+  }
+
+  window.npPhLoadContaining = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var el = document.getElementById('np-ph-containing');
+    if (!el) return;
+    el.innerHTML = '<p class="np-stub-msg" style="padding:0">Searching…</p>';
+    try {
+      var d = await api('GET', '/soldier/photos/containing?slug=' + encodeURIComponent(NP.slug));
+      var photos = d.photos || [];
+      if (!photos.length) {
+        el.innerHTML = '<p class="np-stub-msg" style="padding:0">No archive photos found containing this soldier.</p>';
+        return;
+      }
+      el.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">' +
+        photos.map(function(p) {
+          var safeCaption = escHtml(p.caption || (p.sourceSlug + '/' + p.subfolder));
+          var safeUrl     = escHtml(p.url);
+          var dataAttrs   = 'data-source-slug="' + escHtml(p.sourceSlug) + '" ' +
+                            'data-subfolder="'   + escHtml(p.subfolder)  + '" ' +
+                            'data-filename="'    + escHtml(p.filename)   + '" ' +
+                            'data-credit="'      + escHtml(p.credit)     + '" ' +
+                            'data-url="'         + safeUrl               + '"';
+          return '<div class="np-archive-thumb" ' + dataAttrs + ' onclick="npPhOpenExisting(this)" title="' + safeCaption + '">' +
+            '<img src="' + safeUrl + '" alt="' + safeCaption + '" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">' +
+            '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;font-size:10px;padding:2px 4px;line-height:1.3;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">' + safeCaption + '</div>' +
+            '</div>';
+        }).join('') +
+        '</div>';
+    } catch (e) {
+      el.innerHTML = '<p class="np-stub-msg" style="color:var(--red);padding:0">' + escHtml(e.message) + '</p>';
+    }
+  };
+
+  window.npPhOpenExisting = function (thumbEl) {
+    var sourceSlug = thumbEl.dataset.sourceSlug;
+    var subfolder  = thumbEl.dataset.subfolder;
+    var filename   = thumbEl.dataset.filename;
+    var credit     = thumbEl.dataset.credit;
+    var url        = thumbEl.dataset.url;
+    var slug = NP.slug || editRecord?.slug;
+    if (!slug) { toast('No active profile.', 'error'); return; }
+
+    // Reset PPH state and mark as from-existing (store slug so pphSave works from NP panel)
+    Object.assign(PPH, { file: null, dataUrl: null, crop: null, dragging: false,
+                         fromExisting: { slug, sourceSlug, subfolder, filename } });
+    document.getElementById('pph-credit').value       = credit || '';
+    document.getElementById('pph-photographer').value = '';
+    pphCropReset();
+
+    // Load image; bind crop events on load (same as pphLoadFile does for uploads).
+    // Reset src first so onload fires even if the URL is already cached.
+    var img = document.getElementById('pph-crop-img');
+    img.onload = function () {
+      pphBindCropEvents();
+      pphShowStep('crop');
+      document.getElementById('pph-modal').classList.add('open');
+    };
+    img.onerror = function () {
+      toast('Could not load image — try again or use a different photo.', 'error');
+    };
+    img.src = '';
+    img.src = url;
+  };
+
+  // Documents
+
+  async function npDocLoad() {
+    if (!NP.slug) return;
+    var el = document.getElementById('np-doc-list');
+    if (!el) return;
+    try {
+      var d = await api('GET', '/soldier/documents?slug=' + encodeURIComponent(NP.slug));
+      var docs = d.documents || [];
+      if (!docs.length) {
+        el.innerHTML = '<p class="np-stub-msg" style="padding:0;margin-bottom:8px">No documents yet.</p>';
+        return;
+      }
+      el.innerHTML = docs.map(function(doc) {
+        return '<div class="np-ext-link-row">' +
+          '<span style="flex:1"><strong>' + escHtml(doc.title) + '</strong>' +
+          (doc.type ? ' <span class="np-ext-link-label">' + escHtml(doc.type) + '</span>' : '') +
+          '<br><span class="form-hint" style="font-family:monospace">' + escHtml(doc.slug) + '</span></span>' +
+          '</div>';
+      }).join('');
+    } catch (e) {
+      el.innerHTML = '<p class="np-stub-msg" style="color:var(--red)">' + e.message + '</p>';
+    }
+  }
+
+  window.npDocCreate = async function () {
+    if (!NP.slug) { toast('No active profile.', 'error'); return; }
+    var msgEl   = document.getElementById('np-doc-add-msg');
+    var docSlug = document.getElementById('np-doc-add-slug').value.trim();
+    var title   = document.getElementById('np-doc-add-title').value.trim();
+    var type    = document.getElementById('np-doc-add-type').value;
+    if (!docSlug) {
+      if (msgEl) { msgEl.textContent = 'Doc slug required.'; msgEl.className = 'np-section-msg error'; } return;
+    }
+    try {
+      await api('POST', '/soldier/documents/create', { soldierSlug: NP.slug, docSlug: docSlug, title: title, type: type });
+      document.getElementById('np-doc-add-slug').value  = '';
+      document.getElementById('np-doc-add-title').value = '';
+      if (msgEl) { msgEl.textContent = 'Created: ' + docSlug; msgEl.className = 'np-section-msg'; setTimeout(function() { msgEl.textContent = ''; }, 3000); }
+      await npDocLoad();
+    } catch (e) {
+      if (msgEl) { msgEl.textContent = e.message; msgEl.className = 'np-section-msg error'; }
+    }
+  };
+
+  // Hook into switchTab (no-op shim — NP tab is self-contained)
+  (function() {
+    var _prev = typeof switchTab === 'function' ? switchTab : null;
+    window.switchTab = function (name) {
+      if (_prev) _prev(name);
+    };
+  })();
+
+})();
+</script>
+
+<script>
+// Photo upload drop zone + folder picker
+(function () {
+
+  function phSetUploadStatus(msg, type) {
+    var el = document.getElementById('ph-upload-status');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'ph-upload-status' + (type ? ' ' + type : '');
+  }
+
+  async function phUploadFiles(files) {
+    var imageFiles = Array.from(files).filter(function(f) {
+      return /\.(jpg|jpeg|png|tiff|tif|webp)$/i.test(f.name);
+    });
+    if (!imageFiles.length) {
+      phSetUploadStatus('No supported image files found.', 'error');
+      return;
+    }
+    var label = (document.getElementById('ph-upload-label') &&
+                 document.getElementById('ph-upload-label').value.trim()) || 'upload';
+    phSetUploadStatus('Uploading ' + imageFiles.length + ' file(s)...', '');
+
+    var fd = new FormData();
+    fd.append('folderName', label);
+    imageFiles.forEach(function(f) { fd.append('files', f); });
+
+    try {
+      var res = await fetch('/api/photos/raw/upload', { method: 'POST', body: fd });
+      var d   = await res.json();
+      if (d.ok) {
+        phSetUploadStatus('Uploaded ' + d.count + ' file(s) to ' + d.folder + '.', 'ok');
+        if (typeof phRefreshRaw === 'function') phRefreshRaw();
+      } else {
+        phSetUploadStatus(d.error || 'Upload failed.', 'error');
+      }
+    } catch (e) {
+      phSetUploadStatus('Upload error: ' + e.message, 'error');
+    }
+  }
+
+  // Drag and drop
+  var zone = document.getElementById('ph-upload-zone');
+  if (zone) {
+    zone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      zone.classList.add('drag-over');
+    });
+    zone.addEventListener('dragleave', function() {
+      zone.classList.remove('drag-over');
+    });
+    zone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      var files = e.dataTransfer.files;
+      if (files && files.length) phUploadFiles(files);
+    });
+    zone.addEventListener('click', function() {
+      var inp = document.getElementById('ph-folder-input');
+      if (inp) inp.click();
+    });
+  }
+
+  // Folder input
+  var folderInput = document.getElementById('ph-folder-input');
+  if (folderInput) {
+    folderInput.addEventListener('change', function() {
+      if (folderInput.files && folderInput.files.length) {
+        phUploadFiles(folderInput.files);
+        folderInput.value = '';
+      }
+    });
+  }
+
+})();
+</script>

@@ -47,22 +47,22 @@ open_questions:
       is obtained.
 
 documents:
-  - garvin-james-one-mans-story-colburn
+  - garvin-jim-one-mans-story-colburn
   - kutter-wolf-commemoration-colburn-2021
 
 archivist_notes:
   created: 2026-05-11
   session: 18
   sources:
-    - garvin-james-account-042471
-    - garvin-james-one-mans-story-colburn
+    - garvin-jim-account-042471
+    - garvin-jim-one-mans-story-colburn
   notes: >
     Garvin's memorial speech names W.J. Brooks (27th Maintenance Battalion) as a
     previously undocumented passenger who also survived the crash. Doug Hilts gave
     the opening prayer; Wolf Kutter gave the commemoration; Kirk Davis extended the
     VFW invitation. Location confirmed as VFW Hinsdale. Specific date still unknown.
     Discrepancy: Garvin's speech describes Colburn's first tour as 35th Infantry
-    Division; his other account (garvin-james-account-042471) says 4th Division —
+    Division; his other account (garvin-jim-account-042471) says 4th Division —
     unresolved, both preserved.
   record_note: >
     Deliberately sparse record. Purpose in the test corpus is to verify the

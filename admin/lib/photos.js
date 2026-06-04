@@ -3,6 +3,7 @@ import fsp from 'fs/promises';
 import path from 'path';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import yaml from 'js-yaml';
+import multer from 'multer';
 
 // ---------------------------------------------------------------------------
 // R2 upload client
@@ -27,7 +28,7 @@ function getR2Client() {
  * Upload a single file to R2.
  * key format: soldiers/[slug]/[subfolder]/[filename]
  */
-async function uploadToR2(localPath, r2Key) {
+export async function uploadToR2(localPath, r2Key) {
   const client = getR2Client();
   const body   = await fsp.readFile(localPath);
   const ext    = path.extname(localPath).toLowerCase();
@@ -539,6 +540,43 @@ async function updateSoldierPhotos(slug, updates) {
 // Register all routes
 // ---------------------------------------------------------------------------
 export function registerPhotosRoutes(app) {
+
+  // POST /api/photos/raw/upload
+  // Multipart: files[] (image files), folderName (optional label, e.g. donor name)
+  // Creates _intake/raw/photos/[folderName]-[MMDDYY]-[HHMMSS]/ and writes files there.
+  // Returns { ok: true, folder, count }
+  const photoUploadStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      // folderName is sent as a form field before files; multer processes fields in order
+      const label = (req.body.folderName || 'upload').replace(/[^a-zA-Z0-9 _-]/g, '').trim() || 'upload';
+      const now   = new Date();
+      const pad   = n => String(n).padStart(2, '0');
+      const ts    = `${pad(now.getMonth()+1)}${pad(now.getDate())}${String(now.getFullYear()).slice(-2)}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+      const folderPath = path.join(RAW_PHOTOS, `${label}-${ts}`);
+      req._uploadFolder = folderPath;
+      fs.mkdirSync(folderPath, { recursive: true });
+      cb(null, folderPath);
+    },
+    filename: (req, file, cb) => cb(null, file.originalname),
+  });
+
+  const photoUpload = multer({
+    storage: photoUploadStorage,
+    fileFilter: (req, file, cb) => {
+      cb(null, /\.(jpg|jpeg|png|tiff|tif|webp)$/i.test(file.originalname));
+    },
+  });
+
+  app.post('/api/photos/raw/upload', photoUpload.array('files'), (req, res) => {
+    try {
+      const folder = req._uploadFolder
+        ? path.basename(req._uploadFolder)
+        : null;
+      res.json({ ok: true, folder, count: req.files?.length ?? 0 });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 
   // GET /api/photos/raw/:folder/image/:filename — serve a raw photo file
   app.get('/api/photos/raw/:folder/image/:filename', (req, res) => {
