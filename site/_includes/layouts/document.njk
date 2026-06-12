@@ -66,7 +66,7 @@
 <div class="tab-content" id="tab-doc-document">
   {% if content and content | trim %}
     <div class="doc-body">
-      {{ content | safe }}
+      {{ content | processFootnotes | safe }}
     </div>
   {% else %}
     <div class="tab-empty">

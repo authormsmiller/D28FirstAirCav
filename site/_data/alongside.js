@@ -93,6 +93,7 @@ module.exports = function () {
         if (!fm || !Array.isArray(fm.photos)) continue;
 
         for (const photo of fm.photos) {
+          if (!photo) continue;
           const slugs = Array.isArray(photo.contains)
             ? photo.contains.filter(s => s && typeof s === "string")
             : [];
@@ -221,7 +222,6 @@ module.exports = function () {
     const tier3 = Array.from(t3map.entries())
       .filter(([s]) => !t1set.has(s) && !tier2slugs.has(s))
       .map(([s, data]) => ({ slug: s, notes: data.notes || "" }));
-
     result[slug] = { tier1, tier2, tier3 };
   }
 

@@ -1,7 +1,8 @@
 ---
 slug: chinook-crash-1972-05-10
 title: "Chinook Crash — Loss of Skull Platoon"
-status: draft
+type: crash
+status: published
 
 date: "1972-05-10"
 date_known: true
@@ -25,19 +26,170 @@ units:
 
 casualties:
   kia:
+    # ── D Company, 2nd Battalion, 8th Cavalry ──────────────────────────────
     - slug: rosenberg-kenneth
       name: CPT Kenneth Rosenberg
-      role: Commanding Officer, D Co. ("Skipper 6")
+      role: "Commanding Officer, D Co. (\"Skipper 6\")"
       date: "1972-05-10"
-      note: CO among the 21 D Co. KIA; Wall Panel 1W, Line 19
-    - note: >
-        20 additional D Co. soldiers killed; Skull Platoon destroyed entirely.
-        5 crew members (362nd ASHC) also killed. 7 non-crew passengers from
-        A/1-12 Cav and 1 from 1st Signal Brig Aviation Detach. also killed.
-        Total aboard: 34 killed. Individual D Co. stubs being built — see checklist.
+      note: "Wall Panel 1W, Line 19"
+    - slug: aguilar-oscar
+      name: SP4 Oscar Aguilar
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 15"
+    - slug: boatright-william
+      name: SGT William Boatright
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 16"
+    - slug: bowersock-steven
+      name: PFC Steven Bowersock
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 16"
+    - slug: burnett-edward
+      name: SGT Edward Burnett
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 16"
+    - slug: flores-david
+      name: SP4 David Flores
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 17"
+    - slug: freitag-dieter
+      name: SGT Dieter Freitag
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 17"
+    - slug: groves-james
+      name: PVT James Groves
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 17"
+    - slug: henson-frank
+      name: SP4 Frank Henson
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 18"
+    - slug: howell-donald
+      name: SP4 Donald Howell
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 19"
+    - slug: jackson-freddie
+      name: SP4 Freddie Jackson
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 19"
+    - slug: jensen-james
+      name: SGT James Jensen
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 21"
+    - slug: monteleone-gary
+      name: SP4 Gary Monteleone
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 20"
+    - slug: phillips-dean
+      name: PFC Dean Phillips
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 20"
+    - slug: ray-jackie
+      name: PVT Jackie Ray
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 21"
+    - slug: ridgeway-richard
+      name: SP4 Richard Ridgeway
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 21"
+    - slug: sablan-john
+      name: PFC John Sablan
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 21"
+    - slug: saulsberry-clarence
+      name: SP4 Clarence Saulsberry Jr.
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 22"
+    - slug: shiko-raymond
+      name: SP4 Raymond Shiko
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 22"
+    - slug: sulser-david
+      name: SP4 David Sulser
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 22"
+    - slug: wood-thomas
+      name: PFC Thomas Wood
+      role: Skull Platoon, D Co.
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 22"
+    # ── 362nd Assault Support Helicopter Company (crew) ────────────────────
+    - name: CPT Barry Coley Tomlin
+      role: "Aircraft Commander, 362nd ASHC"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 23"
+    - name: 1LT Samuel Harrell
+      role: "Pilot, 362nd ASHC"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 18"
+    - name: SP4 Alvin Robert Elenburg
+      role: "Crew Chief, 362nd ASHC"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 17"
+    - name: SP4 Terry Duane Neiss
+      role: "Gunner, 362nd ASHC"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 20"
+    - name: SP5 Larry Steven Mustin
+      role: "Crew, 362nd ASHC"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 20"
+    # ── A Company, 1st Battalion, 12th Cavalry (passengers) ───────────────
+    - name: SGT Mike John Aguilar
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 15"
+    - name: PFC Clint Edwin Carr
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 16"
+    - name: SP4 Dennis Gyman Dunning
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 17"
+    - name: PFC Dale Lamont Hayes
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 18"
+    - name: SP4 William Frederic Henaghan
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 18"
+    - name: PFC David Allen Lydic
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 20"
+    - name: PVT Efrain Rivera-Agosto
+      role: "Passenger, A/1-12 Cav"
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 21"
+    # ── 1st Signal Brigade Aviation Detachment (passenger) ────────────────
+    - name: SP4 Thomas Allan Lahner
+      role: "Passenger, 1st Signal Brig. Aviation Detach."
+      date: "1972-05-10"
+      note: "Wall Panel 1W, Line 19"
   kia_count_note: >
     34 total killed: 21 D Co. organic (incl. CO), 5 crew (362nd ASHC),
-    6 passengers from A/1-12 Cav, 1 passenger from 1st Signal Brig Aviation Detach.
+    7 passengers from A/1-12 Cav, 1 passenger from 1st Signal Brig Aviation Detach.
     Confirmed via three-source cross-reference: VHPA incident record 720510031ACD,
     Wall D Co. data, and D Co. unit honor roll. Unit breakdown confirmed by ASA
     Never Forgotten 34 roster (Walking Point, Issue 20, Jan. 2023).
@@ -51,18 +203,32 @@ contains:
       not Skull Platoon.
 
 images:
-  - filename: ""
-    caption: "Skull Platoon Last Flight — May 10, 1972"
-    credit: Photographed by Roy Adams (Cat Platoon)
-    credit_slug: adams-roy
-    date: "1972-05-10"
-    date_known: true
-    contains: []
+  # Photo served via crawler from adams-roy/photos/field/index.md — no entry needed here.
+  # (Event images: block generates a broken URL with /field/events/{slug}/ prefix;
+  #  the crawler path /field/ is correct. Duplicate removed Session 61.)
+
+links:
+  - label: "Angry Skipper Association — Helicopter/Incident 64-13157"
+    url: "https://www.angryskipperassociation.org/helicopter_or_incident_64_13157.htm"
+    source: Angry Skipper Association (D/2-8 Cav veterans)
+    date:
     note: >
-      Departure photo of CH-47A 64-13157 taken by Sgt. Roy Adams (Cat Platoon)
-      as the aircraft lifted off. Adams confirmed as photographer at the
-      Never Forgotten 34 memorial resource panel, May 2022.
-      File path unresolved — pending photo crawler.
+      Full VHPA incident record for CH-47A 64-13157, published by the D/2-8 Cav
+      veterans association. Includes complete passenger manifest with MOS, DOB,
+      hometown, tour start dates, and individual casualty records for all 34
+      killed. Primary source for individual service details.
+  - label: "Vietnam combat nurse shares stories of struggle and triumph"
+    url: "https://spectrumnews1.com/ky/louisville/news/2023/11/05/vietnam-combat-nurse-mental-health-louisville"
+    source: Spectrum News 1
+    date: "2023-11-06"
+    note: >
+      Marj Graves, a combat nurse stationed in Vietnam in 1972, describes being
+      assigned to identify the remains of "over 30 U.S. soldiers killed in a
+      helicopter crash" with two weeks left in her deployment. She spent two
+      days sifting through body parts for dog tags and wedding rings. The
+      timing, year, and casualty count are consistent with the May 10, 1972
+      Chinook crash. Her account is the only known first-person record of the
+      remains identification process for this incident.
 
 related_events:
   - slug: nf34-memorial-2022
@@ -110,59 +276,4 @@ open_questions:
   - id: oq-05
     publish: false
     resolved: true
-    resolution: >
-      Adams confirmed as photographer at NF34 memorial resource panel, May 2022.
-      "Skull Platoon Last Flight" departure photo origin confirmed. File path
-      for actual image still unresolved — pending photo crawler.
-    question: >
-      Contact Roy Adams for the crash photographs and any account he can provide.
-
-archivist_notes:
-  created: 2026-05-11
-  last_updated: 2026-05-28
-  session: 18-19
-  sources:
-    - vhpa-incident-720510031ACD
-    - d-co-honor-roll
-    - asa-newsletter-issue-20-jan-2023
-    - adams-roy (photographer; Cat Platoon)
-  casualty_note: >
-    21 D Co. organic KIA confirmed via three-source cross-reference (VHPA +
-    Wall + honor roll). Unit breakdown for all 34 confirmed by ASA newsletter
-    Issue 20. D Co. stub creation in progress — see chinook-crash-kia-checklist.md.
-    Stubs created as of 2026-05-28: rosenberg-kenneth, aguilar-oscar,
-    boatright-william, bowersock-steven, burnett-edward.
-  cause_note: >
-    Blade retaining pin failure confirmed. Hostile fire ruled out.
-    Aircraft exploded on impact near Long Thanh North Airfield.
 ---
-
-## Summary
-
-On May 10, 1972, CH-47A Chinook helicopter tail number 64-13157, operated by the 362nd Assault Support Helicopter Company, crashed near Long Thanh North Airfield in Biên Hòa Province, Republic of Vietnam. All 34 aboard were killed. The aircraft was carrying Skull Platoon and the company commander of D Company, 2nd Battalion, 8th Cavalry (Airmobile) to Vũng Tàu for a three-day in-country R&R. Time of crash: 1023–1025 hours.
-
-The cause was a material failure of a blade retaining pin. The helicopter exploded on impact. There were no survivors.
-
-## The Dead
-
-**D Company, 2nd Battalion, 8th Cavalry — 21 killed** (Skull Platoon and CO):
-CPT Kenneth Rosenberg (CO) · SP4 Oscar Aguilar · SGT William Boatright · PFC Steven Bowersock · SGT Edward Burnett · SP4 David Flores · SGT Dieter Freitag · PVT James Groves · SP4 Frank Henson · SP4 Donald Howell · SP4 Freddie Jackson · SGT James Jensen · SP4 Gary Monteleone · PFC Dean Phillips · PVT Jackie Ray · SP4 Richard Ridgeway · PFC John Sablan · SP4 Clarence Saulsberry Jr. · SP4 Raymond Shiko · SP4 David Sulser · PFC Thomas Wood
-
-**362nd Assault Support Helicopter Company — 5 crew killed:**
-CPT Barry Tomlin (Aircraft Commander) · 1LT Samuel Harrell (Pilot) · SP4 Alvin Elenburg (Crew Chief) · SP4 Terry Neiss (Gunner) · SP5 Larry Mustin
-
-**A Company, 1st Battalion, 12th Cavalry — 6 passengers killed:**
-SGT Mike Aguilar · PFC Clint Carr · SP4 Dennis Dunning · PFC Dale Hayes · SP4 William Henaghan · PFC David Lydic · PVT Efrain Rivera-Agosto
-
-**1st Signal Brigade Aviation Detachment — 1 passenger killed:**
-SP4 Thomas Lahner
-
-## Context and Notes
-
-**Cause:** A blade retaining pin failed at altitude. The aircraft exploded on impact. Hostile fire was suspected in the immediate aftermath — other Chinooks in the flight described CH-157 "exploding like a lightbulb flash" — but mechanical failure was determined as the cause. Confirmed by VHPA incident record 720510031ACD and corroborated by Dr. John Osheroff, attending physician at the crash site.
-
-**Scale of loss:** The destruction of Skull Platoon in its entirety is the largest single-incident casualty loss in the D Co. record.
-
-**The departure photograph:** Sgt. Roy Adams of Cat Platoon photographed the aircraft as it lifted off that morning. The image — captioned "Skull Platoon Last Flight May 10, 1972" — is the primary visual record of the event. Adams was not aboard; his assignment to Cat Platoon is the reason he survived.
-
-**Witness:** Robin Woo, who contributed the unit identification to the VHPA incident record, was not aboard. His account is the primary source for the D Co. passenger manifest.

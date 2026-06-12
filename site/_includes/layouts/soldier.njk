@@ -199,6 +199,7 @@
           <span class="tl-tag tl-tag-{{ evt.tier }}">
             {% if evt.tier == "casualty" %}Casualty record
             {% elif evt.tier == "confirmed" %}Confirmed present
+            {% elif status == "kia" or status == "dow" or status == "mia" %}Commemorated
             {% else %}Probably present
             {% endif %}
           </span>
@@ -299,7 +300,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -326,7 +330,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -353,7 +360,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -421,11 +431,20 @@
           {% for rel in t1 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            {# Resolve card photo the same way the hero does: crawler data takes precedence over front matter #}
+            {% set _relCrawlerProfile = photosBySlug[rel.slug].profile[0] if (photosBySlug[rel.slug] and photosBySlug[rel.slug].profile and photosBySlug[rel.slug].profile.length) else null %}
+            {% if _relCrawlerProfile %}
+              {% set _relPhotoSrc = "/media/photos/soldiers/" + rel.slug + "/profile/" + _relCrawlerProfile.filename %}
+            {% elif op and op.profile_photo %}
+              {% set _relPhotoSrc = "/media/photos/soldiers/" + rel.slug + "/profile/" + op.profile_photo %}
+            {% else %}
+              {% set _relPhotoSrc = null %}
+            {% endif %}
             <div class="alongside-card">
               <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
                 <div class="alongside-photo">
-                  {% if op and op.profile_photo %}
-                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                  {% if _relPhotoSrc %}
+                    <img src="{{ _relPhotoSrc }}"
                          alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
@@ -883,6 +902,7 @@
   <div class="prof-cta-btns">
     <a class="land-cta" href="/contribute/">Submit Materials</a>
   </div>
+  <p class="prof-cta-records">Looking for official service or casualty records? <a href="/records/">See our guide →</a></p>
 </div>
 
 {% include "partials/footer.njk" %}
@@ -890,6 +910,19 @@
 </main>
 
 <style>
+.prof-cta-records {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  margin: 16px 0 0;
+  text-align: center;
+}
+.prof-cta-records a {
+  color: rgba(255,255,255,0.65);
+  text-underline-offset: 3px;
+}
+.prof-cta-records a:hover { color: var(--y); }
+
 .cr-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 900;
   display: flex; align-items: center; justify-content: center; padding: 16px;
@@ -1048,6 +1081,7 @@
       </div>
       <p id="lb-cap-p"></p>
       <small id="lb-cap-s"></small>
+      <button type="button" class="lb-suggest" onclick="event.stopPropagation(); pidpOpenFromLightbox()">✎ Suggest a correction</button>
     </div>
     <div class="lb-nav">
       <button id="lb-prev" class="lb-arrow" onclick="event.stopPropagation();lbPrev()">← PREV</button>
@@ -1056,7 +1090,87 @@
   </div>
 </div>
 
+<!-- ── Photo ID Proposal modal ───────────────────────────── -->
+<div class="pidp-overlay" id="pidpOverlay" onclick="pidpClose(event)">
+  <div class="pidp-modal" role="dialog" aria-modal="true" aria-labelledby="pidpTitle">
+    <div class="pidp-header">
+      <div class="pidp-title" id="pidpTitle">Help Us Get This Right</div>
+      <button type="button" class="pidp-close" onclick="pidpClose()" aria-label="Close">✕</button>
+    </div>
+    <div class="pidp-body">
+      <div class="pidp-ctx">
+        <img class="pidp-ctx-thumb" id="pidpThumb" src="" alt="">
+        <div>
+          <div class="pidp-ctx-label">You're correcting</div>
+          <div class="pidp-ctx-cap" id="pidpCtxCap"></div>
+        </div>
+      </div>
+
+      <div class="pidp-field">
+        <label>What can you help with? <span class="pidp-opt">(pick any)</span></label>
+        <div class="pidp-chips">
+          <button type="button" class="pidp-chip" data-block="who">👤 Who's in it</button>
+          <button type="button" class="pidp-chip" data-block="caption">📝 The caption</button>
+          <button type="button" class="pidp-chip" data-block="date">📅 When it was taken</button>
+          <button type="button" class="pidp-chip" data-block="notes">💬 Something else</button>
+        </div>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-who" hidden>
+        <div class="pidp-block-hed">👤 Who's in it</div>
+        <div class="pidp-people" id="pidpPeople"></div>
+        <div class="pidp-ta-wrap">
+          <input type="text" class="pidp-input" id="pidpPersonInput" autocomplete="off" placeholder="Start typing a name…">
+          <div class="pidp-ta-results" id="pidpTaResults" hidden></div>
+        </div>
+        <div class="pidp-help">Pick from the roster, or add a name we don't have yet.</div>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-caption" hidden>
+        <div class="pidp-block-hed">📝 The caption</div>
+        <div class="pidp-current" id="pidpCurrentCap"></div>
+        <textarea class="pidp-textarea" id="pidpCaption" placeholder="What it should say…"></textarea>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-date" hidden>
+        <div class="pidp-block-hed">📅 When it was taken</div>
+        <div class="pidp-current" id="pidpCurrentDate"></div>
+        <input type="text" class="pidp-input" id="pidpDate" placeholder="e.g. March 1972, or spring 1972">
+        <label class="pidp-toggle-row"><input type="checkbox" id="pidpDateApprox" checked> This date is approximate</label>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-notes" hidden>
+        <div class="pidp-block-hed">💬 Something else</div>
+        <textarea class="pidp-textarea" id="pidpNotes" placeholder="Location, what's happening, how photos relate…"></textarea>
+      </div>
+
+      <hr class="pidp-divider">
+
+      <div class="pidp-field">
+        <label>How do you know? <span class="pidp-opt">(optional, but it helps)</span></label>
+        <input type="text" class="pidp-input" id="pidpSource" placeholder='e.g. "I was there" · "my dad&apos;s album"'>
+      </div>
+      <div class="pidp-row">
+        <div class="pidp-field">
+          <label>Your name <span class="pidp-opt">(optional)</span></label>
+          <input type="text" class="pidp-input" id="pidpName" placeholder="So we can credit / follow up">
+        </div>
+        <div class="pidp-field">
+          <label>How to reach you <span class="pidp-opt">(optional)</span></label>
+          <input type="text" class="pidp-input" id="pidpContact" placeholder="Phone or email">
+        </div>
+      </div>
+      <input type="text" id="pidpHp" class="pidp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </div>
+    <div class="pidp-footer">
+      <button type="button" class="pidp-submit" id="pidpSubmit" onclick="pidpSubmit()">Submit for Review →</button>
+      <div class="pidp-note" id="pidpFootNote">Nothing changes on the site right away — every suggestion is reviewed first.</div>
+    </div>
+  </div>
+</div>
+
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/photo-proposal.js"></script>
 
 <script>
 function activateTab(name) {

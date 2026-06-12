@@ -135,8 +135,8 @@ related_events:
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-28
-last_updated: 2026-05-28  # enriched: MOS, arrived, hometown, decorations_unconfirmed, Find A Grave, burial note
-contributed_by:
+last_updated: 2026-06-11
+contributed_by: "Never Forgotten 34 group (letter contributor identity on file)"
 notes: >
   KIA 10 May 1972 — Chinook crash (incident 720510031ACD). Skull Platoon, D/2-8 Cav.
   DOB 5 Apr 1951. Hometown: Fairfield, Solano County, CA. Wall: Panel 1W, Line 15.
@@ -147,5 +147,8 @@ notes: >
   probability-based — move to confirmed when primary source located.
   Note: Two Aguilars in VHPA manifest — Oscar (SP4, D Co., this entry) and
   Mike John Aguilar (SGT, Armor Crewman, not D Co. — separate entry, different unit).
+  Letter (23 Apr 1972): Leave for May 17 was approved — 14 days stateside to see family.
+  He wrote that he chose home over Bangkok because he feared losing the chance to go stateside.
+  He was killed May 10, one week before his leave was to begin.
 
 ---

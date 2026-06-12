@@ -45,7 +45,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("events", function(collectionApi) {
   return collectionApi.getFilteredByGlob("./events/**/*.md");
   });
-  
+
   // All photos across all soldiers — for cross-soldier contains queries
   eleventyConfig.addCollection("allPhotos", function(collectionApi) {
     const soldiers = collectionApi.getFilteredByGlob("./soldiers/*/*.md");
@@ -87,6 +87,7 @@ module.exports = function(eleventyConfig) {
     if (!nick) return "";
     return `"${nick}"`;
   });
+
   // Limit array to N items
   eleventyConfig.addFilter("limit", function(arr, n) {
     if (!arr || !Array.isArray(arr)) return [];
@@ -130,6 +131,44 @@ module.exports = function(eleventyConfig) {
     if (!arr || !Array.isArray(arr)) return [];
     return arr.filter(item => item.data?.[key] === value);
   });
+
+  // Post-process rendered HTML to handle footnote syntax.
+  // Footnote definitions:  [^id]: citation text   (rendered by markdown-it as a paragraph)
+  // Footnote references:   [^id]                  (rendered by markdown-it as literal text)
+  // Outputs numbered superscript links inline and a footnotes section at the end.
+  eleventyConfig.addFilter("processFootnotes", function(html) {
+    if (!html || !html.includes('[^')) return html;
+
+    const defs = {};
+
+    // Collect and remove footnote definition paragraphs: <p>[^id]: text</p>
+    html = html.replace(/<p>\[\^([^\]]+)\]:\s*([\s\S]*?)<\/p>/g, function(match, id, text) {
+      defs[id] = text.trim();
+      return '';
+    });
+
+    // Number refs in order of first appearance, replace with superscript links
+    const order = [];
+    html = html.replace(/\[\^([^\]]+)\]/g, function(match, id) {
+      if (!order.includes(id)) order.push(id);
+      const num = order.indexOf(id) + 1;
+      return '<sup id="fnref-' + id + '" class="footnote-ref"><a href="#fn-' + id + '">' + num + '</a></sup>';
+    });
+
+    // Append footnotes section
+    if (order.length > 0) {
+      let section = '<section class="footnotes"><hr class="footnotes-sep"><ol class="footnotes-list">';
+      for (const id of order) {
+        const text = defs[id] || '';
+        section += '<li id="fn-' + id + '" class="footnote-item">' + text + ' <a href="#fnref-' + id + '" class="footnote-backref" aria-label="Back to reference ' + id + '">&#x21A9;</a></li>';
+      }
+      section += '</ol></section>';
+      html += section;
+    }
+
+    return html;
+  });
+
   return {
     dir: {
       input:    ".",

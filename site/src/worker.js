@@ -44,6 +44,12 @@ export default {
       return withCors(await handleSkipperStoriesPublished(request, env));
     }
 
+    // Photo ID Proposals — propose an identification/correction on a photo.
+    // Held in pending/ — NEVER auto-promoted by cron. Admin approves manually.
+    if (path === "/submit/photo-proposal" && method === "POST") {
+      return withCors(await handlePhotoProposal(request, env));
+    }
+
     // Everything else — pass through to static assets
     return env.ASSETS.fetch(request);
   },
@@ -461,6 +467,91 @@ async function handleSkipperStory(request, env) {
 }
 
 // ---------------------------------------------------------------------------
+// Photo ID Proposals — POST /submit/photo-proposal
+// Accepts JSON: { target:{soldier_slug,subfolder,filename}, changes:{...},
+//                 source, submitter_name, submitter_contact, page_url, hp }
+// Writes to submissions/photo-proposals/pending/. NEVER auto-promoted.
+// ---------------------------------------------------------------------------
+const SLUG_SAFE = /^[a-z0-9][a-z0-9/_.-]*$/i;
+
+async function handlePhotoProposal(request, env) {
+  try {
+    const body = await request.json();
+
+    // Honeypot — silently accept (200) so bots don't learn, but store nothing.
+    if (body.hp) return jsonResponse({ ok: true });
+
+    const target = body.target || {};
+    const { soldier_slug, subfolder, filename } = target;
+
+    if (!soldier_slug || !subfolder || !filename) {
+      return jsonResponse({ error: "Missing target.soldier_slug, target.subfolder or target.filename" }, 400);
+    }
+    if (![soldier_slug, subfolder, filename].every(v => typeof v === "string" && SLUG_SAFE.test(v))) {
+      return jsonResponse({ error: "Invalid target identifiers" }, 400);
+    }
+
+    // Normalize changes — keep only recognized, non-empty keys.
+    const c = body.changes || {};
+    const changes = {};
+    if (Array.isArray(c.contains_add) && c.contains_add.length) {
+      changes.contains_add = c.contains_add.filter(s => typeof s === "string" && SLUG_SAFE.test(s));
+    }
+    if (Array.isArray(c.contains_add_freetext) && c.contains_add_freetext.length) {
+      changes.contains_add_freetext = c.contains_add_freetext
+        .filter(s => typeof s === "string" && s.trim()).map(s => s.trim().slice(0, 120));
+    }
+    if (typeof c.caption === "string" && c.caption.trim()) {
+      changes.caption = c.caption.trim().slice(0, 2000);
+    }
+    if (typeof c.date === "string" && c.date.trim()) {
+      changes.date = c.date.trim().slice(0, 80);
+      changes.date_approximate = c.date_approximate !== false;
+    }
+    if (typeof c.notes === "string" && c.notes.trim()) {
+      changes.notes = c.notes.trim().slice(0, 2000);
+    }
+
+    if (!Object.keys(changes).length) {
+      return jsonResponse({ error: "No usable changes provided" }, 400);
+    }
+
+    const nanoid    = await generateNanoid();
+    const timestamp = Date.now();
+    const proposalId = `${timestamp}-${nanoid}`;
+    const key = `submissions/photo-proposals/pending/${proposalId}.json`;
+
+    const payload = {
+      proposal_id: proposalId,
+      submitted:   new Date().toISOString(),
+      status:      "pending",
+      target:      { soldier_slug, subfolder, filename },
+      changes,
+      source:            typeof body.source === "string" ? body.source.trim().slice(0, 500) : "",
+      submitter_name:    typeof body.submitter_name === "string" ? body.submitter_name.trim().slice(0, 200) : "",
+      submitter_contact: typeof body.submitter_contact === "string" ? body.submitter_contact.trim().slice(0, 200) : "",
+      page_url:          typeof body.page_url === "string" ? body.page_url.slice(0, 500) : "",
+    };
+
+    await env.SUBMISSIONS.put(
+      key,
+      JSON.stringify(payload, null, 2),
+      { httpMetadata: { contentType: "application/json" } }
+    );
+
+    try {
+      await sendPhotoProposalNotificationEmail(env, payload, key);
+    } catch (emailErr) {
+      console.error("Photo proposal email failed:", emailErr.message);
+    }
+
+    return jsonResponse({ ok: true, proposal_id: proposalId });
+  } catch (err) {
+    return jsonResponse({ error: err.message }, 500);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Skipper Stories — GET /api/skipper-stories/published?tab=wtr
 // Returns published stories for a given tab (or all if no tab param).
 // ---------------------------------------------------------------------------
@@ -594,6 +685,69 @@ async function sendSkipperStoryNotificationEmail(env, payload, key) {
     `R2 key: ${key}`,
     ``,
     `Pending — will auto-publish at 00:01 unless held in admin panel.`,
+  ].join("\n");
+
+  const raw = [
+    `From: D Co. Archive <admin@angryskipperarchive.org>`,
+    `To: admin@angryskipperarchive.org`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=utf-8`,
+    ``,
+    body,
+  ].join("\r\n");
+
+  const encoder = new TextEncoder();
+  const { readable, writable } = new TransformStream();
+  const writer = writable.getWriter();
+  writer.write(encoder.encode(raw));
+  writer.close();
+
+  const message = new EmailMessage(
+    "admin@angryskipperarchive.org",
+    "admin@angryskipperarchive.org",
+    readable
+  );
+
+  await env.SEND_EMAIL.send(message);
+}
+
+// ---------------------------------------------------------------------------
+// Photo ID Proposal — admin notification email
+// ---------------------------------------------------------------------------
+async function sendPhotoProposalNotificationEmail(env, payload, key) {
+  const { EmailMessage } = await import("cloudflare:email");
+
+  const t = payload.target;
+  const c = payload.changes;
+  const subject = `[Photo ID] ${t.soldier_slug}/${t.filename}`;
+
+  const changeLines = [];
+  if (c.contains_add)          changeLines.push(`Add to contains: ${c.contains_add.join(", ")}`);
+  if (c.contains_add_freetext) changeLines.push(`Add (not in roster): ${c.contains_add_freetext.join(", ")}`);
+  if (c.caption !== undefined) changeLines.push(`Caption → ${c.caption}`);
+  if (c.date !== undefined)    changeLines.push(`Date → ${c.date}${c.date_approximate ? " (approximate)" : ""}`);
+  if (c.notes !== undefined)   changeLines.push(`Notes: ${c.notes}`);
+
+  const body = [
+    `New photo ID proposal`,
+    ``,
+    `Photo:     ${t.soldier_slug} / ${t.subfolder} / ${t.filename}`,
+    `Page:      ${payload.page_url || "(unknown)"}`,
+    ``,
+    `Proposed changes:`,
+    `----------`,
+    ...changeLines,
+    `----------`,
+    ``,
+    `How they know: ${payload.source || "(not given)"}`,
+    `From:          ${payload.submitter_name || "(anonymous)"}`,
+    `Contact:       ${payload.submitter_contact || "(none)"}`,
+    `Submitted:     ${payload.submitted}`,
+    ``,
+    `R2 key: ${key}`,
+    ``,
+    `HELD for review — will NOT auto-publish. Approve in the admin Proposals tab.`,
   ].join("\n");
 
   const raw = [
