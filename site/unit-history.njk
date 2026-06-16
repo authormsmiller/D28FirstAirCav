@@ -7,7 +7,7 @@ permalink: /unit-history/
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unit History — {{ site.title }}</title>
-<meta name="description" content="Unit history records for D Company, 2nd Battalion, 8th Cavalry (Airmobile), 1970–1972.">
+<meta name="description" content="Unit history records for D Company, 2nd Battalion, 8th Cavalry (Airmobile), 1965–1972.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -26,8 +26,59 @@ permalink: /unit-history/
 
 <div class="doc-hero">
   <h1 class="doc-hero-title">Unit History</h1>
-  <div class="doc-hero-byline">D Company, 2nd Battalion, 8th Cavalry (Airmobile) · 1970–1972</div>
+  <div class="doc-hero-byline">D Company, 2nd Battalion, 8th Cavalry (Airmobile) · 1965–1972</div>
 </div>
+
+<style>
+  .uh-era { border-left: 4px solid var(--y); background: var(--pg2); padding: 18px 22px; margin: 0 0 28px; }
+  .uh-era-kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: .08em; color: var(--dim); font-size: .82rem; text-transform: uppercase; }
+  .uh-era-title { font-family: "Bebas Neue", sans-serif; letter-spacing: .02em; color: var(--ink); font-size: 1.5rem; margin: 2px 0 10px; line-height: 1.1; }
+  .uh-era p { font-family: "Crimson Pro", Georgia, serif; color: var(--ink); font-size: 1.02rem; line-height: 1.55; margin: 0 0 10px; }
+  .uh-era p:last-child { margin-bottom: 0; }
+  .uh-era .uh-era-note { font-size: .9rem; color: var(--dim); font-style: italic; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 12px; }
+</style>
+
+<section class="uh-era" aria-label="Unit history milestone: the division departs, the brigade stays">
+  <div class="uh-era-kicker">Milestone · 1971–1972</div>
+  <h2 class="uh-era-title">The First Team Goes Home — The Brigade Stays</h2>
+
+  <p>
+    The 1st Cavalry Division had been the first U.S. Army division to deploy to Vietnam,
+    in 1965, and it would be the last to leave. On <strong>26 March 1971</strong> the
+    division officially ended its combat duties in Vietnam, and through that spring the
+    bulk of the "First Team" redeployed to Fort Hood, Texas. But Vietnamization and the
+    phased American withdrawal still called for a strong U.S. combat presence, so the
+    division did not leave entirely.
+  </p>
+
+  <p>
+    On <strong>30 April 1971</strong> the <strong>3rd Brigade, 1st Cavalry Division
+    (Separate)</strong> — the "<strong>Garryowen Task Force</strong>" — was organized at
+    Bien Hoa to carry on. It was built from four maneuver battalions, among them
+    <strong>2nd Battalion, 8th Cavalry</strong>, alongside the 2nd Battalion, 5th
+    Cavalry; 1st Battalion, 7th Cavalry; and 1st Battalion, 12th Cavalry — plus F Troop,
+    9th Cavalry and the 215th Support Battalion. D Company's parent battalion was one of
+    the units that stayed. The brigade's focus shifted from the Tay Ninh / War Zone C
+    border screen of the late 1960s to interdiction in <strong>War Zone D</strong> and the
+    defense of the <strong>Saigon–Long Binh</strong> complex. It was now the last U.S.
+    Army ground combat brigade in the country.
+  </p>
+
+  <p>
+    This is the hinge of D Company's later story. Every event on this page from 1971 and
+    1972 — the FSB Fontaine contacts of April 1971, the loss at Núi Bà that October, the
+    Chinook crash of May 1972 — happened <em>after</em> the division had gone home, while
+    these men kept fighting under the Separate brigade. The April 1971 Fontaine actions
+    fell during the stand-down itself, as the division packed up around them. The brigade
+    finally cased its colors on <strong>20 June 1972</strong> and departed for Fort Hood
+    on <strong>29 June 1972</strong> — first in, last out.
+  </p>
+
+  <p class="uh-era-note">
+    Personal accounts of this period — including letters home about the rumors that the
+    unit, too, would soon be coming home — will be added here.
+  </p>
+</section>
 
 {# ── Collect published events ── #}
 {% set publishedEvents = [] %}
@@ -43,92 +94,77 @@ permalink: /unit-history/
   </div>
 {% else %}
 
-  {% set typeOrder = ["contact", "crash", "incident", "memorial"] %}
+  {% set typeSections = [
+    { "type": "contact",   "label": "Contact" },
+    { "type": "incident",  "label": "Incidents" },
+    { "type": "crash",     "label": "Crashes" },
+    { "type": "operation", "label": "Operations" },
+    { "type": "memorial",  "label": "Memorials" }
+  ] %}
+  {% set uhYears = [1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 2021, 2022, 2023, 2024, 2025, 2026] %}
 
-  {% for eventType in typeOrder %}
+  {% for section in typeSections %}
     {% set typeEvents = [] %}
     {% for evt in publishedEvents %}
-      {% if evt.data.type == eventType %}
-        {% set typeEvents = (typeEvents.push(evt), typeEvents) %}
-      {% endif %}
+      {% if evt.data.type == section.type %}{% set typeEvents = (typeEvents.push(evt), typeEvents) %}{% endif %}
     {% endfor %}
-
     {% if typeEvents.length %}
-      <div class="uh-section-label">{{ eventType | capitalize }}</div>
-
-      {% for evt in typeEvents %}
-        {% set kia_count = evt.data.casualties.kia    | length if evt.data.casualties and evt.data.casualties.kia    else 0 %}
-        {% set dow_count = evt.data.casualties.dow    | length if evt.data.casualties and evt.data.casualties.dow    else 0 %}
-        {% set wia_count = evt.data.casualties.wia    | length if evt.data.casualties and evt.data.casualties.wia    else 0 %}
-        {% set mia_count = evt.data.casualties.mia    | length if evt.data.casualties and evt.data.casualties.mia    else 0 %}
-        {% set nc_count  = evt.data.casualties.non_combat | length if evt.data.casualties and evt.data.casualties.non_combat else 0 %}
-        {% set total_cas = kia_count + dow_count + wia_count + mia_count + nc_count %}
-
-        <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
-          <div class="uh-card">
-            <div class="uh-date-col">
-              <div class="uh-date-day">{{ evt.data.date }}</div>
-            </div>
-            <div class="uh-divider"></div>
-            <div class="uh-body">
-              <p class="uh-title">{{ evt.data.title }}</p>
-              {% if evt.data.location %}
-                <p class="uh-location">{{ evt.data.location }}</p>
-              {% endif %}
-              {% if total_cas > 0 %}
-                <div class="uh-casualties">
-                  {% if kia_count > 0 %}<span class="evt-cas-pill evt-cas-kia">{{ kia_count }} KIA</span>{% endif %}
-                  {% if dow_count > 0 %}<span class="evt-cas-pill evt-cas-dow">{{ dow_count }} DOW</span>{% endif %}
-                  {% if wia_count > 0 %}<span class="evt-cas-pill evt-cas-wia">{{ wia_count }} WIA</span>{% endif %}
-                  {% if mia_count > 0 %}<span class="evt-cas-pill evt-cas-mia">{{ mia_count }} MIA</span>{% endif %}
-                  {% if nc_count  > 0 %}<span class="evt-cas-pill evt-cas-nc">{{ nc_count }} Non-combat</span>{% endif %}
+      <div class="uh-section-label">{{ section.label }}</div>
+      {% for y in uhYears %}
+        {% set yearEvents = [] %}
+        {% for evt in typeEvents %}
+          {% if (evt.data.date | string | truncate(4, true, "")) == (y | string) %}{% set yearEvents = (yearEvents.push(evt), yearEvents) %}{% endif %}
+        {% endfor %}
+        {% if yearEvents.length %}
+          <div class="uh-year-marker">{{ y }}</div>
+          {% for evt in yearEvents %}
+            {% set kia_count = evt.data.casualties.kia | length if evt.data.casualties and evt.data.casualties.kia else 0 %}
+            {% set dow_count = evt.data.casualties.dow | length if evt.data.casualties and evt.data.casualties.dow else 0 %}
+            {% set wia_count = evt.data.casualties.wia | length if evt.data.casualties and evt.data.casualties.wia else 0 %}
+            {% set mia_count = evt.data.casualties.mia | length if evt.data.casualties and evt.data.casualties.mia else 0 %}
+            {% set nc_count  = evt.data.casualties.non_combat | length if evt.data.casualties and evt.data.casualties.non_combat else 0 %}
+            {% set total_cas = kia_count + dow_count + wia_count + mia_count + nc_count %}
+            <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
+              <div class="uh-card">
+                <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date }}</div></div>
+                <div class="uh-divider"></div>
+                <div class="uh-body">
+                  <p class="uh-title">{{ evt.data.title }}</p>
+                  {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
+                  {% if total_cas > 0 %}
+                    <div class="uh-casualties">
+                      {% if kia_count > 0 %}<span class="evt-cas-pill evt-cas-kia">{{ kia_count }} KIA</span>{% endif %}
+                      {% if dow_count > 0 %}<span class="evt-cas-pill evt-cas-dow">{{ dow_count }} DOW</span>{% endif %}
+                      {% if wia_count > 0 %}<span class="evt-cas-pill evt-cas-wia">{{ wia_count }} WIA</span>{% endif %}
+                      {% if mia_count > 0 %}<span class="evt-cas-pill evt-cas-mia">{{ mia_count }} MIA</span>{% endif %}
+                      {% if nc_count  > 0 %}<span class="evt-cas-pill evt-cas-nc">{{ nc_count }} Non-combat</span>{% endif %}
+                    </div>
+                  {% endif %}
                 </div>
-              {% endif %}
-            </div>
-          </div>
-        </a>
-
+              </div>
+            </a>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
     {% endif %}
   {% endfor %}
 
-  {# Catch-all for unlisted types #}
-  {% set coveredTypes = ["contact", "crash", "incident", "memorial"] %}
+  {# Safety catch-all: any published event with a type not in the sections above #}
+  {% set knownTypes = ["contact", "incident", "crash", "operation", "memorial"] %}
   {% set otherEvents = [] %}
   {% for evt in publishedEvents %}
-    {% if evt.data.type not in coveredTypes %}
-      {% set otherEvents = (otherEvents.push(evt), otherEvents) %}
-    {% endif %}
+    {% if evt.data.type not in knownTypes %}{% set otherEvents = (otherEvents.push(evt), otherEvents) %}{% endif %}
   {% endfor %}
-
   {% if otherEvents.length %}
     <div class="uh-section-label">Other</div>
     {% for evt in otherEvents %}
-      {% set kia_count = evt.data.casualties.kia | length if evt.data.casualties and evt.data.casualties.kia else 0 %}
-      {% set dow_count = evt.data.casualties.dow | length if evt.data.casualties and evt.data.casualties.dow else 0 %}
-      {% set wia_count = evt.data.casualties.wia | length if evt.data.casualties and evt.data.casualties.wia else 0 %}
-      {% set mia_count = evt.data.casualties.mia | length if evt.data.casualties and evt.data.casualties.mia else 0 %}
-      {% set nc_count  = evt.data.casualties.non_combat | length if evt.data.casualties and evt.data.casualties.non_combat else 0 %}
-      {% set total_cas = kia_count + dow_count + wia_count + mia_count + nc_count %}
-
       <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
         <div class="uh-card">
-          <div class="uh-date-col">
-            <div class="uh-date-day">{{ evt.data.date }}</div>
-          </div>
+          <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date }}</div></div>
           <div class="uh-divider"></div>
           <div class="uh-body">
             <p class="uh-title">{{ evt.data.title }}</p>
             {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
-            {% if total_cas > 0 %}
-              <div class="uh-casualties">
-                {% if kia_count > 0 %}<span class="evt-cas-pill evt-cas-kia">{{ kia_count }} KIA</span>{% endif %}
-                {% if dow_count > 0 %}<span class="evt-cas-pill evt-cas-dow">{{ dow_count }} DOW</span>{% endif %}
-                {% if wia_count > 0 %}<span class="evt-cas-pill evt-cas-wia">{{ wia_count }} WIA</span>{% endif %}
-                {% if mia_count > 0 %}<span class="evt-cas-pill evt-cas-mia">{{ mia_count }} MIA</span>{% endif %}
-                {% if nc_count  > 0 %}<span class="evt-cas-pill evt-cas-nc">{{ nc_count }} Non-combat</span>{% endif %}
-              </div>
-            {% endif %}
           </div>
         </div>
       </a>

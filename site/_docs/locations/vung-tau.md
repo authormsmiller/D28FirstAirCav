@@ -196,3 +196,23 @@ reference only.*
 - [ ] Identify any other D Co. soldier accounts or letters mentioning Vũng Tàu
 - [ ] Determine whether the Australian connection (1ATF) surfaces usefully
       on any existing soldier profiles
+
+---
+
+## 3rd Brigade (Separate) R&R rotation — 1971 (primary source)
+
+The 1971 brigade commander's debriefing report puts a primary-source date and structure on
+Vũng Tàu's role for D Co's battalion. In his Senior Officer Debriefing Report (period 10 April –
+13 December 1971; DTIC AD0520447), BG Jonathan R. Burton records that the **First Team R&R
+Center opened at Vũng Tàu in March 1971**, and that on a **45-day rotation each rifle company and
+recon platoon was sent there for a three-day standdown** — fitted between roughly fifteen days
+in the bush and five days of firebase security. Burton calls "Vung Tau R&R" a privilege "much
+sought after by all Skytroopers" and "a major positive morale factor," giving troops "an
+excellent opportunity to wind down after six weeks in the field." Operating the center required
+26 people. This corroborates and dates the (Gemini/McGrew-sourced) context above with a primary
+unit record.
+
+See `/events/3rd-brigade-separate-garryowen-1971/` (which hosts the report for download).
+
+**Source:** 3rd Brigade (Separate), 1st Cavalry Division — Senior Officer Debriefing Report of
+BG Jonathan R. Burton, "Personnel Management" (DTIC AD0520447).

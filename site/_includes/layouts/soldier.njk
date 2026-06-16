@@ -53,6 +53,12 @@
     {% if status in ["kia", "dow", "mia"] %}
     <div class="prof-kia-star">★</div>
     {% endif %}
+    {% if remains == "not_recovered" %}
+    <div class="prof-mia-banner" role="note" aria-label="Missing in Action — body not recovered">
+      <span class="prof-mia-tag">MIA</span>
+      <span class="prof-mia-sub">Body Not Recovered</span>
+    </div>
+    {% endif %}
   </div>
 
   {# Info column #}

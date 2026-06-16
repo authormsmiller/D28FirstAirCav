@@ -119,9 +119,9 @@
 | 1969-08-16 | CPL | Muse, Michael Dennis | Garland, TX | 1948-01-07 | 19W/51 | `muse-michael` | — |
 | 1969-08-24 | CPL | Anderson, William John Jr. | Lorain, OH | 1948-06-05 | 19W/105 | `anderson-william` | — |
 | 1969-09-23 | SP4 | Sarah, Hugh Henry | Plymouth, MI | 1945-08-05 | 17W/1 | `sarah-hugh` | — |
-| 1969-10-08 | CPL | Altizer, Albert Harold | Squire, WV | 1949-04-11 | 17W/49 | `altizer-albert` | — |
-| 1969-10-08 | PFC | Benson, Joseph Henning | Coram, MT | 1949-02-16 | 17W/49 | `benson-joseph` | — |
-| 1969-10-08 | PFC | Taylor, Jerome Milton | Battle Creek, MI | 1947-11-14 | 17W/49 | `taylor-jerome` | — |
+| 1969-10-08 | CPL | Altizer, Albert Harold | Squire, WV | 1949-04-11 | 17W/49 | `altizer-albert` | **stub** |
+| 1969-10-08 | PFC | Benson, Joseph Henning | Coram, MT | 1949-02-16 | 17W/49 | `benson-joseph` | **stub** |
+| 1969-10-08 | PFC | Taylor, Jerome Milton | Battle Creek, MI | 1947-11-14 | 17W/53 | `taylor-jerome` | **stub** |
 | 1969-11-20 | SP4 | Carlucci, Anthony Jack | New York, NY | 1949-05-22 | 16W/98 | `carlucci-anthony` | — |
 | 1969-11-20 | CPL | Matthei, Peter Karl | St. Louis, MO | 1945-09-06 | 16W/101 | `matthei-peter` | — |
 

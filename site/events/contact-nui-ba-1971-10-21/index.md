@@ -75,6 +75,9 @@ accounts:
       mission, and Kutter's commemoration speech. Draws on firsthand accounts of Hilts and
       Blais. Restricted to family/unit use; not for public reproduction without consent.
 related_events:
+  - slug: 3rd-brigade-separate-garryowen-1971
+    relationship: operational-period
+    note: "Higher command / operational frame — the 3rd Brigade (Separate) under which 2/8 Cav operated in 1971 (from BG Burton's debriefing report, AD0520447)."
   - slug: contact-nui-ba-1971-10-22
     relationship: continuation
     note: Follow-through sweep of bunker complex on October 22; record not yet created

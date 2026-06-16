@@ -614,6 +614,38 @@ body.status-mia .prof-photo-frame {
   margin: 2px 0 14px;
 }
 
+/* MIA banner — sits beneath the commemorative star for soldiers whose
+   remains were never recovered. Bronze border ties it to the KIA treatment;
+   the text marks that he never came home. Driven by `remains: not_recovered`. */
+.prof-mia-banner {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 6px 4px 7px;
+  background: var(--blk);
+  border: 1px solid #C0924E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.prof-mia-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  color: #F2EDD8;
+  line-height: 1;
+}
+.prof-mia-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C0924E;
+}
+
 .prof-name {
   font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #F0EDD8;
   letter-spacing: 2px; line-height: 0.88; margin-bottom: 8px;
@@ -1100,6 +1132,19 @@ body.status-mia .prof-photo-frame {
 
 .uh-section-label:first-of-type {
   margin-top: 1rem;
+}
+
+.uh-year-marker {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  background: var(--ink);
+  color: var(--y);
+  padding: 3px 12px;
+  border-radius: 2px;
+  margin: 1.5rem 0 0.5rem;
 }
 
 .uh-card-link {

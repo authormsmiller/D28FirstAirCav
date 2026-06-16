@@ -85,13 +85,22 @@ sources:
   - "Wikipedia — Pleiku Campaign / Operation Long Reach / Operation All the Way (context)"
   - "Wikipedia — Siege of Plei Me (Hill 732; 33rd Regiment movements Nov 4)"
 
+related_events:
+  - slug: operation-all-the-way-1965
+    relationship: parent-operation
+    note: >
+      The operational frame for this action: Operation All the Way (1st Brigade pursuit phase,
+      27 Oct – 9 Nov 1965), Phase I of Operation Long Reach within the Pleiku Campaign.
+
 open_questions:
   - id: oq-01
     publish: true
     question: >
-      What action killed SGT Coffey, PFC Hamill, and CPL Hill on November 4, 1965,
-      near Hill 732? If you served with D Company, 2/8 Cav during the Pleiku Campaign,
-      or knew these men, we want your account.
+      If you served with D Company, 2/8 Cav during the Pleiku Campaign, or knew SGT
+      Coffey, PFC Hamill, or CPL Hill, we'd like to hear from you. We're trying to
+      reconstruct the action near Hill 732 on November 4, 1965 that took all three.
+      You don't need to have researched anything or know the operation's name — a
+      nickname, a face, or a fragment of that day all help us complete the record.
   - id: oq-02
     publish: false
     question: >
@@ -125,7 +134,7 @@ notes: >
 
 ## November 4, 1965 — D Company's first recorded losses
 
-> **Draft research page.** Confirmed: three men of D Company, 2nd Battalion, 8th
+> **Research page — in progress.** Confirmed: three men of D Company, 2nd Battalion, 8th
 > Cavalry were killed on November 4, 1965. The Hill 732 / Pleiku setting, the 33rd
 > Regiment as the enemy, and the battalion-action framing are strongly supported by
 > two corroborating accounts but the exact company-level scheme of maneuver is not yet
@@ -199,27 +208,22 @@ patrol on November 3 — a different event a day earlier.
 
 ### The location records are wrong — and that's instructive
 
-The official casualty records disagree with each other and with the geography, and
-none should be published:
+The individual casualty records disagree with each other and with the geography:
 
-- Coffey's **Honor States** record lists **Tay Ninh Province** (III Corps).
+- Coffey's record lists **Tay Ninh Province** (III Corps).
+- Hamill's record lists **Binh Duong Province** (III Corps).
+- Hill's record lists **Long Khanh Province** (III Corps).
 - Barnett's record lists **Thua Thien Province** (I Corps).
-- The **Virtual Wall** lists **no province** for any of the men.
+- The **Virtual Wall** lists **no province** for any of them.
 
-Tay Ninh and Thua Thien are at opposite ends of South Vietnam, and neither is where
-the 1st Cavalry Division was operating in November 1965 (it was in the Central
-Highlands, II Corps). Two men killed in the same action carrying two different,
-impossible provinces is a clear sign the DCAS province field is unreliable for these
-early casualties. **Hill 732, Pleiku Province** is the correct setting.
+These provinces lie far from one another and far from where the 1st Cavalry Division
+was operating in November 1965 — the Central Highlands (II Corps). Four men killed in
+one action carrying four different, impossible provinces shows how unreliable the
+early casualty location records can be. **Hill 732, Pleiku Province** is the correct
+setting.
 
-### Research leads
+### Help us complete the record
 
-- Pull the **2/8 Cavalry after-action report and daily staff journal** for November 4,
-  1965 (NARA RG 472) to confirm the action, LZ Juliet, LZ Cavalier, and the order in
-  which A and D Companies were committed.
-- Follow up with **Doc Wilson** (contact details held in restricted records) for a
-  fuller account and possible identification of the three KIA.
-- Create soldier profile stubs for the three KIA. **Hamill** has a Virtual Wall
-  photograph that can seed his profile.
-- Check the **1st Cavalry Division 1965 unit history** and the association newsletter
-  flagged as covering "Ia Drang Valley, Nov 1965" (`sources/newsletters`, Jul 2015).
+If you served with D Company, 2/8 Cavalry during the Pleiku Campaign, or knew Richard
+Coffey, Wright Hamill, or Eddie Hill, we would be grateful for anything you can share.
+Please reach us through the [contribute form](/contribute/).

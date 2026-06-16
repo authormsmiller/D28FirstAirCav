@@ -137,6 +137,9 @@ citations:
     status: unconfirmed
     note: Actions consistent with valor citation; no award documentation found
 related_events:
+  - slug: 3rd-brigade-separate-garryowen-1971
+    relationship: operational-period
+    note: "Higher command / operational frame — the 3rd Brigade (Separate) under which 2/8 Cav operated in 1971 (from BG Burton's debriefing report, AD0520447)."
   - slug: crash-fsb-fontaine-1971-04-24
     relationship: causal
     note: UH-1H crash four days later occurred in context of post-contact operations; FSB subsequently renamed Fanning
@@ -260,3 +263,28 @@ The night of April 20–21 was spent in a defensive perimeter east of the bunker
 **Terrain — north bank elevation:** The north bank of Suối Gia Ui is significantly higher than the south bank at the firefight location. This asymmetry is the result of eastward stream flow combined with drainage off Núi Chứa Chan building upslope ground to the north. The 83rd NVA rear service unit exploited this by constructing their bunker complex into the elevated reverse slope of the north bank, with firing positions looking directly down onto the stream crossing and south bank. For Cat Platoon on the south bank, this meant firing upward into a steep earthen wall — rounds hit the bank face rather than the bunkers. This terrain feature is the primary reason Cat's direct fire could not suppress the NVA position from the south, and why the withdrawal required a lateral flanking movement to find a break in the high bank. This also directly supports the oq-08 working theory: the crossing action attributed to Skull in the Maxey account (moving west along the stream to find a crossing point) is precisely the kind of maneuver Cat's trailing squad would have had to execute to get across that high-banked stream.
 
 **Skull Platoon's role — Maxey account vs. other sources:** The Maxey document attributes a crossing action to Skull Platoon during the firefight, with diagrams showing Skull on the south bank at the crossover. This conflicts with all other accounts, which place Skull as a late-afternoon reinforcement choppered in after the engagement. Working theory: Maxey (or his source) misidentified Cat's trail squad as Skull. The crossing action described in the Maxey text — moving west along the stream and coming in behind Range — is consistent with Neal's account of Cat's trail squad. The Maxey diagrams are included in the event photo archive with this caveat noted in the captions. See oq-08.
+
+### Aftermath — the brigade's bunker-attack training
+
+The kind of fight Range Platoon walked into on April 20 — a fortified, well-camouflaged NVA
+bunker complex in dense jungle — was becoming a recurring and costly problem for the 1st
+Cavalry Division's units that spring. In his 1971 senior officer debriefing report, the
+commander of the 3rd Brigade (Separate), BG Jonathan R. Burton, recorded the brigade's
+institutional response:
+
+> "Since May 1971, combat units of the 1st Cavalry Division have sustained increased casualties
+> when encountering the enemy in his bunker complexes. To remedy this situation, a bunker
+> training course was established at [the Combat Training Center]. This training included a live
+> fire exercise on how to attack a bunker complex utilizing the organic fire support of the
+> Brigade. The training was conducted as a platoon problem since that was the size unit most
+> frequently used in actual contact ... thick vegetation prohibiting movement and difficulty in
+> sighting the enemy."
+
+The report dates the casualty surge to "since May 1971" — a few weeks after this engagement —
+so April 20 is not cited as its cause. But the action is an exact, and unusually severe, example
+of the very problem the training was built to address: a platoon-sized element in heavy jungle,
+unable to see or suppress an enemy fighting from prepared, overhead-covered bunkers. The brigade
+framed the course as a "platoon problem ... the size unit most frequently used in actual
+contact," and named the same difficulties Range faced here — thick vegetation and the
+near-impossibility of sighting the enemy. Source: 3rd Brigade (Separate) Senior Officer
+Debriefing Report (DTIC AD0520447); see /events/3rd-brigade-separate-garryowen-1971/.
