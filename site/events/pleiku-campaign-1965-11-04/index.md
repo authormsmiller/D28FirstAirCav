@@ -84,6 +84,7 @@ sources:
   - "Honor States — Richard A. Coffey (lists Tay Ninh Province — disputed)"
   - "Wikipedia — Pleiku Campaign / Operation Long Reach / Operation All the Way (context)"
   - "Wikipedia — Siege of Plei Me (Hill 732; 33rd Regiment movements Nov 4)"
+  - "Combat Operations After Action Report, \"The Pleiku Campaign,\" HQ 1st Cavalry Division (Airmobile), 23 Oct – 26 Nov 1965 — 4 Nov operations summary (2/8 Cav: Recon plt + A/C Co, Position \"Cavalair,\" grid ZA978050; Hill 732 = YA885106); copy hosted under Documents (cf. DTIC AD0855112)"
 
 related_events:
   - slug: operation-all-the-way-1965
@@ -137,8 +138,9 @@ notes: >
 > **Research page — in progress.** Confirmed: three men of D Company, 2nd Battalion, 8th
 > Cavalry were killed on November 4, 1965. The Hill 732 / Pleiku setting, the 33rd
 > Regiment as the enemy, and the battalion-action framing are strongly supported by
-> two corroborating accounts but the exact company-level scheme of maneuver is not yet
-> confirmed against a unit after-action report.
+> two corroborating accounts, and the division's own after-action report (now linked under
+> Documents) supplies the battalion's 4 November scheme of maneuver. The company attribution of
+> the three KIA is the one remaining open thread (see below).
 
 On November 4, 1965, **D Company, 2nd Battalion, 8th Cavalry** lost three men on the
 same day:
@@ -186,6 +188,16 @@ November 1965**, opening with a reconnaissance element and drawing in **several
 companies of the battalion** (matching the A Co + D Co casualties on the Wall),
 **multiple KIA**, against the **33rd Regiment**, in the **Plei Me / Ia Drang** area of
 Pleiku Province. (Full transcript linked under the Documents tab.)
+
+### The division after-action report — the 2/8 Cavalry's 4 November action
+
+The 1st Cavalry Division's own **Combat Operations After Action Report** for the Pleiku Campaign supplies the unit-level scheme of maneuver this page had been missing. Its operations summary for **4 November 1965** records that at **1130** the **2/8 Cavalry's Reconnaissance platoon**, operating out of **Position "Cavalair,"** made contact with an estimated **two North Vietnamese companies** near grid **ZA978050**. Two platoons of **A Company** were committed at **1210**; artillery and tactical air were called in; and the enemy, "after taking punishing blows," broke contact, leaving **12 captured and 14 dead** on the field, with more carried away. **C Company** was recalled to relieve A Company, and the elements closed back into Position "Cavalair" for the night.
+
+That position is almost certainly the **"LZ Cavalier"** to which Doc Wilson says he was evacuated — the report's spelling and the medic's account independently describe the same ground. The report also fixes **Hill 732 at grid YA885106** as the 33rd Regiment's command post, which the regiment was ordered to abandon that same day for the eastern slopes of Chu Pong — so Hill 732 is the *enemy's* position, distinct from the 2/8 contact site at ZA978050.
+
+**A note on the company attribution.** The after-action report names the engaged 2/8 elements as the **battalion Reconnaissance platoon, A Company, and C Company**; it does not separately name D Company in the 4 November entry, and gives the friendly casualty figure only in aggregate. The three men commemorated here are recorded on the Vietnam Veterans Memorial as **D Company, 2/8 Cav**, and the D Co medic Doc Wilson describes the fight as opening with "a Recon platoon from Delta Co." We retain their D Company attribution; what is certain is that they were present, engaged, and killed on 4 November 1965. The difference between the report's company-level naming and the casualty records is noted, not resolved.
+
+The full report is linked under the Documents tab: **[Pleiku Campaign After Action Report](/documents/unit/pleiku-campaign-aar-1965/).**
 
 ### Operational context: Operation All the Way / Long Reach
 

@@ -53,6 +53,13 @@ images:
     date: "1971-06-25"    
 
 related_events:
+  - slug: firefight-mountain-1971-06-24
+    relationship: preceded-by
+    note: >
+      Day one of the same operation. On June 24 the company assaulted the mountain redoubt near
+      old LZ Fontaine (a false contact — see the Firefight on the Mountain incident); that assault
+      put D Company onto the position the enemy was protecting, and the cache here was swept the
+      next day.
   - slug: contact-fsb-fontaine-1971-04-20
     relationship: operational
     note: Same operational area southeast of FSB Fontaine; pink team activity links the two events; Neal references both in his account

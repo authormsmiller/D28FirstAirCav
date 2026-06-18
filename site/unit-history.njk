@@ -36,6 +36,16 @@ permalink: /unit-history/
   .uh-era p { font-family: "Crimson Pro", Georgia, serif; color: var(--ink); font-size: 1.02rem; line-height: 1.55; margin: 0 0 10px; }
   .uh-era p:last-child { margin-bottom: 0; }
   .uh-era .uh-era-note { font-size: .9rem; color: var(--dim); font-style: italic; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 12px; }
+
+  /* Collapsible timeline sections (type + year), with child-event counts */
+  details.uh-type, details.uh-year { margin: 0; }
+  summary.uh-section-label, summary.uh-year-marker { cursor: pointer; list-style: none; }
+  summary.uh-section-label { display: block; }
+  summary.uh-section-label::-webkit-details-marker, summary.uh-year-marker::-webkit-details-marker { display: none; }
+  .uh-count { opacity: .55; font-weight: 400; }
+  summary.uh-section-label::before, summary.uh-year-marker::before { content: "▸"; display: inline-block; margin-right: .45em; font-size: .8em; transition: transform .15s ease; }
+  details[open] > summary.uh-section-label::before, details[open] > summary.uh-year-marker::before { transform: rotate(90deg); }
+  .uh-bookend { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; background: #1d9e75; color: #fff; padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: middle; white-space: nowrap; }
 </style>
 
 <section class="uh-era" aria-label="Unit history milestone: the division departs, the brigade stays">
@@ -109,14 +119,16 @@ permalink: /unit-history/
       {% if evt.data.type == section.type %}{% set typeEvents = (typeEvents.push(evt), typeEvents) %}{% endif %}
     {% endfor %}
     {% if typeEvents.length %}
-      <div class="uh-section-label">{{ section.label }}</div>
+      <details class="uh-type" open>
+        <summary class="uh-section-label">{{ section.label }} <span class="uh-count">({{ typeEvents.length }})</span></summary>
       {% for y in uhYears %}
         {% set yearEvents = [] %}
         {% for evt in typeEvents %}
           {% if (evt.data.date | string | truncate(4, true, "")) == (y | string) %}{% set yearEvents = (yearEvents.push(evt), yearEvents) %}{% endif %}
         {% endfor %}
         {% if yearEvents.length %}
-          <div class="uh-year-marker">{{ y }}</div>
+          <details class="uh-year">
+            <summary class="uh-year-marker">{{ y }} <span class="uh-count">({{ yearEvents.length }})</span></summary>
           {% for evt in yearEvents %}
             {% set kia_count = evt.data.casualties.kia | length if evt.data.casualties and evt.data.casualties.kia else 0 %}
             {% set dow_count = evt.data.casualties.dow | length if evt.data.casualties and evt.data.casualties.dow else 0 %}
@@ -129,7 +141,7 @@ permalink: /unit-history/
                 <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date }}</div></div>
                 <div class="uh-divider"></div>
                 <div class="uh-body">
-                  <p class="uh-title">{{ evt.data.title }}</p>
+                  <p class="uh-title">{{ evt.data.title }}{% if evt.data.slug == "deployment-vietnam-1965" %} <span class="uh-bookend">First in</span>{% elif evt.data.slug == "departure-vietnam-1972" %} <span class="uh-bookend">Last out</span>{% endif %}</p>
                   {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
                   {% if total_cas > 0 %}
                     <div class="uh-casualties">
@@ -144,8 +156,10 @@ permalink: /unit-history/
               </div>
             </a>
           {% endfor %}
+            </details>
         {% endif %}
       {% endfor %}
+      </details>
     {% endif %}
   {% endfor %}
 

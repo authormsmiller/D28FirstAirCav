@@ -29,11 +29,16 @@ contains:
     name: Leroy Sells
     role: Cat Platoon
     note: Identified by contemporary handwritten caption on Miller photograph
-tagged:
   - slug: miller-marvin-dale
     name: SGT Marvin D. Miller
+    role: Cat Platoon — photographer; escort
     note: |
-      Photographer; likely present as escort or observer. Not named in the caption of his own photographs, but presence is probable given his Cat Platoon association and the photograph sequence.
+      Confirmed present. He photographed the rallier and the escort along Highway 331
+      (the only known photographic record) and brought home artifacts taken from the
+      prisoner — a piece of black-pajama cloth and a wooden VC propaganda printing
+      block (held by the Miller family). Not named in his own captions because he was
+      behind the camera.
+tagged:
   - davis-kirk
   - hilts-doug
   - weaver-ken

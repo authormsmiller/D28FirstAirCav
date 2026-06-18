@@ -30,7 +30,7 @@ status: kia
 hometown: "Coram, Flathead County, MT"
 current_location:
 year_deceased: 1969
-cause_of_death: kia
+cause_of_death: non-hostile
 
 # ── PROFILE PHOTO ─────────────────────────────
 profile_photo: "benson-joseph-profile.jpg"

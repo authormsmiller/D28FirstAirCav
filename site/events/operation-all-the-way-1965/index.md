@@ -50,6 +50,7 @@ units:
 
 sources:
   - "The PLEIKU Campaign — Headquarters, 1st Cavalry Division (Airmobile), after-action study (DTIC AD0855112) — https://apps.dtic.mil/sti/tr/pdf/AD0855112.pdf"
+  - "Local copy hosted: Pleiku Campaign After Action Report (PDF) — /assets/docs/pleiku-campaign-aar-1965.pdf — see the linked document on the 4 November casualty event"
   - "Pleiku campaign — Wikipedia (Operation Long Reach phases: All the Way / Silver Bayonet I / Silver Bayonet II) — https://en.wikipedia.org/wiki/Pleiku_campaign"
   - "U.S. Army Center of Military History / army.mil — 1st Cavalry Division, Pleiku Campaign 1965"
   - "Battle of Ia Drang — Wikipedia (Silver Bayonet I; LZ X-Ray 14–16 Nov, LZ Albany 17–18 Nov) — https://en.wikipedia.org/wiki/Battle_of_Ia_Drang"

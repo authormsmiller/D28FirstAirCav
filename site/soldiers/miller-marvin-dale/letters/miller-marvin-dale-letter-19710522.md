@@ -15,7 +15,7 @@ tagged: []
 permalink: /soldiers/miller-marvin-dale/letters/miller-marvin-dale-letter-19710522/
 ---
 
-SGT Marvin Dale Miller to his mother, 22 May 1971. Written approximately 32 days after the April 20 contact north of FSB Fanning and 28 days after the Huey crash at FSB Fontaine. Believed to be the first letter Marvin wrote home following those events.
+SGT Marvin Dale Miller to his mother, 22 May 1971. Written approximately 32 days after the April 20 contact north of FSB Fanning and 28 days after the Huey crash at FSB Fontaine. The undated late-April pencil letter ("Tell Me When You Get Your Garden Plowed," dated by content to circa 26–28 April) now appears to be the first surviving letter after those events; this is the next.
 
 ---
 

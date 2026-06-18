@@ -15,6 +15,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("soldiers", function(collectionApi) {
     return collectionApi
       .getFilteredByGlob("./soldiers/*/*.md")
+      .filter(s => !s.data.draft)
       .sort((a, b) => {
         const nameA = (a.data.last_name || "").toLowerCase();
         const nameB = (b.data.last_name || "").toLowerCase();
@@ -26,6 +27,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("kia", function(collectionApi) {
     return collectionApi
       .getFilteredByGlob("./soldiers/*/*.md")
+      .filter(s => !s.data.draft)
       .filter(s => s.data.status === "KIA");
   });
 
@@ -48,7 +50,7 @@ module.exports = function(eleventyConfig) {
 
   // All photos across all soldiers — for cross-soldier contains queries
   eleventyConfig.addCollection("allPhotos", function(collectionApi) {
-    const soldiers = collectionApi.getFilteredByGlob("./soldiers/*/*.md");
+    const soldiers = collectionApi.getFilteredByGlob("./soldiers/*/*.md").filter(s => !s.data.draft);
     const allPhotos = [];
     for (const soldier of soldiers) {
       const photos = soldier.data.photos || [];

@@ -45,8 +45,9 @@ permalink: /search/
   }
 
   function photoPath(soldier) {
+    if (soldier.profile_photo_url) return soldier.profile_photo_url;
     if (!soldier.profile_photo) return null;
-    return "/soldiers/" + soldier.slug + "/photos/profile/" + soldier.profile_photo;
+    return "/media/photos/soldiers/" + soldier.slug + "/profile/" + soldier.profile_photo;
   }
 
   function platoonShort(platoon) {
@@ -136,14 +137,15 @@ permalink: /search/
     var events    = allHits.filter(function (r) { return r.type === "event"; });
     var documents = allHits.filter(function (r) { return r.type === "document"; });
     var anecdotes = allHits.filter(function (r) { return r.type === "anecdote"; });
+    var letters   = allHits.filter(function (r) { return r.type === "letter"; });
 
-    renderResults(query, soldiers, events, documents, anecdotes, container);
+    renderResults(query, soldiers, events, documents, anecdotes, letters, container);
   }
 
   // ── Renderers ─────────────────────────────────────────────────────────────
 
-  function renderResults(query, soldiers, events, documents, anecdotes, container) {
-    var total = soldiers.length + events.length + documents.length + anecdotes.length;
+  function renderResults(query, soldiers, events, documents, anecdotes, letters, container) {
+    var total = soldiers.length + events.length + documents.length + anecdotes.length + letters.length;
     if (!total) {
       container.innerHTML =
         '<p class="search-no-results">No records found for <strong>' +
@@ -156,12 +158,35 @@ permalink: /search/
 
     var html = "";
     if (soldiers.length)  html += renderProfileGroup(soldiers);
+    if (letters.length)   html += renderLetterGroup(letters);
     if (events.length)    html += renderEventGroup(events);
     if (documents.length) html += renderDocumentGroup(documents);
     if (anecdotes.length) html += renderAnecdoteGroup(anecdotes);
     html += renderContribute(topSoldier);
 
     container.innerHTML = html;
+  }
+
+  function renderLetterGroup(letters) {
+    var body = '<ul class="result-list">';
+    letters.forEach(function (lt) {
+      var meta      = [lt.date, lt.contributor].filter(Boolean).join(" · ");
+      var mentioned = soldierNames(lt.contains, 3);
+      var context   = mentioned.length ? "Soldiers: " + mentioned.join(", ") : "";
+      body += '<li class="result-item">';
+      body += '<a href="' + escHtml(lt.url) + '" class="result-link">';
+      body += '<div class="result-photo result-photo--placeholder result-photo--square"><span>LE</span></div>';
+      body += '<div class="result-body">';
+      body += '<p class="result-name">' + escHtml(lt.name) + '</p>';
+      if (meta)    body += '<p class="result-meta">' + escHtml(meta) + '</p>';
+      if (context) body += '<p class="result-context">' + escHtml(context) + '</p>';
+      else if (lt.excerpt) body += '<p class="result-excerpt">' + escHtml(truncate(lt.excerpt, 120)) + '</p>';
+      body += '</div>';
+      body += '</a>';
+      body += '</li>';
+    });
+    body += '</ul>';
+    return detailsWrap("Letters", letters.length, body);
   }
 
   function renderProfileGroup(soldiers) {

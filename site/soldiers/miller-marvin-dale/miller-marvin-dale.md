@@ -11,7 +11,7 @@ last_name: Miller
 middle_name: Dale
 suffix: null
 nickname: null
-birth_year: "1949"
+birth_year: "1949"   # DOB 15 September 1949
 rank: SGT
 mos: 11F · Recon · 11F40
 platoon: Cat
@@ -23,7 +23,7 @@ hometown: Kittanning, Armstrong Co., PA
 current_location: null
 year_deceased: 2004
 cause_of_death: natural
-profile_photo: marvin-miller-selfie.jpeg
+profile_photo: marvin-miller-selfie.jpg
 decorations:
   - Bronze Star Medal
   - Combat Infantryman Badge
@@ -68,7 +68,7 @@ timeline:
         label: Arrival
     headline: Arrives at FSB Mace
     body: |
-      Marvin arrived at FSB Mace a few days after processing through the replacement depot at Bien Hoa. His first assignment with Delta Company.
+      Marvin reached Vietnam in early December 1970, flying into Cam Ranh Bay, then on to Bien Hoa, and forward from there to FSB Mace — his first assignment with Delta Company. In his first letter home, written at Mace on December 15, he said he had "a good trip over" but was "a little tired of going from place to place," and noted that with the rainy season ended the weather had turned "hot an sticky." Cam Ranh Bay was one of the Army's two main in-processing points for new arrivals (the 22nd Replacement Battalion; the other was the 90th at Long Binh, by Bien Hoa), which is why he jumped some 200 miles down-country before reaching his unit — in-processing and unit assignment were separate steps. The "going from place to place" he describes was that replacement pipeline; men bound for the 1st Cav also drew about a week of in-country training before being sent forward.
   - date: 24 Jan 1971
     phase: in-country
     type: personal
@@ -87,6 +87,17 @@ timeline:
     headline: Silver Stands Down — Cat Platoon Last to Leave
     body: |
       FSB Silver was dismantled and the company moved to FSB Fontaine. Cat Platoon was the last unit to depart Silver. Marvin was asked by the Colonel to draw a scaled model of the new base at Fontaine — a task that drew on skills nobody had formally recognized until then.
+  - date: 1 Mar 1971
+    phase: in-country
+    type: personal
+    tags:
+      - type: p
+        label: Promotion
+    headline: Promoted to Specialist Four (SP4)
+    body: |
+      Marvin was promoted to Specialist Four (SP4 / E-4) on March 1, 1971,
+      having gone before a promotion board on January 10. He served in the
+      recon MOS with Cat Platoon and would be a squad leader by that fall.
   - date: 20 Apr 1971
     phase: in-country
     type: combat
@@ -103,6 +114,7 @@ timeline:
   - date: 24 Apr 1971
     phase: in-country
     type: combat
+    event_slug: crash-fsb-fontaine-1971-04-24
     tags:
       - type: c
         label: Incident
@@ -111,6 +123,35 @@ timeline:
     headline: Huey Crash at FSB Fontaine — Three Killed
     body: |
       A Huey departing FSB Fontaine crashed shortly after takeoff, killing the pilot, co-pilot, and Battalion Armor SP4 Richard Colburn. Company Armor Jim Garvin had been bumped from the flight minutes before departure and watched it go down from the firebase. Veterans who reviewed the photographs believe Marvin was among the first soldiers on scene — the wreckage is undisturbed, consistent with the moments just after casualties were removed. He remained through the full recovery operation. FSB Fanning was later named in honor of the pilot who died.
+  - date: May 1971
+    phase: in-country
+    type: combat
+    event_slug: chieu-hoi-fsb-fontaine-1971-05
+    tags:
+      - type: c
+        label: Incident
+      - type: ph
+        label: Photographed by Marvin · Only Known Record
+    headline: Chieu Hoi Rallier on Highway 331
+    body: |
+      A former Viet Cong fighter rallied under the Chieu Hoi ("Open Arms") amnesty
+      program, walking out of the jungle alone along Highway 331 near FSB Fontaine.
+      Marvin and his Cat Platoon squadmates went out to meet and escort him in.
+      Marvin photographed the rallier and the escort — the only known photographic
+      record — and brought home items taken from the prisoner: a piece of
+      black-pajama cloth and a wooden VC propaganda printing block, both still held
+      by the family. His presence is confirmed by the photographs and these artifacts.
+  - date: 30 May 1971
+    phase: in-country
+    type: move
+    tags:
+      - type: m
+        label: FSB Movement
+    headline: Chapel Service at FSB King
+    body: |
+      Marvin wrote that the company attended a chapel service that day. The unit
+      was at FSB King — a temporary base it occupied while a new firebase was
+      being built — and was preparing to tear it down and move back to FSB Fanning.
   - date: 19 Jun 1971
     phase: in-country
     type: personal
@@ -120,6 +161,45 @@ timeline:
     headline: Returns from R&R in Hong Kong
     body: |
       Marvin returned from R&R in Hong Kong. The company was at FSB Fanning and due to rotate to Vung Tau on June 21.
+  - date: 14 Jul 1971
+    phase: in-country
+    type: personal
+    tags:
+      - type: p
+        label: Context
+    headline: Battalion Command Changes Hands
+    body: |
+      LTC Thomas E. Blagg ("Stone Mountain 6") assumed command of the 2/8
+      Cavalry, relieving LTC W.G. (Gary) Bacon. Brigade commander Brig. Gen.
+      Burton presided and passed the battalion colors. A marker of unit-level
+      turnover during Marvin's tour rather than an event he was personally part
+      of; the new battalion commander would later figure in the October actions
+      around the Makowski contact.
+  - date: 16–22 Jul 1971
+    phase: in-country
+    type: move
+    tags:
+      - type: m
+        label: FSB Movement
+    headline: A Few Days at FB Oldham
+    body: |
+      Around 16–22 July 1971, D Company, 2/8 Cav occupied FB Oldham (also written "Old Ham") —
+      grid ZT077004, out toward Ham Tan and well east of the Fontaine/Fanning area D Company
+      usually worked. D Company is specifically recorded there on 21 July. The stay was only
+      about a week, which is likely why this base is harder for veterans to place than the
+      longer-held ones (Mace, Silver, Fontaine, Fanning, King, Jeffries). Source: firebase
+      location gazetteer (sources/fsb-locations).
+  - date: 14 Aug 1971
+    phase: in-country
+    type: personal
+    tags:
+      - type: p
+        label: Loss
+    headline: Word of Overdose Deaths
+    body: |
+      In a letter home, Marvin mentioned that a couple of his friends had died of
+      drug overdoses — a reminder that not all of the war's losses came from
+      enemy contact.
   - date: 3 Sep 1971
     phase: in-country
     type: move
@@ -129,6 +209,16 @@ timeline:
     headline: Company Moves to FSB Jeffries
     body: |
       The unit established at FSB Jeffries, not far from a Vietnamese village. This firebase does not appear in official unit records but is documented in Marvin's letters.
+  - date: 3 Oct 1971
+    phase: in-country
+    type: personal
+    tags:
+      - type: p
+        label: Context
+    headline: Unrest in Bien Hoa and Saigon
+    body: |
+      Marvin reported unrest in Bien Hoa and Saigon, which he thought might be
+      tied to the upcoming South Vietnamese elections.
   - date: 24 Nov 1971
     phase: in-country
     type: personal
@@ -294,12 +384,10 @@ related_events:
   - crash-fsb-fontaine-1971-04-24
   - contact-north-fsb-fanning-1971-04-20
 date_added: 2026-05-27T00:00:00.000Z
-last_updated: 2026-05-27T00:00:00.000Z
+last_updated: 2026-06-16T00:00:00.000Z
 contributed_by: son (Michael Miller)
 notes: |
-  Primary archive subject. All photographs from Marvin's collection unless noted. Birth year not yet confirmed — Armstrong County PA, likely early 1950s. Rank confirmed as SGT per multiple sources. MOS: 11F40 (Infantry Recon). Deceased 2004 — cause: natural (per family; not documented in archive sources). Contact: Michael Miller (son) — details in _private/contacts.json.
+  Primary archive subject. All photographs from Marvin's collection unless noted. Born 15 September 1949, Armstrong County, PA. Rank confirmed as SGT per multiple sources. MOS: 11F40 (Infantry Recon). Deceased 2004 — cause: natural (per family; not documented in archive sources). Contact: Michael Miller (son) — details in _private/contacts.json.
   Lt. Val Romani (Cat 6, ~Sep–Dec 1971) confirmed Marvin as one of his best squad leaders. See romani-testimony anecdote.
   Timeline phase field added to all entries (in-country throughout).
----
-t).
 ---

@@ -99,6 +99,12 @@ notes: >
 > the full report is linked below to read in full. Treat the connection to specific D Company
 > actions as **highly likely context, not established fact.**
 
+### The division standdown — 26 March 1971
+
+The 1st Cavalry Division formally stood down in Vietnam on **26 March 1971**, in a brief ceremony at the division's rear headquarters area at **Bien Hoa** (moved from the long-planned Phuoc Vinh site only that morning). Present were **Gen. Creighton Abrams** (commander of U.S. forces in Vietnam), **Lt. Gen. Michael Davison** (II Field Force), **Lt. Gen. Nguyen Van Minh** (III Military Region), and division commander **MG George W. Putnam Jr.** The posting of the division colors closed the ceremony; those colors were shipped to **Fort Hood, Texas,** to be reflagged for the **1st Cavalry Division (TRICAP)**, which assumed the assets of the 1st Armored Division. The division had arrived in Vietnam in **September 1965.** With the division gone, its 3rd Brigade remained behind as the separate "Garryowen Task Force" described below.
+
+*Source: "Standdown ceremony typifies First Team," [CAVALAIR, 14 April 1971](/documents/unit/cavalair-19710414/) — the 1st Air Cav Division weekly's standdown special edition (attached to this event under Documents).*
+
 **The brigade.** When the 1st Cavalry Division stood down and redeployed in the spring of 1971,
 its 3rd Brigade remained in Vietnam as a **separate brigade — the "Garryowen Task Force,"**
 headquartered at **Bien Hoa** — to continue the division's mission. **2/8 Cav (D Company's

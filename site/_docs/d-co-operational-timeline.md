@@ -5,6 +5,12 @@ evidence D Company, 2/8 Cav doing in Vietnam — casualty or not** — and how m
 has captured yet. It is the backbone for Tier 3 of the `coverage-model.md`: the complete picture
 of how the unit's mission evolved across the war.
 
+**Includes non-combat deaths.** Disease (e.g. malaria), non-battle injury, accident, and
+self-inflicted deaths are part of the unit's experience and belong on this timeline alongside
+combat actions — recorded honestly per `coverage-model.md` (Tier 1, "Non-combat deaths count
+too"). The KIA counts below are hostile-death clusters from `d-co-kia-list.md`; that roster now carries
+a casualty-type **Cause** column (added 2026-06-16) so non-combat deaths no longer hide inside a "KIA" list.
+
 **How to read the status column:**
 - ✅ **covered** — an operation context page (Tier 2) and/or event page (Tier 1) exists and is published.
 - 🟡 **partial** — some pages exist but the operational frame is thin or hedged inside an event page.
@@ -71,11 +77,17 @@ Saigon–Long Binh defense (1971–72)**. The division stood down in Vietnam **2
   for a Tier 2 context page given how distinct that mission was.
 
 ## 1971 — 7 KIA — ✅ covered
-- **3rd Brigade (Separate), "Garryowen Task Force"** (activated 30 Apr 1971) — the post-division
-  period; AO shifted to War Zone D / Saigon–Long Binh defense out of Bien Hoa.
-- Pages: `3rd-brigade-separate-garryowen-1971` (Tier 2, operation) · FSB Fontaine cluster
-  (`contact-fsb-fontaine-1971-04-20`, `crash-fsb-fontaine-1971-04-24`, `chieu-hoi-fsb-fontaine-1971-05`)
-  · `bunker-complex-1971-06-24` · `contact-nui-ba-1971-10-21` · `bee-incident-1971-03-22`.
+- **Two phases this year — mind the stand-down.** Through ~26 Mar 1971 the **full 1st Cavalry
+  Division (Airmobile)** was still in Vietnam; losses before then — including **PFC James Getter
+  (16 Mar, malaria)** — fall under the division, **NOT** the Garryowen period. The division stood
+  down 26 Mar and redeployed that spring.
+- **3rd Brigade (Separate), "Garryowen Task Force"** (activated 30 Apr 1971) covers the
+  April-onward losses; AO War Zone D / Saigon–Long Binh defense out of Bien Hoa.
+- Pages: `getter-malaria-1971-03-16` (Tier 1 incident — non-combat/malaria; the archive's FIRST
+  non-combat-death event page) · `3rd-brigade-separate-garryowen-1971` (Tier 2, operation) ·
+  FSB Fontaine cluster (`contact-fsb-fontaine-1971-04-20`, `crash-fsb-fontaine-1971-04-24`,
+  `chieu-hoi-fsb-fontaine-1971-05`) · `bunker-complex-1971-06-24` · `contact-nui-ba-1971-10-21` ·
+  `bee-incident-1971-03-22`.
 - See unit-history milestone "The First Team Goes Home — The Brigade Stays."
 
 ## 1972 — 21 organic KIA (Chinook crash) — 🟡 partial

@@ -31,6 +31,44 @@ corroboration for it.
 This tier already exists in practice. The model just makes it a rule: **no KIA cluster without
 an event page.**
 
+### Non-combat deaths are still war deaths
+
+"Casualty" is not only "killed in action," and **"non-hostile" is a casualty *classification*,
+not a statement about cause.** Men of D Co also died in-theater of **disease** (e.g. malaria),
+**non-battle injury**, **accident**, and **self-inflicted causes** — and the war is in the causal
+chain of those deaths as surely as it is for a man killed by a B-40 rocket:
+
+- A soldier does not, in the ordinary course, contract malaria in his hometown. **PFC James Lee
+  Getter** (d. 1971-03-16) caught it in a malarial war zone the Army deployed him to.
+- A man does not turn to drugs in a vacuum. For **SP4 Charles W. Roberts Jr.** (d. 1971-07-18,
+  recorded self-inflicted), the likely cause runs straight back to the stress and reality of
+  combat assaults — the war he was asked to fight.
+
+Both men are on the Wall; the Memorial itself counts them among the war dead. So the site does
+too. Each gets a Tier 1 event/record the same as a combat death, governed by two rules:
+
+- **Record the cause honestly and with dignity** — neither euphemized away nor reduced to a
+  personal failing. Give the official casualty classification (hostile / non-hostile; the
+  record's stated cause), and where a credible account contradicts or contextualizes it, present
+  that too, attributed, rather than repeating a period euphemism uncritically or sensationalizing.
+  (A death recorded as "self-inflicted" may, by family and unit accounts, have been a drug
+  overdose the paperwork softened — and one rooted in combat stress; note both, sourced, and hold
+  the man with the same respect as any other casualty.) The record exists to *understand* what the
+  war did to these men, not to tidy it.
+- **Mark the casualty type and its tie to service** so non-combat deaths are findable and
+  correctly understood, not hidden inside a "KIA" list. Add a cause/casualty-type column to
+  `d-co-kia-list.md` (it is really an *in-service deaths* roster), and carry a casualty-type field
+  on the event page.
+
+**Status convention (resolved).** Non-combat deaths keep `status: kia` — the site's grouping for
+the fallen, matching how the Wall carries them. "KIA" is imprecise for a non-hostile death, so the
+non-combat truth lives in the *content*, not the status badge: set `cause_of_death` to the honest
+value (e.g. `non-hostile`), use a truthful timeline label ("Non-Hostile — Malaria," "Non-Hostile —
+Drowned"), and let the event page carry the full story. Applies to getter-james and benson-joseph.
+
+So the rule is broader than KIA: **no in-service death without an event record** — and every one
+of them is treated as a death connected to Vietnam.
+
 ---
 
 ## Tier 2 — The operation context page (the larger assignment)

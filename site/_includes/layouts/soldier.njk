@@ -119,6 +119,13 @@
 {# ── TAB: TIMELINE ── #}
 <div class="tab-content" id="tab-timeline">
   {# ── Build event-injected entries from collections.events ── #}
+  {# Events already covered by a hand-authored timeline entry (entry.event_slug) are skipped to avoid duplicates #}
+  {% set coveredEvents = [] %}
+  {% if timeline %}
+    {% for entry in timeline %}
+      {% if entry.event_slug %}{% set coveredEvents = (coveredEvents.push(entry.event_slug), coveredEvents) %}{% endif %}
+    {% endfor %}
+  {% endif %}
   {% set injectedEvents = [] %}
   {% for event in collections.events %}
     {% if event.data.status == "published" %}
@@ -153,7 +160,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if matched %}
+      {% if matched and not (event.data.slug in coveredEvents) %}
         {% set injectedEvents = (injectedEvents.push({
           date: event.data.date,
           headline: event.data.title,
@@ -780,7 +787,7 @@
 
   {% if soldierLetters.length %}
     <div class="doc-list">
-      {% for letter in soldierLetters %}
+      {% for letter in soldierLetters | sortByData('doc_date') | reverse %}
         <div class="doc-item">
           <div class="doc-icon">✉️</div>
           <div style="flex:1;">
