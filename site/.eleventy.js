@@ -48,6 +48,25 @@ module.exports = function(eleventyConfig) {
   return collectionApi.getFilteredByGlob("./events/**/*.md");
   });
 
+  // Location / firebase profiles — sorted by first occupancy date, then name.
+  // _template.md and _notes.md are scaffolding, not renderable pages.
+  eleventyConfig.addCollection("locations", function(collectionApi) {
+    const firstDate = (d) => {
+      const occ = (d.occupancies && d.occupancies.length) ? d.occupancies : null;
+      let v = occ ? (occ[0].start || occ[0].date) : (d.dates && d.dates.established ? d.dates.established.date : null);
+      if (!v) return "9999";
+      if (v instanceof Date) return v.toISOString().slice(0, 10);
+      return String(v);
+    };
+    return collectionApi.getFilteredByGlob("./locations/**/*.md")
+      .filter(p => !p.inputPath.includes("/_template") && !p.inputPath.includes("/_notes") && !p.inputPath.includes("/_photo-index-template") && !p.data.draft)
+      .sort((a, b) => {
+        const da = firstDate(a.data), db = firstDate(b.data);
+        if (da !== db) return da.localeCompare(db);
+        return (a.data.display_name || "").localeCompare(b.data.display_name || "");
+      });
+  });
+
   // All photos across all soldiers — for cross-soldier contains queries
   eleventyConfig.addCollection("allPhotos", function(collectionApi) {
     const soldiers = collectionApi.getFilteredByGlob("./soldiers/*/*.md").filter(s => !s.data.draft);
@@ -108,6 +127,30 @@ module.exports = function(eleventyConfig) {
     }
     if (isNaN(d)) return String(val).slice(0, 10);
     return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  });
+
+  // Format a partial date for locations: accepts a year ("1971"),
+  // year-month ("1971-03"), full date ("1971-03-09"), or a Date object
+  // (YAML auto-parses unquoted YYYY-MM-DD to a Date). Returns "" for blanks.
+  //   "1971"       -> "1971"
+  //   "1971-03"    -> "Mar 1971"
+  //   "1971-03-09" -> "9 Mar 1971"
+  eleventyConfig.addFilter("locDate", function(val) {
+    if (!val) return "";
+    const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    let y, m, d;
+    if (val instanceof Date) {
+      y = val.getUTCFullYear(); m = val.getUTCMonth() + 1; d = val.getUTCDate();
+    } else {
+      const parts = String(val).trim().slice(0, 10).split("-");
+      y = Number(parts[0]);
+      m = parts[1] ? Number(parts[1]) : null;
+      d = parts[2] ? Number(parts[2]) : null;
+    }
+    if (!y || isNaN(y)) return String(val);
+    if (!m || isNaN(m)) return String(y);
+    if (!d || isNaN(d)) return MON[m - 1] + " " + y;
+    return d + " " + MON[m - 1] + " " + y;
   });
 
   // Sort collection by a data field, descending. Blanks sort to end.

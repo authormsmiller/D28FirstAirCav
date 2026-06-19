@@ -1,16 +1,16 @@
 ---
 layout: layouts/soldier.njk
-title: Gary Collins
-slug: collins-gary
-breadcrumb: Gary Collins
-permalink: /soldiers/collins-gary/
+title: Bill Holtzclaw
+slug: holtzclaw-bill
+breadcrumb: Bill Holtzclaw
+permalink: /soldiers/holtzclaw-bill/
 tags:
   - soldier
-first_name: Gary
-last_name: Collins
+first_name: Bill
+last_name: Holtzclaw
 middle_name: null
 suffix: null
-nickname: Indian
+nickname: null
 birth_year: null
 rank: null
 mos: null
@@ -42,7 +42,7 @@ links:
   wall: null
   other: null
 timeline_source: |
-  Service timeline not yet compiled. If you served with or knew Gary Collins, please use the contribute form to share what you remember.
+  Service timeline not yet compiled. If you served with or knew Bill Holtzclaw, please use the contribute form to share what you remember.
 timeline: null
 photo_intro: |
   Photographs pending.
@@ -55,5 +55,5 @@ date_added: 2026-06-18T00:00:00.000Z
 last_updated: 2026-06-18T00:00:00.000Z
 contributed_by: null
 notes: |
-  Stub created from Jim Garvin's "v05_fontaine" photo deck. Known as "Indian"; a good friend of Jim Garvin's, decorated for valor at the FSB Fontaine awards ceremony of 25 April 1971, credited with bringing the squad back to safety (197104... awards photo, From the Collection of Jim Garvin). Appears in the anecdote "Awards on Fontaine — Indian." Platoon (Range) inferred from Garvin's account; rank and dates not yet established.
+  Stub created from Jim Garvin's "v05_fontaine" photo deck. The platoon RTO; photographed at FSB Fontaine after the April 1971 ambush with the radio he had been carrying (197104-fontaine-ambush-holtzclaw-01.jpg, From the Collection of Jim Garvin). Appears in the anecdote "The Ambush After I Left the Field." Platoon (Range) inferred from Garvin's account of his own platoon; rank and dates not yet established.
 ---

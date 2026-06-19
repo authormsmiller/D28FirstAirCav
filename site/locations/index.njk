@@ -1,0 +1,138 @@
+---
+layout: base.njk
+title: Locations
+permalink: /locations/
+---
+
+<style>
+  .loc-idx-hero { background: var(--blk); padding: 36px 48px 24px; border-bottom: 4px solid var(--y); }
+  .loc-idx-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: .95; color: var(--pg); }
+  .loc-idx-title span { color: #C0392B; }
+  .loc-idx-deck { font-family: 'Crimson Pro', Georgia, serif; font-size: 1.05rem; color: #b8b2a0; margin-top: 6px; max-width: 640px; }
+  .loc-legend { display: flex; flex-wrap: wrap; gap: 16px; padding: 12px 0 0; margin: 14px 0 0; border-top: 1px solid #2e2a22; font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: #b8b2a0; }
+  .loc-legend .li { display: inline-flex; align-items: center; gap: 6px; }
+  .loc-idx-body { background: var(--pg); padding: 24px 48px 48px; }
+  .loc-icon { display: inline-flex; width: 15px; height: 15px; vertical-align: middle; }
+  .loc-icon svg { width: 15px; height: 15px; }
+  .ic-cp svg { fill: none; stroke: #C0392B; stroke-width: 1.4; }
+  .ic-name svg { fill: none; stroke: #2E6FB0; stroke-width: 1.3; }
+  .ic-photo svg { fill: none; stroke: #1d9e75; stroke-width: 1.3; }
+  .ic-action svg { fill: #BA7517; stroke: none; }
+  details.loc-year { margin: 0 0 4px; }
+  summary.loc-year-bar { cursor: pointer; list-style: none; background: var(--blk); color: var(--y); font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 8px 14px; margin-top: 8px; }
+  summary.loc-year-bar::-webkit-details-marker { display: none; }
+  summary.loc-year-bar::before { content: "\25B8"; display: inline-block; margin-right: .5em; font-size: .8em; transition: transform .15s ease; }
+  details[open] > summary.loc-year-bar::before { transform: rotate(90deg); }
+  .loc-year-bar .loc-year-sub { color: #9c9686; font-weight: 400; }
+  table.loc-table { width: 100%; border-collapse: collapse; font-family: 'Crimson Pro', Georgia, serif; font-size: 1rem; background: var(--pg); }
+  .loc-table thead th { text-align: left; font-family: 'Space Grotesk', sans-serif; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); font-weight: 500; padding: 4px 10px 6px 0; border-bottom: 1px solid var(--rule); }
+  .loc-table thead th:first-child { padding-left: 14px; }
+  .loc-table thead th:last-child { text-align: right; padding-right: 14px; }
+  .loc-table td { padding: 10px 10px 10px 0; border-bottom: 1px solid var(--rule2); vertical-align: top; }
+  .loc-table td:first-child { padding-left: 14px; }
+  .loc-table tr:hover td { background: var(--pg2); }
+  .loc-pos a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .loc-pos a:hover { color: var(--y2); }
+  .loc-pos .loc-typetag { color: var(--dim); font-size: .82rem; font-weight: 400; }
+  .loc-grid { font-family: 'Space Grotesk', sans-serif; font-size: .8rem; color: var(--ink2); white-space: nowrap; }
+  .loc-occ { font-family: 'Space Grotesk', sans-serif; font-size: .82rem; color: var(--dim); }
+  .loc-icons { text-align: right; white-space: nowrap; padding-right: 14px !important; }
+  .loc-icons .loc-icon + .loc-icon { margin-left: 6px; }
+  @media (max-width: 760px) {
+    .loc-idx-hero { padding: 26px 20px 18px; }
+    .loc-idx-body { padding: 18px 16px 36px; }
+    .loc-idx-title { font-size: 2.1rem; }
+  }
+</style>
+
+{% macro licon(kind) %}
+  {% if kind == "cp" %}<span class="loc-icon ic-cp" title="Battalion command post"><svg viewBox="0 0 16 16"><path d="M3.5 1v14M3.5 2h9l-2 3 2 3h-9"/></svg></span>
+  {% elif kind == "name" %}<span class="loc-icon ic-name" title="Named for an archive soldier"><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2.5 14c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/></svg></span>
+  {% elif kind == "photo" %}<span class="loc-icon ic-photo" title="Photographs available"><svg viewBox="0 0 16 16"><rect x="1.5" y="4.5" width="13" height="9" rx="1.5"/><circle cx="8" cy="9" r="2.6"/><path d="M5 4.5l1-2h4l1 2"/></svg></span>
+  {% elif kind == "action" %}<span class="loc-icon ic-action" title="Action or casualties here"><svg viewBox="0 0 16 16"><polygon points="8,1.5 9.9,5.6 14.3,6.1 11,9.1 11.9,13.6 8,11.4 4.1,13.6 5,9.1 1.7,6.1 6.1,5.6"/></svg></span>
+  {% endif %}
+{% endmacro %}
+
+<div class="loc-idx-hero">
+  <div class="loc-idx-title">Firebases <span>&amp; Positions</span></div>
+  <div class="loc-idx-deck">Where the battalion stood, in order. The LZs, fire support bases, and command posts D Company moved through, 1965&ndash;1972. A base re-occupied later simply appears again under that year.</div>
+</div>
+<div class="loc-idx-body">
+  <div class="loc-legend">
+    <span class="li">{{ licon("cp") }} Command post</span>
+    <span class="li">{{ licon("name") }} Namesake</span>
+    <span class="li">{{ licon("photo") }} Photographs</span>
+    <span class="li">{{ licon("action") }} Action / casualties here</span>
+  </div>
+
+{% set years = ["1965","1966","1967","1968","1969","1970","1971","1972"] %}
+
+{# Helper: first year for a location (occupancy start, else established date) #}
+{% macro locYear(loc) %}{% if loc.data.occupancies and loc.data.occupancies.length and loc.data.occupancies[0].start %}{{ loc.data.occupancies[0].start | string | truncate(4, true, "") }}{% elif loc.data.dates and loc.data.dates.established and loc.data.dates.established.date %}{{ loc.data.dates.established.date | string | truncate(4, true, "") }}{% endif %}{% endmacro %}
+
+{% set anyShown = false %}
+{% for y in years %}
+  {% set yearLocs = [] %}
+  {% for loc in collections.locations %}
+    {% if (locYear(loc) | trim) == y %}{% set yearLocs = (yearLocs.push(loc), yearLocs) %}{% endif %}
+  {% endfor %}
+  {% if yearLocs.length %}
+    {% set anyShown = true %}
+    <details class="loc-year" open>
+      <summary class="loc-year-bar">{{ y }} <span class="loc-year-sub">· {{ yearLocs.length }} position{% if yearLocs.length != 1 %}s{% endif %}</span></summary>
+      <table class="loc-table">
+      <thead><tr><th>Position</th><th>Grid</th><th>Occupancy</th><th></th></tr></thead>
+      <tbody>
+      {% for loc in yearLocs %}
+        {# photos for this base #}
+        {% set hasPhotos = photosByFsb[loc.data.slug] and photosByFsb[loc.data.slug].length %}
+        {# action: any matched combat event (contact/crash) or event with casualties #}
+        {% set hasAction = false %}
+        {% set evtSlugs = loc.data.related_events if loc.data.related_events else [] %}
+        {% for e in collections.events %}
+          {% if e.data.status == "published" and ((e.data.slug in evtSlugs) or (e.data.location_slug and e.data.location_slug == loc.data.slug)) %}
+            {% if e.data.type == "contact" or e.data.type == "crash" or e.data.casualties %}{% set hasAction = true %}{% endif %}
+          {% endif %}
+        {% endfor %}
+        {% set typeLabels = { "fsb": "FSB", "lz": "LZ", "relay": "Relay", "r-and-r": "R&R", "base-camp": "Base camp", "other": "Position" } %}
+        {% set occ = loc.data.occupancies[0] if (loc.data.occupancies and loc.data.occupancies.length) else null %}
+        <tr>
+          <td class="loc-pos"><a href="{{ loc.url }}">{{ loc.data.display_name or loc.data.title }}</a> <span class="loc-typetag">· {{ typeLabels[loc.data.type] or "Position" }}</span></td>
+          <td class="loc-grid">{% if loc.data.location and loc.data.location.mgrs %}{{ loc.data.location.mgrs }}{% else %}—{% endif %}</td>
+          <td class="loc-occ">{% if occ %}{{ occ.start | locDate }}{% if occ.end %} – {{ occ.end | locDate }}{% endif %}{% if occ.company %} · {{ occ.company }}{% endif %}{% elif loc.data.dates and loc.data.dates.established %}{{ loc.data.dates.established.date | locDate }}{% endif %}</td>
+          <td class="loc-icons">
+            {% if loc.data.command_post %}{{ licon("cp") }}{% endif %}
+            {% if loc.data.named_for %}<a href="/soldiers/{{ loc.data.named_for }}/">{{ licon("name") }}</a>{% endif %}
+            {% if hasPhotos %}{{ licon("photo") }}{% endif %}
+            {% if hasAction %}{{ licon("action") }}{% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody></table>
+    </details>
+  {% endif %}
+{% endfor %}
+
+{# Undated catch-all #}
+{% set undated = [] %}
+{% for loc in collections.locations %}
+  {% if (locYear(loc) | trim) == "" %}{% set undated = (undated.push(loc), undated) %}{% endif %}
+{% endfor %}
+{% if undated.length %}
+  <details class="loc-year">
+    <summary class="loc-year-bar">Undated <span class="loc-year-sub">· {{ undated.length }}</span></summary>
+    <table class="loc-table">
+    <thead><tr><th>Position</th><th>Grid</th><th>Occupancy</th><th></th></tr></thead>
+    <tbody>
+    {% for loc in undated %}
+      <tr><td class="loc-pos"><a href="{{ loc.url }}">{{ loc.data.display_name or loc.data.title }}</a></td><td></td><td></td><td class="loc-icons"></td></tr>
+    {% endfor %}
+    </tbody></table>
+  </details>
+{% endif %}
+
+{% if not anyShown and not undated.length %}
+  <p class="loc-idx-deck">No location profiles published yet.</p>
+{% endif %}
+
+</div>

@@ -30,30 +30,32 @@ permalink: /unit-history/
 </div>
 
 <style>
-  .uh-era { border-left: 4px solid var(--y); background: var(--pg2); padding: 18px 22px; margin: 0 0 28px; }
+  /* First in / Last out top matter */
+  .uh-era { border-left: 4px solid var(--y); background: var(--pg2); padding: 20px 24px; margin: 22px 48px 0; border-radius: 0; }
   .uh-era-kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: .08em; color: var(--dim); font-size: .82rem; text-transform: uppercase; }
-  .uh-era-title { font-family: "Bebas Neue", sans-serif; letter-spacing: .02em; color: var(--ink); font-size: 1.5rem; margin: 2px 0 10px; line-height: 1.1; }
+  .uh-era-title { font-family: "Bebas Neue", sans-serif; letter-spacing: .02em; color: var(--ink); font-size: 1.55rem; margin: 2px 0 10px; line-height: 1.1; }
   .uh-era p { font-family: "Crimson Pro", Georgia, serif; color: var(--ink); font-size: 1.02rem; line-height: 1.55; margin: 0 0 10px; }
   .uh-era p:last-child { margin-bottom: 0; }
   .uh-era .uh-era-note { font-size: .9rem; color: var(--dim); font-style: italic; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 12px; }
 
-  /* Collapsible timeline sections (type + year), with child-event counts */
-  details.uh-type, details.uh-year { margin: 0; }
-  summary.uh-section-label, summary.uh-year-marker { cursor: pointer; list-style: none; }
-  summary.uh-section-label { display: block; }
-  summary.uh-section-label::-webkit-details-marker, summary.uh-year-marker::-webkit-details-marker { display: none; }
+  /* Year sub-headers inside each type tab */
+  .uh-yr { display: flex; align-items: center; gap: 12px; margin: 30px 0 8px; }
+  .tab-content > .uh-yr:first-child { margin-top: 4px; }
+  .uh-yr-label { font-family: "Bebas Neue", sans-serif; font-size: 1.7rem; letter-spacing: .03em; color: var(--ink); line-height: 1; }
+  .uh-yr-count { font-family: "Space Grotesk", sans-serif; font-size: .72rem; color: var(--dim); }
+  .uh-yr-line { flex: 1; height: 0; border-top: 1px solid var(--rule); }
   .uh-count { opacity: .55; font-weight: 400; }
-  summary.uh-section-label::before, summary.uh-year-marker::before { content: "▸"; display: inline-block; margin-right: .45em; font-size: .8em; transition: transform .15s ease; }
-  details[open] > summary.uh-section-label::before, details[open] > summary.uh-year-marker::before { transform: rotate(90deg); }
   .uh-bookend { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; background: #1d9e75; color: #fff; padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: middle; white-space: nowrap; }
+  .uh-tabintro { font-family: 'Crimson Pro', Georgia, serif; font-style: italic; color: var(--dim); margin: 0 0 6px; }
+  @media (max-width: 760px) { .uh-era { margin: 18px 16px 0; padding: 16px 18px; } }
 </style>
 
 <section class="uh-era" aria-label="Unit history milestone: the division departs, the brigade stays">
-  <div class="uh-era-kicker">Milestone · 1971–1972</div>
+  <div class="uh-era-kicker">First In, Last Out · 1965–1972</div>
   <h2 class="uh-era-title">The First Team Goes Home — The Brigade Stays</h2>
 
   <p>
-    The 1st Cavalry Division had been the first U.S. Army division to deploy to Vietnam,
+    The 1st Cavalry Division was the first U.S. Army division to deploy to Vietnam,
     in 1965, and it would be the last to leave. On <strong>26 March 1971</strong> the
     division officially ended its combat duties in Vietnam, and through that spring the
     bulk of the "First Team" redeployed to Fort Hood, Texas. But Vietnamization and the
@@ -75,7 +77,7 @@ permalink: /unit-history/
   </p>
 
   <p>
-    This is the hinge of D Company's later story. Every event on this page from 1971 and
+    This is the hinge of D Company's later story. Every record on this page from 1971 and
     1972 — the FSB Fontaine contacts of April 1971, the loss at Núi Bà that October, the
     Chinook crash of May 1972 — happened <em>after</em> the division had gone home, while
     these men kept fighting under the Separate brigade. The April 1971 Fontaine actions
@@ -85,8 +87,8 @@ permalink: /unit-history/
   </p>
 
   <p class="uh-era-note">
-    Personal accounts of this period — including letters home about the rumors that the
-    unit, too, would soon be coming home — will be added here.
+    The records below are grouped by kind — contacts, incidents, crashes, operations,
+    morale, and memorials — and ordered by year within each. Select a tab to explore.
   </p>
 </section>
 
@@ -99,90 +101,110 @@ permalink: /unit-history/
 {% endfor %}
 
 {% if publishedEvents.length == 0 %}
-  <div class="tab-empty">
+  <div class="tab-content"><div class="tab-empty">
     No unit history records have been published yet. Check back soon.
-  </div>
+  </div></div>
 {% else %}
 
   {% set typeSections = [
-    { "type": "contact",   "label": "Contact" },
-    { "type": "incident",  "label": "Incidents" },
-    { "type": "crash",     "label": "Crashes" },
-    { "type": "operation", "label": "Operations" },
-    { "type": "memorial",  "label": "Memorials" }
+    { "type": "contact",   "label": "Contact",   "intro": "Engagements and firefights involving D Company." },
+    { "type": "incident",  "label": "Incidents", "intro": "Non-combat losses, medical evacuations, and other incidents." },
+    { "type": "crash",     "label": "Crashes",   "intro": "Aircraft losses." },
+    { "type": "operation", "label": "Operations","intro": "Named operations and major movements." },
+    { "type": "morale",    "label": "Morale",    "intro": "Recreation, stand-down, and morale on the firebase." },
+    { "type": "memorial",  "label": "Memorials", "intro": "Commemorations and remembrance." }
   ] %}
-  {% set uhYears = [1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 2021, 2022, 2023, 2024, 2025, 2026] %}
+  {% set knownTypes = ["contact", "incident", "crash", "operation", "morale", "memorial"] %}
+  {% set uhYears = [1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 2020, 2021, 2022, 2023, 2024, 2025, 2026] %}
 
+  {# Determine the first non-empty type so it can be the default-open tab #}
+  {% set firstHolder = [] %}
+  {% for section in typeSections %}
+    {% set te = [] %}
+    {% for evt in publishedEvents %}{% if evt.data.type == section.type %}{% set te = (te.push(evt), te) %}{% endif %}{% endfor %}
+    {% if te.length and firstHolder.length == 0 %}{% set firstHolder = (firstHolder.push(section.type), firstHolder) %}{% endif %}
+  {% endfor %}
+  {# catch-all "other" becomes default only if no known-type events exist at all #}
+  {% set otherEvents = [] %}
+  {% for evt in publishedEvents %}{% if evt.data.type not in knownTypes %}{% set otherEvents = (otherEvents.push(evt), otherEvents) %}{% endif %}{% endfor %}
+  {% if firstHolder.length == 0 and otherEvents.length %}{% set firstHolder = (firstHolder.push("other"), firstHolder) %}{% endif %}
+  {% set firstActive = firstHolder[0] if firstHolder.length else "" %}
+
+  {# ── Event card macro ── #}
+  {% macro eventCard(evt) %}
+    {% set kia_count = evt.data.casualties.kia | length if evt.data.casualties and evt.data.casualties.kia else 0 %}
+    {% set dow_count = evt.data.casualties.dow | length if evt.data.casualties and evt.data.casualties.dow else 0 %}
+    {% set wia_count = evt.data.casualties.wia | length if evt.data.casualties and evt.data.casualties.wia else 0 %}
+    {% set mia_count = evt.data.casualties.mia | length if evt.data.casualties and evt.data.casualties.mia else 0 %}
+    {% set nc_count  = evt.data.casualties.non_combat | length if evt.data.casualties and evt.data.casualties.non_combat else 0 %}
+    {% set total_cas = kia_count + dow_count + wia_count + mia_count + nc_count %}
+    <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
+      <div class="uh-card">
+        <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date | locDate }}</div></div>
+        <div class="uh-divider"></div>
+        <div class="uh-body">
+          <p class="uh-title">{{ evt.data.title }}{% if evt.data.slug == "deployment-vietnam-1965" %} <span class="uh-bookend">First in</span>{% elif evt.data.slug == "departure-vietnam-1972" %} <span class="uh-bookend">Last out</span>{% endif %}</p>
+          {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
+          {% if total_cas > 0 %}
+            <div class="uh-casualties">
+              {% if kia_count > 0 %}<span class="evt-cas-pill evt-cas-kia">{{ kia_count }} KIA</span>{% endif %}
+              {% if dow_count > 0 %}<span class="evt-cas-pill evt-cas-dow">{{ dow_count }} DOW</span>{% endif %}
+              {% if wia_count > 0 %}<span class="evt-cas-pill evt-cas-wia">{{ wia_count }} WIA</span>{% endif %}
+              {% if mia_count > 0 %}<span class="evt-cas-pill evt-cas-mia">{{ mia_count }} MIA</span>{% endif %}
+              {% if nc_count  > 0 %}<span class="evt-cas-pill evt-cas-nc">{{ nc_count }} Non-combat</span>{% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  {% endmacro %}
+
+  {# ── TAB BAR ── #}
+  <div class="tabs-bar">
+    {% for section in typeSections %}
+      {% set typeEvents = [] %}
+      {% for evt in publishedEvents %}{% if evt.data.type == section.type %}{% set typeEvents = (typeEvents.push(evt), typeEvents) %}{% endif %}{% endfor %}
+      {% if typeEvents.length %}
+        <div class="tab{% if section.type == firstActive %} active{% endif %}" data-tab="{{ section.type }}">{{ section.label }} <span class="uh-count">({{ typeEvents.length }})</span></div>
+      {% endif %}
+    {% endfor %}
+    {% if otherEvents.length %}
+      <div class="tab{% if firstActive == 'other' %} active{% endif %}" data-tab="other">Other <span class="uh-count">({{ otherEvents.length }})</span></div>
+    {% endif %}
+  </div>
+
+  {# ── TAB PANELS (one per type, grouped by year) ── #}
   {% for section in typeSections %}
     {% set typeEvents = [] %}
-    {% for evt in publishedEvents %}
-      {% if evt.data.type == section.type %}{% set typeEvents = (typeEvents.push(evt), typeEvents) %}{% endif %}
-    {% endfor %}
+    {% for evt in publishedEvents %}{% if evt.data.type == section.type %}{% set typeEvents = (typeEvents.push(evt), typeEvents) %}{% endif %}{% endfor %}
     {% if typeEvents.length %}
-      <details class="uh-type" open>
-        <summary class="uh-section-label">{{ section.label }} <span class="uh-count">({{ typeEvents.length }})</span></summary>
-      {% for y in uhYears %}
-        {% set yearEvents = [] %}
-        {% for evt in typeEvents %}
-          {% if (evt.data.date | string | truncate(4, true, "")) == (y | string) %}{% set yearEvents = (yearEvents.push(evt), yearEvents) %}{% endif %}
+      <div class="tab-content" id="tab-{{ section.type }}"{% if section.type != firstActive %} style="display:none"{% endif %}>
+        {% if section.intro %}<p class="uh-tabintro">{{ section.intro }}</p>{% endif %}
+        {% for y in uhYears %}
+          {% set yearEvents = [] %}
+          {% for evt in typeEvents %}{% if (evt.data.date | string | truncate(4, true, "")) == (y | string) %}{% set yearEvents = (yearEvents.push(evt), yearEvents) %}{% endif %}{% endfor %}
+          {% if yearEvents.length %}
+            <div class="uh-yr"><span class="uh-yr-label">{{ y }}</span><span class="uh-yr-count">{{ yearEvents.length }} record{% if yearEvents.length != 1 %}s{% endif %}</span><span class="uh-yr-line"></span></div>
+            {% for evt in yearEvents %}{{ eventCard(evt) }}{% endfor %}
+          {% endif %}
         {% endfor %}
-        {% if yearEvents.length %}
-          <details class="uh-year">
-            <summary class="uh-year-marker">{{ y }} <span class="uh-count">({{ yearEvents.length }})</span></summary>
-          {% for evt in yearEvents %}
-            {% set kia_count = evt.data.casualties.kia | length if evt.data.casualties and evt.data.casualties.kia else 0 %}
-            {% set dow_count = evt.data.casualties.dow | length if evt.data.casualties and evt.data.casualties.dow else 0 %}
-            {% set wia_count = evt.data.casualties.wia | length if evt.data.casualties and evt.data.casualties.wia else 0 %}
-            {% set mia_count = evt.data.casualties.mia | length if evt.data.casualties and evt.data.casualties.mia else 0 %}
-            {% set nc_count  = evt.data.casualties.non_combat | length if evt.data.casualties and evt.data.casualties.non_combat else 0 %}
-            {% set total_cas = kia_count + dow_count + wia_count + mia_count + nc_count %}
-            <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
-              <div class="uh-card">
-                <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date }}</div></div>
-                <div class="uh-divider"></div>
-                <div class="uh-body">
-                  <p class="uh-title">{{ evt.data.title }}{% if evt.data.slug == "deployment-vietnam-1965" %} <span class="uh-bookend">First in</span>{% elif evt.data.slug == "departure-vietnam-1972" %} <span class="uh-bookend">Last out</span>{% endif %}</p>
-                  {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
-                  {% if total_cas > 0 %}
-                    <div class="uh-casualties">
-                      {% if kia_count > 0 %}<span class="evt-cas-pill evt-cas-kia">{{ kia_count }} KIA</span>{% endif %}
-                      {% if dow_count > 0 %}<span class="evt-cas-pill evt-cas-dow">{{ dow_count }} DOW</span>{% endif %}
-                      {% if wia_count > 0 %}<span class="evt-cas-pill evt-cas-wia">{{ wia_count }} WIA</span>{% endif %}
-                      {% if mia_count > 0 %}<span class="evt-cas-pill evt-cas-mia">{{ mia_count }} MIA</span>{% endif %}
-                      {% if nc_count  > 0 %}<span class="evt-cas-pill evt-cas-nc">{{ nc_count }} Non-combat</span>{% endif %}
-                    </div>
-                  {% endif %}
-                </div>
-              </div>
-            </a>
-          {% endfor %}
-            </details>
-        {% endif %}
-      {% endfor %}
-      </details>
+      </div>
     {% endif %}
   {% endfor %}
 
-  {# Safety catch-all: any published event with a type not in the sections above #}
-  {% set knownTypes = ["contact", "incident", "crash", "operation", "memorial"] %}
-  {% set otherEvents = [] %}
-  {% for evt in publishedEvents %}
-    {% if evt.data.type not in knownTypes %}{% set otherEvents = (otherEvents.push(evt), otherEvents) %}{% endif %}
-  {% endfor %}
+  {# ── Catch-all: published events whose type is not one of the known sections ── #}
   {% if otherEvents.length %}
-    <div class="uh-section-label">Other</div>
-    {% for evt in otherEvents %}
-      <a href="/events/{{ evt.data.slug }}/" class="uh-card-link">
-        <div class="uh-card">
-          <div class="uh-date-col"><div class="uh-date-day">{{ evt.data.date }}</div></div>
-          <div class="uh-divider"></div>
-          <div class="uh-body">
-            <p class="uh-title">{{ evt.data.title }}</p>
-            {% if evt.data.location %}<p class="uh-location">{{ evt.data.location }}</p>{% endif %}
-          </div>
-        </div>
-      </a>
-    {% endfor %}
+    <div class="tab-content" id="tab-other"{% if firstActive != 'other' %} style="display:none"{% endif %}>
+      <p class="uh-tabintro">Records not yet categorized.</p>
+      {% for y in uhYears %}
+        {% set yearEvents = [] %}
+        {% for evt in otherEvents %}{% if (evt.data.date | string | truncate(4, true, "")) == (y | string) %}{% set yearEvents = (yearEvents.push(evt), yearEvents) %}{% endif %}{% endfor %}
+        {% if yearEvents.length %}
+          <div class="uh-yr"><span class="uh-yr-label">{{ y }}</span><span class="uh-yr-count">{{ yearEvents.length }} record{% if yearEvents.length != 1 %}s{% endif %}</span><span class="uh-yr-line"></span></div>
+          {% for evt in yearEvents %}{{ eventCard(evt) }}{% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
   {% endif %}
 
 {% endif %}
@@ -192,6 +214,27 @@ permalink: /unit-history/
 {% include "partials/footer.njk" %}
 
 <script src="/assets/js/main.js"></script>
+<script>
+function activateTab(name) {
+  var matchingTab = document.querySelector('.tab[data-tab="' + name + '"]');
+  if (!matchingTab) return;
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.style.display = 'none'; });
+  matchingTab.classList.add('active');
+  var target = document.getElementById('tab-' + name);
+  if (target) target.style.display = 'block';
+}
+document.querySelectorAll('.tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    activateTab(tab.dataset.tab);
+    history.replaceState(null, '', '#' + tab.dataset.tab);
+  });
+});
+(function() {
+  var hash = window.location.hash.replace('#', '');
+  if (hash) activateTab(hash);
+})();
+</script>
 
 </body>
 </html>

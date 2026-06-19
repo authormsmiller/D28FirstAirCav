@@ -14,6 +14,7 @@ date_note: >
   not given in the source.
 
 location: "FSB Fontaine, Long Khanh Province, RVN"
+location_slug: fsb-fontaine
 
 units:
   primary:
