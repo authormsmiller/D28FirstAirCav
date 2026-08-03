@@ -12,7 +12,7 @@ photos:
       A column of D Company, 2/8 Cav moving up the dirt road to the firebase.
     caption_short: "Humping onto FSB Fontaine"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-02-06"
     date_known: false
     fsb: fsb-fontaine
@@ -28,7 +28,7 @@ photos:
       complex in the jungle after an artillery strike.
     caption_short: "Bunker complex after artillery strike"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-02"
     date_known: false
     fsb: fsb-fontaine
@@ -45,7 +45,7 @@ photos:
       with the mountains of Binh Tuy behind.
     caption_short: "FSB Fontaine from the air"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -61,7 +61,7 @@ photos:
       Another view of FSB Fontaine from the air.
     caption_short: "FSB Fontaine from the air (2)"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -79,7 +79,7 @@ photos:
       the highway; the village was said to house the ARVNs' dependents.
     caption_short: "Hooch at Fontaine village"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -98,7 +98,7 @@ photos:
       at the time.
     caption_short: "Jeep and ox cart, Fontaine village"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -117,7 +117,7 @@ photos:
       blown up on the road — a mess to clean up, but no casualties.
     caption_short: "Fontaine village and stream"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -134,7 +134,7 @@ photos:
       the trucks come off the highway. This young man greeted them with a salute.
     caption_short: "Village boy's salute"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -150,7 +150,7 @@ photos:
       that log."
     caption_short: "Ox cart hauling a log"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03-01"
     date_known: false
     fsb: fsb-fontaine
@@ -166,7 +166,7 @@ photos:
       this village often on the way to Fontaine.
     caption_short: "Rural dwelling near Fontaine"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03-01"
     date_known: false
     fsb: fsb-fontaine
@@ -183,7 +183,7 @@ photos:
       center is an aiming device; the large bunker at right is ammunition storage.
     caption_short: "Artillery fire mission, Fontaine"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -201,7 +201,7 @@ photos:
       a fire mission it gives us something to do."
     caption_short: "105mm howitzer, FSB Fontaine"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-03"
     date_known: false
     fsb: fsb-fontaine
@@ -219,7 +219,7 @@ photos:
       would have gone home the next log day on a hardship discharge.
     caption_short: "Bill Holtzclaw after the ambush"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-04"
     date_known: false
     fsb: fsb-fontaine
@@ -237,7 +237,7 @@ photos:
       credited with bringing the squad back to safety.
     caption_short: "Awards ceremony, FSB Fontaine"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-04-25"
     date_known: true
     fsb: fsb-fontaine
@@ -253,7 +253,7 @@ photos:
       Armor on the Fontaine road — a tank, an APC, and a deuce-and-a-half.
     caption_short: "Armor on the Fontaine road"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-04"
     date_known: false
     fsb: fsb-fontaine
@@ -269,7 +269,7 @@ photos:
       An APC fording the stream near Fontaine village.
     caption_short: "APC fording the stream"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-04"
     date_known: false
     fsb: fsb-fontaine
@@ -285,7 +285,7 @@ photos:
       An aerial view of what was once FSB Fontaine, after the unit pulled out.
     caption_short: "FSB Fontaine, abandoned"
     credit: "From the Collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: "1971-05"
     date_known: false
     fsb: fsb-fontaine

@@ -60,7 +60,7 @@ photos:
       Soldiers on a road.
     caption_short: "Soldiers on a road"
     credit: "From the Collection of Gary Monteleone, Courtesy of Jesse Monteleone"
-    photographer: ""
+    photographer: "monteleone-gary"
     date:
     date_known: false
     event: ""

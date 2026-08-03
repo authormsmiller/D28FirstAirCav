@@ -49,10 +49,11 @@ Marv
 
 **The stairway — the rebuilt house again:** "Maybe you get a stairway put in with it." Like the new furnace in the 26 Dec 70 letter and the living-room floor and attic in the 20 Aug 71 letter, the stairway is another increment in the long rebuild of the family home (burned 1960). Marvin repeatedly channels his pay toward finishing the house.
 
-**A companion letter:** "Well I just finished writing you a letter a little while ago" — Marvin had written another letter shortly before this one (not necessarily preserved in the archive), accounting for how little he says he has left to report.
+**A companion letter — likely the 7 March letter:** "Well I just finished writing you a letter a little while ago" — Marvin had written another letter shortly before this one, accounting for how little he says he has left to report. The strong candidate is the **7 Mar 71** letter, two days earlier: it lays out the income-tax plan ("I'll send it along with the W-2 forms") that this letter then carries out ("I'm sending back my income tax papers"). The "a little while ago" phrasing could alternatively point to an even closer, same-day note now lost.
 
 **Cross-references:**
-- 28 Feb 71 — previous letter in the archive
+- 7 Mar 71 — previous letter (incomplete); lays out the income-tax plan this letter acts on, and the likely "letter a little while ago"
+- 8 Mar 71 (to Dan) — the day before; the brother Marvin routes his tax return to here ("Dan or Buss can fill it in")
 - 22 Mar 71 — next letter (Vung Tau stand-down)
 - McGrew calendar (primary source) — 4 Mar 1971 convoy to Fontaine
 - Timeline: "Silver Stands Down — Cat Platoon Last to Leave" (move to FSB Fontaine)

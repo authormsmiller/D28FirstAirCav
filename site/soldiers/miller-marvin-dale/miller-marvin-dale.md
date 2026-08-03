@@ -36,10 +36,17 @@ distinguished_decorations:
 decorations_unconfirmed: ""
 service_record:
   induction:
-    status: null
-    location: null
-    date: null
+    status: enlistment   # confirmed by family (Michael Miller): volunteered, not drafted — a 2-year enlistment ahead of a low draft-lottery number
+    location: Fort Dix, NJ (reception station)
+    date: "1970-03-23"   # reconstructed from the 29 Mar 1970 (Easter) letter: arrived training center Thu 26 Mar after 4 days at reception; most likely 23 Mar, possibly 22 Mar
   assignments:
+    - type: training
+      label: Basic Combat Training, Fort Dix
+      unit: Company B, 2nd Battalion, 2nd Basic Combat Training Brigade (1st Platoon), Fort Dix, NJ
+      location: Fort Dix, New Jersey
+      from: "1970-03-30"   # basic training began 30 Mar 1970 (29 Mar 70 letter)
+      to: null             # end of basic / move to Fort Polk AIT by late May 1970 (24 May 70 letter); exact date TBD
+      notes: Unit confirmed from the return address on his surviving envelope postmarked 4 May 1970 (Pvt. E-1; Co. B, 2d Bn, 2d BCT Bde, Plt. 1). His 30 Apr 1970 letter, written on guard duty, names the same 1st platoon. Service number on file privately with the family (kept off the public record — it is his SSN).
     - type: other
       label: Cat Platoon, D Company
       unit: D Company, 1st Battalion, 8th Cavalry (Airmobile) → redesignated D Company, 2nd Battalion, 8th Cavalry (Airmobile), 1st Cavalry Division
@@ -86,7 +93,7 @@ timeline:
         label: FSB Movement
     headline: Silver Stands Down — Cat Platoon Last to Leave
     body: |
-      FSB Silver was dismantled and the company moved to FSB Fontaine. Cat Platoon was the last unit to depart Silver. Marvin was asked by the Colonel to draw a scaled model of the new base at Fontaine — a task that drew on skills nobody had formally recognized until then.
+      FSB Silver was dismantled and the company moved to FSB Fontaine. Cat Platoon was the last unit to depart Silver. Marvin was asked by the Colonel to draw a scaled model of the new base at Fontaine — a task that drew on skills nobody had formally recognized until then. Marvin describes both in his own hand in his 30 January 1971 letter home: "My platoon were the last to leave the old base… I had to draw a scaled down model of the new base for the Colonel."
   - date: 1 Mar 1971
     phase: in-country
     type: personal

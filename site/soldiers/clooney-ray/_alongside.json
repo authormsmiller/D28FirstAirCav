@@ -1,5 +1,22 @@
 [
-  { "slug": "karr-john", "basis": "same-action", "notes": "Skull Platoon leader, killed in the action Clooney survived — Hau Nghia Province, 25 May 1969." },
-  { "slug": "garven-wayne", "basis": "same-action", "notes": "Fellow RTO who took Karr's radio after a coin flip and was killed in the blast; Clooney survived." },
-  { "slug": "white-richard", "basis": "same-action", "notes": "Killed in the same action — Hau Nghia Province, 25 May 1969." }
+  {
+    "slug": "karr-john",
+    "basis": "same-action",
+    "notes": "Skull Platoon leader, killed in the action Clooney survived — Hau Nghia Province, 25 May 1969."
+  },
+  {
+    "slug": "garven-wayne",
+    "basis": "same-action",
+    "notes": "Fellow RTO who took Karr's radio after a coin flip and was killed in the blast; Clooney survived."
+  },
+  {
+    "slug": "white-richard",
+    "basis": "same-action",
+    "notes": "Killed in the same action — Hau Nghia Province, 25 May 1969."
+  },
+  {
+    "slug": "dubia-christian",
+    "basis": "commanding-officer",
+    "notes": "Battalion Commander, 2/8 Cav (Nov 1968 – Jul 1969)"
+  }
 ]

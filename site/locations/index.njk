@@ -94,7 +94,7 @@ permalink: /locations/
             {% if e.data.type == "contact" or e.data.type == "crash" or e.data.casualties %}{% set hasAction = true %}{% endif %}
           {% endif %}
         {% endfor %}
-        {% set typeLabels = { "fsb": "FSB", "lz": "LZ", "relay": "Relay", "r-and-r": "R&R", "base-camp": "Base camp", "other": "Position" } %}
+        {% set typeLabels = { "fsb": "FSB", "lz": "LZ", "relay": "Relay", "r-and-r": "R&R", "base-camp": "Base camp", "voyage": "Troop ship", "other": "Position" } %}
         {% set occ = loc.data.occupancies[0] if (loc.data.occupancies and loc.data.occupancies.length) else null %}
         <tr>
           <td class="loc-pos"><a href="{{ loc.url }}">{{ loc.data.display_name or loc.data.title }}</a> <span class="loc-typetag">· {{ typeLabels[loc.data.type] or "Position" }}</span></td>

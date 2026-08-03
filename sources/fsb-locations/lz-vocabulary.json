@@ -1,0 +1,3340 @@
+{
+  "_meta": {
+    "purpose": "Canonical site vocabulary for OCR name-resolution. Regenerated from 2-8-cav-fsb-by-year.md by scripts/generate-locations-json.cjs; grows as sources are processed.",
+    "regenerated": "2026-07-15",
+    "authority": "gazetteer note is authoritative for coords",
+    "key_format_note": "Keys are now site slugs (e.g. \"lz-amy\", \"op-3\"), not bare canonical names -- changed 2026-07-14 to keep numeric-named sites (formerly bare \"2\",\"3\",\"5\",\"7\",\"8\") disambiguated by prefix, and to split same-name/different-place entries (e.g. former single \"Amy\" entry spanning ~100km+ now split into lz-amy / lz-amy-b / ps-amy). Nothing in the repo reads this file programmatically yet, so this is a safe breaking change to the key format."
+  },
+  "sites": {
+    "fb-duster-compound": {
+      "canonical": "FB Duster Compound",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT130117",
+          "lat": 10.9581,
+          "lon": 106.9452
+        }
+      ],
+      "aliases": [
+        "Camp Mallard"
+      ],
+      "sources": [
+        "360"
+      ]
+    },
+    "lz-frost": {
+      "canonical": "LZ Frost",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR875082",
+          "lat": 13.6378,
+          "lon": 109.0309
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "lz-hereford": {
+      "canonical": "LZ Hereford",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR662628",
+          "lat": 14.1295,
+          "lon": 108.8296
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "lz-sea": {
+      "canonical": "LZ Sea",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR770786",
+          "lat": 14.2732,
+          "lon": 108.9283
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-surprise": {
+      "canonical": "LZ Surprise",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS872079",
+          "lat": 14.5383,
+          "lon": 109.0208
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "ap-unnamed-za092092": {
+      "canonical": "AP Unnamed (ZA092092)",
+      "prefixes": [
+        "AP"
+      ],
+      "grids": [
+        {
+          "grid": "ZA092092",
+          "lat": 13.6383,
+          "lon": 107.8539
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "fb-camp-radcliff": {
+      "canonical": "FB Camp Radcliff",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR473469",
+          "lat": 13.9842,
+          "lon": 108.6561
+        },
+        {
+          "grid": "BR473466",
+          "lat": 13.9816,
+          "lon": 108.6573
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1",
+        "48"
+      ]
+    },
+    "fb-dot": {
+      "canonical": "FB Dot",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YA909173",
+          "lat": 13.7132,
+          "lon": 107.6857
+        }
+      ],
+      "aliases": [
+        "ZA"
+      ],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "fb-falcon": {
+      "canonical": "FB Falcon",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZA021031",
+          "lat": 13.5838,
+          "lon": 107.7877
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "fb-homecoming": {
+      "canonical": "FB Homecoming",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZA217109",
+          "lat": 13.6524,
+          "lon": 107.9691
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "fb-south": {
+      "canonical": "FB South",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZA209123",
+          "lat": 13.6649,
+          "lon": 107.9622
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "lz-amy": {
+      "canonical": "LZ Amy",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "ZA040048",
+          "lat": 13.599,
+          "lon": 107.8054
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD855112"
+      ]
+    },
+    "lz-cavalair": {
+      "canonical": "LZ Cavalair",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA975035",
+          "lat": 13.5879,
+          "lon": 107.7452
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "587",
+        "AD855112"
+      ]
+    },
+    "lz-nan": {
+      "canonical": "LZ Nan",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA945125",
+          "lat": 13.6698,
+          "lon": 107.7183
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "lz-paris": {
+      "canonical": "LZ Paris",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "ZA025057",
+          "lat": 13.6073,
+          "lon": 107.7916
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "lz-unnamed-ya948125": {
+      "canonical": "LZ Unnamed (YA948125)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA948125",
+          "lat": 13.6695,
+          "lon": 107.7212
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "lz-wing": {
+      "canonical": "LZ Wing",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "ZA032058",
+          "lat": 13.6081,
+          "lon": 107.7981
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "ps-cherry": {
+      "canonical": "Ps Cherry",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "ZA155038",
+          "lat": 13.5887,
+          "lon": 107.9114
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "ps-maggie": {
+      "canonical": "Ps Maggie",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "ZA143073",
+          "lat": 13.6204,
+          "lon": 107.9007
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "ps-sue": {
+      "canonical": "Ps Sue",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "ZA020058",
+          "lat": 13.6082,
+          "lon": 107.787
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD855112"
+      ]
+    },
+    "lz-amy-b": {
+      "canonical": "LZ Amy",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA693474",
+          "lat": 13.9875,
+          "lon": 107.4894
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "ps-amy": {
+      "canonical": "Ps Amy",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "BR973885",
+          "lat": 14.3642,
+          "lon": 109.1156
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-unnamed-br487794": {
+      "canonical": "LZ Unnamed (BR487794)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR487794",
+          "lat": 14.278,
+          "lon": 108.666
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-unnamed-br633831": {
+      "canonical": "LZ Unnamed (BR633831)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR633831",
+          "lat": 14.3127,
+          "lon": 108.801
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-unnamed-br640797": {
+      "canonical": "LZ Unnamed (BR640797)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR640797",
+          "lat": 14.282,
+          "lon": 108.8078
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-unnamed-br672629": {
+      "canonical": "LZ Unnamed (BR672629)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR672629",
+          "lat": 14.1305,
+          "lon": 108.8388
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-unnamed-br935849": {
+      "canonical": "LZ Unnamed (BR935849)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR935849",
+          "lat": 14.3314,
+          "lon": 109.0807
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "345"
+      ]
+    },
+    "lz-unnamed-cq013642": {
+      "canonical": "LZ Unnamed (CQ013642)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ013642",
+          "lat": 13.2411,
+          "lon": 109.1615
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "171"
+      ]
+    },
+    "lz-unnamed-cq096579": {
+      "canonical": "LZ Unnamed (CQ096579)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ096579",
+          "lat": 13.1847,
+          "lon": 109.2385
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-unnamed-yv876858": {
+      "canonical": "LZ Unnamed (YV876858)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV876858",
+          "lat": 13.4292,
+          "lon": 107.6517
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "lz-sue": {
+      "canonical": "LZ Sue",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA648481",
+          "lat": 13.994,
+          "lon": 107.4475
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "fb-boil": {
+      "canonical": "FB Boil",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YA950255",
+          "lat": 13.7869,
+          "lon": 107.7243
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD833869"
+      ]
+    },
+    "fb-coil": {
+      "canonical": "FB Coil",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR828772",
+          "lat": 14.261,
+          "lon": 108.9821
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "356",
+        "581"
+      ]
+    },
+    "fb-duz": {
+      "canonical": "FB Duz",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR783718",
+          "lat": 14.2118,
+          "lon": 108.9409
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "356",
+        "581"
+      ]
+    },
+    "fb-esquire": {
+      "canonical": "FB Esquire",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR976747",
+          "lat": 14.2395,
+          "lon": 109.1195
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "603"
+      ]
+    },
+    "fb-pam": {
+      "canonical": "FB Pam",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YA611525",
+          "lat": 14.034,
+          "lon": 107.4136
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "fb-phoenix-city": {
+      "canonical": "FB Phoenix City",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR629820",
+          "lat": 14.3027,
+          "lon": 108.7974
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "fb-quarter": {
+      "canonical": "FB Quarter",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YV876766",
+          "lat": 13.3459,
+          "lon": 107.6511
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869",
+        "AD824627"
+      ]
+    },
+    "lz-quarter": {
+      "canonical": "LZ Quarter",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ046585",
+          "lat": 13.1898,
+          "lon": 109.1924
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "fb-robin": {
+      "canonical": "FB Robin",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BS428024",
+          "lat": 14.4852,
+          "lon": 108.6092
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "fb-savoy": {
+      "canonical": "FB Savoy",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "BR612604",
+          "lat": 14.1074,
+          "lon": 108.7835
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "hp-turkey-farm-the": {
+      "canonical": "Hp Turkey Farm, The",
+      "prefixes": [
+        "Hp"
+      ],
+      "grids": [
+        {
+          "grid": "ZA235528",
+          "lat": 14.0303,
+          "lon": 107.9909
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "lz-5": {
+      "canonical": "LZ 5",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ000610",
+          "lat": 13.2121,
+          "lon": 109.1498
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "171"
+      ]
+    },
+    "lz-an-thien": {
+      "canonical": "LZ An Thien",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR851875",
+          "lat": 14.3542,
+          "lon": 109.0026
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "345"
+      ]
+    },
+    "lz-ann": {
+      "canonical": "LZ Ann",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR925980",
+          "lat": 14.4497,
+          "lon": 109.0704
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-april": {
+      "canonical": "LZ April",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BQ984378",
+          "lat": 13.0023,
+          "lon": 109.1366
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-august": {
+      "canonical": "LZ August",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ040386",
+          "lat": 13.0099,
+          "lon": 109.1881
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-barb": {
+      "canonical": "LZ Barb",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA604494",
+          "lat": 14.0061,
+          "lon": 107.4069
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-battle": {
+      "canonical": "LZ Battle",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR810768",
+          "lat": 14.2572,
+          "lon": 108.9655
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "581"
+      ]
+    },
+    "lz-bull": {
+      "canonical": "LZ Bull",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR720645",
+          "lat": 14.1454,
+          "lon": 108.8832
+        }
+      ],
+      "aliases": [
+        "Steer"
+      ],
+      "sources": [
+        "48",
+        "271"
+      ]
+    },
+    "lz-bulls-eye": {
+      "canonical": "LZ Bull’s Eye",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR961869",
+          "lat": 14.3497,
+          "lon": 109.1046
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-clemson": {
+      "canonical": "LZ Clemson",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR789670",
+          "lat": 14.1685,
+          "lon": 108.9468
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-cloth": {
+      "canonical": "LZ Cloth",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV852942",
+          "lat": 13.5053,
+          "lon": 107.631
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD833869"
+      ]
+    },
+    "lz-con": {
+      "canonical": "LZ Con",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA572500",
+          "lat": 14.0118,
+          "lon": 107.3773
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-cotton": {
+      "canonical": "LZ Cotton",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV843956",
+          "lat": 13.5178,
+          "lon": 107.6226
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD833869"
+      ]
+    },
+    "lz-dartmouth": {
+      "canonical": "LZ Dartmouth",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR763681",
+          "lat": 14.1782,
+          "lon": 108.9227
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-december": {
+      "canonical": "LZ December",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ009353",
+          "lat": 12.9799,
+          "lon": 109.1598
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-dime": {
+      "canonical": "LZ Dime",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV916815",
+          "lat": 13.39,
+          "lon": 107.6884
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD833869"
+      ]
+    },
+    "lz-duke": {
+      "canonical": "LZ Duke",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR762651",
+          "lat": 14.1511,
+          "lon": 108.922
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-eagle": {
+      "canonical": "LZ Eagle",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR455973",
+          "lat": 14.4394,
+          "lon": 108.6347
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-february": {
+      "canonical": "LZ February",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BQ954416",
+          "lat": 13.0365,
+          "lon": 109.1087
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-finch": {
+      "canonical": "LZ Finch",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR385995",
+          "lat": 14.4586,
+          "lon": 108.5696
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-horse": {
+      "canonical": "LZ Horse",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR691632",
+          "lat": 14.1334,
+          "lon": 108.8564
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48",
+        "371"
+      ]
+    },
+    "lz-jane": {
+      "canonical": "LZ Jane",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA583590",
+          "lat": 14.093,
+          "lon": 107.3883
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-joan": {
+      "canonical": "LZ Joan",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA583571",
+          "lat": 14.0759,
+          "lon": 107.3883
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-john-north": {
+      "canonical": "LZ John North",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR985863",
+          "lat": 14.3444,
+          "lon": 109.1269
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-john-south": {
+      "canonical": "LZ John South",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR990847",
+          "lat": 14.33,
+          "lon": 109.1317
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-july": {
+      "canonical": "LZ July",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ021383",
+          "lat": 13.0071,
+          "lon": 109.1707
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-june": {
+      "canonical": "LZ June",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ009384",
+          "lat": 13.0079,
+          "lon": 109.1596
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-kim": {
+      "canonical": "LZ Kim",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA663478",
+          "lat": 13.9911,
+          "lon": 107.4613
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "220",
+        "AD824627"
+      ]
+    },
+    "ps-kim": {
+      "canonical": "Ps Kim",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "BR978844",
+          "lat": 14.3272,
+          "lon": 109.1206
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-march": {
+      "canonical": "LZ March",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BQ975383",
+          "lat": 13.0068,
+          "lon": 109.1283
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-mary": {
+      "canonical": "LZ Mary",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA586483",
+          "lat": 13.9963,
+          "lon": 107.3901
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-may": {
+      "canonical": "LZ May",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ003374",
+          "lat": 12.9989,
+          "lon": 109.1541
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-meg": {
+      "canonical": "LZ Meg",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA559543",
+          "lat": 14.0508,
+          "lon": 107.3657
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "lz-mustang": {
+      "canonical": "LZ Mustang",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR473466",
+          "lat": 13.9816,
+          "lon": 108.6573
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48",
+        "1/8"
+      ]
+    },
+    "lz-nail": {
+      "canonical": "LZ Nail",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR643824",
+          "lat": 14.3073,
+          "lon": 108.8115
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-nickel": {
+      "canonical": "LZ Nickel",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ056547",
+          "lat": 13.1556,
+          "lon": 109.2018
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-nickel-b": {
+      "canonical": "LZ Nickel",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV873777",
+          "lat": 13.3559,
+          "lon": 107.6485
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "lz-pat": {
+      "canonical": "LZ Pat",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR933948",
+          "lat": 14.4208,
+          "lon": 109.0781
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-peacock": {
+      "canonical": "LZ Peacock",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS429021",
+          "lat": 14.4825,
+          "lon": 108.6101
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-penguin": {
+      "canonical": "LZ Penguin",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS399060",
+          "lat": 14.5175,
+          "lon": 108.5819
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-penny": {
+      "canonical": "LZ Penny",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV910835",
+          "lat": 13.4079,
+          "lon": 107.6832
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "lz-pick": {
+      "canonical": "LZ Pick",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR640828",
+          "lat": 14.31,
+          "lon": 108.8075
+        },
+        {
+          "grid": "BR640833",
+          "lat": 14.3146,
+          "lon": 108.8074
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-pin": {
+      "canonical": "LZ Pin",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR775801",
+          "lat": 14.2868,
+          "lon": 108.9143
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-point": {
+      "canonical": "LZ Point",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR763681",
+          "lat": 14.1782,
+          "lon": 108.9227
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-pole": {
+      "canonical": "LZ Pole",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR795788",
+          "lat": 14.2752,
+          "lon": 108.9514
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-pothole": {
+      "canonical": "LZ Pothole",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR743620",
+          "lat": 14.1231,
+          "lon": 108.9052
+        }
+      ],
+      "aliases": [
+        "Pot Hole"
+      ],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-pox": {
+      "canonical": "LZ Pox",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA975291",
+          "lat": 13.8194,
+          "lon": 107.7479
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "AD833869"
+      ]
+    },
+    "lz-quail": {
+      "canonical": "LZ Quail",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS380029",
+          "lat": 14.4893,
+          "lon": 108.5646
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-recoil": {
+      "canonical": "LZ Recoil",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR821760",
+          "lat": 14.2501,
+          "lon": 108.9758
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "356",
+        "581"
+      ]
+    },
+    "lz-rene": {
+      "canonical": "LZ Rene",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR938958",
+          "lat": 14.4299,
+          "lon": 109.0826
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "507"
+      ]
+    },
+    "lz-romeo": {
+      "canonical": "LZ Romeo",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ053564",
+          "lat": 13.1709,
+          "lon": 109.199
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-root": {
+      "canonical": "LZ Root",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS730027",
+          "lat": 14.4904,
+          "lon": 108.8918
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "646",
+        "1"
+      ]
+    },
+    "lz-saddle": {
+      "canonical": "LZ Saddle",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA730466",
+          "lat": 13.9796,
+          "lon": 107.5232
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824627",
+        "1/8"
+      ]
+    },
+    "lz-smith": {
+      "canonical": "LZ Smith",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR774701",
+          "lat": 14.1964,
+          "lon": 108.9327
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-sooner": {
+      "canonical": "LZ Sooner",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR795774",
+          "lat": 14.2625,
+          "lon": 108.9516
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "356"
+      ]
+    },
+    "lz-sparrow": {
+      "canonical": "LZ Sparrow",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS424040",
+          "lat": 14.4996,
+          "lon": 108.6053
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-starling": {
+      "canonical": "LZ Starling",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS390000",
+          "lat": 14.4632,
+          "lon": 108.5742
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "lz-steer": {
+      "canonical": "LZ Steer",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR719648",
+          "lat": 14.1481,
+          "lon": 108.8822
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48",
+        "92"
+      ]
+    },
+    "lz-sunday": {
+      "canonical": "LZ Sunday",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BQ970448",
+          "lat": 13.0655,
+          "lon": 109.1232
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-tuesday": {
+      "canonical": "LZ Tuesday",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "CQ026446",
+          "lat": 13.0641,
+          "lon": 109.1748
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1"
+      ]
+    },
+    "lz-typhus": {
+      "canonical": "LZ Typhus",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YA835198",
+          "lat": 13.7371,
+          "lon": 107.6171
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869",
+        "AD824627"
+      ]
+    },
+    "lz-vassar": {
+      "canonical": "LZ Vassar",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR770658",
+          "lat": 14.1578,
+          "lon": 108.9294
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-wellesley": {
+      "canonical": "LZ Wellesley",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR725673",
+          "lat": 14.1707,
+          "lon": 108.8876
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "48"
+      ]
+    },
+    "lz-white-horse": {
+      "canonical": "LZ White Horse",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YV896795",
+          "lat": 13.3721,
+          "lon": 107.6698
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "lz-wren": {
+      "canonical": "LZ Wren",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS421026",
+          "lat": 14.487,
+          "lon": 108.6027
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "op-3": {
+      "canonical": "OP 3",
+      "prefixes": [
+        "OP"
+      ],
+      "grids": [
+        {
+          "grid": "YV855975",
+          "lat": 13.535,
+          "lon": 107.634
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "ps-2": {
+      "canonical": "Ps 2",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "YV839973",
+          "lat": 13.5341,
+          "lon": 107.6189
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "ps-3": {
+      "canonical": "Ps 3",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "YV843962",
+          "lat": 13.5297,
+          "lon": 107.622
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD833869"
+      ]
+    },
+    "ps-drill": {
+      "canonical": "Ps Drill",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "BR623824",
+          "lat": 14.3019,
+          "lon": 108.8094
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "ps-pliers": {
+      "canonical": "Ps Pliers",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "BR623824",
+          "lat": 14.3063,
+          "lon": 108.7918
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "ps-saw": {
+      "canonical": "Ps Saw",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "BR640843",
+          "lat": 14.3236,
+          "lon": 108.8073
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD829472"
+      ]
+    },
+    "fb-falcon-b": {
+      "canonical": "FB Falcon",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZB133212",
+          "lat": 14.6489,
+          "lon": 107.9047
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "392",
+        "AD390643"
+      ]
+    },
+    "lz-unnamed-br925996": {
+      "canonical": "LZ Unnamed (BR925996)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR925996",
+          "lat": 14.4642,
+          "lon": 109.0703
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131"
+      ]
+    },
+    "lz-unnamed-br968984": {
+      "canonical": "LZ Unnamed (BR968984)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR968984",
+          "lat": 14.4536,
+          "lon": 109.1102
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131"
+      ]
+    },
+    "lz-unnamed-bs340487": {
+      "canonical": "LZ Unnamed (BS340487)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS340487",
+          "lat": 14.9026,
+          "lon": 108.5229
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179"
+      ]
+    },
+    "lz-unnamed-bs343482": {
+      "canonical": "LZ Unnamed (BS343482)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS343482",
+          "lat": 14.8981,
+          "lon": 108.5257
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179"
+      ]
+    },
+    "lz-unnamed-bs346477": {
+      "canonical": "LZ Unnamed (BS346477)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS346477",
+          "lat": 14.8882,
+          "lon": 108.5286
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179"
+      ]
+    },
+    "lz-unnamed-bs347482": {
+      "canonical": "LZ Unnamed (BS347482)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS347482",
+          "lat": 14.8982,
+          "lon": 108.5294
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179"
+      ]
+    },
+    "lz-unnamed-bs362596": {
+      "canonical": "LZ Unnamed (BS362596)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS362596",
+          "lat": 15.0013,
+          "lon": 108.5422
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179"
+      ]
+    },
+    "lz-unnamed-bs764034": {
+      "canonical": "LZ Unnamed (BS764034)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS764034",
+          "lat": 14.4972,
+          "lon": 108.9207
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131"
+      ]
+    },
+    "lz-unnamed-bs876114": {
+      "canonical": "LZ Unnamed (BS876114)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS876114",
+          "lat": 14.5704,
+          "lon": 109.0239
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD824628"
+      ]
+    },
+    "lz-unnamed-bs936042": {
+      "canonical": "LZ Unnamed (BS936042)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS936042",
+          "lat": 14.5058,
+          "lon": 109.0801
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131"
+      ]
+    },
+    "lz-unnamed-bs955010": {
+      "canonical": "LZ Unnamed (BS955010)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS955010",
+          "lat": 14.477,
+          "lon": 109.098
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131"
+      ]
+    },
+    "lz-unnamed-zb110225": {
+      "canonical": "LZ Unnamed (ZB110225)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "ZB110225",
+          "lat": 14.6612,
+          "lon": 107.8832
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD390643"
+      ]
+    },
+    "lz-pat-b": {
+      "canonical": "LZ Pat",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS330477",
+          "lat": 14.8936,
+          "lon": 108.5137
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "179",
+        "435",
+        "652",
+        "AD387543"
+      ]
+    },
+    "fb-winchester": {
+      "canonical": "FB Winchester",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZB046208",
+          "lat": 14.6467,
+          "lon": 107.8238
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD390643"
+      ]
+    },
+    "hill-1034": {
+      "canonical": "Hill 1034",
+      "prefixes": [],
+      "grids": [
+        {
+          "grid": "ZB110223",
+          "lat": 14.659,
+          "lon": 107.8828
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "lz-charles": {
+      "canonical": "LZ Charles",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR430497",
+          "lat": 14.0092,
+          "lon": 108.616
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1/8"
+      ]
+    },
+    "lz-chi": {
+      "canonical": "LZ Chi",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR697735",
+          "lat": 14.2265,
+          "lon": 108.861
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "603"
+      ]
+    },
+    "lz-dai-dong-4": {
+      "canonical": "LZ Dai Dong (4)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS935065",
+          "lat": 14.5266,
+          "lon": 109.079
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131",
+        "692"
+      ]
+    },
+    "lz-ho": {
+      "canonical": "LZ Ho",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR737767",
+          "lat": 14.2558,
+          "lon": 108.8975
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "603"
+      ]
+    },
+    "lz-minh": {
+      "canonical": "LZ Minh",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR707760",
+          "lat": 14.2492,
+          "lon": 108.8693
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "603",
+        "AD825387"
+      ]
+    },
+    "lz-thien-chanh-3": {
+      "canonical": "LZ Thien Chanh (3)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BS930075",
+          "lat": 14.5356,
+          "lon": 109.0743
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "131",
+        "692"
+      ]
+    },
+    "op-7": {
+      "canonical": "OP 7",
+      "prefixes": [
+        "OP"
+      ],
+      "grids": [
+        {
+          "grid": "BR435504",
+          "lat": 14.0156,
+          "lon": 108.6203
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1/8"
+      ]
+    },
+    "op-8": {
+      "canonical": "OP 8",
+      "prefixes": [
+        "OP"
+      ],
+      "grids": [
+        {
+          "grid": "BR455508",
+          "lat": 14.0194,
+          "lon": 108.639
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1/8"
+      ]
+    },
+    "ps-bo-duc-district-hq": {
+      "canonical": "Ps Bo Duc District Hq",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "XU967250",
+          "lat": 11.9786,
+          "lon": 106.8004
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "18",
+        "630"
+      ]
+    },
+    "lz-unnamed-yd353387": {
+      "canonical": "LZ Unnamed (YD353387)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YD353387",
+          "lat": 16.6219,
+          "lon": 107.2018
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1",
+        "157"
+      ]
+    },
+    "lz-unnamed-yd387378": {
+      "canonical": "LZ Unnamed (YD387378)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YD387378",
+          "lat": 16.6135,
+          "lon": 107.2336
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1",
+        "161"
+      ]
+    },
+    "fb-carol": {
+      "canonical": "FB Carol",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YD344194",
+          "lat": 16.4474,
+          "lon": 107.1909
+        }
+      ],
+      "aliases": [
+        "Carrol"
+      ],
+      "sources": [
+        "211",
+        "458",
+        "459"
+      ]
+    },
+    "fb-cecile": {
+      "canonical": "FB Cecile",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YC378982",
+          "lat": 16.2558,
+          "lon": 107.2211
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "628"
+      ]
+    },
+    "fb-rita": {
+      "canonical": "FB Rita",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT505795",
+          "lat": 11.5741,
+          "lon": 106.3764
+        },
+        {
+          "grid": "XT499802",
+          "lat": 11.5805,
+          "lon": 106.371
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "39",
+        "81",
+        "486",
+        "AD501405",
+        "AD504499"
+      ]
+    },
+    "lz-anne": {
+      "canonical": "LZ Anne",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YD285328",
+          "lat": 16.5695,
+          "lon": 107.137
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "lz-castro": {
+      "canonical": "LZ Castro",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "BR726772",
+          "lat": 14.2599,
+          "lon": 108.8877
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "603"
+      ]
+    },
+    "lz-green": {
+      "canonical": "LZ Green",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YD300431",
+          "lat": 16.6626,
+          "lon": 107.1523
+        }
+      ],
+      "aliases": [],
+      "sources": []
+    },
+    "lz-hill-118": {
+      "canonical": "LZ Hill 118",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "YD333385",
+          "lat": 16.6209,
+          "lon": 107.1825
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "194",
+        "1",
+        "158"
+      ]
+    },
+    "op-unnamed-yd325389": {
+      "canonical": "OP Unnamed (YD325389)",
+      "prefixes": [
+        "OP"
+      ],
+      "grids": [
+        {
+          "grid": "YD325389",
+          "lat": 16.624,
+          "lon": 107.1756
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1",
+        "5-68"
+      ]
+    },
+    "lz-unnamed-xt169709": {
+      "canonical": "LZ Unnamed (XT169709)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "XT169709",
+          "lat": 11.4977,
+          "lon": 106.068
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "2/5"
+      ]
+    },
+    "lz-unnamed-za007325": {
+      "canonical": "LZ Unnamed (ZA007325)",
+      "prefixes": [
+        "LZ"
+      ],
+      "grids": [
+        {
+          "grid": "ZA007325",
+          "lat": 13.8495,
+          "lon": 107.7778
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "376"
+      ]
+    },
+    "fb-andrews": {
+      "canonical": "FB Andrews",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YU476042",
+          "lat": 11.7917,
+          "lon": 107.2684
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1/12"
+      ]
+    },
+    "fb-becky": {
+      "canonical": "FB Becky",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT372810",
+          "lat": 11.5882,
+          "lon": 106.2545
+        },
+        {
+          "grid": "XT373810",
+          "lat": 11.5882,
+          "lon": 106.2553
+        }
+      ],
+      "aliases": [
+        "Beckie"
+      ],
+      "sources": [
+        "AD505650",
+        "103"
+      ]
+    },
+    "fb-carolyn": {
+      "canonical": "FB Carolyn",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT278788",
+          "lat": 11.5687,
+          "lon": 106.1683
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "612",
+        "AD504499"
+      ]
+    },
+    "fb-fontaine": {
+      "canonical": "FB Fontaine",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS804953",
+          "lat": 10.805,
+          "lon": 107.5605
+        },
+        {
+          "grid": "YS803953",
+          "lat": 10.8053,
+          "lon": 107.5595
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "43",
+        "AD517628",
+        "AD518422",
+        "377",
+        "394"
+      ]
+    },
+    "dogs-head-rescue-the": {
+      "canonical": "Dog’s Head Rescue, The",
+      "prefixes": [],
+      "grids": [
+        {
+          "grid": "XT077829",
+          "lat": 11.6065,
+          "lon": 105.9841
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "210",
+        "AD512505"
+      ]
+    },
+    "fb-chris": {
+      "canonical": "FB Chris",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT452900",
+          "lat": 11.6636,
+          "lon": 107.2453
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD509704"
+      ]
+    },
+    "fb-eunice": {
+      "canonical": "FB Eunice",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XU876186",
+          "lat": 11.9257,
+          "lon": 106.7188
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "18",
+        "251",
+        "547"
+      ]
+    },
+    "fb-gonder": {
+      "canonical": "FB Gonder",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XU807383",
+          "lat": 12.1034,
+          "lon": 106.6576
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "18",
+        "43",
+        "181",
+        "255",
+        "547",
+        "1/30",
+        "1970"
+      ]
+    },
+    "fb-guin": {
+      "canonical": "FB Guin",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZT100190",
+          "lat": 11.017,
+          "lon": 107.8329
+        }
+      ],
+      "aliases": [
+        "Guinn"
+      ],
+      "sources": [
+        "AD515205",
+        "AD516259"
+      ]
+    },
+    "fb-illingworth": {
+      "canonical": "FB Illingworth",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT033788",
+          "lat": 11.5695,
+          "lon": 105.9436
+        },
+        {
+          "grid": "XT039792",
+          "lat": 11.5731,
+          "lon": 105.9491
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "58",
+        "180",
+        "553",
+        "AD511004",
+        "AD512505",
+        "521",
+        "AD511158"
+      ]
+    },
+    "fb-mary-gwen": {
+      "canonical": "FB Mary Gwen",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT526796",
+          "lat": 11.5755,
+          "lon": 106.3957
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "250",
+        "2/7"
+      ]
+    },
+    "fb-phuoc-vinh-bc": {
+      "canonical": "FB Phuoc Vinh BC",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XT968490",
+          "lat": 11.2961,
+          "lon": 106.7992
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "18",
+        "AD515205",
+        "AD511158",
+        "AD514678"
+      ]
+    },
+    "fb-powder-ridge": {
+      "canonical": "FB Powder Ridge",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT807786",
+          "lat": 11.5579,
+          "lon": 107.5698
+        },
+        {
+          "grid": "YT818789",
+          "lat": 11.5605,
+          "lon": 107.5799
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD518422",
+        "AD516259"
+      ]
+    },
+    "fb-silver": {
+      "canonical": "FB Silver",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT829043",
+          "lat": 10.8864,
+          "lon": 107.584
+        },
+        {
+          "grid": "YT828042",
+          "lat": 10.8855,
+          "lon": 107.5831
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "AD518422",
+        "AD515205",
+        "AD516259",
+        "377"
+      ]
+    },
+    "fb-union": {
+      "canonical": "FB Union",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "XU955248",
+          "lat": 11.9818,
+          "lon": 106.7917
+        }
+      ],
+      "aliases": [
+        "FB Mustang"
+      ],
+      "sources": [
+        "18",
+        "711",
+        "AD514678"
+      ]
+    },
+    "fb-westphal": {
+      "canonical": "FB Westphal",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT380835",
+          "lat": 11.6057,
+          "lon": 107.1789
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "43",
+        "AD509007",
+        "AD509704"
+      ]
+    },
+    "picatinny-east": {
+      "canonical": "Picatinny East",
+      "prefixes": [],
+      "grids": [
+        {
+          "grid": "XU807369",
+          "lat": 12.0916,
+          "lon": 106.6564
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "251",
+        "AD514678"
+      ]
+    },
+    "fb-billy": {
+      "canonical": "FB Billy",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT781150",
+          "lat": 10.9835,
+          "lon": 107.5409
+        }
+      ],
+      "aliases": [
+        "FSBs Bay"
+      ],
+      "sources": [
+        "377",
+        "394"
+      ]
+    },
+    "fb-donna": {
+      "canonical": "FB Donna",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS848998",
+          "lat": 10.8456,
+          "lon": 107.601
+        },
+        {
+          "grid": "YS848999",
+          "lat": 10.8465,
+          "lon": 107.601
+        },
+        {
+          "grid": "YS874996",
+          "lat": 10.8436,
+          "lon": 107.6247
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394",
+        "377",
+        "AD517628"
+      ]
+    },
+    "fb-fanning": {
+      "canonical": "FB Fanning",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS751995",
+          "lat": 10.8436,
+          "lon": 107.5123
+        },
+        {
+          "grid": "YS759987",
+          "lat": 10.8365,
+          "lon": 107.5195
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "377",
+        "10",
+        "43",
+        "394"
+      ]
+    },
+    "fb-hall": {
+      "canonical": "FB Hall",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS628998",
+          "lat": 10.8477,
+          "lon": 107.3999
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "10",
+        "43",
+        "377",
+        "394",
+        "494"
+      ]
+    },
+    "fb-jeffries": {
+      "canonical": "FB Jeffries",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS875994",
+          "lat": 10.8422,
+          "lon": 107.6254
+        },
+        {
+          "grid": "YS875995",
+          "lat": 10.8427,
+          "lon": 107.6257
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "377",
+        "43",
+        "394"
+      ]
+    },
+    "fb-judy": {
+      "canonical": "FB Judy",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT662042",
+          "lat": 10.8868,
+          "lon": 107.4313
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "377",
+        "394"
+      ]
+    },
+    "fb-karen": {
+      "canonical": "FB Karen",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT732001",
+          "lat": 10.8492,
+          "lon": 107.495
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394"
+      ]
+    },
+    "fb-king": {
+      "canonical": "FB King",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS898858",
+          "lat": 10.7187,
+          "lon": 107.6456
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "377",
+        "394"
+      ]
+    },
+    "fb-makowski": {
+      "canonical": "FB Makowski",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS747992",
+          "lat": 10.841,
+          "lon": 107.5086
+        },
+        {
+          "grid": "YS749993",
+          "lat": 10.8418,
+          "lon": 107.5105
+        },
+        {
+          "grid": "YS752991",
+          "lat": 10.8398,
+          "lon": 107.5135
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394",
+        "43",
+        "1/21",
+        "18Dec71"
+      ]
+    },
+    "fb-melanie": {
+      "canonical": "FB Melanie",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT218045",
+          "lat": 10.8924,
+          "lon": 107.0254
+        },
+        {
+          "grid": "YT229048",
+          "lat": 10.8952,
+          "lon": 107.0354
+        }
+      ],
+      "aliases": [
+        "Melany"
+      ],
+      "sources": [
+        "394",
+        "602"
+      ]
+    },
+    "fb-oldham": {
+      "canonical": "FB Oldham",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "ZT077004",
+          "lat": 10.8492,
+          "lon": 107.8103
+        },
+        {
+          "grid": "ZT079005",
+          "lat": 10.8501,
+          "lon": 107.8122
+        }
+      ],
+      "aliases": [
+        "Old Ham"
+      ],
+      "sources": [
+        "394",
+        "377"
+      ]
+    },
+    "fb-riviera": {
+      "canonical": "FB Riviera",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS988840",
+          "lat": 10.7018,
+          "lon": 107.7295
+        }
+      ],
+      "aliases": [
+        "Bandit II"
+      ],
+      "sources": [
+        "394"
+      ]
+    },
+    "fb-tiger": {
+      "canonical": "FB Tiger",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS646913",
+          "lat": 10.7703,
+          "lon": 107.4158
+        },
+        {
+          "grid": "YS650911",
+          "lat": 10.7685,
+          "lon": 107.4194
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394"
+      ]
+    },
+    "fb-trap": {
+      "canonical": "FB Trap",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YT778148",
+          "lat": 10.9817,
+          "lon": 107.5382
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394"
+      ]
+    },
+    "ps-unnamed-yt793717": {
+      "canonical": "Ps Unnamed (YT793717)",
+      "prefixes": [
+        "Ps"
+      ],
+      "grids": [
+        {
+          "grid": "YT793717",
+          "lat": 11.4956,
+          "lon": 107.5564
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "1/12"
+      ]
+    },
+    "fb-aimee": {
+      "canonical": "FB Aimee",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS278956",
+          "lat": 10.8114,
+          "lon": 107.0793
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "278965",
+        "394"
+      ]
+    },
+    "fb-ennis": {
+      "canonical": "FB Ennis",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS278956",
+          "lat": 10.8113,
+          "lon": 107.0791
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "43",
+        "360",
+        "394"
+      ]
+    },
+    "fb-long-thanh-north": {
+      "canonical": "FB Long Thanh North",
+      "prefixes": [
+        "FB"
+      ],
+      "grids": [
+        {
+          "grid": "YS151984",
+          "lat": 10.8377,
+          "lon": 106.9637
+        }
+      ],
+      "aliases": [],
+      "sources": [
+        "394"
+      ]
+    }
+  }
+}

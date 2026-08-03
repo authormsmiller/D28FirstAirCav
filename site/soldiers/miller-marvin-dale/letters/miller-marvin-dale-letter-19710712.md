@@ -54,6 +54,6 @@ Marvin
 **Home-front motif:** Cherries, birds, the garden, pickles — Kittanning in July. The same domestic touchstones recur across the letters: a man in the jungle keeping one hand on home.
 
 **Cross-references:**
-- Previous letter in sequence: 22 May 71 (this letter fills the May–August gap)
-- Next letter in sequence: 24 Aug 71
+- Previous letter in sequence: 27 Jun 71
+- Next letter in sequence: 26 Jul 71
 - *Dropshot Dispatch* chronicle — Blagg assumes command of 2/8 Cav, 14 Jul 1971

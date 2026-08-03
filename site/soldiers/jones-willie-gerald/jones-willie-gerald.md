@@ -109,11 +109,17 @@ timeline:
     headline: "Killed in action — December 4, 1968"
     body: >
       SP4 Jones was killed in ground combat during Operation Sheridan Sabre,
-      Binh Long Province, III Corps. He was 21 years old. He died alongside
-      SP4 Donald Stoltz and SSG William Williams — all three were D Company,
-      2/8 Cavalry. The specific action has not yet been confirmed against unit
-      records. See the <a href="/events/operation-sheridan-sabre-1968-12-04/">event page</a>
-      for operational context.
+      Binh Long Province, III Corps. He was 21 years old. Per his company
+      commander CPT Henry Colavita's memoir, D Company was closing in on a
+      group of NVA that Charlie Company believed wanted to surrender (Chieu
+      Hoi) near a captured enemy cache, in an area the men had just nicknamed
+      "Chicken Valley." The NVA had no intention of surrendering and
+      ambushed the approaching White Skull platoon soldiers, killing Jones
+      alongside SP4 Donald Stoltz and SSG William Williams before the
+      ambushing NVA group was itself wiped out. See the
+      <a href="/events/operation-sheridan-sabre-1968-12-04/">event page</a>
+      and the <a href="/documents/colavita-henry/colavita-henry-verbal-account-dec4-1968/">commander's
+      full account</a> for detail.
 
 # ── PHOTOS ────────────────────────────────────
 photo_intro: >
@@ -125,6 +131,7 @@ photos:
 
 # ── DOCUMENTS ──────────────────────────────────
 documents:
+  - colavita-henry-verbal-account-dec4-1968
 
 # ── RELATED ───────────────────────────────────
 brothers:
@@ -134,7 +141,7 @@ related_events:
 
 # ── ADMIN ───────────────────────────────────────
 date_added: 2026-06-12
-last_updated: 2026-06-12
+last_updated: 2026-07-17
 contributed_by:
 notes: >
   KIA 1968-12-04 — ground combat, Operation Sheridan Sabre. Skull Platoon, D/2-8 Cav.
@@ -145,5 +152,10 @@ notes: >
   Decorations confirmed from Virtual Wall: Bronze Star (valor + merit = two awards),
   Purple Heart, Air Medal, Good Conduct Medal. CIB listed unconfirmed — likely earned
   given confirmed CIB on other D Co KIA of same period; move when primary source located.
+  CIRCUMSTANCES OF DEATH (2026-07-17, per CPT Henry Colavita's memoir, excerpted directly
+  by Michael): killed in a feigned Chieu Hoi ambush during a link-up with Charlie Company
+  at a captured enemy cache — see events/operation-sheridan-sabre-1968-12-04 and
+  documents/colavita-henry/colavita-henry-verbal-account-dec4-1968. Confirms "White
+  Skull" as the platoon's full name.
 
 ---

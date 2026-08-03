@@ -54,6 +54,7 @@ sources:
   - "Pleiku campaign — Wikipedia (Operation Long Reach phases: All the Way / Silver Bayonet I / Silver Bayonet II) — https://en.wikipedia.org/wiki/Pleiku_campaign"
   - "U.S. Army Center of Military History / army.mil — 1st Cavalry Division, Pleiku Campaign 1965"
   - "Battle of Ia Drang — Wikipedia (Silver Bayonet I; LZ X-Ray 14–16 Nov, LZ Albany 17–18 Nov) — https://en.wikipedia.org/wiki/Battle_of_Ia_Drang"
+  - "2nd Battalion (Airborne), 8th Cavalry — After Action Report, 9–10 November 1965 (battalion document; Company D held the northern half of the STADIUM perimeter, then the battalion moved by CV-2/C-123 to An Khe on 10 Nov). Signed by the adjutant — does NOT name the battalion CO. Local: sources/AAR-2d-8th-Cav-9-10Nov65.pdf"
 
 related_events:
   - slug: pleiku-campaign-1965-11-04
@@ -65,11 +66,14 @@ related_events:
 open_questions:
   - id: oq-01
     publish: false
+    resolved: true
+    resolution: >
+      Confirmed via AD0855112. The task organization entry for 4 November reads "1ST BRIGADE —
+      No Change," establishing that 2/8 Cav was under 1st Brigade on that date. No rotated
+      brigade issue.
     question: >
       Confirm the 1st Brigade order of battle for the 27 Oct – 9 Nov pursuit and verify that
-      2/8 Cav was under 1st Brigade (not a rotated brigade) on 4 November 1965. The 1st Cav
-      rotated brigades through the AO during Long Reach; the brigade attribution for D/2-8 Cav's
-      specific day should be checked against the 2/8 Cav daily staff journal (NARA RG 472).
+      2/8 Cav was under 1st Brigade (not a rotated brigade) on 4 November 1965.
   - id: oq-02
     publish: false
     question: >
@@ -77,14 +81,16 @@ open_questions:
       (LZ Juliet, LZ Cavalier) and which battalion objectives the company was working that day.
       See site/_docs/primary-records-finding-aid.md.
 
-last_updated: 2026-06-16
+last_updated: 2026-07-10
 notes: >
   Context page (type: operation), the 1965 counterpart to the Operation Toan Thang III (1969)
   frame. Unlike the 1969 cluster — which could only be pinned to a corps-level umbrella — the
   4 November 1965 cluster sits inside a specific, well-documented phase (All the Way), so this
   page is written at the operation level rather than an umbrella level. Confirmed: the phase
   name, dates, the three-phase structure of Long Reach, and the 1 November aid-station overrun.
-  Hedged: the precise brigade-battalion roster on 4 November (brigades rotated through the AO).
+  2026-07-10: oq-01 resolved — AD0855112 task org for 4 Nov reads "1ST BRIGADE — No Change,"
+  confirming 2/8 Cav under 1st Brigade that day. Nov 5–6 2/8 Cav movements and engagement
+  added to narrative from AD0855112 daily operations summaries.
 ---
 
 ## Operation All the Way — the 1st Brigade pursuit
@@ -92,9 +98,8 @@ notes: >
 > **Context page — operation level.** Drawn from the 1st Cavalry Division's own after-action
 > study of the Pleiku Campaign (DTIC AD0855112) and corroborating histories. It establishes the
 > operation that **framed** D Company, 2/8 Cav's losses of 4 November 1965 — not what the company
-> did hour by hour, which awaits the battalion staff journal. The phase, its dates, and its place
-> in the campaign are well established; the exact brigade-battalion roster on the 4th is treated
-> as **likely context, to be confirmed**.
+> did hour by hour, which awaits the battalion staff journal. The phase, its dates, brigade
+> attribution, and place in the campaign are confirmed from primary sources.
 
 ### Where it sits in the campaign
 
@@ -143,11 +148,33 @@ ground of the **33rd Regiment** (Hill 732). A first-person account by D Co medic
 "several more companies from the battalion," against the 33rd Regiment — the kind of pursuit
 contact that All the Way was built around.
 
-The one open thread is the **brigade label**. Long Reach rotated brigades through the AO, so the
-clean statement "All the Way = 1st Brigade" is a phase-level fact; whether 2/8 Cav was operating
-**under 1st Brigade specifically on 4 November** should be confirmed against the **2/8 Cav daily
-staff journal (NARA RG 472)** rather than assumed from the phase name. That confirmation is
-tracked as an open question.
+The division ORLL (AD0855112) confirms the brigade attribution directly: the task organization
+entry for 4 November reads **"1ST BRIGADE — No Change,"** establishing that 2/8 Cav was under
+1st Brigade that day without ambiguity.
+
+### November 5–6: the battalion keeps moving
+
+The ORLL carries the 2/8 Cav's movements through the days immediately after the 4 November
+contact. On **November 5**, A Company moved from Cavalair to Position Paris (ZA025057) and
+searched the previous day's battle area. C Company moved by air to Position Falcon (ZA021031).
+**D Company and the battalion CP closed on Falcon at 1800 hours** — one day after the three
+D Co KIA.
+
+On **November 6**, the battalion's next fight came. B Company, operating west of its position
+at ZA045066, made contact at 1000 hours with what initially appeared to be a squad. By noon
+the company had run into an entrenched enemy force; by early afternoon the enemy was assessed
+at **at least a battalion**. B Company was nearly surrounded. C Company was ordered to
+countermarch and attack the enemy's rear; it crossed a stream and pressed from the west, then
+became heavily engaged itself. Artillery and tactical air were called in volume, but neither
+company could maneuver decisively. As darkness fell both sides disengaged; B and C companies
+linked up at ZA014068 by 1900 hours and evacuated their dead and wounded. Two platoons of A
+Company were lifted into Falcon as reinforcement. The ORLL's intelligence summary for that
+day assessed that the NVA battalion involved — the rearguard of the 33rd Regiment — "had
+ceased to exist as an effective unit" by nightfall.
+
+This action involves B and C Company, not D Company, and carries no D Co casualty record.
+It is included here as battalion context: three days after D Company's loss, the 2/8 Cav
+was still in heavy contact with the same enemy regiment in the same ground.
 
 ### Why this is among the division's earliest losses
 

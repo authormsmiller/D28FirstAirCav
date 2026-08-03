@@ -8,7 +8,7 @@ photos:
       
     caption_short: "Air assault insertion — soldiers loading a UH-1"
     credit: "Photographed by Marvin D. Miller · 1970–1971"
-    photographer: ""
+    photographer: "miller-marvin-dale"
     date: 1970-11-30T00:00:00.000Z
     date_known: false
     event: ""
@@ -21,7 +21,7 @@ photos:
       
     caption_short: "Fire support base interior — mountains of Long Khanh Province beyond"
     credit: "Photographed by Marvin D. Miller · 1971"
-    photographer: ""
+    photographer: "miller-marvin-dale"
     date: 1970-11-30T00:00:00.000Z
     date_known: false
     event: ""
@@ -34,7 +34,7 @@ photos:
       
     caption_short: "Larry Cate · Leroy Sells · Ken Weaver — Cat Platoon"
     credit: "Photographed by Marvin D. Miller · 1971"
-    photographer: ""
+    photographer: "miller-marvin-dale"
     date: 1970-11-30T00:00:00.000Z
     date_known: false
     event: ""
@@ -231,7 +231,7 @@ photos:
       
     caption_short: "PSG Fred Hurst — Cat Platoon, 1971"
     credit: "Photographed by Marvin D. Miller · 1971"
-    photographer: ""
+    photographer: "miller-marvin-dale"
     date: 1971
     date_known: false
     event: ""

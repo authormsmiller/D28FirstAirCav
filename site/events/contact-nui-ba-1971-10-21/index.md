@@ -53,6 +53,14 @@ casualties:
       role: Squad Leader / Point Man, Range Platoon
       note: WIA; shrapnel ricocheted through helmet causing concussion; helmet liner saved him
 tagged:
+  - slug: mcgrew-howard
+    name: SP4 Howard McGrew
+    note: >
+      By this date serving as Company RTO at the Company CP (assigned
+      28 Sep 71). His own timeline records "Contact" on both 21 and 22 Oct
+      71 and a return to FSB Jeffries on 23 Oct, corroborating the
+      engagement dates — his position or actions at the moment of contact
+      aren't detailed in his own entries.
   - slug: kutter-wolf
     name: Capt. Wolf Kutter
     note: CO, D Co., "Skipper 6"; with Cat Platoon ~400m away at time of contact; flew back to Firebase Jefferies with body

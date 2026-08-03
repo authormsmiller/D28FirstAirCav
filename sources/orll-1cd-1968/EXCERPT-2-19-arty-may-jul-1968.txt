@@ -1,0 +1,40 @@
+Source: AD393815 — Operational Report of the 1st Air Cavalry Division Artillery
+for Period Ending 31 July 1968, RCS CSFOR-65 (RI). p.2-3.
+Raw pdftotext extraction, minor OCR noise left uncorrected.
+
+---
+
+    b. Direct Support Artillery.
+        (1) 2d Battalion, 19th Artillery: The beginning of this quarter
+found the 2d Battalion, 19th Artillery in the A Shau Valley (Operation
+DELAWARE) supporting the 1st Brigade in a reconnaissance in force. The
+operation was characterised by continuous moderate contact requiring close
+and continuous fire support. On 16 May 1968, the battalion was extracted
+from the A Shau Valley and continued to provide direct support to the 1st
+Bde in Operation JEB STUART III concentrating on base area 101. A
+successful operation was staged against the enemy, driving him further
+into the base area. As a result, LZ Barbara (YD 330335) was established
+on 10 June. On 26 June, B Battery, located on LZ Barbara, was placed
+under the operational control of 1st Battalion, 77th Artillery, to support
+the 2d Brigade. During the period 17 May (Operation JEB STUART III) to the
+present, the battalion has participated in three joint ARVN/US operations,
+two in the coastal area, and one in the jungle area. Two of the operations
+required the ARVN Artillery to be displaced by air. The ARVN artillerymen
+were given air movement training by the 2d Battalion, 19th Artillery. The
+2d Battalion, 19th Artillery, is currently deployed as follows:
+                   HHB              LZ Betty (YD 340502)
+                   Btry A ......... LZ Sharon (YD 338490)
+                   Btry B .......... LZ Barbara (YD 330335)
+                   Btry C           LZ Anne (YD 298394)
+
+---
+
+Also of note — generic FO/liaison doctrine (p.7, Section c, Training):
+
+    c. Item: Operations with units unfamiliar with aerial rocket artillery (ARA),
+page 7, para 2b(2). Concur. The following action is being taken to familiarize for-
+ward observers with characteristics and adjustments of all types of artillery:
+    (1) 6th Bn, 33d Arty has initiated a forward observer school of five days dura-
+tion for forward observers from the 1st Cav Div (AM). The course will begin in early
+September and will include ARA, naval gunfire, COFRAM, and all other phases of artil-
+lery observation (the ARA portion will be taught by 1st Cav Div instructors).

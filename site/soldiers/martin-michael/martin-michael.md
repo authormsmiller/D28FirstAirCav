@@ -14,7 +14,7 @@ nickname: null
 birth_year: null
 rank: null
 mos: null
-platoon: Range
+platoon: Skull
 arrived: null
 departed: null
 character_of_service: Honorable

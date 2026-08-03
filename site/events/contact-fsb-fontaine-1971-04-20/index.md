@@ -108,6 +108,14 @@ casualties:
       note: Role unconfirmed — source document not yet identified; do not create record until verified
   wia_count_note: Approximately 15 WIA total per multiple accounts; only named individuals above confirmed from sources
 tagged:
+  - slug: mcgrew-howard
+    name: SP4 Howard McGrew
+    note: >
+      Range Platoon, 1st Squad, since 21 Jan 71 — assigned to the platoon
+      ambushed here. His own day-by-day timeline records a CA to mission
+      the day before (19 Apr) and a return CA to Fontaine three days after
+      (23 Apr), placing him with the unit across this engagement, though
+      it doesn't detail his specific actions on 20 Apr itself.
   - slug: marr-bill
     name: Bill Marr
     note: Davis's squad leader during the engagement

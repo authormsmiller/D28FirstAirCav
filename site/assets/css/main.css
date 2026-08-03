@@ -790,6 +790,7 @@ body.status-mia .prof-photo-frame {
 }
 .tab:hover { color: var(--ink); }
 .tab.active { color: var(--ink); border-bottom-color: var(--y); }
+.tab-count { opacity: .55; font-weight: 400; }
 .tab-content {
   background: var(--pg);
   padding: 36px 48px;

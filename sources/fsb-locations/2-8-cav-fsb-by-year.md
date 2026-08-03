@@ -163,14 +163,16 @@ Working data array for the location feature. Derived from `2-8-cav-fsb-list.md` 
 | OP 8 | BR455508 | 14.0194 | 108.6390 | B-/2/8th Cav 3May67. An Khe.                                                                                            1/8 Cav DSJ |
 | Ps Bo Duc District Hq | XU967250 | 11.9786 | 106.8004 | Phuoc Loc ville. Phuoc Long Province. III Corps. 1968 L7014 chart depiction. Attacked 29Nov67. 2/8th Cav 31Jul70.                     18, 630 |
 
-## 1968  (8)
+## 1968  (10)
 
 | Site | Grid | Lat | Long | Note |
 |------|------|-----|------|------|
 | FB Carol | YD344194 | 16.4474 | 107.1909 | Later FSB Ripcord. 2/8th Cav CP 1Aug68, ARVN 2/1, 2-/506th Inf (Aml) 24Jan69. Op Ohio Rapids. Listing is Carrol.                      211, 458, 459 |
 | FB Cecile | YC378982 | 16.2558 | 107.2211 | Op Delaware Valley/Lam Son 216. Also 378983 (2/8th Cav 24Apr68).                                                           628 |
 | FB Rita | XT505795 | 11.5741 | 106.3764 | 2/8th Cav 7Nov68.                                                                                                                      39 |
+| LZ Anne | YD285328 | 16.5695 | 107.1370 | D(-)/2/8th Cav CA to this vic. 25Jun68 (1/12 Cav OPCON, released same day). Grid is the touchdown point named in the source, not a surveyed LZ marker -- coordinates interpolated from nearby known YD-square grids, not a primary gazetteer fix.        Skipper Journal (Angry Skipper Assn) |
 | LZ Castro | BR726772 | 14.2599 | 108.8877 | Opened 6Jan68 by A/2/8th Cav. LZ 1 earlier.                                                                                          603 |
+| LZ Green | YD300431 | 16.6626 | 107.1523 | D(-)/2/8th Cav CA from LZ Pedro to this LZ, 0655 21Jun68. Coordinates interpolated from nearby known YD-square grids, not a primary gazetteer fix.                                                                    Skipper Journal (Angry Skipper Assn) |
 | LZ Hill 118 | YD333385 | 16.6209 | 107.1825 | D/2/8th Cav 6Jun68. Also A/1/12th Cav CA 17Sep68 (333386).                                                                             194, 1 ACD SITREP 158 |
 | LZ Unnamed | YD353387 | 16.6219 | 107.2018 | A,B/2/8th Cav 5Jun68.                                                                                                         1 ACD SITREP 157 |
 | LZ Unnamed | YD387378 | 16.6135 | 107.2336 | B/2/8th Cav CA 9Jun68.                                                                                                     1 ACD SITREP 161 |

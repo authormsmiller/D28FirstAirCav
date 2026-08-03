@@ -260,6 +260,7 @@ window.SURVEY_CONFIG = {{ surveys[slug] | dump | safe }};
     </div>
     <div class="alongside-grid" style="margin-bottom:24px;">
       {% for person in casualties.dow %}
+        {% set personSlug = person.slug if person.slug else person %}
         {% set soldierRecord = null %}
         {% for s in collections.soldiers %}
           {% if s.data.slug == personSlug %}{% set soldierRecord = s %}{% endif %}

@@ -46,7 +46,7 @@ Marv
 
 ### Archivist Notes
 
-**Earliest film/photography letter:** This is the earliest letter in the collection to mention Marvin's photography, and it places his brother **Dan** at the center of it — "Maybe Dan can figure out what kind of film to get." Dan (an older brother) is the family's film/camera advisor, sourcing the right stock from home while Marvin shoots and sends rolls back to be developed. The "pretty old film… not turning out very good" is an early, concrete data point for the open camera-model question: he was already shooting in February 1971 and troubleshooting film stock with Dan's help. Compare the 12 Jul 71 and 21 Sep 71 letters, where the same develop-and-send-home routine continues.
+**Early film/photography letter:** An early window into Marvin's photography, placing his brother **Dan** at the center of it — "Maybe Dan can figure out what kind of film to get." Dan (an older brother) is the family's film/camera advisor, sourcing the right stock from home while Marvin shoots and sends rolls back to be developed. The "pretty old film… not turning out very good" is a concrete data point on his early shooting: by late February 1971 he was troubleshooting film stock with Dan's help. The camera itself is named a few weeks earlier, in the 3 Jan 71 letter — "a real small Minolta," bought from a buddy in-country — which he sold and replaced with a Kodak 124 by 18 Apr 71. Compare the 12 Jul 71 and 21 Sep 71 letters, where the same develop-and-send-home routine continues.
 
 **The financial arrangement, early form:** "If I get a chance I'll send some more money home. Maybe I can get some out of the bank over here." The send-money-home pattern that recurs throughout the tour (see the 3 Sep 71 PS) is already in place by late February.
 
@@ -55,6 +55,6 @@ Marv
 **Season and place:** "Unusually hot… the rainy season should start in about 3 months" fits the dry-season dry/hot stretch in III Corps (the southwest monsoon typically arrives around May). He had arrived in-country roughly two and a half months earlier (~15 Dec 1970).
 
 **Cross-references:**
-- 15 Dec 70 — first letter (arrival); this is the next in sequence
+- 3 Jan 71 — preceding letter; names the camera (small Minolta)
 - 26 Mar 71 — following letter
 - 12 Jul 71, 21 Sep 71 — the continuing develop-and-send-home film routine

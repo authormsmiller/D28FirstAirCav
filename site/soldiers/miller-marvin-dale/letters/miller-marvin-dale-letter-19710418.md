@@ -16,7 +16,7 @@ tagged:
 permalink: /soldiers/miller-marvin-dale/letters/miller-marvin-dale-letter-19710418/
 ---
 
-Written two days before the April 20 contact north of FSB Fanning. "They're keeping us a lot busier over here now" is the only hint of the rising tempo just ahead. Notable for the camera thread: he sells his first camera to a man heading home and picks up "a little Kodak 124." Family: "Dan" and "Buss" (Don) are Marvin's older brothers.
+Written two days before the April 20 contact north of FSB Fanning. "They're keeping us a lot busier over here now" is the only hint of the rising tempo just ahead. Notable for the camera thread: he sells the small Minolta he had bought from a buddy in January (see 3 Jan 71) to a man heading home and picks up "a little Kodak 124." Family: "Dan" and "Buss" (Don) are Marvin's older brothers.
 
 ---
 

@@ -6,54 +6,53 @@ breadcrumb: Gary Collins
 permalink: /soldiers/collins-gary/
 tags:
   - soldier
+
+# ── IDENTITY ──────────────────────────────────
 first_name: Gary
 last_name: Collins
-middle_name: null
-suffix: null
-nickname: Indian
-birth_year: null
-rank: null
-mos: null
+middle_name:
+suffix:
+nickname:
+birth_year:
+
+# ── RANK & ASSIGNMENT ─────────────────────────
+rank:
+mos:
 platoon: Range
-arrived: null
-departed: null
-character_of_service: Honorable
+
+# ── SERVICE ───────────────────────────────────
+arrived:
+departed:
+character_of_service:
 status: researching
-hometown: null
-current_location: null
-year_deceased: null
-cause_of_death: null
-profile_photo: null
-decorations: null
-distinguished_decorations: null
-decorations_unconfirmed: null
-service_record:
-  induction:
-    status: null
-    location: null
-    date: null
-  assignments: null
-share_contact: false
-contact:
-  name: null
-  relation: null
-  last_verified: null
-links:
-  wall: null
-  other: null
-timeline_source: |
-  Service timeline not yet compiled. If you served with or knew Gary Collins, please use the contribute form to share what you remember.
-timeline: null
-photo_intro: |
-  Photographs pending.
-wartime_content_notice: false
-photos: null
-documents: null
-brothers: null
-related_events: null
-date_added: 2026-06-18T00:00:00.000Z
-last_updated: 2026-06-18T00:00:00.000Z
-contributed_by: null
-notes: |
-  Stub created from Jim Garvin's "v05_fontaine" photo deck. Known as "Indian"; a good friend of Jim Garvin's, decorated for valor at the FSB Fontaine awards ceremony of 25 April 1971, credited with bringing the squad back to safety (197104... awards photo, From the Collection of Jim Garvin). Appears in the anecdote "Awards on Fontaine — Indian." Platoon (Range) inferred from Garvin's account; rank and dates not yet established.
+
+# ── POST-SERVICE ──────────────────────────────
+hometown: "South Carolina"
+current_location:
+year_deceased:
+cause_of_death:
+
+# ── PROFILE PHOTO ─────────────────────────────
+profile_photo:
+
+# ── TIMELINE SOURCE NOTE ──────────────────────────
+timeline_source: >
+  Profile in research. Gary Collins served as a point man in D Company's Range Platoon. If you
+  served with or knew him, please use the contribute form to share what you remember.
+
+# ── RELATED ───────────────────────────────────
+brothers:
+related_events:
+
+# ── ADMIN ───────────────────────────────────────
+date_added: 2026-06-26
+last_updated: 2026-06-26
+contributed_by:
+notes: >
+  Stub created 2026-06-26 to replace a frontmatter-less note file that was rendering as a blank
+  "comma" entry at the top of the roster and an untemplated page at /soldiers/collins-gary/.
+  Source lead (from Jim Garvin's "v04_silver" / FSB Silver slide deck, archivist research notes):
+  Gary Collins was a Cherokee from South Carolina; when Garvin moved to the rear as company mail
+  clerk in February 1971, Collins replaced him as the Range Platoon (Range 1) point man.
+  No rank, service dates, MOS, or casualty data established yet — researching.
 ---

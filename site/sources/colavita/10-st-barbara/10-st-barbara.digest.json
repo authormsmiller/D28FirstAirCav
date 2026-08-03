@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "artifact": "source-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-22 from 16 e-reader screenshots of Colavita's memoir, ch. 10 ('Homeless on Saint Barbara'). Third full-chapter digest for this source (after ch.8 'Angry Skipper' and ch.9 'Chicken Valley'). This chapter's single biggest find: a firsthand account that upgrades events/operation-sheridan-sabre-1969-02-05 from an explicit 'research stub -- not a confirmed action' to a fully narrated firsthand account, the same upgrade pattern already applied to the Dec 4 and Jan 28 events in ch. 9.",
+    "notes": "Narrator is CPT Henry 'Rocky' Colavita (soldiers/colavita-henry), as in ch. 8/9. This chapter also directly narrates a battalion-command change (LTC Frank Henry departing, LTC Richard Wood arriving as the new 'Stone Mountain 6') and the arrival of 1LT Preston Karr (soldiers/karr-john, existing full profile) as the new White Skull platoon leader -- both useful for dating open questions on existing profiles.",
+    "gap_note": "Per Michael: the folder's page numbering skips 'p14' -- but unlike ch. 9's missing 'p6' (confirmed no content gap), this IS a real content gap. p13 cuts off mid-word ('...shoot an azimuth towards LZ Saint Bar-[bara]') and p15 resumes mid-anecdote ('phosphorous grenade here on Saint Barbara...') describing the aftermath of an accident that wounded 2LT Jon Jones ('Jonsey') -- the setup/cause of that accident, and however much text bridges the azimuth-shooting scene to it, was not captured in this batch. Flagged, not reconstructed.",
+    "copyright_note": "Source is a copyrighted, commercially published memoir (Hellgate Press, 2015). This digest extracts FACTS ONLY in paraphrase; the only quoted language below is the short OER (Officer Efficiency Report) excerpt already reproduced at book length (a formal military document quoted within the book, not the author's own prose) and isolated short phrases under the existing ~15-word paraphrase norm."
+  },
+
+  "document": {
+    "title": "Company Grade: Memoir of an Angry Skipper -- Chapter 10, \"Homeless on Saint Barbara\"",
+    "author": "Henry \"Rocky\" Colavita",
+    "author_slug": "colavita-henry",
+    "source_type": "veteran_memoir",
+    "unit": "D Company, 2nd Battalion, 8th Cavalry, 1st Cavalry Division (Airmobile)",
+    "echelon": "company",
+    "period_start": "1969-02-04",
+    "period_end": "1969-04",
+    "period_note": "Chapter covers D Co's time operating off LZ Saint Barbara ('February and most of March 1969' per the text) through an April 1969 move to a new AO near the soon-to-be-built LZ Carolyn, ending with D Co finally getting to defend a completed firebase perimeter there. Internally dated events: 4 Feb 1969 (small night ambush) -> 5 Feb 1969 (\"Colavita Creek\" meeting engagement, 2 KIA) -> undated (Tet-eve Blues helicopter recovery, ~mid-Feb) -> Tet itself (~mid-Feb 1969, NVA truce violation) -> undated ('next resupply' -- Karr's arrival) -> 'early 1969' undated (Jon Jones phosphorous-grenade WIA, partially missing from this capture) -> April 1969 (move to LZ Carolyn AO, first ambush, LZ construction, D Co takes the completed perimeter).",
+    "provenance": "16 e-reader screenshots of the published memoir (photographs of the e-reader screen, clean digital text, high legibility throughout).",
+    "reliability": "high (author's own first-person account)",
+    "files": ["st-barbara1.jpg", "p2.jpg", "p3.jpg", "p4.jpg", "p5.jpg", "p6.jpg", "p7.jpg", "p8.jpg", "p9.jpg", "p10.jpg", "p11.jpg", "p12.jpg", "p13.jpg", "p15.jpg", "p16.jpg", "p17.jpg"],
+    "reading_order_note": "Confirmed reading order via narrative/sentence continuity and the e-reader's %-complete counter (monotonically increasing 60%->70% across the sequence): st-barbara1 -> p2 -> p3 -> p4 -> p5 -> p6 -> p7 -> p8 -> p9 -> p10 -> p11 -> p12 -> p13 -> [REAL GAP, no 'p14' captured -- see _meta.gap_note] -> p15 -> p16 -> p17. Unlike ch. 9's missing 'p6' (confirmed by content/percentage continuity to be a harmless filename skip), Michael confirmed this omission is an actual missed capture, and the text itself shows a hard content break (mid-word cutoff on p13, mid-anecdote resumption on p15).",
+    "related_existing_records": {
+      "soldier_profile": "soldiers/colavita-henry/colavita-henry.md",
+      "memoir_document": "documents/colavita-henry/colavita-henry-memoir-company-grade/index.md",
+      "prior_chapter_digests": ["sources/colavita/08-angry-skipper/", "sources/colavita/09-chicken-valley/"],
+      "event_upgraded": "events/operation-sheridan-sabre-1969-02-05/index.md",
+      "operation_context": "events/operation-montana-scout-1969/index.md",
+      "location": "locations/fsb-rita/index.md (departed this chapter), FSB Saint Barbara (not yet a full location page -- see ch.9 review Pass 6)"
+    }
+  },
+
+  "triage": {
+    "genre": "veteran memoir, first-person, company command",
+    "echelon": "company",
+    "temporal_shape": "chapter (~2.5 months narrated, Feb-Apr 1969)",
+    "provenance": "US Army field, second-tour company commander",
+    "expected_yield": {
+      "personnel": "HIGH -- a battalion command change (2 named field-grade officers), a new platoon leader's arrival directly narrated, several new named NCOs/soldiers, and enrichment for multiple existing stub candidates",
+      "locations": "medium -- FSB Saint Barbara gets extensive new operational detail; LZ Carolyn's construction is directly narrated for the first time",
+      "events": "HIGH -- upgrades an existing 'research stub, not confirmed' event page to a firsthand account, plus one entirely new contextual event (a downed Blues helicopter, non-D-Co casualties) and several minor ambush vignettes",
+      "kia_individual": "matches 2 already-stubbed KIA (Edmonds, Kmit) exactly -- no new KIA introduced this chapter",
+      "awards": "one OER (Officer Efficiency Report) excerpt quoted at length -- a formal document, candidate for its own document page"
+    }
+  },
+
+  "personnel": [
+    {
+      "name": "LTC Frank Leonidas Henry",
+      "slug": "henry-frank",
+      "cross_ref": "existing profile -- 'Colonel Henry' / 'Stone Mountain 6', extensively covered in ch. 8/9",
+      "role": "outgoing battalion commander, 2/8 Cav",
+      "date": "departs ~ early Feb 1969 (see note)",
+      "page_ref": "st-barbara1",
+      "confidence": "medium-high",
+      "note": "Chapter opens with his departure already accomplished ('was suddenly gone... transferred elsewhere'). Colavita quotes his own OER (Officer Efficiency Report) from Henry at length: rated Colavita #1 of 5 company commanders, specifically citing the Chicken Valley action ('CPT Colavita's company and one other from this battalion stood off three sustained attacks supported by heavy mortar and RPG fire. The results were over forty enemy KIA by body count and no friendly personnel killed.'). DEPARTURE DATE REFINEMENT: Colavita states he served 7 months total as CO (Oct 1968 through his own command end, independently estimated elsewhere as ~Apr/May 1969) and worked under Henry for 'four and a half of those months' -- arithmetic (Oct 1968 + 4.5 months) points to a departure around mid-to-late February 1969, which is EARLIER than but not necessarily in conflict with the existing ~March 1969 estimate (based on a hometown newspaper clipping reporting Henry home in Franklin, NC the week of ~25 Mar 1969) -- a multi-week gap between leaving battalion command and being reported home stateside (out-processing, travel, leave) is entirely plausible. Recommend noting this as a second, independent, arithmetic-based estimate that roughly corroborates (and slightly tightens) the existing clipping-based one, not a contradiction to resolve. Colavita's aside citing Larry Hackett's Virtual Wall tribute to Ahern ('move out and watch out for the bad guys') is itself just a citation of an already-known source, not new information."
+    },
+    {
+      "name": "LTC Richard Wood",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "incoming battalion commander, 2/8 Cav ('Stone Mountain 6'), replacing LTC Henry",
+      "date": "from ~early Feb 1969 onward",
+      "page_ref": "st-barbara1, p7, p12, p13, p16",
+      "confidence": "high",
+      "note": "New battalion commander, introduced by flying into the field on the Charlie Charlie with his S-3 (Maj. Bramlett) to meet Colavita's company directly, rather than waiting for them to rotate onto Saint Barbara. Colavita describes him as 'capable and competent' and reports a postwar friendship -- the two met as civilians 'for the first of many lunches together and dinners with our wives' more than 40 years later (so a documented postwar reunion, similar in kind to the Garner/Fort Benning reunion in ch. 8). Active through the rest of this chapter: visits the ambush site for an impact-award ceremony (p7), gives 'idiot proof' navigation directions during the Arclight BDA (p13), and discusses the new AO's ambush plan with Colavita before D Co leaves Saint Barbara (p16). Given the precedent set by Gibney and Henry (battalion commanders who interact directly with D Co get full profiles despite being outside D Co itself), recommend the same treatment for Wood if/when built."
+    },
+    {
+      "name": "Major James Bramlett",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "Battalion S-3 (Operations Officer), 2/8 Cav",
+      "date": "~Feb-Apr 1969",
+      "page_ref": "p5, p13",
+      "confidence": "high",
+      "note": "Wood's S-3, arrives with him on the Charlie Charlie. Relays a controversial division-level order during the Feb 4 night ambush setup ('The G-3 believes the night still belongs to the NVA so we want you to pick up and move another kilometer or so') that Colavita pushed back on and ultimately routed around by reporting movement on the trail. Later co-navigates D Co out of the Arclight BDA danger zone alongside Wood ('idiot proof directions'). Nickname/shorthand 'Three' used for the S-3 role generally, not specific to Bramlett personally."
+    },
+    {
+      "name": "1LT Doug Magruder",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8/9; see stub-candidates.md)",
+      "role": "Platoon leader, White Skull (1st Plt)",
+      "date": "1969-02-05",
+      "page_ref": "p8",
+      "confidence": "high",
+      "note": "THREAD CLOSES. Wounded a second time (first WIA was Dec 4, 1968, per ch. 9) during the Feb 5 'Colavita Creek' fight -- 'shot in non-life threatening places, one shoulder, two arms, three legs and one buttocks.' Unlike his Dec 4 WIA, this time he does NOT return to the company -- permanently replaced by 1LT Preston Karr as White Skull platoon leader (see below). This ends Magruder's D Co arc, the same way Lt. Johnson's ended in ch. 9."
+    },
+    {
+      "name": "SGT James Goochie",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "Buck sergeant, Wild Cat platoon (2nd Plt)",
+      "date": "~late Jan/early Feb 1969 (OCS conversation); 1969-02-05 (WIA)",
+      "page_ref": "p6, p8, p9",
+      "confidence": "high",
+      "note": "Described as sharp, clean-shaven, close-cut blond hair, constantly giving life-saving advice to younger soldiers. Colavita personally pitched him on Officer Candidate School at Fort Benning; Goochie said he'd consider it. Seriously wounded in the Feb 5 'Colavita Creek' fight -- Colavita personally threw himself on top of Goochie's stretcher to shield him during a tree-clearing C4 detonation, an act Colavita calls (self-deprecatingly) 'the most heroic thing I had done in Vietnam' that nobody witnessed. Survived his wounds but 'has never come to any Angry Skipper reunions' (per p11) -- one of the few named men in these three chapters whose postwar fate is neither death nor a warm reunion story."
+    },
+    {
+      "name": "CPL James Thomas Edmonds",
+      "slug": "edmonds-james",
+      "cross_ref": "existing stub profile -- KIA 1969-02-05",
+      "role": "unconfirmed platoon",
+      "date": "1969-02-05",
+      "page_ref": "p8, p9, p10",
+      "confidence": "high",
+      "note": "MAJOR ENRICHMENT -- see events below. Named directly; his death (severely wounded during the creek meeting engagement, then dropped when a medevac crewman apparently panicked and cut the jungle-penetrator cable under renewed fire) is narrated in full and gruesome detail for the first time anywhere in this archive. A Medical Service Corps colonel later flew in to formally investigate the cable-cutting; Colavita testified Edmonds was clear of obstructions and the cable didn't need to be cut. Body recovered after a third night in the same location, once Sgt. Cruz's inbound flight and a stay-in-place order for the investigation were both resolved."
+    },
+    {
+      "name": "SP4 Chester Jon Kmit",
+      "slug": "kmit-chester",
+      "cross_ref": "existing stub profile -- KIA 1969-02-05",
+      "role": "point man",
+      "date": "1969-02-05",
+      "page_ref": "p8, p10",
+      "confidence": "high",
+      "note": "MAJOR ENRICHMENT -- see events below. Named directly as the company's point man, killed instantly in the first burst of fire crossing the creek. His body was recovered the next morning via a rope-drag procedure (tied to his ankle, pulled from cover) to check for booby traps before approach -- none found, but his weapon and web gear were missing."
+    },
+    {
+      "name": "1SG Ramon Cruz (\"Blinky\")",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8; see stub-candidates.md)",
+      "role": "First Sergeant, D Co",
+      "date": "1969-02-0X (returns from reenlistment leave, same day as the Edmonds/Kmit recovery)",
+      "page_ref": "p10",
+      "confidence": "high",
+      "note": "ENRICHMENT. Returns from his Puerto Rico reenlistment leave (already known from ch. 8 as departed ~Nov 1968 for ~4 months) on the same day D Co was standing by for the investigating colonel and recovering Kmit's body -- Colavita notes the timing friction directly ('the whole company was upset about Trooper Kmit still lying by the creek' when told Cruz's inbound flight took priority). Resumes First Sergeant duties from SFC Adams (see below); Colavita felt Cruz gave him a disapproving look on the walk back down to the creek, for reasons he says he never learned."
+    },
+    {
+      "name": "SFC Bruce Adams",
+      "slug": "adams-bruce",
+      "cross_ref": "existing profile (built ch. 8) -- acting First Sergeant",
+      "role": "acting First Sergeant, D Co, through Feb 1969; rotates to battalion rear near his DEROS",
+      "date": "1969-02-0X",
+      "page_ref": "p10, p11",
+      "confidence": "high",
+      "note": "ENRICHMENT. Hands First Sergeant duties back to the returning 1SG Cruz and rotates to the battalion rear to finish out his remaining few weeks before DEROS; Lt. Derums was to 'find him something to do' there. Colavita speaks highly of his tenure as acting first sergeant and says he 'felt it would be wrong to demote him back to platoon sergeant' -- implying Adams's acting-1SG service was considered a success, not a stopgap."
+    },
+    {
+      "name": "Lt. Karl Derums",
+      "slug": "derums-karl",
+      "cross_ref": "existing profile (built ch. 8, enriched ch. 9) -- Company XO",
+      "role": "Company Executive Officer (XO), rear detachment",
+      "date": "1969-02-0X",
+      "page_ref": "p11",
+      "confidence": "high",
+      "note": "Minor enrichment/humor beat: tasked with finding SFC Adams something to do in the rear; Colavita notes dryly that Derums 'never thanked me for sending Bruce Adams back to work for him.'"
+    },
+    {
+      "name": "1LT Preston Karr",
+      "slug": "karr-john",
+      "cross_ref": "existing FULL profile (KIA 25 May 1969) -- see soldiers/karr-john. Already significantly enriched via a ch. 9 photo caption ('White Skull 6').",
+      "role": "new platoon leader, White Skull (1st Plt), replacing Lt. Doug Magruder",
+      "date": "'on our next resupply' after the Tet-period events -- undated, but per this chapter's flow falls in the window between Tet (~mid-Feb 1969) and this chapter's April close, consistent with Karr's own profile's confirmed 12 Mar 1969 in-country arrival date",
+      "page_ref": "p12, p13",
+      "confidence": "high",
+      "note": "MAJOR, DIRECT ENRICHMENT -- this chapter narrates his actual arrival and assignment to D Company for the first time (previously only known via the ch. 9 photo caption, an indirect/out-of-sequence source). Described as tall, blond, 'movie star good looks,' confident and eager; had done OJT with Alpha Company before this assignment (paralleling Colavita's own OJT-with-Charlie-Company introduction in ch. 8). Colavita introduces him to Babas and Spingath and immediately likes him ('about as much as I disliked Lieutenant Armstrong when I first met him, that's about how much I liked Lieutenant Karr'). This account, independent of the ch. 9 photo caption, gives a second, textual confirmation of Karr's D Co assignment and its approximate timing -- both now point to the same window (shortly before/around his profile's confirmed 12 Mar 1969 arrival date). Recommend citing this chapter directly on his profile alongside the ch. 9 photo caption."
+    },
+    {
+      "name": "2LT Bob Babas",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 9; see stub-candidates.md)",
+      "role": "Platoon leader, Rifle Range (3rd Plt)",
+      "date": "referenced in passing, same window as Karr's arrival",
+      "page_ref": "p13",
+      "confidence": "high",
+      "note": "Re-mentioned only as one of the two platoon leaders Karr is introduced to; no new facts beyond ch. 9's enrichment."
+    },
+    {
+      "name": "2LT David Spingath",
+      "slug": "spingath-dave",
+      "cross_ref": "existing profile (built ch. 8, enriched ch. 9 with a profile photo)",
+      "role": "Platoon leader, Wild Cat (2nd Plt)",
+      "date": "same window as Karr's arrival",
+      "page_ref": "p13",
+      "confidence": "high",
+      "note": "Re-mentioned only as one of the two platoon leaders Karr is introduced to; no new facts."
+    },
+    {
+      "name": "2LT Jon Jones (\"Jonsey\")",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8/9; see stub-candidates.md)",
+      "role": "Artillery Forward Observer (FO) attached to D Co",
+      "date": "'early 1969', undated -- WIA; reunion 1999",
+      "page_ref": "p15 (partial -- see gap_note; also called in a denied fire mission at p12/p13, before his own wounding)",
+      "confidence": "medium-high (the WIA circumstances are missing due to the page gap; the reunion anecdote and his survival are fully captured)",
+      "note": "MAJOR ENRICHMENT despite the capture gap. Wounded by a phosphorous grenade accident on or near LZ Saint Barbara in 'early 1969' -- the cause/setup is not in this capture (see _meta.gap_note), only the aftermath: Colavita was visiting troops elsewhere on the base and learned only after Jones had already been airlifted out. The two did not meet again until an Angry Skipper reunion in Las Vegas in 1999, where Jones -- still recognizable by his rosy cheeks, blond curly hair, and bright smile -- was introduced to Colavita's wife Janine with the line 'Your husband used to call me his fat fucking FO,' and the couple 'adopted' him for the rest of the reunion. Colavita reports having seen him at many reunions since. This is a substantial, warm, fully-resolved postwar arc for an existing stub candidate -- worth flagging to Michael as a strong case for finally building the profile, notwithstanding the missing WIA detail. Separately, earlier in the chapter (p12/p13, during the Tet-truce NVA sighting), Jones is the FO who calls in a fire mission that gets denied by battalion for truce reasons -- a minor, undated vignette."
+    },
+    {
+      "name": "Janine Colavita",
+      "slug_candidate": "not a stub candidate -- Colavita's own wife, already documented on his profile ('survived by wife of 54 years, Janine')",
+      "role": "Colavita's wife",
+      "date": "1999 (Las Vegas reunion, referenced within this chapter as a flash-forward)",
+      "page_ref": "p15",
+      "confidence": "high",
+      "note": "Named for the first time within a chapter's own narration (previously only known from Colavita's own obituary). No new stub needed -- purely a cross-reference confirmation. Could be added as a citation on colavita-henry.md if useful."
+    },
+    {
+      "name": "unnamed former D Company NCO / sergeant",
+      "slug_candidate": "cannot be a stub -- not named",
+      "role": "unspecified former NCO, attended a 2002 D.C. reunion Colavita hosted",
+      "date": "2002 (reunion); underlying incident undated, pre-dates or is early in Colavita's command",
+      "page_ref": "p6, p7",
+      "confidence": "n/a (anecdote only, no name given)",
+      "note": "Anecdote: this unnamed former sergeant asked Colavita for help getting a belated Bronze Star w/ 'V' and Purple Heart at a 2002 reunion, after having told off a brigadier general who tried to pin a Purple Heart on him aboard a medevac flight years earlier ('you can take that fucking medal and shove it up your ass'). Colavita's own wartime notebook had no record of a BSM-with-V recommendation for him; he died before a subsequent reunion, request apparently never resolved. Cannot be tracked as a stub candidate without a name -- flagged here only in case a name surfaces from another source later, since the anecdote is vivid and specific enough that a future source might identify him."
+    }
+  ],
+
+  "locations": [
+    {
+      "name": "FSB / LZ Saint Barbara",
+      "type": "fire support base",
+      "detail": "MAJOR NEW OPERATIONAL DETAIL, extending ch. 9's initial description (former French fort, 25th ID AO, Corps-level artillery, near Nui Ba Den). This chapter adds: part of 'an annoying string of fire bases strung along the Cambodian border,' each within mutual 105mm howitzer support range specifically to counter NVA logistics caching (per Colavita's own analysis of NVA resupply doctrine); D Co operated off Saint Barbara 'during the month of February and most of March 1969'; a resupply/impact-award LZ near an ambush site was used for a medal ceremony; the base had an airstrip 'right in front of' it long enough to lift the whole company at once; three 'unwanted' attachments arrived and departed in sequence during this period -- a tracker dog team (German Shepherd + handler, deemed 'worthless' after about a week and sent away), a PsyOps team (one soldier, one interpreter, a megaphone, no surrenders ever obtained), and a Pathfinder corporal (landing/departure control, refused to dig a foxhole, left with Wood/Bramlett and never seen again).",
+      "grid": null,
+      "page_ref": "st-barbara1, p2, p3, p4, p7, p16, p17",
+      "cross_ref": "Builds directly on the FSB Saint Barbara entry already flagged in ch. 9's review (Pass 6) as a genuine gazetteer-research candidate. Combined with the existing operation-montana-scout-1969 event page (which places 1st Brigade -- 2/8 Cav's brigade during this window -- operating from 'LZs Grant, Carolyn, St Barbara, Ike, Jamie, and White'), this strongly corroborates that St Barbara sat in the 1st Brigade's Tay Ninh/War Zone C AO, not the 2nd Brigade's Binh Long/Fishhook AO D Co had occupied through late Jan 1969 (FSB Rita) -- see events note below on the Feb 5 casualty-record implication.",
+      "confidence": "high for the operational detail (author's own account); the brigade-attachment inference is medium -- reasonable and well-supported but not explicitly stated in this chapter's own text"
+    },
+    {
+      "name": "LZ Carolyn (under construction)",
+      "type": "fire support base, newly established",
+      "detail": "D Co's next AO after Saint Barbara, reached in April 1969: 'a couple of kilometers west of the soon-to-be-built LZ Carolyn,' about 10km due north of Saint Barbara, in an area with 'no major American presence before' apart from a small, now-vacated Special Forces camp near the future LZ site. Engineers (bulldozers, road graders) airlifted in to build the base; D Co and other companies operated in the surrounding bush for about a month while it was built, then D Co was called in near month's end to defend the completed perimeter -- newly dug bunkers with steel-planking overhead cover and staggered 45-degree gun ports, a hardened TOC, and new latrines, 'no one before 2/8 Cav had slept in these newly constructed bunkers.'",
+      "grid": null,
+      "page_ref": "p16, p17",
+      "cross_ref": "First direct narration in this archive of LZ Carolyn's actual construction. Matches the existing operation-montana-scout-1969 event page, which lists 'LZs Grant, Carolyn, St Barbara, Ike, Jamie, and White' as the 1st Brigade's Montana Scout-era firebases (1 Apr - 23 Jun 1969) -- this chapter's April 1969 timing lines up almost exactly with Montana Scout's official 1 Apr start date, strongly suggesting the Saint Barbara-to-Carolyn move IS the transition into the Montana Scout operational window, with the Feb-March Saint Barbara period preceding it (likely still nominally under the closing weeks of Operation Sheridan Sabre, which the existing sources give an end date of 4 Apr 1969 -- a near-exact handoff). Recommend flagging this connection on the Montana Scout event page and/or colavita-henry.md.",
+      "confidence": "high for the narrative detail; medium-high for the Montana Scout connection (strong circumstantial fit, not explicitly named as such in the book)"
+    },
+    {
+      "name": "Downed UH-1D crash site (unnamed clearing)",
+      "type": "incident site, not a fixed base",
+      "detail": "Site of a 'Blues' platoon (1st Cav Aviation Battalion's own infantry security platoon) ambush during a helicopter recovery operation, the day before Tet (~mid-Feb 1969). See events below.",
+      "grid": null,
+      "page_ref": "p11, p12",
+      "cross_ref": "Not a D Co location in the gazetteer sense -- an aviation-battalion incident D Co merely responded to and helped recover. No gazetteer action needed.",
+      "confidence": "high"
+    }
+  ],
+
+  "events": [
+    {
+      "date": "1969-02-04",
+      "type": "night_ambush",
+      "location": "high ground above a creek, D Co AO near Saint Barbara",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry"],
+      "page_ref": "p6",
+      "confidence": "high",
+      "notes": "Small night ambush on a trail above a creek; killed one lone NVA. Set up the company's position for the much larger fight the next morning (see below). Minor on its own."
+    },
+    {
+      "date": "1969-02-05",
+      "type": "kia_meeting_engagement",
+      "location": "a creek crossing below the Feb 4 ambush position, D Co AO near Saint Barbara ('Colavita Creek', per the company's own nickname)",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "edmonds-james", "kmit-chester", "doug-magruder (no slug -- stub candidate)", "james-goochie (no slug -- new stub candidate)"],
+      "page_ref": "p6, p7, p8, p9, p10",
+      "confidence": "high",
+      "cross_ref": "MAJOR UPGRADE to events/operation-sheridan-sabre-1969-02-05, which is currently an explicit 'research stub -- this page does not describe a confirmed action,' built entirely from casualty records with the specific action, brigade attachment, and location all listed as open questions. This chapter answers essentially all of them: the specific action (a downhill approach to a creek crossing, ambushed by intense fire from a broad front across the creek, point man Kmit killed instantly, Magruder and others wounded, gunship-supported disengagement to higher ground), Edmonds's specific cause of death (mortally wounded, then dropped when a medevac crew apparently panicked and cut the jungle-penetrator cable under renewed enemy fire during evacuation -- an incident formally investigated afterward by a Medical Service Corps colonel), and strong circumstantial resolution of the brigade-attachment open question (see locations note on FSB Saint Barbara above -- 2/8 Cav was very likely under 1st Brigade/Tay Ninh AO by this date, which would make the casualty records' 'Tay Ninh Province' correct rather than the DCAS-error pattern seen on the Dec 4/Jan 28 clusters, and the existing 'Wriston 2nd Brigade remembrance' likely an error reflecting 2/8 Cav's earlier Rita-era assignment).",
+      "notes": "Sequence: intense fire from across the creek immediately kills point man Kmit and wounds several others including Magruder; Colavita calls Stone Mountain 6 (Wood) for gunship support; company backs up to higher ground/cover under gunship suppression; two casualties (Edmonds, Goochie) are urgent-medevac priority; a rigid-litter/jungle-penetrator lift is arranged for Edmonds while the LZ remains too hot to land; enemy fire during the lift causes the medevac crew to cut the cable, dropping the litter-strapped Edmonds to his death (Colavita testified in the subsequent investigation that Edmonds was clear of obstructions and the cut was unnecessary, and speculates Edmonds may already have died of his wounds before the fall). A different medevac later lifts out Goochie, Magruder, and about six other WIA, plus Kmit's body once a safe LZ is later secured. Kmit's body recovery is delayed two full nights (once by the ongoing situation, once by a stay-in-place order for the cable-cutting investigation, coinciding with 1SG Cruz's return flight) -- recovered via a rope-drag procedure to check for booby traps; his weapon and gear were missing. Both men are remembered on Panel 33 West (Edmonds Line 62, Kmit Line 65), matching the existing KIA records exactly. Company's cumulative friendly-death toll under Colavita's command reaches ten. The men nicknamed the location 'Colavita Creek' afterward -- a naming convention Colavita compares to an earlier 'Grannemann's Hill,' both of which he notes eventually fell out of use."
+    },
+    {
+      "date": "undated, ~mid-Feb 1969 (day before Tet)",
+      "type": "aircraft_downing_and_recovery",
+      "location": "unnamed clearing, D Co AO",
+      "units": ["D Co, 2/8 Cav", "1st Cav Aviation Battalion 'Blues' (infantry security platoon)"],
+      "people": ["colavita-henry", "henry-frank (or possibly already Wood -- ambiguous, see notes)"],
+      "page_ref": "p11, p12",
+      "confidence": "high",
+      "notes": "Stone Mountain 6 directs D Co via Charlie Charlie to the scene of a fight where the enemy ambushed a platoon of 'Blues' (the 1st Cav Aviation Battalion's own infantry security platoon, whose job is securing downed-aircraft sites). Sequence per the text: an earlier downed helicopter's personnel and airframe were lifted out by a CH-47 Chinook; the Blues securing that lift were then themselves ambushed while being extracted; gunships drove the enemy off, but not before a SECOND aircraft (a UH-1D) was shot down (tail rotor hit by a B-40 rocket while lifting off) with several Americans killed on the ground around it. D Co secured the second crash site and recovered remains -- described in graphic detail, including one dead Blue nearly bisected by the still-rotating main rotor blade after the crash. None of the dead are named, and none are D Co soldiers (1st Cav Aviation Battalion personnel) -- OUT OF SCOPE for individual stub consideration per this archive's D-Company-only convention (same treatment as the Dec 3, 1968 D/2-7 Cav battle noted in ch. 9's cross-references), but worth a location/context note if a Blues-platoon casualty event is ever built by a broader-scope project. AMBIGUOUS: the text doesn't explicitly name who is in the Charlie Charlie directing D Co to the crash site -- given the chapter's own sequencing (Henry already gone, Wood established as the new Stone Mountain 6 from the chapter's first page), this is almost certainly Wood, not Henry, but the text uses only the callsign 'Stone Mountain 6' throughout this passage."
+    },
+    {
+      "date": "~mid-Feb 1969 (Tet)",
+      "type": "truce_violation_minor_contact",
+      "location": "the same clearing used for the Blues recovery, D Co AO",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "jon-jones (no slug -- stub candidate)"],
+      "page_ref": "p12",
+      "confidence": "high",
+      "notes": "During the nominal 24-hour Tet truce, a uniformed NVA soldier was spotted and fired a single (harmless) round at D Co's position; FO Jon Jones's requested fire mission was denied twice (first by an unnamed radio operator, then explicitly by an artillery captain citing the truce) despite Colavita personally reporting a truce violation. No further contact that day or night. Minor, not event-page-worthy on its own -- useful mainly as an enrichment beat for colavita-henry.md and Jones's eventual profile."
+    },
+    {
+      "date": "undated, ~early 1969",
+      "type": "wia_accidental_or_undetermined",
+      "location": "on or near LZ Saint Barbara",
+      "units": ["D Co, 2/8 Cav (attached FO)"],
+      "people": ["jon-jones (no slug -- stub candidate)"],
+      "page_ref": "p15 (aftermath only)",
+      "confidence": "medium (cause/circumstances missing from this capture -- see _meta.gap_note)",
+      "notes": "2LT Jon Jones wounded by a phosphorous grenade; cause/circumstances not captured in this batch of screenshots (a real page gap, per Michael). Only the aftermath survives: Colavita learned of it after Jones had already been medevaced, and the two didn't reunite until a 1999 Las Vegas reunion. Not clearly event-page-worthy given how little is known, but worth flagging in case a future chapter or source fills the gap -- and a strong argument for finally building a Jon Jones stub profile even with this one detail missing, given how much else is now known about him across three chapters."
+    },
+    {
+      "date": "undated, ~Feb-Mar 1969",
+      "type": "administrative_award_ceremony",
+      "location": "resupply LZ near the Feb 4 night-ambush site",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry"],
+      "page_ref": "p7",
+      "confidence": "high",
+      "notes": "An 'impact award' ceremony (1st Cav Division program for presenting awards promptly after the actions that earned them) held at a resupply LZ, attended by Wood and Bramlett ('Stone Mountain 6 and 3'), following an earlier night's trail ambush (14 NVA killed via Claymores/grenades/falling trees -- the ambush this ceremony recognizes; distinct from and preceding the Feb 4-5 events above). Colavita notes the program's paperwork often failed to materialize as official orders, requiring later Board for Correction of Military Records appeals -- segues into the unnamed-sergeant BSM/Purple Heart anecdote (see personnel, not a stub-able entry). Not event-page-worthy; a policy/color vignette."
+    },
+    {
+      "date": "April 1969",
+      "type": "relocation_and_base_construction",
+      "location": "new AO near the soon-to-be-built LZ Carolyn",
+      "units": ["D Co, 2/8 Cav", "battalion engineers"],
+      "people": ["colavita-henry"],
+      "page_ref": "p16, p17",
+      "confidence": "high",
+      "notes": "D Co airlifted from Saint Barbara's airstrip to a clearing a couple of kilometers from the future LZ Carolyn site, ~10km north of Saint Barbara, near Cambodia -- an area with no prior major American presence beyond a small, already-vacated Special Forces camp. First night in the new AO: 3 NVA killed (apparent R&R-bound personnel, papers/personal weapons only, moving toward Cambodia). Company operated in the bush for about a month while engineers built the LZ, then was called in near month's end to defend the newly completed perimeter -- described in detail (staggered bunkers, 45-degree gun ports, hardened TOC, new latrines). Chapter closes here. See locations above for the likely Operation Montana Scout connection."
+    }
+  ]
+}

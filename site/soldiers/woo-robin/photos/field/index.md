@@ -50,7 +50,7 @@ photos:
       
     caption_short: "Capt. Wolf Kutter (right) and a trooper enjoying some R&R at Vung Tao"
     credit: "Photographed by Robin Woo · 1971"
-    photographer: ""
+    photographer: "woo-robin"
     date: 
     date_known: false
     event: ""

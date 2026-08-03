@@ -160,7 +160,10 @@ build: **312 files**.
 ---
 
 ## OUTSTANDING / CARRY-FORWARD
-- **REDO THE UNIT HISTORY PAGE (next major task).** Per the Session-71 design discussion, the
+- **REDO THE UNIT HISTORY PAGE — ✅ DONE in Session 72** (tabbed, type-grouped Model A;
+  built, deployed, live). See `Handoff-Session72-UnitHistory-Tabs-and-Newspaper-Sweep.md`.
+  Original note kept below for context:
+- **(was) REDO THE UNIT HISTORY PAGE (next major task).** Per the Session-71 design discussion, the
   intended direction is to bring Unit History in line with the new Locations/profile treatment —
   a tabbed surface (mirroring the soldier/location shell) or a card-hub-to-landing-pages model,
   with a chronological default view. This session only *added* the Morale & Recreation type to

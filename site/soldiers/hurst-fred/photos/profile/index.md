@@ -12,6 +12,7 @@ photos:
     date_known: false
     event: ""
     quality:
-    contains: []
+    contains:
+      - hurst-fred
     tagged: []
 ---

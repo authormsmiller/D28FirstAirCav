@@ -106,11 +106,22 @@ timeline:
     headline: "Killed in action — December 4, 1968"
     body: >
       SSG Williams was killed in ground combat during Operation Sheridan Sabre,
-      Binh Long Province, III Corps. He was 22 years old. He died alongside
-      SP4 Willie Gerald Jones and SP4 Donald Stoltz — all three were D Company,
-      2/8 Cavalry. The specific action has not yet been confirmed against unit
-      records. See the <a href="/events/operation-sheridan-sabre-1968-12-04/">event page</a>
-      for operational context.
+      Binh Long Province, III Corps. He was 22 years old. Per his company
+      commander CPT Henry Colavita's memoir, D Company was closing in on a
+      group of NVA that Charlie Company believed wanted to surrender (Chieu
+      Hoi) near a captured enemy cache, in an area the men had just nicknamed
+      "Chicken Valley." The NVA had no intention of surrendering and
+      ambushed the approaching White Skull platoon soldiers, killing Williams
+      alongside SP4 Willie Gerald Jones and SP4 Donald Stoltz before the
+      ambushing NVA group was itself wiped out. Colavita, reflecting on the
+      day's losses, wrote: "Sergeant Williams, for example, was the squared
+      away squad leader who asked me about being reassigned to the rear. He
+      was the one with a wife, a son and a college degree and a bright
+      future. His wife was now a widow, his son was fatherless, his college
+      degree was worthless and his bright future was no longer a
+      possibility." See the <a href="/events/operation-sheridan-sabre-1968-12-04/">event
+      page</a> and the <a href="/documents/colavita-henry/colavita-henry-verbal-account-dec4-1968/">commander's
+      full account</a> for detail.
 
 # ── PHOTOS ────────────────────────────────────
 photo_intro: >
@@ -122,6 +133,7 @@ photos:
 
 # ── DOCUMENTS ──────────────────────────────────
 documents:
+  - colavita-henry-verbal-account-dec4-1968
 
 # ── RELATED ───────────────────────────────────
 brothers:
@@ -131,7 +143,7 @@ related_events:
 
 # ── ADMIN ───────────────────────────────────────
 date_added: 2026-06-12
-last_updated: 2026-06-12
+last_updated: 2026-07-17
 contributed_by:
 notes: >
   KIA 1968-12-04 — ground combat. Skull Platoon, D/2-8 Cav. Event: operation-sheridan-sabre-1968-12-04.
@@ -145,5 +157,13 @@ notes: >
   Decorations unconfirmed (HS probability-based): Combat Infantryman Badge, Marksmanship Badge, National Defense Service Medal, Vietnam Campaign Medal, Vietnam Service Medal, Army Presidential Unit Citation, Vietnam Gallantry Cross.
   NOTE: Check Virtual Wall individual soldier page for additional confirmed
   decorations (Bronze Star, Air Medal, etc.) not captured in HS — add manually.
+  CIRCUMSTANCES OF DEATH (2026-07-17, per CPT Henry Colavita's memoir, excerpted directly
+  by Michael): killed in a feigned Chieu Hoi ambush during a link-up with Charlie Company
+  at a captured enemy cache — see events/operation-sheridan-sabre-1968-12-04 and
+  documents/colavita-henry/colavita-henry-verbal-account-dec4-1968. Confirms "White
+  Skull" as the platoon's full name, and squares with the existing Virtual Wall tribute
+  noting Williams as 2nd squad team leader: per Colavita, Williams was the "squared away
+  squad leader" who had asked about a rear reassignment, and was married with a son and a
+  college degree.
 
 ---

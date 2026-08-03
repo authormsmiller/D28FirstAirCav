@@ -50,6 +50,16 @@ related_events:
   - slug: operation-kentucky-cougar-1969
     relationship: subordinate-operation
     note: A constituent operation of Toan Thang III (initiated 24 Jun 1969).
+  - slug: war-zone-c-border-operations-1969
+    relationship: followed-by
+    note: >
+      Toan Thang III ended October 31, 1969. The 1st Brigade continued the same interdiction
+      mission in War Zone C without a new formal operation designation through April 30, 1970.
+  - slug: operation-cambodian-incursion-1970
+    relationship: followed-by
+    note: >
+      The 1970 Cambodian Incursion carried the same War Zones C/D fight across the border into
+      the enemy's Cambodian sanctuaries the following year.
 
 open_questions:
   - id: oq-01

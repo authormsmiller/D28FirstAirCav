@@ -111,7 +111,7 @@
 <main>
 
 {# ─────────── HERO ─────────── #}
-{% set typeLabels = { "fsb": "Fire Support Base", "lz": "Landing Zone", "relay": "Relay Station", "r-and-r": "R&R / Stand-down", "base-camp": "Base Camp", "other": "Position" } %}
+{% set typeLabels = { "fsb": "Fire Support Base", "lz": "Landing Zone", "relay": "Relay Station", "r-and-r": "R&R / Stand-down", "base-camp": "Base Camp", "voyage": "Troop Ship", "other": "Position" } %}
 <div class="loc-hero">
   <div class="loc-type-kicker">{{ typeLabels[type] or "Position" }}{% if location and location.province %} · {{ location.province }}{% endif %}</div>
   <h1 class="loc-name">{{ display_name or title }}</h1>
@@ -142,25 +142,31 @@
     {% endif %}
   </div>
 
-  {% if related_bases and (related_bases.predecessor or related_bases.successor or related_bases.split_from) %}
+  {% if related_bases and (related_bases.predecessor or related_bases.successor or related_bases.split_from or related_bases.split_into) %}
     {% macro baseLink(s) %}{% set b = null %}{% for l in collections.locations %}{% if l.data.slug == s %}{% set b = l.data %}{% endif %}{% endfor %}{% if b %}<a href="{{ b.permalink }}">{{ b.short_name or b.display_name }}</a>{% else %}{{ s | replace("fsb-", "") | replace("lz-", "") | replace("-", " ") | title }}{% endif %}{% endmacro %}
     <div class="loc-chain">
-      {% if related_bases.split_from %}Split from {{ baseLink(related_bases.split_from) }} · {% endif %}
+      {% if related_bases.split_from %}Split from {{ baseLink(related_bases.split_from) }}{% if related_bases.predecessor or related_bases.successor or related_bases.split_into %} · {% endif %}{% endif %}
       {% if related_bases.predecessor %}Succeeded {{ baseLink(related_bases.predecessor) }}{% endif %}
       {% if related_bases.predecessor and related_bases.successor %} · {% endif %}
       {% if related_bases.successor %}Replaced by {{ baseLink(related_bases.successor) }}{% endif %}
+      {% if related_bases.split_into and related_bases.split_into.length %}{% if related_bases.split_from or related_bases.predecessor or related_bases.successor %} · {% endif %}Split into {% for b in related_bases.split_into %}{{ baseLink(b) }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
     </div>
   {% endif %}
 </div>
 
-{# ─────────── TAB BAR ─────────── #}
+{# ─────────── TAB BAR ───────────
+   Every tab below is always shown, including with a (0) count — a signal
+   that the archive still needs something for this position, same as an
+   empty tab on a soldier profile. Previously these hid entirely when empty;
+   now they render with an empty-state message instead (see each panel). #}
+{% set presentCount = confirmed.length + circumstantial.length %}
 <div class="tabs-bar">
   <div class="tab active" data-tab="overview">Overview</div>
-  {% if locAnecdotes.length %}<div class="tab" data-tab="accounts">Accounts <span style="opacity:.55">({{ locAnecdotes.length }})</span></div>{% endif %}
-  {% if confirmed.length or circumstantial.length %}<div class="tab" data-tab="present">Soldiers present</div>{% endif %}
-  {% if locEvents.length %}<div class="tab" data-tab="events">Events here <span style="opacity:.55">({{ locEvents.length }})</span></div>{% endif %}
-  {% if locPhotos.length %}<div class="tab" data-tab="photos">Photos <span style="opacity:.55">({{ locPhotos.length }})</span></div>{% endif %}
-  {% if locDocs.length %}<div class="tab" data-tab="documents">Documents <span style="opacity:.55">({{ locDocs.length }})</span></div>{% endif %}
+  <div class="tab" data-tab="accounts">Accounts <span class="tab-count">({{ locAnecdotes.length }})</span></div>
+  <div class="tab" data-tab="present">Soldiers present <span class="tab-count">({{ presentCount }})</span></div>
+  <div class="tab" data-tab="events">Events here <span class="tab-count">({{ locEvents.length }})</span></div>
+  <div class="tab" data-tab="photos">Photos <span class="tab-count">({{ locPhotos.length }})</span></div>
+  <div class="tab" data-tab="documents">Documents <span class="tab-count">({{ locDocs.length }})</span></div>
 </div>
 
 {# ─────────── OVERVIEW ─────────── #}
@@ -196,8 +202,8 @@
 </div>
 
 {# ─────────── ACCOUNTS ─────────── #}
-{% if locAnecdotes.length %}
 <div class="tab-content" id="tab-accounts" style="display:none">
+  {% if locAnecdotes.length %}
   <p class="loc-section-intro">First-hand stories tied to this position.</p>
   <div class="doc-list">
   {% for a in locAnecdotes %}
@@ -212,12 +218,17 @@
     </a>
   {% endfor %}
   </div>
+  {% else %}
+  <div class="tab-empty">
+    No accounts on record for this position yet.<br>
+    <a href="/contribute/">Have a story tied to this location? Tell us →</a>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
 {# ─────────── SOLDIERS PRESENT ─────────── #}
-{% if confirmed.length or circumstantial.length %}
 <div class="tab-content" id="tab-present" style="display:none">
+{% if confirmed.length or circumstantial.length %}
 
   {% macro soldierCard(s) %}
     {% set op = null %}
@@ -255,12 +266,17 @@
     </details>
   {% endif %}
 
-</div>
+{% else %}
+  <div class="tab-empty">
+    No soldiers confirmed or suspected present at this position yet.<br>
+    <a href="/contribute/">Know who served here? Tell us →</a>
+  </div>
 {% endif %}
+</div>
 
 {# ─────────── EVENTS HERE ─────────── #}
-{% if locEvents.length %}
 <div class="tab-content" id="tab-events" style="display:none">
+  {% if locEvents.length %}
   <p class="loc-section-intro">Documented actions that took place at this position.</p>
   <div class="doc-list">
   {% for e in locEvents %}
@@ -274,12 +290,17 @@
     </a>
   {% endfor %}
   </div>
+  {% else %}
+  <div class="tab-empty">
+    No events on record at this position yet.<br>
+    <a href="/contribute/">Know of an action here? Tell us →</a>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
 {# ─────────── PHOTOS ─────────── #}
-{% if locPhotos.length %}
 <div class="tab-content" id="tab-photos" style="display:none">
+  {% if locPhotos.length %}
   <script>
     var LOC_PHOTO_SLIDES = [
       {% for p in locPhotos %}
@@ -300,12 +321,17 @@
       </div>
     {% endfor %}
   </div>
+  {% else %}
+  <div class="tab-empty">
+    No photographs on record for this position yet.<br>
+    <a href="/contribute/">Have a photo to contribute? →</a>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
 {# ─────────── DOCUMENTS ─────────── #}
-{% if locDocs.length %}
 <div class="tab-content" id="tab-documents" style="display:none">
+  {% if locDocs.length %}
   <div class="doc-list">
   {% for d in locDocs %}
     <a class="doc-item" href="/documents/{{ d.data.path or d.fileSlug }}/" style="text-decoration:none;">
@@ -318,8 +344,13 @@
     </a>
   {% endfor %}
   </div>
+  {% else %}
+  <div class="tab-empty">
+    No documents on record for this position yet.<br>
+    <a href="/contribute/">Have something to contribute? →</a>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
 </main>
 

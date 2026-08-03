@@ -102,7 +102,9 @@ open_questions:
       places him in Cat Platoon (original source not yet relocated — treat as unconfirmed); his
       platoon is otherwise not established. The company was split across firebases (Mace /
       Fontaine) in this period. The 2/8 Cav daily staff journal (NARA RG 472) should show the
-      company's positions and any sick-evac.
+      company's positions and any sick-evac. Researcher note: in March 1971, 2/8 Cav was under
+      3rd Brigade, 1st Cavalry Division (division stood down 26 March; 3rd Brigade Separate did
+      not form until 30 April). Records may be filed under 3rd Brigade, 1st Cav Div in RG 472.
   - id: oq-03
     publish: false
     question: >

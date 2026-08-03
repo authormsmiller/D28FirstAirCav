@@ -28,9 +28,11 @@ units:
   primary:
     - slug: d-co-2-8-cav
       name: D Company, 2nd Battalion, 8th Cavalry (Airmobile)
+      commander: linton-samuel
       role: >
         Action opened with a D Co reconnaissance element and drew in the battalion;
-        sustained three KIA on this date.
+        sustained three KIA on this date. Commanded by Capt. Samuel Linton, who prepared
+        and signed the battalion after-action report for this action two days later.
   supporting:
     - name: A Company, 2nd Battalion, 8th Cavalry
       role: >
@@ -73,7 +75,11 @@ casualties:
     All three confirmed D Co, 2/8 Cav, 1st Cav Div, KIA Nov 4, 1965, via the Virtual
     Wall. The Doc Wilson account confirms "multiple KIAs that day and into the
     evening," consistent with this cluster. Casualty type (hostile/ground) is
-    consistent with the CIB and Purple Heart awards.
+    consistent with the CIB and Purple Heart awards. The 2/8 Cav battalion AAR for the
+    action (KIA/AA Rpt 4Nov65.pdf) names all three — Coffey, Hill, and Hamill — among its
+    4 KIA (the fourth being a South Vietnamese interpreter) and recommends each for the
+    Bronze Star w/V posthumously, corroborating the previously-unconfirmed Bronze Star
+    notes on their profiles.
 
 sources:
   - "Virtual Wall — SGT Richard A. Coffey (virtualwall.org/dc/CoffeyRA01a.htm)"
@@ -84,7 +90,8 @@ sources:
   - "Honor States — Richard A. Coffey (lists Tay Ninh Province — disputed)"
   - "Wikipedia — Pleiku Campaign / Operation Long Reach / Operation All the Way (context)"
   - "Wikipedia — Siege of Plei Me (Hill 732; 33rd Regiment movements Nov 4)"
-  - "Combat Operations After Action Report, \"The Pleiku Campaign,\" HQ 1st Cavalry Division (Airmobile), 23 Oct – 26 Nov 1965 — 4 Nov operations summary (2/8 Cav: Recon plt + A/C Co, Position \"Cavalair,\" grid ZA978050; Hill 732 = YA885106); copy hosted under Documents (cf. DTIC AD0855112)"
+  - "Combat Operations After Action Report, \"The Pleiku Campaign,\" HQ 1st Cavalry Division (Airmobile), 23 Oct – 26 Nov 1965 — 4 Nov operations summary (2/8 Cav: Recon plt + A/C Co, Position \"Cavalair,\" grid ZA978050; Hill 732 = YA885106); copy hosted under Documents (cf. DTIC AD0855112). NOTE: the ORLL text reads \"leaving 12 captives and 4nKIA on the battlefield\" — the \"4n\" is an OCR artifact, ambiguous between \"4 NVA KIA\" and a mangled \"14 KIA.\" The narrative uses 14; verify against the clean source page when possible."
+  - "After-Action Report, 2nd Battalion (Airborne), 8th Cavalry — action of 4 Nov 65 (1015–1900), vic grid 979049 (\"Cavalair\"); prepared 6 Nov 65, signed Capt. [G.] Linton, CO Co B. The battalion-level companion to the division AAR: opens with the Recon patrol (Lt Ward) from Cavalair; commits Buckeye → Flanker Right → Right Guard (Co A) → Co C; enemy assessed as a \"company-plus PAVN unit in a rest area.\" Names 4 KIA (Sgt Coffey, Cpl Hill, PFC Hamill, + a South Vietnamese interpreter) and 9 WIA including D Co medic SP/4 \"Doc\" Wilson; recommends the Bronze Star w/V posthumously for Coffey, Hill, and Hamill. Source PDF KIA/AA Rpt 4Nov65.pdf; OCR transcript sources/aar-2-8cav-4nov65-OCR.md"
 
 related_events:
   - slug: operation-all-the-way-1965
@@ -121,16 +128,26 @@ open_questions:
       hill-eddie) and witness SP4 David "Doc" Wilson (wilson-david). Hamill has a
       Virtual Wall photograph that can seed his profile.
 
-last_updated: 2026-06-12
+last_updated: 2026-07-10
 notes: >
   Research scaffold — created from a same-day KIA cluster, anchored to Hill 732 via a
   corroborating A Co casualty record, and substantially corroborated by a first-person
   D Co medic account (Doc Wilson, Trooper's Tale, 2023). Confirmed: the three names,
   their unit, and the date (Nov 4, 1965). Strongly supported: the Hill 732 / Pleiku
   setting, the 33rd Regiment as the enemy, and the battalion-action framing.
-  Unconfirmed: exact company scheme of maneuver and the landing-zone names. This is
-  among the division's earliest combat losses — the 1st Cav deployed to Vietnam in
+  This is among the division's earliest combat losses — the 1st Cav deployed to Vietnam in
   September 1965, roughly seven weeks before this action.
+  2026-06-30: added the 2/8 Cav battalion-level AAR (KIA/AA Rpt 4Nov65.pdf; OCR at
+  sources/aar-2-8cav-4nov65-OCR.md; document page documents/unit/aar-2-8cav-4nov65), which
+  supplies the company scheme of maneuver, names the 4 KIA (Coffey/Hill/Hamill + a SVN
+  interpreter) and 9 named WIA, recommends posthumous Bronze Star w/V for the three, and
+  confirms Capt. Samuel Linton as CO Co D (built as soldier profile linton-samuel; Tier 3
+  company-command link to the three KIA and to Wilson). The AAR's opening Recon element
+  supports the D Co attribution. Residual: the AAR fixes the contact at "Cavalair" (979049),
+  consistent with Hill 732 (YA885106) being the nearby enemy CP, not the 2/8 contact site.
+  2026-07-10: flagged enemy casualty count discrepancy in the ORLL source entry — the OCR text
+  reads "12 captives and 4nKIA on the battlefield"; "4n" is ambiguous (OCR noise for "4 NVA"
+  or a mangled "14"). Narrative currently reads "14 dead." Verify against clean source scan.
 ---
 
 ## November 4, 1965 — D Company's first recorded losses
@@ -198,6 +215,12 @@ That position is almost certainly the **"LZ Cavalier"** to which Doc Wilson says
 **A note on the company attribution.** The after-action report names the engaged 2/8 elements as the **battalion Reconnaissance platoon, A Company, and C Company**; it does not separately name D Company in the 4 November entry, and gives the friendly casualty figure only in aggregate. The three men commemorated here are recorded on the Vietnam Veterans Memorial as **D Company, 2/8 Cav**, and the D Co medic Doc Wilson describes the fight as opening with "a Recon platoon from Delta Co." We retain their D Company attribution; what is certain is that they were present, engaged, and killed on 4 November 1965. The difference between the report's company-level naming and the casualty records is noted, not resolved.
 
 The full report is linked under the Documents tab: **[Pleiku Campaign After Action Report](/documents/unit/pleiku-campaign-aar-1965/).**
+
+### The battalion's own after-action report
+
+The division summary now has a **battalion-level companion**: the **2nd Battalion, 8th Cavalry's own after-action report** for this action, prepared 6 November 1965 and signed by **[Capt. Samuel Linton](/soldiers/linton-samuel/), commanding officer of Company D**. It carries the company-and-platoon detail the division report omits — and it speaks directly to the company-attribution question above: the action **opens with the Reconnaissance patrol (Lt Ward)**, then feeds in "Buckeye" (FSG Marshall), "Flanker Right" ([Lt Trapnell](/soldiers/trapnell-franklin/), the D Co XO, with 2nd Plt A Co), "Right Guard" (Capt McIlrey, A Co), and finally C Company. The enemy is assessed as a **company-plus PAVN force in a rest area**.
+
+Crucially, the battalion report names the day's dead — **SGT Coffey, CPL Hill, PFC Hamill**, and a South Vietnamese interpreter — and the wounded, including D Co medic **SP/4 David "Doc" Wilson**; and it recommends the **Bronze Star with "V"** for each of the three (posthumously) and for Wilson. That the report's opening element is a Reconnaissance patrol — which Doc Wilson independently calls "a Recon platoon from Delta Co" — supports the D Company attribution the casualty records carry. The report is linked under Documents: **[After-Action Report — 2/8 Cavalry, 4 November 1965](/documents/unit/aar-2-8cav-4nov65/).**
 
 ### Operational context: Operation All the Way / Long Reach
 

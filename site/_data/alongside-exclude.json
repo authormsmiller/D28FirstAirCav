@@ -1,0 +1,15 @@
+{
+  "_comment": "Slugs excluded from the same-tour / same-company auto-overlap generator (build_alongside_overlap.py). Two reasons: 'attached' = not organic D Co (different unit; would be a wrong 'same company' link); 'command' = battalion-level leaders who belong to the command-chain axis, not company-tour overlap. Maintained via review: each new profile, the generator surfaces overlap candidates for Michael to inspect; confirmed attached men get added here. NOT yet user-confirmed where noted.",
+  "attached": {
+    "fanning-martin": "229th Assault Helicopter Bn (aviation) — supported D Co, not organic",
+    "jeffries-gabriel": "229th Assault Helicopter Bn (aviation) — supported D Co, not organic",
+    "ahern-raymond": "C/2-19 Field Artillery — direct-support artillery, not organic; held draft"
+  },
+  "command": {
+    "hemphill-john": "LTC, 2/8 Cav battalion commander (1965–66; later MG)",
+    "bacon-wg": "LTC, 2/8 Cav battalion commander",
+    "blagg-thomas": "LTC/COL, 2/8 Cav battalion commander",
+    "tackaberry-thomas": "LTC, 2/8 Cav battalion commander",
+    "dashiell-john": "LTC, 2/8 Cav battalion commander"
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "_meta": {
+    "artifact": "cross-reference-candidates",
+    "generated_by": "scripts/cross-reference-engine.cjs",
+    "from_digest": "site/sources/orll/1967/AD0385642.digest.json",
+    "document": "AD0385642",
+    "period": [
+      "1967-02-01",
+      "1967-04-30"
+    ],
+    "near_days_window": 7,
+    "kia_rows_skipped_unknown_date": 0,
+    "note": "Deterministic joins only (date+battalion match, casualty count diff, gazetteer name resolution). Operations / personnel / awards / contact-event proposals and all narrative interpretation still require a human/Claude pass -- see the source-digest skill Step 3-5."
+  },
+  "kia_in_range": [
+    {
+      "slug": "burton-william",
+      "name": "SGT William Burton Jr.",
+      "dod": "1967-03-01",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "johnson-robert-edward",
+      "name": "CPL Robert Edward Johnson",
+      "dod": "1967-03-01",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "van-gieson-robert",
+      "name": "PFC Robert Lester Van Gieson",
+      "dod": "1967-03-12",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "johnson-michael-neal",
+      "name": "PFC Michael Neal Johnson",
+      "dod": "1967-03-18",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 8,
+          "date": "1967-03-18",
+          "units": [
+            "Vietnamese Marine Corps TF (valley floor)",
+            "1st Cav Division elements (mountain screen, east/west of valley)"
+          ],
+          "us_kia": null,
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "Vietnamese Marine Corps TF (valley floor)",
+          "1st Cav Division elements (mountain screen, east/west of valley)"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "middleton-clayton",
+      "name": "SP4 Clayton Middleton",
+      "dod": "1967-03-18",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 8,
+          "date": "1967-03-18",
+          "units": [
+            "Vietnamese Marine Corps TF (valley floor)",
+            "1st Cav Division elements (mountain screen, east/west of valley)"
+          ],
+          "us_kia": null,
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "Vietnamese Marine Corps TF (valley floor)",
+          "1st Cav Division elements (mountain screen, east/west of valley)"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "willis-john",
+      "name": "SSG John Henry Willis",
+      "dod": "1967-03-18",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 8,
+          "date": "1967-03-18",
+          "units": [
+            "Vietnamese Marine Corps TF (valley floor)",
+            "1st Cav Division elements (mountain screen, east/west of valley)"
+          ],
+          "us_kia": null,
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "Vietnamese Marine Corps TF (valley floor)",
+          "1st Cav Division elements (mountain screen, east/west of valley)"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "woodall-ralph",
+      "name": "PFC Ralph Traylor Woodall Jr.",
+      "dod": "1967-03-18",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 8,
+          "date": "1967-03-18",
+          "units": [
+            "Vietnamese Marine Corps TF (valley floor)",
+            "1st Cav Division elements (mountain screen, east/west of valley)"
+          ],
+          "us_kia": null,
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "Vietnamese Marine Corps TF (valley floor)",
+          "1st Cav Division elements (mountain screen, east/west of valley)"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "gundolf-steven",
+      "name": "PFC Steven Dean Gundolf",
+      "dod": "1967-03-30",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 9,
+          "date": "1967-03-30",
+          "units": [],
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        []
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "williams-vance",
+      "name": "PFC Vance George Williams",
+      "dod": "1967-04-02",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    }
+  ],
+  "casualty_reconciliation": [],
+  "locations": [
+    {
+      "raw_name": "LZ English",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 1,
+          "date": "1967-02-06",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Charles",
+      "resolved_slug": "lz-charles",
+      "resolved_display": "LZ Charles",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    },
+    {
+      "raw_name": "Camp Radcliff",
+      "resolved_slug": "fb-camp-radcliff",
+      "resolved_display": "FB Camp Radcliff",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    },
+    {
+      "raw_name": "LZ Hammond",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Two Bits",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Pony",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ English (assessed target)",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 2,
+          "date": "1967-02-11",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "vic Tam Quan (BS 9013)",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 7,
+          "date": "1967-03-19",
+          "units": [
+            "1st Brigade (unnamed battalion)"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Camp Radcliff / LZ Charles",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 11,
+          "date": "1967-04-08",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    }
+  ]
+}

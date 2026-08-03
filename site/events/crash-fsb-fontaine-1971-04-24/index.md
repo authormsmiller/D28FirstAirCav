@@ -54,6 +54,14 @@ contains:
       contact — if you are connected to the McCoy family, please reach out.
 
 tagged:
+  - slug: mcgrew-howard
+    name: SP4 Howard McGrew
+    note: >
+      His own timeline places him at FSB Fontaine 23–26 Apr 71, spanning
+      this crash date — he was at the base itself, not merely a
+      corroborating source elsewhere. His calendar records "Downed
+      chopper" on 24 Apr; his entries don't otherwise describe the crash
+      or its aftermath.
   - slug: miller-marvin-dale
     name: SGT Marvin D. Miller
     note: D Co. member; presence at crash site unconfirmed; photographs of aftermath attributed to him

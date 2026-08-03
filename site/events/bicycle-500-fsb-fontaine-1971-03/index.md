@@ -23,6 +23,13 @@ images:
     caption_short: "CAVALAIR '500' brief, 2 Mar 1971"
     credit: "CAVALAIR (1st Air Cavalry Division weekly), 2 March 1971"
     date: "1971-03-02"
+  - src: "/media/photos/soldiers/mcgrew-howard/locations/fsb-fontaine/1971-fontaine-bicycle-01.jpg"
+    caption: >
+      A bicycle leaning against ammunition crates inside FSB Fontaine, in a photograph from
+      Howard McGrew's collection — visual corroboration that bicycles were on the firebase.
+    caption_short: "A bicycle at FSB Fontaine (McGrew collection)"
+    credit: "From the Collection of Howard McGrew"
+    date: "1971"
 
 units:
   primary:
@@ -54,6 +61,13 @@ archivist_notes:
     Built from the CAVALAIR 2 March 1971 issue (Marvin-era, not in the mirror set). Logged in
     sources/cavalair/2-8-cav-index.md as a light feature with high contextual value for Marvin's
     window. Parked since Session 70 for want of a Unit-History home; placed here at FSB Fontaine.
+  mcgrew_note: >
+    2026-07-24: Howard McGrew removed from `tagged:` — his own timeline shows he was hospitalized
+    with mononucleosis (17 Feb–24 Feb 71) and remained on a medical profile at FB Mace through
+    3 Mar 71, not returning to FSB Fontaine until 4 Mar, after this item's 2 March dateline. His
+    bicycle photo (in the images above and on soldiers/mcgrew-howard) is still credited to him —
+    it's undated within his broader Feb–May 71 Fontaine occupancy and isn't tied to this specific
+    date — but he shouldn't be tagged as present for this particular feature.
 ---
 
 ## Summary
@@ -64,3 +78,5 @@ the firebase berm**, the field broken into **five classes by rank** (E-4 and bel
 the competition stayed even.
 
 The full item is transcribed from the clipping as the document **[News in Brief: The "500" — FSB Fontaine](/documents/unit/cavalair-500-fontaine/)**.
+
+A photograph from **Howard McGrew's** collection shows a bicycle leaning against the ammunition crates inside the firebase — quiet corroboration of the races, even though the veterans do not specifically recall them. See it on **[FSB Fontaine](/locations/fsb-fontaine/#photos)**.

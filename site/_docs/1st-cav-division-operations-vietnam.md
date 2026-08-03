@@ -36,12 +36,16 @@ Status: ✅ archive has an operation page · 🟡 partial · ⬜ gap (no page ye
   the division's other 1966 Bình Định operations — confirm which involved 2/8 Cav.)*
 - **Next:** cluster the five 1966 KIA dates from the KIA list against these operations.
 
-## 1967 — ⬜ gap (18 organic D Co KIA — highest early-year loss)
-- **Operation Pershing** (12 Feb 1967 – Jan 1968) — large-scale search-and-destroy of PAVN/VC base
-  areas in Bình Định, II Corps (synopsis: 5,400 enemy killed, 2,000 captured). The division's
-  dominant 1967 operation; almost the entire year.
-- **Next:** the 18 KIA of 1967 most likely fall under Pershing — confirm and build. This is the
-  biggest single gap in the archive.
+## 1967 — ✅ covered (Tier 2 frames built; Tier 1 clusters pending) (18 organic D Co KIA — highest early-year loss)
+- **Operation Pershing** (12 Feb 1967 – 19 Jan 1968) — large-scale search-and-destroy of PAVN/VC base
+  areas in Bình Định, II Corps (~5,400 enemy killed, 2,000 captured; 852 US KIA). The division's
+  dominant 1967 operation; almost the entire year. **BUILT (S82):** `operation-pershing-1967` —
+  year umbrella; 2/8 Cav role confirmed via firebase-by-year data (companies at ~26 Binh Dinh LZs).
+- **Battle of Tam Quan** (6–20 Dec 1967) — 1st Brigade vs PAVN 22d Regiment near Tam Quan/Dai Dong;
+  **BUILT (S82):** `battle-of-tam-quan-1967` (sub-op of Pershing), frames the 11 Dec cluster
+  (Follett, Paulson; carried in its KIA block, profiles pending).
+- **Next:** build the remaining Tier 1 cluster event pages + soldier profiles (Mar–Sep 1967) and wire
+  each up to Pershing.
 
 ## 1968 — 🟡 partial (16 organic D Co KIA)
 - **Operation Jeb Stuart** (Jan 1968, I Corps) — the division had moved north.
@@ -59,12 +63,17 @@ Status: ✅ archive has an operation page · 🟡 partial · ⬜ gap (no page ye
 - Pages: `operation-toan-thang-iii-1969` + the five sub-op pages; `trail-ambush-hau-nghia-1969-05-25`;
   `river-crossing-song-be-1969-10-08`. Primary: division ORLL AD0506273 (qtr ending 31 Jul 1969).
 
-## 1970 — ⬜ gap (10 organic D Co KIA)
-- **Cambodian Incursion** (1 May – 29 Jun 1970) — the division's defining 1970 operation, a
-  cross-border offensive into the base areas in Cambodia (III Corps / cross-border). "First into
-  Cambodia."
-- **Next:** cluster the ten 1970 KIA dates; the incursion is a strong candidate for a Tier 2 page
-  given how distinct that mission was.
+## 1970 — ✅ covered (10 organic D Co KIA)
+- **Cambodian Incursion** (1 May – 30 Jun 1970; officially Toan Thang 43/45/46) — the division's
+  defining 1970 operation and the first large-scale U.S. airmobile assault outside South Vietnam.
+  Task Force Shoemaker (3rd Bde, 1st Cav + 11th ACR + 3rd ARVN Abn) assaulted the Fishhook; the
+  campaign overran "The City" and "Rock Island East" and a chain of caches. **2/8 Cav role
+  confirmed:** CMH airmobility ch. XI names **D Company, 2/8 Cav** (communications-supply depot
+  cache, 25 May–9 Jun) and **A Company** (automotive parts, 25 May); firebase data places 2/8 Cav
+  at FBs Gonder and Picatinny East inside Cambodia. 2/8 Cav was a **3rd Brigade** battalion.
+- Pages: `operation-cambodian-incursion-1970` (Tier 2 UMBRELLA, NEW).
+- **Next:** cluster the ten 1970 KIA dates into Tier 1 pages and wire them to the incursion frame
+  (RG 472 to pin which fell inside vs. outside the Cambodia window).
 
 ## 1971–72 — ✅ covered (1971: 7 KIA · 1972: 21 KIA)
 - Division colors redeployed to Fort Hood, 1971. The **3rd Brigade, 1st Cavalry Division
@@ -79,7 +88,7 @@ Status: ✅ archive has an operation page · 🟡 partial · ⬜ gap (no page ye
 1. **1967 / Operation Pershing** — 18 KIA, no pages; the largest gap. Pershing ran almost the
    whole year, so nearly every 1967 D Co loss should attach to it.
 2. **1966 / Masher–Crazy Horse–Thayer** — 5 KIA, no pages.
-3. **1970 / Cambodian Incursion** — 10 KIA, no pages.
+3. **1970 / Cambodian Incursion** — 10 KIA. ✅ Tier 2 frame built (`operation-cambodian-incursion-1970`); Tier 1 KIA cluster pages still to build.
 
 For each: build the Tier 1 KIA cluster event pages first (per `kia-profile-playbook.md`), then a
 Tier 2 operation context page once 2/8 Cav's role is confirmed against the ORLLs and RG 472.

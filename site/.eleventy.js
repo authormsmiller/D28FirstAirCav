@@ -4,6 +4,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("**/_notes.md");
   eleventyConfig.ignores.add("**/_template.md");
 
+  // Raw scraped/saved HTML source snapshots under any "documents" folder
+  // (soldier documents/, top-level site/documents/) are provenance copies,
+  // not site templates -- exclude from Nunjucks templating (their embedded
+  // scripts/CSS can contain stray "{#" / "{%" sequences that break the
+  // Nunjucks parser and silently kill the entire build -- "Wrote 0 files"
+  // with no other symptom). NOT passthrough-copied here — same Windows EPERM
+  // issue documented below for assets/; copy manually if a raw snapshot needs
+  // to be served directly (most are provenance-only, not linked from the site).
+  eleventyConfig.ignores.add("**/documents/**/*.html");
+
   // Assets passthrough disabled — _site/assets/ is managed manually to avoid
   // EPERM on Windows when files are held open by the browser or dev server.
   // Run: xcopy /E /Y assets _site\assets to sync manually when assets change.
@@ -153,7 +163,86 @@ module.exports = function(eleventyConfig) {
     return d + " " + MON[m - 1] + " " + y;
   });
 
+  // Convert a variety of date formats used across the archive into a
+  // zero-padded YYYYMMDD string for chronological sorting. Handles:
+  //   ISO: "1971", "1971-04", "1971-04-20" (also unquoted YAML Dates)
+  //   Prose: "24 Jan 1971", "May 1971", "Late Jan 1971", "16–22 Jul 1971"
+  // Falls back to "99999999" (sorts last) rather than throwing or
+  // silently mis-sorting on a format we don't recognize.
+  function timelineSortKey(dateStr) {
+    if (!dateStr) return "99999999";
+    if (dateStr instanceof Date) {
+      const y = dateStr.getUTCFullYear();
+      const m = dateStr.getUTCMonth() + 1;
+      const d = dateStr.getUTCDate();
+      return String(y).padStart(4, "0") + String(m).padStart(2, "0") + String(d).padStart(2, "0");
+    }
+    let s = String(dateStr).trim();
+    if (!s) return "99999999";
+
+    const MONTHS = { jan:1, feb:2, mar:3, apr:4, may:5, jun:6, jul:7, aug:8, sep:9, oct:10, nov:11, dec:12 };
+
+    // ISO: YYYY, YYYY-MM, YYYY-MM-DD
+    let m = s.match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?$/);
+    if (m) {
+      const y = m[1], mo = m[2] || "01", da = m[3] || "01";
+      return y + mo + da;
+    }
+
+    // Strip a leading qualifier ("Late"/"Early"/"Mid") and remember an
+    // approximate day-of-month bias to use for month-only prose dates.
+    let qualifierDay = null;
+    const qm = s.match(/^(late|early|mid)\s+(.*)$/i);
+    if (qm) {
+      const q = qm[1].toLowerCase();
+      qualifierDay = q === "early" ? "05" : (q === "mid" ? "15" : "25");
+      s = qm[2];
+    }
+
+    // Day range, sort on the first day: "16–22 Jul 1971"
+    let pm = s.match(/^(\d{1,2})\s*[-–—]\s*\d{1,2}\s+([A-Za-z]{3,})\s+(\d{4})$/);
+    // Single day: "24 Jan 1971" / "1 Mar 1971"
+    if (!pm) pm = s.match(/^(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})$/);
+    if (pm) {
+      const day = pm[1].padStart(2, "0");
+      const mo = MONTHS[pm[2].slice(0, 3).toLowerCase()];
+      if (mo) return pm[3] + String(mo).padStart(2, "0") + day;
+    }
+
+    // Month + year only: "May 1971"
+    const pm2 = s.match(/^([A-Za-z]{3,})\s+(\d{4})$/);
+    if (pm2) {
+      const mo = MONTHS[pm2[1].slice(0, 3).toLowerCase()];
+      if (mo) return pm2[2] + String(mo).padStart(2, "0") + (qualifierDay || "01");
+    }
+
+    // Last resort: pull any 4-digit year out of the string.
+    const ym = s.match(/(\d{4})/);
+    if (ym) return ym[1] + "0101";
+
+    return "99999999";
+  }
+  eleventyConfig.addFilter("timelineSortKey", timelineSortKey);
+
+  // Merge a soldier's hand-authored timeline entries with the
+  // event-injected entries built at template render time (in soldier.njk)
+  // into one chronologically sorted array. Each entry is tagged with
+  // _source so the template can render the right markup:
+  //   "hand"  — archivist-authored entry (tags/body/source_notice)
+  //   "event" — auto-injected pointer to a matched event page (tier badge)
+  // Previously these rendered as two separate blocks — hand-authored
+  // entries first, then every injected entry after them regardless of
+  // date — which stranded auto-injected entries (e.g. a corroborated-but-
+  // not-directly-authored contact) out of chronological order at the
+  // bottom of the timeline.
+  eleventyConfig.addFilter("mergeTimeline", function(handAuthored, injected) {
+    const hand = (handAuthored || []).map(e => Object.assign({}, e, { _source: "hand", _sortKey: timelineSortKey(e.date) }));
+    const evts = (injected || []).map(e => Object.assign({}, e, { _source: "event", _sortKey: timelineSortKey(e.date) }));
+    return hand.concat(evts).sort((a, b) => a._sortKey < b._sortKey ? -1 : (a._sortKey > b._sortKey ? 1 : 0));
+  });
+
   // Sort collection by a data field, descending. Blanks sort to end.
+  // Supports dot-path keys for nested fields, e.g. "archivist_notes.created".
   eleventyConfig.addFilter("sortByData", function(arr, key) {
     if (!arr || !Array.isArray(arr)) return [];
     const toStr = v => {
@@ -161,9 +250,11 @@ module.exports = function(eleventyConfig) {
       if (v instanceof Date) return v.toISOString().slice(0, 10);
       return String(v);
     };
+    const getPath = (obj, path) =>
+      String(path).split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
     return [...arr].sort((a, b) => {
-      const va = toStr(a.data?.[key]);
-      const vb = toStr(b.data?.[key]);
+      const va = toStr(getPath(a.data, key));
+      const vb = toStr(getPath(b.data, key));
       if (!va && !vb) return 0;
       if (!va) return 1;
       if (!vb) return -1;

@@ -5,13 +5,17 @@ status: published
 publish: true
 type: incident
 
-date: "1971-03"
+date: "1971-03-06"
+date_end: "1971-03-09"
 date_known: false
 date_note: >
-  Reported in CAVALAIR (1st Air Cavalry Division weekly), Vol. 5 No. 10, 10 March 1971. The
-  incident occurred at FSB Fontaine in the days just before — early March 1971 — and spanned at
-  least three nights (105mm rounds the first night; 155mm "two nights later"). Exact dates are
-  not given in the source.
+  Narrowed to 6-9 March 1971. EARLIEST bound: Norm McDonald, who recalls the incident, officially
+  joined the unit on 6 March 1971. LATEST bound: the account ran in CAVALAIR (1st Air Cavalry
+  Division weekly) Vol. 5 No. 10, dated 10 March 1971 — and given period production (physical
+  typesetting and a two-color masthead, requiring an 8-10 hour lead between copy deadline and
+  publication), the incident could not have happened later than the early morning of 9 March 1971
+  and still made press. The source gives no exact date; it spanned at least three nights (105mm
+  rounds the first night; 155mm "two nights later").
 
 location: "FSB Fontaine, Long Khanh Province, RVN"
 location_slug: fsb-fontaine
@@ -38,6 +42,14 @@ contains:
     note: >
       Cat Platoon, 2/8 Cav. Witnessed the incident and contributed the press clipping, with a
       handwritten note: "I was there when this happened. Keep it for me. No one was hurt."
+  - slug: davis-kirk
+    note: >
+      Recalls the incident (Facebook feedback, June 2026) — "I was there."
+  - slug: mcdonald-norm
+    name: "Norm McDonald"
+    note: >
+      Range Platoon (no profile yet). Recalls the incident (Facebook feedback, June 2026).
+      Officially joined the unit 6 March 1971 — the earliest possible date for the incident.
 
 tagged:
   - slug: miller-marvin-dale
@@ -50,12 +62,17 @@ sources:
 
 archivist_notes:
   created: 2026-06-18
+  updated: 2026-06-22
   sources:
     - duds-hit-firebase
   note: >
     Built from the "Duds Hit Firebase" clipping contributed by Ken Weaver (Cat Platoon). The
     source publication, previously "name unknown," is identified as CAVALAIR Vol. 5 No. 10
     (10 March 1971) from the issue held in the cavair research folder.
+    Update 22 Jun 2026 (Facebook feedback): Norm McDonald (Range, no profile yet) and Kirk Davis
+    both confirmed they remember the incident — added to contains. Date narrowed to 6-9 Mar 1971:
+    McDonald's 6 Mar 1971 unit-join date as the early bound, and CAVALAIR press lead time as the
+    late bound (no later than ~early morning 9 Mar to make the 10 Mar issue).
 ---
 
 ## Summary

@@ -27,6 +27,11 @@ corroboration for it.
   the sources, and the public contribution invitation.
 - The event page answers **"what happened to these men?"** It is *not* the place to explain the
   whole operation; that is Tier 2.
+- **Casualties are D Company, 2/8 Cav confirmed only.** A contact/crash/incident event names and
+  profiles the specific D Company men killed in *that* action — nothing wider. The battalion-level
+  "2/8 lost N" aggregate does **not** belong on a Tier 1 event; that framing lives on the Tier 2
+  operation page (see "Framing the battalion's losses" below). Attached supporting-arm men follow
+  the supporting-arm pattern (named only if profiled).
 
 This tier already exists in practice. The model just makes it a rule: **no KIA cluster without
 an event page.**
@@ -107,6 +112,49 @@ the 2/8 Cav daily staff journal (NARA RG 472), not asserted from the phase name.
 If the operational frame is thin or only loosely attributable, keep it as a **hedged paragraph
 inside the Tier 1 event page** (as the early Pleiku page did) rather than spinning up a thin,
 under-evidenced operation page. Promote it to its own Tier 2 page when the evidence arrives.
+
+### Framing the battalion's losses — aggregate, not by name (standing convention, added 2026-06-26)
+
+When building a Tier 2 operation page, **look up the 1st Cavalry Division Association (1cda) 2/8 Cav
+KIA listing for the operation's date window and state the battalion's losses as an aggregate
+number** in the event's context. A line like *"2/8 Cav and its supporting artillery lost eleven men
+that month"* gives quantitative weight to a casualty cluster and conveys how contested the area
+was — without turning a D Company archive into a 2/8-wide one.
+
+Rules:
+
+- **By number, not by name.** Do **not** list the battalion's other-company (A/B/C/E/HHC) dead by
+  name on the public page. Naming them sets a precedent that would obligate a full battalion-wide
+  roster on *every* D/2-8 operation page. The aggregate count carries the weight; the names do not
+  need to be public.
+- **D Company's own dead are still named and profiled** per Tier 1 — that is the archive's subject
+  and is unchanged by this rule.
+- **Attached supporting arms** (e.g. the direct-support artillery) follow the supporting-arm pattern
+  (cf. `fanning-martin`, `jeffries-gabriel`): named only if profiled; otherwise folded into the
+  aggregate or carried as a short under-research note. They may be counted in the aggregate when you
+  say so explicitly (e.g. "the battalion *and its supporting artillery*").
+- **Retain the named roster privately.** Keep the itemized 1cda list (names, ranks, companies,
+  dates) in the event's non-published frontmatter `notes:` under a `SCOPE DECISION` /
+  `RESEARCH-ONLY ROSTER (NOT FOR PUBLICATION)` marker, so the research survives and the same-day
+  clusters are there for a future NARA RG 472 pull if the scope is ever widened.
+- **Correct third-party misattributions silently.** Other unit sites (e.g. a veteran's D 2/8 page)
+  sometimes list an attached or wrong-unit man under D Company. State the accurate record plainly in
+  our content; do not call out the other site's error. Keep any explicit "misattributed" language in
+  internal notes / a held draft profile, not on the public page.
+
+**Temporal scope — division era only, through the Garryowen reorganization.** This convention holds
+while 2/8 Cav was an organic battalion of the 1st Cavalry Division (1965 through the division's
+April 1971 redeployment). From the **3rd Brigade (Separate) "Garryowen" phase** (mid-1971) onward —
+after the division went home and 2/8 fell under the separate brigade — a battalion-level "2/8 Cav
+lost N" aggregate may no longer be the right frame: the org chart, the casualty-listing structure,
+and the relevant peer set all change. **Before applying this convention to a Garryowen-era or later
+event, reconsider whether the 2/8 aggregate still means what it means in the division era**; if not,
+frame the loss context at whatever echelon the post-redeployment structure actually supports.
+
+**Worked example:** `operation-sheridan-sabre-1968` — public page gives the aggregate ("eleven men
+of 2/8 Cav and the artillery supporting it," Nov 1968); the named ten-man roster + the artillery
+case (Ahern) live in that event's frontmatter `notes:`; the 1cda "D Co 2/8" line on Ahern is
+corrected quietly in the body and explicitly only in his held draft profile.
 
 ---
 

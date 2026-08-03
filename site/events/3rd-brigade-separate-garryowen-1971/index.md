@@ -47,6 +47,14 @@ images:
     caption_short: "AD0520447 — 3rd Bde (Separate) debriefing report, title page"
     credit: "U.S. Army / Defense Technical Information Center (AD0520447)"
     date: "1971"
+  - src: "/assets/docs/standdown-ceremony-bien-hoa-1971-03-26.png"
+    caption: >
+      The 1st Cavalry Division standdown ceremony, 26 March 1971, at the division's rear
+      headquarters area at Bien Hoa -- the ceremony described above, after which the 3rd
+      Brigade (Separate) remained in Vietnam as the "Garryowen Task Force."
+    caption_short: "Division standdown ceremony, Bien Hoa, 26 March 1971"
+    credit: "Courtesy of 1cda.org (1st Cavalry Division Association)"
+    date: "1971-03-26"
 
 related_events:
   - slug: contact-fsb-fontaine-1971-04-20
@@ -65,6 +73,11 @@ related_events:
   - slug: contact-nui-ba-1971-10-21
     relationship: operational-period
     note: Occurred in the brigade's AO during this command period.
+  - slug: operation-cambodian-incursion-1970
+    relationship: preceded-by
+    note: >
+      The 1970 Cambodian Incursion was the full division's last major operation before its
+      March 1971 stand-down; the 3rd Brigade (Separate) carried 2/8 Cav forward from there.
 
 open_questions:
   - id: oq-01
