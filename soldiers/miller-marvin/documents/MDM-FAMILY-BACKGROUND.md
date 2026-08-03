@@ -24,9 +24,9 @@ born to his parents in Kittanning, Armstrong County, Pennsylvania. The
 children in birth order:
 
 1. **Don Miller** ("Buss") — oldest brother
-2. **Evelyn Miller**
+2. **Evelyn Miller** — married Steve Kovalchik (divorced late 1970s)
 3. **Pat Miller**
-4. **Carolyn Miller**
+4. **Carolyn Miller** — married Rudy
 5. **Mary Ellen Miller**
 6. **Dan Miller** — older brother, closest to Marvin in age
 7. **Marvin Dale Miller** — subject of this archive
@@ -103,7 +103,7 @@ across the letters reflects this awareness.
 
 One semester of formal arts training — composition, drawing, design fundamentals — is enough to explain two things that appear later in his service record:
 
-First, it explains the Colonel's request. When the unit established FSB Fontaine in late January 1971, Marvin was asked by the Colonel to draw a scaled model of the new base. That request was not made of just any soldier — it was made of a man who was known to have drafting or artistic skills. His Art Institute training, however brief, had apparently been noticed or mentioned, and it distinguished him from other soldiers in a practical way at a critical moment.
+First, it provides the likely backdrop to the Colonel's request. When the unit established FSB Fontaine in late January 1971, Marvin was asked by the Colonel to draw a scaled model of the new base (his own account of which survives in the 30 Jan 1971 letter home). That request was not the sort made of just any soldier; it was made of a man who could do the work. **Exactly how the Army came to know Marvin had artistic training is an open question** — per the family, his one semester at the Art Institute of Pittsburgh does not appear to have been something the Army formally recorded or solicited, and it is unclear how it surfaced (a mention to a sergeant or officer, a sketch someone saw, or simply word getting around). What is clear is that his training, brief as it was, left him able to produce the scaled drawing when asked — work that distinguished him from other soldiers at a practical moment, by skills the Army had not formally recognized.
 
 Second, it places his photographic work in a different light. His 50-60 surviving photographs from Vietnam are not the casual snapshots of someone who picked up a camera for the first time in the field. He had formal arts training. He was looking at composition, light, and subject with at least some educated eye. The photographs he took — including the careful two-shot documentation of the Huey crash on April 24, 1971 — reflect someone who understood what he was doing with a camera.
 
@@ -157,13 +157,16 @@ November 1971. Digitization and transcription is ongoing as of April 2026.
 | Don Miller ("Buss") | Oldest brother | Working-age in 1971; Marvin asks after his employment |
 | Dan Miller | Older brother | Recently out of Army (West Germany) in 1971; Marvin asks after his employment |
 | Mary Ellen Miller | Sister (older than Marvin) | Pregnant with Sam in May 1971; Marvin notes she "got a late start" |
-| Judy Miller | Youngest sister | Mother of Julie (cousin, school-age ~1971) |
+| Judy Miller | Youngest sister | Mother of Julie and Mark |
 | Pat Miller | Sister | Mother of Paul and Tricia (cousins, school-age ~1971) |
-| Evelyn Miller | Sister | Further details to be confirmed |
-| Carolyn Miller | Sister | Further details to be confirmed |
+| Evelyn Miller | Sister | Married Steve Kovalchik; divorced late 1970s |
+| Carolyn Miller | Sister | Married Rudy |
+| Rudy | Brother-in-law (husband of Carolyn) | Deer hunter; in the 20 Aug 1971 letter Marvin hopes Rudy "got that deer rifle so he'll stop pestering me for mine" |
+| Steve Kovalchik | Brother-in-law (husband of Evelyn) | Source of Evelyn's married name; "Steve and Evelyn flew to Maryland" (20 Aug 1971 letter); divorced Evelyn late 1970s (acrimonious) |
 | Sam | Nephew (son of Mary Ellen) | Born 1971; referenced in May 22, 1971 letter as expected |
 | Dewayne | Nephew (son of Mary Ellen) | Born after Sam; died 1988 |
-| Julie | Niece (daughter of Judy) | School-age ~1971; one of "the little ones" |
+| Julie | Niece (daughter of Judy) | School-age ~1971; one of "the little ones"; red hair |
+| Mark | Nephew (son of Judy) | Born ~summer 1971; birth documented in the 20 Aug 1971 letter ("how's Judy getting along with her new baby?… her little boy"); Julie's younger brother |
 | Jim | Nephew (son of Don/Buss) | School-age ~1971; one of "the little ones" |
 | Paul | Nephew (son of Pat) | School-age ~1971; one of "the little ones" |
 | Tricia | Niece (daughter of Pat) | School-age ~1971; one of "the little ones" |
@@ -175,9 +178,10 @@ November 1971. Digitization and transcription is ongoing as of April 2026.
 - [ ] Parents' names
 - [ ] Exact date of the house fire (late 1959 or 1960?)
 - [ ] Mary Ellen's birth year (helps confirm "late start" remark and identify the 1971 pregnancy)
-- [ ] Evelyn and Carolyn — any details, children, locations
+- [x] Evelyn and Carolyn — spouses identified: Evelyn m. Steve Kovalchik (div. late 1970s); Carolyn m. Rudy. Children/locations still to confirm.
 - [ ] Birth years of the cousins (Julie, Jim, Paul, Tricia) — helps age-date letter references
 - [ ] Whether Marvin's allotment arrangement was formal (military allotment form) or informal
+- [ ] How the Army/the Colonel came to know of Marvin's art training (it does not appear to have been formally recorded), prompting the request to draw the FSB Fontaine model
 - [ ] Approximate model/year of the family vehicle referenced in letters
 - [ ] Status of the house construction by December 1971 when Marvin returned
 

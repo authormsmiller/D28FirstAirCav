@@ -1,0 +1,391 @@
+{
+  "_meta": {
+    "artifact": "source-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-22 from 17 e-reader screenshots of Colavita's memoir, ch. 8 ('Angry Skipper'). First full-chapter digest for this source; prior sessions (101, 105) integrated facts Michael pasted/narrated directly into profiles/events without a standalone extraction layer -- this digest is the missing durable retrieval layer those sessions didn't have, per the ORLL digest spec's three-artifact model.",
+    "notes": "Narrator is CPT Henry 'Rocky' Colavita (soldiers/colavita-henry) -- not named by his real name anywhere in this chapter's text (referred to only by nickname/callsign: 'Rocky', 'Skipper', 'Skippy', 'Angry Skipper 6'). Identity confirmed by cross-reference to the existing colavita-henry profile and memoir document, not from this chapter alone.",
+    "copyright_note": "Source is a copyrighted, commercially published memoir (Hellgate Press, 2015). This digest extracts FACTS ONLY (names, ranks, units, dates, locations, event summaries) in paraphrase. No sentence-level quoting. Do not expand this file with verbatim passages -- if a specific phrase needs preserving, flag it in the review.md for a judgment call, per the standing rule set in Session 101."
+  },
+
+  "document": {
+    "title": "Company Grade: Memoir of an Angry Skipper -- Chapter 8, \"Angry Skipper\"",
+    "author": "Henry \"Rocky\" Colavita",
+    "author_slug": "colavita-henry",
+    "source_type": "veteran_memoir",
+    "unit": "D Company, 2nd Battalion, 8th Cavalry, 1st Cavalry Division (Airmobile)",
+    "echelon": "company",
+    "period_start": "1968-10",
+    "period_end": "1968-12",
+    "period_note": "Chapter opens with Colavita assuming command at LZ Joe (already dated Oct 1968 on soldiers/colavita-henry via his oral history) and runs through an undated FO-rotation scene that falls after the 26 Nov 1968 Ahern death -- internally dated events span 18 Nov (Cromie) to 26 Nov 1968 (Ahern) plus one day after (Armstrong's removal), with the FO rotation undated but sequentially after.",
+    "provenance": "17 e-reader screenshots of the published memoir (photographs of the e-reader screen, not OCR -- clean digital text, high legibility throughout).",
+    "reliability": "high (author's own first-person account; single-source within this chapter, though several facts are independently corroborated elsewhere in the archive -- see cross_ref fields below)",
+    "files": ["start.jpg", "p2.jpg", "p3.jpg", "p4.jpg", "p5.jpg", "p6.jpg", "p7.jpg", "p8(1).jpg", "p8.jpg", "p9.jpg", "p10.jpg", "p11.jpg", "p11(1).jpg", "p12.jpg", "p12(1).jpg", "p13.jpg", "p14.jpg"],
+    "reading_order_note": "Filenames are NOT reliable page order. 'p8(1).jpg'/'p8.jpg' and 'p11(1).jpg'/'p12(1).jpg' are filename collisions from the capture process (two different physical pages saved under a name that already existed), not duplicate shots. Verified true order by matching sentence continuity across every page boundary (each page's cut-off sentence completes cleanly on the next page in this order). Confirmed reading order: start -> p2 -> p3 -> p4 -> p5 -> p6 -> p7 -> p8(1) -> p8 -> p9 -> p10 -> p11 -> p11(1) -> p12 -> p12(1) -> p13 -> p14. No gaps, no content skipped.",
+    "related_existing_records": {
+      "soldier_profile": "soldiers/colavita-henry/colavita-henry.md",
+      "memoir_document": "documents/colavita-henry/colavita-henry-memoir-company-grade/index.md",
+      "operation": "events/operation-sheridan-sabre-1968/index.md",
+      "sub_events": ["events/operation-sheridan-sabre-1968-11-26/index.md", "events/operation-sheridan-sabre-1968-12-04/index.md"],
+      "location": "locations/fsb-rita/index.md"
+    }
+  },
+
+  "triage": {
+    "genre": "veteran memoir, first-person, company command",
+    "echelon": "company",
+    "temporal_shape": "chapter (roughly 2 months narrated, uneven pace -- fast on routine, slow on specific incidents)",
+    "provenance": "US Army field, second-tour company commander",
+    "expected_yield": {
+      "personnel": "HIGH -- company-level, names platoon leaders, NCOs, attached FO, sister-company CO",
+      "locations": "medium -- two named LZs, one grid, several place names",
+      "events": "HIGH -- named incidents including two KIA, an emergency reinforcement, ambush-doctrine rollout, an OJT observation, and a pre-command action",
+      "kia_individual": "HIGH -- 2 named KIA with full circumstance",
+      "awards": "one Silver Star (Adams) mentioned in passing"
+    }
+  },
+
+  "personnel": [
+    {
+      "name": "CPT Henry \"Rocky\" Colavita",
+      "slug": "colavita-henry",
+      "cross_ref": "existing profile -- this IS the narrator",
+      "role": "Incoming D Co CO, \"Angry Skipper 6\"",
+      "date": "1968-10 (assumes command)",
+      "page_ref": "start, p2",
+      "confidence": "high",
+      "note": "Not named by his real name anywhere in this chapter -- identified only via the existing profile/cross-reference. Nicknames used in-text: 'Rocky' (Colonel Henry), 'Skipper' (troops), 'Skippy' (behind his back, learned at later reunions)."
+    },
+    {
+      "name": "Colonel Henry",
+      "slug": "henry-frank",
+      "cross_ref": "existing profile -- COL (then LTC) Frank Leonidas Henry III, status: researching. Already identified via his Dec 4, 1968 'Chicken Valley' appearance (documents/colavita-henry/colavita-henry-verbal-account-dec4-1968) as 2/8 Cav Bn CO, callsign 'Stone Mountain 6', command bracketed Oct 1968-Mar 1969 (estimated start, pinned end). Michael confirmed this identification directly.",
+      "role": "Battalion commander, 2/8 Cav, callsign 'Stone Mountain 6'",
+      "date": "throughout chapter, ~Oct-Nov 1968",
+      "page_ref": "p2, p5, p7, p12, p12(1), p13",
+      "confidence": "high",
+      "note": "Recurring figure -- presides over change of command, sends Colavita to OJT with C Co, orders the move to Rita, supports removing Lt. Armstrong and assigning 2LT Spingath, and is very likely the 'Stone Mountain 6' who personally directs the emergency reinforcement of Charlie Company (see events -- the two references are almost certainly the same man, addressed informally as 'Colonel Henry' in person and by his callsign over the radio). This chapter adds real new detail to a currently thin ('researching' status) profile -- see review.md Pass 2."
+    },
+    {
+      "name": "Major (Capt.-at-time-of-handoff) Buddy Garner",
+      "slug": "garner-audis",
+      "cross_ref": "existing profile (Audis Walker \"Buddy\" Garner)",
+      "role": "Outgoing D Co CO, \"Angry Skipper 6\" predecessor",
+      "date": "day of change of command, ~late Oct 1968",
+      "page_ref": "start, p2",
+      "confidence": "high",
+      "note": "NEW detail not yet on his profile: (1) at the change-of-command ceremony, praised his outgoing troops with evident emotion; (2) gave Colavita a short verbal handoff on Delta's strengths/weaknesses and officer/NCO assessments before flying off LZ Joe; (3) the two didn't meet again for 30+ years, until a Delta 2/8 reunion at Fort Benning."
+    },
+    {
+      "name": "Major Rod Grannemann",
+      "slug": "grannemann-rodney",
+      "cross_ref": "existing profile",
+      "role": "Battalion S-3 (operations officer); D Co CO immediately before Garner",
+      "date": "~Oct 1968 (post-change-of-command briefing)",
+      "page_ref": "p2",
+      "confidence": "high",
+      "note": "NEW detail: confirms Grannemann was Bn S-3 by this point (promoted from D Co CO), and personally briefed incoming CO Colavita on enemy activity in the new AO alongside Colonel Henry. Existing profile has him ending as D Co CO ~8 Jun 1968 and being succeeded by Garner; this adds his next assignment (Bn S-3, by ~Oct 1968)."
+    },
+    {
+      "name": "Lieutenant Karl Derums",
+      "slug": "derums-karl",
+      "cross_ref": "built 2026-07-22 -- stub profile with photo (Michael's folder spelled it 'Karl' but the photo file itself was named 'derums-carl' -- flagged as unresolved, not corrected either way).",
+      "role": "Company Executive Officer (XO)",
+      "date": "in position when Colavita arrives, ~Oct 1968; soon due for 1LT promotion",
+      "page_ref": "p4",
+      "confidence": "high",
+      "note": "Put in the XO slot by Garner. Duties per text: writes letters to families of KIA/WIA, formalizes award recommendations for routing to Bn S-1, keeps troops paid/supplied/on R&R and DEROS schedule. Colavita says he rarely needed to interact with him directly, and didn't know exactly where 'the rear' was (suspected Quan Loi)."
+    },
+    {
+      "name": "1SG Ramon Cruz (\"Blinky\")",
+      "slug_candidate": "none yet -- stub candidate",
+      "role": "First Sergeant, D Co",
+      "date": "in position when Colavita arrives; departs on 60-day reenlistment leave shortly after, returns ~4 months later (outside chapter window)",
+      "page_ref": "p6",
+      "confidence": "high",
+      "note": "Puerto Rican master sergeant, detail-oriented, kept full rank/name tags on jungle fatigues; nicknamed 'Blinky' by the troops for frequent blinking. Leave destination: San Juan, Puerto Rico."
+    },
+    {
+      "name": "SFC Bruce Adams",
+      "slug": "adams-bruce",
+      "cross_ref": "built 2026-07-22 -- stub profile, no photo available (Michael could not locate one; built anyway rather than held back).",
+      "role": "Senior platoon sergeant; acting First Sergeant while Cruz on leave",
+      "date": "acting 1SG from shortly after Colavita's arrival through Cruz's ~4-month absence",
+      "page_ref": "p6, p9, p10",
+      "confidence": "high",
+      "note": "'Old school' disciplinarian, widely disliked by troops per Colavita. Fought well and killed several attackers during an enemy attack on a Delta extraction site BEFORE Colavita took command (see events -- pre-command action); put himself in for the Medal of Honor for that action, awarded a Silver Star instead. Later (on LZ Rita perimeter duty) fired a single M-79 round toward a delinquent listening post to rouse them, grazing SP(?) Jim Nix's nose ('Good shootin', Bruce!' -- Colavita's own aside)."
+    },
+    {
+      "name": "Jim Nix",
+      "slug": "nix-jim",
+      "cross_ref": "built 2026-07-22 -- Michael supplied a profile photo and asked for the stub to be built rather than held as a candidate. Thinnest profile in this batch (single anecdote, no rank/hometown/dates).",
+      "role": "Soldier, D Co (platoon inferred as Wild Cat, not confirmed), \"a big guy and a truly excellent soldier\"",
+      "date": "LZ Rita perimeter duty, ~Nov 1968",
+      "page_ref": "p9, p10",
+      "confidence": "medium",
+      "note": "Grazed on the tip of the nose by Adams's M-79 warning shot while on a delinquent LP. Full anecdote quoted in full 2026-07-22 as documents/colavita-henry/colavita-henry-verbal-account-nix-lp-1968-11 (contains: colavita-henry, nix-jim, adams-bruce; per Michael's request -- whole passage, not just a short phrase)."
+    },
+    {
+      "name": "Lieutenant Douglas \"Doug\" Magruder",
+      "slug_candidate": "none yet -- stub candidate",
+      "role": "Platoon leader, White Skull (1st Platoon)",
+      "date": "in position when Colavita arrives, ~Oct-Nov 1968",
+      "page_ref": "p6, p10, p11",
+      "confidence": "high",
+      "note": "Assessed by Colavita as capable and competent, well-liked/trusted by his men. Leads Delta's first company-size ambush. Gives Colavita positive feedback on the new ambush doctrine."
+    },
+    {
+      "name": "Lieutenant Michael Johnson",
+      "slug_candidate": "none yet -- stub candidate",
+      "role": "Platoon leader, Rifle Range (3rd Platoon)",
+      "date": "in position when Colavita arrives, ~Oct-Nov 1968",
+      "page_ref": "p6, p10, p11, p12(1)",
+      "confidence": "high",
+      "note": "Former Air Force enlisted; Colavita had early 'suspicions' about him. Later caught walking behind (rather than in front of) his RTO on the theory that snipers target the man near the radio antenna -- corrected by Colavita. Callsign 'Range 6' (platoon callsign)."
+    },
+    {
+      "name": "Lieutenant Greg Armstrong",
+      "slug_candidate": "none yet -- stub candidate, but see resolution below",
+      "role": "Platoon leader, Wild Cat (2nd Platoon) -- removed from D Co",
+      "date": "in position when Colavita arrives; removed from company the morning after Ahern's death (~27 Nov 1968)",
+      "page_ref": "p6, p10 (implied), p11, p12",
+      "confidence": "high",
+      "note": "Disliked by Colavita from the start ('wise-ass smirk', 'smart mouth'). Publicly reprimanded over a radio-discipline lapse (dropped handset after saying 'out'); Colavita threatened in front of the platoon to get him removed, then followed through with Colonel Henry's backing. Reassigned to battalion (with Henry), replaced by 2LT Spingath."
+    },
+    {
+      "name": "2LT David Spingath",
+      "slug": "spingath-dave",
+      "cross_ref": "built 2026-07-22 -- stub profile, no confirmed photo (Michael supplied 9 personal-collection photos but he's not identified in any; cataloged as his 'Photos Taken By' gallery, photos/field/, instead of a profile photo).",
+      "role": "New platoon leader, Wild Cat (2nd Platoon), replacing Armstrong",
+      "date": "arrives at LZ Rita ~27 Nov 1968, remains Wild Cat PL for the rest of Colavita's command",
+      "page_ref": "p12",
+      "confidence": "high",
+      "note": "Newly arrived on the LZ, not yet assigned to a company; Colonel Henry gave him to Colavita in the same conversation approving Armstrong's removal."
+    },
+    {
+      "name": "Captain Mike Gonzales",
+      "slug_candidate": "out of scope -- per Michael, not a stub candidate (Charlie Company, not D Company; this is a D Company archive)",
+      "role": "Commanding officer, Charlie Company, 2/8 Cav",
+      "date": "OJT observation period, shortly after Delta occupies LZ Rita, ~early-mid Nov 1968",
+      "page_ref": "p7",
+      "confidence": "high",
+      "note": "Colavita spent ~2 days observing Gonzales's Charlie Company in the field on Colonel Henry's orders (OJT). Colavita was critical of Gonzales's methods: daily aerial resupply (including beer/soda) that gave away the company's position, and a flawed ambush technique (flare tripwire placed in the center of the kill zone rather than the edge, wasting half the kill zone). Retained here only as context for Colavita's own doctrine development -- no profile consideration."
+    },
+    {
+      "name": "Lieutenant Jon Jones (\"Jonsey\")",
+      "slug_candidate": "none yet -- stub candidate",
+      "role": "Artillery Forward Observer (FO) attached to D Co, replacing the unnamed buck sergeant FO",
+      "date": "arrives via resupply chopper shortly after Ahern's death and Armstrong's removal, ~early Dec 1968 (undated in text)",
+      "page_ref": "p12(1)",
+      "confidence": "high",
+      "note": "Young lieutenant, blond curly hair, described by Colavita as looking 'like a cherub.' Good map reader per his own claim (borne out). First fire mission had a defensive-target round land closer than expected; sorted out as friendly. Colavita says he came to like him ('Jonsey')."
+    },
+    {
+      "name": "Unnamed buck sergeant (E-5), artillery FO",
+      "slug_candidate": "not a stub -- unnamed",
+      "role": "Artillery Forward Observer attached to D Co, Ahern's FO (Ahern was his RTO)",
+      "date": "in position through Ahern's 26 Nov 1968 death; reassigned out of the field shortly after",
+      "page_ref": "p12, p12(1)",
+      "confidence": "high",
+      "note": "This is very likely THE SAME FO already referenced on soldiers/ahern-raymond as 'the FO, who survived' the rocket attack -- this chapter adds that he was a young E-5 buck sergeant (unusual for an FO billet, normally a lieutenant's job) and that he was reassigned/replaced (by Lt. Jon Jones) on the very next resupply day after Ahern's death. Cross-check against ahern-raymond profile for consistency; name still not given anywhere."
+    }
+  ],
+
+  "locations": [
+    {
+      "name": "LZ Joe",
+      "type": "LZ, temporary/small",
+      "detail": "On the grounds of a Michelin rubber plantation, alongside division HQ and several other battalions; described as small, remote-feeling, and built/operated by an unidentified unit predating 1st Cav's arrival in the AO. Site of Colavita's change-of-command ceremony.",
+      "grid": null,
+      "page_ref": "start, p2",
+      "cross_ref": "Already noted on soldiers/colavita-henry as 'not yet located in the gazetteer' -- this chapter adds no grid, just descriptive/context detail (Michelin plantation, other units co-located).",
+      "confidence": "high"
+    },
+    {
+      "name": "LZ Rita",
+      "type": "fire support base",
+      "detail": "Built/held by 1st Infantry Division ('Big Red One'); 2/8 Cav moved in as 1st ID moved out. Required a full rebuild of the TOC and perimeter bunkers (8th Engineer Battalion did the heavy equipment work -- bulldozers/road graders lifted by Chinook or Sikorsky Skycrane; D Co troops helped fill sandbags). Frequently hit by mortars/rockets and nightly probes. Site of Ray Ahern's 26 Nov 1968 KIA.",
+      "grid": null,
+      "page_ref": "p4, p5, p6, p10, p11(1), p12",
+      "cross_ref": "Already a full location page at locations/fsb-rita (grid XT505795, occupied by 2/8 Cav from 1968-11-07 per ORLL). This chapter's account (via the in-book Hackett tribute) gives a takeover date of 9 Nov and says the 1st ID defenders 'had been overrun the night before we got there' -- the existing FSB Rita page already carries this same Hackett-sourced '9 November' claim in its prose, alongside the ORLL's confirmed 7 Nov occupancy date, without fully reconciling the 'overrun the night before' framing against the well-documented 1 Nov 1968 Rogers-MOH battle (a 6-8 day gap, not 'the night before'). This chapter doesn't resolve that gap -- just corroborates that Hackett's account (and now Colavita's book, which quotes it) is the source of the discrepancy, not a transcription error.",
+      "confidence": "high (existing page); the 'overrun the night before' framing specifically: low/unreconciled"
+    },
+    {
+      "name": "Quan Loi",
+      "type": "rear support area (suspected)",
+      "detail": "Colavita suspected this was where 'the rear' (battalion admin/log trains) was located, though he says he never really knew for sure.",
+      "grid": null,
+      "page_ref": "p4",
+      "confidence": "low (author's own hedge -- 'I suspected')"
+    },
+    {
+      "name": "Grid XT 642883",
+      "type": "ad hoc extraction/insertion LZ",
+      "detail": "A large open clearing Colavita had noted while watching Lt. Johnson's platoon move; used as the pickup LZ for a 6-slick, two-lift extraction to reinforce Charlie Company, which was in contact with a sizeable enemy force. The actual Charlie Company contact site was about 1km away (not separately gridded in the text).",
+      "grid": "XT 642883",
+      "page_ref": "p13",
+      "confidence": "high",
+      "note": "Not yet in the archive. This does not appear to be the same action as the 4 Dec 1968 'Chicken Valley' fight already on events/operation-sheridan-sabre-1968-12-04 (grid XT 4687) -- different grid, and this chapter's version has Delta air-assaulting in to reinforce Charlie, not linking up at a cache. Likely a distinct, earlier/separate reinforcement action -- undated in the text but sequenced after the Ahern/Armstrong passage, so probably late Nov-early Dec 1968."
+    },
+    {
+      "name": "Fort Benning, Georgia",
+      "type": "reunion site (postwar)",
+      "detail": "Site of a Delta 2/8 Cav veterans' reunion, 30+ years after the war, where Colavita and Garner met again for the first time since the change-of-command handoff.",
+      "grid": null,
+      "page_ref": "p2",
+      "confidence": "high"
+    }
+  ],
+
+  "events": [
+    {
+      "date": "1968-10 (approx, day after Colavita reports in)",
+      "type": "change_of_command",
+      "location": "LZ Joe",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "garner-audis", "Colonel Henry"],
+      "page_ref": "start, p2",
+      "confidence": "high",
+      "notes": "Hasty change-of-command ceremony (no band, no pass-in-review). Colonel Henry's introduction of Colavita erroneously called him an advisor to a Vietnamese RANGER battalion (he'd actually advised an ARVN AIRBORNE battalion, per the existing profile) -- Colavita chose not to correct him publicly."
+    },
+    {
+      "date": "pre-1968-10 (before Colavita's command; exact date not given)",
+      "type": "contact_extraction_under_fire",
+      "location": "unnamed field LZ (Delta was extracting from the field following a search-and-destroy op, before the move to LZ Joe/Rita)",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["SFC Bruce Adams"],
+      "page_ref": "p6",
+      "confidence": "high",
+      "notes": "Enemy attacked the extraction site as troop numbers on the ground thinned between helicopter lifts (a known vulnerability). Departing choppers were recalled mid-air to help; troops already lifted out were readied to go back in. SFC Adams (then a platoon sergeant, not yet acting 1SG) fought well and killed several attackers; put himself in for the Medal of Honor, downgraded to a Silver Star since no one else on the ground could support the higher award. NOT currently in the archive -- happened before Colavita's command, so it predates his own timeline's start, but establishes Adams's Silver Star and is a genuine new incident."
+    },
+    {
+      "date": "~1968-11 (shortly after change of command)",
+      "type": "movement",
+      "location": "LZ Joe -> LZ Rita",
+      "units": ["D Co, 2/8 Cav", "battalion (2/8 Cav)"],
+      "people": ["Colonel Henry"],
+      "page_ref": "p3, p4",
+      "confidence": "high",
+      "notes": "Colonel Henry orders all companies to move at first light to occupy LZ Rita, taking over from the departing 1st Infantry Division. Delta initially took the LZ perimeter while the other three companies swept outside the wire."
+    },
+    {
+      "date": "~1968-11 (while on Rita perimeter duty, before first patrol)",
+      "type": "base_rebuild",
+      "location": "LZ Rita",
+      "units": ["D Co, 2/8 Cav", "8th Engineer Battalion"],
+      "page_ref": "p4",
+      "confidence": "high",
+      "notes": "Full rebuild of TOC and perimeter bunkers after the harassing fire/probes 1st ID took; 8th Engineer Bn did the heavy-equipment work (bulldozers, road graders, lifted by Chinook/Sikorsky Skycrane), D Co troops helped fill sandbags."
+    },
+    {
+      "date": "~1968-11 (Rita perimeter duty)",
+      "type": "discipline_incident",
+      "location": "LZ Rita perimeter",
+      "units": ["D Co, 2/8 Cav (Wild Cat platoon LP)"],
+      "people": ["colavita-henry", "SFC Bruce Adams", "Jim Nix"],
+      "page_ref": "p9, p10",
+      "confidence": "high",
+      "notes": "Night perimeter check found a sleeping bunker guard (Adams handled it personally). Separately, a Wild Cat listening post (LP) went 10 minutes overdue on its scheduled radio-squelch check; Adams fired a single M-79 round toward the LP's position as an alarm, grazing Jim Nix's nose. The LP/Nix portion is now quoted in full as documents/colavita-henry/colavita-henry-verbal-account-nix-lp-1968-11 (2026-07-22); the sleeping-guard portion (no names given) is not separately reproduced."
+    },
+    {
+      "date": "~1968-11 (2-day span, shortly after Rita occupied)",
+      "type": "training_observation",
+      "location": "in the field with Charlie Company, 2/8 Cav",
+      "units": ["C Co, 2/8 Cav"],
+      "people": ["colavita-henry", "Captain Mike Gonzales"],
+      "page_ref": "p7",
+      "confidence": "high",
+      "notes": "Colonel Henry sent Colavita out on OJT with Charlie Company's CP for 2 days before Delta began independent operations. Colavita was critical of Gonzales's methods (daily aerial resupply incl. beer/soda that gave away position; a flare-tripwire ambush placed in the center rather than the edge of the kill zone)."
+    },
+    {
+      "date": "~1968-11 (immediately after OJT)",
+      "type": "doctrine_briefing",
+      "location": "LZ Rita",
+      "units": ["D Co, 2/8 Cav (all platoon leaders, 1SG/acting 1SG, NCOs)"],
+      "people": ["colavita-henry"],
+      "page_ref": "p8(1), p8, p9",
+      "confidence": "high",
+      "notes": "Colavita rolls out his own ambush doctrine before Delta's first Charlie-Alpha into the bush: no resupply unless necessary (to avoid giving away position), no listening posts once in the field, and company-size (100+ man) ambushes instead of small squad ambushes -- kept secret from battalion and other companies. Named formations: 'Delta 'Bush' (single ambush platoon + two platoons wrapping into a defensive perimeter, forming a 'D' shape) and 'triangle 'bush' (two platoons ambush a trail intersection, third wraps behind both). Also briefed a movement change: three platoons abreast rather than single-file, to react faster if they walk into a bunker complex. This is the same 'innovative night-ambush tactics... not by the book' already summarized in general terms on soldiers/colavita-henry and the memoir document -- this chapter is the first source giving the actual mechanics and formation names."
+    },
+    {
+      "date": "~1968-11 (night after doctrine briefing)",
+      "type": "ambush",
+      "location": "unnamed trail, D Co AO",
+      "units": ["D Co, 2/8 Cav -- White Skull (1st Plt)"],
+      "people": ["colavita-henry", "Lieutenant Douglas Magruder"],
+      "page_ref": "p10, p11",
+      "confidence": "high",
+      "notes": "Delta's first company-size ambush under the new doctrine, led by White Skull/Lt. Magruder. No contact that night ('no customers'), but action the next day (see next event -- the Armstrong radio incident happened during the following morning's SITREP round)."
+    },
+    {
+      "date": "~1968-11 (morning after first ambush)",
+      "type": "personnel_incident",
+      "location": "in the field",
+      "units": ["D Co, 2/8 Cav -- Wild Cat (2nd Plt)"],
+      "people": ["colavita-henry", "Lieutenant Greg Armstrong", "Lieutenant Douglas Magruder", "Lieutenant Michael Johnson"],
+      "page_ref": "p11",
+      "confidence": "high",
+      "notes": "Morning SITREP round by radio: Armstrong dropped his handset immediately after saying 'out', prompting Colavita to confront him in person over radio discipline and threaten (in front of the platoon) to get him removed from the company."
+    },
+    {
+      "date": "1968-11-18",
+      "type": "kia_meeting_engagement",
+      "location": "unnamed grid, D Co AO",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["cromie-michael"],
+      "page_ref": "p11",
+      "confidence": "high",
+      "cross_ref": "Matches existing soldiers/cromie-michael and events/operation-sheridan-sabre-1968 kia entry exactly (date, RPG fragments, meeting engagement, Colavita's command). No new facts beyond what's already published -- hometown (Harper Woods, MI) and Wall panel (38W, Line 6) already recorded.",
+      "notes": "Colavita's first KIA under his own command. Description here of the broader tactical doctrine for 'meeting engagements' (per the Field Manual) -- immediate air support request, platoons on the flanks link up behind the CP to form a perimeter -- is new context, though the specific engagement's detail matches what's already on file."
+    },
+    {
+      "date": "1968-11-26",
+      "type": "kia_rocket_attack",
+      "location": "LZ Rita",
+      "units": ["D Co, 2/8 Cav (attached FO section, 19th Artillery Regiment)"],
+      "people": ["ahern-raymond", "unnamed buck sergeant FO"],
+      "page_ref": "p11(1), p12",
+      "confidence": "high",
+      "cross_ref": "Matches existing soldiers/ahern-raymond and events/operation-sheridan-sabre-1968-11-26 exactly (date, direct rocket hit on bunker, killed instantly, RTO for the FO, 19th Artillery Regiment, FO survived). The chapter's block quote of Larry Hackett's 22 Nov 2005 Virtual Wall tribute is the SAME tribute already built as its own document at documents/hackett-larry/hackett-larry-tribute-ahern-raymond -- no new tribute content, just confirms Colavita's book is where that tribute was first surfaced to this archive.",
+      "notes": "Philadelphia, PA hometown and Panel 38W Line 63 already recorded on ahern-raymond profile."
+    },
+    {
+      "date": "~1968-11-27 (morning after Ahern's death)",
+      "type": "personnel_change",
+      "location": "LZ Rita",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "Colonel Henry", "Lieutenant Greg Armstrong", "2LT David Spingath"],
+      "page_ref": "p12",
+      "confidence": "high",
+      "notes": "Colonel Henry approves Armstrong's removal from D Co (reassigned to battalion), replaced as Wild Cat platoon leader by newly arrived 2LT David Spingath, who remains in that slot for the rest of Colavita's command."
+    },
+    {
+      "date": "undated, sequenced after Armstrong's removal (~early Dec 1968)",
+      "type": "personnel_change",
+      "location": "LZ Rita or field (resupply day)",
+      "units": ["D Co, 2/8 Cav attached FO section"],
+      "people": ["unnamed buck sergeant FO", "Lieutenant Jon Jones"],
+      "page_ref": "p12, p12(1)",
+      "confidence": "high",
+      "notes": "The FO who survived Ahern's death (a young E-5 buck sergeant) was reassigned out by Division Artillery; replaced same day by 2LT Jon Jones ('Jonsey'), fresh off the resupply chopper. Jones's first fire mission had a defensive-target round land closer than expected -- sorted out as friendly fire from their own registration."
+    },
+    {
+      "date": "undated (in the days/weeks after Jones arrives, before the emergency reinforcement below)",
+      "type": "successful_ambushes",
+      "location": "D Co AO",
+      "units": ["D Co, 2/8 Cav"],
+      "page_ref": "p13",
+      "confidence": "medium",
+      "notes": "Several unspecified company-size ambushes yield dead NVA, captured AKs, and documents; author generalizes about doctrine for unexpected 'meeting engagements' and always calling in Army air support (Cobras, armed Hueys, LOH/'Loach') over artillery or Air Force when in close contact."
+    },
+    {
+      "date": "undated, sequenced after the successful-ambushes passage (~late Nov-early Dec 1968)",
+      "type": "emergency_reinforcement",
+      "location": "insertion grid XT 642883, ~1km from the actual contact",
+      "units": ["D Co, 2/8 Cav", "C Co, 2/8 Cav (in contact)"],
+      "people": ["colavita-henry", "henry-frank (as \"Stone Mountain 6\")"],
+      "page_ref": "p13",
+      "confidence": "high",
+      "notes": "Charlie Company got into contact with a sizeable enemy force NW of Rita; Delta was extracted via 6-slick, two-lift emergency pickup (Colavita went out with the first lift, unusually -- normally he'd be on the last) and flown in to reinforce, covered by Blue Max Aerial Rocket Artillery (ARA) and the battalion C&C ('Charlie Charlie'). Executed without incident. NOT the same action as the 4 Dec 1968 'Chicken Valley' fight already documented (different grid, different circumstances -- reinforcement vs. cache link-up) -- see locations entry for XT 642883 above. 'Stone Mountain 6' is COL Frank Henry's confirmed callsign (see soldiers/henry-frank) -- this is the same man as 'Colonel Henry' elsewhere in this chapter, not a separate figure."
+    }
+  ]
+}

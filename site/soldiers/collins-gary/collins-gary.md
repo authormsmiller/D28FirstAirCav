@@ -1,101 +1,58 @@
 ---
 layout: layouts/soldier.njk
-title: PFC Gary "Indian" Collins
+title: Gary Collins
 slug: collins-gary
 breadcrumb: Gary Collins
 permalink: /soldiers/collins-gary/
 tags:
   - soldier
 
-# ── IDENTITY ──────────────────────────────────────
+# ── IDENTITY ──────────────────────────────────
 first_name: Gary
 last_name: Collins
-middle_name: 
-suffix: 
-nickname: Indian
-birth_year: 
+middle_name:
+suffix:
+nickname:
+birth_year:
 
-# ── RANK & ASSIGNMENT ─────────────────────────────
-rank: PFC
-mos: 
+# ── RANK & ASSIGNMENT ─────────────────────────
+rank:
+mos:
 platoon: Range
 
-# ── SERVICE ───────────────────────────────────────
+# ── SERVICE ───────────────────────────────────
 arrived:
 departed:
-character_of_service: Honorable
+character_of_service:
 status: researching
 
-# ── POST-SERVICE ──────────────────────────────────
-hometown: 
-current_location: 
-year_deceased: 
-cause_of_death: 
+# ── POST-SERVICE ──────────────────────────────
+hometown: "South Carolina"
+current_location:
+year_deceased:
+cause_of_death:
 
-# ── PROFILE PHOTO ─────────────────────────────────
+# ── PROFILE PHOTO ─────────────────────────────
 profile_photo:
-
-# ── DECORATIONS ───────────────────────────────────
-decorations:
-
-distinguished_decorations:
-
-decorations_unconfirmed:    # probable based on documented evidence — not yet sourced
-
-# ── SERVICE RECORD ────────────────────────────────
-service_record:
-  induction:
-    status: 
-    location: 
-    date: 
-  assignments:
-
-# ── CONTACT ───────────────────────────────────────
-# Phone, email, and address live in _private/contacts.json (gitignored).
-# This block carries only what is safe to commit.
-share_contact: false
-contact:
-  name: 
-  relation: 
-  last_verified: 
-
-# ── EXTERNAL LINKS ────────────────────────────────
-links:
-  wall: 
-  other:
 
 # ── TIMELINE SOURCE NOTE ──────────────────────────
 timeline_source: >
-  Service timeline not yet compiled. If you served with or knew Gary Collins,
-  please use the contribute form to share what you remember.
+  Profile in research. Gary Collins served as a point man in D Company's Range Platoon. If you
+  served with or knew him, please use the contribute form to share what you remember.
 
-# ── SERVICE TIMELINE ──────────────────────────────
-# phase values: training | staging | in-country | post-service
-timeline:
-
-# ── PHOTOS ────────────────────────────────────────
-# Canonical photo metadata lives in photos/[subfolder]/index.md.
-# The photos array below is retained for template compatibility only.
-# Do not add new photos here — add them to the index files only.
-photo_intro: >
-  Photographs pending.
-
-wartime_content_notice: false
-
-photos:
-
-# ── DOCUMENTS ─────────────────────────────────────
-documents:
-
-# ── RELATED ───────────────────────────────────────
+# ── RELATED ───────────────────────────────────
 brothers:
-
 related_events:
 
-# ── ADMIN ─────────────────────────────────────────
-date_added: 
-last_updated: 2026-05-22
-contributed_by: 
-notes: Nickname "Indian" confirmed by unit accounts. Retained as historical record.
-
+# ── ADMIN ───────────────────────────────────────
+date_added: 2026-06-26
+last_updated: 2026-06-26
+contributed_by:
+notes: >
+  Stub created 2026-06-26 to replace a frontmatter-less note file that was rendering as a blank
+  "comma" entry at the top of the roster and an untemplated page at /soldiers/collins-gary/.
+  Source lead (from Jim Garvin's "v04_silver" / FSB Silver slide deck, archivist research notes):
+  Gary Collins was a Cherokee from South Carolina; when Garvin moved to the rear as company mail
+  clerk in February 1971, Collins replaced him as the Range Platoon (Range 1) point man.
+  No rank, service dates, MOS, or casualty data established yet — researching.
 ---

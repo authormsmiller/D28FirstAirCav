@@ -21,7 +21,7 @@ mos: "11B · Infantryman"
 platoon: Skull
 
 # ── SERVICE ───────────────────────────────────────
-arrived:
+arrived: "1972-01-04"
 departed:
 character_of_service: Honorable
 status: kia
@@ -33,10 +33,11 @@ year_deceased: 1972
 cause_of_death: kia
 
 # ── PROFILE PHOTO ─────────────────────────────────
-profile_photo: "flores-david-profile.jpg"
+profile_photo: "flores-david-profile.png"
 
 # ── DECORATIONS ───────────────────────────────────
 decorations:
+  - Combat Infantryman Badge
   - National Defense Service Medal
   - Vietnam Service Medal
   - Vietnam Campaign Medal
@@ -44,11 +45,10 @@ decorations:
 distinguished_decorations:
 
 decorations_unconfirmed:
-  - "Purple Heart"              # KIA — posthumous award near-certain; move to decorations when primary source located
-  - "Combat Infantryman Badge"  # Honor States probability-based; move to decorations when primary source located
-  - "Marksmanship Badge"        # Honor States probability-based
-  - "Army Presidential Unit Citation"  # Honor States probability-based
-  - "Vietnam Gallantry Cross"   # Honor States probability-based
+  - "Purple Heart"                     # KIA — posthumous award near-certain; move to decorations when primary source located
+  - "Marksmanship Badge"               # Honor States probability-based; move to decorations when primary source located
+  - "Army Presidential Unit Citation"  # Honor States probability-based; move to decorations when primary source located
+  - "Vietnam Gallantry Cross"          # Honor States probability-based; move to decorations when primary source located
 
 # ── SERVICE RECORD ────────────────────────────────
 service_record:
@@ -80,6 +80,8 @@ links:
       url: "https://www.vhpa.org/KIA/incident/720510031ACD.HTM"
     - label: "Honor States"
       url: "https://www.honorstates.org/profiles/587407/"
+    - label: "Virtual Wall"
+      url: "https://www.virtualwall.org/df/FloresDC01a.htm"
     - label: "Find A Grave"
       url: "https://www.findagrave.com/memorial/119722261/david-cruz-flores"
 
@@ -90,6 +92,16 @@ timeline_source: >
 
 # ── SERVICE TIMELINE ──────────────────────────────
 timeline:
+  - date: "1972-01-04"
+    phase: in-country
+    type: service
+    tags:
+      - { type: s, label: Arrived }
+    headline: "Arrived in Vietnam — January 4, 1972"
+    body: >
+      SP4 Flores began his tour with D Company, 2nd Battalion, 8th Cavalry
+      (Airmobile), 1st Cavalry Division, Republic of Vietnam.
+
   - date: "1972-05-10"
     phase: in-country
     type: combat
@@ -123,13 +135,14 @@ related_events:
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-29
-last_updated: 2026-05-29
+last_updated: 2026-06-10
 contributed_by:
 notes: >
   KIA 10 May 1972 — Chinook crash (incident 720510031ACD). Skull Platoon, D/2-8 Cav.
   DOB 20 Aug 1952. Hometown: Agana, GU (Honor States shows DC — ignore; Agana confirmed
   from separate sources). Wall: Panel 1W, Line 17.
-  MOS: Infantryman (Honor States). Tour start date unknown — no Virtual Wall link yet.
+  MOS: 11B · Infantryman (Honor States). Start tour: 1972-01-04 (Honor States).
+  CIB confirmed via Virtual Wall. Purple Heart, Marksmanship, APUC, VGC probability-based.
   Service ID 586056057 — DO NOT PUBLISH (Army-era IDs are SSNs).
 
 ---

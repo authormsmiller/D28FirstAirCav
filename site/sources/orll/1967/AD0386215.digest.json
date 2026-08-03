@@ -1,0 +1,133 @@
+{
+  "_meta": {
+    "artifact": "orll-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-15 -- second live ORLL digest pass (see AD0385642 for the first). Continuing the 1967 backfill requested after the June-July 1968 Skipper Journal pass closed that year's gap.",
+    "generated_by": "human read of pdftotext -layout extraction; dirty 1967-era OCR (fair legibility, similar to AD0385642), not independently verified against page images",
+    "notes": "Division-level ORLL, one reporting period later than AD0385642 (May-Jul 67 vs Feb-Apr 67). Page numbers below are PHYSICAL PDF page numbers (PDF page N), not the document's own internal pagination, which is inconsistent and partially illegible in this scan -- cite accordingly if pulling the source PDF. Unlike AD0385642, this document has NO clean TAB A task-organization table -- no 'TASK ORGANIZATION' header or per-operation brigade/battalion listing was found anywhere in the 56 pages. Task-org facts below are inferred from prose (General Situation, Logistics, and the Office of the Staff Historian's 'research projects continued' table) rather than read off a table, and are graded accordingly."
+  },
+
+  "document": {
+    "accession": "AD0386215",
+    "accession_as_printed": null,
+    "title": "Operational Report - Lessons Learned, HQ 1st Cavalry Division (Airmobile), Period Ending 31 July 1967",
+    "unit": "1st Cavalry Division (Airmobile)",
+    "echelon": "division_hq",
+    "period_start": "1967-05-01",
+    "period_end": "1967-07-31",
+    "rcs": "CSFOR-65",
+    "classification_original": "CONFIDENTIAL",
+    "declassified": "General Declassification Schedule (AGO ltr 29 Apr 1980)",
+    "pages": 56,
+    "source": "DTIC",
+    "file": "AD0386215-orll-1cav-jul67.pdf",
+    "companion": null,
+    "ocr_transcript": null
+  },
+
+  "triage": {
+    "genre": "primary_operational",
+    "echelon": "division",
+    "temporal_shape": "quarter",
+    "provenance": "us_army_field",
+    "ocr_era": "1967_fair",
+    "expected_yield": {
+      "operations": "high -- Pershing/Dazzlem/Byrd all named and discussed, plus a new cross-attachment operation (GREELEY) for 3rd Brigade",
+      "task_organization": "low -- no TAB A / task-org table found in this document (unlike AD0385642); brigade assignments must be inferred from prose",
+      "locations": "medium -- several grids given for the six 'moderate contacts' in the Pershing narrative; LZ English fire/explosion incident (6 Jun) also gridded implicitly",
+      "events": "medium -- six dated 'moderate contact' actions plus the LZ English ammo-fire incident, but none name a company/battalion; division- or brigade-level attribution only, same limitation as AD0385642",
+      "kia_individual": "none found -- no individual named anywhere in Section I",
+      "personnel": "low-medium -- command roster with a mid-quarter 2/8 Cav change of command (Dashiell to Stannard, 30 Jul) and a 3rd Brigade change of command (Burton to McKanna, 23 Jun); no combat-context personnel",
+      "awards": "none found -- only division-wide cumulative award tallies, not attributable to individuals or dates"
+    },
+    "passes_run": ["operations", "task_organization", "locations", "events", "kia_in_range", "casualty_reconciliation"]
+  },
+
+  "coverage": {
+    "date_range": ["1967-05-01", "1967-07-31"],
+    "operations": ["PERSHING", "DAZZLEM", "BYRD", "GREELEY (3rd Brigade, OPCON to 4th Inf Div)"],
+    "provinces": ["Binh Dinh", "Binh Thuan", "Kontum"],
+    "installations_raw": ["LZ English", "LZ Ton", "LZ Crystal", "LZ Geronimo", "Camp Radcliff", "Fish Hook area"],
+    "units_mentioned": ["1st Brigade", "2nd Brigade", "3rd Brigade (1st Cav Div, organic)", "4th Infantry Division (Francis Marion, gaining unit for 3rd Bde during GREELEY)", "173rd Airborne Brigade (Greely, gaining unit for a battalion TF)", "1/8 Cav", "2/8 Cav", "1/12 Cav", "1/5 Cav", "2/5 Cav", "2/7 Cav (OPCON to I Field Force Vietnam for Operation BYRD throughout)", "1/9 Cav Sqdn", "A/1/69 Armor (4th Inf Div, OPCON to 1st Cav Div for Pershing)"],
+    "enemy_units": ["22nd NVA Regiment", "18th NVA Regiment (7th Bn specifically named, 21 Jun contact)", "local VC / infiltration group (19 Jun contact)"]
+  },
+
+  "quarter_stats": {
+    "us_kia": 160,
+    "us_wia_hostile_injured": 445,
+    "aircraft_lost_and_recovered": null,
+    "enemy_kia_pershing_cumulative": { "vc_nva": 764, "note": "cumulative since Pershing's 11 Feb 67 start, not new-this-quarter; 1st Cav Div running total: KIA 140, WIA 724, MIA 0" },
+    "enemy_kia_dazzlem_cumulative": { "vc_nva": 4, "note": "cumulative since 1 Oct 66; 1st Cav Div running total: KIA 1, WIA 41, MIA 0" },
+    "enemy_kia_byrd_cumulative": { "vc_nva": 190, "note": "cumulative since 25 Aug 66 (2/7 Cav TF under IFFV); 1st Cav Div running total: KIA 4, WIA 24, MIA 0" },
+    "page": 8,
+    "confidence": "medium",
+    "notes": "us_kia=160 is DIVISION-WIDE for the full quarter (1 May-31 Jul 67), printed under the Medical section (Killed in Action: 160), not 2/8-Cav- or 1st-Brigade-specific -- same genre limitation as AD0385642's 257 figure. A separate 'DIVISION CASUALTIES' table (Part VI, aircraft-hit-incident context) shows 1st Brigade KIA/WIA/MIA all zero, but that table is scoped to aircraft-related casualties only, not overall division losses -- not usable as a 1st-Brigade quarterly KIA total and not treated as contradicting the roster."
+  },
+
+  "task_organization": {
+    "1st_brigade_organic": ["1/8 Cav", "2/8 Cav", "1/12 Cav"],
+    "no_tab_a_found": true,
+    "inferred_from_prose": {
+      "3rd_brigade_OPCON_to_4th_ID": {
+        "operation": "GREELEY",
+        "dates": ["1967-06-24", "1967-07-25"],
+        "location": "Kontum Province",
+        "gaining_unit": "4th Infantry Division (Francis Marion)",
+        "note": "Explicitly stated in the General Situation paragraph (page 3) and repeated in the Discussion & Analysis of Major Operations section (page 16): 'The 3rd Brigade was employed in Operation GREELEY under operational control of the 4th Infantry Division during the period 24 June to 25 July in Kontum Province.' A separate battalion task force was also sent OPCON to the 173rd Airborne Brigade at Dak To on 23 June, one day earlier, per an I Field Force Vietnam RFAO order -- a distinct attachment from the 3rd Brigade move. To cover the AO left open by the brigade's departure, the division spread two battalions north and two south of the Bong Son River."
+      },
+      "2_7_cav_OPCON_to_IFFV": {
+        "operation": "BYRD",
+        "dates": ["1966-08-25", null],
+        "location": "Binh Thuan Province",
+        "gaining_unit": "I Field Force Vietnam",
+        "note": "Task Force 2/7 Cav continued under IFFV control throughout this reporting period, supporting GVN RD activities -- ongoing since 25 Aug 66, unrelated to the 24 Jun-25 Jul GREELEY move."
+      },
+      "a_1_69_armor_OPCON_to_1st_cav": {
+        "note": "Company A, 1/69 Armor (4th Infantry Division) remained OPCON to the 1st Air Cav Division for Pershing throughout the quarter -- the same tank company noted as newly attached in AD0385642's late-March events; a reverse-direction attachment to the GREELEY swap above."
+      },
+      "2_8_cav_brigade_assignment_this_quarter": {
+        "note": "No task-org table or narrative sentence in this document states 2/8 Cav's controlling brigade for May-Jul 67 combat operations, unlike AD0385642's clean TAB A for Feb-Apr 67 (which showed 2/8 OPCON'd away from 1st Brigade to the division's own 3rd Brigade for Pershing). The only explicit 2/8-specific reference found anywhere in this document is the Office of the Staff Historian's 'research projects continued' table (page 12), which lists a still-open research item: '2/8th Cav, 11-12 Mar 67, Southern Crescent, Pershing' -- the SAME March action already flagged in AD0385642 against van-gieson-robert (graded in_range_no_matching_event there); this document does not add new information about it, only confirms the division's own historians still considered it unresolved as of this quarter. Because 3rd Brigade's own combat role this quarter is not narrated in detail (see events below, none name a battalion), and because the 3rd Brigade OPCON-to-4th-ID move for GREELEY names only '3rd Brigade' without listing which of its battalions went to Kontum, it is NOT safe to assume 2/8 Cav's Feb-Apr OPCON status (to 3rd Brigade) carried forward unchanged into May-Jul -- this is exactly the kind of assumption the spec warns against. Flagging as an open question rather than inferring either way."
+      }
+    },
+    "page": null,
+    "confidence": "low (no table; inferred from scattered narrative prose, cross-checked against the Office of the Staff Historian's research table)"
+  },
+
+  "operations": [
+    { "name": "PERSHING", "start": "1967-02-11", "end": null, "controlling_unit": "multi-brigade, continuing", "note": "Continued throughout the reporting period with daily light contacts division-wide plus six 'moderate' contacts in the eastern AO (see events below). Intelligence assessed 22nd NVA Regiment active in the northeastern AO and 18th Regiment in the southeastern AO. On 25 Jul, the 3rd Brigade (returning from GREELEY) and the 173rd Abn Bde battalion task force (returning from Dak To) both rejoined the Pershing AO, restoring 3-brigade strength.", "page": 12, "confidence": "high" },
+    { "name": "DAZZLEM", "start": "1966-10-01", "end": null, "controlling_unit": "1st Brigade (area-security/AO designation, not a maneuver op)", "note": "Reduced from a reinforced battalion to a single battalion on 9 May 67. On 30 May and again on 3 July, all Camp Radcliff support/tenant units executed OPLAN MARAUDER, a search of the barrier out to 2km. Artillery raids conducted in the north TAOR 26 May and 7 Jul. Two minor patrol contacts (17 Jun, 5 Jul), 1 enemy KIA total for the quarter.", "page": 12, "confidence": "high" },
+    { "name": "BYRD", "start": "1966-08-25", "end": null, "controlling_unit": "Task Force 2/7 Cav, OPCON to I Field Force Vietnam", "note": "Continued joint operations with ARVN/PF forces in Binh Thuan Province supporting GVN Revolutionary Development; cumulative-to-date figures given (190 enemy KIA, 4 US KIA since inception), not new-this-quarter breakdowns.", "page": 12, "confidence": "high" },
+    { "name": "GREELEY", "start": "1967-06-24", "end": "1967-07-25", "controlling_unit": "3rd Brigade (1st Cav Div, organic), OPCON to 4th Infantry Division (Francis Marion)", "note": "New operation this quarter, outside the division's normal Binh Dinh AO -- 3rd Brigade sent west to Kontum Province; a separate battalion task force went OPCON to the 173rd Abn Bde at Dak To one day earlier (23 Jun). Both returned to the Pershing AO by 25 Jul. This is the OPCON swap most relevant to future NARA-record research on 3rd Brigade for this window.", "page": 3, "confidence": "high" }
+  ],
+
+  "events": [
+    { "n": 1, "date": "1967-05-31", "installation": null, "location": "Central Bong Son Plain, vic An Qui (BS 6811)", "units": [], "type": "contact", "dco_involved": "unknown -- no battalion named, only 'the 1st ACD' (division-wide)", "enemy_kia": 96, "notes": "Elements of the 22nd NVA Regiment engaged; the first of six 'moderate contacts' the division highlights this quarter. Same-day as the Office of the Staff Historian's still-open research item '1st Bde, 30 May-1 Jun 67, Bong Son Plain, Pershing' (page 12 research table) -- that table entry and this narrated contact are almost certainly the same action, but neither source names a specific battalion of 1st Brigade.", "page": 11, "confidence": "medium (date/place/operation align across two independent passages in the same document, but battalion attribution is absent from both)" },
+    { "n": 2, "date": "1967-06-06", "installation": "LZ English", "location": "LZ English (ammo/POL storage area)", "units": [], "type": "accidental_incident", "dco_involved": false, "notes": "A fire and explosion resulting from enemy action destroyed supplies and facilities at LZ English. Investigating officer recommended increased separation distances between slung-load/storage areas and troop billets going forward.", "page": 20, "confidence": "high" },
+    { "n": 3, "date": "1967-06-17", "installation": null, "location": "vic BK 344547 (Dazzlem TAOR)", "units": [], "type": "contact", "dco_involved": false, "enemy_kia": 1, "us_wia": 2, "notes": "Minor Dazzlem-TAOR patrol contact with 4-6 VC; 1 enemy killed, 2 US wounded.", "page": 12, "confidence": "high" },
+    { "n": 4, "date": "1967-06-19", "installation": null, "location": "northeast of the Nui Hieu Mountains", "units": [], "type": "contact", "dco_involved": "unknown", "enemy_kia": 32, "notes": "Local VC unit and a reported infiltration group engaged; second of the six 'moderate contacts.'", "page": 11, "confidence": "medium" },
+    { "n": 5, "date": "1967-06-19", "installation": null, "location": "Nui Hieu Mountains, vic CR 026762", "units": [], "type": "contact", "dco_involved": "unknown", "enemy_kia": 24, "us_kia": 6, "us_wia": 16, "notes": "A separate, more detailed passage (page 10) narrating the same date/area: a company searching the Nui Hieu Mountains ran into heavy fire from an estimated company-size enemy force. Possibly the same action as event 4 above described twice at different levels of detail (division-level tally vs. Discussion & Analysis narrative) -- both are recorded here rather than assumed identical, since the enemy-KIA figures differ (32 vs 24) and only this second passage gives a US KIA figure (6). Note this is 19 June, not 5 June -- it does NOT tie to mccomb-terry (DOD 1967-06-05); recorded only for completeness of the mid-June contact picture.", "page": 10, "confidence": "medium (date and place overlap with event 4; two different casualty tallies given in two different sections of the same document, not reconciled)" },
+    { "n": 6, "date": "1967-06-20", "installation": null, "location": "vic Binh De Hamlet, Bong Son Plain (BS 8804/8805)", "units": [], "type": "contact", "dco_involved": "unknown", "enemy_kia": 42, "us_kia": 20, "notes": "Cordon operation with the NPFF; unknown-size enemy force engaged after a Tank/Infantry attack following TAC Air and artillery prep. Two figures given for enemy KIA at this action across two passages (42 on page 11, 30+7 POW on page 10) -- both recorded, not reconciled. Division suffered 20 US KIA in this action per the page-10 narrative, a notably heavy day -- no individual named or unit below division level given.", "page": 11, "confidence": "medium (casualty figures diverge between two passages describing what appears to be the same 20 June action)" },
+    { "n": 7, "date": "1967-06-21", "installation": null, "location": "southeast of the Suoi Ca Valley (BR 8660) / southwest of Phu My Valley (BR 8560)", "units": [], "type": "contact", "dco_involved": "unknown", "enemy_kia": 92, "us_kia": 6, "us_wia": 22, "notes": "Elements of the 7th Bn, 18th NVA Regt engaged; a POW led a company to his unit's location, two other companies plus a 22nd ARVN Division company joined an all-day battle. Fourth of the six 'moderate contacts'; the most specifically-named enemy unit of the quarter.", "page": 11, "confidence": "high" },
+    { "n": 8, "date": "1967-06-23", "installation": null, "location": "Dak To (west, en route to Kontum)", "units": [], "type": "opcon_movement", "dco_involved": false, "notes": "A battalion task force sent west OPCON to the 173rd Abn Bde, Dak To, per an IFFV RFAO order -- one day ahead of the 3rd Brigade's own GREELEY move (see task_organization/operations above).", "page": 10, "confidence": "high" },
+    { "n": 9, "date": "1967-06-28", "date_end": "1967-06-29", "installation": null, "location": "Dam Tra-O Lake, east side (BR 983837 / BR 98xx)", "units": ["1/9 Cav (initial platoon insertion)"], "type": "contact", "dco_involved": false, "enemy_kia": 75, "us_wia": 34, "notes": "1/9 Cav infantry platoon inserted in response to an interrogation report, came under heavy fire; three infantry companies air-assaulted in, tanks and Dusters engaged bunkers, followed by tank/infantry attack. Fifth of the six 'moderate contacts,' and the only one naming even a partial unit (1/9 Cav for the initial insertion only -- the reinforcing rifle companies are not named).", "page": 11, "confidence": "high" },
+    { "n": 10, "date": "1967-07-02", "installation": null, "location": "vic Tuy An (BS 8614)", "units": [], "type": "contact", "dco_involved": "unknown", "enemy_kia": 86, "notes": "Sixth and final 'moderate contact' of the quarter.", "page": 11, "confidence": "medium" },
+    { "n": 11, "date": "1967-07-11", "date_end": "1967-07-12", "installation": "LZ Ton / LZ Crystal (ARVN)", "location": "vic BS 865150 (contact location, near LZ Geronimo)", "units": [], "type": "base_attack_and_contact", "dco_involved": false, "us_kia": 5, "us_wia": 39, "notes": "ARVN LZs Ton and Crystal under light mortar attack (23 rds on Crystal wounding 4 ARVN/4 US, 20 rds on Ton wounding 2 US). Next day an infantry/tank platoon out of LZ Geronimo came under intense fire vicinity BS 865150; two companies engaged an estimated 2 NVA companies with TAC Air/CS/tank-infantry attack, 46 enemy KIA (BC). Division-wide result for these two days: 5 US KIA, 39 WIA.", "page": 15, "confidence": "high" },
+    { "n": 12, "date": "1967-07-12", "installation": null, "location": "Fish Hook area (BS 758185)", "units": ["1/9 Cav (scouts)"], "type": "contact", "dco_involved": false, "notes": "1/9 Cav scouts conducting a last recon before a planned artillery raid observed ~80 NVA northwest of the Fish Hook; 'Go Go' gunships and ARA engaged. Heavy jungle canopy precluded a full enemy KIA count; 12 bodies confirmed in the clearing.", "page": 15, "confidence": "medium" }
+  ],
+
+  "personnel": [
+    { "name": "LTC John C. Dashiell", "role": "CO, 2/8 Cav (continuing from 7 Feb 67, through 30 Jul 67)", "page": 6, "confidence": "high" },
+    { "name": "LTC John E. Stannard", "role": "CO, 2/8 Cav (from 30 Jul 67)", "page": 6, "confidence": "high" },
+    { "name": "Col. Donald V. Rattan", "role": "CO, 1st Brigade (continuing from 15 Apr 67)", "page": 6, "confidence": "high" },
+    { "name": "Col. [Karhohs]", "role": "CO, 2nd Brigade (continuing)", "page": 6, "confidence": "medium (surname partially garbled by OCR)" },
+    { "name": "Col. [Burton]", "role": "CO, 3rd Brigade (through 23 Jun 67)", "page": 6, "confidence": "medium (surname partially garbled by OCR)" },
+    { "name": "Col. [McKanna]", "role": "CO, 3rd Brigade (from 23 Jun 67 -- i.e. in command for the GREELEY OPCON move to 4th Inf Div one day later)", "page": 6, "confidence": "medium (surname partially garbled by OCR)" },
+    { "name": "LTC Herman E. Schubarth", "role": "ACofS G2 (from 19 Jun 67, replacing LTC Robert H. Siegrist)", "page": 12, "confidence": "high" }
+  ],
+  "awards": [],
+
+  "lessons_learned_present": true,
+  "lessons_learned_page_range": [45, 52],
+
+  "unrelated_content_flag": null
+}

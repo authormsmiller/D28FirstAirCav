@@ -1,0 +1,215 @@
+{
+  "_meta": {
+    "artifact": "cross-reference-candidates",
+    "generated_by": "scripts/cross-reference-engine.cjs",
+    "from_digest": "site/sources/dj/1968/skipper-journal-jun-jul-1968.digest.json",
+    "document": "Skipper Journal — D/2-8 Cav Daily Log, 3 June – 3 July 1968",
+    "period": [
+      "1968-06-03",
+      "1968-07-03"
+    ],
+    "near_days_window": 7,
+    "kia_rows_skipped_unknown_date": 0,
+    "note": "Deterministic joins only (date+battalion match, casualty count diff, gazetteer name resolution). Operations / personnel / awards / contact-event proposals and all narrative interpretation still require a human/Claude pass -- see the source-digest skill Step 3-5."
+  },
+  "kia_in_range": [
+    {
+      "slug": "weldin-jacob",
+      "name": "SGT Jacob Robinson Weldin",
+      "dod": "1968-06-06",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "candidate_exact_date_battalion_match",
+      "exact_events": [
+        {
+          "date": "1968-06-06",
+          "units": [
+            "D/2-8"
+          ],
+          "installation": null
+        }
+      ],
+      "near_events_battalion": [
+        {
+          "date": "1968-06-05",
+          "offset_days": -1,
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1
+        },
+        {
+          "date": "1968-06-04",
+          "offset_days": -2,
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1
+        }
+      ]
+    },
+    {
+      "slug": "winner-brian",
+      "name": "PFC Brian Carl Winner",
+      "dod": "1968-06-07",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "candidate_exact_date_battalion_match",
+      "exact_events": [
+        {
+          "date": "1968-06-07",
+          "units": [
+            "D/2-8"
+          ],
+          "installation": null
+        }
+      ],
+      "near_events_battalion": [
+        {
+          "date": "1968-06-05",
+          "offset_days": -2,
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1
+        },
+        {
+          "date": "1968-06-04",
+          "offset_days": -3,
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1
+        }
+      ]
+    },
+    {
+      "slug": "wheeler-john",
+      "name": "PFC John Clark Wheeler",
+      "dod": "1968-06-12",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "candidate_near_date_battalion_match",
+      "exact_events": [],
+      "near_events_battalion": [
+        {
+          "date": "1968-06-05",
+          "offset_days": -7,
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1
+        }
+      ]
+    },
+    {
+      "slug": "ross-robert",
+      "name": "SGT Robert James Ross",
+      "dod": "1968-07-01",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "candidate_exact_date_battalion_match",
+      "exact_events": [
+        {
+          "date": "1968-07-01",
+          "units": [
+            "D/2-8"
+          ],
+          "us_kia": 1,
+          "installation": null
+        }
+      ],
+      "near_events_battalion": []
+    }
+  ],
+  "casualty_reconciliation": [
+    {
+      "event_n": null,
+      "date": "1968-06-04",
+      "installation": null,
+      "units": [
+        "D/2-8"
+      ],
+      "event_us_kia": 1,
+      "roster_exact_date_count": 0,
+      "roster_exact_date_slugs": [],
+      "roster_near_date_candidates": [
+        {
+          "slug": "weldin-jacob",
+          "dod": "1968-06-06",
+          "offset_days": 2
+        },
+        {
+          "slug": "winner-brian",
+          "dod": "1968-06-07",
+          "offset_days": 3
+        }
+      ],
+      "open_question": "Event reports 1 US KIA on 1968-06-04 (D/2-8); roster shows 0 on that exact date, with 2 roster death(s) within 7 days to check for the three-date (action / journal-or-report-logged / Wall-of-record) offset. Do not silently reconcile -- record as open_question."
+    },
+    {
+      "event_n": null,
+      "date": "1968-06-05",
+      "installation": null,
+      "units": [
+        "D/2-8"
+      ],
+      "event_us_kia": 1,
+      "roster_exact_date_count": 0,
+      "roster_exact_date_slugs": [],
+      "roster_near_date_candidates": [
+        {
+          "slug": "weldin-jacob",
+          "dod": "1968-06-06",
+          "offset_days": 1
+        },
+        {
+          "slug": "winner-brian",
+          "dod": "1968-06-07",
+          "offset_days": 2
+        },
+        {
+          "slug": "wheeler-john",
+          "dod": "1968-06-12",
+          "offset_days": 7
+        }
+      ],
+      "open_question": "Event reports 1 US KIA on 1968-06-05 (D/2-8); roster shows 0 on that exact date, with 3 roster death(s) within 7 days to check for the three-date (action / journal-or-report-logged / Wall-of-record) offset. Do not silently reconcile -- record as open_question."
+    }
+  ],
+  "locations": [
+    {
+      "raw_name": "LZ Anne",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Betty",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Pedro",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Green",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Carol",
+      "resolved_slug": "fb-carol",
+      "resolved_display": "FB Carol",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    }
+  ]
+}

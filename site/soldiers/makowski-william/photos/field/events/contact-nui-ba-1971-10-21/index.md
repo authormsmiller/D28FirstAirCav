@@ -12,6 +12,7 @@ photos:
     date_known: false
     event: contact-nui-ba-1971-10-21
     quality: 
-    contains: []
+    contains:
+      - makowski-william
     tagged: []
 ---

@@ -2,7 +2,7 @@
 slug: nf34-memorial-2022
 title: "Never Forgotten 34 — Memorial Ceremony"
 status: published
-type: commemorative
+type: memorial
 
 date: "2022-05-09"
 date_end: "2022-05-10"

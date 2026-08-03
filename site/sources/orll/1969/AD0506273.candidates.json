@@ -1,0 +1,415 @@
+{
+  "_meta": {
+    "artifact": "cross-reference-candidates",
+    "generated_by": "scripts/cross-reference-engine.cjs",
+    "from_digest": "site/sources/orll/1969/AD0506273.digest.json",
+    "document": "AD0506273",
+    "period": [
+      "1969-05-01",
+      "1969-07-31"
+    ],
+    "near_days_window": 7,
+    "kia_rows_skipped_unknown_date": 0,
+    "note": "Deterministic joins only (date+battalion match, casualty count diff, gazetteer name resolution). Operations / personnel / awards / contact-event proposals and all narrative interpretation still require a human/Claude pass -- see the source-digest skill Step 3-5."
+  },
+  "kia_in_range": [
+    {
+      "slug": "brown-neil",
+      "name": "PFC Neil Shipp Brown",
+      "dod": "1969-05-02",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 2,
+          "date": "1969-05-02",
+          "units": [
+            "C/2-7 Cav",
+            "B/1-9 Cav"
+          ],
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "C/2-7 Cav",
+          "B/1-9 Cav"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "brown-george",
+      "name": "CPL George Arthur Brown",
+      "dod": "1969-05-12",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 5,
+          "date": "1969-05-12",
+          "units": [
+            "A/2-12 Cav",
+            "E/2-12 Cav"
+          ],
+          "us_kia": 5,
+          "installation": "LZ Grant"
+        },
+        {
+          "n": 6,
+          "date": "1969-05-12",
+          "units": [
+            "E/2-7 Cav"
+          ],
+          "us_kia": 7,
+          "installation": "LZ Jamie"
+        },
+        {
+          "n": 7,
+          "date": "1969-05-12",
+          "units": [
+            "3rd Bde HQ",
+            "E/1-7 Cav"
+          ],
+          "us_kia": 3,
+          "installation": "LZ Phyllis"
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "A/2-12 Cav",
+          "E/2-12 Cav"
+        ],
+        [
+          "E/2-7 Cav"
+        ],
+        [
+          "3rd Bde HQ",
+          "E/1-7 Cav"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "dunkle-james",
+      "name": "CPL James Robert Dunkle",
+      "dod": "1969-05-13",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "garven-wayne",
+      "name": "PFC Wayne Eric Garven",
+      "dod": "1969-05-25",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "karr-john",
+      "name": "1LT John Preston Karr",
+      "dod": "1969-05-25",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "white-richard",
+      "name": "CPL Richard Neal White",
+      "dod": "1969-05-25",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "marchand-thomas",
+      "name": "PFC Thomas Michael Marchand",
+      "dod": "1969-06-12",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 18,
+          "date": "1969-06-12",
+          "units": [
+            "D/1-7 Cav",
+            "E/1-7 Cav"
+          ],
+          "us_kia": 5,
+          "installation": "LZ Joy"
+        }
+      ],
+      "exact_events_other_unit": [
+        [
+          "D/1-7 Cav",
+          "E/1-7 Cav"
+        ]
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "gulley-houston",
+      "name": "SP4 Houston Gulley",
+      "dod": "1969-07-02",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    }
+  ],
+  "casualty_reconciliation": [
+    {
+      "event_n": 3,
+      "date": "1969-05-06",
+      "installation": "LZ Carolyn",
+      "units": [
+        "C/2-8 Cav",
+        "E/2-8 Cav"
+      ],
+      "event_us_kia": 10,
+      "roster_exact_date_count": 0,
+      "roster_exact_date_slugs": [],
+      "roster_near_date_candidates": [
+        {
+          "slug": "brown-neil",
+          "dod": "1969-05-02",
+          "offset_days": -4
+        },
+        {
+          "slug": "brown-george",
+          "dod": "1969-05-12",
+          "offset_days": 6
+        },
+        {
+          "slug": "dunkle-james",
+          "dod": "1969-05-13",
+          "offset_days": 7
+        }
+      ],
+      "open_question": "Event reports 10 US KIA on 1969-05-06 (C/2-8 Cav, E/2-8 Cav); roster shows 0 on that exact date, with 3 roster death(s) within 7 days to check for the three-date (action / journal-or-report-logged / Wall-of-record) offset. Do not silently reconcile -- record as open_question."
+    }
+  ],
+  "locations": [
+    {
+      "raw_name": "LZ Carolyn",
+      "resolved_slug": "fb-carolyn",
+      "resolved_display": "FB Carolyn",
+      "source": "locations.json",
+      "confidence": "confirmed",
+      "tied_events": [
+        {
+          "n": 3,
+          "date": "1969-05-06",
+          "units": [
+            "C/2-8 Cav",
+            "E/2-8 Cav"
+          ]
+        }
+      ],
+      "action": "Enrich occupancy: attach this document as source + tied event(s)."
+    },
+    {
+      "raw_name": "LZ ST BARBARA",
+      "resolved_slug": null,
+      "confidence": "inferred_unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- 2/8 in the brigade AO that bases here (inferred); coordinates TBD."
+    },
+    {
+      "raw_name": "LZ Ike",
+      "resolved_slug": null,
+      "confidence": "inferred_unresolved",
+      "tied_events": [
+        {
+          "n": 8,
+          "date": "1969-05-21",
+          "units": [
+            "A/2-5 Cav",
+            "E/2-5 Cav"
+          ],
+          "grid": null
+        },
+        {
+          "n": 20,
+          "date": "1969-06-18",
+          "units": [
+            "D/2-5 Cav",
+            "B/2-5 Cav"
+          ],
+          "grid": null
+        },
+        {
+          "n": 21,
+          "date": "1969-06-20",
+          "units": [
+            "D/2-5 Cav",
+            "E/2-5 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- 2/8 in the brigade AO that bases here (inferred); coordinates TBD."
+    },
+    {
+      "raw_name": "LZ Grant",
+      "resolved_slug": null,
+      "confidence": "inferred_unresolved",
+      "tied_events": [
+        {
+          "n": 5,
+          "date": "1969-05-12",
+          "units": [
+            "A/2-12 Cav",
+            "E/2-12 Cav"
+          ],
+          "grid": null
+        },
+        {
+          "n": 23,
+          "date": "1969-07-03",
+          "units": [
+            "C/1-12 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- 2/8 in the brigade AO that bases here (inferred); coordinates TBD."
+    },
+    {
+      "raw_name": "LZ Joe",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 4,
+          "date": "1969-05-06",
+          "units": [
+            "C/5-7 Cav",
+            "E/5-7 Cav"
+          ],
+          "grid": null
+        },
+        {
+          "n": 9,
+          "date": "1969-05-23",
+          "units": [
+            "E/5-7 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Jamie",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 6,
+          "date": "1969-05-12",
+          "units": [
+            "E/2-7 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Phyllis",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 7,
+          "date": "1969-05-12",
+          "units": [
+            "3rd Bde HQ",
+            "E/1-7 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Rock",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 13,
+          "date": "1969-05-28",
+          "units": [
+            "B/1-8 Cav"
+          ],
+          "grid": null
+        },
+        {
+          "n": 16,
+          "date": "1969-06-02",
+          "units": [
+            "A/1-8 Cav",
+            "B/1-8 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Joy",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 18,
+          "date": "1969-06-12",
+          "units": [
+            "D/1-7 Cav",
+            "E/1-7 Cav"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ DOLLY",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ WHITE",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Becky",
+      "resolved_slug": "fb-becky",
+      "resolved_display": "FB Becky",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [
+        {
+          "n": 1,
+          "date": "1969-05-01",
+          "units": [
+            "M/3-11 ACR"
+          ]
+        }
+      ],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 slug: bee-incident-1971-03-22
 title: Bee Incident — Medevac at FB Mace
 status: published
+type: incident
 
 date: "1971-03-22"
 date_known: true
@@ -14,9 +15,9 @@ platoons:
 
 casualties:
   nbw:
-    - slug: mcgrew-harold
+    - slug: mcgrew-howard
       name: Howard McGrew
-      role: Range Platoon CP radio operator
+      role: Range Platoon, 1st Squad (rifleman/M60 ammo bearer at this date — not yet RTO)
       note: Stung; medevaced to FB Mace; calendar entry is primary source for this event
     - slug: bedsole-jim
       name: Capt. Jim Bedsole
@@ -91,7 +92,7 @@ archivist_notes:
 
 ## Summary
 
-On March 22, 1971, while D Company was operating in the field, a large and aggressive bee colony was disturbed. Multiple soldiers — including Range Platoon CP radio operator Howard McGrew and, based on accounts from Capt. Neal and others, company commander Capt. Jim Bedsole — were stung severely enough to require medical evacuation to FB Mace for treatment.
+On March 22, 1971, while D Company was operating in the field, a large and aggressive bee colony was disturbed. Multiple soldiers — including Range Platoon rifleman Howard McGrew and, based on accounts from Capt. Neal and others, company commander Capt. Jim Bedsole — were stung severely enough to require medical evacuation to FB Mace for treatment.
 
 The exact trigger is disputed. One account describes soldiers deliberately disturbing a nest. Another describes a soldier accidentally leaning against a rotted tree trunk containing the colony. In either case the reaction was immediate and overwhelming: men ran without their weapons, an unusual breakdown of weapons discipline that measures how severe the assault was.
 

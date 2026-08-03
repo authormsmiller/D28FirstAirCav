@@ -3,11 +3,11 @@ layout: layouts/document.njk
 slug: duds-hit-firebase
 title: "\"Duds Hit Firebase\" — FSB Fontaine Incident"
 type: verbal
-date: 1970-11-30T00:00:00.000Z
+date: "1971-03-10"
 date_known: false
-source: Military publication (name unknown)
+source: "CAVALAIR (1st Air Cavalry Division weekly), Vol. 5 No. 10, 10 March 1971"
 status: published
-event: ""
+event: duds-firebase-fontaine-1971-03
 contains:
   - weaver-ken
 tagged:
@@ -18,7 +18,7 @@ files:
   - filename: dud-article-note.jpg
     caption: Ken Weaver's handwritten note
 archivist_notes: |
-  Original clipping contributed by Ken Weaver, Cat Platoon, 1971–72. Handwritten note reads: "I was there when this happened. Keep it for me. No one was hurt." Publication name unknown. Date unknown, 1971. Transcribed from original scan by archive, 2026.
+  Original clipping contributed by Ken Weaver, Cat Platoon, 1971–72. Handwritten note reads: "I was there when this happened. Keep it for me. No one was hurt." Publication identified (2026) as CAVALAIR Vol. 5 No. 10, 10 March 1971. Transcribed from original scan by archive, 2026.
 permalink: /documents/unit/duds-hit-firebase/
 ---
 **FSB FONTAINE** — As the first round exploded, the cry "incoming" was heard all over the firebase. Skytroopers of the 3d Bde., 2d Bn., 8th Cav. and C Btry., 1st Bn., 21st Arty, anxiously awaited for the calm of the night to return.

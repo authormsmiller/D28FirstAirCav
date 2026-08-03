@@ -1,0 +1,355 @@
+---
+layout: base.njk
+title: Request Records
+permalink: /records/
+---
+
+<style>
+/* ── Records guide page ─────────────────────────────────────────── */
+.rg-hero {
+  background: var(--dk);
+  padding: 56px 32px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.rg-hero-inner { max-width: 720px; margin: 0 auto; }
+.rg-dateline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--y);
+  margin-bottom: 14px;
+}
+.rg-hed {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 16px;
+  letter-spacing: 0.01em;
+}
+.rg-hed span { color: var(--y); }
+.rg-deck {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  max-width: 580px;
+  margin: 0;
+}
+
+.rg-body {
+  background: var(--pg);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.rg-intro {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--dim);
+  margin: 0 0 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* ── Record type cards ──────────────────────────────────────────── */
+.rg-section {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.rg-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rg-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.rg-section-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--y);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--dk);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.rg-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dk);
+  margin: 0 0 4px;
+}
+.rg-section-sub {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  color: var(--dim);
+  margin: 0;
+}
+
+.rg-what {
+  background: rgba(0,0,0,0.03);
+  border-left: 3px solid var(--y);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border-radius: 0 4px 4px 0;
+}
+.rg-what-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  margin-bottom: 6px;
+}
+.rg-what-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16px;
+  color: var(--dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rg-steps { list-style: none; padding: 0; margin: 0 0 20px; }
+.rg-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.rg-step-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--dk);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.rg-step-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--dim);
+}
+.rg-step-body a {
+  color: var(--dk);
+  text-underline-offset: 3px;
+}
+.rg-step-body a:hover { color: var(--y2); }
+.rg-step-body strong { color: var(--dk); font-weight: 600; }
+
+.rg-note {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(0,0,0,0.45);
+  line-height: 1.6;
+  margin: 16px 0 0;
+}
+.rg-note strong { font-style: normal; color: rgba(0,0,0,0.6); }
+
+/* ── Footer CTA ─────────────────────────────────────────────────── */
+.rg-footer {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  text-align: center;
+}
+.rg-footer-hed {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dk);
+  margin: 0 0 10px;
+}
+.rg-footer-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  color: var(--dim);
+  line-height: 1.65;
+  margin: 0 0 24px;
+}
+.rg-footer-btn {
+  display: inline-block;
+  background: var(--y);
+  color: #111;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.rg-footer-btn:hover { background: var(--y2); }
+
+@media (max-width: 600px) {
+  .rg-hero { padding: 40px 24px 32px; }
+  .rg-hed { font-size: 42px; }
+  .rg-body { padding: 32px 20px 60px; }
+  .rg-section-title { font-size: 18px; }
+}
+</style>
+
+<div class="rg-hero">
+  <div class="rg-hero-inner">
+    <div class="rg-dateline">D Co. 2/8 CAV Archive · Records</div>
+    <h1 class="rg-hed">Request <span>Records</span></h1>
+    <p class="rg-deck">A guide to requesting official military records for soldiers of D Co. 2/8 CAV — from personnel files to casualty documents.</p>
+  </div>
+</div>
+
+<div class="rg-body">
+
+  <p class="rg-intro">If your father, grandfather, or loved one served with Delta Company, there are official records held by the federal government that you have the right to request. This page explains the three main record types, who can ask for them, and exactly how to do it.</p>
+
+  <!-- ── 1. Service Records ─────────────────────────────────────── -->
+  <div class="rg-section">
+    <div class="rg-section-header">
+      <div class="rg-section-icon">1</div>
+      <div>
+        <div class="rg-section-title">Military Service Records</div>
+        <div class="rg-section-sub">National Personnel Records Center (NPRC) · St. Louis, MO</div>
+      </div>
+    </div>
+
+    <div class="rg-what">
+      <div class="rg-what-label">What's in this file</div>
+      <p class="rg-what-body">Enlistment and discharge papers, DD-214, assignments, promotions, decorations and awards, training records, and medical records from active service.</p>
+    </div>
+
+    <ol class="rg-steps">
+      <li class="rg-step">
+        <div class="rg-step-num">1</div>
+        <div class="rg-step-body">
+          Go to <a href="https://vetrecs.archives.gov" target="_blank" rel="noopener">vetrecs.archives.gov</a> and submit an <strong>eVetRecs</strong> request online — this is the fastest route. Alternatively, download and mail a signed <a href="https://www.gsa.gov/system/files/2024-10/SF180-24a.pdf" target="_blank" rel="noopener">SF-180 form</a> to: <strong>NPRC, 1 Archives Drive, St. Louis, MO 63138</strong>.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">2</div>
+        <div class="rg-step-body">
+          As next of kin of a deceased veteran, include <strong>proof of death</strong> — a copy of the death certificate, a letter from the funeral home, or a published obituary. Next of kin is defined as an unremarried surviving spouse, son, daughter, father, mother, brother, or sister.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">3</div>
+        <div class="rg-step-body">
+          Because D Co. 2/8 CAV soldiers served in Vietnam (1966–1972), their records are <strong>archival</strong> — meaning they separated from the military more than 62 years ago. Archival records carry a reproduction fee of roughly <strong>80¢ per page</strong>. NPRC will provide a price quote before charging anything.
+        </div>
+      </li>
+    </ol>
+
+    <p class="rg-note"><strong>Patience required.</strong> Processing takes 90 days or more. Don't send a follow-up before that — it can push your request further back.</p>
+  </div>
+
+  <!-- ── 2. Casualty File (IDPF) ────────────────────────────────── -->
+  <div class="rg-section">
+    <div class="rg-section-header">
+      <div class="rg-section-icon">2</div>
+      <div>
+        <div class="rg-section-title">Casualty File (IDPF)</div>
+        <div class="rg-section-sub">Individual Deceased Personnel File · NARA St. Louis / Fort Knox HRC</div>
+      </div>
+    </div>
+
+    <div class="rg-what">
+      <div class="rg-what-label">What's in this file</div>
+      <p class="rg-what-body">The official record of how a soldier died: teletype messages, correspondence, mortuary affairs reports, accident investigation findings, and documentation of remains recovery and return. For KIA soldiers, this is often the most detailed firsthand account of their death.</p>
+    </div>
+
+    <ol class="rg-steps">
+      <li class="rg-step">
+        <div class="rg-step-num">1</div>
+        <div class="rg-step-body">
+          <strong>Determine which office holds the file</strong> based on last name. Army IDPFs for surnames <strong>A–L</strong> are at the National Archives in St. Louis. Surnames <strong>M–Z</strong> are still held by the Army's Human Resources Command at Fort Knox.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">2</div>
+        <div class="rg-step-body">
+          <strong>For A–L surnames:</strong> Email <a href="mailto:stl.archives@nara.gov">stl.archives@nara.gov</a> to request a search and price quote. Reproduction runs <strong>80¢ per page with a $20 minimum</strong>. NARA will confirm the file exists and invoice you before sending copies.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">3</div>
+        <div class="rg-step-body">
+          <strong>For M–Z surnames:</strong> Contact the Army Human Resources Command at Fort Knox. Phone: <strong>(888) 276-9472</strong>. Their casualty records office handles Vietnam-era IDPF requests directly.
+        </div>
+      </li>
+    </ol>
+
+    <p class="rg-note">The IDPF is a separate file from the service record — you may want to request both. They are held by different offices and must be requested independently.</p>
+  </div>
+
+  <!-- ── 3. Unit Records ───────────────────────────────────────── -->
+  <div class="rg-section">
+    <div class="rg-section-header">
+      <div class="rg-section-icon">3</div>
+      <div>
+        <div class="rg-section-title">Unit Records</div>
+        <div class="rg-section-sub">Record Group 472 · National Archives, St. Louis</div>
+      </div>
+    </div>
+
+    <div class="rg-what">
+      <div class="rg-what-label">What's in these records</div>
+      <p class="rg-what-body">Daily journals, operational logs, after-action reports, unit orders, and general orders for infantry units in Vietnam. These document what the company was doing on any given day — missions, movements, casualties, and citations.</p>
+    </div>
+
+    <ol class="rg-steps">
+      <li class="rg-step">
+        <div class="rg-step-num">1</div>
+        <div class="rg-step-body">
+          Unit records for Vietnam are held in <strong>Record Group 472</strong> (Records of U.S. Forces in Southeast Asia, 1950–1975) at the National Archives. The relevant series is <em>Infantry Unit Records, 1965–ca. 1973</em>.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">2</div>
+        <div class="rg-step-body">
+          <strong>In-person access</strong> is available by appointment at the National Personnel Records Center Archival Research Room: <strong>1 Archives Drive, St. Louis, MO 63138</strong>. Call <strong>(314) 801-0850</strong> or email <a href="mailto:stlarr.archives@nara.gov">stlarr.archives@nara.gov</a> to schedule.
+        </div>
+      </li>
+      <li class="rg-step">
+        <div class="rg-step-num">3</div>
+        <div class="rg-step-body">
+          If you can't travel to St. Louis, you can <strong>hire an independent researcher</strong> to visit on your behalf. NARA maintains a list of researchers familiar with Vietnam-era unit records — ask for it when you call to schedule.
+        </div>
+      </li>
+    </ol>
+
+    <p class="rg-note"><strong>Note on Morning Reports:</strong> Vietnam-era Morning Reports (daily strength and casualty rosters) are currently on hiatus at NPRC and unavailable for remote requests. In-person access may still be possible by appointment — confirm availability when you call.</p>
+  </div>
+
+  <!-- ── Footer CTA ─────────────────────────────────────────────── -->
+  <div class="rg-footer">
+    <div class="rg-footer-hed">Something we can help with?</div>
+    <p class="rg-footer-body">If you're not sure where to start, or if you've received records that mention D Co. 2/8 CAV and would like help interpreting them, send us a message. We read everything.</p>
+    <a class="rg-footer-btn" href="/request/?type=general">Contact the Archive</a>
+  </div>
+
+</div>

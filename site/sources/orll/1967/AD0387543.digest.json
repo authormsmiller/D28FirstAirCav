@@ -1,0 +1,157 @@
+{
+  "_meta": {
+    "artifact": "orll-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-15 -- third live ORLL digest pass in the 1967 backfill (see AD0385642 for Feb-Apr, AD0386215 for May-Jul). This one only has ONE in-range KIA (santoroski-michael, already covered by the existing event page santoroski-mine-1967-09-06), so the primary value of this pass is operational/OPCON context plus a much richer events yield than either prior 1967 document -- the first genuinely golden-example-tier document of the 1967 backfill.",
+    "generated_by": "human read of an existing OCR markdown transcript (AD0387543-orll-1cav-oct67-ocr.md, fetched 2026-07-07 via web fetch of the DTIC PDF), not a fresh pdftotext -layout extraction of the PDF itself -- OCR noise is heavier/noisier than the pdftotext -layout extractions used for AD0385642/AD0386215 in places (e.g. figures, unit names), but the narrative prose is far more detailed at company level than either prior document.",
+    "notes": "Division-level ORLL. Unlike AD0385642 (clean TAB A tables) and AD0386215 (no task-org table at all), this document has NO task-org table captured in the OCR transcript either, but its narrative prose explicitly states several OPCON moves in plain language (2/8 Cav to 173rd Abn Bde, 3rd Bde to Americal Division, A/1/69 Armor released to 4th Inf Div) -- more explicit than AD0386215's narrative, if not as clean as AD0385642's tables. This is also the first 1967 document to name a 2/8 Cav SUB-UNIT (A/2/8 Cav) in an actual firefight, on 9 Aug 1967 in the Song Re Valley -- the clearest direct 2/8 Cav combat citation found anywhere in the 1967 backfill to date, though it does not tie to any KIA in the roster (nearest in-range death, santoroski-michael, was wounded by a land mine on 6 Sep, a full month later and not part of this action). Page numbers below are PHYSICAL PDF page numbers where legible in the OCR transcript; several are uncertain due to OCR noise and are marked accordingly."
+  },
+
+  "document": {
+    "accession": "AD0387543",
+    "accession_as_printed": null,
+    "title": "Operational Report - Lessons Learned, HQ 1st Cavalry Division (Airmobile), Period Ending 31 October 1967",
+    "unit": "1st Cavalry Division (Airmobile)",
+    "echelon": "division_hq",
+    "period_start": "1967-08-01",
+    "period_end": "1967-10-31",
+    "rcs": "CSFOR-65",
+    "classification_original": "CONFIDENTIAL",
+    "declassified": "General Declassification Schedule (AGO ltr 29 Apr 1980)",
+    "pages": 61,
+    "source": "DTIC",
+    "file": "AD0387543-orll-1cav-oct67.pdf",
+    "companion": null,
+    "ocr_transcript": "AD0387543-orll-1cav-oct67-ocr.md"
+  },
+
+  "triage": {
+    "genre": "primary_operational",
+    "echelon": "division",
+    "temporal_shape": "quarter",
+    "provenance": "us_army_field",
+    "ocr_era": "1967_fair_to_poor_ocr_transcript",
+    "expected_yield": {
+      "operations": "high -- Byrd/Pershing/Dazzlem continuing, plus THREE new operations this quarter (Join Hands, Bolling, Wallowa) and two election-security operations (Voter/Voter II); the richest operational picture of the 1967 backfill so far",
+      "task_organization": "medium -- no clean TAB A table found in the OCR transcript (an 'Inclosure 3: Task Organization for Major Operations' is referenced repeatedly but its actual table content is not captured/legible in this transcript), but narrative prose explicitly states several OPCON moves in plain language",
+      "locations": "high -- Song Re/Nuoc Dinh Valley grids, and roughly a dozen LZs/firebases named with grids for individual company actions",
+      "events": "high -- by far the richest of the three 1967 documents reviewed; roughly 15 dated, gridded, COMPANY-LEVEL actions named (A/2/5, D/1/8, B/1/9, B/1/8, A/1/8, D/1/5, C/1/9, C/1/50, 5/7 Cav, plus the 2/8-specific Song Re Valley fight) -- genuinely comparable to the AD0506273 1969 golden example in level of detail, a real step up from AD0385642 and AD0386215's brigade-level-only prose",
+      "kia_individual": "none found -- no individual named in Section I, same as the two prior 1967 documents",
+      "personnel": "medium -- full command roster plus explicit dates for the 173rd Abn Bde partnership and Americal Division hand-off",
+      "awards": "none found -- 2 Medal of Honor awarded division-wide this quarter per the cumulative tally, but not attributed to any individual or action"
+    },
+    "passes_run": ["operations", "task_organization", "locations", "events", "kia_in_range", "casualty_reconciliation"]
+  },
+
+  "coverage": {
+    "date_range": ["1967-08-01", "1967-10-31"],
+    "operations": ["BYRD", "PERSHING", "DAZZLEM", "JOIN HANDS", "BOLLING", "WALLOWA", "VOTER", "VOTER II"],
+    "provinces": ["Binh Dinh", "Binh Thuan", "Quang Ngai (Song Re/Nuoc Dinh Valleys, 3rd Bde recon-in-force)", "Phu Yen (Operation BOLLING, west of Tuy Hoa)", "Quang Nam / Quang Tin (Operation WALLOWA, I Corps Tactical Zone, Chu Lai/Tam Ky)"],
+    "installations_raw": ["LZ English", "LZ Two Bits", "LZ Dog", "LZ Uplift", "LZ Ollie", "LZ Montezuma", "Hill 63 (LZ Baldy)", "Camp Radcliff"],
+    "units_mentioned": ["1st Brigade", "2nd Brigade", "3rd Brigade (1st Cav Div, organic)", "173rd Airborne Brigade (gaining unit for TF 2/8 Cav, Operation BOLLING)", "Americal Division (gaining unit for 3rd Brigade, Operation WALLOWA)", "4th Infantry Division (gaining unit for A/1/69 Armor after 25 Sep 67)", "1/8 Cav", "2/8 Cav", "1/12 Cav", "1/5 Cav", "2/5 Cav", "1/7 Cav", "2/7 Cav (OPCON to IFFV for Byrd throughout)", "5/7 Cav", "2/12 Cav", "1/9 Cav Sqdn", "1/50 Inf (Mech) (newly arrived from CONUS, attached to division late Sep)", "22d Inf Div (ARVN)", "23d Inf Div (ARVN)", "Capital ROK Inf Div", "Marine Task Force Bravo (Join Hands)"],
+    "enemy_units": ["3d NVA Division HQ", "22nd NVA Regiment", "18th NVA Regiment", "2d VC Regiment (93d/95th/97th Bns)"]
+  },
+
+  "quarter_stats": {
+    "us_kia": 149,
+    "us_kia_alt_figure": 125,
+    "us_wia_hostile_injured": 731,
+    "aircraft_lost_and_recovered": null,
+    "enemy_kia_pershing_cumulative": { "vc_nva": 1134, "note": "cumulative since Pershing's 11 Feb 67 start, as of 312400 Oct 67 -- POW 194/1917, returnees 31/179" },
+    "enemy_kia_byrd_cumulative": { "vc_nva": 734, "note": "cumulative since 25 Aug 66, as of 30 Oct 67 -- earlier report period showed 190; a big jump this quarter" },
+    "enemy_kia_dazzlem_cumulative": { "vc_nva": 20, "note": "cumulative since 1 Oct 66, as of 312400 Oct 67" },
+    "enemy_kia_wallowa_to_date": { "vc_nva": 675, "note": "3rd Brigade's own operation, only 1-31 Oct 67 so far (began 1 Oct); friendly KIA 46, WIA 480 -- a notably higher-intensity month than anything in the Pershing AO this quarter" },
+    "enemy_kia_song_re_valley_subop": { "vc_nva": 42, "note": "the Aug 1-19 recon-in-force specifically (Pershing sub-operation); friendly KIA 7, WIA 44, for the whole 3-battalion force, not 2/8-specific" },
+    "enemy_kia_bolling_subop": { "vc_nva": 21, "note": "TF 2/8 Cav's Sep-Oct attachment to 173rd Abn Bde specifically; friendly KIA 0, WIA 7" },
+    "page": null,
+    "confidence": "low-medium (OCR transcript garbles this figure two different ways in two places -- 'Killed in Action 149' appears as a standalone quarterly total under the Medical section, while a separate sentence gives a 'KIA/IRHA ratio of 125/692' -- both are recorded here since the transcript does not make clear whether these are the same figure read differently by OCR, or two genuinely different figures; not reconciled)",
+    "notes": "us_kia figures are DIVISION-WIDE for the full quarter (1 Aug-31 Oct 67), not 2/8-Cav- or 1st-Brigade-specific -- same genre limitation as both prior 1967 documents. The operation-specific KIA/WIA figures above (Wallowa, Song Re Valley, Bolling) ARE usable at the sub-operation level since they're stated as operation-to-date/operation-specific tallies in the narrative, not merely division-wide quarterly totals -- a genuine step up in granularity from AD0385642/AD0386215."
+  },
+
+  "task_organization": {
+    "1st_brigade_organic": ["1/8 Cav", "2/8 Cav", "1/12 Cav"],
+    "no_tab_a_table_captured": true,
+    "inferred_from_prose": {
+      "2_8_cav_song_re_valley_attachment": {
+        "operation": "PERSHING (3rd Bde reconnaissance-in-force sub-operation)",
+        "dates": ["1967-08-01", "1967-08-20"],
+        "location": "Song Re Valley / Nuoc Dinh Valley, southern Quang Ngai Province",
+        "note": "2/8 Cav (organically 1st Brigade) air-assaulted into the area north of the Song Re Valley on 3 Aug, then into LZs in the Song Re Valley itself (north of 5/7 Cav) on 9 Aug, operating alongside 5/7 Cav (organic 3rd Brigade) and 2/12 Cav under what the document titles a '3d Bde reconnaissance in force.' This is the THIRD 1967 instance found of 2/8 Cav operating outside its organic 1st Brigade chain (after the Feb-Apr Pershing OPCON to 3rd Brigade in AD0385642, and the unresolved question of its brigade assignment in AD0386215/May-Jul). Not formally labeled 'OPCON' in this passage the way the Bolling attachment below is, but the operational grouping under 3rd Brigade's recon is unambiguous from the narrative."
+      },
+      "2_8_cav_OPCON_to_173rd_abn_bde": {
+        "operation": "BOLLING",
+        "dates": ["1967-09-17", "1967-10-14"],
+        "location": "west of Tuy Hoa, Phu Yen Province",
+        "gaining_unit": "173rd Airborne Brigade",
+        "note": "Explicitly stated: '1 ACD released TF 2/8 Cav OPCON to 173d Abn Bde effective 17 Sep 67. 2/8 Cav air assaulted into LZ's in the BOLLING AO on 19 Sep 67. 2/8 Cav operations terminated on 14 October when they returned to the PERSHING AO.' The General Situation paragraph independently confirms: 'The 2/8 Cav conducted operations for four weeks under the control of the 173rd Abn Bde in Operation BOLLING.' This is the clearest, most explicitly labeled OPCON statement found for 2/8 Cav in any of the three 1967 documents reviewed."
+      },
+      "3rd_brigade_OPCON_to_americal": {
+        "operation": "WALLOWA",
+        "dates": ["1967-10-01", null],
+        "location": "I Corps Tactical Zone (Chu Lai / Tam Ky vicinity, then Hill 63/LZ Baldy)",
+        "gaining_unit": "Americal Division",
+        "note": "3rd Brigade (3 battalions plus support elements -- 1/7, 2/7, 5/7 Cav) was placed OPCON to the Americal Division effective 1 Oct 67, deploying over 100km to I CTZ; continuing beyond the end of this reporting period. This is the second consecutive quarter 3rd Brigade has been sent outside the division's own AO under someone else's OPCON (after GREELEY/4th Inf Div in AD0386215) -- a genuinely recurring pattern for this brigade in 1967, not a one-off."
+      },
+      "a_1_69_armor_released_to_4th_id": {
+        "note": "Company A, 1/69 Armor (4th Infantry Division), which had been OPCON to the 1st Cav Division for Pershing since at least March 1967 (see AD0385642, AD0386215), had its OPCON released back to the 4th Infantry Division effective 25 Sep 67 -- ending a roughly 6-month cross-attachment."
+      },
+      "1_50_inf_mech_attached": {
+        "note": "1/50 Infantry (Mechanized) Battalion arrived at Qui Nhon from CONUS and was newly attached to the division, becoming operational in the CRESCENT area on 29 Sep 67 -- a new unit, not a reassignment of an existing 1st Cav battalion."
+      },
+      "2_7_cav_OPCON_to_IFFV_unchanged": {
+        "note": "Task Force 2/7 Cav continued OPCON to I Field Force Vietnam for Operation BYRD throughout this quarter, unchanged from the prior two 1967 documents."
+      }
+    },
+    "page": null,
+    "confidence": "medium (no table; narrative prose is more explicit about OPCON status/dates than AD0386215's, especially for the Bolling and Wallowa moves, but still not a task-org table)"
+  },
+
+  "operations": [
+    { "name": "PERSHING", "start": "1967-02-11", "end": null, "controlling_unit": "2-3 brigades (varying from 3 brigades/7 battalions to 2 brigades/4 battalions over the quarter)", "note": "Continuing in northeastern Binh Dinh Province; cumulative enemy losses as of 31 Oct: 1134 KIA, 194 POW, 31 returnees. A distinct sub-operation, the 3rd Brigade reconnaissance-in-force into the Song Re Valley (1-19 Aug 67, southern Quang Ngai), is recorded separately below since it involved 2/8 Cav directly.", "page": 20, "confidence": "high" },
+    { "name": "PERSHING sub-op: 3d Bde reconnaissance in force, Song Re Valley", "start": "1967-08-01", "end": "1967-08-20", "controlling_unit": "3rd Brigade (5/7 Cav, 2/12 Cav, 2/8 Cav)", "note": "5/7 Cav air-assaulted into Nuoc Dinh Valley 1 Aug; 2/12 Cav into Song Re Valley 2 Aug; 2/8 Cav into the area north of Song Re Valley 3 Aug. 5/7 Cav shifted into Song Re Valley (west) 6 Aug. On 9 Aug, 2/8 Cav air-assaulted LZs in Song Re Valley north of 5/7 Cav -- A/2/8 Cav came under heavy automatic weapons/mortar/57mm RR fire from an estimated 2-3 NVA companies in fortified positions immediately on landing (see events). 2/12 Cav air-assaulted further north on 13 Aug. Redeployment to the Pershing AO began 18 Aug, final elements closed 20 Aug. Results: 42 enemy KIA, 2 POW, 242 detainees; friendly 7 KIA, 44 WIA (whole 3-Bn force).", "page": 19, "confidence": "high" },
+    { "name": "JOIN HANDS", "start": "1967-09-06", "end": "1967-09-15", "controlling_unit": "3 US battalions (1/5 Cav, 1/8 Cav, 2/12 Cav, 2nd Brigade) + 2 ARVN battalions (Marine TF Bravo, 22d Inf Div)", "note": "Joint US/ARVN operation, amphibious + air-assault landings around the Cay Giep mountains; no major enemy force encountered, sporadic contacts only. Results: 10 enemy KIA, 5 POW; friendly 0 KIA, 12 WIA (1st Cav Div); ARVN 11 KIA/13 WIA/1 POW/8 detainees separately tallied.", "page": 19, "confidence": "high" },
+    { "name": "BOLLING", "start": "1967-09-17", "end": "1967-10-14", "controlling_unit": "173rd Airborne Brigade (2 battalions) + TF 2/8 Cav (OPCON'd, see task_organization)", "note": "IFFV-directed operation west of Tuy Hoa; 2/8 Cav released OPCON to 173rd Abn Bde 17 Sep, air-assaulted into the AO 19 Sep, operations terminated 14 Oct with return to the Pershing AO. Results: 21 enemy KIA, 12 POW, 8 small-arms captured; friendly 0 KIA, 7 WIA.", "page": 20, "confidence": "high" },
+    { "name": "WALLOWA", "start": "1967-10-01", "end": null, "controlling_unit": "3rd Brigade (1/7, 2/7, 5/7 Cav + support), OPCON to Americal Division", "note": "Rapid deployment (advance party 30 Sep, brigade CP + 2/12 Cav closed Chu Lai 1 Oct evening, full brigade closed by 2 Oct, air assaults began 3 Oct) into I Corps Tactical Zone in response to a deteriorating situation requiring III MAF reinforcement. Repelled two major enemy attacks (one on a Bn CP/firebase, one on a helicopter landing area) and made one major contact with elements of 3 NVA battalions, plus daily small contacts. Results as of 31 Oct: 675 enemy KIA, 17 POW; friendly 46 KIA, 480 WIA -- by far the highest-casualty operation of the quarter for the division, though it does not involve 2/8 Cav (which was still finishing Bolling with the 173rd through 14 Oct, separately from 3rd Brigade's own move).", "page": 20, "confidence": "high" },
+    { "name": "DAZZLEM", "start": "1966-10-01", "end": null, "controlling_unit": "1st Brigade (one battalion, area-security/AO designation)", "note": "Camp Radcliff/TAOR base security. Named significant actions this quarter: a command-detonated mine ambush of a 24-vehicle convoy on Hwy 19 (2 Sep, 6 US KIA, 20 US WIA, 17 vehicles damaged, not attributed to a battalion); an enemy mortar attack on the Hwy 19 firebase (3 Sep, 1 US KIA, 11 US WIA); a combat action of 5/7 Cav along Hwy 19 (17 Sep, 6 US KIA including the unit's CO/XO/FO/Asst FO, 7 US WIA -- notable in that 5/7 Cav is organically 3rd Brigade, appearing here in a Dazzlem-TAOR action rather than with its own brigade); and an attack on a Pacific Architects & Engineers site (3 Oct, 1 US KIA, 1 Korean civilian KIA). Cumulative enemy losses as of 31 Oct: 20 KIA, 1 POW, 25 detainees.", "page": 22, "confidence": "high" },
+    { "name": "BYRD", "start": "1966-08-25", "end": null, "controlling_unit": "Task Force 2/7 Cav, OPCON to I Field Force Vietnam", "note": "Continuing in Binh Thuan Province, unchanged in structure from the two prior 1967 documents. Cumulative results as of 30 Oct: 734 enemy KIA (a large jump from the 190 reported as of 31 Jul), 94 POW, 1131 detainees; friendly figures given separately by RF/PF vs. 1st Cav elements.", "page": 19, "confidence": "high" },
+    { "name": "VOTER / VOTER II", "start": "1967-09-03", "end": "1967-10-22", "controlling_unit": "division-wide, in conjunction with 23d Inf Div (ARVN) and civilian police", "note": "Election-security operations for two separate elections in Binh Dinh Province; division deliberately minimized its visible presence near polling sites while providing an outer security ring. No casualty figures given -- an administrative/security posture, not a combat operation.", "page": 20, "confidence": "high" }
+  ],
+
+  "events": [
+    { "n": 1, "date": "1967-08-09", "installation": null, "location": "Song Re Valley, north of 5/7 Cav's positions", "units": ["A/2/8 Cav"], "type": "contact", "dco_involved": false, "enemy_kia": 8, "enemy_kia_estimated_additional": "20-30", "notes": "The single clearest 2/8-Cav-specific combat citation found in the entire 1967 backfill: A/2/8 Cav received heavy automatic weapons, mortar, and 57mm recoilless-rifle fire from an estimated 2-3 NVA companies in fortified/camouflaged positions immediately upon air assault landing. Company pulled back, 46 sorties of TAC Air conducted, 12 enemy automatic-weapons positions engaged from the air; a second company reinforced in the afternoon but contact could not be regained. Battlefield search found 8 NVA KIA, 5 small arms, 2 crew-served weapons; division estimated 20-30 additional enemy KIA. Not the D Company platoon, and not tied to any KIA in the current roster -- but the clearest confirmation that 2/8 Cav sub-units were in direct, heavy contact during this quarter.", "page": 19, "confidence": "high" },
+    { "n": 2, "date": "1967-08-22", "date_end": "1967-09-03", "installation": null, "location": "Nui Mieu cave complex, vic CR 015771", "units": ["A/2/5 Cav"], "type": "contact", "dco_involved": false, "enemy_kia": 33, "notes": "13-day siege of a suspected 50-100 NVA cave complex; the division's most successful single operation of the quarter (only 1 US WIA against 33 NVA KIA + 41 NVAC/detainees).", "page": 21, "confidence": "high" },
+    { "n": 3, "date": "1967-08-22", "installation": null, "location": "BS unreadable grid (perimeter defensive position)", "units": ["D/1/8 Cav"], "type": "base_attack", "dco_involved": false, "enemy_kia": 19, "us_wia": 3, "notes": "Night probe/attack by an estimated 2 VC platoons against D/1/8 Cav's defensive perimeter; two VC squads eliminated while attempting infiltration. Not 2/8 Cav -- flagged only because 'D/1/8' is easily confused with 'D/2/8' (D Company, 2/8 Cav, our unit of interest) at a glance; this is 1/8 Cav's D Company, a different battalion entirely.", "page": 21, "confidence": "high" },
+    { "n": 4, "date": "1967-08-25", "date_end": "1967-08-26", "installation": "LZ Ollie / LZ Uplift", "location": null, "units": [], "type": "base_attack", "dco_involved": false, "us_wia": 24, "us_kia": 2, "notes": "Two-stage mortar/RR attack; a preplanned 'Mad Minute' security measure is credited with disrupting what was assessed as a larger coordinated attack.", "page": 21, "confidence": "high" },
+    { "n": 5, "date": "1967-08-28", "date_end": "1967-08-30", "installation": null, "location": "Cay Giep Mountains", "units": ["B/1/9 Cav (initial contact)", "1/5 Cav (-) (reinforcing, 2nd Brigade)"], "type": "contact", "dco_involved": false, "enemy_kia": 25, "us_kia": 2, "us_wia": 14, "notes": "B/1/9 Cav located a suspected 95th VC Bn / 2d VC Regt HQ site via Kit Carson Scout; 2nd Brigade air-assaulted 1/5 Cav (-) in on 30 Aug. Captured 2 Chicom radios of a type found only at regimental level.", "page": 21, "confidence": "high" },
+    { "n": 6, "date": "1967-09-05", "date_end": "1967-09-06", "installation": "LZ Two Bits (north and south)", "location": null, "units": [], "type": "base_attack", "dco_involved": false, "enemy_kia_estimated": 10, "notes": "Extended probing/mortar/small-arms action over roughly 8 hours by an estimated reinforced enemy company; 9 friendly WIA (figure partially illegible in OCR). No US KIA stated for this specific action.", "page": 22, "confidence": "medium (OCR noise on exact friendly casualty figures)" },
+    { "n": 7, "date": "1967-09-02", "installation": null, "location": "Hwy 19, vic BR 349451", "units": [], "type": "ambush", "dco_involved": false, "us_kia": 6, "us_wia": 20, "notes": "Command-detonated mine ambush of a 24-vehicle convoy travelling Pleiku to Qui Nhon; estimated 200-man enemy force engaged from a 700m killing zone. A/1/7 Cav gun jeeps responded but could not establish contact. 17 vehicles damaged.", "page": 22, "confidence": "high" },
+    { "n": 8, "date": "1967-09-03", "installation": "Hwy 19 firebase, vic BR 361457", "location": null, "units": [], "type": "base_attack", "dco_involved": false, "us_kia": 1, "us_wia": 11, "enemy_kia": 3, "notes": "Mortar attack (~60 rounds 60mm/82mm) on a Hwy 19 firebase.", "page": 22, "confidence": "high" },
+    { "n": 9, "date": "1967-09-17", "installation": null, "location": "Hwy 19", "units": ["5/7 Cav"], "type": "contact", "dco_involved": false, "us_kia": 6, "us_wia": 7, "enemy_kia": 21, "notes": "A Rome-plow team was hit by a B-40 rocket; escalated into a day-long fight involving ARA, a UH-1 shot up on the highway (pilot killed), TAC Air, and an RF company. IPW readout indicated 5/7 Cav's prompt action disrupted a planned 30-vehicle ambush; the intercepted enemy FO reported his own company CO/XO/FO/Asst FO killed. Notable for naming 5/7 Cav (organically 3rd Brigade) operating on a Dazzlem/Hwy-19 TAOR mission rather than with its own brigade.", "page": 23, "confidence": "high" },
+    { "n": 10, "date": "1967-09-17", "installation": null, "location": "vic BR 917096", "units": ["B/1/8 Cav"], "type": "contact", "dco_involved": false, "enemy_kia": 31, "notes": "ARVN (40th Regt) sighted a VC company; 1st Brigade scouts engaged first, then B/1/8 Cav moved in with 6 tanks and 3 D-7 bulldozers for systematic search and destroy; 46 bunkers destroyed.", "page": 23, "confidence": "high" },
+    { "n": 11, "date": "1967-09-24", "installation": "Bridge 514-3, BR 803969", "location": null, "units": ["A/1/8 Cav (one squad)"], "type": "base_attack", "dco_involved": false, "us_kia": 2, "us_wia": 8, "enemy_kia": 6, "notes": "A squad guarding a bridge with an M42 Duster was attacked by an estimated 15-25 man enemy force using grenades, M-79s, AK-47s, and B-40 rockets. Bridge undamaged.", "page": 23, "confidence": "high" },
+    { "n": 12, "date": "1967-09-26", "date_end": "1967-09-27", "installation": null, "location": "An Lao Valley, vic BS 777114 and vic BS 754196", "units": [], "type": "contact", "dco_involved": false, "enemy_kia": 7, "notes": "Two separate small contacts/document finds (typewriter and 22nd NVA Regt documents at one site; an arms cache including 82mm mortars and 75mm RRs at the other), aided by a Hoi Chanh guide. This is the exact date-range of santoroski-michael's death (DOD 1967-09-26, though his wounding was 6 Sep by land mine, unrelated to this action) -- flagged for proximity only; this document does not narrate the mine incident that actually wounded him.", "page": 24, "confidence": "medium (unit not specified beyond 'a company' / 'another Co')" },
+    { "n": 13, "date": "1967-10-03", "installation": "Pacific Architects & Engineers site, BR 447448", "location": null, "units": [], "type": "base_attack", "dco_involved": false, "us_kia": 1, "us_wia": 1, "notes": "~15 VC infiltrated a compound through cut wire, threw an estimated 200 satchel charges; 3 VC killed inside the compound. 1 Korean civilian and 1 Vietnamese civilian also killed/wounded.", "page": 24, "confidence": "high" },
+    { "n": 14, "date": "1967-10-10", "date_end": "1967-10-11", "installation": null, "location": "506 Valley, vic BR 8175", "units": ["C/1/9 Cav", "D/1/5 Cav"], "type": "contact", "dco_involved": false, "enemy_kia": 53, "notes": "Multi-day search and destroy; C/1/9 Cav made initial contact 10 Oct, D/1/5 Cav air-assaulted in and made further contact 11 Oct. 8 NVA Hoi Chanhs picked up from the same area five days later.", "page": 24, "confidence": "high" },
+    { "n": 15, "date": "1967-10-31", "installation": null, "location": "W Cay Giep Mtns, vic BR 9287", "units": ["C/1/50 Inf (Mech)"], "type": "base_attack", "dco_involved": false, "us_kia": 3, "us_wia": 10, "enemy_kia": 15, "notes": "Night attack on a company perimeter using rocket launchers and small arms; the newly-arrived 1/50 Inf (Mech)'s first named contact in this document.", "page": 24, "confidence": "high" }
+  ],
+
+  "personnel": [
+    { "name": "LTC John E. Stannard", "role": "CO, 2/8 Cav (continuing from 30 Jul 67, per AD0386215)", "page": 6, "confidence": "medium (roster formatting badly garbled by OCR in this transcript; name/role pairing inferred by cross-referencing AD0386215's confirmed 30 Jul 67 change of command)" },
+    { "name": "Col. Donald V. Rattan", "role": "CO, 1st Brigade (continuing from 15 Apr 67, per AD0385642/AD0386215)", "page": 5, "confidence": "medium (same roster-garbling caveat)" },
+    { "name": "Col. Fred E. Karhohs", "role": "CO, 2nd Brigade (continuing)", "page": 5, "confidence": "high (name legible here, unlike the July document's garbled version)" },
+    { "name": "Col. James O. McKanna (rendered 'McKenna' here)", "role": "CO, 3rd Brigade (continuing from 23 Jun 67, per AD0386215) -- in command for the Wallowa deployment to Americal Division", "page": 6, "confidence": "high" },
+    { "name": "LTC Lyman C. Richardson", "role": "ACofS G2, from 23 Aug 67 (replacing LTC Herman E. Schubarth, who had himself only taken the role 19 Jun 67 per AD0386215 -- a fast turnover)", "page": 15, "confidence": "high" },
+    { "name": "MG John J. Tolson III", "role": "Commanding General, 1st Cavalry Division (continuing)", "page": 5, "confidence": "high" }
+  ],
+  "awards": [],
+
+  "lessons_learned_present": true,
+  "lessons_learned_page_range": [38, 43],
+
+  "unrelated_content_flag": null,
+
+  "cross_ref_flags": [
+    "santoroski-michael's DOD (1967-09-26) falls exactly on the date of event 12 (An Lao Valley small contacts), but that action is unrelated to his actual land-mine wounding on 6 Sep 67 (per the existing event page santoroski-mine-1967-09-06) -- flagged so the 26 Sep date coincidence is not mistaken for a second incident.",
+    "This document does not narrate the 6 Sep 67 land-mine incident that wounded santoroski-michael at all, despite covering the full 1-31 Aug/1-30 Sep/1-31 Oct window -- consistent with the pattern (confirmed across all three 1967 documents) that division-level ORLLs only narrate actions the division itself judged 'significant,' and individual mine-strike casualties routinely fall below that threshold even when fatal."
+  ]
+}

@@ -8,18 +8,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Alloway",
-    "first_name": "Dennis",
-    "nickname": "",
-    "rank": "",
-    "years": "70-71",
-    "platoon": "Cat 6",
-    "status": "deceased",
-    "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Angelos",
@@ -30,7 +22,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Armatige",
@@ -41,7 +36,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Aulenbach",
@@ -52,7 +50,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Bassford",
@@ -63,7 +64,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Bedsole",
@@ -74,7 +78,10 @@
     "platoon": "Skipper 6",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Bieberich",
@@ -85,7 +92,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Blair",
@@ -96,7 +106,10 @@
     "platoon": "Wild Cat",
     "status": "veteran",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Boler",
@@ -107,7 +120,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Brumbelow",
@@ -118,7 +134,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Bryram",
@@ -129,7 +148,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Burchett",
@@ -140,7 +162,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Buttermore",
@@ -151,7 +176,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Clonch",
@@ -162,7 +190,10 @@
     "platoon": "Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Cobb",
@@ -173,7 +204,10 @@
     "platoon": "Wild/Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Cooke",
@@ -184,7 +218,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Cooper",
@@ -195,7 +232,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "David",
@@ -206,7 +246,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Dewey",
@@ -217,7 +260,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Dismuke",
@@ -228,7 +274,10 @@
     "platoon": "Wild/Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Dyer",
@@ -239,18 +288,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Fishell",
-    "first_name": "Larry",
-    "nickname": "Pops",
-    "rank": "SP4",
-    "years": "70-71",
-    "platoon": "Wild/Cat",
-    "status": "veteran",
-    "share_contact": false,
-    "contact": { "name": "Larry Fishell", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Fitzpatrick",
@@ -261,7 +302,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Fults",
@@ -272,7 +316,10 @@
     "platoon": "Wild/Cat",
     "status": "veteran",
     "share_contact": false,
-    "contact": { "name": "John Fults", "relation": "" }
+    "contact": {
+      "name": "John Fults",
+      "relation": ""
+    }
   },
   {
     "last_name": "Galway",
@@ -283,7 +330,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Green",
@@ -294,7 +344,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Hensley",
@@ -305,18 +358,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Hryniw",
-    "first_name": "Theodre",
-    "nickname": "",
-    "rank": "",
-    "years": "71-72",
-    "platoon": "Wild/Cat",
-    "status": "researching",
-    "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Hurst",
@@ -327,7 +372,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Trumbull III",
@@ -338,7 +386,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Jackson",
@@ -349,7 +400,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Johnson",
@@ -360,18 +414,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Kint",
-    "first_name": "Joseph",
-    "nickname": "",
-    "rank": "",
-    "years": "70-71",
-    "platoon": "Wild/Cat",
-    "status": "researching",
-    "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Kotzian",
@@ -382,7 +428,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Lockhart",
@@ -393,7 +442,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Lyons",
@@ -404,7 +456,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Moore",
@@ -415,7 +470,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Murray",
@@ -426,7 +484,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Neal",
@@ -437,7 +498,10 @@
     "platoon": "Skipper 6",
     "status": "veteran",
     "share_contact": false,
-    "contact": { "name": "William Neal", "relation": "" }
+    "contact": {
+      "name": "William Neal",
+      "relation": ""
+    }
   },
   {
     "last_name": "Peszynski",
@@ -448,7 +512,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Price",
@@ -459,18 +526,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Randt",
-    "first_name": "Larry",
-    "nickname": "",
-    "rank": "",
-    "years": "70-71",
-    "platoon": "Wild/Cat",
-    "status": "veteran",
-    "share_contact": false,
-    "contact": { "name": "Larry Randt", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Robinson",
@@ -481,18 +540,10 @@
     "platoon": "Wild Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Schaffer",
-    "first_name": "Roger",
-    "nickname": "",
-    "rank": "",
-    "years": "70-71",
-    "platoon": "Wild/Cat",
-    "status": "deceased",
-    "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Schofield",
@@ -503,7 +554,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Sheppard",
@@ -514,18 +568,10 @@
     "platoon": "Wild/Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Small",
-    "first_name": "William",
-    "nickname": "",
-    "rank": "",
-    "years": "70-71",
-    "platoon": "Wild/Cat",
-    "status": "veteran",
-    "share_contact": false,
-    "contact": { "name": "William Small", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Smith",
@@ -536,7 +582,10 @@
     "platoon": "Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Smith",
@@ -547,7 +596,10 @@
     "platoon": "Skipper 6",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Snyder",
@@ -558,7 +610,10 @@
     "platoon": "Skipper 6",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Stevens",
@@ -569,7 +624,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Sykora",
@@ -580,18 +638,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
-  },
-  {
-    "last_name": "Tincher",
-    "first_name": "Dale",
-    "nickname": "",
-    "rank": "LT",
-    "years": "70-71",
-    "platoon": "Cat6",
-    "status": "veteran",
-    "share_contact": false,
-    "contact": { "name": "Dale Tincher", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Ward",
@@ -602,7 +652,10 @@
     "platoon": "Wild/Cat",
     "status": "researching",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Webb",
@@ -613,7 +666,10 @@
     "platoon": "Wild/Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   },
   {
     "last_name": "Whiteside",
@@ -624,6 +680,9 @@
     "platoon": "Wild/Cat",
     "status": "deceased",
     "share_contact": false,
-    "contact": { "name": "", "relation": "" }
+    "contact": {
+      "name": "",
+      "relation": ""
+    }
   }
 ]

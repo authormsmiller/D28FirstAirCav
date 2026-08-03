@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "artifact": "cross-reference-candidates",
+    "generated_by": "scripts/cross-reference-engine.cjs",
+    "from_digest": "site/sources/orll/1967/AD0387543.digest.json",
+    "document": "AD0387543",
+    "period": [
+      "1967-08-01",
+      "1967-10-31"
+    ],
+    "near_days_window": 7,
+    "kia_rows_skipped_unknown_date": 0,
+    "note": "Deterministic joins only (date+battalion match, casualty count diff, gazetteer name resolution). Operations / personnel / awards / contact-event proposals and all narrative interpretation still require a human/Claude pass -- see the source-digest skill Step 3-5."
+  },
+  "kia_in_range": [
+    {
+      "slug": "santoroski-michael",
+      "name": "PFC Michael Paul Santoroski",
+      "dod": "1967-09-26",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 12,
+          "date": "1967-09-26",
+          "units": [],
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        []
+      ],
+      "near_events_battalion": []
+    }
+  ],
+  "casualty_reconciliation": [],
+  "locations": [
+    {
+      "raw_name": "LZ English",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Two Bits",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Dog",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Uplift",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Ollie",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Montezuma",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Hill 63 (LZ Baldy)",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Camp Radcliff",
+      "resolved_slug": "fb-camp-radcliff",
+      "resolved_display": "FB Camp Radcliff",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    },
+    {
+      "raw_name": "LZ Ollie / LZ Uplift",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 4,
+          "date": "1967-08-25",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Two Bits (north and south)",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 6,
+          "date": "1967-09-05",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Hwy 19 firebase, vic BR 361457",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 8,
+          "date": "1967-09-03",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Bridge 514-3, BR 803969",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 11,
+          "date": "1967-09-24",
+          "units": [
+            "A/1/8 Cav (one squad)"
+          ],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Pacific Architects & Engineers site, BR 447448",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 13,
+          "date": "1967-10-03",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    }
+  ]
+}

@@ -54,11 +54,22 @@ contains:
       contact — if you are connected to the McCoy family, please reach out.
 
 tagged:
+  - slug: mcgrew-howard
+    name: SP4 Howard McGrew
+    note: >
+      His own timeline places him at FSB Fontaine 23–26 Apr 71, spanning
+      this crash date — he was at the base itself, not merely a
+      corroborating source elsewhere. His calendar records "Downed
+      chopper" on 24 Apr; his entries don't otherwise describe the crash
+      or its aftermath.
   - slug: miller-marvin-dale
     name: SGT Marvin D. Miller
     note: D Co. member; presence at crash site unconfirmed; photographs of aftermath attributed to him
 
 related_events:
+  - slug: 3rd-brigade-separate-garryowen-1971
+    relationship: operational-period
+    note: "Higher command / operational frame — the 3rd Brigade (Separate) under which 2/8 Cav operated in 1971 (from BG Burton's debriefing report, AD0520447)."
   - slug: contact-fsb-fontaine-1971-04-20
     relationship: causal
     note: Crash occurred four days after the April 20 contact

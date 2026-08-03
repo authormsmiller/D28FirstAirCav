@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "artifact": "source-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "PHASE-3 TEST — hand-built 2026-07-15 to validate the digest scrape on a Daily-Journal genre (not OCR). Compare against the ORLL golden example (AD0506273).",
+    "notes": "This is the high-fidelity genre the spec's Extensibility section anticipated (DA-1594 daily journal). It names D Company down to platoon, gives timestamps AND grid coordinates, and records individual casualties — everything the division ORLL could not."
+  },
+
+  "document": {
+    "title": "Skipper Journal — D/2-8 Cav Daily Log, 3 June – 3 July 1968",
+    "source_type": "daily_journal",
+    "primary_form": "DA Form 1594 (company daily staff journal)",
+    "unit": "D Company, 2nd Battalion, 8th Cavalry, 1st Cavalry Division (Airmobile)",
+    "echelon": "company",
+    "period_start": "1968-06-03",
+    "period_end": "1968-07-03",
+    "coverage_gap": "10–18 June (LZ Betty then LZ Pedro base defense; not transcribed)",
+    "provenance": "Secondary transcription of the D/2-8 company journal, published on the Angry Skipper Association veterans' site (angryskipperassociation.org). Transcriber is a D Co veteran (first-person asides). Quotes the journal directly ('The Company journal reads:').",
+    "reliability": "high (direct quotation of primary journal; clean text, no OCR)",
+    "file": "locations/Skipper Journal _ Vietnam War Daily Log by Angry Skipper.html",
+    "capture_note": "Transcriber states the full log runs to 22 July 1968; this capture ends 3 July."
+  },
+
+  "triage": {
+    "genre": "primary_operational (transcribed daily journal)",
+    "echelon": "company",
+    "temporal_shape": "daily (finest granularity)",
+    "provenance": "us_army_field via veteran transcription",
+    "ocr_era": "n/a — clean transcribed text",
+    "expected_yield": {
+      "operations": "low (AO-level only; op name not stated)",
+      "locations": "HIGH — LZ names AND grid coordinates given directly",
+      "events": "HIGH — timestamped, gridded, platoon-level actions",
+      "kia_individual": "HIGH — 3 US KIA with date/time/grid/circumstance (names not in journal; resolve via roster)",
+      "personnel": "HIGH — battalion/company/brigade officers named",
+      "awards": "none cited"
+    },
+    "passes_run": ["kia_in_range", "casualty_reconciliation", "locations", "contact_events", "personnel", "enemy_intel"]
+  },
+
+  "coverage": {
+    "date_range": ["1968-06-03", "1968-07-03"],
+    "area": "Thua Thien / Quang Tri region, I Corps (YD grid square; A Shau / western highlands)",
+    "operation": null,
+    "lz_names": ["LZ Anne", "LZ Betty", "LZ Pedro", "LZ Green", "LZ Carol"],
+    "grids_of_operation": ["YD335387", "YD331391", "YD324393", "YD325393", "YD327393", "YD326393", "YD366393", "YD276511", "YD348472", "YD300431", "YD245468", "YD225461", "YD285328", "YD288321", "YD298319", "YD296314", "YD288318", "YD293319", "YD296319", "YD299311"],
+    "units": ["D/2-8 Cav", "1D/2-8 (1st Plt)", "2D/2-8 (2nd Plt)", "3D/2-8 (3rd Plt)", "1/12 Cav (OPCON 25 Jun)"],
+    "enemy_units": ["10th Sapper Battalion (NVA)"]
+  },
+
+  "personnel": [
+    { "name": "LTC Gibney", "role": "Commanding Officer, 2-8 Cav (battalion)", "date": "1968-06-08", "page_ref": "8 Jun entry", "confidence": "high" },
+    { "name": "CPT Grannemann", "role": "D Company command element (co-briefed COL Stannard)", "date": "1968-06-08", "confidence": "high", "note": "Digest originally transcribed this as 'CPT Grannamann' -- corrected 2026-07-16 per Michael: this is CPT Rodney Floyd Grannemann, D Co CO, per his Silver Star citation (Hq, 1st Cav Div, GO No. 3649, 22 Jun 1968), which names him 'Company Commander of Company D, 2d Battalion (Airmobile), 8th Cavalry Regiment' for gallantry on 24 May 1968 -- two weeks before this journal entry, same unit and command role (see site/soldiers/grannemann-rodney)." },
+    { "name": "COL Stannard", "role": "Commanding Officer, 1st Brigade, 1st ACD", "date": "1968-06-08", "confidence": "high", "note": "Digest originally transcribed this as 'COL Standard' -- corrected 2026-07-16 per Michael: this is LTC John Edward Stannard, CO 2/8 Cav 30 Jul 1967-early Feb 1968, promoted to Colonel and CO 1st Brigade from early Feb 1968 (see site/soldiers/stannard-john). Matches rank, timing, and brigade exactly." },
+    { "name": "CPT Garner", "role": "D Co (rendered malaria-control report 24 Jun)", "date": "1968-06-24", "confidence": "medium" },
+    { "name": "Lt Kingston", "role": "D Co (rendered malaria-control report 23 Jun)", "date": "1968-06-23", "confidence": "medium" },
+    { "name": "\"White Skull\"", "role": "1st squad machine gunner (nickname; 28 Jun contact)", "date": "1968-06-28", "confidence": "low" },
+    { "name": "Tommy \"Smiley\" Harris", "role": "M-60 gunner, photographed on LZ Carol (caption)", "confidence": "low" }
+  ],
+
+  "casualties_summary": {
+    "us_kia": 3,
+    "us_wia": 4,
+    "other": "1 US scout dog KIA (30 Jun)",
+    "enemy_kia_claimed": 10,
+    "enemy_pw": 1,
+    "matches_journal_self_tally": "yes ('We lost 3 US killed and four wounded... Killed ten enemy soldiers... captured one POW')"
+  },
+
+  "events": [
+    { "date": "1968-06-03", "time": "0725", "grid": "YD335387", "unit": "D/2-8", "type": "air_assault", "notes": "Airlifted from LZ Anne; first lift 0656, final touchdown 0725.", "confidence": "high" },
+    { "date": "1968-06-03", "time": "1310", "grid": "YD331391", "unit": "1D/2-8", "type": "cache", "materiel": ".51 cal ammo, 60/82mm mortar rds, ~96 lbs TNT, chicom mine, rucksacks, documents, medical supplies; 2 bunkers", "confidence": "high" },
+    { "date": "1968-06-04", "time": "1345", "grid": "YD324393", "unit": "D/2-8", "type": "contact", "us_kia": 1, "us_wia": 1, "us_mia": 1, "enemy_kia": 1, "dco_involved": true, "notes": "Engaged NVA in bunker complex with A/W fire; scout birds took fire. 1 US KIA (body not recovered — carried MIA), 1 WIA (frag). Also 1 NVA KIA (1000, rice carrier). Incoming 60mm (13 rds). Bde intel: 10th Sapper Bn CP at YD323392.", "confidence": "high", "cross_ref_flags": ["kia_reconcile", "contact_event_new", "location_new_grid"] },
+    { "date": "1968-06-04", "time": "1210", "grid": "YD324398", "unit": "D/2-8", "type": "casualty_medevac", "us_wia": 1, "notes": "EM wounded by friendly artillery shrapnel; medevac 1250. (Counts within the 4 WIA month total.)", "confidence": "high" },
+    { "date": "1968-06-05", "time": "1755", "grid": "YD325393", "unit": "D/2-8", "type": "contact", "us_kia": 1, "dco_involved": true, "notes": "Received S/A fire 1615; 1 WIA at 1745 died at 1755; KIA recovered 1945. Company pulled back.", "confidence": "high", "cross_ref_flags": ["kia_reconcile", "contact_event_new"] },
+    { "date": "1968-06-06", "time": "1345", "grid": "YD335388", "unit": "D/2-8", "type": "cache", "materiel": "11 bunkers w/overhead cover; rocket & mortar pit (destroyed)", "confidence": "high" },
+    { "date": "1968-06-07", "time": "1105", "grid": "YD325391", "unit": "D/2-8", "type": "recovery", "notes": "Found 1 US KIA — identified by platoon leader as the MIA of 4 June (partially decomposed). Also 5 NVA KIA found in area (from 5–6 Jun actions) + SKS rifle SN#191684.", "confidence": "high", "cross_ref_flags": ["kia_reconcile"] },
+    { "date": "1968-06-08", "time": "1015", "grid": null, "unit": "D/2-8", "type": "command_visit", "notes": "COL Stannard (CO 1st Bde; corrected from digest's original 'COL Standard' transcription -- see personnel entry) visited D Co CP; briefed by LTC Gibney and CPT Grannemann (corrected from digest's original 'CPT Grannamann' transcription -- see personnel entry). Large cache found 1710 at YD326393 (36 bunkers, mortar rds, rockets, TNT, AK-47 mag, NVA gear).", "confidence": "high" },
+    { "date": "1968-06-09", "time": "1420", "grid": "YD366393", "unit": "3D/2-8", "type": "cache", "materiel": "60mm mortar rds, chicom mine, AK-47 rds, NVA clothing", "confidence": "high" },
+    { "date": "1968-06-19", "time": "0735", "grid": "YD276511", "unit": "D/2-8", "type": "air_assault", "notes": "CA from LZ Pedro; found bunker YD264511, no recent use.", "confidence": "high" },
+    { "date": "1968-06-20", "time": "1015", "grid": "YD353475", "unit": "D/2-8", "type": "casualty_medevac", "us_wia": 1, "enemy_pw": 1, "notes": "EM WIA by trip-wire grenade booby trap (medevac 1035). Booby-trapped chicom grenade destroyed. 1510: detained 1 military-age male (YD347482) → 1st Bde IPW (the month's 1 POW).", "confidence": "high", "cross_ref_flags": ["location_new_grid"] },
+    { "date": "1968-06-21", "time": "0655", "grid": "YD300431", "unit": "D(-)/2-8", "type": "air_assault", "notes": "CA from LZ Pedro to 'LZ Green'.", "confidence": "medium" },
+    { "date": "1968-06-22", "time": "1200", "grid": "YD245468", "unit": "2D/2-8", "type": "cache", "materiel": "3 bunkers (~1 week old), documents, 2 khaki uniforms, 2 AP mines, 6 blocks TNT", "confidence": "high" },
+    { "date": "1968-06-25", "time": "0800", "grid": "YD285328", "unit": "D(-)/2-8", "type": "movement", "notes": "Airlifted LZ Pedro → LZ Anne; OPCON to 1/12 Cav, then released OPCON.", "confidence": "high" },
+    { "date": "1968-06-26", "time": "0900", "grid": "YD288321", "unit": "D/2-8", "type": "contact", "notes": "Took S/A (AK-47) fire from 1 NVA while moving south; est. 6–7 NVA on trail. No casualties reported.", "confidence": "medium" },
+    { "date": "1968-06-28", "time": "1600", "grid": null, "unit": "1D/2-8", "type": "contact", "enemy_kia": 1, "notes": "1st Plt engaged 4 NVA with S/A → 1 NVA KIA (AK-47 SN#947752, documents); ~2 NVA wounded. Narrator's first enemy contact ('White Skull's 1st squad MG').", "confidence": "high" },
+    { "date": "1968-06-29", "time": "1035", "grid": "YD296314", "unit": "3D/2-8", "type": "cache", "materiel": "13 hooches, 16x 82mm mortar rds, M-60 MG (SN 34069), chicom claymore, NVA gas-mask filters, AK/M-60 ammo, rucksack, map case, TNT", "confidence": "high" },
+    { "date": "1968-06-30", "time": "1655", "grid": "YD288318", "unit": "D/2-8", "type": "contact", "us_wia": 1, "other_loss": "1 US scout dog KIA", "notes": "Received S/A + grenades from unknown number of NVA; medevac 1700–1852.", "confidence": "high", "cross_ref_flags": ["contact_event_new"] },
+    { "date": "1968-07-01", "time": "0930", "grid": "YD293319", "unit": "D/2-8", "type": "contact", "us_kia": 1, "enemy_kia": 1, "dco_involved": true, "notes": "Contact w/ 2–3 NVA → 1 NVA KIA, 1 AK-47 captured (SN#51747), 1 US WIA (0930) who died at 1230. Also 1315: found 1 NVA KIA buried in a bunker at YD296319 (attributed to 1D ambush of 28 Jun).", "confidence": "high", "cross_ref_flags": ["kia_reconcile", "contact_event_new"] },
+    { "date": "1968-07-02", "time": "0800", "grid": "YD299311", "unit": "2D/2-8", "type": "find", "enemy_kia": 1, "notes": "Found 1 NVA KIA by artillery (green uniform, KIA <6 days).", "confidence": "high" },
+    { "date": "1968-07-03", "grid": null, "unit": "D/2-8", "type": "routine", "notes": "Continued search & clear in assigned AO.", "confidence": "high" }
+  ]
+}

@@ -39,6 +39,7 @@ export async function resolvePath(type, slug) {
     case 'document': return resolveDocument(slug);
     case 'event':    return resolveEvent(slug);
     case 'anecdote': return resolveAnecdote(slug);
+    case 'location': return resolveLocation(slug);
     default:
       throw new Error(`Unknown content type: "${type}"`);
   }
@@ -54,6 +55,7 @@ export async function listSlugs(type) {
     case 'document': return listDocuments();
     case 'event':    return listEvents();
     case 'anecdote': return listAnecdotes();
+    case 'location': return listLocations();
     default:
       throw new Error(`Unknown content type: "${type}"`);
   }
@@ -117,6 +119,26 @@ async function resolveEvent(slug) {
 
 async function listEvents() {
   const base = path.join(SITE_ROOT, 'events');
+  const dirs = await subdirs(base);
+  const results = [];
+  for (const dir of dirs) {
+    const slug = path.basename(dir);
+    const p = path.join(dir, 'index.md');
+    if (await exists(p)) results.push({ slug, path: p });
+  }
+  return results;
+}
+
+// ─── locations ─────────────────────────────────────────────────────────────
+// Layout: site/locations/[slug]/index.md  (same shape as events)
+
+async function resolveLocation(slug) {
+  const p = path.join(SITE_ROOT, 'locations', slug, 'index.md');
+  return await exists(p) ? p : null;
+}
+
+async function listLocations() {
+  const base = path.join(SITE_ROOT, 'locations');
   const dirs = await subdirs(base);
   const results = [];
   for (const dir of dirs) {

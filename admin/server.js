@@ -20,6 +20,7 @@ import { registerPhotosRoutes, uploadToR2 } from './lib/photos.js';
 import { registerSoldiersRoutes } from './lib/soldiers.js';
 import registerTodoRoutes from './lib/todo.js';
 import { registerSubmissionsRoutes } from './lib/submissions.js';
+import { registerProposalsRoutes } from './lib/proposals.js';
 import { registerFeedbackRoutes } from './lib/feedback.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -449,6 +450,10 @@ registerTodoRoutes(app);
 // ─── infra-task-068: submissions pull ────────────────────────────────────────
 
 registerSubmissionsRoutes(app, REPO_ROOT);
+
+// ─── photo ID proposals (public lightbox suggestions) ────────────────────────
+
+registerProposalsRoutes(app);
 
 // ─── site feedback (requests, accounts, documents) ───────────────────────────
 

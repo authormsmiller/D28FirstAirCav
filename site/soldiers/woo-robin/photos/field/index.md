@@ -50,12 +50,78 @@ photos:
       
     caption_short: "Capt. Wolf Kutter (right) and a trooper enjoying some R&R at Vung Tao"
     credit: "Photographed by Robin Woo · 1971"
-    photographer: ""
+    photographer: "woo-robin"
     date: 
     date_known: false
     event: ""
     quality: 
     contains:
       - kutter-wolf
+    tagged: []
+  - filename: RayShiko-on-left.webp
+    caption: >
+      Ray Shiko (left) with an unidentified soldier and Frank Henson (right).
+    caption_short: "Ray Shiko (left) and Frank Henson (right)"
+    credit: "Photographed by Robin Woo · 1972"
+    photographer: "woo-robin"
+    date: 1972
+    date_known: false
+    event: ""
+    quality:
+    contains:
+      - shiko-raymond
+      - henson-frank
+    tagged: []
+  - filename: henson-woo1.jpg
+    caption: >
+      Frank Henson in Bien Hoa, April 1972.
+    caption_short: "Frank Henson, Bien Hoa, April 1972"
+    credit: "Photographed by Robin Woo · 1972"
+    photographer: "woo-robin"
+    date: 1972
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - henson-frank
+    tagged: []
+  - filename: henson-woo2.jpg
+    caption: >
+      Frank Henson in Bien Hoa, April 1972.
+    caption_short: "Frank Henson, Bien Hoa, April 1972"
+    credit: "Photographed by Robin Woo · 1972"
+    photographer: "woo-robin"
+    date: 1972
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - henson-frank
+    tagged: []
+  - filename: henson-woo3.jpg
+    caption: >
+      Frank Henson in Bien Hoa, April 1972.
+    caption_short: "Frank Henson, Bien Hoa, April 1972"
+    credit: "Photographed by Robin Woo · 1972"
+    photographer: "woo-robin"
+    date: 1972
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - henson-frank
+    tagged: []
+  - filename: henson-woo4.jpg
+    caption: >
+      Frank Henson in Bien Hoa, April 1972.
+    caption_short: "Frank Henson, Bien Hoa, April 1972"
+    credit: "Photographed by Robin Woo · 1972"
+    photographer: "woo-robin"
+    date: 1972
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - henson-frank
     tagged: []
 ---

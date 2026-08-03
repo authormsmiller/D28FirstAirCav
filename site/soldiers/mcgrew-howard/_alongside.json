@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "garvin-jim",
+    "basis": "same-platoon",
+    "notes": "Range Platoon, Range 3 element — both present for the Trotter contact, 2 Feb 1971."
+  },
+  {
+    "slug": "marr-bill",
+    "basis": "same-platoon",
+    "notes": "Range Platoon squad leader (Davis's squad) during the 20 Apr 71 contact near FSB Fontaine — same platoon as McGrew, then a Range Platoon rifleman/ammo bearer."
+  },
+  {
+    "slug": "brothers-harvey",
+    "basis": "same-platoon",
+    "notes": "Range Platoon medic; treated the wounded at the stream during the 20 Apr 71 contact near FSB Fontaine, when McGrew was also with Range Platoon."
+  },
+  {
+    "slug": "guidara-frank",
+    "basis": "same-platoon",
+    "notes": "Range Platoon leader (Range 6) during McGrew's time with the platoon; organized the ammo resupply during the 20 Apr 71 contact near FSB Fontaine."
+  },
+  {
+    "slug": "martin-michael",
+    "basis": "same-event",
+    "notes": "Tagged as Skull Platoon leader during the 20 Apr 71 contact near FSB Fontaine — a reinforcement element, not McGrew's Range Platoon. Note: his own profile stub lists platoon: Range, which conflicts with this event's tagging; unresolved discrepancy, flagged for review rather than resolved here."
+  },
+  {
+    "slug": "miller-marvin-dale",
+    "basis": "same-event",
+    "notes": "Cat Platoon — tagged on the 24 Apr 71 crash at FSB Fontaine, the same date McGrew's own timeline places him at the base. Different platoon than McGrew's Range Platoon."
+  },
+  {
+    "slug": "neal-bill",
+    "basis": "company-co",
+    "notes": "CPT Neal commanded D Company from approximately 13 Apr 71 through approximately Jul–Aug 71 — covering the 20 Apr contact and 24 Apr crash on McGrew's timeline. Not present at the 22 Mar bee incident; arrived as replacement CO roughly three weeks after it."
+  },
+  {
+    "slug": "kutter-wolf",
+    "basis": "company-co",
+    "notes": "CPT Kutter succeeded Neal as D Company CO approximately Jul–Aug 71, commanding during the 21 Oct 71 Nui Ba Mountains contact on McGrew's timeline. No source yet confirms whether he was still CO on McGrew's 20 Dec 71 DEROS."
+  },
+  {
+    "slug": "moore-robert",
+    "basis": "commanding-officer",
+    "notes": "Battalion Commander, 2/8 Cav, 7 Oct 70 – 16 Feb 71 — covering McGrew's arrival in-country (11 Jan 71)."
+  },
+  {
+    "slug": "bacon-wg",
+    "basis": "commanding-officer",
+    "notes": "Battalion Commander, 2/8 Cav, 16 Feb 71 – approximately Jul 71 — covering the bee incident, the 20 Apr contact, and the 24 Apr crash on McGrew's timeline; personally directed C&C aerial support during the 20 Apr contact."
+  },
+  {
+    "slug": "blagg-thomas",
+    "basis": "commanding-officer",
+    "notes": "Battalion Commander, 2/8 Cav, approximately Jul 71 – Jun 72 — covering the 21 Oct 71 Nui Ba Mountains contact and McGrew's 20 Dec 71 DEROS; personally extracted PFC Makowski's body from that engagement."
+  }
+]

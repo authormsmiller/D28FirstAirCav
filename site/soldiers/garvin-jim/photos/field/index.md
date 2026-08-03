@@ -8,7 +8,7 @@ photos:
       
     caption_short: "Jim Catterson, Jim Garvin, Gary \"Indian\" Collins"
     credit: "From the collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: 
     date_known: false
     event: ""
@@ -23,7 +23,7 @@ photos:
       
     caption_short: "Bill Holtzclaw"
     credit: "From the collection of Jim Garvin"
-    photographer: ""
+    photographer: "garvin-jim"
     date: 
     date_known: false
     event: ""

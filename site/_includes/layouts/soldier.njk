@@ -53,6 +53,12 @@
     {% if status in ["kia", "dow", "mia"] %}
     <div class="prof-kia-star">★</div>
     {% endif %}
+    {% if remains == "not_recovered" %}
+    <div class="prof-mia-banner" role="note" aria-label="Missing in Action — body not recovered">
+      <span class="prof-mia-tag">MIA</span>
+      <span class="prof-mia-sub">Body Not Recovered</span>
+    </div>
+    {% endif %}
   </div>
 
   {# Info column #}
@@ -98,21 +104,137 @@
   </div>
 </div>
 
+{# ── TAB COUNTS ──
+   Computed once here, before the tab bar, so each tab can show "(n)" records
+   behind it — e.g. "Photos (10)", "Documents (0)". A zero count is shown
+   deliberately rather than hidden: an empty tab is a signal the archive still
+   needs something for this person, the same way a missing profile photo or a
+   wrong rank was a signal for McGrew to reach out. This logic mirrors — but
+   is kept separate (tc_ prefix) from — the per-tab computations further down
+   this file, so it doesn't disturb that already-tested rendering code.
+   External Resources is the one deliberate exception: it keeps hiding
+   entirely when empty rather than showing "(0)" — a soldier having no Wall
+   of Faces entry or outside link isn't a research gap the way an empty
+   Photos or Timeline tab is. #}
+
+{% set tc_coveredEvents = [] %}
+{% if timeline %}
+  {% for entry in timeline %}
+    {% if entry.event_slug %}{% set tc_coveredEvents = (tc_coveredEvents.push(entry.event_slug), tc_coveredEvents) %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% set tc_injectedEvents = [] %}
+{% for event in collections.events %}
+  {% if event.data.status == "published" %}
+    {% set tc_matched = false %}
+    {% if event.data.casualties %}
+      {% for tier in ["kia","dow","wia","mia"] %}
+        {% if event.data.casualties[tier] %}
+          {% for p in event.data.casualties[tier] %}
+            {% set pSlug = p.slug if p.slug else p %}
+            {% if pSlug == slug %}{% set tc_matched = true %}{% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if event.data.contains %}
+      {% for p in event.data.contains %}
+        {% set pSlug = p.slug if p.slug else p %}
+        {% if pSlug == slug %}{% set tc_matched = true %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if event.data.tagged %}
+      {% for p in event.data.tagged %}
+        {% set pSlug = p.slug if p.slug else p %}
+        {% if pSlug == slug %}{% set tc_matched = true %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if tc_matched and not (event.data.slug in tc_coveredEvents) %}
+      {% set tc_injectedEvents = (tc_injectedEvents.push(event), tc_injectedEvents) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% set timelineCount = (timeline.length if timeline else 0) + tc_injectedEvents.length %}
+
+{% set tc_crawlerEntry = photosBySlug[slug] %}
+{% set tc_allPhotos = [] %}
+{% if tc_crawlerEntry %}
+  {% for subfolderKey, photoArr in tc_crawlerEntry %}
+    {% for p in photoArr %}{% set tc_allPhotos = (tc_allPhotos.push(p), tc_allPhotos) %}{% endfor %}
+  {% endfor %}
+{% else %}
+  {% set tc_allPhotos = photos if photos else [] %}
+{% endif %}
+{% set tc_photosOfMe = [] %}
+{% if photosBySlug.byContains and photosBySlug.byContains[slug] %}
+  {% for photo in photosBySlug.byContains[slug] %}
+    {% if photo.photographer != slug %}{% set tc_photosOfMe = (tc_photosOfMe.push(photo), tc_photosOfMe) %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% set tc_photosByMe = [] %}
+{% for photo in tc_allPhotos %}
+  {% if photo.photographer == slug %}{% set tc_photosByMe = (tc_photosByMe.push(photo), tc_photosByMe) %}{% endif %}
+{% endfor %}
+{% set tc_relatedPhotos = photosBySlug.byTagged[slug] if (photosBySlug.byTagged and photosBySlug.byTagged[slug]) else [] %}
+{% set photosCount = tc_photosOfMe.length + tc_photosByMe.length + tc_relatedPhotos.length %}
+
+{% set tc_t1 = alongside[slug].tier1 if alongside[slug] else [] %}
+{% set tc_t2 = alongside[slug].tier2 if alongside[slug] else [] %}
+{% set tc_t3 = alongside[slug].tier3 if alongside[slug] else [] %}
+{% set tc_t4 = alongside[slug].tier4 if alongside[slug] else [] %}
+{% set alongsideCount = tc_t1.length + tc_t2.length + tc_t3.length + tc_t4.length %}
+
+{% set tc_soldierAnecdotes = [] %}
+{% for anecdote in collections.anecdotes %}
+  {% if anecdote.data.contains and slug in anecdote.data.contains %}{% set tc_soldierAnecdotes = tc_soldierAnecdotes.concat([anecdote]) %}{% endif %}
+{% endfor %}
+{% set tc_soldierDocs = documentsBySlug[slug] %}
+{% set tc_verbalDocs = [] %}
+{% set tc_referencedVerbalDocs = [] %}
+{% if tc_soldierDocs %}
+  {% for doc in tc_soldierDocs.authored %}{% if doc.type == "verbal" %}{% set tc_verbalDocs = tc_verbalDocs.concat([doc]) %}{% endif %}{% endfor %}
+  {% for doc in tc_soldierDocs.referenced %}{% if doc.type == "verbal" %}{% set tc_referencedVerbalDocs = tc_referencedVerbalDocs.concat([doc]) %}{% endif %}{% endfor %}
+{% endif %}
+{% set accountsCount = tc_soldierAnecdotes.length + tc_verbalDocs.length + tc_referencedVerbalDocs.length %}
+
+{% set tc_authored = [] %}
+{% if tc_soldierDocs %}
+  {% for doc in tc_soldierDocs.authored %}{% if doc.type != "letter" and doc.type != "verbal" %}{% set tc_authored = tc_authored.concat([doc]) %}{% endif %}{% endfor %}
+{% endif %}
+{% set tc_referenced = tc_soldierDocs.referenced if tc_soldierDocs else [] %}
+{% set tc_tagged = tc_soldierDocs.tagged if tc_soldierDocs else [] %}
+{% set documentsCount = tc_authored.length + tc_referenced.length + tc_tagged.length %}
+
+{% set tc_soldierLetters = [] %}
+{% for letter in collections.letters %}
+  {% if letter.data.contains and slug in letter.data.contains %}{% set tc_soldierLetters = tc_soldierLetters.concat([letter]) %}{% endif %}
+{% endfor %}
+{% set lettersCount = tc_soldierLetters.length %}
+
+{% set externalCount = (1 if (links and links.wall) else 0) + (links.other.length if (links and links.other) else 0) %}
+
 {# ── TAB BAR ── #}
 <div class="tabs-bar">
-  <div class="tab active" data-tab="timeline">Timeline</div>
-  <div class="tab" data-tab="photos">Photos</div>
-  <div class="tab" data-tab="alongside">Served alongside</div>
-  <div class="tab" data-tab="accounts">Verbal accounts</div>
-  <div class="tab" data-tab="documents">Documents</div>
-  <div class="tab" data-tab="letters">Letters</div>
-  <div class="tab" data-tab="service">Service record</div>
-  {% if links and (links.wall or (links.other and links.other.length)) %}<div class="tab" data-tab="external">External resources</div>{% endif %}
+  <div class="tab active" data-tab="timeline">Timeline <span class="tab-count">({{ timelineCount }})</span></div>
+  <div class="tab" data-tab="photos">Photos <span class="tab-count">({{ photosCount }})</span></div>
+  <div class="tab" data-tab="alongside">Served alongside <span class="tab-count">({{ alongsideCount }})</span></div>
+  <div class="tab" data-tab="accounts">Verbal accounts <span class="tab-count">({{ accountsCount }})</span></div>
+  <div class="tab" data-tab="documents">Documents <span class="tab-count">({{ documentsCount }})</span></div>
+  <div class="tab" data-tab="letters">Letters <span class="tab-count">({{ lettersCount }})</span></div>
+  <div class="tab" data-tab="service">Service record <span class="tab-count">(1)</span></div>
+  {% if links and (links.wall or (links.other and links.other.length)) %}<div class="tab" data-tab="external">External resources <span class="tab-count">({{ externalCount }})</span></div>{% endif %}
 </div>
 
 {# ── TAB: TIMELINE ── #}
 <div class="tab-content" id="tab-timeline">
   {# ── Build event-injected entries from collections.events ── #}
+  {# Events already covered by a hand-authored timeline entry (entry.event_slug) are skipped to avoid duplicates #}
+  {% set coveredEvents = [] %}
+  {% if timeline %}
+    {% for entry in timeline %}
+      {% if entry.event_slug %}{% set coveredEvents = (coveredEvents.push(entry.event_slug), coveredEvents) %}{% endif %}
+    {% endfor %}
+  {% endif %}
   {% set injectedEvents = [] %}
   {% for event in collections.events %}
     {% if event.data.status == "published" %}
@@ -147,7 +269,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if matched %}
+      {% if matched and not (event.data.slug in coveredEvents) %}
         {% set injectedEvents = (injectedEvents.push({
           date: event.data.date,
           headline: event.data.title,
@@ -168,9 +290,16 @@
     {% endif %}
     <div class="tl">
 
-      {# ── Hand-authored timeline entries ── #}
-      {% if timeline and timeline.length %}
-        {% for entry in timeline %}
+      {# ── Unified chronological timeline ──
+         Hand-authored entries and event-injected entries are merged and
+         sorted by date here (rather than hand-authored-then-injected, which
+         stranded auto-injected entries at the bottom regardless of when
+         they actually happened). mergeTimeline normalizes both ISO and
+         prose date formats before sorting — see timelineSortKey in
+         .eleventy.js. #}
+      {% set mergedTimeline = timeline | mergeTimeline(injectedEvents) %}
+      {% for entry in mergedTimeline %}
+        {% if entry._source == "hand" %}
           <div class="tl-entry">
             <div class="tl-dot {{ entry.type | default('move') }}"></div>
             <div class="tl-date">{{ entry.date }}</div>
@@ -179,7 +308,11 @@
                 <span class="tl-tag tl-tag-{{ tag.type }}">{{ tag.label }}</span>
               {% endfor %}
             {% endif %}
-            <div class="tl-hed">{{ entry.headline }}</div>
+            {% if entry.event_slug %}
+              <div class="tl-hed"><a href="/events/{{ entry.event_slug }}/" style="color:inherit;">{{ entry.headline }}</a></div>
+            {% else %}
+              <div class="tl-hed">{{ entry.headline }}</div>
+            {% endif %}
             <div class="tl-body">{{ entry.body }}</div>
             {% if entry.source_notice %}
               <div class="source-notice">
@@ -188,27 +321,25 @@
               </div>
             {% endif %}
           </div>
-        {% endfor %}
-      {% endif %}
-
-      {# ── Event-injected entries ── #}
-      {% for evt in injectedEvents %}
-        <div class="tl-entry">
-          <div class="tl-dot event"></div>
-          <div class="tl-date">{{ evt.date }}</div>
-          <span class="tl-tag tl-tag-{{ evt.tier }}">
-            {% if evt.tier == "casualty" %}Casualty record
-            {% elif evt.tier == "confirmed" %}Confirmed present
-            {% else %}Probably present
+        {% else %}
+          <div class="tl-entry">
+            <div class="tl-dot event"></div>
+            <div class="tl-date">{{ entry.date }}</div>
+            <span class="tl-tag tl-tag-{{ entry.tier }}">
+              {% if entry.tier == "casualty" %}Casualty record
+              {% elif entry.tier == "confirmed" %}Confirmed present
+              {% elif status == "kia" or status == "dow" or status == "mia" %}Commemorated
+              {% else %}Probably present
+              {% endif %}
+            </span>
+            <div class="tl-hed">
+              <a href="{{ entry.url }}" style="color:inherit;">{{ entry.headline }}</a>
+            </div>
+            {% if entry.body %}
+              <div class="tl-body">{{ entry.body }}</div>
             {% endif %}
-          </span>
-          <div class="tl-hed">
-            <a href="{{ evt.url }}" style="color:inherit;">{{ evt.headline }}</a>
           </div>
-          {% if evt.body %}
-            <div class="tl-body">{{ evt.body }}</div>
-          {% endif %}
-        </div>
+        {% endif %}
       {% endfor %}
 
     </div>
@@ -227,18 +358,18 @@
     Used as the source for Gallery 2 (photos taken by this soldier).
     Fallback to front matter photos array if no index.md files exist yet.
   #}
+  {# Iterate every subfolder key the crawler produced (profile, field,
+     field/events, and any locations/[loc-slug] keys — one per FSB/location
+     a contributor has photos filed under) rather than hardcoding a fixed
+     list. The hardcoded profile/field/field-events list previously missed
+     locations/* entirely, so any photo filed under photos/locations/[slug]/
+     could never appear in Gallery 2 even with photographer set correctly. #}
   {% set crawlerEntry = photosBySlug[slug] %}
   {% set allPhotos = [] %}
   {% if crawlerEntry %}
-    {% if crawlerEntry.profile %}
-      {% for p in crawlerEntry.profile %}{% set allPhotos = (allPhotos.push(p), allPhotos) %}{% endfor %}
-    {% endif %}
-    {% if crawlerEntry.field %}
-      {% for p in crawlerEntry.field %}{% set allPhotos = (allPhotos.push(p), allPhotos) %}{% endfor %}
-    {% endif %}
-    {% if crawlerEntry["field/events"] %}
-      {% for p in crawlerEntry["field/events"] %}{% set allPhotos = (allPhotos.push(p), allPhotos) %}{% endfor %}
-    {% endif %}
+    {% for subfolderKey, photoArr in crawlerEntry %}
+      {% for p in photoArr %}{% set allPhotos = (allPhotos.push(p), allPhotos) %}{% endfor %}
+    {% endfor %}
   {% else %}
     {% set allPhotos = photos %}
   {% endif %}
@@ -299,7 +430,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -326,7 +460,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -353,7 +490,10 @@
           src: {{ photo.url | dump | safe }},
           caption: {{ (photo.caption or photo.caption_short or photo.filename) | dump | safe }},
           credit: {{ (photo.credit or "") | dump | safe }},
-          date: {{ (photo.date or "") | dump | safe }}
+          date: {{ (photo.date or "") | dump | safe }},
+          soldier_slug: {{ photo.soldier_slug | dump | safe }},
+          subfolder: {{ photo.subfolder | dump | safe }},
+          filename: {{ photo.filename | dump | safe }}
         }{% if not loop.last %},{% endif %}
         {% endfor %}
       ];
@@ -392,13 +532,14 @@
 {# ── TAB: SERVED ALONGSIDE ── #}
 {#
   Data source: site/_data/alongside.js
-  alongside[slug] = { tier1: [], tier2: [], tier3: [] }
+  alongside[slug] = { tier1: [], tier2: [], tier3: [], tier4: [] }
 
   Tier 1 — auto-detected from photo/document contains[] arrays (build-time, never persisted)
   Tier 2 — same-platoon manual links (from _alongside.json or relationships.json)
-  Tier 3 — broader manual links: verbal-account, same-company, etc.
+  Tier 3 — broader peer links: verbal-account, same-company/tour, etc.
+  Tier 4 — commanding officer: the battalion LTC ("Stone Mountain 6")
 
-  Admin tool writes to soldiers/{slug}/_alongside.json for Tier 2/3 entries only.
+  Admin tool writes to soldiers/{slug}/_alongside.json for Tier 2/3/4 entries.
   Empty state: always show tab; display "Researching connections..." when no data.
 #}
 <div class="tab-content" id="tab-alongside" style="display:none">
@@ -407,8 +548,33 @@
   {% set t1 = alongside[slug].tier1 if alongside[slug] else [] %}
   {% set t2 = alongside[slug].tier2 if alongside[slug] else [] %}
   {% set t3 = alongside[slug].tier3 if alongside[slug] else [] %}
+  {% set t4 = alongside[slug].tier4 if alongside[slug] else [] %}
 
-  {% if t1.length or t2.length or t3.length %}
+  {% if t1.length or t2.length or t3.length or t4.length %}
+
+    {# ── Tier 4: Commanding officer — the battalion LTC ("Stone Mountain 6") ── #}
+    {% if t4.length %}
+      <details class="alongside-section" open>
+        <summary>
+          <span class="alongside-tier-heading">Commanding officer &mdash; &ldquo;Stone Mountain 6&rdquo;</span>
+          <span class="alongside-count">{{ t4.length }}</span>
+        </summary>
+        <table class="rtable">
+          <thead><tr><th>Name</th><th>Role</th><th>Notes</th></tr></thead>
+          <tbody>
+          {% for rel in t4 %}
+            {% set op = null %}
+            {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            <tr>
+              <td><div class="rname"><a href="/soldiers/{{ rel.slug }}/">{% if op %}{% if op.rank %}{{ op.rank }} {% endif %}{{ op.last_name }}, {{ op.first_name }}{% else %}{{ rel.slug }}{% endif %}</a></div></td>
+              <td><span class="plt-badge plt-hq">Battalion CO</span></td>
+              <td>{{ rel.notes if rel.notes else "" }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    {% endif %}
 
     {# ── Tier 1: In the same photos or documents ── #}
     {% if t1.length %}
@@ -421,11 +587,20 @@
           {% for rel in t1 %}
             {% set op = null %}
             {% for page in collections.all %}{% if page.data.slug == rel.slug %}{% set op = page.data %}{% endif %}{% endfor %}
+            {# Resolve card photo the same way the hero does: crawler data takes precedence over front matter #}
+            {% set _relCrawlerProfile = photosBySlug[rel.slug].profile[0] if (photosBySlug[rel.slug] and photosBySlug[rel.slug].profile and photosBySlug[rel.slug].profile.length) else null %}
+            {% if _relCrawlerProfile %}
+              {% set _relPhotoSrc = "/media/photos/soldiers/" + rel.slug + "/profile/" + _relCrawlerProfile.filename %}
+            {% elif op and op.profile_photo %}
+              {% set _relPhotoSrc = "/media/photos/soldiers/" + rel.slug + "/profile/" + op.profile_photo %}
+            {% else %}
+              {% set _relPhotoSrc = null %}
+            {% endif %}
             <div class="alongside-card">
               <a href="/soldiers/{{ rel.slug }}/" style="text-decoration:none;">
                 <div class="alongside-photo">
-                  {% if op and op.profile_photo %}
-                    <img src="/media/photos/soldiers/{{ rel.slug }}/profile/{{ op.profile_photo }}"
+                  {% if _relPhotoSrc %}
+                    <img src="{{ _relPhotoSrc }}"
                          alt="{{ rel.slug }}" style="width:100%;height:100%;object-fit:cover;"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <span style="display:none">{% if op %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% else %}?{% endif %}</span>
@@ -755,7 +930,7 @@
 
   {% if soldierLetters.length %}
     <div class="doc-list">
-      {% for letter in soldierLetters %}
+      {% for letter in soldierLetters | sortByData('doc_date') | reverse %}
         <div class="doc-item">
           <div class="doc-icon">✉️</div>
           <div style="flex:1;">
@@ -883,6 +1058,7 @@
   <div class="prof-cta-btns">
     <a class="land-cta" href="/contribute/">Submit Materials</a>
   </div>
+  <p class="prof-cta-records">Looking for official service or casualty records? <a href="/records/">See our guide →</a></p>
 </div>
 
 {% include "partials/footer.njk" %}
@@ -890,6 +1066,19 @@
 </main>
 
 <style>
+.prof-cta-records {
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  margin: 16px 0 0;
+  text-align: center;
+}
+.prof-cta-records a {
+  color: rgba(255,255,255,0.65);
+  text-underline-offset: 3px;
+}
+.prof-cta-records a:hover { color: var(--y); }
+
 .cr-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 900;
   display: flex; align-items: center; justify-content: center; padding: 16px;
@@ -1048,6 +1237,7 @@
       </div>
       <p id="lb-cap-p"></p>
       <small id="lb-cap-s"></small>
+      <button type="button" class="lb-suggest" onclick="event.stopPropagation(); pidpOpenFromLightbox()">✎ Suggest a correction</button>
     </div>
     <div class="lb-nav">
       <button id="lb-prev" class="lb-arrow" onclick="event.stopPropagation();lbPrev()">← PREV</button>
@@ -1056,7 +1246,87 @@
   </div>
 </div>
 
+<!-- ── Photo ID Proposal modal ───────────────────────────── -->
+<div class="pidp-overlay" id="pidpOverlay" onclick="pidpClose(event)">
+  <div class="pidp-modal" role="dialog" aria-modal="true" aria-labelledby="pidpTitle">
+    <div class="pidp-header">
+      <div class="pidp-title" id="pidpTitle">Help Us Get This Right</div>
+      <button type="button" class="pidp-close" onclick="pidpClose()" aria-label="Close">✕</button>
+    </div>
+    <div class="pidp-body">
+      <div class="pidp-ctx">
+        <img class="pidp-ctx-thumb" id="pidpThumb" src="" alt="">
+        <div>
+          <div class="pidp-ctx-label">You're correcting</div>
+          <div class="pidp-ctx-cap" id="pidpCtxCap"></div>
+        </div>
+      </div>
+
+      <div class="pidp-field">
+        <label>What can you help with? <span class="pidp-opt">(pick any)</span></label>
+        <div class="pidp-chips">
+          <button type="button" class="pidp-chip" data-block="who">👤 Who's in it</button>
+          <button type="button" class="pidp-chip" data-block="caption">📝 The caption</button>
+          <button type="button" class="pidp-chip" data-block="date">📅 When it was taken</button>
+          <button type="button" class="pidp-chip" data-block="notes">💬 Something else</button>
+        </div>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-who" hidden>
+        <div class="pidp-block-hed">👤 Who's in it</div>
+        <div class="pidp-people" id="pidpPeople"></div>
+        <div class="pidp-ta-wrap">
+          <input type="text" class="pidp-input" id="pidpPersonInput" autocomplete="off" placeholder="Start typing a name…">
+          <div class="pidp-ta-results" id="pidpTaResults" hidden></div>
+        </div>
+        <div class="pidp-help">Pick from the roster, or add a name we don't have yet.</div>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-caption" hidden>
+        <div class="pidp-block-hed">📝 The caption</div>
+        <div class="pidp-current" id="pidpCurrentCap"></div>
+        <textarea class="pidp-textarea" id="pidpCaption" placeholder="What it should say…"></textarea>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-date" hidden>
+        <div class="pidp-block-hed">📅 When it was taken</div>
+        <div class="pidp-current" id="pidpCurrentDate"></div>
+        <input type="text" class="pidp-input" id="pidpDate" placeholder="e.g. March 1972, or spring 1972">
+        <label class="pidp-toggle-row"><input type="checkbox" id="pidpDateApprox" checked> This date is approximate</label>
+      </div>
+
+      <div class="pidp-block" id="pidpBlock-notes" hidden>
+        <div class="pidp-block-hed">💬 Something else</div>
+        <textarea class="pidp-textarea" id="pidpNotes" placeholder="Location, what's happening, how photos relate…"></textarea>
+      </div>
+
+      <hr class="pidp-divider">
+
+      <div class="pidp-field">
+        <label>How do you know? <span class="pidp-opt">(optional, but it helps)</span></label>
+        <input type="text" class="pidp-input" id="pidpSource" placeholder='e.g. "I was there" · "my dad&apos;s album"'>
+      </div>
+      <div class="pidp-row">
+        <div class="pidp-field">
+          <label>Your name <span class="pidp-opt">(optional)</span></label>
+          <input type="text" class="pidp-input" id="pidpName" placeholder="So we can credit / follow up">
+        </div>
+        <div class="pidp-field">
+          <label>How to reach you <span class="pidp-opt">(optional)</span></label>
+          <input type="text" class="pidp-input" id="pidpContact" placeholder="Phone or email">
+        </div>
+      </div>
+      <input type="text" id="pidpHp" class="pidp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </div>
+    <div class="pidp-footer">
+      <button type="button" class="pidp-submit" id="pidpSubmit" onclick="pidpSubmit()">Submit for Review →</button>
+      <div class="pidp-note" id="pidpFootNote">Nothing changes on the site right away — every suggestion is reviewed first.</div>
+    </div>
+  </div>
+</div>
+
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/photo-proposal.js"></script>
 
 <script>
 function activateTab(name) {

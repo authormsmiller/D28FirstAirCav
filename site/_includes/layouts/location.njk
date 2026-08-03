@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ display_name or title }} — {{ site.title }}</title>
+<meta name="description" content="Location profile for {{ display_name or title }}{% if location and location.province %}, {{ location.province }}{% endif %} — D Co. 2/8 CAV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+{% include "partials/masthead.njk" %}
+
+<div class="breadcrumb show">
+  <a class="bc-link" href="/">Archive</a>
+  <span class="bc-sep">›</span>
+  <a class="bc-link" href="/locations/">Locations</a>
+  <span class="bc-sep">›</span>
+  <span>{{ short_name or display_name or title }}</span>
+</div>
+
+<style>
+  .loc-hero { background: var(--blk); padding: 34px 48px 26px; border-bottom: 4px solid var(--y); }
+  .loc-type-kicker { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #b8b2a0; }
+  .loc-name { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: .95; color: var(--pg); margin: 4px 0 2px; }
+  .loc-aka { font-family: 'Crimson Pro', Georgia, serif; font-style: italic; color: #b8b2a0; font-size: 1rem; }
+  .loc-facts { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 16px; }
+  .loc-fact-label { font-family: 'Space Grotesk', sans-serif; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: #b8b2a0; }
+  .loc-fact-val { font-family: 'Space Grotesk', sans-serif; font-size: .9rem; color: var(--pg); }
+  .loc-fact-val.mono { letter-spacing: .02em; }
+  .loc-conf { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; padding: 1px 6px; border-radius: 99px; vertical-align: middle; margin-left: 4px; }
+  .loc-conf.confirmed { background: #1d9e75; color: #fff; }
+  .loc-conf.high { background: var(--y2); color: #14120C; }
+  .loc-conf.low, .loc-conf.unverified { background: var(--pg3); color: var(--dim); }
+  .loc-chain { margin-top: 14px; font-family: 'Crimson Pro', Georgia, serif; font-size: .95rem; color: #cfc9b8; }
+  .loc-chain a { color: var(--y2); text-decoration: none; }
+  .loc-occ-table { width: 100%; border-collapse: collapse; margin: 6px 0 0; font-family: 'Space Grotesk', sans-serif; font-size: .85rem; }
+  .loc-occ-table th { text-align: left; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); }
+  .loc-occ-table td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule2); color: var(--ink2); vertical-align: top; }
+  .loc-section-intro { font-family: 'Crimson Pro', Georgia, serif; font-style: italic; color: var(--dim); margin: 0 0 14px; }
+  .loc-narrative { font-family: 'Crimson Pro', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--ink); }
+  .loc-narrative p { margin: 0 0 12px; }
+  .loc-present-note { font-family: 'Space Grotesk', sans-serif; font-size: .8rem; color: var(--dim); margin: 0 0 12px; }
+  .loc-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .loc-photo { background: var(--pg2); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; cursor: pointer; }
+  .loc-photo img { width: 100%; height: 150px; object-fit: cover; display: block; }
+  .loc-photo-cap { font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--dim); padding: 6px 8px; }
+  @media (max-width: 760px) { .loc-hero { padding: 26px 20px 20px; } }
+</style>
+
+{# ─────────── Gather everything up front so the tab bar can hide empties ─────────── #}
+
+{# Soldiers-present sets are computed below, after evidence (photos + anecdotes) is gathered. #}
+
+{# Accounts — anecdotes whose location (string) or locations (list) names this base #}
+{% set locAnecdotes = [] %}
+{% for a in collections.anecdotes %}
+  {% if a.data.status == "published" %}
+    {% set hit = false %}
+    {% if a.data.location and a.data.location == slug %}{% set hit = true %}{% endif %}
+    {% if a.data.locations and slug in a.data.locations %}{% set hit = true %}{% endif %}
+    {% if hit %}{% set locAnecdotes = (locAnecdotes.push(a), locAnecdotes) %}{% endif %}
+  {% endif %}
+{% endfor %}
+
+{# Events Here — manual related_events list + any event auto-tagged with location_slug #}
+{% set evtSlugs = related_events if related_events else [] %}
+{% set locEvents = [] %}
+{% for e in collections.events %}
+  {% if e.data.status == "published" %}
+    {% if (e.data.slug in evtSlugs) or (e.data.location_slug and e.data.location_slug == slug) %}
+      {% set locEvents = (locEvents.push(e), locEvents) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{# Documents tagged to this location #}
+{% set locDocs = [] %}
+{% for d in collections.documents %}
+  {% if d.data.location_slug and d.data.location_slug == slug %}{% set locDocs = (locDocs.push(d), locDocs) %}{% endif %}
+{% endfor %}
+
+{% set locPhotos = photosByFsb[slug] if (photosByFsb and photosByFsb[slug]) else [] %}
+
+{# ── Soldiers present ──────────────────────────────────────────────
+   Confirmed = the location's hand-listed contains UNION everyone evidenced
+   here: anyone named in a photo tagged to this base (photosByFsb -> contains)
+   or in an anecdote located here. Circumstantial = the hand-listed tagged set
+   minus anyone already confirmed. #}
+{% set confirmed = [] %}
+{% for s in (contains if contains else []) %}
+  {% if s not in confirmed %}{% set confirmed = (confirmed.push(s), confirmed) %}{% endif %}
+{% endfor %}
+{% for p in locPhotos %}
+  {% for s in (p.contains if p.contains else []) %}
+    {% if s not in confirmed %}{% set confirmed = (confirmed.push(s), confirmed) %}{% endif %}
+  {% endfor %}
+{% endfor %}
+{% for a in locAnecdotes %}
+  {% for s in (a.data.contains if a.data.contains else []) %}
+    {% if s not in confirmed %}{% set confirmed = (confirmed.push(s), confirmed) %}{% endif %}
+  {% endfor %}
+{% endfor %}
+{% set circumstantial = [] %}
+{% for s in (tagged if tagged else []) %}
+  {% if s not in confirmed and s not in circumstantial %}{% set circumstantial = (circumstantial.push(s), circumstantial) %}{% endif %}
+{% endfor %}
+
+<main>
+
+{# ─────────── HERO ─────────── #}
+{% set typeLabels = { "fsb": "Fire Support Base", "lz": "Landing Zone", "relay": "Relay Station", "r-and-r": "R&R / Stand-down", "base-camp": "Base Camp", "voyage": "Troop Ship", "other": "Position" } %}
+<div class="loc-hero">
+  <div class="loc-type-kicker">{{ typeLabels[type] or "Position" }}{% if location and location.province %} · {{ location.province }}{% endif %}</div>
+  <h1 class="loc-name">{{ display_name or title }}</h1>
+  {% if also_known_as %}<div class="loc-aka">Also known as {{ also_known_as }}</div>{% endif %}
+
+  <div class="loc-facts">
+    {% if location and location.mgrs %}
+      <div><div class="loc-fact-label">Grid (MGRS)</div><div class="loc-fact-val mono">{{ location.mgrs }}{% if location.coordinate_confidence %}<span class="loc-conf {{ location.coordinate_confidence }}">{{ location.coordinate_confidence }}</span>{% endif %}</div></div>
+    {% endif %}
+    {% if location and location.lat and location.lon %}
+      <div><div class="loc-fact-label">Coordinates</div><div class="loc-fact-val mono">{{ location.lat }}, {{ location.lon }}</div></div>
+    {% endif %}
+    {% set firstOcc = occupancies[0] if (occupancies and occupancies.length) else null %}
+    {% set lastOcc = occupancies | last if (occupancies and occupancies.length) else null %}
+    {% if firstOcc %}
+      <div><div class="loc-fact-label">Active</div><div class="loc-fact-val">{{ firstOcc.start | locDate }}{% if lastOcc.end %} – {{ lastOcc.end | locDate }}{% endif %}</div></div>
+    {% elif dates and dates.established and dates.established.date %}
+      <div><div class="loc-fact-label">Active</div><div class="loc-fact-val">{{ dates.established.date | locDate }}{% if dates.closed and dates.closed.date %} – {{ dates.closed.date | locDate }}{% endif %}</div></div>
+    {% endif %}
+    {% if named_for or named_for_note %}
+      <div><div class="loc-fact-label">Named for</div><div class="loc-fact-val">
+        {% if named_for %}
+          {% set nf = null %}
+          {% for s in collections.soldiers %}{% if s.data.slug == named_for %}{% set nf = s.data %}{% endif %}{% endfor %}
+          {% if nf %}<a href="/soldiers/{{ named_for }}/" style="color:var(--y2);text-decoration:none;">{{ nf.first_name }} {{ nf.last_name }}</a>{% else %}{{ named_for | replace("-", " ") | title }}{% endif %}
+        {% else %}{{ named_for_note }}{% endif %}
+      </div></div>
+    {% endif %}
+  </div>
+
+  {% if related_bases and (related_bases.predecessor or related_bases.successor or related_bases.split_from or related_bases.split_into) %}
+    {% macro baseLink(s) %}{% set b = null %}{% for l in collections.locations %}{% if l.data.slug == s %}{% set b = l.data %}{% endif %}{% endfor %}{% if b %}<a href="{{ b.permalink }}">{{ b.short_name or b.display_name }}</a>{% else %}{{ s | replace("fsb-", "") | replace("lz-", "") | replace("-", " ") | title }}{% endif %}{% endmacro %}
+    <div class="loc-chain">
+      {% if related_bases.split_from %}Split from {{ baseLink(related_bases.split_from) }}{% if related_bases.predecessor or related_bases.successor or related_bases.split_into %} · {% endif %}{% endif %}
+      {% if related_bases.predecessor %}Succeeded {{ baseLink(related_bases.predecessor) }}{% endif %}
+      {% if related_bases.predecessor and related_bases.successor %} · {% endif %}
+      {% if related_bases.successor %}Replaced by {{ baseLink(related_bases.successor) }}{% endif %}
+      {% if related_bases.split_into and related_bases.split_into.length %}{% if related_bases.split_from or related_bases.predecessor or related_bases.successor %} · {% endif %}Split into {% for b in related_bases.split_into %}{{ baseLink(b) }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{# ─────────── TAB BAR ───────────
+   Every tab below is always shown, including with a (0) count — a signal
+   that the archive still needs something for this position, same as an
+   empty tab on a soldier profile. Previously these hid entirely when empty;
+   now they render with an empty-state message instead (see each panel). #}
+{% set presentCount = confirmed.length + circumstantial.length %}
+<div class="tabs-bar">
+  <div class="tab active" data-tab="overview">Overview</div>
+  <div class="tab" data-tab="accounts">Accounts <span class="tab-count">({{ locAnecdotes.length }})</span></div>
+  <div class="tab" data-tab="present">Soldiers present <span class="tab-count">({{ presentCount }})</span></div>
+  <div class="tab" data-tab="events">Events here <span class="tab-count">({{ locEvents.length }})</span></div>
+  <div class="tab" data-tab="photos">Photos <span class="tab-count">({{ locPhotos.length }})</span></div>
+  <div class="tab" data-tab="documents">Documents <span class="tab-count">({{ locDocs.length }})</span></div>
+</div>
+
+{# ─────────── OVERVIEW ─────────── #}
+<div class="tab-content" id="tab-overview">
+  {% if occupancies and occupancies.length %}
+    <table class="loc-occ-table">
+      <thead><tr><th>Occupancy</th><th>Element</th><th>Source</th></tr></thead>
+      <tbody>
+      {% for o in occupancies %}
+        <tr>
+          <td>{{ o.start | locDate }}{% if o.end %} – {{ o.end | locDate }}{% endif %}{% if o.grid %}<br><span style="color:var(--dim);font-size:11px;">{{ o.grid }}</span>{% endif %}</td>
+          <td>{{ o.company or o.unit or "2/8 Cav" }}{% if o.confidence %}<span class="loc-conf {{ o.confidence }}">{{ o.confidence }}</span>{% endif %}</td>
+          <td style="color:var(--dim);font-size:11px;">{{ o.source or "—" }}{% if o.note %}<br>{{ o.note }}{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <div class="loc-narrative">
+    {{ content | safe }}
+    {% if not content | trim and not (occupancies and occupancies.length) %}
+      <p class="loc-section-intro">A narrative for this position has not been written yet.</p>
+    {% endif %}
+  </div>
+
+  {% if location and location.modern_landmark %}
+    <p class="loc-section-intro" style="margin-top:14px;">Today: {{ location.modern_landmark }}</p>
+  {% endif %}
+  {% if dates and dates.notes %}
+    <p class="loc-section-intro">{{ dates.notes }}</p>
+  {% endif %}
+</div>
+
+{# ─────────── ACCOUNTS ─────────── #}
+<div class="tab-content" id="tab-accounts" style="display:none">
+  {% if locAnecdotes.length %}
+  <p class="loc-section-intro">First-hand stories tied to this position.</p>
+  <div class="doc-list">
+  {% for a in locAnecdotes %}
+    <a class="doc-item" href="{{ a.data.permalink }}" style="text-decoration:none; align-items:flex-start;">
+      <div class="doc-icon">&#9998;</div>
+      <div style="flex:1; min-width:0;">
+        <div class="doc-title">{{ a.data.title }}</div>
+        <div class="doc-meta">{% if a.data.date %}{{ a.data.date | locDate }}{% endif %}{% if a.data.source_short %} &middot; {{ a.data.source_short }}{% endif %}</div>
+        {% if a.data.summary %}<div class="doc-meta" style="margin-top:5px; font-style:italic;">{{ a.data.summary }}</div>{% endif %}
+      </div>
+      <div class="doc-type">Account</div>
+    </a>
+  {% endfor %}
+  </div>
+  {% else %}
+  <div class="tab-empty">
+    No accounts on record for this position yet.<br>
+    <a href="/contribute/">Have a story tied to this location? Tell us →</a>
+  </div>
+  {% endif %}
+</div>
+
+{# ─────────── SOLDIERS PRESENT ─────────── #}
+<div class="tab-content" id="tab-present" style="display:none">
+{% if confirmed.length or circumstantial.length %}
+
+  {% macro soldierCard(s) %}
+    {% set op = null %}
+    {% for sol in collections.soldiers %}{% if sol.data.slug == s %}{% set op = sol.data %}{% endif %}{% endfor %}
+    <div class="alongside-card">
+      {% if op %}
+        <a href="/soldiers/{{ s }}/" style="text-decoration:none;">
+          <div class="alongside-photo">
+            {% if op.profile_photo %}<img src="/media/photos/soldiers/{{ s }}/profile/{{ op.profile_photo }}" alt="{{ op.last_name }}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span style="display:none">{{ op.first_name[0] }}{{ op.last_name[0] }}</span>{% else %}{{ op.first_name[0] }}{{ op.last_name[0] }}{% endif %}
+          </div>
+        </a>
+        <div class="alongside-name"><a href="/soldiers/{{ s }}/" style="color:inherit;text-decoration:none;">{{ op.first_name }} {{ op.last_name }}</a></div>
+        {% if op.platoon %}<div class="alongside-meta">{{ op.platoon }}</div>{% endif %}
+      {% else %}
+        <div class="alongside-photo">?</div>
+        <div class="alongside-name">{{ s | replace("-", " ") | title }}</div>
+        <div class="alongside-meta" style="font-style:italic;">No profile yet</div>
+      {% endif %}
+    </div>
+  {% endmacro %}
+
+  {% if confirmed.length %}
+    <details class="alongside-section" open>
+      <summary><span class="alongside-tier-heading">Confirmed present <span class="loc-conf confirmed">Confirmed</span></span><span class="alongside-count">{{ confirmed.length }}</span></summary>
+      <p class="loc-present-note">Tied here by a letter, photo, account, or "I was there" submission.</p>
+      <div class="alongside-grid">{% for s in confirmed %}{{ soldierCard(s) }}{% endfor %}</div>
+    </details>
+  {% endif %}
+
+  {% if circumstantial.length %}
+    <details class="alongside-section"{% if not confirmed.length %} open{% endif %}>
+      <summary><span class="alongside-tier-heading">Likely present <span class="loc-conf high">Circumstantial</span></span><span class="alongside-count">{{ circumstantial.length }}</span></summary>
+      <p class="loc-present-note">In the unit while it occupied this position — solid circumstantial evidence, not individually confirmed.</p>
+      <div class="alongside-grid">{% for s in circumstantial %}{{ soldierCard(s) }}{% endfor %}</div>
+    </details>
+  {% endif %}
+
+{% else %}
+  <div class="tab-empty">
+    No soldiers confirmed or suspected present at this position yet.<br>
+    <a href="/contribute/">Know who served here? Tell us →</a>
+  </div>
+{% endif %}
+</div>
+
+{# ─────────── EVENTS HERE ─────────── #}
+<div class="tab-content" id="tab-events" style="display:none">
+  {% if locEvents.length %}
+  <p class="loc-section-intro">Documented actions that took place at this position.</p>
+  <div class="doc-list">
+  {% for e in locEvents %}
+    <a class="doc-item" href="/events/{{ e.data.slug }}/" style="text-decoration:none;">
+      <div class="doc-icon">&#9670;</div>
+      <div style="flex:1; min-width:0;">
+        <div class="doc-title">{{ e.data.title }}</div>
+        <div class="doc-meta">{{ e.data.date | locDate }}</div>
+      </div>
+      {% if e.data.type %}<div class="doc-type">{{ e.data.type }}</div>{% endif %}
+    </a>
+  {% endfor %}
+  </div>
+  {% else %}
+  <div class="tab-empty">
+    No events on record at this position yet.<br>
+    <a href="/contribute/">Know of an action here? Tell us →</a>
+  </div>
+  {% endif %}
+</div>
+
+{# ─────────── PHOTOS ─────────── #}
+<div class="tab-content" id="tab-photos" style="display:none">
+  {% if locPhotos.length %}
+  <script>
+    var LOC_PHOTO_SLIDES = [
+      {% for p in locPhotos %}
+      {
+        src: {{ p.url | dump | safe }},
+        caption: {{ (p.caption or p.caption_short or p.filename) | dump | safe }},
+        credit: {{ (p.credit or "") | dump | safe }},
+        date: {{ (p.date or "") | dump | safe }}
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ];
+  </script>
+  <div class="loc-photo-grid">
+    {% for p in locPhotos %}
+      <div class="loc-photo" onclick="lbOpen({{ loop.index0 }}, LOC_PHOTO_SLIDES)">
+        <img src="{{ p.url }}" alt="{{ p.caption_short or p.caption or slug }}" loading="lazy" onerror="this.parentElement.style.display='none'">
+        {% if p.caption_short or p.caption %}<div class="loc-photo-cap">{{ (p.caption_short or p.caption) | truncate(80) }}</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="tab-empty">
+    No photographs on record for this position yet.<br>
+    <a href="/contribute/">Have a photo to contribute? →</a>
+  </div>
+  {% endif %}
+</div>
+
+{# ─────────── DOCUMENTS ─────────── #}
+<div class="tab-content" id="tab-documents" style="display:none">
+  {% if locDocs.length %}
+  <div class="doc-list">
+  {% for d in locDocs %}
+    <a class="doc-item" href="/documents/{{ d.data.path or d.fileSlug }}/" style="text-decoration:none;">
+      <div class="doc-icon">&#9636;</div>
+      <div style="flex:1; min-width:0;">
+        <div class="doc-title">{{ d.data.title or d.data.slug }}</div>
+        {% if d.data.source %}<div class="doc-meta">{{ d.data.source }}</div>{% endif %}
+      </div>
+      {% if d.data.type %}<div class="doc-type">{{ d.data.type }}</div>{% endif %}
+    </a>
+  {% endfor %}
+  </div>
+  {% else %}
+  <div class="tab-empty">
+    No documents on record for this position yet.<br>
+    <a href="/contribute/">Have something to contribute? →</a>
+  </div>
+  {% endif %}
+</div>
+
+</main>
+
+{% if locPhotos.length %}
+<div class="lightbox" id="lightbox" onclick="lbClose(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="lbClose()">✕ CLOSE</button>
+    <img id="lb-img" src="" alt="">
+    <div class="lb-cap">
+      <div class="lb-cap-meta">
+        <span id="lb-cap-date"></span>
+        <span id="lb-counter"></span>
+      </div>
+      <p id="lb-cap-p"></p>
+      <small id="lb-cap-s"></small>
+    </div>
+    <div class="lb-nav">
+      <button id="lb-prev" class="lb-arrow" onclick="event.stopPropagation();lbPrev()">← PREV</button>
+      <button id="lb-next" class="lb-arrow" onclick="event.stopPropagation();lbNext()">NEXT →</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/main.js"></script>
+<script>
+function activateTab(name) {
+  var matchingTab = document.querySelector('.tab[data-tab="' + name + '"]');
+  if (!matchingTab) return;
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.style.display = 'none'; });
+  matchingTab.classList.add('active');
+  var target = document.getElementById('tab-' + name);
+  if (target) target.style.display = 'block';
+}
+document.querySelectorAll('.tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    activateTab(tab.dataset.tab);
+    history.replaceState(null, '', '#' + tab.dataset.tab);
+  });
+});
+(function() {
+  var hash = window.location.hash.replace('#', '');
+  if (hash) activateTab(hash);
+})();
+</script>
+
+</body>
+</html>

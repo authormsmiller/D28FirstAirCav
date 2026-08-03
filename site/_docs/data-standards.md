@@ -85,7 +85,7 @@ contains:                      # confirmed present, NOT in casualties
     note: Cat Platoon; confirmed present in Neal's account
 
 tagged:                        # implied present; unconfirmed individually
-  - slug: mcgrew-harold
+  - slug: mcgrew-howard
     note: Range Platoon member; calendar corroborates unit presence
 
 citations:

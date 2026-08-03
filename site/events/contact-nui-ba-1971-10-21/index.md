@@ -53,6 +53,14 @@ casualties:
       role: Squad Leader / Point Man, Range Platoon
       note: WIA; shrapnel ricocheted through helmet causing concussion; helmet liner saved him
 tagged:
+  - slug: mcgrew-howard
+    name: SP4 Howard McGrew
+    note: >
+      By this date serving as Company RTO at the Company CP (assigned
+      28 Sep 71). His own timeline records "Contact" on both 21 and 22 Oct
+      71 and a return to FSB Jeffries on 23 Oct, corroborating the
+      engagement dates — his position or actions at the moment of contact
+      aren't detailed in his own entries.
   - slug: kutter-wolf
     name: Capt. Wolf Kutter
     note: CO, D Co., "Skipper 6"; with Cat Platoon ~400m away at time of contact; flew back to Firebase Jefferies with body
@@ -75,6 +83,9 @@ accounts:
       mission, and Kutter's commemoration speech. Draws on firsthand accounts of Hilts and
       Blais. Restricted to family/unit use; not for public reproduction without consent.
 related_events:
+  - slug: 3rd-brigade-separate-garryowen-1971
+    relationship: operational-period
+    note: "Higher command / operational frame — the 3rd Brigade (Separate) under which 2/8 Cav operated in 1971 (from BG Burton's debriefing report, AD0520447)."
   - slug: contact-nui-ba-1971-10-22
     relationship: continuation
     note: Follow-through sweep of bunker complex on October 22; record not yet created

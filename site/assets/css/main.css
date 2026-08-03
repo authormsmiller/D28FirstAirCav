@@ -614,6 +614,38 @@ body.status-mia .prof-photo-frame {
   margin: 2px 0 14px;
 }
 
+/* MIA banner — sits beneath the commemorative star for soldiers whose
+   remains were never recovered. Bronze border ties it to the KIA treatment;
+   the text marks that he never came home. Driven by `remains: not_recovered`. */
+.prof-mia-banner {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 6px 4px 7px;
+  background: var(--blk);
+  border: 1px solid #C0924E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.prof-mia-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  color: #F2EDD8;
+  line-height: 1;
+}
+.prof-mia-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C0924E;
+}
+
 .prof-name {
   font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #F0EDD8;
   letter-spacing: 2px; line-height: 0.88; margin-bottom: 8px;
@@ -758,6 +790,7 @@ body.status-mia .prof-photo-frame {
 }
 .tab:hover { color: var(--ink); }
 .tab.active { color: var(--ink); border-bottom-color: var(--y); }
+.tab-count { opacity: .55; font-weight: 400; }
 .tab-content {
   background: var(--pg);
   padding: 36px 48px;
@@ -1100,6 +1133,19 @@ body.status-mia .prof-photo-frame {
 
 .uh-section-label:first-of-type {
   margin-top: 1rem;
+}
+
+.uh-year-marker {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  background: var(--ink);
+  color: var(--y);
+  padding: 3px 12px;
+  border-radius: 2px;
+  margin: 1.5rem 0 0.5rem;
 }
 
 .uh-card-link {
@@ -1783,8 +1829,11 @@ html { overflow-x: hidden; }
   .ov-stats { flex-wrap: wrap; gap: 20px; }
   .ov-stat { border-right: none; margin-right: 0; padding-right: 0; width: calc(50% - 10px); }
 
-  /* Profile hero */
-  .prof-hero { padding: 28px 20px; }
+  /* Profile hero — stacked layout on mobile */
+  .prof-hero { grid-template-columns: 1fr; }
+  .prof-photo-col { border-right: none; border-bottom: 1px solid #1e1e1a; padding: 28px 20px; align-items: center; }
+  .prof-photo-frame { width: 140px; }
+  .prof-info { padding: 28px 20px; }
   .prof-grid { grid-template-columns: 1fr; }
   .prof-name { font-size: 48px; }
 
@@ -2804,8 +2853,115 @@ html { overflow-x: hidden; }
   font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--y2); margin-bottom: 5px;
 }
+/* FOOTNOTES */
+.footnote-ref { font-size: 0.7em; vertical-align: super; line-height: 1; }
+.footnote-ref a { color: var(--y2); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+.footnote-ref a:hover { color: var(--y); text-decoration: underline; }
+.footnotes { margin-top: 2.5rem; }
+.footnotes-sep { border: none; border-top: 1px solid var(--rule); margin-bottom: 1.25rem; }
+.footnotes-list { padding-left: 1.5em; margin: 0; }
+.footnote-item { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--dim); line-height: 1.6; margin-bottom: 0.6em; }
+.footnote-backref { color: var(--rule); text-decoration: none; margin-left: 0.3em; }
+.footnote-backref:hover { color: var(--y2); }
+
 .ov-recent-card-story-preview {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: 15px; color: rgba(255,255,255,0.75);
   line-height: 1.5; margin-bottom: 5px;
 }
+
+/* ── Photo ID Proposal modal ──────────────────────────────────────────────── */
+.lb-suggest {
+  display: inline-block; margin-top: 10px;
+  background: rgba(245,196,0,0.12); border: 1px solid var(--y); color: var(--y);
+  font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 13px;
+  border-radius: 2px; cursor: pointer; transition: background 0.15s;
+}
+.lb-suggest:hover { background: rgba(245,196,0,0.22); }
+
+.pidp-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2500;
+  background: rgba(10,10,8,0.78); align-items: flex-start; justify-content: center;
+  padding: 40px 16px; overflow-y: auto;
+}
+.pidp-overlay.open { display: flex; }
+.pidp-modal {
+  background: var(--pg); border-radius: 2px; width: 100%; max-width: 620px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6); overflow: hidden; margin: auto;
+}
+.pidp-header {
+  background: var(--blk); border-bottom: 2px solid var(--y);
+  padding: 18px 26px; display: flex; align-items: center; justify-content: space-between;
+}
+.pidp-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #F0EDD8; }
+.pidp-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 20px; cursor: pointer; line-height: 1; }
+.pidp-close:hover { color: var(--y); }
+.pidp-body { padding: 22px 26px 18px; }
+.pidp-footer {
+  padding: 16px 26px 22px; display: flex; gap: 12px; align-items: center;
+  border-top: 1px solid var(--rule2); background: var(--pg2);
+}
+.pidp-note { font-size: 12px; color: var(--dim); font-style: italic; line-height: 1.45; flex: 1; }
+
+.pidp-ctx { display: flex; gap: 12px; align-items: center; background: var(--pg2); border: 1px solid var(--rule2); border-radius: 2px; padding: 10px; margin-bottom: 18px; }
+.pidp-ctx-thumb { width: 64px; height: 48px; flex-shrink: 0; object-fit: cover; background: var(--pg3); border: 1px solid var(--rule); border-radius: 2px; }
+.pidp-ctx-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-bottom: 3px; }
+.pidp-ctx-cap { font-family: 'Crimson Pro', serif; font-size: 13px; color: var(--ink2); line-height: 1.4; }
+
+.pidp-field { margin-bottom: 16px; }
+.pidp-field label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+.pidp-opt { font-weight: 400; color: var(--rule); text-transform: none; letter-spacing: 0; font-size: 11px; }
+.pidp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.pidp-input, .pidp-textarea {
+  display: block; width: 100%; background: #fff; border: 1px solid var(--rule2);
+  border-radius: 2px; padding: 9px 12px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; color: var(--ink2);
+}
+.pidp-textarea { font-family: 'Crimson Pro', serif; font-size: 15px; min-height: 72px; resize: vertical; }
+.pidp-input:focus, .pidp-textarea:focus { outline: none; border-color: var(--y2); box-shadow: 0 0 0 1px var(--y2); }
+
+.pidp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pidp-chip {
+  display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--rule2);
+  background: #fff; border-radius: 20px; padding: 7px 14px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 500; color: var(--ink2); cursor: pointer; transition: all 0.15s;
+}
+.pidp-chip:hover { border-color: var(--y2); }
+.pidp-chip.on { background: var(--ink); border-color: var(--ink); color: var(--pg); }
+
+.pidp-block { border: 1px solid var(--rule2); border-left: 3px solid var(--y); border-radius: 0 2px 2px 0; background: #fff; padding: 15px; margin-bottom: 14px; }
+.pidp-block-hed { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink2); margin-bottom: 12px; }
+.pidp-current { background: var(--pg2); border-radius: 2px; padding: 8px 10px; margin-bottom: 10px; }
+.pidp-cv-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--rule); display: block; margin-bottom: 3px; }
+.pidp-current em { font-family: 'Crimson Pro', serif; font-size: 13px; color: var(--ink2); font-style: italic; }
+.pidp-help { font-size: 12px; color: var(--dim); margin-top: 6px; line-height: 1.4; }
+
+.pidp-people { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.pidp-person { display: inline-flex; align-items: center; gap: 6px; background: var(--y-pale); border: 1px solid var(--y-mid); border-radius: 16px; padding: 4px 6px 4px 11px; font-size: 12px; color: var(--ink2); }
+.pidp-person.freetext { background: var(--pg2); border-color: var(--rule2); }
+.pidp-person em { color: var(--dim); font-style: normal; font-size: 10px; }
+.pidp-person-x { color: var(--dim); cursor: pointer; font-size: 13px; padding: 0 3px; }
+.pidp-person-x:hover { color: var(--red); }
+
+.pidp-ta-wrap { position: relative; }
+.pidp-ta-results { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid var(--rule2); border-top: none; border-radius: 0 0 3px 3px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 5; max-height: 220px; overflow-y: auto; }
+.pidp-ta-result { padding: 8px 12px; font-size: 13px; color: var(--ink2); border-bottom: 1px solid var(--pg2); cursor: pointer; }
+.pidp-ta-result:last-child { border-bottom: none; }
+.pidp-ta-result:hover { background: var(--pg); }
+.pidp-ta-sub { font-size: 11px; color: var(--dim); margin-top: 1px; }
+.pidp-ta-add { font-style: italic; color: var(--dim); }
+
+.pidp-toggle-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--ink2); text-transform: none; letter-spacing: 0; font-weight: 400; }
+.pidp-divider { border: none; border-top: 1px solid var(--rule2); margin: 16px 0; }
+
+.pidp-submit {
+  background: var(--y); color: var(--blk); font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 11px 22px; border: none; border-radius: 2px; cursor: pointer;
+}
+.pidp-submit:disabled { opacity: 0.6; cursor: default; }
+.pidp-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+@media (max-width: 560px) { .pidp-row { grid-template-columns: 1fr; } }

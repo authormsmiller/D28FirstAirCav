@@ -1,0 +1,158 @@
+{
+  "_meta": {
+    "artifact": "cross-reference-candidates",
+    "generated_by": "scripts/cross-reference-engine.cjs",
+    "from_digest": "site/sources/orll/1967/AD0386215.digest.json",
+    "document": "AD0386215",
+    "period": [
+      "1967-05-01",
+      "1967-07-31"
+    ],
+    "near_days_window": 7,
+    "kia_rows_skipped_unknown_date": 0,
+    "note": "Deterministic joins only (date+battalion match, casualty count diff, gazetteer name resolution). Operations / personnel / awards / contact-event proposals and all narrative interpretation still require a human/Claude pass -- see the source-digest skill Step 3-5."
+  },
+  "kia_in_range": [
+    {
+      "slug": "bohmer-robert",
+      "name": "SP4 Robert James Bohmer",
+      "dod": "1967-05-23",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "nelson-daniel-ivan",
+      "name": "PFC Daniel Ivan Nelson",
+      "dod": "1967-05-30",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "sutt-george",
+      "name": "PFC George Steven Sutt",
+      "dod": "1967-05-30",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "krueger-charles",
+      "name": "PFC Charles William Krueger",
+      "dod": "1967-05-31",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "exact_date_other_unit",
+      "exact_events": [
+        {
+          "n": 1,
+          "date": "1967-05-31",
+          "units": [],
+          "installation": null
+        }
+      ],
+      "exact_events_other_unit": [
+        []
+      ],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "ehlers-lonney",
+      "name": "CPL Lonney Lewis Ehlers",
+      "dod": "1967-06-01",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "mccomb-terry",
+      "name": "SP4 Terry Russell McComb",
+      "dod": "1967-06-05",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    },
+    {
+      "slug": "houser-clyde",
+      "name": "PFC Clyde Richard Houser Jr.",
+      "dod": "1967-06-13",
+      "unit": "D Co, 2/8 Cav",
+      "grade": "in_range_no_matching_event",
+      "exact_events": [],
+      "near_events_battalion": []
+    }
+  ],
+  "casualty_reconciliation": [],
+  "locations": [
+    {
+      "raw_name": "LZ English",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 2,
+          "date": "1967-06-06",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Ton",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Crystal",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Geronimo",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "Camp Radcliff",
+      "resolved_slug": "fb-camp-radcliff",
+      "resolved_display": "FB Camp Radcliff",
+      "source": "locations.json",
+      "confidence": "confirmed_no_tied_2-8_event",
+      "tied_events": [],
+      "action": "Already in gazetteer but no 2/8-specific tie in this document -- division-context only, low priority."
+    },
+    {
+      "raw_name": "Fish Hook area",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    },
+    {
+      "raw_name": "LZ Ton / LZ Crystal (ARVN)",
+      "resolved_slug": null,
+      "confidence": "unresolved",
+      "tied_events": [
+        {
+          "n": 11,
+          "date": "1967-07-11",
+          "units": [],
+          "grid": null
+        }
+      ],
+      "action": "New-site candidate -- not found in locations.json or lz-vocabulary.json. Coordinates TBD unless a grid is present on a tied event."
+    }
+  ]
+}

@@ -140,6 +140,9 @@ module.exports = function () {
                          ? data.timeline_source.replace(/\s+/g, " ").trim()
                          : extractExcerpt(raw),
         profile_photo: data.profile_photo || "",
+        profile_photo_url: data.profile_photo
+                         ? `/media/photos/soldiers/${id}/profile/${data.profile_photo}`
+                         : "",
         photo_count:   0,
       };
     }
@@ -201,8 +204,15 @@ module.exports = function () {
       for (const docSlug of fs.readdirSync(contribPath)) {
         const docPath  = path.join(contribPath, docSlug);
         if (!fs.statSync(docPath).isDirectory()) continue;
-        const filePath = path.join(docPath, docSlug + ".md");
-        if (!fs.existsSync(filePath)) continue;
+        // Accept the canonical <docSlug>.md naming OR index.md. index.md is a
+        // valid document file (letters, biographies, interviews, commemorations);
+        // mirrors _crawlDocuments.js so search and the crawler agree.
+        const docFileCanonical = path.join(docPath, docSlug + ".md");
+        const docFileIndex     = path.join(docPath, "index.md");
+        const filePath = fs.existsSync(docFileCanonical) ? docFileCanonical
+                       : fs.existsSync(docFileIndex)     ? docFileIndex
+                       : null;
+        if (!filePath) continue;
         const raw  = fs.readFileSync(filePath, "utf8");
         const data = parseFrontMatter(raw, docSlug);
         if (!data || data.status === "draft") continue;
@@ -306,6 +316,42 @@ module.exports = function () {
   }
 
   // ── FINAL: Push soldier records with accurate photo_count ──────────────
+
+  // ---- PASS 2e: Letters ----
+  // Letters live at soldiers/[slug]/letters/[file].md (migrated out of documents/).
+  // Indexed as type "letter" so they remain searchable after the move.
+  if (fs.existsSync(soldiersDir)) {
+    for (const soldierSlug of fs.readdirSync(soldiersDir)) {
+      const lettersDir = path.join(soldiersDir, soldierSlug, "letters");
+      if (!fs.existsSync(lettersDir) || !fs.statSync(lettersDir).isDirectory()) continue;
+      for (const fname of fs.readdirSync(lettersDir)) {
+        if (!fname.endsWith(".md")) continue;
+        const filePath = path.join(lettersDir, fname);
+        const raw  = fs.readFileSync(filePath, "utf8");
+        const data = parseFrontMatter(raw, fname);
+        if (!data || data.status === "draft") continue;
+
+        const contains = slugList(data.contains);
+        const tagged   = slugList(data.tagged);
+        warnUnknown(contains, fname);
+
+        const lslug = data.slug || fname.replace(/\.md$/, "");
+        records.push({
+          type:        "letter",
+          id:          lslug,
+          slug:        lslug,
+          url:         data.permalink || `/soldiers/${soldierSlug}/letters/${lslug}/`,
+          name:        data.title || lslug,
+          date:        data.doc_date || data.date || "",
+          contributor: soldierSlug,
+          event:       "",
+          contains,
+          tagged,
+          excerpt:     extractExcerpt(raw),
+        });
+      }
+    }
+  }
 
   for (const record of Object.values(soldierMap)) {
     records.push(record);

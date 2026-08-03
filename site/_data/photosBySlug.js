@@ -1,74 +1,33 @@
 // site/_data/photosBySlug.js
 //
-// Photo crawler — Phase 4
-// Walks site/soldiers/[slug]/photos/[subfolder]/index.md
-// Reads front matter from each index file
-// Builds a keyed object: { [soldierSlug]: { profile: [...], field: [...], ... } }
-// Each photo entry gets a resolved `url` pointing to the Cloudflare Worker path.
+// Photo crawler — walks site/soldiers/[slug]/photos/[subfolder]/index.md,
+// reads front matter, builds { [soldierSlug]: { profile:[...], field:[...], ... } }.
+// Each photo entry gets a resolved `url` (Cloudflare Worker path).
 //
-// Templates consume this instead of the `photos:` array in soldier front matter.
-// The `photos:` array in soldier .md files is kept as a fallback until Phase 5 removes it.
+// Reverse lookup maps (attached to the returned object):
+//   .byContains[slug]  — photos whose contains[] includes slug
+//   .byTagged[slug]    — photos whose tagged[] includes slug
+//   .byEvent[slug]     — photos whose event == slug
+//   .byFsb[loc-slug]   — photos whose fsb == loc-slug (projects onto a location page)
 //
-// Output shape:
-// {
-//   "miller-marvin-dale": {
-//     profile: [
-//       {
-//         filename: "marvin-miller-selfie.jpg",
-//         caption: "...",
-//         caption_short: "...",
-//         credit: "...",
-//         credit_slug: "...",
-//         date: "1971-04-20",
-//         date_known: false,
-//         event: "contact-fsb-fontaine-1971-04-20",
-//         contains: ["miller-marvin-dale"],
-//         tagged: [],
-//         subfolder: "profile",
-//         soldier_slug: "miller-marvin-dale",
-//         url: "/media/photos/soldiers/miller-marvin-dale/profile/marvin-miller-selfie.jpg"
-//       }
-//     ],
-//     field: [...],
-//     "field/events": [...]
-//   }
-// }
-//
-// Cross-reference output (separate export not possible from a single data file,
-// but photosBySlug also exposes a `byContains` map for reverse lookups):
-// photosBySlug._byContains["weaver-ken"] → [ ...photo entries where contains includes weaver-ken ]
-// photosBySlug._byTagged["cate-larry"]  → [ ...photo entries where tagged includes cate-larry ]
+// Subfolders scanned:
+//   profile, field            (flat KNOWN_SUBFOLDERS)
+//   field/events[/slug]       (event photos, dynamic)
+//   locations/[loc-slug]      (location-tied photos, dynamic — e.g. a contributor's
+//                              firebase deck; each entry carries fsb: <loc-slug>)
 
 const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
 
-// ---------------------------------------------------------------------------
-// Config
-// ---------------------------------------------------------------------------
-
 const SOLDIERS_DIR = path.join(__dirname, "..", "soldiers");
 const MEDIA_BASE = "/media/photos/soldiers";
 
-// Subfolders we recognize. Order matters for profile photo resolution:
-// the first matching subfolder with a photo is used as profile_photo fallback.
-// Note: field/events is NOT listed here — it is scanned dynamically below
-// because event photos live one level deeper: field/events/[event-slug]/index.md
 const KNOWN_SUBFOLDERS = [
   "profile",
   "field",
 ];
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-/**
- * Parse a photo index.md file.
- * The file is front-matter only (no body required) OR front-matter + body.
- * Front matter contains a `photos:` array, each entry being a photo object.
- * Returns the `photos` array, or [] if the file is missing/malformed.
- */
 function parsePhotoIndex(indexPath) {
   if (!fs.existsSync(indexPath)) return [];
 
@@ -76,13 +35,9 @@ function parsePhotoIndex(indexPath) {
   try {
     raw = fs.readFileSync(indexPath, "utf8");
   } catch (e) {
-    // existsSync can return true on some filesystems even when the file
-    // cannot actually be opened (phantom entries). Treat as missing.
     return [];
   }
 
-  // Extract front matter — support both closed (---...---) and
-  // front-matter-only files (opening --- with no closing delimiter).
   let content = null;
   const closed = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (closed) {
@@ -106,9 +61,6 @@ function parsePhotoIndex(indexPath) {
   return parsed.photos;
 }
 
-/**
- * Resolve a photo entry: add computed fields.
- */
 function resolvePhoto(entry, soldierSlug, subfolder) {
   if (!entry.filename) return null;
 
@@ -123,6 +75,13 @@ function resolvePhoto(entry, soldierSlug, subfolder) {
     date: entry.date || "",
     date_known: entry.date_known === true,
     event: entry.event || "",
+    fsb: entry.fsb || "",
+    subject: entry.subject || "",
+    quality: entry.quality || "",
+    note: entry.note || "",
+    source_ref: entry.source_ref || "",
+    source_file: entry.source_file || "",
+    source_slide: entry.source_slide || "",
     contains: Array.isArray(entry.contains) ? entry.contains : [],
     tagged: Array.isArray(entry.tagged) ? entry.tagged : [],
 
@@ -133,17 +92,29 @@ function resolvePhoto(entry, soldierSlug, subfolder) {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Main crawler
-// ---------------------------------------------------------------------------
-
 module.exports = function () {
   const result = {};
   const byContains = {};
   const byTagged = {};
   const byEvent = {};
+  const byFsb = {};
 
-  // Guard: soldiers directory must exist
+  // Index a resolved photo into every reverse-lookup map it qualifies for.
+  function indexReverse(photo) {
+    for (const slug of photo.contains) {
+      (byContains[slug] = byContains[slug] || []).push(photo);
+    }
+    for (const slug of photo.tagged) {
+      (byTagged[slug] = byTagged[slug] || []).push(photo);
+    }
+    if (photo.event) {
+      (byEvent[photo.event] = byEvent[photo.event] || []).push(photo);
+    }
+    if (photo.fsb) {
+      (byFsb[photo.fsb] = byFsb[photo.fsb] || []).push(photo);
+    }
+  }
+
   if (!fs.existsSync(SOLDIERS_DIR)) {
     console.warn(`[photosBySlug] Soldiers directory not found: ${SOLDIERS_DIR}`);
     return result;
@@ -159,69 +130,33 @@ module.exports = function () {
 
     const soldierPhotos = {};
 
+    // Flat known subfolders (profile, field)
     for (const subfolder of KNOWN_SUBFOLDERS) {
       const indexPath = path.join(photosRoot, subfolder, "index.md");
-      const rawEntries = parsePhotoIndex(indexPath);
-      const resolved = rawEntries
+      const resolved = parsePhotoIndex(indexPath)
         .map(entry => resolvePhoto(entry, soldierSlug, subfolder))
         .filter(Boolean);
 
       if (resolved.length > 0) {
         soldierPhotos[subfolder] = resolved;
-
-        // Build reverse lookup maps
-        for (const photo of resolved) {
-          for (const slug of photo.contains) {
-            if (!byContains[slug]) byContains[slug] = [];
-            byContains[slug].push(photo);
-          }
-          for (const slug of photo.tagged) {
-            if (!byTagged[slug]) byTagged[slug] = [];
-            byTagged[slug].push(photo);
-          }
-          if (photo.event) {
-            if (!byEvent[photo.event]) byEvent[photo.event] = [];
-            byEvent[photo.event].push(photo);
-          }
-        }
+        resolved.forEach(indexReverse);
       }
     }
 
-    // Dynamic scan: field/events/index.md (flat) OR field/events/[event-slug]/index.md (nested)
-    // Both patterns are supported:
-    //   Flat:   field/events/index.md — all event photos in one file, subfolder = "field/events"
-    //   Nested: field/events/[slug]/index.md — one file per event, subfolder = "field/events/[slug]"
-    // All entries are accumulated under the "field/events" key so templates
-    // that iterate photosBySlug[slug]["field/events"] continue to work.
+    // Dynamic: field/events/index.md (flat) and field/events/[slug]/index.md (nested)
     const eventsDir = path.join(photosRoot, "field", "events");
     if (fs.existsSync(eventsDir)) {
       const allEventPhotos = [];
 
-      // Pattern A — flat index.md directly inside field/events/
       const flatIndexPath = path.join(eventsDir, "index.md");
       if (fs.existsSync(flatIndexPath)) {
-        const rawEntries = parsePhotoIndex(flatIndexPath);
-        const resolved = rawEntries
+        const resolved = parsePhotoIndex(flatIndexPath)
           .map(entry => resolvePhoto(entry, soldierSlug, "field/events"))
           .filter(Boolean);
-        for (const photo of resolved) {
-          for (const slug of photo.contains) {
-            if (!byContains[slug]) byContains[slug] = [];
-            byContains[slug].push(photo);
-          }
-          for (const slug of photo.tagged) {
-            if (!byTagged[slug]) byTagged[slug] = [];
-            byTagged[slug].push(photo);
-          }
-          if (photo.event) {
-            if (!byEvent[photo.event]) byEvent[photo.event] = [];
-            byEvent[photo.event].push(photo);
-          }
-        }
+        resolved.forEach(indexReverse);
         allEventPhotos.push(...resolved);
       }
 
-      // Pattern B — nested: field/events/[event-slug]/index.md
       const eventSlugs = fs.readdirSync(eventsDir, { withFileTypes: true })
         .filter(d => d.isDirectory())
         .map(d => d.name);
@@ -229,27 +164,10 @@ module.exports = function () {
       for (const eventSlug of eventSlugs) {
         const subfolderPath = `field/events/${eventSlug}`;
         const indexPath = path.join(eventsDir, eventSlug, "index.md");
-        const rawEntries = parsePhotoIndex(indexPath);
-        const resolved = rawEntries
+        const resolved = parsePhotoIndex(indexPath)
           .map(entry => resolvePhoto(entry, soldierSlug, subfolderPath))
           .filter(Boolean);
-
-        // Build reverse lookup maps
-        for (const photo of resolved) {
-          for (const slug of photo.contains) {
-            if (!byContains[slug]) byContains[slug] = [];
-            byContains[slug].push(photo);
-          }
-          for (const slug of photo.tagged) {
-            if (!byTagged[slug]) byTagged[slug] = [];
-            byTagged[slug].push(photo);
-          }
-          if (photo.event) {
-            if (!byEvent[photo.event]) byEvent[photo.event] = [];
-            byEvent[photo.event].push(photo);
-          }
-        }
-
+        resolved.forEach(indexReverse);
         allEventPhotos.push(...resolved);
       }
 
@@ -258,16 +176,36 @@ module.exports = function () {
       }
     }
 
+    // Dynamic: locations/[loc-slug]/index.md — location-tied photos.
+    // Each entry carries fsb: <loc-slug>, projecting it onto that location page.
+    const locationsDir = path.join(photosRoot, "locations");
+    if (fs.existsSync(locationsDir)) {
+      const locSlugs = fs.readdirSync(locationsDir, { withFileTypes: true })
+        .filter(d => d.isDirectory())
+        .map(d => d.name);
+
+      for (const locSlug of locSlugs) {
+        const subfolderPath = `locations/${locSlug}`;
+        const indexPath = path.join(locationsDir, locSlug, "index.md");
+        const resolved = parsePhotoIndex(indexPath)
+          .map(entry => resolvePhoto(entry, soldierSlug, subfolderPath))
+          .filter(Boolean);
+        if (resolved.length > 0) {
+          soldierPhotos[subfolderPath] = resolved;
+          resolved.forEach(indexReverse);
+        }
+      }
+    }
+
     if (Object.keys(soldierPhotos).length > 0) {
       result[soldierSlug] = soldierPhotos;
     }
   }
 
-  // Attach reverse lookup maps as non-enumerable properties
-  // so templates can use photosBySlug._byContains["weaver-ken"]
-result.byContains = byContains;
-result.byTagged = byTagged;
-result.byEvent = byEvent;
+  result.byContains = byContains;
+  result.byTagged = byTagged;
+  result.byEvent = byEvent;
+  result.byFsb = byFsb;
 
-return result;
+  return result;
 };

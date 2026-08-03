@@ -1,0 +1,428 @@
+{
+  "_meta": {
+    "artifact": "source-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-22 from 17 e-reader screenshots of Colavita's memoir, ch. 9 ('Chicken Valley'). Second full-chapter digest for this source (first: 08-angry-skipper). Unlike ch. 8, this chapter overlaps substantially with material Michael had already excerpted directly into events/operation-sheridan-sabre-1968-12-04 and its verbal-account document (colavita-henry-verbal-account-dec4-1968) BEFORE this digest pipeline existed -- the verbatim quotes on that document are word-for-word matches to this chapter's p3 and p5. The full-chapter read still surfaces a large amount of new material beyond those two excerpted paragraphs: the night mortar/ground assault's full color (chaplain, Lt. Johnson's foxhole incident, the 'GOOKS IN THE WIRE' call, the Blue Max pilot's radio plea), the entirely new 21 Jan 1969 death of SP4 Elliot Velez-Rodriguez (already on the KIA list but with no event page or account until now), a second independent primary-source account of the 28 Jan 1969 bunker-complex fight (previously sourced only from a 2016 oral history video), the Christmas personnel swap (Johnson out, Babas in), the Claymore 'clapper keyboard' invention, and a postwar visit to Tangier Island that resolves the source of the existing Eskridge gravesite photo and surfaces a documentation error in a condolence letter ghostwritten by Lt. Derums.",
+    "notes": "Narrator is CPT Henry 'Rocky' Colavita (soldiers/colavita-henry) -- as in ch. 8, not named by his real name anywhere in this chapter's text (referred to as 'Skipper' by Lt. Johnson; self-identifies only via reflection on his own command). Identity confirmed by cross-reference to the existing colavita-henry profile, not from this chapter alone.",
+    "copyright_note": "Source is a copyrighted, commercially published memoir (Hellgate Press, 2015). This digest extracts FACTS ONLY (names, ranks, units, dates, locations, event summaries) in paraphrase. No sentence-level quoting beyond short phrases already published elsewhere on the archive (e.g. the 'worst day in my life' passage, already quoted in full on colavita-henry-verbal-account-dec4-1968 from this same chapter). Do not expand this file with new verbatim passages -- if a specific phrase needs preserving, flag it in the review.md for a judgment call, per the standing rule set in Session 101 and the Excerpt/visible-link convention set 2026-07-22 (see sources/colavita/index.md)."
+  },
+
+  "document": {
+    "title": "Company Grade: Memoir of an Angry Skipper -- Chapter 9, \"Chicken Valley\"",
+    "author": "Henry \"Rocky\" Colavita",
+    "author_slug": "colavita-henry",
+    "source_type": "veteran_memoir",
+    "unit": "D Company, 2nd Battalion, 8th Cavalry, 1st Cavalry Division (Airmobile)",
+    "echelon": "company",
+    "period_start": "1968-12-04",
+    "period_end": "1969-01-28",
+    "period_note": "Chapter opens mid-approach to the Dec 4, 1968 'Chicken Valley' link-up (already the chapter's namesake event) and runs through the Jan 28, 1969 bunker-complex fight, with an undated postwar coda (a Tangier Island, VA visit to CPL Eskridge's family, not tied to a specific date). Internally dated events: 4 Dec 1968 (ambush + night assault) -> 5 Dec (Arclight, withdrawal) -> 6 Dec (skipped ambush) -> 7 Dec ('Pearl Harbor Day', resume ops) -> Christmas period (~Dec 1968, undated) -> 21 Jan 1969 (Velez-Rodriguez) -> 28 Jan 1969 (Pipher/Eskridge bunker fight) -> postwar (undated).",
+    "provenance": "17 e-reader screenshots of the published memoir (photographs of the e-reader screen, not OCR -- clean digital text, high legibility throughout).",
+    "reliability": "high (author's own first-person account; substantially corroborates and extends material already independently sourced from the same book (Dec 4 excerpt) and from a separate 2016 oral history video (Jan 28 account) -- see cross_ref fields below)",
+    "files": ["chicken-valley1.jpg", "p2.jpg", "p3.jpg", "p4.jpg", "p5.jpg", "p7.jpg", "p8.jpg", "p9.jpg", "p10.jpg", "p11.jpg", "p12.jpg", "p13.jpg", "p14.jpg", "p15.jpg", "p16.jpg", "p17.jpg", "photos.jpg"],
+    "reading_order_note": "Confirmed reading order via narrative/sentence continuity and the e-reader's own %-complete counter (monotonically increasing 51%->59% across the sequence below): chicken-valley1 -> p2 -> p3 -> p4 -> p5 -> [no file named 'p6' in this folder] -> p7 -> p8 -> p9 -> p10 -> p11 -> p12 -> p14 -> p15 -> p16 -> p17. Two collision/anomaly notes: (1) p12.jpg and p13.jpg are byte-for-byte duplicate captures of the SAME physical page (identical text, identical %/time-left counter) -- unlike ch. 8's '(1)' filename collisions, which were two DIFFERENT pages sharing a name, this is a straightforward duplicate screenshot of one page; treated as a single page in the order (p13 discarded as a dupe of p12). (2) 'p6' is simply absent from the folder -- no gap in narrative content is apparent across the p5->p7 boundary (the Cromie/R&R anecdote wraps up, a scene-break '****' follows, then a new reflective passage opens 'As I believe I said earlier...'), and the %-counter only advances by 1 minute across that boundary (consistent with adjacent pages, not a skipped one) -- so this is treated as a missing/unnecessary filename, not a content gap, but flagged since it cannot be verified with full certainty. 'photos.jpg' is NOT placed in the narrative sequence above: its own %-counter (52%, 16 min left) would put it between p3 and p4, but its content -- a group photo captioned '...Bob Babas (Rifle Range 6), Dave Spingath (Wild Cat 6), and Preston Karr (White Skull 6)' -- depicts a platoon-leader roster that could not exist until AFTER Babas replaces Johnson (Christmas ~late Dec 1968, per p13) and, per Karr's own existing soldier profile (soldiers/karr-john), Karr did not arrive in-country until 1969-03-12 -- a full five weeks after this chapter's own last narrated date (28 Jan 1969). This means the photo page is either a later-chapter photo insert that landed in this folder's capture batch by mistake, or (more likely, matching the print-book convention already seen in ch. 8's front-matter photo) a photo-section page whose position in the e-book does not track the surrounding chapter's narrated timeline. Treated as an out-of-sequence but genuine source item, dated by content (post-12 Mar 1969) rather than by its position in this file set.",
+    "related_existing_records": {
+      "soldier_profile": "soldiers/colavita-henry/colavita-henry.md",
+      "memoir_document": "documents/colavita-henry/colavita-henry-memoir-company-grade/index.md",
+      "verbal_account_dec4": "documents/colavita-henry/colavita-henry-verbal-account-dec4-1968/index.md",
+      "verbal_account_jan28": "documents/colavita-henry/colavita-henry-verbal-account-jan28-1969/index.md",
+      "operation": "events/operation-sheridan-sabre-1968/index.md",
+      "sub_events": ["events/operation-sheridan-sabre-1968-12-04/index.md", "events/operation-sheridan-sabre-1969-01-28/index.md"],
+      "location": "locations/fsb-rita/index.md"
+    }
+  },
+
+  "triage": {
+    "genre": "veteran memoir, first-person, company command",
+    "echelon": "company",
+    "temporal_shape": "chapter (roughly 8 weeks narrated at combat pace, plus an undated postwar coda)",
+    "provenance": "US Army field, second-tour company commander",
+    "expected_yield": {
+      "personnel": "HIGH -- names/nicknames platoon leaders (incl. two brand-new since ch. 8), an RTO, a squad leader, and confirms an existing full-profile KIA's platoon callsign via photo caption",
+      "locations": "medium -- one substantial new firebase (Saint Barbara) plus a mountain landmark and a postwar civilian site",
+      "events": "HIGH -- two already-scaffolded KIA clusters get their first/second firsthand narrative color, one entirely new and previously undocumented KIA event surfaces, plus several minor personnel/logistics vignettes",
+      "kia_individual": "HIGH -- 6 named KIA across 3 dated clusters, one cluster (Velez-Rodriguez) with NO prior event page or account",
+      "awards": "none newly mentioned this chapter"
+    }
+  },
+
+  "personnel": [
+    {
+      "name": "CPT Henry \"Rocky\" Colavita",
+      "slug": "colavita-henry",
+      "cross_ref": "existing profile -- this IS the narrator",
+      "role": "D Co CO, \"Angry Skipper 6\"",
+      "date": "throughout chapter, Dec 1968-Jan 1969",
+      "page_ref": "chicken-valley1 through p17",
+      "confidence": "high",
+      "note": "Not named by his real name anywhere in this chapter -- addressed once as 'Skipper' by Lt. Johnson. This chapter's Dec 4 material substantially duplicates two paragraphs already excerpted verbatim onto colavita-henry-verbal-account-dec4-1968 (built before this digest pipeline existed) -- confirmed word-for-word against p3 and p5 of this capture. New material: the full night-assault narrative (chaplain, Johnson foxhole incident, 'GOOKS IN THE WIRE' radio call), the Dec 6 skipped-ambush admission, Christmas at Rita (phone call home to his mother via a Signal Corps patch, Johnson-for-Babas swap), the Claymore 'clapper keyboard' invention, and an undated postwar visit to Tangier Island, VA (CPL Eskridge's family) where he discovers a condolence letter ghostwritten by Lt. Derums over his own unsigned signature block, containing a factual error he disputes ('walked into an ambush' -- he insists Delta never did)."
+    },
+    {
+      "name": "Colonel Henry",
+      "slug": "henry-frank",
+      "cross_ref": "existing profile -- COL Frank Leonidas Henry, 'Stone Mountain 6', already confirmed via ch. 8 and the existing Dec 4 event page.",
+      "role": "Battalion commander, 2/8 Cav, callsign 'Stone Mountain 6'",
+      "date": "1968-12-04 (link-up + night assault) and 1969-01 (briefing on the move to FSB Saint Barbara)",
+      "page_ref": "chicken-valley1, p2, p5, p16",
+      "confidence": "high",
+      "note": "In the Charlie Charlie during the link-up approach, gives Colavita an azimuth and identifies Magruder's smoke color ('goofy grape') from the air; advises on the disabled/falling Cobra; speculates the bunker complex might be COSVN and orders both companies to hold overnight; later briefs Colavita (before departing LZ Rita for good) on the move to FSB Saint Barbara and the reasoning (25th ID's AO, frees all four 2/8 Cav companies for simultaneous search-and-destroy). Already well-established in this chapter's window; no new identity questions, just continued activity."
+    },
+    {
+      "name": "Captain Gonzales",
+      "slug_candidate": "out of scope -- per Michael (ch. 8 decision), Charlie Company CO, not D Company",
+      "role": "Commanding officer, Charlie Company, 2/8 Cav",
+      "date": "1968-12-04",
+      "page_ref": "p3",
+      "confidence": "high",
+      "note": "Reports the apparent NVA Chieu Hoi surrender to Stone Mountain 6 and suggests Delta's White Skull close in -- already fully covered on the existing event page and verbal-account document (built from this same chapter, pre-digest). No new facts. Retained here only for completeness/context, consistent with the ch. 8 out-of-scope decision."
+    },
+    {
+      "name": "Lieutenant Douglas \"Doug\" Magruder",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8; see site/_docs/stub-candidates.md)",
+      "role": "Platoon leader, White Skull (1st Plt)",
+      "date": "1968-12-04",
+      "page_ref": "p2, p3",
+      "confidence": "high",
+      "note": "NEW detail beyond ch. 8: during the Dec 4 daytime fight, reports White Skull in contact and a man WIA; pops 'goofy grape' (purple) smoke and requests Blue Max ARA '25 meters due north' of it -- fire that has a 'decidedly positive effect.' Was himself one of Delta's 4 WIA that day (medevac'd, returned to the company after treatment/brief in-country convalescence). During the following night's mortar/ground assault, radios that enemy had gotten past the wire and were attacking foxholes -- Colavita directs Spooky fire in front of his position."
+    },
+    {
+      "name": "Lieutenant Michael Johnson",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8; see site/_docs/stub-candidates.md)",
+      "role": "Platoon leader, Rifle Range (3rd Plt) -- through Christmas ~Dec 1968, then reassigned to battalion staff",
+      "date": "1968-12-04 (night assault) through ~Dec 1968 (Christmas swap)",
+      "page_ref": "p7, p8, p11, p12",
+      "confidence": "high",
+      "note": "MAJOR new material. During the Dec 4-5 night mortar attack, found already lying at the bottom of the CP foxhole when Colavita and four others jump in -- claims he was 'checking the perimeter' when the mortars started. Colavita publicly needles him ('Rifle Range is better off without you tonight') and privately debates whether this was cowardice; consults SFC Adams and the Rifle Range NCOs, who report Johnson 'showed no initiative, no leadership ability and inspired no one' but stop short of confirming cowardice. Colavita decides not to send him back on a chopper immediately (to avoid humiliating him) but privately plans to leave him on Rita next rotation. At Christmas, Colonel Henry takes Johnson off Colavita's hands in exchange for a newly arrived 2LT (Bob Babas) -- Johnson is 'screwed... into a hole somewhere on the battalion staff.' This resolves/closes out the ch. 8 'suspicions'/RTO-walking thread with a concrete outcome: Johnson left the company for good at Christmas 1968."
+    },
+    {
+      "name": "SFC Bruce Adams",
+      "slug": "adams-bruce",
+      "cross_ref": "existing profile (built ch. 8) -- acting First Sergeant",
+      "role": "Acting First Sergeant, D Co",
+      "date": "~Dec 1968",
+      "page_ref": "p11",
+      "confidence": "high",
+      "note": "NEW detail: wanted to ship Lt. Johnson back to Rita on the first available resupply bird; at Colavita's request, talked to the Rifle Range platoon NCOs about Johnson's performance and reported back their assessment (no initiative/leadership, but not conclusively cowardice)."
+    },
+    {
+      "name": "Lieutenant Jon Jones (\"Jonsey\")",
+      "slug_candidate": "none yet -- stub candidate (unchanged from ch. 8; see site/_docs/stub-candidates.md)",
+      "role": "Artillery Forward Observer (FO) attached to D Co",
+      "date": "1968-12-04/05 (night assault)",
+      "page_ref": "p5",
+      "confidence": "high",
+      "note": "NEW detail beyond ch. 8: plots defensive targets (DTs) alongside Colavita around their portion of the perimeter during the Dec 4-5 night, coordinating with Charlie Company's own DT plot."
+    },
+    {
+      "name": "2LT David Spingath",
+      "slug": "spingath-dave",
+      "cross_ref": "existing profile (built ch. 8) -- Wild Cat (2nd Plt) leader",
+      "role": "Platoon leader, Wild Cat (2nd Plt); radio callsign confirmed as 'Cat 6'",
+      "date": "1968-12-04/05 (night assault); appears again in the photos.jpg group photo, undated (post-Mar 1969)",
+      "page_ref": "p8, photos.jpg",
+      "confidence": "high",
+      "note": "NEW: callsign 'Cat 6' confirmed directly in-text ('Cat 6 called and said the enemy was just outside his wire and was attempting to turn the Claymores around'). During the Dec 4-5 night assault, reports the enemy trying to turn Wild Cat's own Claymores back on the platoon -- the immediate-action drill (detonate on sight, accept the loss of the mine) is described generally, not tied to a specific casualty outcome for Wild Cat. Also appears (undated, likely well after Jan 1969 per the reading_order_note above) in the photos.jpg group photo captioned 'Dave Spingath (Wild Cat 6)."
+    },
+    {
+      "name": "2LT Bob Babas",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "Platoon leader, Rifle Range (3rd Plt), replacing Lt. Michael Johnson",
+      "date": "arrives ~Christmas 1968 (undated), remains Rifle Range PL for the rest of Colavita's command",
+      "page_ref": "p12, photos.jpg",
+      "confidence": "high",
+      "note": "'Newly arrived, green, second lieutenant' Colonel Henry gives Colavita at Christmas in exchange for taking Lt. Johnson off his hands. Per the text, remains Rifle Range platoon leader for the remainder of Colavita's command, paralleling Spingath at Wild Cat. Appears by name in the photos.jpg group photo, captioned 'Bob Babas (Rifle Range 6)' -- alongside Spingath and Karr (see below)."
+    },
+    {
+      "name": "1LT John Preston Karr",
+      "slug": "karr-john",
+      "cross_ref": "existing FULL profile (KIA 25 May 1969, Skull Platoon leader) -- see soldiers/karr-john.",
+      "role": "Platoon leader, White Skull (1st Plt), by the time of the photos.jpg photo; radio callsign confirmed as 'White Skull 6'",
+      "date": "photos.jpg only -- undated, but necessarily after 1969-03-12 per Karr's own confirmed arrival date, so well after this chapter's own narrated events (which end 28 Jan 1969)",
+      "page_ref": "photos.jpg",
+      "confidence": "high",
+      "note": "SIGNIFICANT ENRICHMENT for an existing full profile. The photos.jpg group-photo caption -- 'the author (far left) with platoon leaders (left to right) Bob Babas (Rifle Range 6), Dave Spingath (Wild Cat 6), and Preston Karr (White Skull 6)' -- is a direct, primary-source resolution of the platoon-callsign ambiguity flagged in Karr's own profile admin notes ('Jim Garvin's D Co roster lists Karr as \"Cat 6\"... treated as a probable roster error... every other indicator points to Skull'). Colavita's own photo caption, in his own book, confirms 'White Skull 6' directly -- a stronger source than the secondhand roster. NOTE: this photo cannot be from this chapter's own narrated window (Dec 1968-Jan 1969) since Karr did not arrive in-country until 12 Mar 1969 per his profile; see reading_order_note above. Recommend folding the 'White Skull 6' callsign confirmation into Karr's profile citing this photo/caption, and noting the photo itself is undated but must postdate 12 Mar 1969 (and predate his 25 May 1969 KIA)."
+    },
+    {
+      "name": "RTO Ray Haley",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "Radio-Telephone Operator (RTO), D Co CO's radio",
+      "date": "photos.jpg only -- undated, likely contemporaneous with the Karr photo (post-Mar 1969) though not certain",
+      "page_ref": "photos.jpg",
+      "confidence": "medium",
+      "note": "Named only in a photo caption: 'Author (right) plotting next destination on a map while Radio Telephone Operator (RTO) Ray Haley opens a can of C-Rations.' No other detail given -- rank, dates, and platoon are all unknown. Likely Colavita's own personal RTO (a CO normally has one), which would put him in most of the chapter's action unnamed until this caption."
+    },
+    {
+      "name": "Sergeant Terry Shoopman",
+      "slug_candidate": "none yet -- NEW stub candidate",
+      "role": "Squad leader, Wild Cat (2nd Plt)",
+      "date": "1969-01-20/21",
+      "page_ref": "p14",
+      "confidence": "high",
+      "note": "Wild Cat squad leader who, short of men for LZ perimeter defense on the night of 20-21 Jan 1969, used his own initiative to insert newly arrived replacement Elliot Velez-Rodriguez into the line rather than have him wait for an Alpha Company chopper. The next morning, while checking the perimeter after an unexplained explosion, Shoopman was the one who found Velez-Rodriguez's remains (having personally placed him there the night before)."
+    },
+    {
+      "name": "SP4 Elliot Velez-Rodriguez",
+      "slug": "velez-rodriguez-elliot",
+      "cross_ref": "ALREADY on the KIA list (site/_docs/d-co-kia-list.md, 1969-01-21, `[att]`, no profile yet) but has NO event page and NO account anywhere on the archive until this chapter. Highest-priority stub/event candidate this chapter surfaces.",
+      "role": "Replacement soldier, inbound to A Company, 2/8 Cav -- inserted into D Co's (Wild Cat's) LZ Rita perimeter defense for one night only",
+      "date": "1969-01-21 (KIA)",
+      "page_ref": "p14, p15",
+      "confidence": "high",
+      "note": "Arrived on LZ Rita while Alpha Company was in the field and Delta was on LZ defense; Sgt. Shoopman inserted him into Wild Cat's perimeter line for the night rather than have him sit out unassigned. A single explosion in the middle of Rita that night sympathetically set off stacked mortar rounds in the ammo pit; no attack followed, and a morning headcount found all Delta troopers present -- but a severed arm was then found near the ammo storage pit, leading to the discovery of Velez-Rodriguez's remains (his 'remains were scooped up and poured into a body bag' rather than placed). Cause disputed even in the book: theories include self-inflicted (accident or suicide) versus an enemy satchel charge slung onto the LZ from a bent-over tree 'like a slingshot' (patrols later found evidence of enemy activity just outside the wire, supporting this theory). Official Army cause of death: 'Artillery, rocket or mortar' -- consistent with the KIA list's current 'Hostile' classification, though the book itself never resolves which specific cause. Colavita initially reasoned Velez-Rodriguez 'wasn't officially in my company' and shouldn't count in Delta's body count, then explicitly rejects that reasoning: 'he died serving with D Company, doing a D Company job... he absolutely does count... included on the Honor Roll with the other KIA members of Delta Company.' Panel 34W, Line 54 (matches the KIA list exactly)."
+    },
+    {
+      "name": "SP4 Willie Gerald Jones",
+      "slug": "jones-willie-gerald",
+      "cross_ref": "existing FULL profile -- KIA 1968-12-04",
+      "role": "White Skull platoon",
+      "date": "1968-12-04",
+      "page_ref": "p4",
+      "confidence": "high",
+      "note": "Named in the Dec 4 KIA table (age 21, Fort Lauderdale FL, Wall 37W/40) -- matches the existing profile and event page exactly, no new facts."
+    },
+    {
+      "name": "SP4 Donald Robert Stoltz",
+      "slug": "stoltz-donald",
+      "cross_ref": "existing stub profile -- KIA 1968-12-04",
+      "role": "White Skull platoon",
+      "date": "1968-12-04",
+      "page_ref": "p4",
+      "confidence": "high",
+      "note": "Named in the Dec 4 KIA table (age 20, Milwaukee WI, Wall 37W/42) -- matches the existing profile and event page exactly, no new facts."
+    },
+    {
+      "name": "SSG William Charles Williams",
+      "slug": "williams-william",
+      "cross_ref": "existing FULL profile -- KIA 1968-12-04",
+      "role": "White Skull platoon, 2nd squad team leader",
+      "date": "1968-12-04",
+      "page_ref": "p4, p5",
+      "confidence": "high",
+      "note": "Named in the Dec 4 KIA table (age 22, listed here as 'Morton, MS' -- matches the Wall/existing profile's disputed Horton/Morton spelling already flagged as oq-05 on the event page -- Wall 37W/44). The 'squared away squad leader... wife, a son and a college degree' passage on p5 is the SAME paragraph already quoted in full on colavita-henry-verbal-account-dec4-1968; no new facts beyond what's already published."
+    },
+    {
+      "name": "SP4 Carl Dale Pipher",
+      "slug": "pipher-carl",
+      "cross_ref": "existing stub profile -- KIA 1969-01-28",
+      "role": "unconfirmed platoon",
+      "date": "1969-01-28",
+      "page_ref": "p16, p17",
+      "confidence": "high",
+      "note": "Named directly by the memoir for the first time (previously this event's only firsthand account was a 2016 oral history video that never named him) -- 'Carl Pipher from Canton, Ohio... twenty years old... Panel 33 West, Line 11.' Matches the existing profile/event page exactly. This chapter is a SECOND independent primary source for his death (the book, distinct from the oral history), giving fuller tactical detail: three-platoon-front search-and-destroy walked into a prepared enemy base camp on 28 Jan, immediate heavy fire and casualties, Colavita orders disengage/cover, fight continues into the night with orange strobe lights (not flares, since Delta was above ground rather than in foxholes -- explicit contrast to the Chicken Valley fight's flare use)."
+    },
+    {
+      "name": "CPL Warren Reed Eskridge",
+      "slug": "eskridge-warren",
+      "cross_ref": "existing stub profile -- KIA 1969-01-28",
+      "role": "unconfirmed platoon",
+      "date": "1969-01-28 (KIA); postwar visit undated",
+      "page_ref": "p4 (gravesite photo), p16, p17",
+      "confidence": "high",
+      "note": "Named directly by the memoir for the first time (see Pipher note above) -- 'Warren Eskridge from Tangier, Virginia... twenty-one years old... Panel 33 West, Line 7.' The gravesite photo already appearing on p4 (with the Dec 4 KIA table, an anachronistic placement -- see events below) is confirmed by p17 to have been taken during a POSTWAR visit Colavita made to Tangier Island, VA with two other 'Angry Skipper' veterans (Ed Regan and Mike McGhie -- see personnel/events below), where they met Eskridge's family (including his twin brother, at the time the island's mayor) and laid the wreath visible in the photo. During that visit, Eskridge's sister produced a condolence letter attributed to Colavita's signature block but actually ghostwritten by Lt. Karl Derums (the company XO's known duty, per ch. 8's digest) -- Colavita disputes a factual claim in the letter that Eskridge 'walked into an ambush,' insisting Delta never did (they were either ambushed or the ones ambushing). See soldiers/derums-karl for the enrichment."
+    },
+    {
+      "name": "Sergeant Williams (unidentified first name/rank context) -- see SSG William Charles Williams above",
+      "slug": "williams-william",
+      "cross_ref": "duplicate reference, consolidated above",
+      "role": "n/a",
+      "date": "n/a",
+      "page_ref": "n/a",
+      "confidence": "n/a",
+      "note": "Included only to flag that 'Sergeant Williams' on p5 and 'SSG William Charles Williams' on p4 are the same man -- no separate entry needed."
+    },
+    {
+      "name": "Mike \"Mouse\" McGhie",
+      "slug_candidate": "none yet -- referenced context figure, likely NOT a stub candidate in the wartime-personnel sense (see note)",
+      "role": "D Co veteran; ran the Angry Skipper Association website postwar; Williams's wartime squad leader",
+      "date": "postwar (undated) -- Tangier Island visit alongside Colavita and Ed Regan",
+      "page_ref": "p4",
+      "confidence": "high",
+      "note": "Already cross-referenced on the existing operation-sheridan-sabre-1968-12-04 event page as 'Mike \"Mouse\" McGhie,' SSG Williams's squad leader who left a Virtual Wall tribute and ran the Angry Skipper Association site -- NOT a new name. This chapter's p4 photo caption is NEW corroborating detail: McGhie joined Colavita on the postwar wreath-laying visit to Eskridge's grave on Tangier Island. No stub decision needed; already handled as a wartime-era cross-reference, this just adds a postwar detail to the same person (no separate profile exists or is proposed -- he is referenced, not profiled, consistent with how the site currently treats him)."
+    },
+    {
+      "name": "Ed Regan",
+      "slug_candidate": "none yet -- NEW name, scope-ambiguous (see note)",
+      "role": "D Co / 'Angry Skipper' veteran (era/platoon unconfirmed)",
+      "date": "postwar (undated) -- Tangier Island visit alongside Colavita and McGhie",
+      "page_ref": "p4",
+      "confidence": "low",
+      "note": "Named only once, in the p4 gravesite-photo caption, as one of the two veterans who placed the wreath at Eskridge's grave alongside the author. No rank, era of service, or platoon given -- unclear whether he served under Colavita's own command window (Oct 1968-1969) or is a D/2-8 veteran from a different period who simply attends the same postwar 'Angry Skipper' reunions/association activities as McGhie. Flagging as a name for the tracker rather than a firm stub candidate -- this is a postwar-association context, not a wartime personnel mention, and the site does not yet have a settled convention for whether postwar-only association contacts get profiles. Michael's call."
+    },
+    {
+      "name": "Lieutenant Karl Derums",
+      "slug": "derums-karl",
+      "cross_ref": "existing profile (built ch. 8) -- Company XO",
+      "role": "Company Executive Officer (XO)",
+      "date": "~Dec 1968 (clapper-keyboard fabrication); undated (Eskridge condolence letter)",
+      "page_ref": "p12, p17",
+      "confidence": "high",
+      "note": "Two new enrichment items. (1) Fabricated three Claymore 'clapper keyboard' devices (a plywood board holding six clappers, so an ambush team could fire six mines in sequence with one operator) from a field sketch Delta sent him in the rear, then sent them back out on resupply -- confirms and extends ch. 8's existing note that Derums 'formalizes award recommendations' and handles rear-echelon admin duties, adding a hands-on fabrication/logistics task. (2) During the postwar Tangier Island visit, Colavita learns Derums ghostwrote the condolence letter to Eskridge's family over Colavita's own unsigned signature block (standard XO duty per ch. 8's digest -- 'writes letters to families of KIA/WIA') -- but the letter contained a factual claim ('walked into an ambush') Colavita specifically disputes as untrue to how Delta operated. Colavita's own reaction ('I wished that Karl had been in the same room, so I could kill him') is strong language but clearly rhetorical/retrospective, not a real incident."
+    }
+  ],
+
+  "locations": [
+    {
+      "name": "\"Chicken Valley\"",
+      "type": "ad hoc named area, not a fixed site",
+      "detail": "The area/march route where D Co linked up with C Co on 4 Dec 1968; named on the spot when live chickens scattered out of the brush ahead of the company. No new grid or coordinate given this chapter beyond what's already on the event page (vic XT 4687, per the 1st Cav Division ORLL).",
+      "grid": null,
+      "page_ref": "chicken-valley1",
+      "cross_ref": "Already fully covered on events/operation-sheridan-sabre-1968-12-04 -- this chapter IS the naming story's fuller telling (the existing event page/document already paraphrase it from the same book). No new facts.",
+      "confidence": "high"
+    },
+    {
+      "name": "LZ Rita",
+      "type": "fire support base",
+      "detail": "Continues as D Co's base through the Christmas period and the 21 Jan 1969 Velez-Rodriguez incident. New detail this chapter: rats 'the size of house cats' infested the bunkers due to cookie-crumb residue from Christmas care packages; a Signal Corps field-expedient patch let soldiers make brief phone calls home (Colavita spoke to his mother) using a military radio net protocol (saying 'over').",
+      "grid": null,
+      "page_ref": "p11, p12, p13, p14",
+      "cross_ref": "Already a full location page at locations/fsb-rita (grid XT505795). No date/occupancy change -- these are color/atmosphere details for an already-established occupancy window (2/8 Cav held Rita through the 30 Jan 1969 relief by 2/5 Cav, matching the existing event-page timeline).",
+      "confidence": "high"
+    },
+    {
+      "name": "Fire Support Base Saint Barbara",
+      "type": "fire support base, not organic to 1st Cavalry Division",
+      "detail": "The base D Co (and the rest of 2/8 Cav) moved to after abandoning LZ Rita, per Colonel Henry's advance briefing. Former French fort; sits in the 25th Infantry Division's ('Tropic Lightning') AO, so 2/8 Cav did NOT provide its own perimeter security there (25th ID troops did) -- freeing all four of Henry's line companies for simultaneous search-and-destroy. Hosted Corps-level artillery: in addition to the usual 105mm/155mm, Saint Barbara had 175mm pieces and 8-inch guns, supporting RVN/ROK/allied units in range too. Named for Saint Barbara, patron saint of artillery (explicitly NOT named for a commander's wife, per the author's aside). Located close to Nui Ba Den (see next entry).",
+      "grid": null,
+      "page_ref": "p15, p16",
+      "cross_ref": "Matches the 'FB Saint Barbara' candidate already flagged (unconfirmed, coordinates TBD) in soldiers/colavita-henry.md's admin notes, which explicitly warned against conflating it with a false-match 199th LIB/25th Arty coordinate near Xuan Loc. This chapter's detail (25th ID AO, former French fort, Corps-level artillery, near Nui Ba Den) is the richest description of the site the archive has yet -- worth a real push on the gazetteer/fsb-locations research now that a location (near Nui Ba Den / Tay Ninh Province, NOT Xuan Loc) is implied. Nui Ba Den itself is a well-known, well-gazetteered landmark (Tay Ninh Province), so Saint Barbara's location can likely be narrowed considerably from this alone.",
+      "confidence": "medium -- narrative detail is high-confidence (author's own description), but no grid is given and the site is not yet independently confirmed against a period map/ORLL"
+    },
+    {
+      "name": "Nui Ba Den (\"Black Virgin Mountain\" / \"Black Lady Mountain\")",
+      "type": "terrain landmark",
+      "detail": "3,268 ft peak, the only elevation on otherwise flat terrain near FSB Saint Barbara; Americans held the summit, VC/NVA reportedly held everything else including tunnel-honeycombed interior passages. Author disputes the common US-soldier translation 'Black Virgin Mountain,' preferring 'Black Lady Mountain' per his own Vietnamese-language training (referencing an in-book cross-link to 'Chapter Five' for the underlying language lesson -- confirms the book itself has internal chapter cross-references).",
+      "grid": null,
+      "page_ref": "p16",
+      "cross_ref": "Well-known, independently gazetteered landmark in Tay Ninh Province -- useful primarily as a locating aid for Saint Barbara (see above), not itself a new archive location requiring research.",
+      "confidence": "high"
+    },
+    {
+      "name": "Tangier Island, Virginia (and Crisfield, Maryland)",
+      "type": "postwar civilian site",
+      "detail": "Home of CPL Warren Eskridge; Colavita and two other 'Angry Skipper' veterans (Ed Regan, Mike McGhie) visited postwar, hitching a mail/supply boat ride from Crisfield, MD, to lay a wreath at Eskridge's grave and meet his family (his twin brother, then the island's mayor). Parallel to ch. 8's Fort Benning reunion -- another postwar site tied to this memoir's veterans.",
+      "grid": null,
+      "page_ref": "p4 (photo), p16, p17",
+      "cross_ref": "New postwar location, not part of the wartime gazetteer -- relevant only as context for the Eskridge profile enrichment (see personnel above), not a candidate for the FSB/location gazetteer.",
+      "confidence": "high"
+    }
+  ],
+
+  "events": [
+    {
+      "date": "1968-12-04",
+      "type": "movement_and_visual_context",
+      "location": "en route to \"Chicken Valley\"",
+      "units": ["D Co, 2/8 Cav", "C Co, 2/8 Cav"],
+      "people": ["colavita-henry", "henry-frank"],
+      "page_ref": "chicken-valley1",
+      "confidence": "high",
+      "notes": "Approach march under Colonel Henry's Charlie-Charlie guidance; company sees/hears Spooky (AC-130 gunship), Blue Max Cobras, armed Hueys/Loaches working the fight ahead; a disabled Cobra passes low overhead and crashes nearby (aviation battalion scrambles a recovery); men see chickens scatter, naming the area on the spot. Already summarized on the existing event page/document -- this is the fuller version of the same story, no new facts, just richer color (the Spooky/Cobra visual detail is new relative to the terse existing summary)."
+    },
+    {
+      "date": "1968-12-04",
+      "type": "kia_feigned_surrender_ambush",
+      "location": "Chicken Valley, vic XT 4687",
+      "units": ["D Co, 2/8 Cav -- White Skull (1st Plt)", "C Co, 2/8 Cav"],
+      "people": ["colavita-henry", "jones-willie-gerald", "stoltz-donald", "williams-william"],
+      "page_ref": "p2, p3, p4",
+      "confidence": "high",
+      "cross_ref": "Matches events/operation-sheridan-sabre-1968-12-04 and colavita-henry-verbal-account-dec4-1968 EXACTLY -- the key paragraphs on p3 are verbatim identical to the document already built from an earlier direct excerpt of this same chapter. No new facts about the ambush itself. The KIA table on p4 (ages, hometowns, Wall panels for Jones/Stoltz/Williams) matches the existing profiles/event page exactly.",
+      "notes": "Also: White Skull took one WIA (Magruder among Delta's eventual 4 WIA that day) during the approach fight, resolved with smoke-ID'd Blue Max ARA support -- this daytime fight is distinct from (and precedes) the feigned-surrender ambush that killed Jones/Stoltz/Williams."
+    },
+    {
+      "date": "1968-12-04 (night) into 1968-12-05",
+      "type": "base_defense_mortar_ground_assault",
+      "location": "joint Delta/Charlie perimeter, Chicken Valley cache site",
+      "units": ["D Co, 2/8 Cav", "C Co, 2/8 Cav"],
+      "people": ["colavita-henry", "henry-frank", "michael-johnson (no slug -- stub candidate)", "doug-magruder (no slug -- stub candidate)", "spingath-dave"],
+      "page_ref": "p7, p8, p9",
+      "confidence": "high",
+      "cross_ref": "Already summarized in outline on the existing event page ('the position took a large NVA mortar and ground assault... the fight lasted for hours before the enemy broke contact at first light... Neither Delta nor Charlie Company suffered any further KIA'). This chapter is a MAJOR expansion of that single paragraph into a full scene.",
+      "notes": "Battalion chaplain (unnamed) present in Colavita's CP, joins the CP foxhole when the mortars start; Lt. Johnson found already at the bottom of the same foxhole (see personnel note); Cat 6 (Spingath) reports the enemy trying to turn Wild Cat's Claymores; Magruder reports enemy penetration of White Skull's wire; Colavita makes the 'GOOKS IN THE WIRE' call on both company and battalion nets, sharply increasing outgoing fire; a Blue Max Cobra pilot is heard on the battalion net requesting permission to break formation over 'hundreds of gooks in the open,' granted. Fight lasts most of the night; perimeter holds with only slight, quickly-repaired rupture. No KIA to either company -- matches existing summary exactly."
+    },
+    {
+      "date": "1968-12-05",
+      "type": "withdrawal_and_arclight",
+      "location": "Chicken Valley cache site -> unspecified march destination",
+      "units": ["D Co, 2/8 Cav", "C Co, 2/8 Cav"],
+      "people": ["colavita-henry", "henry-frank"],
+      "page_ref": "p9, p10, p11",
+      "confidence": "high",
+      "cross_ref": "Matches the existing event page's Arclight/COSVN paragraph exactly (site ultimately assessed as NOT the elusive COSVN HQ; B-52 Arclight struck the position after C&D withdrew to a safe distance). No new facts about the strike decision itself.",
+      "notes": "New color: resupply/medevac handled quickly via the secure interior LZ; VIPs (brigade/division staff, intel officers) lifted out before dark, leaving C&D to handle the expected counterattack alone (framed by the author as appropriate); daylight revealed grisly claymore-turner casualties at the wire ('Sin Loi'); companies walked out (not lifted) to separate grid coordinates from Stone Mountain 6, 'just get the hell out from under the Arclight' -- no assigned objective. Companies felt the actual B-52 strike as ground tremors even after clearing to a 'danger close' distance."
+    },
+    {
+      "date": "1968-12-06",
+      "type": "skipped_operation",
+      "location": "en route, unspecified",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry"],
+      "page_ref": "p11",
+      "confidence": "high",
+      "notes": "Minor, candid admission: exhausted from two sleepless nights, Colavita 'forgot' to plan an ambush for the night of 6 Dec and instead picked easy defensible terrain and stood the company down early, reasoning they were moving away from both the fight's ground zero and the nearby Cambodian border (implying the company's general operating area was near the border). Not event-page-worthy; a footnote-level personnel/command-style detail."
+    },
+    {
+      "date": "1968-12-07",
+      "type": "resume_operations",
+      "location": "D Co AO",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry"],
+      "page_ref": "p11",
+      "confidence": "high",
+      "notes": "'Pearl Harbor Day' -- company resumes search-and-destroy patrolling. Purely a calendar marker; no incident described."
+    },
+    {
+      "date": "undated, ~Dec 1968 (Christmas period)",
+      "type": "personnel_change_and_garrison_life",
+      "location": "LZ Rita",
+      "units": ["D Co, 2/8 Cav", "battalion (2/8 Cav)"],
+      "people": ["colavita-henry", "henry-frank", "michael-johnson (no slug)", "bob-babas (no slug -- new stub candidate)", "spingath-dave"],
+      "page_ref": "p11, p12, p13",
+      "confidence": "high",
+      "notes": "As Christmas approached, Colonel Henry rotated all four 2/8 Cav companies through LZ Rita so each got goodie boxes from home and an Army Christmas meal; division sent the division band around to firebases; a Signal Corps field-expedient patch let soldiers make brief phone calls home over a military radio net (Colavita called his mother; both parties had to say 'over'). Colonel Henry's best Christmas gift to Colavita: taking Lt. Johnson off his hands in exchange for newly arrived 2LT Bob Babas, who takes over Rifle Range platoon for the rest of Colavita's command (paralleling Spingath at Wild Cat, per the author's own comparison). This is the personnel-change event that resolves the ch. 8 Johnson thread -- worth folding into a Johnson stub-candidate note and a new Babas stub if/when built."
+    },
+    {
+      "date": "undated, ~Dec 1968 (after the Chicken Valley fight)",
+      "type": "equipment_development",
+      "location": "D Co AO / rear (fabrication)",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "derums-karl"],
+      "page_ref": "p11, p12",
+      "confidence": "high",
+      "notes": "Company devises a 'clapper keyboard' -- a half-inch plywood board holding six Claymore clackers in individual quarter-inch-walled slots, letting one ambush operator fire six mines in rapid sequence ('looks somewhat like he's playing the piano'). Sketch sent to Lt. Derums in the rear, who has three fabricated and sent back out on resupply. Minor, colorful, not event-page-worthy -- a good detail for Derums's enrichment and possibly a 'material culture' footnote on colavita-henry's ambush-doctrine narrative."
+    },
+    {
+      "date": "1969-01-21",
+      "type": "kia_accidental_or_enemy_explosion",
+      "location": "LZ Rita, near an ammo storage pit under steel planking",
+      "units": ["D Co, 2/8 Cav -- Wild Cat (2nd Plt)"],
+      "people": ["colavita-henry", "terry-shoopman (no slug -- new stub candidate)", "velez-rodriguez-elliot"],
+      "page_ref": "p14, p15",
+      "confidence": "high",
+      "cross_ref": "ENTIRELY NEW EVENT -- SP4 Elliot Velez-Rodriguez is already on site/_docs/d-co-kia-list.md (1969-01-21, `[att]`, profile status '--') but has NO event page and NO prior account anywhere on the archive. This is the strongest single new-event candidate this chapter produces.",
+      "notes": "A single explosion in the middle of LZ Rita on the night of 20-21 Jan 1969 sympathetically set off stacked mortar rounds in the ammo pit; no ground attack followed. Morning headcount found all Delta troopers present, but a severed arm was found near the ammo storage pit during a perimeter check, leading to the discovery of the remains of Velez-Rodriguez -- a replacement bound for A Company whom Sgt. Shoopman had inserted into Wild Cat's LZ defense line for that one night, being short-handed. Cause disputed in the text itself: self-inflicted (accidental or intentional) vs. an enemy satchel charge slung onto the LZ via a bent-over tree, 'like a slingshot' (patrols later found signs of enemy activity just outside the wire, supporting this theory). Official Army-assigned cause: 'Artillery, rocket or mortar' (consistent with the KIA list's current 'Hostile' tag). Colavita explicitly includes him on Delta's own Honor Roll despite his attached/transient status -- consistent with the KIA list's `[att]` inclusion-reason marking already applied. RECOMMEND: a new event page (events/operation-sheridan-sabre-1969-01-21) and, per the 'ask before creating' rule, a stub-decision for Velez-Rodriguez's own profile -- Michael's call, but this is a real KIA with a real, if disputed, cause narrative, not just a bare casualty-record line anymore."
+    },
+    {
+      "date": "1969-01-28",
+      "type": "kia_bunker_complex_meeting_engagement",
+      "location": "unmapped enemy base camp, D Co AO near LZ Rita",
+      "units": ["D Co, 2/8 Cav"],
+      "people": ["colavita-henry", "pipher-carl", "eskridge-warren"],
+      "page_ref": "p16, p17",
+      "confidence": "high",
+      "cross_ref": "Matches events/operation-sheridan-sabre-1969-01-28 and colavita-henry-verbal-account-jan28-1969 in circumstance and outcome, but this is a SECOND, INDEPENDENT primary source for the same event -- the existing account was transcribed from a 2016 oral history video and never named either casualty; this memoir passage names both men directly for the first time and adds detail the oral history didn't (three-platoon-front approach, orange strobe lights vs. flares, the explicit contrast to Chicken Valley's flare use).",
+      "notes": "On 28 Jan 1969, Delta walked into a prepared enemy base camp on a three-platoon front, took immediate heavy fire and casualties; Colavita ordered platoons to disengage and get behind cover, called for gunship support, and advised Stone Mountain 6. The enemy stayed in prepared bunkers/foxholes rather than press the attack, giving the gunships room to work. Fight continued into and through the night; company used orange strobe lights (not parachute flares, since they were dug in above ground rather than in foxholes as at Chicken Valley -- flares would have exposed them). NVA probed the perimeter repeatedly but never broke in. Two KIA: Warren Eskridge (Tangier, VA, Panel 33W/Line 7) and Carl Pipher (Canton, OH, Panel 33W/Line 11) -- matches the existing event page/profiles exactly."
+    },
+    {
+      "date": "undated (postwar)",
+      "type": "postwar_reunion_and_documentation_correction",
+      "location": "Tangier Island, Virginia",
+      "units": [],
+      "people": ["colavita-henry", "eskridge-warren", "derums-karl"],
+      "page_ref": "p4 (photo), p16, p17",
+      "confidence": "high",
+      "notes": "Colavita and two fellow veterans (Ed Regan, Mike McGhie) visited Tangier Island postwar to lay a wreath at CPL Eskridge's grave and meet his family, including his twin brother (then the island's mayor). During the visit, Eskridge's sister showed Colavita a condolence letter, ostensibly from him, that he had never actually written or signed -- ghostwritten by Lt. Karl Derums (the company XO, per his known letter-writing duty) over Colavita's unsigned signature block. The letter claimed Eskridge 'walked into an ambush,' a characterization Colavita disputes as factually wrong for how Delta operated. This is the source of the gravesite photo that appears (out of chronological place) on p4 alongside the Dec 4, 1968 KIA table -- not a new wartime event, but directly relevant to the Eskridge profile and a good example of a documentation-accuracy issue worth noting if this letter is ever independently located."
+    }
+  ]
+}

@@ -79,6 +79,18 @@ notes:                  # Internal notes only
 
 ---
 
+<!-- ───────────────────────────────────────────────────────────────────────────
+  BODY HEADER CONVENTION — READ FIRST.
+  Published location pages use plain Markdown H2 headers in SENTENCE CASE, e.g.:
+      ## Overview    ## Namesake    ## Location    ## Layout
+      ## Sources     ## Open Questions
+  Do NOT keep the `# ── SECTION ──` divider style shown below — those are AUTHORING
+  MARKERS for this template ONLY, and must be replaced with `## Sentence case` headers
+  in the real page. Match the existing pages (fsb-fanning, fsb-silver, fsb-mace).
+  Section names are flexible: add page-specific ones (e.g. `## The passage`,
+  `## The Golf Course`, `## Tenure`) as the subject needs.
+─────────────────────────────────────────────────────────────────────────── -->
+
 # ── OVERVIEW ──────────────────────────────────────
 
 <!--

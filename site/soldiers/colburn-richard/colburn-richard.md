@@ -288,3 +288,4 @@ notes: >
   Connected to: fanning-martin (pilot, KIA), jeffries-gabriel (co-pilot, KIA),
   garvin-jim (bumped from flight), stanfield-nathan (door gunner, survived).
   Survivor O2 CJ McCoy (from VHPA
+---

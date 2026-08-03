@@ -9,24 +9,6 @@ title: Overview
     <div class="ov-headline">Delta<br><span>Company</span><br>Archive</div>
     <div class="ov-deck">A permanent record of the men of D Co., 2/8 CAV — built one soldier at a time from the materials families have kept.</div>
     <div class="ov-body">This archive collects primary source materials — letters, photographs, documents, firsthand accounts — from veterans and families of Delta Company. Compiled by the son of SGT Marvin Dale Miller, Cat Platoon, December 1970–1971.</div>
-    <div class="ov-stats">
-      <div class="ov-stat">
-        <div class="ov-stat-n">{{ collections.soldiers | length }}</div>
-        <div class="ov-stat-l">Soldier Profiles</div>
-      </div>
-      <div class="ov-stat">
-        <div class="ov-stat-n">3</div>
-        <div class="ov-stat-l">Combat Events</div>
-      </div>
-      <div class="ov-stat">
-        <div class="ov-stat-n">8</div>
-        <div class="ov-stat-l">KIA Documented</div>
-      </div>
-      <div class="ov-stat">
-        <div class="ov-stat-n">2</div>
-        <div class="ov-stat-l">Primary Sources</div>
-      </div>
-    </div>
   </div>
 
   <div class="ov-hero-side">
@@ -77,21 +59,24 @@ title: Overview
 <div class="ov-body-grid">
   <div class="ov-col">
     <div class="ov-col-head">Documented Events</div>
+    {% set recentEvents = collections.events | whereData("status", "published") | sortByData("archivist_notes.created") | limit(3) %}
+    {% for event in recentEvents %}
     <div class="ov-event">
-      <div class="ov-event-date">20 April 1971 · North of FSB Fanning</div>
-      <div class="ov-event-title">Contact — Bunker Complex</div>
-      <div class="ov-event-body">Cat Platoon spotted enemy at a creek. Range Platoon walked into a fortified bunker complex. <em class="ov-hl">4 KIA.</em> CPL Cardwell, CPL Drinkard, CPL Hall. Multiple accounts preserved without editorial reconciliation.</div>
+      <div class="ov-event-date">{{ event.data.date | locDate }}{% if event.data.location %} · {{ event.data.location }}{% endif %}</div>
+      <div class="ov-event-title"><a href="{{ event.url }}">{{ event.data.title }}</a></div>
+      <div class="ov-event-body">
+        {%- set eventKiaList = event.data.casualties.kia if event.data.casualties else null -%}
+        {%- set eventWiaList = event.data.casualties.wia if event.data.casualties else null -%}
+        {%- if eventKiaList and eventKiaList.length -%}
+          <em class="ov-hl">{{ eventKiaList.length }} KIA.</em>
+          {%- for k in eventKiaList %} {{ k.name or k.slug }}{% if not loop.last %},{% endif %}{% endfor -%}.
+        {%- elif eventWiaList and eventWiaList.length -%}
+          <em class="ov-hl">{{ eventWiaList.length }} WIA.</em>
+        {%- endif -%}
+        {% if event.data.units.primary and event.data.units.primary.length %} {{ event.data.units.primary[0].role }}{% endif %}
+      </div>
     </div>
-    <div class="ov-event">
-      <div class="ov-event-date">24 April 1971 · FSB Fontaine</div>
-      <div class="ov-event-title">Huey Crash — Only Known Photos</div>
-      <div class="ov-event-body">UH-1 crashed shortly after departure. <em class="ov-hl">3 KIA.</em> SGT Miller's photographs are the only known visual record. FSB Fanning named for the pilot who died.</div>
-    </div>
-    <div class="ov-event">
-      <div class="ov-event-date">21 October 1971 · Location Under Research</div>
-      <div class="ov-event-title">Contact — Makowski KIA</div>
-      <div class="ov-event-body">SP4 Makowski killed in action. <em class="ov-hl">1 KIA.</em> Circumstances and unit composition under ongoing research.</div>
-    </div>
+    {% endfor %}
   </div>
 
   <div class="ov-col">
@@ -103,6 +88,14 @@ title: Overview
     <div class="ov-source">
       <div class="ov-source-title">ASA Newsletters, 1988–2026</div>
       <div class="ov-source-meta">Association of Survivors · 38 years of unit correspondence</div>
+    </div>
+    <div class="ov-source">
+      <div class="ov-source-title">Skipper Journal, 1968</div>
+      <div class="ov-source-meta">D Co. Daily Log · Angry Skipper Association transcription · Jun–Jul 1968</div>
+    </div>
+    <div class="ov-source">
+      <div class="ov-source-title">1967 Division ORLLs</div>
+      <div class="ov-source-meta">1st Cavalry Division Operational Reports · NARA · Feb–Oct 1967</div>
     </div>
   </div>
 

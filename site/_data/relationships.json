@@ -61,5 +61,96 @@
     "basis": "same-platoon",
     "source": "chinook-crash-1972-05-10",
     "notes": "All killed together \u2014 Chinook crash 1972-05-10"
+  },
+  {
+    "soldiers": [
+      "jones-willie-gerald",
+      "aguilar-oscar",
+      "boatright-william",
+      "bowersock-steven",
+      "burnett-edward",
+      "flores-david",
+      "freitag-dieter",
+      "groves-james",
+      "henson-frank",
+      "howell-donald",
+      "jackson-freddie",
+      "jensen-james",
+      "monteleone-gary",
+      "phillips-dean",
+      "ray-jackie",
+      "ridgeway-richard",
+      "sablan-john",
+      "saulsberry-clarence",
+      "shiko-raymond",
+      "sulser-david",
+      "wood-thomas"
+    ],
+    "basis": "same-platoon",
+    "source": "operation-sheridan-sabre-1968-12-04",
+    "notes": "All killed together \u2014 Chinook crash operation-sheridan-sabre-1968-12-04"
+  },
+  {
+    "soldiers": [
+      "linton-samuel",
+      "wilson-david"
+    ],
+    "basis": "company-command",
+    "source": "aar-2-8cav-4nov65",
+    "notes": "Capt. Linton commanded Company D, 2/8 Cav during the 4 Nov 1965 Cavalair action; Wilson was a D Co senior medic (WIA). Company-command link (Tier 3)."
+  },
+  {
+    "soldiers": [
+      "linton-samuel",
+      "coffey-richard"
+    ],
+    "basis": "company-command",
+    "source": "aar-2-8cav-4nov65",
+    "notes": "Capt. Linton commanded Company D, 2/8 Cav during the 4 Nov 1965 Cavalair action in which SGT Coffey was killed. Company-command link (Tier 3)."
+  },
+  {
+    "soldiers": [
+      "linton-samuel",
+      "hamill-wright"
+    ],
+    "basis": "company-command",
+    "source": "aar-2-8cav-4nov65",
+    "notes": "Capt. Linton commanded Company D, 2/8 Cav during the 4 Nov 1965 Cavalair action in which PFC Hamill was killed. Company-command link (Tier 3)."
+  },
+  {
+    "soldiers": [
+      "linton-samuel",
+      "hill-eddie"
+    ],
+    "basis": "company-command",
+    "source": "aar-2-8cav-4nov65",
+    "notes": "Capt. Linton commanded Company D, 2/8 Cav during the 4 Nov 1965 Cavalair action in which CPL Hill was killed. Company-command link (Tier 3)."
+  },
+  {
+    "soldiers": [
+      "aguilar-oscar",
+      "boatright-william",
+      "bowersock-steven",
+      "burnett-edward",
+      "flores-david",
+      "freitag-dieter",
+      "groves-james",
+      "henson-frank",
+      "howell-donald",
+      "jackson-freddie",
+      "jensen-james",
+      "monteleone-gary",
+      "phillips-dean",
+      "ray-jackie",
+      "ridgeway-richard",
+      "sablan-john",
+      "saulsberry-clarence",
+      "shiko-raymond",
+      "sulser-david",
+      "wood-thomas"
+    ],
+    "basis": "same-platoon",
+    "source": "chinook-crash-1972-05-10",
+    "notes": "All killed together \u2014 Chinook crash 1972-05-10"
   }
 ]

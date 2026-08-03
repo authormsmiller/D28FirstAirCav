@@ -132,6 +132,7 @@ documents:
 brothers:
 
 related_events:
+  - contact-fsb-fontaine-1971-04-20
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 

@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "artifact": "orll-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "Built 2026-07-15 -- first live run of the digest-and-cross-reference workflow on a real intake document (both prior examples, AD0506273 and the Skipper Journal, were used only to validate the deterministic script).",
+    "generated_by": "human read of pdftotext -layout extraction; dirty 1967-era OCR (fair legibility per triage.ocr_era), not independently verified against page images",
+    "notes": "Division-level ORLL. Compared to the AD0506273 golden example (1969, better OCR, base-attack events that name companies down to C/2-8 Cav), this document's Section 4 narrative is prose-summary style and never names a company or battalion in an actual contact -- only brigade-level ('1st Brigade', '2d Brigade', 'elements of the division'). Page numbers below are PHYSICAL PDF page numbers (i.e. PDF page N), not the document's own internal pagination, which resets partway through and is inconsistent -- cite accordingly if pulling the source PDF."
+  },
+
+  "document": {
+    "accession": "AD0385642",
+    "accession_as_printed": null,
+    "title": "Operational Report - Lessons Learned, HQ 1st Cavalry Division (Airmobile), Period Ending 30 April 1967",
+    "unit": "1st Cavalry Division (Airmobile)",
+    "echelon": "division_hq",
+    "period_start": "1967-02-01",
+    "period_end": "1967-04-30",
+    "rcs": "CSFOR-65",
+    "classification_original": "CONFIDENTIAL",
+    "declassified": "General Declassification Schedule (AGO ltr 29 Apr 1980)",
+    "pages": 118,
+    "source": "DTIC",
+    "file": "AD0385642-orll-1cav-apr67.pdf",
+    "companion": null,
+    "ocr_transcript": null
+  },
+
+  "triage": {
+    "genre": "primary_operational",
+    "echelon": "division",
+    "temporal_shape": "quarter",
+    "provenance": "us_army_field",
+    "ocr_era": "1967_fair",
+    "expected_yield": {
+      "operations": "high -- Thayer II/Pershing/Le Jeune/Dazzlem all named with dates, controlling brigades, and mission narrative",
+      "task_organization": "high -- TAB A gives per-operation brigade task org, including an OPCON swap for 2/8 Cav",
+      "locations": "medium -- LZs and grids named for the largest actions; many contacts have no grid at all",
+      "events": "low-medium -- roughly a dozen dated significant activities, but almost none name a company/battalion; effectively division- or brigade-level only",
+      "kia_individual": "very low -- no individual named in Section I; one detached historical annex (LZ Bird, Dec 1966) names participants but is outside this document's own reporting period",
+      "personnel": "low -- command roster (Section I) and one inspection-schedule entry naming Co C, 2/8 Cav administratively; no combat-context personnel",
+      "awards": "none found"
+    },
+    "passes_run": ["operations", "task_organization", "locations", "events", "kia_in_range", "casualty_reconciliation"]
+  },
+
+  "coverage": {
+    "date_range": ["1967-02-01", "1967-04-30"],
+    "operations": ["THAYER II", "PERSHING", "LE JEUNE", "DAZZLEM"],
+    "provinces": ["Binh Dinh", "Quang Ngai"],
+    "installations_raw": ["LZ English", "LZ Charles", "Camp Radcliff", "LZ Hammond", "LZ Two Bits", "LZ Pony"],
+    "units_mentioned": ["1st Brigade", "2d Brigade", "3d Brigade (1st Cav Div, organic)", "3d Brigade, 25th Infantry Division (attached, OPCON)", "1/8 Cav", "2/8 Cav", "1/12 Cav", "1/5 Cav", "2/5 Cav", "1/7 Cav", "2/7 Cav", "5/7 Cav", "1/9 Cav Sqdn", "2/19 Arty", "2/20 Arty (ARA)", "1/21 Arty", "1/77 Arty", "A Co 1/69 Armor (tanks, attached late Mar)"],
+    "enemy_units": ["3d NVA Division HQ", "22d NVA Regiment", "18th NVA Regiment"]
+  },
+
+  "quarter_stats": {
+    "us_kia": 257,
+    "us_wia_hostile_injured": 985,
+    "aircraft_lost_and_recovered": { "shot_down": 15, "repairable": 7 },
+    "enemy_kia_by_month": { "feb": 90, "mar": 160, "apr": 15, "note": "printed as 'NVA/VC' paired figures per month (e.g. Feb '90/394') -- second number's exact meaning (local force / captured weapons / different tally) is not clearly legible; recorded as printed, not resolved" },
+    "page": 15,
+    "confidence": "medium",
+    "notes": "us_kia=257 and IRHA(hostile-injured)=985 are DIVISION-WIDE for the full quarter (1 Feb-30 Apr 67), not 2/8-Cav- or 1st-Brigade-specific. No per-battalion KIA/WIA breakdown was found anywhere in the document (the only per-unit monthly table found is malaria case counts, not casualties -- see task_organization notes)."
+  },
+
+  "task_organization": {
+    "1st_brigade_organic": ["1/8 Cav", "2/8 Cav", "1/12 Cav"],
+    "operation_pershing_task_org": {
+      "1st_brigade_OPCON": ["1/8 Cav", "1/12 Cav", "5/7 Cav"],
+      "3rd_brigade_1st_cav_OPCON": ["2/8 Cav", "C/1/5 Cav", "1/21 Arty (-) DS", "2/17 Arty Reinf"],
+      "note": "IMPORTANT: for Operation PERSHING (11 Feb 1967-continuing through the full reporting period), 2/8 Cav was chopped OPCON to the 1st Cav Division's OWN 3rd Brigade -- NOT its organic 1st Brigade. In exchange, 5/7 Cav (organically 3rd Brigade) was OPCON'd to 1st Brigade for the same operation. This is a genuine cross-attachment, not an OCR artifact -- it appears consistently across the two TAB A task-org listings found (Pershing and Dazzlen)."
+    },
+    "operation_dazzlem_task_org": {
+      "1st_brigade": ["1/8 Cav", "2/8 Cav", "1/12 Cav"],
+      "note": "Under DAZZLEM (an area-security operation running continuously since 1 Oct 66, i.e. a standing administrative/AO designation rather than a maneuver op), 2/8 Cav reverts to its organic 1st Brigade listing. Read together with the Pershing task org above, this indicates 2/8's Pershing-period OPCON to 3rd Brigade was the operationally significant one during Feb-Apr 67 combat operations."
+    },
+    "page": 98,
+    "confidence": "high (task org tables are clean, high-legibility pages; not narrative prose)",
+    "unrelated_confirmation": {
+      "note": "Co C, 2nd Battalion, 8th Cavalry (HHC + Co C) was administratively inspected (Command Maintenance Inspection Program) during February 1967, rated satisfactory -- confirms the company's presence/administrative status at that time but is not combat-related.",
+      "page": 47,
+      "confidence": "high"
+    }
+  },
+
+  "operations": [
+    { "name": "THAYER II", "start": "1966-10-25", "end": "1967-02-11", "controlling_unit": "division-wide (multi-brigade)", "note": "Terminated 111315 (11 Feb) 1967 per the report; 111-day operation, longest yet conducted by the division at that point. Final body count 1757 -- highest tally for a division op to date. Only activity in this document's own reporting window (1-11 Feb) was an 82mm mortar attack on LZ English (vic BS 877013) the night of 6-7 Feb, light damage.", "page": 32, "confidence": "high" },
+    { "name": "PERSHING", "start": "1967-02-11", "end": null, "controlling_unit": "multi-brigade (4 brigades committed, incl. attached 3d Bde, 25th Inf Div)", "mission": "Reconnaissance in force onto the Bong Son Plain to spoil an assessed 22d NVA Regiment attack on LZ English during the Tet truce; continuing through end of reporting period (30 Apr 67) and beyond.", "results_to_date": "Forced 3d NVA Division HQ and 22d NVA Regt north across the Binh Dinh/Quang Ngai border, out of the division AO.", "page": 32, "confidence": "high" },
+    { "name": "LE JEUNE", "start": "1967-04-07", "end": "1967-04-22", "controlling_unit": "2d Brigade (2 battalions), then 3d Brigade, 25th Inf Div (from 22 Apr)", "mission": "Relieve 3d Bn, 7th Marines at Duc Pho (vic BS 8138); 176 enemy KIA over the 16-day operation, no single significant contact.", "page": 33, "confidence": "high" },
+    { "name": "DAZZLEM", "start": "1966-10-01", "end": null, "controlling_unit": "1st Brigade (area-security/AO designation, not a maneuver op)", "note": "Major event: mortaring of Camp Radcliff and attack on LZ Charles (vic BR 427298), night of 8-9 Apr -- 9 enemy KIA, light aircraft damage from ~80 incoming 82mm rounds on the Golf Course area.", "page": 33, "confidence": "high" }
+  ],
+
+  "events": [
+    { "n": 1, "date": "1967-02-06", "installation": "LZ English", "location": "vic BS 877013", "units": [], "type": "base_attack", "dco_involved": false, "materiel": null, "notes": "82mm mortar attack, night of 6-7 Feb; light damage. Final Thayer II activity before termination.", "page": 32, "confidence": "high" },
+    { "n": 2, "date": "1967-02-11", "installation": "LZ English (assessed target)", "location": "Bong Son Plain, vic BS 890035 (assessed 22d NVA Regt assembly)", "units": [], "type": "reconnaissance_in_force", "dco_involved": "unknown", "notes": "Opening move of Pershing; division-wide reconnaissance in force, no battalion named.", "page": 32, "confidence": "high" },
+    { "n": 3, "date": "1967-02-18", "date_end": "1967-02-19", "installation": null, "location": "western Bong Son Plain, vic BS 857133", "units": ["1st Brigade (unnamed battalion)"], "type": "contact", "dco_involved": "unknown -- 1st Brigade named but no battalion specified, and Pershing task org (see task_organization) shows 2/8 Cav OPCON'd to 3rd Brigade at this time, not with 1st Brigade", "enemy_kia": 68, "notes": "Enemy battalion defeated; heavy fighting 18-19 Feb.", "page": 32, "confidence": "high" },
+    { "n": 4, "date": "1967-02-27", "date_end": "1967-02-28", "installation": null, "location": "Bong Son Plain", "units": [], "type": "contact", "dco_involved": "unknown", "notes": "Heavy contact reported; operations hampered by extensive booby traps.", "page": 32, "confidence": "medium" },
+    { "n": 5, "date": "1967-03-06", "installation": null, "location": "vic BR 973879, in the 3d Bde (25th Inf Div) AO", "units": ["3d Brigade, 25th Infantry Division (attached, AO owner; acting unit not specified)"], "type": "contact", "dco_involved": "unknown -- ambiguous whether this is the attached 25th ID brigade or a unit operating in its assigned AO; not 2/8 Cav per the Pershing task org (2/8 was OPCON to the 1st Cav Division's OWN 3rd Brigade, a different organization from this attached 25th ID brigade)", "enemy_kia": 55, "notes": "Led to extensive search of the CRESCENT area (vic BR 8878) and the Cay Giep Mountains by 2d Brigade.", "page": 32, "confidence": "medium (unit attribution ambiguous in source prose)" },
+    { "n": 6, "date": "1967-03-11", "installation": null, "location": "Dam Tra-O Lake, south side (vic BR 975790)", "units": ["2d Brigade (unnamed battalion)"], "type": "contact", "dco_involved": false, "enemy_kia": 42, "notes": "2d Brigade elements engaged 18th NVA Regiment just south of the lake, five days after the 6 Mar contact to the north.", "page": 32, "confidence": "high" },
+    { "n": 7, "date": "1967-03-19", "date_end": "1967-03-22", "installation": "vic Tam Quan (BS 9013)", "location": "northern Bong Son Plain", "units": ["1st Brigade (unnamed battalion)"], "type": "contact", "dco_involved": "unknown -- 1st Brigade named but no battalion specified; per the Pershing task org, 2/8 Cav's brigade of record for Pershing operations was 3rd Brigade, not 1st, so a direct 2/8 tie cannot be assumed from '1st Brigade' alone", "enemy_kia": 121, "notes": "One rifle company came under heavy fire approaching a hamlet; escalated to 13 US infantry companies against two NVA battalions plus the 22d NVA Regt HQ over a 3-day battle; encirclement attempt fell short, enemy broke contact by 22 Mar.", "page": 33, "confidence": "high" },
+    { "n": 8, "date": "1967-03-18", "date_end": "1967-04-01", "installation": null, "location": "An Lao Valley", "units": ["Vietnamese Marine Corps TF (valley floor)", "1st Cav Division elements (mountain screen, east/west of valley)"], "type": "screen", "dco_involved": "unknown", "us_kia": null, "notes": "Contact described as light and sporadic; no casualty figures or battalion named.", "page": 33, "confidence": "medium" },
+    { "n": 9, "date": "1967-03-30", "installation": null, "location": "Bong Son Plain", "units": [], "type": "administrative", "dco_involved": false, "notes": "A tank company (A Co, 1/69 Armor) was attached to the division, following extensive bulldozer use to destroy bunkered positions after the Tam Quan fight.", "page": 33, "confidence": "high" },
+    { "n": 10, "date": "1967-04-04", "date_end": "1967-04-10", "installation": null, "location": "An Lao Valley, vic BS 745110/745115", "units": ["1/7 Cav (2 companies, expanding to 5)"], "type": "contact", "dco_involved": false, "enemy_kia": 78, "notes": "Enemy strongpoint reduced with tank support (A Co, 1/69 Armor); 3-day fight.", "page": 33, "confidence": "high" },
+    { "n": 11, "date": "1967-04-08", "date_end": "1967-04-09", "installation": "Camp Radcliff / LZ Charles", "location": "vic BR 427298 (LZ Charles); Golf Course area (Camp Radcliff)", "units": [], "type": "base_attack", "dco_involved": false, "enemy_kia": 9, "materiel": "~80 82mm mortar rounds fired at Camp Radcliff", "notes": "Enemy driven off LZ Charles; light aircraft damage at Camp Radcliff.", "page": 33, "confidence": "high" }
+  ],
+
+  "personnel": [
+    { "name": "LTC Thomas H. Tackaberry", "role": "CO, 2/8 Cav (through 7 Feb 67)", "page": 13, "confidence": "high" },
+    { "name": "LTC John C. Dashiell", "role": "CO, 2/8 Cav (from 7 Feb 67)", "page": 13, "confidence": "high" },
+    { "name": "Col. James C. Smith", "role": "CO, 1st Brigade (through 15 Apr 67)", "page": 13, "confidence": "high" },
+    { "name": "Col. Donald V. Rattan", "role": "CO, 1st Brigade (from 15 Apr 67)", "page": 13, "confidence": "high" }
+  ],
+  "awards": [],
+
+  "lessons_learned_present": true,
+  "lessons_learned_page_range": [45, 50],
+
+  "unrelated_content_flag": {
+    "note": "The file also contains a fully separate, detached historical narrative -- a 1st Cav Division Office of Information and History 'Unit Historical Report' on the LZ Bird action, cover-dated 18 March 1967, describing a battle from December 1966 (LZ Bird, B/1/5 Cav, A/2/19 Arty). It names PFC Charles Abbott, C Company, 1st Battalion, 8th Cavalry (1/8 Cav -- NOT 2/8) relaying artillery fire missions. This is entirely unrelated to the March 1967 D Co KIA cluster: different unit (1/8, not 2/8), different action, different (earlier) date. Flagged here so the cover memo's '18 March 1967' date is never mistaken for an action date matching Wheeler-style KIA research; it is only the memo's transmittal date for an unrelated older report.",
+    "page_range": [78, 95],
+    "confidence": "high"
+  }
+}

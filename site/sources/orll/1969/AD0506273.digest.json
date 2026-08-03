@@ -1,0 +1,115 @@
+{
+  "_meta": {
+    "artifact": "orll-digest",
+    "spec": "site/_docs/orll-digest-and-cross-reference-spec.md",
+    "status": "GOLDEN EXAMPLE — hand-built 2026-07-14 as the build target for the digest skill",
+    "generated_by": "human-verified against page images",
+    "notes": "Every fact carries a source page. confidence reflects OCR legibility + inference. This document is a DIVISION-level ORLL: high value for operations/locations, low for individual D-Co detail (see triage.expected_yield)."
+  },
+
+  "document": {
+    "accession": "AD0506273",
+    "accession_as_printed": null,
+    "title": "Operational Report - Lessons Learned, HQ 1st Cavalry Division (Airmobile), Period Ending 31 July 1969",
+    "unit": "1st Cavalry Division (Airmobile)",
+    "echelon": "division_hq",
+    "period_start": "1969-05-01",
+    "period_end": "1969-07-31",
+    "rcs": "CSFOR-65",
+    "classification_original": "CONFIDENTIAL",
+    "declassified": "General Declassification Schedule",
+    "pages": 73,
+    "source": "DTIC",
+    "file": "AD0506273-orll-1cav-jul69.pdf",
+    "companion": ["AD0505650"],
+    "ocr_transcript": null
+  },
+
+  "triage": {
+    "genre": "primary_operational",
+    "echelon": "division",
+    "temporal_shape": "quarter",
+    "provenance": "us_army_field",
+    "ocr_era": "1969_better",
+    "expected_yield": {
+      "operations": "high",
+      "task_organization": "high",
+      "locations": "high",
+      "events": "medium (LZ attacks named to battalion; company detail sparse)",
+      "kia_individual": "low (division reports aggregate; names companies at most)",
+      "personnel": "none (no D/2-8 individuals named)",
+      "awards": "none (individual awards not cited at this echelon)"
+    },
+    "passes_run": ["operations", "locations", "events", "kia_in_range", "casualty_reconciliation", "contact_events"]
+  },
+
+  "coverage": {
+    "date_range": ["1969-05-01", "1969-07-31"],
+    "operations": ["MONTANA RAIDER", "MONTANA SCOUT", "COMANCHE WARRIOR", "CREEK II", "KENTUCKY COUGAR", "TOAN THANG III"],
+    "provinces": ["Tay Ninh", "Binh Long", "Binh Duong", "Long Khanh", "Bien Hoa", "Binh Tuy", "Phuoc Long"],
+    "war_zones": ["War Zone C", "War Zone D"],
+    "installations_raw": ["LZ CAROLYN", "LZ ST BARBARA", "LZ IKE", "LZ GRANT", "LZ JOE", "LZ JAMIE", "LZ PHYLLIS", "LZ ROCK", "LZ JOY", "LZ DOLLY", "LZ WHITE", "LZ BECKY"],
+    "units_mentioned": ["2-5 Cav", "2-7 Cav", "2-8 Cav", "2-12 Cav", "1-5 Cav", "1-7 Cav", "1-8 Cav", "1-12 Cav", "5-7 Cav", "1-9 Cav", "3-11 ACR", "11th ACR"],
+    "enemy_units": ["1st NVA Division", "7th NVA Division", "5th VC Division", "174th Regiment", "275th Regiment"]
+  },
+
+  "quarter_stats": {
+    "enemy_kia": 2696,
+    "enemy_pw": 103,
+    "enemy_crew_served_captured": 164,
+    "enemy_individual_weapons_captured": 652,
+    "us_kia": 247,
+    "us_wia": 1781,
+    "us_wia_evacuated": 732,
+    "aircraft_lost": { "OH6": 11, "UH1": 5, "AH1G": 6 },
+    "kill_ratio": "11:1",
+    "page": 8,
+    "confidence": "high"
+  },
+
+  "task_organization": {
+    "1st_brigade": ["2-7 Cav", "2-8 Cav", "1-12 Cav"],
+    "2nd_brigade": ["2-5 Cav", "2-12 Cav"],
+    "3rd_brigade": ["1-7 Cav", "5-7 Cav", "1-8 Cav"],
+    "div_arty": ["2/19 Arty", "2/20 Arty (ARA)", "1/21 Arty", "1/77 Arty", "E/82 Arty (Avn)", "1/30 Arty"],
+    "separate": ["1-9 Cav", "11th ACR (1-11 ACR, 1-12 ACR)", "8th Engineer Bn", "13th Signal Bn", "Co H (Ranger) 75th Inf"],
+    "page": 50,
+    "confidence": "high",
+    "notes": "2/8 Cav confirmed in 1st Brigade this quarter. OCR placed '1-5 Cav' under Div Arty (line artifact); it is a maneuver battalion — treat that one line as low confidence."
+  },
+
+  "operations": [
+    { "name": "MONTANA RAIDER", "start": "1969-04-13", "end": "1969-05-13", "controlling_unit": "3 brigades + 11th ACR", "area": "War Zone C", "us_results": { "us_kia": 39, "us_wia": 151, "aircraft_lost": 1 }, "page": 9, "confidence": "medium" },
+    { "name": "MONTANA SCOUT", "start": "1969-04-01", "end": "1969-06-23", "controlling_unit": "1st Brigade", "mission": "Interdictory; 1st Bde AO (1-9 May) operated from bases at LZ CAROLYN, ST BARBARA, IKE, and GRANT against enemy LOCs through central War Zone C.", "bases": ["LZ CAROLYN", "LZ ST BARBARA", "LZ IKE", "LZ GRANT"], "units": ["2-5 Cav", "2-7 Cav", "2-8 Cav", "2-12 Cav"], "page": 11, "confidence": "high" },
+    { "name": "COMANCHE WARRIOR", "start": "1969-05-14", "end": "1969-06-01", "controlling_unit": "3rd Brigade", "mission": "Interdict southerly movement of 5th VC Division out of War Zone D; locate 174th/275th Regiments.", "results_combined_with": "CREEK II", "results": { "enemy_kia": 132, "enemy_pw": 5, "individual_weapons": 46, "crew_served": 21 }, "page": 11, "confidence": "high" },
+    { "name": "CREEK II", "start": "1969-05-19", "end": "1969-06-22", "controlling_unit": "3rd Brigade", "note": "Same geographic area as COMANCHE WARRIOR; results reported jointly (see above).", "page": 11, "confidence": "high" },
+    { "name": "KENTUCKY COUGAR", "start": "1969-07-09", "end": "1969-07-31", "controlling_unit": "1st Brigade", "units": ["2-5 Cav", "2-7 Cav", "2-8 Cav"], "mission": "Continued 1st Bde AO interdiction; destroy major enemy forces, supplies, fortifications.", "page": 12, "confidence": "high" },
+    { "name": "TOAN THANG III", "controlling_unit": "2nd Brigade", "note": "Continued throughout the reporting period (II FFV campaign umbrella).", "page": 13, "confidence": "medium" }
+  ],
+
+  "events": [
+    { "n": 1, "date": "1969-05-01", "installation": "LZ Becky", "location": "4 km SE of LZ Becky", "units": ["M/3-11 ACR"], "type": "cache", "dco_involved": false, "materiel": "20,400 lbs rice", "page": 30, "confidence": "high" },
+    { "n": 2, "date": "1969-05-02", "installation": null, "location": "AO BLUE", "units": ["C/2-7 Cav", "B/1-9 Cav"], "type": "cache", "dco_involved": false, "materiel": "30,000 lbs rice, 1 SKS, medical supplies", "page": 30, "confidence": "high" },
+    { "n": 3, "date": "1969-05-06", "installation": "LZ Carolyn", "location_raw": "CMtftl'I", "units": ["C/2-8 Cav", "E/2-8 Cav"], "type": "base_attack", "dco_involved": true, "battalion": "2-8 Cav", "us_kia": 10, "us_wia": 73, "enemy_kia": 198, "enemy_pw": 30, "materiel": "81 AK-47, 11 RPG + rocket launchers, 9 RPD MG, 128 RPG rds, mortar rds, 285 grenades, 325 satchel charges", "page": 30, "confidence": "high", "summary": "Regimental-size NVA ground attack after mortar/rocket prep; simultaneous assault from SW and N at 0200, breached perimeter 0225, destroyed a 105mm ammo area 0315; counterattacks restored perimeter, enemy withdrew 0415, contact broke 0600.", "cross_ref_flags": ["kia_reconcile", "location_confirm", "contact_event_new"] },
+    { "n": 4, "date": "1969-05-06", "installation": "LZ Joe", "units": ["C/5-7 Cav", "E/5-7 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 4, "us_wia": 25, "enemy_kia": 8, "page": 31, "confidence": "high" },
+    { "n": 5, "date": "1969-05-12", "installation": "LZ Grant", "location_raw": "~AN!'", "units": ["A/2-12 Cav", "E/2-12 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 5, "us_wia": 40, "enemy_kia": 45, "enemy_pw": 3, "page": 31, "confidence": "high" },
+    { "n": 6, "date": "1969-05-12", "installation": "LZ Jamie", "units": ["E/2-7 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 7, "us_wia": 35, "enemy_kia": 70, "enemy_pw": 1, "page": 31, "confidence": "high" },
+    { "n": 7, "date": "1969-05-12", "installation": "LZ Phyllis", "location_raw": "PH'fJJ,I~", "units": ["3rd Bde HQ", "E/1-7 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 3, "us_wia": 32, "enemy_kia": 13, "page": 32, "confidence": "medium" },
+    { "n": 8, "date": "1969-05-21", "installation": "LZ Ike", "units": ["A/2-5 Cav", "E/2-5 Cav"], "type": "base_attack", "dco_involved": false, "us_wia": 2, "enemy_kia": 12, "enemy_pw": 1, "page": 32, "confidence": "high" },
+    { "n": 9, "date": "1969-05-23", "installation": "LZ Joe", "units": ["E/5-7 Cav"], "type": "base_attack", "dco_involved": false, "us_wia": 13, "enemy_kia": 8, "enemy_pw": 4, "page": 32, "confidence": "high" },
+    { "n": 10, "date": "1969-05-23", "units": ["B/1-9 Cav", "1-5 Cav"], "type": "cache", "dco_involved": false, "materiel": "153 mortar rds, 134 B-40, 90x107mm rockets, 100 tons rice", "page": 32, "confidence": "high" },
+    { "n": 11, "date": "1969-05-24", "units": ["B/1-9 Cav", "D/2-7 Cav (1 plt)"], "type": "cache", "dco_involved": false, "enemy_kia": 2, "page": 33, "confidence": "high" },
+    { "n": 13, "date": "1969-05-28", "installation": "LZ Rock", "location": "NE of LZ Rock", "units": ["B/1-8 Cav"], "type": "contact", "dco_involved": false, "us_kia": 0, "page": 33, "confidence": "high" },
+    { "n": 16, "date": "1969-06-02", "installation": "LZ Rock", "location": "NE of LZ Rock", "units": ["A/1-8 Cav", "B/1-8 Cav"], "type": "contact", "dco_involved": false, "us_kia": 14, "us_wia": 53, "enemy_kia": 54, "page": 34, "confidence": "high" },
+    { "n": 18, "date": "1969-06-12", "installation": "LZ Joy", "units": ["D/1-7 Cav", "E/1-7 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 5, "us_wia": 10, "enemy_kia": 35, "enemy_pw": 2, "page": 34, "confidence": "medium" },
+    { "n": 20, "date": "1969-06-18", "installation": "LZ Ike", "units": ["D/2-5 Cav", "B/2-5 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 3, "us_wia": 11, "enemy_kia": 37, "note": "Simultaneous standoff attack on LZ Grant.", "page": 35, "confidence": "high" },
+    { "n": 21, "date": "1969-06-20", "installation": "LZ Ike", "units": ["D/2-5 Cav", "E/2-5 Cav"], "type": "base_attack", "dco_involved": false, "us_kia": 7, "us_wia": 19, "enemy_kia": 90, "enemy_pw": 5, "note": "Coordinated standoff attacks on LZs Jamie, St Barbara, Grant, White.", "page": 35, "confidence": "high" },
+    { "n": 23, "date": "1969-07-03", "installation": "LZ Grant", "location": "SE of LZ Grant", "units": ["C/1-12 Cav"], "type": "sweep", "dco_involved": false, "enemy_kia": 32, "page": 36, "confidence": "high" }
+  ],
+
+  "personnel": [],
+  "awards": [],
+
+  "lessons_learned_present": true,
+  "lessons_learned_page_range": [37, 46]
+}

@@ -17,26 +17,27 @@ birth_year: 1949
 
 # ── RANK & ASSIGNMENT ─────────────────────────────
 rank: SGT
-mos:
+mos: "11B · Light Weapons Infantry"
 platoon: Skull
 
 # ── SERVICE ───────────────────────────────────────
-arrived:
+arrived: "1972-02-11"
 departed:
 character_of_service: Honorable
 status: kia
 
 # ── POST-SERVICE ──────────────────────────────────
-hometown: "Abbott, AR"
+hometown: "Abbott, Scott County, AR"
 current_location:
 year_deceased: 1972
 cause_of_death: kia
 
 # ── PROFILE PHOTO ─────────────────────────────────
-profile_photo:
+profile_photo: "boatright-william-profile.png"
 
 # ── DECORATIONS ───────────────────────────────────
 decorations:
+  - Combat Infantryman Badge
   - National Defense Service Medal
   - Vietnam Service Medal
   - Vietnam Campaign Medal
@@ -44,7 +45,9 @@ decorations:
 distinguished_decorations:
 
 decorations_unconfirmed:
-  - "Purple Heart"    # KIA — posthumous award near-certain; move to decorations when primary source located
+  - "Purple Heart"              # KIA — posthumous award near-certain; move to decorations when primary source located
+  - "Army Presidential Unit Citation"  # Honor States probability-based; move to decorations when primary source located
+  - "Vietnam Gallantry Cross"          # Honor States probability-based; move to decorations when primary source located
 
 # ── SERVICE RECORD ────────────────────────────────
 service_record:
@@ -70,10 +73,16 @@ contact:
 
 # ── EXTERNAL LINKS ────────────────────────────────
 links:
-  wall:             # https://www.vvmf.org/Wall-of-Faces/[ID]/WILLIAM-A-BOATRIGHT/ — research pending
+  wall: "https://www.vvmf.org/Wall-of-Faces/4486/WILLIAM-A-BOATRIGHT/"
   other:
     - label: "VHPA Incident Record 720510031ACD"
       url: "https://www.vhpa.org/KIA/incident/720510031ACD.HTM"
+    - label: "Honor States"
+      url: "https://www.honorstates.org/index.php?id=262759"
+    - label: "Virtual Wall"
+      url: "https://www.virtualwall.org/db/BoatrightWA01a.htm"
+    - label: "Find A Grave"
+      url: "https://www.findagrave.com/memorial/228461332/william-arvel-boatright"
 
 # ── TIMELINE SOURCE NOTE ──────────────────────────
 timeline_source: >
@@ -82,6 +91,16 @@ timeline_source: >
 
 # ── SERVICE TIMELINE ──────────────────────────────
 timeline:
+  - date: "1972-02-11"
+    phase: in-country
+    type: service
+    tags:
+      - { type: s, label: Arrived }
+    headline: "Arrived in Vietnam — February 11, 1972"
+    body: >
+      SGT Boatright began his tour with D Company, 2nd Battalion, 8th Cavalry
+      (Airmobile), 1st Cavalry Division, Republic of Vietnam.
+
   - date: "1972-05-10"
     phase: in-country
     type: combat
@@ -115,11 +134,13 @@ related_events:
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-28
-last_updated: 2026-05-28
+last_updated: 2026-06-10
 contributed_by:
 notes: >
   KIA 10 May 1972 — Chinook crash (incident 720510031ACD). Skull Platoon, D/2-8 Cav.
-  DOB 28 Dec 1949. Hometown: Abbott, AR. Wall: Panel 1W, Line 16.
-  VVMF Wall of Faces URL not yet confirmed — research pending.
+  DOB 28 Dec 1949. Hometown: Abbott, Scott County, AR. Wall: Panel 1W, Line 16.
+  MOS: 11B · Light Weapons Infantry. Start tour: 1972-02-11 (Honor States).
+  Burial: Pleasant Grove Cemetery, Scott County, Arkansas (Find A Grave).
+  CIB confirmed via Virtual Wall. Purple Heart, APUC, VGC probability-based (Honor States).
 
 ---

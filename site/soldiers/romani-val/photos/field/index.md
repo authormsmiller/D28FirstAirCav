@@ -8,7 +8,7 @@ photos:
       
     caption_short: "Marvin Miller (left) and Ted Hryniw in a firebase bunker."
     credit: "Photographed by Val Romani · 1971"
-    photographer: ""
+    photographer: "romani-val"
     date: 
     date_known: false
     event: ""
@@ -23,7 +23,7 @@ photos:
       
     caption_short: "Marvin Miller (left) and Bill Small in the bush"
     credit: "Photographed by Val Romani · 1971"
-    photographer: ""
+    photographer: "romani-val"
     date: 1971
     date_known: false
     event: ""
@@ -47,3 +47,4 @@ photos:
       - miller-marvin-dale
       - small-bill
     tagged: []
+---
