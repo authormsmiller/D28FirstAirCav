@@ -1,6 +1,6 @@
 ---
 layout: layouts/document.njk
-slug: aulenbach-account-sept-1970
+slug: aulenbach-waterman
 title: "Account of September 3-4, 1970"
 author: aulenbach-rick
 event: ""
