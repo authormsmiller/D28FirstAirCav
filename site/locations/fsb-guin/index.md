@@ -6,24 +6,20 @@ breadcrumb: FSB Guin
 permalink: /locations/fsb-guin/
 tags:
   - location
-
 display_name: FSB Guin
 short_name: Guin
 type: fsb
-also_known_as: "FSB Guinn; Fire Support Base Guin"
-
-named_for:
-named_for_note:
-
+also_known_as: FSB Guinn; Fire Support Base Guin
+named_for: null
+named_for_note: null
 location:
-  mgrs: "ZT 100 190"
-  lat: 11.0170
+  mgrs: ZT 100 190
+  lat: 11.017
   lon: 107.8329
   province: Binh Tuy Province (Military Region 3, III Corps)
-  modern_landmark:
+  modern_landmark: null
   coordinate_source: military-registry
   coordinate_confidence: confirmed
-
 dates:
   established:
     date: "1970-09-04"
@@ -33,60 +29,36 @@ dates:
     date: "1970-10-26"
     source: AD0516259
     confidence: confirmed
-  notes: >
-    Firebase gazetteer records 2/8 Cav at Guin from 4 September 1970 (refs AD515205,
-    AD516259). AD0516259 (1st Cav Div ORLL, period ending 31 Oct 1970) FSB table
-    confirms: "GUIi ZT 100190 26 Oct 2-8 Cav (qod by 199th)" — 2/8 Cav departed
-    26 October 1970, taken over by the 199th Infantry Brigade. The unit moved directly
-    to FSB Silver (YT829043), which AD0516259 records as reopened by 2-8 Cav on 26 Oct.
-    CPL Craig Waterman (Range Platoon, D Co) was killed on 3 September 1970, the day
-    before Guin stood up, during the 4-day gap between Powder Ridge and Guin.
-
+  notes: |
+    Firebase gazetteer records 2/8 Cav at Guin from 4 September 1970 (refs AD515205, AD516259). AD0516259 (1st Cav Div ORLL, period ending 31 Oct 1970) FSB table confirms: "GUIi ZT 100190 26 Oct 2-8 Cav (qod by 199th)" — 2/8 Cav departed 26 October 1970, taken over by the 199th Infantry Brigade. The unit moved directly to FSB Silver (YT829043), which AD0516259 records as reopened by 2-8 Cav on 26 Oct. CPL Craig Waterman (Range Platoon, D Co) was killed on 3 September 1970, the day before Guin stood up, during the 4-day gap between Powder Ridge and Guin.
 occupancies:
   - start: "1970-09-04"
     end: "1970-10-26"
     company: D Co, 2/8 Cav (Range Platoon)
-    grid: "ZT 100 190"
+    grid: ZT 100 190
     source: Firebase gazetteer (refs AD515205, AD516259); AD0516259 FSB table
     confidence: confirmed
-    note: >
-      2/8 Cav at Guin 4 Sep – 26 Oct 1970. Closing date and 199th takeover confirmed
-      from AD0516259 (1st Cav Div ORLL, period ending 31 Oct 1970) FSB table, p. 83.
-      On 26 Oct, 2/8 Cav moved to FSB Silver (YT829043), confirmed same document.
-      On 4 Sep (opening day), 15 Hoi Chanh ralliers — one armed with an SS rifle —
-      surrendered to 2-8th Cavalry at FSB Guin per AD0515205 (II FFV ORLL, p. 30).
-
+    note: |
+      2/8 Cav at Guin 4 Sep – 26 Oct 1970. Closing date and 199th takeover confirmed from AD0516259 (1st Cav Div ORLL, period ending 31 Oct 1970) FSB table, p. 83. On 26 Oct, 2/8 Cav moved to FSB Silver (YT829043), confirmed same document. On 4 Sep (opening day), 15 Hoi Chanh ralliers — one armed with an SS rifle — surrendered to 2-8th Cavalry at FSB Guin per AD0515205 (II FFV ORLL, p. 30).
 related_bases:
   predecessor: fsb-powder-ridge
   successor: fsb-silver
-  split_from:
-  split_into:
-
+  split_from: null
+  split_into: null
 related_soldiers:
   - slug: waterman-craig
-    note: "KIA 3 Sep 1970 during transition from FSB Powder Ridge to Guin — the day before Guin stood up"
+    note: KIA 3 Sep 1970 during transition from FSB Powder Ridge to Guin — the day before Guin stood up
     confidence: confirmed
-
 related_events:
   - contact-binh-tuy-1970-09-03
-
 status: research
-date_added: 2026-07-09
-last_updated: 2026-07-09
-contributed_by:
-notes: >
-  Grid ZT100190 (11.0170°N, 107.8329°E). Also spelled "Guinn."
-  2/8 Cav 4 Sep – 26 Oct 1970. Predecessor: FSB Powder Ridge (YT807786; ~66.6 km NW).
-  Successor: FSB Silver (YT829043) — 2-8 Cav moved there 26 Oct 1970 (AD0516259, p83).
-  Closing date and 199th Infantry Brigade takeover confirmed from AD0516259 FSB table.
-  On 4 Sep (opening day): 15 Hoi Chanh ralliers surrendered at Guin, one armed with an
-  SS rifle (AD0515205, II FFV ORLL, p. 30).
-  On 3 Sep, D/2-8 Cav had a ground contact at YT076214 at 1420 hours (AD0516259, p17) —
-  same day as CPL Waterman's KIA; separate incident, different grid zone from Guin.
-  Named_for unknown — no gazetteer note found.
-  Jim Garvin deck (v03_guinn.pptx, 37 slides) covers Sep 18 – Nov 4, 1970 — primary
-  photo/narrative source; unprocessed as of 2026-07-09. See handoff Handoff-FSBGuinn-Garvin-v03.md.
-
+date_added: 2026-07-09T00:00:00.000Z
+last_updated: 2026-07-09T00:00:00.000Z
+contributed_by: null
+notes: |
+  Grid ZT100190 (11.0170°N, 107.8329°E). Also spelled "Guinn." 2/8 Cav 4 Sep – 26 Oct 1970. Predecessor: FSB Powder Ridge (YT807786; ~66.6 km NW). Successor: FSB Silver (YT829043) — 2-8 Cav moved there 26 Oct 1970 (AD0516259, p83). Closing date and 199th Infantry Brigade takeover confirmed from AD0516259 FSB table. On 4 Sep (opening day): 15 Hoi Chanh ralliers surrendered at Guin, one armed with an SS rifle (AD0515205, II FFV ORLL, p. 30). On 3 Sep, D/2-8 Cav had a ground contact at YT076214 at 1420 hours (AD0516259, p17) — same day as CPL Waterman's KIA; separate incident, different grid zone from Guin. Named_for unknown — no gazetteer note found. Jim Garvin deck (v03_guinn.pptx, 37 slides) covers Sep 18 – Nov 4, 1970 — primary photo/narrative source; unprocessed as of 2026-07-09. See handoff Handoff-FSBGuinn-Garvin-v03.md.
+contains:
+  - garvin-jim
 ---
 
 ## Overview

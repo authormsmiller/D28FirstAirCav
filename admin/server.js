@@ -1061,6 +1061,105 @@ app.get('/api/soldier/anecdotes', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+/**
+ * T5.1: POST /api/locations/create
+ * Schema: site/locations/<slug>/index.md
+ */
+app.post('/api/locations/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      display_name = '',
+      short_name = '',
+      type = 'lz',
+      also_known_as = '',
+      named_for = '',
+      named_for_note = '',
+      location = {},
+      dates = {},
+      related_bases = {},
+      photo_sources = [],
+      related_events = [],
+      contains = [],
+      tagged = [],
+      command_post = false,
+      contributed_by = '',
+      notes = '',
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+
+    const locDir = path.join(SITE_ROOT, 'locations', slug);
+    await fs.mkdir(locDir, { recursive: true });
+    const absPath = path.join(locDir, 'index.md');
+
+    const title = display_name || short_name || slug;
+    const breadcrumb = short_name || display_name || slug;
+
+    const data = {
+      layout: 'layouts/location.njk',
+      tags: ['location'],
+      slug,
+      title,
+      breadcrumb,
+      display_name,
+      short_name,
+      type,
+      also_known_as,
+      named_for,
+      named_for_note,
+      location: {
+        mgrs: location.mgrs || '',
+        lat: location.lat || '',
+        lon: location.lon || '',
+        province: location.province || '',
+        modern_landmark: location.modern_landmark || '',
+        coordinate_source: location.coordinate_source || '',
+        coordinate_confidence: location.coordinate_confidence || ''
+      },
+      dates: {
+        established: {
+          date: dates.established?.date || '',
+          source: dates.established?.source || '',
+          confidence: dates.established?.confidence || ''
+        },
+        closed: {
+          date: dates.closed?.date || '',
+          source: dates.closed?.source || '',
+          confidence: dates.closed?.confidence || ''
+        },
+        notes: dates.notes || ''
+      },
+      related_bases: {
+        predecessor: related_bases.predecessor || '',
+        successor: related_bases.successor || '',
+        split_from: related_bases.split_from || '',
+        split_into: related_bases.split_into || ''
+      },
+      photo_sources: Array.isArray(photo_sources) ? photo_sources : [],
+      related_events: Array.isArray(related_events) ? related_events : [],
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      command_post: command_post === true || command_post === 'true',
+      status: 'published',
+      date_added: new Date().toISOString().slice(0, 10),
+      last_updated: new Date().toISOString().slice(0, 10),
+      contributed_by,
+      notes,
+      permalink: `/locations/${slug}/`
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 // ─── start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {

@@ -169,20 +169,6 @@
     outline-offset: 1px;
   }
 
-  .field-type-pill {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 2px 6px;
-    border-radius: 2px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-  .pill-array { background: #dbeafe; color: #1e40af; }
-  .pill-scalar { background: #fef3c7; color: #92400e; }
-
   .action-row { display: flex; gap: 10px; align-items: center; padding-top: 4px; flex-wrap: wrap; }
 
   /* ── buttons ── */
@@ -241,54 +227,6 @@
   .fm-row:last-child { border-bottom: none; }
   .fm-key { color: var(--muted); font-weight: 500; }
   .fm-val { font-family: 'Courier New', monospace; word-break: break-all; }
-  .fm-val.is-array { color: var(--blue); }
-  .fm-val.is-empty { color: var(--rule); font-style: italic; }
-  .fm-val.just-changed { background: #fef9c3; border-radius: 2px; padding: 0 3px; }
-
-  /* ── popover & chips ── */
-  .fm-popover {
-    position: fixed;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
-    padding: 12px;
-    width: 340px;
-    z-index: 200;
-    display: none;
-  }
-  .fm-popover.open { display: block; }
-  .fm-popover-title {
-    font-family: var(--font-disp);
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-  }
-  .fm-popover-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    min-height: 28px;
-    padding: 5px;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    background: var(--cream);
-    margin-bottom: 8px;
-  }
-  .fm-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    padding: 2px 6px;
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    font-size: 11px;
-    font-family: monospace;
-  }
-  .fm-chip-remove { cursor: pointer; color: var(--muted); font-size: 13px; line-height: 1; }
-  .fm-chip-remove:hover { color: var(--red); }
-  .fm-popover-footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px; }
 
   /* ── toast ── */
   .toast {
@@ -344,7 +282,75 @@
   }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 
-  /* ── profile sections ── */
+  /* ── Mode Toggle Header ── */
+  .np-mode-toggle {
+    display: inline-flex;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .np-mode-btn {
+    padding: 6px 14px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    cursor: pointer;
+  }
+  .np-mode-btn.active {
+    background: var(--ink);
+    color: var(--yellow);
+  }
+
+  /* ── Stepper ── */
+  .wizard-stepper {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    background: var(--cream);
+    padding: 6px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+  .wizard-step-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .wizard-step-btn.active {
+    background: var(--ink);
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .wizard-step-pane { display: none; }
+  .wizard-step-pane.active { display: block; }
+  .wizard-nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── Subtab Layout ── */
   .np-subtab-nav {
     display: flex;
     gap: 2px;
@@ -393,10 +399,8 @@
   .np-status-bar { min-height: 0; margin-bottom: 12px; font-size: 12px; font-weight: 600; color: var(--green); }
   .np-status-bar.error { color: var(--red); }
   .np-status-bar.info  { color: var(--blue); }
-  .np-section-msg { font-size: 11px; padding: 4px 14px 10px; color: var(--green); }
-  .np-section-msg.error { color: var(--red); }
 
-  /* ── Tier Badges & Cards (Phase 3) ── */
+  /* ── Tier Badges & Cards ── */
   .se-tier-badge {
     display: inline-block;
     padding: 2px 7px;
@@ -586,85 +590,113 @@
   <!-- Tab nav -->
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('newprofile')">Soldier Profiles</button>
+    <button class="tab-btn" onclick="switchTab('locations')">Locations</button>
     <button class="tab-btn" onclick="switchTab('attach')">Attach Record</button>
     <button class="tab-btn" onclick="switchTab('edit')">Edit Record</button>
   </nav>
 
-  <!-- Content -->
+  <!-- Content Area -->
   <main class="content">
 
-    <!-- Tab: Soldier Profile Editor (Rendered Mirror) -->
+    <!-- ══════════════════════════════════════════════════════════════
+         TAB 1: SOLDIER PROFILES (Wizard & Edit Mirror)
+         ══════════════════════════════════════════════════════════════ -->
     <div class="panel active" id="panel-newprofile">
-      <h1 class="section-head">Soldier Profile Editor</h1>
-      <p class="section-desc">Manage soldier records matching the public website mirror.</p>
-
-      <div class="form-grid" style="margin-bottom:14px">
-        <label class="form-label">Select Soldier</label>
-        <div class="form-field">
-          <select id="np-slug-select" onchange="seLoadSoldier()">
-            <option value="">— select soldier —</option>
-          </select>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <h1 class="section-head" id="np-main-heading">New Soldier Wizard</h1>
+          <p class="section-desc" id="np-main-desc" style="margin-bottom:0">Create a new soldier profile through guided step-by-step intake.</p>
+        </div>
+        <div class="np-mode-toggle">
+          <button class="np-mode-btn active" id="mode-btn-create" onclick="setSoldierMode('create')">+ Create Wizard</button>
+          <button class="np-mode-btn" id="mode-btn-edit" onclick="setSoldierMode('edit')">✏ Edit Existing</button>
         </div>
       </div>
 
-      <!-- Main Editor Container (Rendered Mirror Tabs) -->
-      <div id="se-main-container" style="display:none;">
-        
-        <div class="np-subtab-nav">
-          <button class="np-subtab active" id="se-tab-identity" onclick="seSwitchTab('identity')">Identity</button>
-          <button class="np-subtab" id="se-tab-timeline" onclick="seSwitchTab('timeline')">Timeline</button>
-          <button class="np-subtab" id="se-tab-photos" onclick="seSwitchTab('photos')">Photos</button>
-          <button class="np-subtab" id="se-tab-alongside" onclick="seSwitchTab('alongside')">Served Alongside</button>
-          <button class="np-subtab" id="se-tab-anecdotes" onclick="seSwitchTab('anecdotes')">Verbal Accounts</button>
-          <button class="np-subtab" id="se-tab-documents" onclick="seSwitchTab('documents')">Documents</button>
-          <button class="np-subtab" id="se-tab-letters" onclick="seSwitchTab('letters')">Letters</button>
-          <button class="np-subtab" id="se-tab-servicerecord" onclick="seSwitchTab('servicerecord')">Service Record</button>
-          <button class="np-subtab" id="se-tab-external" onclick="seSwitchTab('external')">External Resources</button>
+      <!-- SOLDIER CREATE WIZARD -->
+      <div id="wz-container">
+        <div class="wizard-stepper">
+          <button class="wizard-step-btn active" id="wz-step-btn-1" onclick="wzGoToStep(1)">1. Identity</button>
+          <button class="wizard-step-btn" id="wz-step-btn-2" onclick="wzGoToStep(2)">2. Rank &amp; Platoon</button>
+          <button class="wizard-step-btn" id="wz-step-btn-3" onclick="wzGoToStep(3)">3. Service</button>
+          <button class="wizard-step-btn" id="wz-step-btn-4" onclick="wzGoToStep(4)">4. Post-Service</button>
+          <button class="wizard-step-btn" id="wz-step-btn-5" onclick="wzGoToStep(5)">5. Photo</button>
+          <button class="wizard-step-btn" id="wz-step-btn-6" onclick="wzGoToStep(6)">6. Decorations</button>
+          <button class="wizard-step-btn" id="wz-step-btn-7" onclick="wzGoToStep(7)">7. Service Record</button>
+          <button class="wizard-step-btn" id="wz-step-btn-8" onclick="wzGoToStep(8)">8. Review &amp; Finish</button>
         </div>
 
-        <div class="np-status-bar" id="se-status-bar"></div>
-
-        <!-- 1. IDENTITY PANE -->
-        <div id="se-pane-identity" class="np-subtab-pane">
+        <div class="wizard-step-pane active" id="wz-pane-1">
           <div class="np-section">
-            <div class="np-section-head"><span>Identity</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('identity')">Save</button></div>
+            <div class="np-section-head"><span>Step 1: Identity &amp; Auto-Slug</span></div>
             <div class="form-grid">
-              <label class="form-label">First name</label><div class="form-field"><input type="text" id="np-first_name"></div>
-              <label class="form-label">Last name</label><div class="form-field"><input type="text" id="np-last_name"></div>
-              <label class="form-label">Middle name</label><div class="form-field"><input type="text" id="np-middle_name"></div>
-              <label class="form-label">Suffix</label><div class="form-field"><input type="text" id="np-suffix"></div>
-              <label class="form-label">Nickname</label><div class="form-field"><input type="text" id="np-nickname"></div>
-              <label class="form-label">Birth year</label><div class="form-field"><input type="text" id="np-birth_year"></div>
+              <label class="form-label">First Name *</label>
+              <div class="form-field"><input type="text" id="wz-first_name" oninput="wzDeriveSlug()" placeholder="Marvin Dale"></div>
+              <label class="form-label">Last Name *</label>
+              <div class="form-field"><input type="text" id="wz-last_name" oninput="wzDeriveSlug()" placeholder="Miller"></div>
+              <label class="form-label">Middle Name</label>
+              <div class="form-field"><input type="text" id="wz-middle_name"></div>
+              <label class="form-label">Suffix</label>
+              <div class="form-field">
+                <select id="wz-suffix">
+                  <option value=""></option><option>Jr.</option><option>Sr.</option><option>II</option><option>III</option><option>IV</option>
+                </select>
+              </div>
+              <label class="form-label">Nickname</label>
+              <div class="form-field"><input type="text" id="wz-nickname"></div>
+              <label class="form-label">Birth Year</label>
+              <div class="form-field"><input type="text" id="wz-birth_year" placeholder="1950"></div>
+              <label class="form-label">Generated Slug</label>
+              <div class="form-field">
+                <input type="text" id="wz-slug" style="font-family:monospace; background:var(--cream); font-weight:bold;" placeholder="miller-marvin-dale">
+                <span class="form-hint">Auto-derived: lowercase letters, numbers, and hyphens only</span>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="wizard-step-pane" id="wz-pane-2">
           <div class="np-section">
-            <div class="np-section-head"><span>Rank &amp; Platoon</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('rank')">Save</button></div>
+            <div class="np-section-head"><span>Step 2: Rank &amp; Assignment</span></div>
             <div class="form-grid">
-              <label class="form-label">Rank</label><div class="form-field"><input type="text" id="np-rank"></div>
-              <label class="form-label">MOS</label><div class="form-field"><input type="text" id="np-mos"></div>
+              <label class="form-label">Rank</label>
+              <div class="form-field">
+                <select id="wz-rank">
+                  <option value=""></option>
+                  <option>PVT</option><option>PFC</option><option>SP4</option><option>SP5</option><option>SGT</option><option>SSG</option><option>SFC</option><option>MSG</option><option>1SG</option><option>SGM</option>
+                  <option>WO1</option><option>2LT</option><option>1LT</option><option>CPT</option><option>MAJ</option><option>LTC</option><option>COL</option>
+                </select>
+              </div>
+              <label class="form-label">MOS</label>
+              <div class="form-field"><input type="text" id="wz-mos" placeholder="11B40 / 67N20"></div>
               <label class="form-label">Platoon</label>
               <div class="form-field">
-                <select id="np-platoon">
+                <select id="wz-platoon">
                   <option value=""></option><option>Range</option><option>Cat</option><option>Skull</option><option>HQ</option>
                 </select>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="wizard-step-pane" id="wz-pane-3">
           <div class="np-section">
-            <div class="np-section-head"><span>Service Dates &amp; Status</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('service')">Save</button></div>
+            <div class="np-section-head"><span>Step 3: Service Dates &amp; Status</span></div>
             <div class="form-grid">
-              <label class="form-label">Arrived</label><div class="form-field"><input type="text" id="np-arrived" placeholder="YYYY-MM"></div>
-              <label class="form-label">Departed</label><div class="form-field"><input type="text" id="np-departed" placeholder="YYYY-MM"></div>
+              <label class="form-label">Arrived In-Country</label>
+              <div class="form-field"><input type="text" id="wz-arrived" placeholder="YYYY-MM"></div>
+              <label class="form-label">Departed</label>
+              <div class="form-field"><input type="text" id="wz-departed" placeholder="YYYY-MM"></div>
               <label class="form-label">Status</label>
               <div class="form-field">
-                <select id="np-status">
+                <select id="wz-status">
                   <option value="researching">researching</option><option value="veteran">veteran</option>
                   <option value="deceased">deceased</option><option value="kia">kia</option><option value="mia">mia</option>
                 </select>
               </div>
               <label class="form-label">Character of Service</label>
               <div class="form-field">
-                <select id="np-character_of_service">
+                <select id="wz-character_of_service">
                   <option value="Honorable">Honorable</option><option value="General">General</option>
                   <option value="Other Than Honorable">Other Than Honorable</option><option value="Bad Conduct">Bad Conduct</option><option value="Dishonorable">Dishonorable</option>
                 </select>
@@ -673,194 +705,525 @@
           </div>
         </div>
 
-        <!-- 2. TIMELINE PANE -->
-        <div id="se-pane-timeline" class="np-subtab-pane" style="display:none">
+        <div class="wizard-step-pane" id="wz-pane-4">
           <div class="np-section">
-            <div class="np-section-head"><span>Timeline Source Note</span><button class="btn btn-secondary np-save-btn" onclick="npTlSaveSource()">Save</button></div>
+            <div class="np-section-head"><span>Step 4: Post-Service Details</span></div>
             <div class="form-grid">
-              <label class="form-label">Source note</label><div class="form-field"><textarea id="np-tl-source" rows="2"></textarea></div>
-            </div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Timeline Entries</span></div>
-            <div id="np-tl-list" style="padding:10px 14px"></div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Add Timeline Entry</span></div>
-            <div class="form-grid">
-              <label class="form-label">Date</label><div class="form-field"><input type="text" id="np-tl-add-date" placeholder="YYYY-MM-DD"></div>
-              <label class="form-label">Phase</label>
+              <label class="form-label">Hometown</label><div class="form-field"><input type="text" id="wz-hometown" placeholder="Dayton, OH"></div>
+              <label class="form-label">Current Location</label><div class="form-field"><input type="text" id="wz-current_location" placeholder="City, State"></div>
+              <label class="form-label">Year Deceased</label><div class="form-field"><input type="text" id="wz-year_deceased" placeholder="YYYY"></div>
+              <label class="form-label">Cause of Death</label>
               <div class="form-field">
-                <select id="np-tl-add-phase">
-                  <option value="">--</option><option value="training">Training</option><option value="staging">Staging</option>
-                  <option value="in-country">In-Country</option><option value="post-service">Post-Service</option>
+                <select id="wz-cause_of_death">
+                  <option value=""></option><option value="natural">natural</option><option value="kia">kia</option><option value="accident">accident</option><option value="unknown">unknown</option>
                 </select>
               </div>
-              <label class="form-label">Type</label>
-              <div class="form-field">
-                <select id="np-tl-add-type">
-                  <option value="service">Service</option><option value="combat">Combat</option><option value="personal">Personal</option><option value="other">Other</option>
-                </select>
-              </div>
-              <label class="form-label">Headline</label><div class="form-field"><input type="text" id="np-tl-add-headline"></div>
-              <label class="form-label">Body</label><div class="form-field"><textarea id="np-tl-add-body" rows="3"></textarea></div>
-            </div>
-            <div style="padding:0 14px 12px"><button class="btn btn-primary" onclick="npTlAddEntry()">Add Entry</button></div>
-          </div>
-        </div>
-
-        <!-- 3. PHOTOS PANE -->
-        <div id="se-pane-photos" class="np-subtab-pane" style="display:none">
-          <div class="np-section">
-            <div class="np-section-head"><span>Profile Photo</span></div>
-            <div id="np-ph-profile" style="padding:12px 14px"></div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Field Photos</span></div>
-            <div id="np-ph-field" style="padding:12px 14px"></div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Find Photos in Archive</span></div>
-            <div style="padding:12px 14px">
-              <button class="btn btn-secondary btn-sm" onclick="npPhLoadContaining()">Search Archive Photos</button>
-              <div id="np-ph-containing" style="margin-top:10px"></div>
             </div>
           </div>
         </div>
 
-        <!-- 4. SERVED ALONGSIDE PANE -->
-        <div id="se-pane-alongside" class="np-subtab-pane" style="display:none">
+        <div class="wizard-step-pane" id="wz-pane-5">
           <div class="np-section">
-            <div class="se-tier-header">
-              <span>Tier 1: Depicted / Named Together (Auto-derived)</span>
-              <span class="se-tier-badge tier-1">Read-Only</span>
-            </div>
-            <div style="padding:10px 14px; font-size:12px; color:var(--muted); font-style:italic;">
-              Derived automatically from items where both soldiers are listed in <code>contains[]</code>.
-            </div>
-            <div id="se-tier1-list" style="padding:0 14px 10px"></div>
-          </div>
-
-          <div class="np-section">
-            <div class="se-tier-header">
-              <span>Tiers 2–4: Manual Links (_alongside.json)</span>
-              <span class="se-tier-badge tier-2">Reciprocal</span>
-            </div>
-            <div id="se-manual-alongside-list" style="padding:10px 14px"></div>
-            <div class="form-grid" style="padding:10px 14px 14px; border-top:1px solid var(--rule);">
-              <label class="form-label">Add Soldier</label>
-              <div class="form-field">
-                <input type="text" id="se-al-soldier" list="np-al-datalist" placeholder="Search soldier slug..." autocomplete="off">
-                <datalist id="np-al-datalist"></datalist>
+            <div class="np-section-head"><span>Step 5: Profile Photo (Optional)</span></div>
+            <div style="padding:14px;">
+              <div class="pph-drop-zone" id="wz-pph-drop-zone" onclick="document.getElementById('wz-pph-file-input').click()" style="border:2px dashed var(--rule); padding:24px; text-align:center; cursor:pointer; background:#fff;">
+                <div style="font-size:24px;margin-bottom:6px;">↓</div>
+                <div>Drop photo here or click to browse</div>
               </div>
-              <label class="form-label">Basis (Tier)</label>
-              <div class="form-field">
-                <select id="se-al-basis">
-                  <option value="same-platoon">Same Platoon (Tier 2)</option>
-                  <option value="company-co">Company CO / Command (Tier 3)</option>
-                  <option value="verbal-account">Verbal Account / Mention (Tier 3)</option>
-                  <option value="document">Document Reference (Tier 3)</option>
-                  <option value="commanding-officer">Commanding Officer Chain (Tier 4)</option>
-                  <option value="unspecified">Unspecified (Tier 3)</option>
-                </select>
+              <input type="file" id="wz-pph-file-input" accept="image/jpeg,image/png" style="display:none" onchange="wzPphFileSelected(event)">
+              <div id="wz-pph-crop-area" style="display:none; margin-top:14px; text-align:center;">
+                <div class="pph-crop-wrap" id="wz-pph-crop-wrap" style="position:relative; display:inline-block; max-width:100%;">
+                  <img class="pph-crop-img" id="wz-pph-crop-img" draggable="false" alt="" style="max-height:280px; display:block;">
+                  <div class="pph-crop-overlay" id="wz-pph-crop-overlay" style="position:absolute; inset:0; cursor:crosshair;">
+                    <div class="pph-crop-rect" id="wz-pph-crop-rect" style="position:absolute; border:2px solid var(--yellow); box-shadow:0 0 0 9999px rgba(0,0,0,0.45); display:none;"></div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:8px;">
+                  <button class="btn btn-secondary btn-sm" onclick="wzPphCropReset()">Reset Crop</button>
+                  <span id="wz-pph-crop-coords" style="font-size:11px; color:var(--muted);">drag to select — or skip for full image</span>
+                </div>
               </div>
-              <label class="form-label">Notes</label>
-              <div class="form-field"><input type="text" id="se-al-notes" placeholder="Optional context notes..."></div>
-              <label class="form-label"></label>
-              <div class="form-field"><button class="btn btn-primary" onclick="seAddAlongsideLink()">Add Reciprocal Link</button></div>
             </div>
           </div>
         </div>
 
-        <!-- 5. VERBAL ACCOUNTS PANE -->
-        <div id="se-pane-anecdotes" class="np-subtab-pane" style="display:none">
+        <div class="wizard-step-pane" id="wz-pane-6">
           <div class="np-section">
             <div class="np-section-head">
-              <span>Anecdotes &amp; Verbal Accounts</span>
-              <button class="btn btn-primary btn-sm" onclick="seOpenAddAnecdoteModal()">+ Add Anecdote</button>
+              <span>Step 6: Select Decorations</span>
+              <button class="btn btn-secondary btn-sm" onclick="wzApplyBaseSet()">Apply Base Set</button>
             </div>
-            <div id="se-anecdotes-list" style="padding:10px 14px"></div>
+            <div style="padding:14px;">
+              <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Standard Awards</div>
+              <div class="np-dec-list" id="wz-dec-standard" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;"></div>
+              <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Distinguished Awards</div>
+              <div class="np-dec-list" id="wz-dec-distinguished" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+            </div>
           </div>
         </div>
 
-        <!-- 6. DOCUMENTS PANE -->
-        <div id="se-pane-documents" class="np-subtab-pane" style="display:none">
+        <div class="wizard-step-pane" id="wz-pane-7">
           <div class="np-section">
-            <div class="np-section-head">
-              <span>Documents</span>
-              <button class="btn btn-primary btn-sm" onclick="seOpenAddDocumentModal()">+ Add Document</button>
-            </div>
-            <div id="se-documents-list" style="padding:10px 14px"></div>
-          </div>
-        </div>
-
-        <!-- 7. LETTERS PANE -->
-        <div id="se-pane-letters" class="np-subtab-pane" style="display:none">
-          <div class="np-section">
-            <div class="np-section-head">
-              <span>Letters</span>
-              <button class="btn btn-primary btn-sm" onclick="seOpenAddLetterModal()">+ Add Letter</button>
-            </div>
-            <div id="se-letters-list" style="padding:10px 14px"></div>
-          </div>
-        </div>
-
-        <!-- 8. SERVICE RECORD & DECORATIONS PANE -->
-        <div id="se-pane-servicerecord" class="np-subtab-pane" style="display:none">
-          <div class="np-section">
-            <div class="np-section-head"><span>Decorations</span></div>
-            <div id="np-dec-content" style="padding:10px 14px"></div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Induction</span><button class="btn btn-secondary np-save-btn" onclick="npSrSaveInduction()">Save</button></div>
+            <div class="np-section-head"><span>Step 7: Induction Details</span></div>
             <div class="form-grid">
-              <label class="form-label">Status</label>
+              <label class="form-label">Induction Status</label>
               <div class="form-field">
-                <select id="np-sr-ind-status">
+                <select id="wz-ind-status">
                   <option value="">--</option><option value="drafted">Drafted</option><option value="enlisted">Enlisted</option>
                   <option value="ra">Regular Army (RA)</option><option value="commissioned">Commissioned</option>
                 </select>
               </div>
-              <label class="form-label">Location</label><div class="form-field"><input type="text" id="np-sr-ind-location"></div>
-              <label class="form-label">Date</label><div class="form-field"><input type="text" id="np-sr-ind-date"></div>
-            </div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Assignments</span></div>
-            <div id="np-sr-assignments-list" style="padding:10px 14px"></div>
-          </div>
-        </div>
-
-        <!-- 9. EXTERNAL RESOURCES PANE -->
-        <div id="se-pane-external" class="np-subtab-pane" style="display:none">
-          <div class="np-section" id="np-ext-wall-section">
-            <div class="np-section-head"><span>Wall of Faces URL (KIA/MIA)</span><button class="btn btn-secondary np-save-btn" onclick="npExtSaveWall()">Save</button></div>
-            <div class="form-grid">
-              <label class="form-label">URL</label><div class="form-field"><input type="text" id="np-ext-wall"></div>
-            </div>
-          </div>
-          <div class="np-section">
-            <div class="np-section-head"><span>Other Resources</span></div>
-            <div id="np-ext-other-list" style="padding:10px 14px"></div>
-            <div class="form-grid" style="padding:0 14px 14px">
-              <label class="form-label">Label</label><div class="form-field"><input type="text" id="np-ext-new-label"></div>
-              <label class="form-label">URL</label><div class="form-field"><input type="text" id="np-ext-new-url"></div>
-              <label class="form-label"></label><div class="form-field"><button class="btn btn-secondary" onclick="npExtAddOther()">Add Link</button></div>
+              <label class="form-label">Location</label><div class="form-field"><input type="text" id="wz-ind-location" placeholder="Fort Jackson, SC"></div>
+              <label class="form-label">Date</label><div class="form-field"><input type="text" id="wz-ind-date" placeholder="YYYY-MM-DD"></div>
             </div>
           </div>
         </div>
 
+        <div class="wizard-step-pane" id="wz-pane-8">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 8: Review &amp; Create</span></div>
+            <div style="padding:14px;">
+              <div class="record-preview" style="margin-top:0">
+                <div class="preview-header">Summary Preview</div>
+                <div class="preview-body" id="wz-summary-preview"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav-row">
+          <button class="btn btn-secondary" id="wz-btn-prev" onclick="wzNav(-1)" disabled>← Previous</button>
+          <span id="wz-step-indicator" style="font-size:12px; font-weight:600; color:var(--muted)">Step 1 of 8</span>
+          <button class="btn btn-primary" id="wz-btn-next" onclick="wzNav(1)">Next →</button>
+          <button class="btn btn-commit" id="wz-btn-finish" onclick="wzFinishCreate()" style="display:none;">Create Soldier Profile ✓</button>
+        </div>
+      </div>
+
+      <!-- SOLDIER EDIT MIRROR -->
+      <div id="se-main-container" style="display:none;">
+        <div class="form-grid" style="margin-bottom:14px">
+          <label class="form-label">Select Soldier</label>
+          <div class="form-field">
+            <select id="np-slug-select" onchange="seLoadSoldier()">
+              <option value="">— select soldier —</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="se-profile-content" style="display:none;">
+          <div class="np-subtab-nav">
+            <button class="np-subtab active" id="se-tab-identity" onclick="seSwitchTab('identity')">Identity</button>
+            <button class="np-subtab" id="se-tab-timeline" onclick="seSwitchTab('timeline')">Timeline</button>
+            <button class="np-subtab" id="se-tab-photos" onclick="seSwitchTab('photos')">Photos</button>
+            <button class="np-subtab" id="se-tab-alongside" onclick="seSwitchTab('alongside')">Served Alongside</button>
+            <button class="np-subtab" id="se-tab-anecdotes" onclick="seSwitchTab('anecdotes')">Verbal Accounts</button>
+            <button class="np-subtab" id="se-tab-documents" onclick="seSwitchTab('documents')">Documents</button>
+            <button class="np-subtab" id="se-tab-letters" onclick="seSwitchTab('letters')">Letters</button>
+            <button class="np-subtab" id="se-tab-servicerecord" onclick="seSwitchTab('servicerecord')">Service Record</button>
+            <button class="np-subtab" id="se-tab-external" onclick="seSwitchTab('external')">External Resources</button>
+          </div>
+
+          <div class="np-status-bar" id="se-status-bar"></div>
+
+          <div id="se-pane-identity" class="np-subtab-pane">
+            <div class="np-section">
+              <div class="np-section-head"><span>Identity</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('identity')">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">First name</label><div class="form-field"><input type="text" id="np-first_name"></div>
+                <label class="form-label">Last name</label><div class="form-field"><input type="text" id="np-last_name"></div>
+                <label class="form-label">Middle name</label><div class="form-field"><input type="text" id="np-middle_name"></div>
+                <label class="form-label">Suffix</label><div class="form-field"><input type="text" id="np-suffix"></div>
+                <label class="form-label">Nickname</label><div class="form-field"><input type="text" id="np-nickname"></div>
+                <label class="form-label">Birth year</label><div class="form-field"><input type="text" id="np-birth_year"></div>
+              </div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Rank &amp; Platoon</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('rank')">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Rank</label><div class="form-field"><input type="text" id="np-rank"></div>
+                <label class="form-label">MOS</label><div class="form-field"><input type="text" id="np-mos"></div>
+                <label class="form-label">Platoon</label>
+                <div class="form-field">
+                  <select id="np-platoon">
+                    <option value=""></option><option>Range</option><option>Cat</option><option>Skull</option><option>HQ</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Service Dates &amp; Status</span><button class="btn btn-secondary np-save-btn" onclick="npSaveSection('service')">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Arrived</label><div class="form-field"><input type="text" id="np-arrived" placeholder="YYYY-MM"></div>
+                <label class="form-label">Departed</label><div class="form-field"><input type="text" id="np-departed" placeholder="YYYY-MM"></div>
+                <label class="form-label">Status</label>
+                <div class="form-field">
+                  <select id="np-status">
+                    <option value="researching">researching</option><option value="veteran">veteran</option>
+                    <option value="deceased">deceased</option><option value="kia">kia</option><option value="mia">mia</option>
+                  </select>
+                </div>
+                <label class="form-label">Character of Service</label>
+                <div class="form-field">
+                  <select id="np-character_of_service">
+                    <option value="Honorable">Honorable</option><option value="General">General</option>
+                    <option value="Other Than Honorable">Other Than Honorable</option><option value="Bad Conduct">Bad Conduct</option><option value="Dishonorable">Dishonorable</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="se-pane-timeline" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Timeline Source Note</span><button class="btn btn-secondary np-save-btn" onclick="npTlSaveSource()">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Source note</label><div class="form-field"><textarea id="np-tl-source" rows="2"></textarea></div>
+              </div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Timeline Entries</span></div>
+              <div id="np-tl-list" style="padding:10px 14px"></div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Add Timeline Entry</span></div>
+              <div class="form-grid">
+                <label class="form-label">Date</label><div class="form-field"><input type="text" id="np-tl-add-date" placeholder="YYYY-MM-DD"></div>
+                <label class="form-label">Phase</label>
+                <div class="form-field">
+                  <select id="np-tl-add-phase">
+                    <option value="">--</option><option value="training">Training</option><option value="staging">Staging</option>
+                    <option value="in-country">In-Country</option><option value="post-service">Post-Service</option>
+                  </select>
+                </div>
+                <label class="form-label">Type</label>
+                <div class="form-field">
+                  <select id="np-tl-add-type">
+                    <option value="service">Service</option><option value="combat">Combat</option><option value="personal">Personal</option><option value="other">Other</option>
+                  </select>
+                </div>
+                <label class="form-label">Headline</label><div class="form-field"><input type="text" id="np-tl-add-headline"></div>
+                <label class="form-label">Body</label><div class="form-field"><textarea id="np-tl-add-body" rows="3"></textarea></div>
+              </div>
+              <div style="padding:0 14px 12px"><button class="btn btn-primary" onclick="npTlAddEntry()">Add Entry</button></div>
+            </div>
+          </div>
+
+          <div id="se-pane-photos" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Profile Photo</span></div>
+              <div id="np-ph-profile" style="padding:12px 14px"></div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Field Photos</span></div>
+              <div id="np-ph-field" style="padding:12px 14px"></div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Find Photos in Archive</span></div>
+              <div style="padding:12px 14px">
+                <button class="btn btn-secondary btn-sm" onclick="npPhLoadContaining()">Search Archive Photos</button>
+                <div id="np-ph-containing" style="margin-top:10px"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="se-pane-alongside" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="se-tier-header">
+                <span>Tier 1: Depicted / Named Together (Auto-derived)</span>
+                <span class="se-tier-badge tier-1">Read-Only</span>
+              </div>
+              <div style="padding:10px 14px; font-size:12px; color:var(--muted); font-style:italic;">
+                Derived automatically from items where both soldiers are listed in <code>contains[]</code>.
+              </div>
+              <div id="se-tier1-list" style="padding:0 14px 10px"></div>
+            </div>
+
+            <div class="np-section">
+              <div class="se-tier-header">
+                <span>Tiers 2–4: Manual Links (_alongside.json)</span>
+                <span class="se-tier-badge tier-2">Reciprocal</span>
+              </div>
+              <div id="se-manual-alongside-list" style="padding:10px 14px"></div>
+              <div class="form-grid" style="padding:10px 14px 14px; border-top:1px solid var(--rule);">
+                <label class="form-label">Add Soldier</label>
+                <div class="form-field">
+                  <input type="text" id="se-al-soldier" list="np-al-datalist" placeholder="Search soldier slug..." autocomplete="off">
+                  <datalist id="np-al-datalist"></datalist>
+                </div>
+                <label class="form-label">Basis (Tier)</label>
+                <div class="form-field">
+                  <select id="se-al-basis">
+                    <option value="same-platoon">Same Platoon (Tier 2)</option>
+                    <option value="company-co">Company CO / Command (Tier 3)</option>
+                    <option value="verbal-account">Verbal Account / Mention (Tier 3)</option>
+                    <option value="document">Document Reference (Tier 3)</option>
+                    <option value="commanding-officer">Commanding Officer Chain (Tier 4)</option>
+                    <option value="unspecified">Unspecified (Tier 3)</option>
+                  </select>
+                </div>
+                <label class="form-label">Notes</label>
+                <div class="form-field"><input type="text" id="se-al-notes" placeholder="Optional context notes..."></div>
+                <label class="form-label"></label>
+                <div class="form-field"><button class="btn btn-primary" onclick="seAddAlongsideLink()">Add Reciprocal Link</button></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="se-pane-anecdotes" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head">
+                <span>Anecdotes &amp; Verbal Accounts</span>
+                <button class="btn btn-primary btn-sm" onclick="seOpenAddAnecdoteModal()">+ Add Anecdote</button>
+              </div>
+              <div id="se-anecdotes-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+
+          <div id="se-pane-documents" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head">
+                <span>Documents</span>
+                <button class="btn btn-primary btn-sm" onclick="seOpenAddDocumentModal()">+ Add Document</button>
+              </div>
+              <div id="se-documents-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+
+          <div id="se-pane-letters" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head">
+                <span>Letters</span>
+                <button class="btn btn-primary btn-sm" onclick="seOpenAddLetterModal()">+ Add Letter</button>
+              </div>
+              <div id="se-letters-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+
+          <div id="se-pane-servicerecord" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Decorations</span></div>
+              <div id="np-dec-content" style="padding:10px 14px"></div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Induction</span><button class="btn btn-secondary np-save-btn" onclick="npSrSaveInduction()">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Status</label>
+                <div class="form-field">
+                  <select id="np-sr-ind-status">
+                    <option value="">--</option><option value="drafted">Drafted</option><option value="enlisted">Enlisted</option>
+                    <option value="ra">Regular Army (RA)</option><option value="commissioned">Commissioned</option>
+                  </select>
+                </div>
+                <label class="form-label">Location</label><div class="form-field"><input type="text" id="np-sr-ind-location"></div>
+                <label class="form-label">Date</label><div class="form-field"><input type="text" id="np-sr-ind-date"></div>
+              </div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Assignments</span></div>
+              <div id="np-sr-assignments-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+
+          <div id="se-pane-external" class="np-subtab-pane" style="display:none">
+            <div class="np-section" id="np-ext-wall-section">
+              <div class="np-section-head"><span>Wall of Faces URL (KIA/MIA)</span><button class="btn btn-secondary np-save-btn" onclick="npExtSaveWall()">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">URL</label><div class="form-field"><input type="text" id="np-ext-wall"></div>
+              </div>
+            </div>
+            <div class="np-section">
+              <div class="np-section-head"><span>Other Resources</span></div>
+              <div id="np-ext-other-list" style="padding:10px 14px"></div>
+              <div class="form-grid" style="padding:0 14px 14px">
+                <label class="form-label">Label</label><div class="form-field"><input type="text" id="np-ext-new-label"></div>
+                <label class="form-label">URL</label><div class="form-field"><input type="text" id="np-ext-new-url"></div>
+                <label class="form-label"></label><div class="form-field"><button class="btn btn-secondary" onclick="npExtAddOther()">Add Link</button></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <!-- Tab 2: Attach Record (Legacy) -->
+    <!-- ══════════════════════════════════════════════════════════════
+         TAB 2: LOCATIONS (Phase 5 Wizard & Edit)
+         ══════════════════════════════════════════════════════════════ -->
+    <div class="panel" id="panel-locations">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <h1 class="section-head" id="loc-main-heading">Locations Manager</h1>
+          <p class="section-desc" id="loc-main-desc" style="margin-bottom:0">Create and edit base locations, firebases, and landing zones.</p>
+        </div>
+        <div class="np-mode-toggle">
+          <button class="np-mode-btn active" id="loc-mode-btn-create" onclick="setLocMode('create')">+ Create Location</button>
+          <button class="np-mode-btn" id="loc-mode-btn-edit" onclick="setLocMode('edit')">✏ Edit Location</button>
+        </div>
+      </div>
+
+      <!-- LOCATION CREATE WIZARD -->
+      <div id="loc-wz-container">
+        <div class="wizard-stepper">
+          <button class="wizard-step-btn active" id="loc-step-btn-1" onclick="locGoToStep(1)">1. Identity</button>
+          <button class="wizard-step-btn" id="loc-step-btn-2" onclick="locGoToStep(2)">2. Coordinates</button>
+          <button class="wizard-step-btn" id="loc-step-btn-3" onclick="locGoToStep(3)">3. Dates &amp; Bases</button>
+          <button class="wizard-step-btn" id="loc-step-btn-4" onclick="locGoToStep(4)">4. Review &amp; Finish</button>
+        </div>
+
+        <div class="wizard-step-pane active" id="loc-pane-1">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 1: Location Identity</span></div>
+            <div class="form-grid">
+              <label class="form-label">Display Name *</label>
+              <div class="form-field"><input type="text" id="loc-wz-display_name" oninput="locDeriveSlug()" placeholder="FSB Carolyn"></div>
+              <label class="form-label">Short Name</label>
+              <div class="form-field"><input type="text" id="loc-wz-short_name" placeholder="Carolyn"></div>
+              <label class="form-label">Type</label>
+              <div class="form-field">
+                <select id="loc-wz-type">
+                  <option value="fsb">Fire Support Base (FSB)</option>
+                  <option value="lz">Landing Zone (LZ)</option>
+                  <option value="camp">Base Camp</option>
+                  <option value="city">City / Village</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <label class="form-label">Also Known As</label>
+              <div class="form-field"><input type="text" id="loc-wz-aka" placeholder="Alternate designations or nicknames"></div>
+              <label class="form-label">Named For</label>
+              <div class="form-field"><input type="text" id="loc-wz-named_for" placeholder="Namesake..."></div>
+              <label class="form-label">Command Post</label>
+              <div class="form-field">
+                <select id="loc-wz-command_post">
+                  <option value="false">No</option>
+                  <option value="true">Yes (Battalion / Brigade CP)</option>
+                </select>
+              </div>
+              <label class="form-label">Generated Slug</label>
+              <div class="form-field">
+                <input type="text" id="loc-wz-slug" style="font-family:monospace; background:var(--cream); font-weight:bold;" placeholder="fsb-carolyn">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="loc-pane-2">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 2: Coordinates &amp; Geography</span></div>
+            <div class="form-grid">
+              <label class="form-label">MGRS Grid</label>
+              <div class="form-field"><input type="text" id="loc-wz-mgrs" placeholder="XT 245 678"></div>
+              <label class="form-label">Latitude</label>
+              <div class="form-field"><input type="text" id="loc-wz-lat" placeholder="11.5432"></div>
+              <label class="form-label">Longitude</label>
+              <div class="form-field"><input type="text" id="loc-wz-lon" placeholder="106.1234"></div>
+              <label class="form-label">Province</label>
+              <div class="form-field"><input type="text" id="loc-wz-province" placeholder="Tay Ninh"></div>
+              <label class="form-label">Modern Landmark</label>
+              <div class="form-field"><input type="text" id="loc-wz-landmark" placeholder="Near modern Highway 14..."></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="loc-pane-3">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 3: Operational Dates &amp; Relations</span></div>
+            <div class="form-grid">
+              <label class="form-label">Established Date</label>
+              <div class="form-field"><input type="text" id="loc-wz-est-date" placeholder="YYYY-MM or YYYY-MM-DD"></div>
+              <label class="form-label">Closed Date</label>
+              <div class="form-field"><input type="text" id="loc-wz-closed-date" placeholder="YYYY-MM or YYYY-MM-DD"></div>
+              <label class="form-label">Predecessor Base</label>
+              <div class="form-field"><input type="text" id="loc-wz-predecessor" placeholder="Prior location slug"></div>
+              <label class="form-label">Successor Base</label>
+              <div class="form-field"><input type="text" id="loc-wz-successor" placeholder="Subsequent location slug"></div>
+              <label class="form-label">Operational Notes</label>
+              <div class="form-field"><textarea id="loc-wz-dates-notes" rows="2"></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="loc-pane-4">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 4: Review &amp; Create Location</span></div>
+            <div style="padding:14px;">
+              <div class="record-preview" style="margin-top:0">
+                <div class="preview-header">Summary Preview</div>
+                <div class="preview-body" id="loc-wz-summary-preview"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav-row">
+          <button class="btn btn-secondary" id="loc-btn-prev" onclick="locNav(-1)" disabled>← Previous</button>
+          <span id="loc-step-indicator" style="font-size:12px; font-weight:600; color:var(--muted)">Step 1 of 4</span>
+          <button class="btn btn-primary" id="loc-btn-next" onclick="locNav(1)">Next →</button>
+          <button class="btn btn-commit" id="loc-btn-finish" onclick="locFinishCreate()" style="display:none;">Create Location ✓</button>
+        </div>
+      </div>
+
+      <!-- LOCATION EDIT MIRROR -->
+      <div id="loc-edit-container" style="display:none;">
+        <div class="form-grid" style="margin-bottom:14px">
+          <label class="form-label">Select Location</label>
+          <div class="form-field">
+            <select id="loc-slug-select" onchange="locLoadLocation()">
+              <option value="">— select location —</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="loc-edit-content" style="display:none;">
+          <div class="np-subtab-nav">
+            <button class="np-subtab active" id="loc-tab-overview" onclick="locSwitchSubTab('overview')">Overview</button>
+            <button class="np-subtab" id="loc-tab-soldiers" onclick="locSwitchSubTab('soldiers')">Soldiers Present</button>
+            <button class="np-subtab" id="loc-tab-events" onclick="locSwitchSubTab('events')">Events Here</button>
+          </div>
+
+          <div id="loc-pane-overview" class="np-subtab-pane">
+            <div class="np-section">
+              <div class="np-section-head"><span>Overview &amp; Geography</span><button class="btn btn-secondary np-save-btn" onclick="locSaveOverview()">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Display Name</label><div class="form-field"><input type="text" id="loc-edit-display_name"></div>
+                <label class="form-label">Short Name</label><div class="form-field"><input type="text" id="loc-edit-short_name"></div>
+                <label class="form-label">Type</label>
+                <div class="form-field">
+                  <select id="loc-edit-type">
+                    <option value="fsb">FSB</option><option value="lz">LZ</option><option value="camp">Base Camp</option><option value="city">City</option><option value="other">Other</option>
+                  </select>
+                </div>
+                <label class="form-label">MGRS Grid</label><div class="form-field"><input type="text" id="loc-edit-mgrs"></div>
+                <label class="form-label">Province</label><div class="form-field"><input type="text" id="loc-edit-province"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="loc-pane-soldiers" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Soldiers Present (Contains &amp; Tagged)</span></div>
+              <div style="padding:14px;" id="loc-tagging-control-box"></div>
+            </div>
+          </div>
+
+          <div id="loc-pane-events" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Related Events</span></div>
+              <div id="loc-events-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legacy Attach Record -->
     <div class="panel" id="panel-attach">
       <h1 class="section-head">Attach Record</h1>
       <p class="section-desc">Connect a value to a front matter field.</p>
       <div id="previewArea"></div>
     </div>
 
-    <!-- Tab 3: Edit Record (Legacy) -->
+    <!-- Legacy Edit Record -->
     <div class="panel" id="panel-edit">
       <h1 class="section-head">Edit Record</h1>
       <div id="editPreviewArea"></div>
@@ -926,8 +1289,12 @@ let slugCache = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSession();
+  initWizardDecorations();
   prefetchSlugs('soldier').then(() => {
     npPopulateEditSelect();
+  });
+  prefetchSlugs('location').then(() => {
+    locPopulateEditSelect();
   });
 });
 
@@ -995,7 +1362,7 @@ function switchTab(name) {
   if (panel) panel.classList.add('active');
 }
 
-// ─── Commit Modal Handlers ───────────────────────────────────────────────────
+// ─── Commit Modal ─────────────────────────────────────────────────────────────
 function openCommitModal() {
   const changes = sessionData?.changes || [];
   document.getElementById('modalChangesList').textContent = changes.length
@@ -1028,7 +1395,7 @@ async function pushBranch() {
   } catch (e) { toast(e.message, 'error'); }
 }
 
-// ─── Phase 1: Tagging Control Component ──────────────────────────────────────
+// ─── Phase 1: Tagging Control ────────────────────────────────────────────────
 class TaggingControl {
   constructor(container, options = {}) {
     this.container = container;
@@ -1080,24 +1447,22 @@ class TaggingControl {
       <div class="tag-control-container">
         <div class="tag-section">
           <div class="tag-section-head">
-            <span>Contains (Depicted / Subject)</span>
+            <span>Contains (Depicted / Subject / Present)</span>
             <span style="color:var(--blue);font-weight:700">Tier-1 Link</span>
           </div>
-          <p class="tag-section-desc">Soldiers explicitly depicted, named, or authored.</p>
           <div class="tag-chips-wrap">
             ${this.contains.length ? this.contains.map(slug => `
               <span class="tag-chip chip-contains">
                 ${escHtml(slug)}
                 <span class="tag-chip-remove" onclick="window._activeTagControl.handleTagOperation('contains', '${escHtml(slug)}', 'remove')">×</span>
               </span>
-            `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">No soldiers in contains.</span>'}
+            `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">None listed.</span>'}
           </div>
           <div class="tag-input-row">
-            <input type="text" id="tc-contains-input" list="tc-contains-dl" placeholder="Type soldier slug to add to Contains..." autocomplete="off">
+            <input type="text" id="tc-contains-input" list="tc-contains-dl" placeholder="Add soldier slug..." autocomplete="off">
             <datalist id="tc-contains-dl">${containsOptions}</datalist>
             <button class="btn btn-secondary btn-sm" onclick="window._activeTagControl.addFromInput('contains')">Add</button>
           </div>
-          <div class="tag-consequence-hint"><strong>Impact:</strong> Adds Tier-1 alongside links on site build.</div>
         </div>
 
         <div class="tag-section">
@@ -1111,10 +1476,10 @@ class TaggingControl {
                 ${escHtml(slug)}
                 <span class="tag-chip-remove" onclick="window._activeTagControl.handleTagOperation('tagged', '${escHtml(slug)}', 'remove')">×</span>
               </span>
-            `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">No soldiers in tagged.</span>'}
+            `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">None listed.</span>'}
           </div>
           <div class="tag-input-row">
-            <input type="text" id="tc-tagged-input" list="tc-tagged-dl" placeholder="Type soldier slug to add to Tagged..." autocomplete="off">
+            <input type="text" id="tc-tagged-input" list="tc-tagged-dl" placeholder="Add soldier slug..." autocomplete="off">
             <datalist id="tc-tagged-dl">${taggedOptions}</datalist>
             <button class="btn btn-secondary btn-sm" onclick="window._activeTagControl.addFromInput('tagged')">Add</button>
           </div>
@@ -1137,13 +1502,12 @@ class TaggingControl {
   }
 }
 
-// ─── Phase 1: Add X Tabbed Modal Shell ───────────────────────────────────────
+// ─── Phase 1: Modal Shell ────────────────────────────────────────────────────
 const ADD_MODAL = { config: null, activeTab: 'content', tagControl: null };
 
 function openAddModal(config) {
   ADD_MODAL.config = config;
   ADD_MODAL.activeTab = 'content';
-
   document.getElementById('addModalTitle').textContent = config.title || 'Add Item';
   document.getElementById('addModalBodyText').value = '';
   document.getElementById('addModalPreview').innerHTML = '';
@@ -1187,12 +1551,7 @@ function switchAddModalTab(tabName) {
 function updateAddModalPreview() {
   const text = document.getElementById('addModalBodyText').value;
   const box = document.getElementById('addModalPreview');
-
-  if (!text.trim()) {
-    box.innerHTML = '<span style="color:var(--muted);font-style:italic;">Preview will appear here…</span>';
-    return;
-  }
-
+  if (!text.trim()) { box.innerHTML = '<span style="color:var(--muted);font-style:italic;">Preview will appear here…</span>'; return; }
   let html = escHtml(text)
     .replace(/^### (.*$)/gim, '<h3>$1</h3>')
     .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -1201,7 +1560,6 @@ function updateAddModalPreview() {
     .replace(/\*(.*)\*/gim, '<em>$1</em>')
     .replace(/\n\n+/g, '</p><p>')
     .replace(/\n/g, '<br>');
-
   box.innerHTML = `<p>${html}</p>`;
 }
 
@@ -1241,10 +1599,218 @@ async function saveAddModal() {
   }
 }
 
+// ─── Phase 4: Soldier Wizard Controller ──────────────────────────────────────
+let wzCurrentStep = 1;
+const WZ_TOTAL_STEPS = 8;
+const WZ_PPH = { file: null, dataUrl: null, crop: null, dragging: false, startX: 0, startY: 0, imgRect: null };
+
+const WZ_AVAILABLE_DECS = ['National Defense Service Medal', 'Vietnam Service Medal', 'Vietnam Campaign Medal', 'Combat Infantryman Badge', 'Air Medal', 'Army Commendation Medal', 'Vietnam Gallantry Cross', 'Marksmanship Badge', 'Expert Marksmanship Badge'];
+const WZ_DISTINGUISHED_DECS = ['Purple Heart', 'Bronze Star Medal', 'Silver Star', 'Distinguished Service Cross', 'Army Commendation Medal for Heroism'];
+
+function initWizardDecorations() {
+  const stdEl = document.getElementById('wz-dec-standard');
+  const distEl = document.getElementById('wz-dec-distinguished');
+  if (!stdEl || !distEl) return;
+  stdEl.innerHTML = WZ_AVAILABLE_DECS.map(d => `<label class="np-dec-item" style="font-size:12px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" value="${escHtml(d)}" class="wz-dec-cb" /> ${escHtml(d)}</label>`).join('');
+  distEl.innerHTML = WZ_DISTINGUISHED_DECS.map(d => `<label class="np-dec-item" style="font-size:12px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" value="${escHtml(d)}" class="wz-dist-cb" /> ${escHtml(d)}</label>`).join('');
+}
+
+function wzApplyBaseSet() {
+  const baseAwards = ['National Defense Service Medal', 'Vietnam Service Medal', 'Vietnam Campaign Medal', 'Vietnam Gallantry Cross'];
+  document.querySelectorAll('.wz-dec-cb').forEach(cb => { cb.checked = baseAwards.includes(cb.value); });
+  toast('Base award set selected', 'success');
+}
+
+function setSoldierMode(mode) {
+  document.getElementById('mode-btn-create').classList.toggle('active', mode === 'create');
+  document.getElementById('mode-btn-edit').classList.toggle('active', mode === 'edit');
+  document.getElementById('wz-container').style.display = mode === 'create' ? 'block' : 'none';
+  document.getElementById('se-main-container').style.display = mode === 'edit' ? 'block' : 'none';
+  document.getElementById('np-main-heading').textContent = mode === 'create' ? 'New Soldier Wizard' : 'Soldier Profile Editor';
+  document.getElementById('np-main-desc').textContent = mode === 'create' ? 'Create a new soldier profile through guided step-by-step intake.' : 'Manage existing soldier records matching the site mirror.';
+  if (mode === 'create') initWizardDecorations();
+}
+
+function wzDeriveSlug() {
+  const first = document.getElementById('wz-first_name').value.trim().toLowerCase();
+  const last = document.getElementById('wz-last_name').value.trim().toLowerCase();
+  if (!last && !first) { document.getElementById('wz-slug').value = ''; return; }
+  document.getElementById('wz-slug').value = `${last}-${first}`.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function wzGoToStep(step) {
+  if (step < 1 || step > WZ_TOTAL_STEPS) return;
+  wzCurrentStep = step;
+  for (let i = 1; i <= WZ_TOTAL_STEPS; i++) {
+    const pane = document.getElementById(`wz-pane-${i}`);
+    const btn = document.getElementById(`wz-step-btn-${i}`);
+    if (pane) pane.classList.toggle('active', i === step);
+    if (btn) btn.classList.toggle('active', i === step);
+  }
+  document.getElementById('wz-btn-prev').disabled = step === 1;
+  document.getElementById('wz-step-indicator').textContent = `Step ${step} of ${WZ_TOTAL_STEPS}`;
+  const isLast = step === WZ_TOTAL_STEPS;
+  document.getElementById('wz-btn-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('wz-btn-finish').style.display = isLast ? 'inline-block' : 'none';
+  if (isLast) wzRenderSummary();
+}
+
+function wzNav(dir) {
+  if (dir === 1 && wzCurrentStep === 1) {
+    const slug = document.getElementById('wz-slug').value.trim();
+    if (!slug) { toast('First and Last Name are required to generate slug.', 'error'); return; }
+  }
+  wzGoToStep(wzCurrentStep + dir);
+}
+
+function wzPphFileSelected(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  WZ_PPH.file = file;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    WZ_PPH.dataUrl = ev.target.result;
+    const img = document.getElementById('wz-pph-crop-img');
+    img.onload = wzBindCropEvents;
+    img.src = WZ_PPH.dataUrl;
+    document.getElementById('wz-pph-crop-area').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function wzBindCropEvents() {
+  const overlay = document.getElementById('wz-pph-crop-overlay');
+  overlay.onmousedown = wzCropStart;
+  document.addEventListener('mousemove', wzCropMove);
+  document.addEventListener('mouseup', wzCropEnd);
+}
+
+function wzCropStart(e) {
+  const img = document.getElementById('wz-pph-crop-img');
+  if (!img.complete || !img.naturalWidth) return;
+  e.preventDefault();
+  WZ_PPH.dragging = true;
+  WZ_PPH.imgRect = img.getBoundingClientRect();
+  WZ_PPH.startX = e.clientX;
+  WZ_PPH.startY = e.clientY;
+  WZ_PPH.crop = null;
+  document.getElementById('wz-pph-crop-rect').style.display = 'none';
+}
+
+function wzCropMove(e) {
+  if (!WZ_PPH.dragging) return;
+  const ib = WZ_PPH.imgRect;
+  const wrap = document.getElementById('wz-pph-crop-wrap').getBoundingClientRect();
+  const x1 = Math.max(ib.left, Math.min(WZ_PPH.startX, e.clientX));
+  const y1 = Math.max(ib.top, Math.min(WZ_PPH.startY, e.clientY));
+  const x2 = Math.min(ib.right, Math.max(WZ_PPH.startX, e.clientX));
+  const y2 = Math.min(ib.bottom, Math.max(WZ_PPH.startY, e.clientY));
+
+  const rect = document.getElementById('wz-pph-crop-rect');
+  rect.style.display = 'block';
+  rect.style.left = (x1 - wrap.left) + 'px';
+  rect.style.top = (y1 - wrap.top) + 'px';
+  rect.style.width = (x2 - x1) + 'px';
+  rect.style.height = (y2 - y1) + 'px';
+
+  WZ_PPH.crop = { x: (x1 - ib.left) / ib.width, y: (y1 - ib.top) / ib.height, w: (x2 - x1) / ib.width, h: (y2 - y1) / ib.height };
+  document.getElementById('wz-pph-crop-coords').textContent = `${Math.round(WZ_PPH.crop.w * 100)}×${Math.round(WZ_PPH.crop.h * 100)}%`;
+}
+
+function wzCropEnd() {
+  if (!WZ_PPH.dragging) return;
+  WZ_PPH.dragging = false;
+  if (!WZ_PPH.crop || WZ_PPH.crop.w < 0.02 || WZ_PPH.crop.h < 0.02) wzPphCropReset();
+}
+
+function wzPphCropReset() {
+  const r = document.getElementById('wz-pph-crop-rect');
+  if (r) r.style.display = 'none';
+  document.getElementById('wz-pph-crop-coords').textContent = 'drag to select — or skip for full image';
+  WZ_PPH.crop = null;
+}
+
+function wzRenderSummary() {
+  const slug = document.getElementById('wz-slug').value.trim();
+  const first = document.getElementById('wz-first_name').value.trim();
+  const last = document.getElementById('wz-last_name').value.trim();
+  const rank = document.getElementById('wz-rank').value;
+  const platoon = document.getElementById('wz-platoon').value;
+  const status = document.getElementById('wz-status').value;
+  const arrived = document.getElementById('wz-arrived').value;
+  const departed = document.getElementById('wz-departed').value;
+  const decs = Array.from(document.querySelectorAll('.wz-dec-cb:checked')).map(cb => cb.value);
+  const dist = Array.from(document.querySelectorAll('.wz-dist-cb:checked')).map(cb => cb.value);
+
+  const rows = [
+    ['Slug', slug], ['Name', `${first} ${last}`], ['Rank & Platoon', `${rank || '—'} · ${platoon || '—'}`],
+    ['Service Dates', `${arrived || '—'} to ${departed || '—'}`], ['Status', status],
+    ['Decorations', [...decs, ...dist].join(', ') || '(none)'], ['Profile Photo', WZ_PPH.dataUrl ? '✓ Photo attached' : '(none)']
+  ];
+
+  document.getElementById('wz-summary-preview').innerHTML = rows.map(([k, v]) => `
+    <div class="fm-row"><span class="fm-key">${k}</span><span class="fm-val">${escHtml(v)}</span></div>
+  `).join('');
+}
+
+async function wzFinishCreate() {
+  const slug = document.getElementById('wz-slug').value.trim();
+  if (!slug) { toast('Slug is missing.', 'error'); return; }
+  const btn = document.getElementById('wz-btn-finish');
+  btn.disabled = true;
+  btn.textContent = 'Creating Soldier...';
+
+  const payload = {
+    slug,
+    first_name: document.getElementById('wz-first_name').value.trim(),
+    last_name: document.getElementById('wz-last_name').value.trim(),
+    middle_name: document.getElementById('wz-middle_name').value.trim(),
+    suffix: document.getElementById('wz-suffix').value,
+    nickname: document.getElementById('wz-nickname').value.trim(),
+    birth_year: document.getElementById('wz-birth_year').value.trim(),
+    rank: document.getElementById('wz-rank').value,
+    mos: document.getElementById('wz-mos').value.trim(),
+    platoon: document.getElementById('wz-platoon').value,
+    arrived: document.getElementById('wz-arrived').value.trim(),
+    departed: document.getElementById('wz-departed').value.trim(),
+    status: document.getElementById('wz-status').value,
+    character_of_service: document.getElementById('wz-character_of_service').value,
+    hometown: document.getElementById('wz-hometown').value.trim(),
+    current_location: document.getElementById('wz-current_location').value.trim(),
+    year_deceased: document.getElementById('wz-year_deceased').value.trim(),
+    cause_of_death: document.getElementById('wz-cause_of_death').value,
+    decorations: Array.from(document.querySelectorAll('.wz-dec-cb:checked')).map(cb => cb.value),
+    distinguished_decorations: Array.from(document.querySelectorAll('.wz-dist-cb:checked')).map(cb => cb.value),
+    service_record: {
+      induction: {
+        status: document.getElementById('wz-ind-status').value || null,
+        location: document.getElementById('wz-ind-location').value.trim() || null,
+        date: document.getElementById('wz-ind-date').value.trim() || null
+      },
+      assignments: []
+    }
+  };
+
+  try {
+    const res = await api('POST', '/soldiers/create', payload);
+    if (!res.ok) throw new Error(res.error || 'Creation failed');
+    if (WZ_PPH.dataUrl) {
+      await api('POST', '/soldier/profile-photo', { slug, imageData: WZ_PPH.dataUrl, crop: WZ_PPH.crop, credit: '', photographer: '' });
+    }
+    toast(`Soldier created: ${slug}`, 'success');
+    await prefetchSlugs('soldier');
+    await npPopulateEditSelect();
+    setSoldierMode('edit');
+    document.getElementById('np-slug-select').value = slug;
+    await seLoadSoldier();
+    await refreshSessionStatus();
+  } catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; btn.textContent = 'Create Soldier Profile ✓'; }
+}
+
 // ─── Phase 3: Soldier Edit View Controller ───────────────────────────────────
 let seCurrentSlug = null;
 let seCurrentData = null;
-
 const SE_TABS = ['identity', 'timeline', 'photos', 'alongside', 'anecdotes', 'documents', 'letters', 'servicerecord', 'external'];
 
 function seSwitchTab(tabName) {
@@ -1254,7 +1820,6 @@ function seSwitchTab(tabName) {
     if (btn) btn.classList.toggle('active', t === tabName);
     if (pane) pane.style.display = t === tabName ? 'block' : 'none';
   });
-
   if (!seCurrentSlug) return;
   if (tabName === 'timeline') npTlLoad(seCurrentData);
   if (tabName === 'photos') npPhLoad();
@@ -1270,9 +1835,7 @@ async function npPopulateEditSelect() {
   const sel = document.getElementById('np-slug-select');
   const items = slugCache.soldier || [];
   const slugs = items.map(s => (typeof s === 'object' ? s.slug : s)).filter(Boolean).sort();
-  sel.innerHTML = '<option value="">— select soldier —</option>' +
-    slugs.map(s => `<option value="${s}">${s}</option>`).join('');
-
+  sel.innerHTML = '<option value="">— select soldier —</option>' + slugs.map(s => `<option value="${s}">${s}</option>`).join('');
   const dl = document.getElementById('np-al-datalist');
   if (dl) dl.innerHTML = slugs.map(s => `<option value="${s}">`).join('');
 }
@@ -1280,30 +1843,20 @@ async function npPopulateEditSelect() {
 async function seLoadSoldier() {
   const sel = document.getElementById('np-slug-select');
   const slug = sel.value;
-  if (!slug) {
-    document.getElementById('se-main-container').style.display = 'none';
-    seCurrentSlug = null;
-    return;
-  }
-
+  if (!slug) { document.getElementById('se-profile-content').style.display = 'none'; seCurrentSlug = null; return; }
   seCurrentSlug = slug;
   try {
     const res = await api('GET', `/record?type=soldier&slug=${encodeURIComponent(slug)}`);
     seCurrentData = res.data || res;
     npPopulateForm(seCurrentData);
-    document.getElementById('se-main-container').style.display = 'block';
+    document.getElementById('se-profile-content').style.display = 'block';
     seSwitchTab('identity');
     toast(`Loaded profile: ${slug}`, 'success');
-  } catch (err) {
-    toast(`Error loading soldier: ${err.message}`, 'error');
-  }
+  } catch (err) { toast(`Error loading soldier: ${err.message}`, 'error'); }
 }
 
 function npPopulateForm(fm) {
-  const fields = [
-    'first_name','last_name','middle_name','suffix','nickname','birth_year',
-    'rank','mos','platoon','arrived','departed','status','character_of_service'
-  ];
+  const fields = ['first_name','last_name','middle_name','suffix','nickname','birth_year','rank','mos','platoon','arrived','departed','status','character_of_service'];
   fields.forEach(f => {
     const el = document.getElementById('np-' + f);
     if (el) el.value = fm[f] !== undefined && fm[f] !== null ? String(fm[f]) : '';
@@ -1321,31 +1874,24 @@ async function npSaveSection(section) {
   const fields = SECTION_FIELDS[section] || [];
   for (const f of fields) {
     const el = document.getElementById('np-' + f);
-    if (el) {
-      await api('POST', '/edit', { type: 'soldier', slug: seCurrentSlug, field: f, value: el.value.trim() });
-    }
+    if (el) await api('POST', '/edit', { type: 'soldier', slug: seCurrentSlug, field: f, value: el.value.trim() });
   }
   toast(`Saved ${section}`, 'success');
   await refreshSessionStatus();
 }
 
-// ─── Alongside Subtab ────────────────────────────────────────────────────────
 async function seLoadAlongside() {
   const manualListEl = document.getElementById('se-manual-alongside-list');
   manualListEl.innerHTML = '<span class="loading">Loading links...</span>';
-
   try {
     const res = await api('GET', `/soldier/alongside?slug=${encodeURIComponent(seCurrentSlug)}`);
     const links = res.links || [];
-
-    if (!links.length) {
-      manualListEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No manual alongside links.</p>';
-    } else {
+    if (!links.length) { manualListEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No manual alongside links.</p>'; }
+    else {
       manualListEl.innerHTML = links.map(l => {
         let tier = 3;
         if (l.basis === 'same-platoon') tier = 2;
         else if (l.basis === 'commanding-officer' || l.basis === 'chain-of-command') tier = 4;
-
         return `
           <div class="se-card">
             <div>
@@ -1353,16 +1899,12 @@ async function seLoadAlongside() {
               <span class="se-tier-badge tier-${tier}" style="margin-left:8px">Tier ${tier}</span>
               <div class="se-card-meta">${escHtml(l.basis || 'unspecified')}${l.notes ? ' — ' + escHtml(l.notes) : ''}</div>
             </div>
-            <div class="se-card-actions">
-              <button class="btn btn-danger btn-sm" onclick="seRemoveAlongsideLink('${escHtml(l.slug)}')">Remove</button>
-            </div>
+            <button class="btn btn-danger btn-sm" onclick="seRemoveAlongsideLink('${escHtml(l.slug)}')">Remove</button>
           </div>
         `;
       }).join('');
     }
-  } catch (err) {
-    manualListEl.innerHTML = `<span style="color:var(--red)">${escHtml(err.message)}</span>`;
-  }
+  } catch (err) { manualListEl.innerHTML = `<span style="color:var(--red)">${escHtml(err.message)}</span>`; }
 }
 
 async function seAddAlongsideLink() {
@@ -1370,7 +1912,6 @@ async function seAddAlongsideLink() {
   const basis = document.getElementById('se-al-basis').value;
   const notes = document.getElementById('se-al-notes').value.trim();
   if (!other) { toast('Please pick a soldier.', 'error'); return; }
-
   try {
     await api('POST', '/alongside', { soldier: seCurrentSlug, other, basis, notes, op: 'add' });
     toast(`Reciprocal link added with ${other}`, 'success');
@@ -1389,7 +1930,6 @@ async function seRemoveAlongsideLink(other) {
   } catch (err) { toast(err.message, 'error'); }
 }
 
-// ─── Documents / Letters / Anecdotes Subtabs ─────────────────────────────────
 async function seLoadDocuments() {
   const el = document.getElementById('se-documents-list');
   el.innerHTML = '<span class="loading">Loading documents...</span>';
@@ -1397,14 +1937,7 @@ async function seLoadDocuments() {
     const d = await api('GET', `/soldier/documents?slug=${encodeURIComponent(seCurrentSlug)}`);
     const docs = d.documents || [];
     if (!docs.length) { el.innerHTML = '<p class="np-stub-msg" style="padding:0">No documents authored.</p>'; return; }
-    el.innerHTML = docs.map(doc => `
-      <div class="se-card">
-        <div>
-          <div class="se-card-title">${escHtml(doc.title || doc.slug)}</div>
-          <div class="se-card-meta">${escHtml(doc.type || 'document')} · <code>${escHtml(doc.slug)}</code></div>
-        </div>
-      </div>
-    `).join('');
+    el.innerHTML = docs.map(doc => `<div class="se-card"><div><div class="se-card-title">${escHtml(doc.title || doc.slug)}</div><div class="se-card-meta">${escHtml(doc.type || 'document')} · <code>${escHtml(doc.slug)}</code></div></div></div>`).join('');
   } catch (err) { el.innerHTML = `<span style="color:var(--red)">${escHtml(err.message)}</span>`; }
 }
 
@@ -1431,14 +1964,7 @@ async function seLoadLetters() {
     const res = await api('GET', `/soldier/letters?slug=${encodeURIComponent(seCurrentSlug)}`);
     const letters = res.letters || [];
     if (!letters.length) { el.innerHTML = '<p class="np-stub-msg" style="padding:0">No letters recorded.</p>'; return; }
-    el.innerHTML = letters.map(lettr => `
-      <div class="se-card">
-        <div>
-          <div class="se-card-title">${escHtml(lettr.title || lettr.slug)}</div>
-          <div class="se-card-meta">${escHtml(lettr.doc_date || 'Unknown date')}${lettr.recipient ? ' · To: ' + escHtml(lettr.recipient) : ''}</div>
-        </div>
-      </div>
-    `).join('');
+    el.innerHTML = letters.map(lettr => `<div class="se-card"><div><div class="se-card-title">${escHtml(lettr.title || lettr.slug)}</div><div class="se-card-meta">${escHtml(lettr.doc_date || 'Unknown date')}${lettr.recipient ? ' · To: ' + escHtml(lettr.recipient) : ''}</div></div></div>`).join('');
   } catch (err) { el.innerHTML = `<span style="color:var(--red)">${escHtml(err.message)}</span>`; }
 }
 
@@ -1466,14 +1992,7 @@ async function seLoadAnecdotes() {
     const res = await api('GET', `/soldier/anecdotes?slug=${encodeURIComponent(seCurrentSlug)}`);
     const anecdotes = res.anecdotes || [];
     if (!anecdotes.length) { el.innerHTML = '<p class="np-stub-msg" style="padding:0">No verbal accounts recorded.</p>'; return; }
-    el.innerHTML = anecdotes.map(a => `
-      <div class="se-card">
-        <div>
-          <div class="se-card-title">${escHtml(a.title || a.slug)}</div>
-          <div class="se-card-meta">${escHtml(a.date || '')}${a.summary ? ' — ' + escHtml(a.summary) : ''}</div>
-        </div>
-      </div>
-    `).join('');
+    el.innerHTML = anecdotes.map(a => `<div class="se-card"><div><div class="se-card-title">${escHtml(a.title || a.slug)}</div><div class="se-card-meta">${escHtml(a.date || '')}${a.summary ? ' — ' + escHtml(a.summary) : ''}</div></div></div>`).join('');
   } catch (err) { el.innerHTML = `<span style="color:var(--red)">${escHtml(err.message)}</span>`; }
 }
 
@@ -1493,7 +2012,6 @@ function seOpenAddAnecdoteModal() {
   setTimeout(() => { const el = document.getElementById('am-field-soldier'); if (el) el.value = seCurrentSlug; }, 50);
 }
 
-// ─── Timeline / Photos / Service Record / External Handlers ─────────────────
 function npTlLoad(fm) {
   const srcEl = document.getElementById('np-tl-source');
   if (srcEl) srcEl.value = fm.timeline_source || '';
@@ -1540,8 +2058,7 @@ async function npTlRemoveEntry(index) {
 
 async function npPhLoad() {
   const d = await api('GET', `/soldier/photos?slug=${encodeURIComponent(seCurrentSlug)}`);
-  document.getElementById('np-ph-profile').innerHTML = d.profile_photo
-    ? `<strong>${escHtml(d.profile_photo)}</strong>` : '<p class="np-stub-msg">No profile photo.</p>';
+  document.getElementById('np-ph-profile').innerHTML = d.profile_photo ? `<strong>${escHtml(d.profile_photo)}</strong>` : '<p class="np-stub-msg">No profile photo.</p>';
   document.getElementById('np-ph-field').innerHTML = `<p>${d.field_count} field photo(s) on disk.</p>`;
 }
 
@@ -1565,7 +2082,6 @@ function npSrLoad(fm) {
   document.getElementById('np-sr-ind-status').value = ind.status || '';
   document.getElementById('np-sr-ind-location').value = ind.location || '';
   document.getElementById('np-sr-ind-date').value = ind.date || '';
-
   const el = document.getElementById('np-sr-assignments-list');
   const assignments = (fm.service_record && fm.service_record.assignments) || [];
   el.innerHTML = assignments.length ? assignments.map(a => `<div class="se-card"><div><strong>${escHtml(a.label || a.type)}</strong> — ${escHtml(a.unit || '')} (${escHtml(a.location || '')})</div></div>`).join('') : '<p class="np-stub-msg">No assignments.</p>';
@@ -1605,6 +2121,186 @@ async function npExtAddOther() {
   npExtLoad(seCurrentData);
   document.getElementById('np-ext-new-label').value = '';
   document.getElementById('np-ext-new-url').value = '';
+}
+
+// ══════════════════════════════════════════════════════════════
+// PHASE 5: LOCATIONS MANAGER (WIZARD & EDIT CONTROLLER)
+// ══════════════════════════════════════════════════════════════
+let locCurrentStep = 1;
+const LOC_TOTAL_STEPS = 4;
+let locCurrentSlug = null;
+let locCurrentData = null;
+let locTagControl = null;
+
+function setLocMode(mode) {
+  document.getElementById('loc-mode-btn-create').classList.toggle('active', mode === 'create');
+  document.getElementById('loc-mode-btn-edit').classList.toggle('active', mode === 'edit');
+  document.getElementById('loc-wz-container').style.display = mode === 'create' ? 'block' : 'none';
+  document.getElementById('loc-edit-container').style.display = mode === 'edit' ? 'block' : 'none';
+  document.getElementById('loc-main-heading').textContent = mode === 'create' ? 'New Location Wizard' : 'Location Editor';
+}
+
+function locDeriveSlug() {
+  const name = document.getElementById('loc-wz-display_name').value.trim().toLowerCase();
+  document.getElementById('loc-wz-slug').value = name.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function locGoToStep(step) {
+  if (step < 1 || step > LOC_TOTAL_STEPS) return;
+  locCurrentStep = step;
+  for (let i = 1; i <= LOC_TOTAL_STEPS; i++) {
+    const pane = document.getElementById(`loc-pane-${i}`);
+    const btn = document.getElementById(`loc-step-btn-${i}`);
+    if (pane) pane.classList.toggle('active', i === step);
+    if (btn) btn.classList.toggle('active', i === step);
+  }
+  document.getElementById('loc-btn-prev').disabled = step === 1;
+  document.getElementById('loc-step-indicator').textContent = `Step ${step} of ${LOC_TOTAL_STEPS}`;
+  const isLast = step === LOC_TOTAL_STEPS;
+  document.getElementById('loc-btn-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('loc-btn-finish').style.display = isLast ? 'inline-block' : 'none';
+  if (isLast) locRenderSummary();
+}
+
+function locNav(dir) {
+  if (dir === 1 && locCurrentStep === 1) {
+    const slug = document.getElementById('loc-wz-slug').value.trim();
+    if (!slug) { toast('Display Name is required to generate slug.', 'error'); return; }
+  }
+  locGoToStep(locCurrentStep + dir);
+}
+
+function locRenderSummary() {
+  const slug = document.getElementById('loc-wz-slug').value.trim();
+  const name = document.getElementById('loc-wz-display_name').value.trim();
+  const type = document.getElementById('loc-wz-type').value;
+  const mgrs = document.getElementById('loc-wz-mgrs').value.trim();
+  const prov = document.getElementById('loc-wz-province').value.trim();
+  const est  = document.getElementById('loc-wz-est-date').value.trim();
+
+  const rows = [
+    ['Slug', slug], ['Display Name', name], ['Type', type.toUpperCase()],
+    ['Coordinates / Province', `${mgrs || '—'} · ${prov || '—'}`],
+    ['Established', est || '—']
+  ];
+
+  document.getElementById('loc-wz-summary-preview').innerHTML = rows.map(([k, v]) => `
+    <div class="fm-row"><span class="fm-key">${k}</span><span class="fm-val">${escHtml(v)}</span></div>
+  `).join('');
+}
+
+async function locFinishCreate() {
+  const slug = document.getElementById('loc-wz-slug').value.trim();
+  if (!slug) return;
+  const btn = document.getElementById('loc-btn-finish');
+  btn.disabled = true;
+
+  const payload = {
+    slug,
+    display_name: document.getElementById('loc-wz-display_name').value.trim(),
+    short_name: document.getElementById('loc-wz-short_name').value.trim(),
+    type: document.getElementById('loc-wz-type').value,
+    also_known_as: document.getElementById('loc-wz-aka').value.trim(),
+    named_for: document.getElementById('loc-wz-named_for').value.trim(),
+    command_post: document.getElementById('loc-wz-command_post').value === 'true',
+    location: {
+      mgrs: document.getElementById('loc-wz-mgrs').value.trim(),
+      lat: document.getElementById('loc-wz-lat').value.trim(),
+      lon: document.getElementById('loc-wz-lon').value.trim(),
+      province: document.getElementById('loc-wz-province').value.trim(),
+      modern_landmark: document.getElementById('loc-wz-landmark').value.trim(),
+    },
+    dates: {
+      established: { date: document.getElementById('loc-wz-est-date').value.trim() },
+      closed: { date: document.getElementById('loc-wz-closed-date').value.trim() },
+      notes: document.getElementById('loc-wz-dates-notes').value.trim()
+    },
+    related_bases: {
+      predecessor: document.getElementById('loc-wz-predecessor').value.trim(),
+      successor: document.getElementById('loc-wz-successor').value.trim(),
+    }
+  };
+
+  try {
+    const res = await api('POST', '/locations/create', payload);
+    if (!res.ok) throw new Error(res.error || 'Failed to create location');
+    toast(`Location created: ${slug}`, 'success');
+    await prefetchSlugs('location');
+    await locPopulateEditSelect();
+    setLocMode('edit');
+    document.getElementById('loc-slug-select').value = slug;
+    await locLoadLocation();
+    await refreshSessionStatus();
+  } catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; }
+}
+
+async function locPopulateEditSelect() {
+  const sel = document.getElementById('loc-slug-select');
+  const items = slugCache.location || [];
+  const slugs = items.map(s => (typeof s === 'object' ? s.slug : s)).filter(Boolean).sort();
+  sel.innerHTML = '<option value="">— select location —</option>' + slugs.map(s => `<option value="${s}">${s}</option>`).join('');
+}
+
+async function locLoadLocation() {
+  const sel = document.getElementById('loc-slug-select');
+  const slug = sel.value;
+  if (!slug) { document.getElementById('loc-edit-content').style.display = 'none'; locCurrentSlug = null; return; }
+  locCurrentSlug = slug;
+
+  try {
+    const res = await api('GET', `/record?type=location&slug=${encodeURIComponent(slug)}`);
+    locCurrentData = res.data || res;
+    locPopulateEditFields(locCurrentData);
+    document.getElementById('loc-edit-content').style.display = 'block';
+    locSwitchSubTab('overview');
+    toast(`Loaded location: ${slug}`, 'success');
+  } catch (err) { toast(`Error loading location: ${err.message}`, 'error'); }
+}
+
+function locPopulateEditFields(fm) {
+  document.getElementById('loc-edit-display_name').value = fm.display_name || '';
+  document.getElementById('loc-edit-short_name').value   = fm.short_name || '';
+  document.getElementById('loc-edit-type').value         = fm.type || 'fsb';
+  document.getElementById('loc-edit-mgrs').value         = fm.location?.mgrs || '';
+  document.getElementById('loc-edit-province').value     = fm.location?.province || '';
+
+  const tagBox = document.getElementById('loc-tagging-control-box');
+  locTagControl = new TaggingControl(tagBox, {
+    type: 'location',
+    slug: locCurrentSlug,
+    initialContains: Array.isArray(fm.contains) ? fm.contains : [],
+    initialTagged: Array.isArray(fm.tagged) ? fm.tagged : []
+  });
+
+  const evList = document.getElementById('loc-events-list');
+  const events = Array.isArray(fm.related_events) ? fm.related_events : [];
+  evList.innerHTML = events.length ? events.map(e => `<div class="se-card"><div><strong>${escHtml(e)}</strong></div></div>`).join('') : '<p class="np-stub-msg">No related events.</p>';
+}
+
+function locSwitchSubTab(tabName) {
+  ['overview', 'soldiers', 'events'].forEach(t => {
+    const btn = document.getElementById(`loc-tab-${t}`);
+    const pane = document.getElementById(`loc-pane-${t}`);
+    if (btn) btn.classList.toggle('active', t === tabName);
+    if (pane) pane.style.display = t === tabName ? 'block' : 'none';
+  });
+}
+
+async function locSaveOverview() {
+  if (!locCurrentSlug) return;
+  const updates = [
+    { field: 'display_name', value: document.getElementById('loc-edit-display_name').value.trim() },
+    { field: 'short_name', value: document.getElementById('loc-edit-short_name').value.trim() },
+    { field: 'type', value: document.getElementById('loc-edit-type').value },
+    { field: 'location.mgrs', value: document.getElementById('loc-edit-mgrs').value.trim() },
+    { field: 'location.province', value: document.getElementById('loc-edit-province').value.trim() },
+  ];
+  for (const u of updates) {
+    await api('POST', '/edit', { type: 'location', slug: locCurrentSlug, field: u.field, value: u.value });
+  }
+  toast('Location overview saved.', 'success');
+  await refreshSessionStatus();
 }
 </script>
 </body>
