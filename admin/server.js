@@ -1160,6 +1160,74 @@ app.post('/api/locations/create', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+/**
+ * T6.1: POST /api/events/create
+ * Schema: site/events/<slug>/index.md
+ */
+app.post('/api/events/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      title = '',
+      type = 'contact',
+      date = '',
+      date_end = '',
+      date_known = true,
+      operation = '',
+      location = '',
+      location_precision = '',
+      units = { primary: [], supporting: [] },
+      sources = [],
+      images = [],
+      related_events = [],
+      contains = [],
+      tagged = [],
+      casualties = {},
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+
+    const eventDir = path.join(SITE_ROOT, 'events', slug);
+    await fs.mkdir(eventDir, { recursive: true });
+    const absPath = path.join(eventDir, 'index.md');
+
+    const data = {
+      layout: 'layouts/event.njk',
+      slug,
+      title: title || slug,
+      status: 'published',
+      publish: true,
+      type,
+      date: date || '',
+      date_end: date_end || '',
+      date_known: date_known === true || date_known === 'true',
+      operation: operation || '',
+      location: location || '',
+      location_precision: location_precision || '',
+      units: {
+        primary: Array.isArray(units.primary) ? units.primary : [],
+        supporting: Array.isArray(units.supporting) ? units.supporting : []
+      },
+      sources: Array.isArray(sources) ? sources : [],
+      images: Array.isArray(images) ? images : [],
+      related_events: Array.isArray(related_events) ? related_events : [],
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      casualties: typeof casualties === 'object' && casualties !== null ? casualties : {},
+      permalink: `/events/${slug}/`
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 // ─── start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {

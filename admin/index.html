@@ -116,7 +116,6 @@
     padding: 24px 20px;
     max-width: 860px;
   }
-
   .panel { display: none; }
   .panel.active { display: block; }
 
@@ -168,8 +167,6 @@
     outline: 2px solid var(--blue);
     outline-offset: 1px;
   }
-
-  .action-row { display: flex; gap: 10px; align-items: center; padding-top: 4px; flex-wrap: wrap; }
 
   /* ── buttons ── */
   .btn {
@@ -301,10 +298,7 @@
     border: none;
     cursor: pointer;
   }
-  .np-mode-btn.active {
-    background: var(--ink);
-    color: var(--yellow);
-  }
+  .np-mode-btn.active { background: var(--ink); color: var(--yellow); }
 
   /* ── Stepper ── */
   .wizard-stepper {
@@ -334,11 +328,7 @@
     text-align: center;
     white-space: nowrap;
   }
-  .wizard-step-btn.active {
-    background: var(--ink);
-    color: var(--yellow);
-    font-weight: 700;
-  }
+  .wizard-step-btn.active { background: var(--ink); color: var(--yellow); font-weight: 700; }
   .wizard-step-pane { display: none; }
   .wizard-step-pane.active { display: block; }
   .wizard-nav-row {
@@ -427,18 +417,6 @@
   }
   .se-card-title { font-weight: 600; font-size: 13px; }
   .se-card-meta { font-size: 11px; color: var(--muted); font-family: var(--font-body); }
-  .se-tier-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 12px;
-    background: var(--cream);
-    border-bottom: 1px solid var(--rule);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
 
   /* ── Tag Control Component (Phase 1) ── */
   .tag-control-container {
@@ -489,15 +467,6 @@
   .tag-chip-remove:hover { opacity: 1; color: var(--red); }
   .tag-input-row { display: flex; gap: 8px; align-items: center; }
   .tag-input-row input { flex: 1; }
-  .tag-consequence-hint {
-    font-size: 11px;
-    color: var(--muted);
-    background: #faf8f5;
-    border-left: 3px solid var(--yellow);
-    padding: 6px 10px;
-    margin-top: 4px;
-    line-height: 1.4;
-  }
 
   /* ── Add X Modal (Phase 1) ── */
   .add-modal-box {
@@ -591,8 +560,7 @@
   <nav class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('newprofile')">Soldier Profiles</button>
     <button class="tab-btn" onclick="switchTab('locations')">Locations</button>
-    <button class="tab-btn" onclick="switchTab('attach')">Attach Record</button>
-    <button class="tab-btn" onclick="switchTab('edit')">Edit Record</button>
+    <button class="tab-btn" onclick="switchTab('events')">Events</button>
   </nav>
 
   <!-- Content Area -->
@@ -649,7 +617,6 @@
               <label class="form-label">Generated Slug</label>
               <div class="form-field">
                 <input type="text" id="wz-slug" style="font-family:monospace; background:var(--cream); font-weight:bold;" placeholder="miller-marvin-dale">
-                <span class="form-hint">Auto-derived: lowercase letters, numbers, and hyphens only</span>
               </div>
             </div>
           </div>
@@ -908,17 +875,29 @@
             </div>
           </div>
 
+          <!-- 3. PHOTOS SUBTAB (Wired to PP.1 and PP.2) -->
           <div id="se-pane-photos" class="np-subtab-pane" style="display:none">
+            <!-- Profile Photo Section (PP.1) -->
             <div class="np-section">
-              <div class="np-section-head"><span>Profile Photo</span></div>
-              <div id="np-ph-profile" style="padding:12px 14px"></div>
+              <div class="np-section-head">
+                <span>Profile Photo</span>
+                <button class="btn btn-primary btn-sm" id="btn-profile-add-replace" onclick="seOpenProfilePhotoModal()">Add Profile Photo</button>
+              </div>
+              <div id="np-ph-profile" style="padding:14px"></div>
             </div>
+
+            <!-- Field Photos Section (PP.2) -->
             <div class="np-section">
-              <div class="np-section-head"><span>Field Photos</span></div>
-              <div id="np-ph-field" style="padding:12px 14px"></div>
+              <div class="np-section-head">
+                <span>Field Photos</span>
+                <button class="btn btn-primary btn-sm" onclick="seOpenFieldPhotosModal()">+ Add Field Photos</button>
+              </div>
+              <div id="np-ph-field" style="padding:14px"></div>
             </div>
+
+            <!-- Photos Containing Soldier -->
             <div class="np-section">
-              <div class="np-section-head"><span>Find Photos in Archive</span></div>
+              <div class="np-section-head"><span>Photos of Soldier in Archive</span></div>
               <div style="padding:12px 14px">
                 <button class="btn btn-secondary btn-sm" onclick="npPhLoadContaining()">Search Archive Photos</button>
                 <div id="np-ph-containing" style="margin-top:10px"></div>
@@ -981,20 +960,14 @@
 
           <div id="se-pane-documents" class="np-subtab-pane" style="display:none">
             <div class="np-section">
-              <div class="np-section-head">
-                <span>Documents</span>
-                <button class="btn btn-primary btn-sm" onclick="seOpenAddDocumentModal()">+ Add Document</button>
-              </div>
+              <div class="np-section-head"><span>Documents</span><button class="btn btn-primary btn-sm" onclick="seOpenAddDocumentModal()">+ Add Document</button></div>
               <div id="se-documents-list" style="padding:10px 14px"></div>
             </div>
           </div>
 
           <div id="se-pane-letters" class="np-subtab-pane" style="display:none">
             <div class="np-section">
-              <div class="np-section-head">
-                <span>Letters</span>
-                <button class="btn btn-primary btn-sm" onclick="seOpenAddLetterModal()">+ Add Letter</button>
-              </div>
+              <div class="np-section-head"><span>Letters</span><button class="btn btn-primary btn-sm" onclick="seOpenAddLetterModal()">+ Add Letter</button></div>
               <div id="se-letters-list" style="padding:10px 14px"></div>
             </div>
           </div>
@@ -1047,7 +1020,7 @@
     </div>
 
     <!-- ══════════════════════════════════════════════════════════════
-         TAB 2: LOCATIONS (Phase 5 Wizard & Edit)
+         TAB 2: LOCATIONS (Phase 5)
          ══════════════════════════════════════════════════════════════ -->
     <div class="panel" id="panel-locations">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
@@ -1061,7 +1034,6 @@
         </div>
       </div>
 
-      <!-- LOCATION CREATE WIZARD -->
       <div id="loc-wz-container">
         <div class="wizard-stepper">
           <button class="wizard-step-btn active" id="loc-step-btn-1" onclick="locGoToStep(1)">1. Identity</button>
@@ -1089,14 +1061,14 @@
                 </select>
               </div>
               <label class="form-label">Also Known As</label>
-              <div class="form-field"><input type="text" id="loc-wz-aka" placeholder="Alternate designations or nicknames"></div>
+              <div class="form-field"><input type="text" id="loc-wz-aka" placeholder="Alternate designations"></div>
               <label class="form-label">Named For</label>
               <div class="form-field"><input type="text" id="loc-wz-named_for" placeholder="Namesake..."></div>
               <label class="form-label">Command Post</label>
               <div class="form-field">
                 <select id="loc-wz-command_post">
                   <option value="false">No</option>
-                  <option value="true">Yes (Battalion / Brigade CP)</option>
+                  <option value="true">Yes</option>
                 </select>
               </div>
               <label class="form-label">Generated Slug</label>
@@ -1119,8 +1091,6 @@
               <div class="form-field"><input type="text" id="loc-wz-lon" placeholder="106.1234"></div>
               <label class="form-label">Province</label>
               <div class="form-field"><input type="text" id="loc-wz-province" placeholder="Tay Ninh"></div>
-              <label class="form-label">Modern Landmark</label>
-              <div class="form-field"><input type="text" id="loc-wz-landmark" placeholder="Near modern Highway 14..."></div>
             </div>
           </div>
         </div>
@@ -1130,22 +1100,20 @@
             <div class="np-section-head"><span>Step 3: Operational Dates &amp; Relations</span></div>
             <div class="form-grid">
               <label class="form-label">Established Date</label>
-              <div class="form-field"><input type="text" id="loc-wz-est-date" placeholder="YYYY-MM or YYYY-MM-DD"></div>
+              <div class="form-field"><input type="text" id="loc-wz-est-date" placeholder="YYYY-MM"></div>
               <label class="form-label">Closed Date</label>
-              <div class="form-field"><input type="text" id="loc-wz-closed-date" placeholder="YYYY-MM or YYYY-MM-DD"></div>
+              <div class="form-field"><input type="text" id="loc-wz-closed-date" placeholder="YYYY-MM"></div>
               <label class="form-label">Predecessor Base</label>
-              <div class="form-field"><input type="text" id="loc-wz-predecessor" placeholder="Prior location slug"></div>
+              <div class="form-field"><input type="text" id="loc-wz-predecessor" placeholder="Prior slug"></div>
               <label class="form-label">Successor Base</label>
-              <div class="form-field"><input type="text" id="loc-wz-successor" placeholder="Subsequent location slug"></div>
-              <label class="form-label">Operational Notes</label>
-              <div class="form-field"><textarea id="loc-wz-dates-notes" rows="2"></textarea></div>
+              <div class="form-field"><input type="text" id="loc-wz-successor" placeholder="Subsequent slug"></div>
             </div>
           </div>
         </div>
 
         <div class="wizard-step-pane" id="loc-pane-4">
           <div class="np-section">
-            <div class="np-section-head"><span>Step 4: Review &amp; Create Location</span></div>
+            <div class="np-section-head"><span>Step 4: Review &amp; Create</span></div>
             <div style="padding:14px;">
               <div class="record-preview" style="margin-top:0">
                 <div class="preview-header">Summary Preview</div>
@@ -1163,7 +1131,6 @@
         </div>
       </div>
 
-      <!-- LOCATION EDIT MIRROR -->
       <div id="loc-edit-container" style="display:none;">
         <div class="form-grid" style="margin-bottom:14px">
           <label class="form-label">Select Location</label>
@@ -1216,17 +1183,161 @@
       </div>
     </div>
 
-    <!-- Legacy Attach Record -->
-    <div class="panel" id="panel-attach">
-      <h1 class="section-head">Attach Record</h1>
-      <p class="section-desc">Connect a value to a front matter field.</p>
-      <div id="previewArea"></div>
-    </div>
+    <!-- ══════════════════════════════════════════════════════════════
+         TAB 3: EVENTS (Phase 6)
+         ══════════════════════════════════════════════════════════════ -->
+    <div class="panel" id="panel-events">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <h1 class="section-head" id="ev-main-heading">Events Manager</h1>
+          <p class="section-desc" id="ev-main-desc" style="margin-bottom:0">Create and manage combat contacts, operations, and unit ceremonies.</p>
+        </div>
+        <div class="np-mode-toggle">
+          <button class="np-mode-btn active" id="ev-mode-btn-create" onclick="setEventMode('create')">+ Create Event</button>
+          <button class="np-mode-btn" id="ev-mode-btn-edit" onclick="setEventMode('edit')">✏ Edit Event</button>
+        </div>
+      </div>
 
-    <!-- Legacy Edit Record -->
-    <div class="panel" id="panel-edit">
-      <h1 class="section-head">Edit Record</h1>
-      <div id="editPreviewArea"></div>
+      <div id="ev-wz-container">
+        <div class="wizard-stepper">
+          <button class="wizard-step-btn active" id="ev-step-btn-1" onclick="evGoToStep(1)">1. Summary</button>
+          <button class="wizard-step-btn" id="ev-step-btn-2" onclick="evGoToStep(2)">2. Date &amp; Location</button>
+          <button class="wizard-step-btn" id="ev-step-btn-3" onclick="evGoToStep(3)">3. Units &amp; Operation</button>
+          <button class="wizard-step-btn" id="ev-step-btn-4" onclick="evGoToStep(4)">4. Review &amp; Finish</button>
+        </div>
+
+        <div class="wizard-step-pane active" id="ev-pane-1">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 1: Event Summary</span></div>
+            <div class="form-grid">
+              <label class="form-label">Title *</label>
+              <div class="form-field"><input type="text" id="ev-wz-title" oninput="evDeriveSlug()" placeholder="Battle of Carolyn"></div>
+              <label class="form-label">Event Type</label>
+              <div class="form-field">
+                <select id="ev-wz-type">
+                  <option value="contact">Combat Contact / Ambush</option>
+                  <option value="operation">Named Operation</option>
+                  <option value="crash">Aviation Crash / Incident</option>
+                  <option value="ceremony">Ceremony / Stand-down</option>
+                  <option value="other">Other Incident</option>
+                </select>
+              </div>
+              <label class="form-label">Generated Slug</label>
+              <div class="form-field">
+                <input type="text" id="ev-wz-slug" style="font-family:monospace; background:var(--cream); font-weight:bold;" placeholder="battle-of-carolyn">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="ev-pane-2">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 2: Dates &amp; Geography</span></div>
+            <div class="form-grid">
+              <label class="form-label">Start Date *</label>
+              <div class="form-field"><input type="text" id="ev-wz-date" placeholder="YYYY-MM-DD"></div>
+              <label class="form-label">End Date</label>
+              <div class="form-field"><input type="text" id="ev-wz-date_end" placeholder="YYYY-MM-DD (optional)"></div>
+              <label class="form-label">Location</label>
+              <div class="form-field"><input type="text" id="ev-wz-location" placeholder="fsb-carolyn"></div>
+              <label class="form-label">Location Precision</label>
+              <div class="form-field">
+                <select id="ev-wz-precision">
+                  <option value="exact">Exact Coordinates</option>
+                  <option value="approximate">Approximate / General</option>
+                  <option value="province">Province Only</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="ev-pane-3">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 3: Operation &amp; Units</span></div>
+            <div class="form-grid">
+              <label class="form-label">Operation Name</label>
+              <div class="form-field"><input type="text" id="ev-wz-operation" placeholder="Operation Toan Thang..."></div>
+              <label class="form-label">Primary Unit</label>
+              <div class="form-field"><input type="text" id="ev-wz-unit-primary" placeholder="D Co, 2nd Bn, 8th Cav"></div>
+              <label class="form-label">Supporting Units</label>
+              <div class="form-field"><input type="text" id="ev-wz-unit-supporting" placeholder="A/2-20 ARA (comma-separated)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-step-pane" id="ev-pane-4">
+          <div class="np-section">
+            <div class="np-section-head"><span>Step 4: Review &amp; Create</span></div>
+            <div style="padding:14px;">
+              <div class="record-preview" style="margin-top:0">
+                <div class="preview-header">Summary Preview</div>
+                <div class="preview-body" id="ev-wz-summary-preview"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-nav-row">
+          <button class="btn btn-secondary" id="ev-btn-prev" onclick="evNav(-1)" disabled>← Previous</button>
+          <span id="ev-step-indicator" style="font-size:12px; font-weight:600; color:var(--muted)">Step 1 of 4</span>
+          <button class="btn btn-primary" id="ev-btn-next" onclick="evNav(1)">Next →</button>
+          <button class="btn btn-commit" id="ev-btn-finish" onclick="evFinishCreate()" style="display:none;">Create Event Profile ✓</button>
+        </div>
+      </div>
+
+      <div id="ev-edit-container" style="display:none;">
+        <div class="form-grid" style="margin-bottom:14px">
+          <label class="form-label">Select Event</label>
+          <div class="form-field">
+            <select id="ev-slug-select" onchange="evLoadEvent()">
+              <option value="">— select event —</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="ev-edit-content" style="display:none;">
+          <div class="np-subtab-nav">
+            <button class="np-subtab active" id="ev-tab-summary" onclick="evSwitchSubTab('summary')">Summary</button>
+            <button class="np-subtab" id="ev-tab-soldiers" onclick="evSwitchSubTab('soldiers')">Soldiers (Contains)</button>
+            <button class="np-subtab" id="ev-tab-documents" onclick="evSwitchSubTab('documents')">Documents</button>
+            <button class="np-subtab" id="ev-tab-images" onclick="evSwitchSubTab('images')">Images</button>
+          </div>
+
+          <div id="ev-pane-summary" class="np-subtab-pane">
+            <div class="np-section">
+              <div class="np-section-head"><span>Event Details</span><button class="btn btn-secondary np-save-btn" onclick="evSaveSummary()">Save</button></div>
+              <div class="form-grid">
+                <label class="form-label">Title</label><div class="form-field"><input type="text" id="ev-edit-title"></div>
+                <label class="form-label">Date</label><div class="form-field"><input type="text" id="ev-edit-date"></div>
+                <label class="form-label">Location</label><div class="form-field"><input type="text" id="ev-edit-location"></div>
+                <label class="form-label">Operation</label><div class="form-field"><input type="text" id="ev-edit-operation"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="ev-pane-soldiers" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Event Soldiers &amp; Tagging</span></div>
+              <div style="padding:14px;" id="ev-tagging-control-box"></div>
+            </div>
+          </div>
+
+          <div id="ev-pane-documents" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Associated Documents</span></div>
+              <div id="ev-documents-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+
+          <div id="ev-pane-images" class="np-subtab-pane" style="display:none">
+            <div class="np-section">
+              <div class="np-section-head"><span>Images</span></div>
+              <div id="ev-images-list" style="padding:10px 14px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -1235,7 +1346,98 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- Generic Add Modal (Phase 1) -->
+<!-- Modal: Profile Photo Crop & Set (PP.1) -->
+<div class="modal-overlay" id="profilePhotoModal" onclick="if(event.target===this)closeProfilePhotoModal()">
+  <div class="modal" style="width:520px;">
+    <h2>Set Profile Picture</h2>
+    <p class="section-desc" style="margin-bottom:12px;">Crop portrait and save to soldier profile and R2.</p>
+    
+    <div class="pph-drop-zone" id="se-pph-drop-zone" onclick="document.getElementById('se-pph-file-input').click()" style="border:2px dashed var(--rule); padding:20px; text-align:center; cursor:pointer; background:#fff; margin-bottom:12px;">
+      <div style="font-size:20px;margin-bottom:4px;">↓</div>
+      <div>Choose an image file (JPG / PNG)</div>
+    </div>
+    <input type="file" id="se-pph-file-input" accept="image/jpeg,image/png" style="display:none" onchange="sePphFileSelected(event)">
+
+    <div id="se-pph-crop-area" style="display:none; margin-bottom:14px; text-align:center;">
+      <div class="pph-crop-wrap" id="se-pph-crop-wrap" style="position:relative; display:inline-block; max-width:100%;">
+        <img class="pph-crop-img" id="se-pph-crop-img" draggable="false" alt="" style="max-height:240px; display:block;">
+        <div class="pph-crop-overlay" id="se-pph-crop-overlay" style="position:absolute; inset:0; cursor:crosshair;">
+          <div class="pph-crop-rect" id="se-pph-crop-rect" style="position:absolute; border:2px solid var(--yellow); box-shadow:0 0 0 9999px rgba(0,0,0,0.45); display:none;"></div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:8px; margin-top:6px;">
+        <button class="btn btn-secondary btn-sm" onclick="sePphCropReset()">Reset Crop</button>
+        <span id="se-pph-crop-coords" style="font-size:11px; color:var(--muted); line-height:24px;">drag to select — or skip for full image</span>
+      </div>
+    </div>
+
+    <div class="form-grid" style="margin-bottom:14px;">
+      <label class="form-label">Credit</label>
+      <div class="form-field"><input type="text" id="se-pph-credit" placeholder="e.g. Photo courtesy of family"></div>
+      <label class="form-label">Photographer</label>
+      <div class="form-field"><input type="text" id="se-pph-photographer" placeholder="Unknown / name"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeProfilePhotoModal()">Cancel</button>
+      <button class="btn btn-primary" id="btn-save-profile-photo" onclick="seSaveProfilePhoto()">Upload &amp; Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Field Photos Intake (PP.2) -->
+<div class="modal-overlay" id="fieldPhotosModal" onclick="if(event.target===this)closeFieldPhotosModal()">
+  <div class="add-modal-box" style="width:720px; height:80vh;">
+    <div class="add-modal-header">
+      <span class="add-modal-title" id="fieldPhotosModalTitle">Add Field Photos</span>
+      <button class="modal-close" onclick="closeFieldPhotosModal()" style="color:var(--paper);background:none;border:none;font-size:18px;cursor:pointer;">✕</button>
+    </div>
+    
+    <div class="add-modal-body" id="fieldPhotosModalBody">
+      <!-- Step 1: Upload multi-files -->
+      <div id="fp-step-upload">
+        <p class="section-desc">Select one or more field photos to attach to this soldier's profile.</p>
+        <div style="border:2px dashed var(--rule); padding:36px; text-align:center; background:#fff; cursor:pointer;" onclick="document.getElementById('fp-files-input').click()">
+          <div style="font-size:28px; margin-bottom:8px;">📷</div>
+          <div style="font-weight:600; font-size:13px; margin-bottom:4px;">Click to select photos</div>
+          <div style="font-size:11px; color:var(--muted);">Supports JPG, PNG, WEBP, TIFF</div>
+        </div>
+        <input type="file" id="fp-files-input" multiple accept="image/*" style="display:none" onchange="seFpFilesSelected(this.files)">
+        <div id="fp-upload-status" style="margin-top:10px; font-size:12px; font-weight:600; color:var(--blue);"></div>
+      </div>
+
+      <!-- Step 2: Per-photo tagging & metadata -->
+      <div id="fp-step-tag" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="font-weight:700; font-size:13px;" id="fp-photo-progress">Photo 1 of 1</span>
+          <span style="font-family:monospace; font-size:11px; color:var(--muted);" id="fp-photo-filename"></span>
+        </div>
+        <div style="text-align:center; margin-bottom:12px;">
+          <img id="fp-photo-preview" src="" style="max-height:220px; max-width:100%; border:1px solid var(--rule); border-radius:3px; background:#111; object-fit:contain;" />
+        </div>
+        
+        <div class="form-grid" style="margin-bottom:12px;">
+          <label class="form-label">Caption</label>
+          <div class="form-field"><textarea id="fp-caption" rows="2" placeholder="Photo caption or description..."></textarea></div>
+          <label class="form-label">Credit</label>
+          <div class="form-field"><input type="text" id="fp-credit" placeholder="Collection of..."></div>
+          <label class="form-label">Date</label>
+          <div class="form-field"><input type="text" id="fp-date" placeholder="YYYY-MM (e.g. 1971-05)"></div>
+        </div>
+
+        <div id="fp-tag-control-box" style="margin-bottom:14px;"></div>
+      </div>
+    </div>
+
+    <div class="add-modal-footer" id="fp-modal-footer" style="display:none;">
+      <button class="btn btn-secondary" id="fp-btn-prev" onclick="seFpNavPhoto(-1)">← Previous</button>
+      <button class="btn btn-primary" id="fp-btn-next" onclick="seFpSavePhotoBuffer(true)">Save &amp; Next →</button>
+      <button class="btn btn-commit" id="fp-btn-finish" onclick="seFpFlushAll()" style="display:none;">Upload to R2 &amp; Save Photos ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- Generic Add Modal -->
 <div class="modal-overlay" id="addGenericModal" onclick="if(event.target===this)closeAddModal()">
   <div class="add-modal-box">
     <div class="add-modal-header">
@@ -1290,12 +1492,9 @@ let slugCache = {};
 document.addEventListener('DOMContentLoaded', () => {
   loadSession();
   initWizardDecorations();
-  prefetchSlugs('soldier').then(() => {
-    npPopulateEditSelect();
-  });
-  prefetchSlugs('location').then(() => {
-    locPopulateEditSelect();
-  });
+  prefetchSlugs('soldier').then(() => npPopulateEditSelect());
+  prefetchSlugs('location').then(() => locPopulateEditSelect());
+  prefetchSlugs('event').then(() => evPopulateEditSelect());
 });
 
 async function api(method, path, body) {
@@ -1395,7 +1594,7 @@ async function pushBranch() {
   } catch (e) { toast(e.message, 'error'); }
 }
 
-// ─── Phase 1: Tagging Control ────────────────────────────────────────────────
+// ─── Phase 1: Tagging Control Component ──────────────────────────────────────
 class TaggingControl {
   constructor(container, options = {}) {
     this.container = container;
@@ -2056,10 +2255,44 @@ async function npTlRemoveEntry(index) {
   npTlLoad(seCurrentData);
 }
 
+// ─── Photos Rendering & Sub-Actions (PP.1 & PP.2) ────────────────────────────
 async function npPhLoad() {
   const d = await api('GET', `/soldier/photos?slug=${encodeURIComponent(seCurrentSlug)}`);
-  document.getElementById('np-ph-profile').innerHTML = d.profile_photo ? `<strong>${escHtml(d.profile_photo)}</strong>` : '<p class="np-stub-msg">No profile photo.</p>';
-  document.getElementById('np-ph-field').innerHTML = `<p>${d.field_count} field photo(s) on disk.</p>`;
+  const profileEl = document.getElementById('np-ph-profile');
+  const replaceBtn = document.getElementById('btn-profile-add-replace');
+
+  if (d.profile_photo) {
+    profileEl.innerHTML = `
+      <div style="display:flex; align-items:center; gap:14px;">
+        <img src="https://angryskipperarchive.org/media/photos/soldiers/${encodeURIComponent(seCurrentSlug)}/profile/${encodeURIComponent(d.profile_photo)}" style="width:72px; height:72px; object-fit:cover; border-radius:3px; border:1px solid var(--rule);" />
+        <div>
+          <div><strong>${escHtml(d.profile_photo)}</strong></div>
+          <div style="font-size:11px; color:var(--muted)">Saved in <code>photos/profile/</code></div>
+        </div>
+      </div>
+    `;
+    if (replaceBtn) replaceBtn.textContent = 'Replace Profile Photo';
+  } else {
+    profileEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No profile photo attached.</p>';
+    if (replaceBtn) replaceBtn.textContent = 'Add Profile Photo';
+  }
+
+  const fieldEl = document.getElementById('np-ph-field');
+  if (d.field_files && d.field_files.length) {
+    fieldEl.innerHTML = `
+      <p style="font-size:12px; margin-bottom:8px;">${d.field_files.length} photo(s) in field collection:</p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        ${d.field_files.map(f => `
+          <div style="text-align:center; width:90px;">
+            <img src="https://angryskipperarchive.org/media/photos/soldiers/${encodeURIComponent(seCurrentSlug)}/field/${encodeURIComponent(f)}" style="width:90px; height:90px; object-fit:cover; border-radius:3px; border:1px solid var(--rule);" />
+            <div style="font-family:monospace; font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escHtml(f)}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } else {
+    fieldEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No field photos uploaded.</p>';
+  }
 }
 
 async function npPhLoadContaining() {
@@ -2071,6 +2304,270 @@ async function npPhLoadContaining() {
   el.innerHTML = photos.map(p => `<div><code>${escHtml(p.sourceSlug)}/${escHtml(p.filename)}</code></div>`).join('');
 }
 
+// ─── PP.1: Profile Photo Modal Controller ────────────────────────────────────
+const SE_PPH = { file: null, dataUrl: null, crop: null, dragging: false, startX: 0, startY: 0, imgRect: null };
+
+function seOpenProfilePhotoModal() {
+  SE_PPH.file = null;
+  SE_PPH.dataUrl = null;
+  SE_PPH.crop = null;
+  document.getElementById('se-pph-crop-area').style.display = 'none';
+  document.getElementById('se-pph-credit').value = '';
+  document.getElementById('se-pph-photographer').value = '';
+  document.getElementById('profilePhotoModal').classList.add('open');
+}
+
+function closeProfilePhotoModal() {
+  document.getElementById('profilePhotoModal').classList.remove('open');
+}
+
+function sePphFileSelected(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  SE_PPH.file = file;
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    SE_PPH.dataUrl = ev.target.result;
+    const img = document.getElementById('se-pph-crop-img');
+    img.onload = seBindCropEvents;
+    img.src = SE_PPH.dataUrl;
+    document.getElementById('se-pph-crop-area').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function seBindCropEvents() {
+  const overlay = document.getElementById('se-pph-crop-overlay');
+  overlay.onmousedown = seCropStart;
+  document.addEventListener('mousemove', seCropMove);
+  document.addEventListener('mouseup', seCropEnd);
+}
+
+function seCropStart(e) {
+  const img = document.getElementById('se-pph-crop-img');
+  if (!img.complete || !img.naturalWidth) return;
+  e.preventDefault();
+  SE_PPH.dragging = true;
+  SE_PPH.imgRect = img.getBoundingClientRect();
+  SE_PPH.startX = e.clientX;
+  SE_PPH.startY = e.clientY;
+  SE_PPH.crop = null;
+  document.getElementById('se-pph-crop-rect').style.display = 'none';
+}
+
+function seCropMove(e) {
+  if (!SE_PPH.dragging) return;
+  const ib = SE_PPH.imgRect;
+  const wrap = document.getElementById('se-pph-crop-wrap').getBoundingClientRect();
+  const x1 = Math.max(ib.left, Math.min(SE_PPH.startX, e.clientX));
+  const y1 = Math.max(ib.top, Math.min(SE_PPH.startY, e.clientY));
+  const x2 = Math.min(ib.right, Math.max(SE_PPH.startX, e.clientX));
+  const y2 = Math.min(ib.bottom, Math.max(SE_PPH.startY, e.clientY));
+
+  const rect = document.getElementById('se-pph-crop-rect');
+  rect.style.display = 'block';
+  rect.style.left = (x1 - wrap.left) + 'px';
+  rect.style.top = (y1 - wrap.top) + 'px';
+  rect.style.width = (x2 - x1) + 'px';
+  rect.style.height = (y2 - y1) + 'px';
+
+  SE_PPH.crop = { x: (x1 - ib.left) / ib.width, y: (y1 - ib.top) / ib.height, w: (x2 - x1) / ib.width, h: (y2 - y1) / ib.height };
+  document.getElementById('se-pph-crop-coords').textContent = `${Math.round(SE_PPH.crop.w * 100)}×${Math.round(SE_PPH.crop.h * 100)}%`;
+}
+
+function seCropEnd() {
+  if (!SE_PPH.dragging) return;
+  SE_PPH.dragging = false;
+  if (!SE_PPH.crop || SE_PPH.crop.w < 0.02 || SE_PPH.crop.h < 0.02) sePphCropReset();
+}
+
+function sePphCropReset() {
+  const r = document.getElementById('se-pph-crop-rect');
+  if (r) r.style.display = 'none';
+  document.getElementById('se-pph-crop-coords').textContent = 'drag to select — or skip for full image';
+  SE_PPH.crop = null;
+}
+
+async function seSaveProfilePhoto() {
+  if (!SE_PPH.dataUrl) { toast('Please choose an image file first.', 'error'); return; }
+  const btn = document.getElementById('btn-save-profile-photo');
+  btn.disabled = true;
+  btn.textContent = 'Uploading to R2...';
+
+  try {
+    const res = await api('POST', '/soldier/profile-photo', {
+      slug: seCurrentSlug,
+      imageData: SE_PPH.dataUrl,
+      crop: SE_PPH.crop,
+      credit: document.getElementById('se-pph-credit').value.trim(),
+      photographer: document.getElementById('se-pph-photographer').value.trim()
+    });
+
+    if (res.ok) {
+      toast(`Profile picture saved: ${res.filename}`, 'success');
+      closeProfilePhotoModal();
+      await npPhLoad();
+      await refreshSessionStatus();
+    } else {
+      toast(res.error || 'Failed to save profile picture.', 'error');
+    }
+  } catch (err) {
+    toast(err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Upload & Save';
+  }
+}
+
+// ─── PP.2: Field Photos Modal Controller ─────────────────────────────────────
+const SE_FP = {
+  rawFolder: null,
+  files: [],
+  currentIdx: 0,
+  buffer: {}
+};
+
+function seOpenFieldPhotosModal() {
+  SE_FP.rawFolder = null;
+  SE_FP.files = [];
+  SE_FP.currentIdx = 0;
+  SE_FP.buffer = {};
+
+  document.getElementById('fieldPhotosModalTitle').textContent = `Add Field Photos for ${seCurrentSlug}`;
+  document.getElementById('fp-step-upload').style.display = 'block';
+  document.getElementById('fp-step-tag').style.display = 'none';
+  document.getElementById('fp-modal-footer').style.display = 'none';
+  document.getElementById('fp-upload-status').textContent = '';
+  document.getElementById('fieldPhotosModal').classList.add('open');
+}
+
+function closeFieldPhotosModal() {
+  document.getElementById('fieldPhotosModal').classList.remove('open');
+}
+
+async function seFpFilesSelected(files) {
+  if (!files || !files.length) return;
+  const status = document.getElementById('fp-upload-status');
+  status.textContent = `Uploading ${files.length} file(s)...`;
+
+  const fd = new FormData();
+  fd.append('folderName', seCurrentSlug);
+  Array.from(files).forEach(f => fd.append('files', f));
+
+  try {
+    const res = await fetch('/api/photos/raw/upload', { method: 'POST', body: fd });
+    const d = await res.json();
+    if (!d.ok) throw new Error(d.error || 'Upload failed');
+
+    SE_FP.rawFolder = d.folder;
+    status.textContent = 'Moving to staging...';
+
+    // Auto-stage to current soldier slug
+    const stRes = await api('POST', '/photos/raw/stage', { folder: d.folder, slug: seCurrentSlug });
+    if (!stRes.ok) throw new Error(stRes.error || 'Staging failed');
+
+    // Retrieve staged files
+    const stageDetail = await api('GET', `/photos/staging/${encodeURIComponent(seCurrentSlug)}`);
+    SE_FP.files = stageDetail.photos || [];
+
+    document.getElementById('fp-step-upload').style.display = 'none';
+    document.getElementById('fp-step-tag').style.display = 'block';
+    document.getElementById('fp-modal-footer').style.display = 'flex';
+
+    seFpRenderPhoto(0);
+  } catch (err) {
+    status.textContent = err.message;
+    toast(err.message, 'error');
+  }
+}
+
+function seFpRenderPhoto(idx) {
+  if (!SE_FP.files.length) return;
+  SE_FP.currentIdx = idx;
+  const filename = SE_FP.files[idx];
+  const buf = SE_FP.buffer[filename] || {};
+  const isFirst = idx === 0;
+  const isLast = idx === SE_FP.files.length - 1;
+
+  document.getElementById('fp-photo-progress').textContent = `Photo ${idx + 1} of ${SE_FP.files.length}`;
+  document.getElementById('fp-photo-filename').textContent = filename;
+  document.getElementById('fp-photo-preview').src = `/api/photos/staging/${encodeURIComponent(seCurrentSlug)}/image/${encodeURIComponent(filename)}`;
+
+  document.getElementById('fp-caption').value = buf.caption || '';
+  document.getElementById('fp-credit').value = buf.credit || '';
+  document.getElementById('fp-date').value = buf.date || '';
+
+  document.getElementById('fp-btn-prev').disabled = isFirst;
+  document.getElementById('fp-btn-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('fp-btn-finish').style.display = isLast ? 'inline-block' : 'none';
+
+  const tagBox = document.getElementById('fp-tag-control-box');
+  new TaggingControl(tagBox, {
+    initialContains: buf.contains ? buf.contains.split(',').map(s => s.trim()).filter(Boolean) : [seCurrentSlug],
+    initialTagged: buf.tagged ? buf.tagged.split(',').map(s => s.trim()).filter(Boolean) : [],
+    onChange: ({ contains, tagged }) => {
+      buf.contains = contains.join(',');
+      buf.tagged = tagged.join(',');
+    }
+  });
+}
+
+function seFpSavePhotoBuffer(advance = false) {
+  const filename = SE_FP.files[SE_FP.currentIdx];
+  if (!SE_FP.buffer[filename]) SE_FP.buffer[filename] = {};
+  const buf = SE_FP.buffer[filename];
+
+  buf.filename = filename;
+  buf.dest = 'field';
+  buf.caption = document.getElementById('fp-caption').value.trim();
+  buf.caption_short = '';
+  buf.credit = document.getElementById('fp-credit').value.trim();
+  buf.photographer = '';
+  buf.date = document.getElementById('fp-date').value.trim();
+  buf.date_known = !!buf.date;
+
+  if (advance && SE_FP.currentIdx < SE_FP.files.length - 1) {
+    seFpNavPhoto(1);
+  }
+}
+
+function seFpNavPhoto(dir) {
+  seFpSavePhotoBuffer(false);
+  const next = SE_FP.currentIdx + dir;
+  if (next >= 0 && next < SE_FP.files.length) {
+    seFpRenderPhoto(next);
+  }
+}
+
+async function seFpFlushAll() {
+  seFpSavePhotoBuffer(false);
+  const bufferArr = SE_FP.files.map(f => SE_FP.buffer[f]).filter(Boolean);
+  if (!bufferArr.length) { toast('No photo metadata to save.', 'error'); return; }
+
+  const finishBtn = document.getElementById('fp-btn-finish');
+  finishBtn.disabled = true;
+  finishBtn.textContent = 'Uploading to R2...';
+
+  try {
+    const res = await api('POST', '/photos/flush', { slug: seCurrentSlug, buffer: bufferArr });
+    if (res.errors && res.errors.length) {
+      toast(`Upload completed with warnings: ${res.errors.join('; ')}`, 'error');
+    } else {
+      toast(`Successfully uploaded & saved ${res.moved.length} photo(s).`, 'success');
+      closeFieldPhotosModal();
+      await npPhLoad();
+      await refreshSessionStatus();
+    }
+  } catch (err) {
+    toast(err.message, 'error');
+  } finally {
+    finishBtn.disabled = false;
+    finishBtn.textContent = 'Upload to R2 & Save Photos ✓';
+  }
+}
+
+// ─── Decorations, Induction, External Handlers ──────────────────────────────
 function npDecLoad() {
   const el = document.getElementById('np-dec-content');
   const decs = Array.isArray(seCurrentData.decorations) ? seCurrentData.decorations : [];
@@ -2123,9 +2620,7 @@ async function npExtAddOther() {
   document.getElementById('np-ext-new-url').value = '';
 }
 
-// ══════════════════════════════════════════════════════════════
-// PHASE 5: LOCATIONS MANAGER (WIZARD & EDIT CONTROLLER)
-// ══════════════════════════════════════════════════════════════
+// ─── Phase 5: Locations Manager Controller ────────────────────────────────────
 let locCurrentStep = 1;
 const LOC_TOTAL_STEPS = 4;
 let locCurrentSlug = null;
@@ -2208,12 +2703,10 @@ async function locFinishCreate() {
       lat: document.getElementById('loc-wz-lat').value.trim(),
       lon: document.getElementById('loc-wz-lon').value.trim(),
       province: document.getElementById('loc-wz-province').value.trim(),
-      modern_landmark: document.getElementById('loc-wz-landmark').value.trim(),
     },
     dates: {
       established: { date: document.getElementById('loc-wz-est-date').value.trim() },
       closed: { date: document.getElementById('loc-wz-closed-date').value.trim() },
-      notes: document.getElementById('loc-wz-dates-notes').value.trim()
     },
     related_bases: {
       predecessor: document.getElementById('loc-wz-predecessor').value.trim(),
@@ -2300,6 +2793,175 @@ async function locSaveOverview() {
     await api('POST', '/edit', { type: 'location', slug: locCurrentSlug, field: u.field, value: u.value });
   }
   toast('Location overview saved.', 'success');
+  await refreshSessionStatus();
+}
+
+// ─── Phase 6: Events Manager Controller ──────────────────────────────────────
+let evCurrentStep = 1;
+const EV_TOTAL_STEPS = 4;
+let evCurrentSlug = null;
+let evCurrentData = null;
+let evTagControl = null;
+
+function setEventMode(mode) {
+  document.getElementById('ev-mode-btn-create').classList.toggle('active', mode === 'create');
+  document.getElementById('ev-mode-btn-edit').classList.toggle('active', mode === 'edit');
+  document.getElementById('ev-wz-container').style.display = mode === 'create' ? 'block' : 'none';
+  document.getElementById('ev-edit-container').style.display = mode === 'edit' ? 'block' : 'none';
+  document.getElementById('ev-main-heading').textContent = mode === 'create' ? 'New Event Wizard' : 'Events Editor';
+}
+
+function evDeriveSlug() {
+  const title = document.getElementById('ev-wz-title').value.trim().toLowerCase();
+  document.getElementById('ev-wz-slug').value = title.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function evGoToStep(step) {
+  if (step < 1 || step > EV_TOTAL_STEPS) return;
+  evCurrentStep = step;
+  for (let i = 1; i <= EV_TOTAL_STEPS; i++) {
+    const pane = document.getElementById(`ev-pane-${i}`);
+    const btn = document.getElementById(`ev-step-btn-${i}`);
+    if (pane) pane.classList.toggle('active', i === step);
+    if (btn) btn.classList.toggle('active', i === step);
+  }
+  document.getElementById('ev-btn-prev').disabled = step === 1;
+  document.getElementById('ev-step-indicator').textContent = `Step ${step} of ${EV_TOTAL_STEPS}`;
+  const isLast = step === EV_TOTAL_STEPS;
+  document.getElementById('ev-btn-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('ev-btn-finish').style.display = isLast ? 'inline-block' : 'none';
+  if (isLast) evRenderSummary();
+}
+
+function evNav(dir) {
+  if (dir === 1 && evCurrentStep === 1) {
+    const slug = document.getElementById('ev-wz-slug').value.trim();
+    if (!slug) { toast('Title is required to generate slug.', 'error'); return; }
+  }
+  evGoToStep(evCurrentStep + dir);
+}
+
+function evRenderSummary() {
+  const slug = document.getElementById('ev-wz-slug').value.trim();
+  const title = document.getElementById('ev-wz-title').value.trim();
+  const type = document.getElementById('ev-wz-type').value;
+  const date = document.getElementById('ev-wz-date').value.trim();
+  const loc  = document.getElementById('ev-wz-location').value.trim();
+  const oper = document.getElementById('ev-wz-operation').value.trim();
+
+  const rows = [
+    ['Slug', slug], ['Title', title], ['Type', type.toUpperCase()],
+    ['Date & Location', `${date || '—'} · ${loc || '—'}`],
+    ['Operation', oper || '—']
+  ];
+
+  document.getElementById('ev-wz-summary-preview').innerHTML = rows.map(([k, v]) => `
+    <div class="fm-row"><span class="fm-key">${k}</span><span class="fm-val">${escHtml(v)}</span></div>
+  `).join('');
+}
+
+async function evFinishCreate() {
+  const slug = document.getElementById('ev-wz-slug').value.trim();
+  if (!slug) return;
+  const btn = document.getElementById('ev-btn-finish');
+  btn.disabled = true;
+
+  const payload = {
+    slug,
+    title: document.getElementById('ev-wz-title').value.trim(),
+    type: document.getElementById('ev-wz-type').value,
+    date: document.getElementById('ev-wz-date').value.trim(),
+    date_end: document.getElementById('ev-wz-date_end').value.trim(),
+    location: document.getElementById('ev-wz-location').value.trim(),
+    location_precision: document.getElementById('ev-wz-precision').value,
+    operation: document.getElementById('ev-wz-operation').value.trim(),
+    units: {
+      primary: [{ name: document.getElementById('ev-wz-unit-primary').value.trim() }],
+      supporting: document.getElementById('ev-wz-unit-supporting').value.split(',').map(s => ({ name: s.trim() })).filter(u => u.name)
+    }
+  };
+
+  try {
+    const res = await api('POST', '/events/create', payload);
+    if (!res.ok) throw new Error(res.error || 'Failed to create event');
+    toast(`Event created: ${slug}`, 'success');
+    await prefetchSlugs('event');
+    await evPopulateEditSelect();
+    setEventMode('edit');
+    document.getElementById('ev-slug-select').value = slug;
+    await evLoadEvent();
+    await refreshSessionStatus();
+  } catch (err) { toast(err.message, 'error'); }
+  finally { btn.disabled = false; }
+}
+
+async function evPopulateEditSelect() {
+  const sel = document.getElementById('ev-slug-select');
+  const items = slugCache.event || [];
+  const slugs = items.map(s => (typeof s === 'object' ? s.slug : s)).filter(Boolean).sort();
+  sel.innerHTML = '<option value="">— select event —</option>' + slugs.map(s => `<option value="${s}">${s}</option>`).join('');
+}
+
+async function evLoadEvent() {
+  const sel = document.getElementById('ev-slug-select');
+  const slug = sel.value;
+  if (!slug) { document.getElementById('ev-edit-content').style.display = 'none'; evCurrentSlug = null; return; }
+  evCurrentSlug = slug;
+
+  try {
+    const res = await api('GET', `/record?type=event&slug=${encodeURIComponent(slug)}`);
+    evCurrentData = res.data || res;
+    evPopulateEditFields(evCurrentData);
+    document.getElementById('ev-edit-content').style.display = 'block';
+    evSwitchSubTab('summary');
+    toast(`Loaded event: ${slug}`, 'success');
+  } catch (err) { toast(`Error loading event: ${err.message}`, 'error'); }
+}
+
+function evPopulateEditFields(fm) {
+  document.getElementById('ev-edit-title').value     = fm.title || '';
+  document.getElementById('ev-edit-date').value      = fm.date || '';
+  document.getElementById('ev-edit-location').value  = fm.location || '';
+  document.getElementById('ev-edit-operation').value = fm.operation || '';
+
+  const tagBox = document.getElementById('ev-tagging-control-box');
+  evTagControl = new TaggingControl(tagBox, {
+    type: 'event',
+    slug: evCurrentSlug,
+    initialContains: Array.isArray(fm.contains) ? fm.contains : [],
+    initialTagged: Array.isArray(fm.tagged) ? fm.tagged : []
+  });
+
+  const docList = document.getElementById('ev-documents-list');
+  const accounts = Array.isArray(fm.accounts) ? fm.accounts : [];
+  docList.innerHTML = accounts.length ? accounts.map(d => `<div class="se-card"><div><strong>${escHtml(d)}</strong></div></div>`).join('') : '<p class="np-stub-msg">No attached documents.</p>';
+
+  const imgList = document.getElementById('ev-images-list');
+  const images = Array.isArray(fm.images) ? fm.images : [];
+  imgList.innerHTML = images.length ? images.map(img => `<div class="se-card"><div><code>${escHtml(img.src || img)}</code></div></div>`).join('') : '<p class="np-stub-msg">No images attached.</p>';
+}
+
+function evSwitchSubTab(tabName) {
+  ['summary', 'soldiers', 'documents', 'images'].forEach(t => {
+    const btn = document.getElementById(`ev-tab-${t}`);
+    const pane = document.getElementById(`ev-pane-${t}`);
+    if (btn) btn.classList.toggle('active', t === tabName);
+    if (pane) pane.style.display = t === tabName ? 'block' : 'none';
+  });
+}
+
+async function evSaveSummary() {
+  if (!evCurrentSlug) return;
+  const updates = [
+    { field: 'title', value: document.getElementById('ev-edit-title').value.trim() },
+    { field: 'date', value: document.getElementById('ev-edit-date').value.trim() },
+    { field: 'location', value: document.getElementById('ev-edit-location').value.trim() },
+    { field: 'operation', value: document.getElementById('ev-edit-operation').value.trim() },
+  ];
+  for (const u of updates) {
+    await api('POST', '/edit', { type: 'event', slug: evCurrentSlug, field: u.field, value: u.value });
+  }
+  toast('Event summary saved.', 'success');
   await refreshSessionStatus();
 }
 </script>
