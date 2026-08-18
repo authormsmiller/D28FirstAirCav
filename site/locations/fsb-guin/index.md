@@ -59,6 +59,7 @@ notes: |
   Grid ZT100190 (11.0170°N, 107.8329°E). Also spelled "Guinn." 2/8 Cav 4 Sep – 26 Oct 1970. Predecessor: FSB Powder Ridge (YT807786; ~66.6 km NW). Successor: FSB Silver (YT829043) — 2-8 Cav moved there 26 Oct 1970 (AD0516259, p83). Closing date and 199th Infantry Brigade takeover confirmed from AD0516259 FSB table. On 4 Sep (opening day): 15 Hoi Chanh ralliers surrendered at Guin, one armed with an SS rifle (AD0515205, II FFV ORLL, p. 30). On 3 Sep, D/2-8 Cav had a ground contact at YT076214 at 1420 hours (AD0516259, p17) — same day as CPL Waterman's KIA; separate incident, different grid zone from Guin. Named_for unknown — no gazetteer note found. Jim Garvin deck (v03_guinn.pptx, 37 slides) covers Sep 18 – Nov 4, 1970 — primary photo/narrative source; unprocessed as of 2026-07-09. See handoff Handoff-FSBGuinn-Garvin-v03.md.
 contains:
   - garvin-jim
+  - aulenbach-rick
 ---
 
 ## Overview

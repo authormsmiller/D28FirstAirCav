@@ -795,10 +795,10 @@ async function handleMedia(request, env, path) {
 
   if (path.startsWith("/media/photos/")) {
     bucket = env.PHOTOS;
-    key = path.slice("/media/photos/".length);
+    key = decodeURIComponent(path.slice("/media/photos/".length));
   } else if (path.startsWith("/media/documents/")) {
     bucket = env.DOCUMENTS;
-    key = path.slice("/media/documents/".length);
+    key = decodeURIComponent(path.slice("/media/documents/".length));
   } else {
     return new Response("Not found", { status: 404 });
   }

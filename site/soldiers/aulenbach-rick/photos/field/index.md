@@ -78,7 +78,7 @@ photos:
     quality: 
     contains: []
     tagged: []
-  - filename: 1970 Ollie-Nam-053.jpg
+  - filename: 1970-Ollie-Nam-053.jpg
     caption: >
       Countryside in Vietnam
     caption_short: ""

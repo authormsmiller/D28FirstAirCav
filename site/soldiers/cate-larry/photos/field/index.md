@@ -43,4 +43,28 @@ photos:
     contains:
       - cate-larry
     tagged: []
+  - filename: 1970 Larry Cate Boler-Photo (3) dj.jpg
+    caption: >
+      Larry Cate in the bush
+    caption_short: ""
+    credit: "Collection of Lane Boler"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains: []
+    tagged: []
+  - filename: 1970 Larry-Cate Doc-Handelman Michael-Cobb Dennis-Alloway Boler-Photo Crop.jpg
+    caption: >
+      Larry Cate on an unnamed base
+    caption_short: ""
+    credit: "Collection of Lane Boler"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains: []
+    tagged: []
 ---
