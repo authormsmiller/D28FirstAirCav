@@ -8,13 +8,12 @@
  *   document  → site/documents/[author-slug]/[doc-slug]/[doc-slug].md
  *   event     → site/events/[slug]/index.md
  *   anecdote  → site/anecdotes/[soldier-slug]/[anecdote-slug]/index.md
+ *   location  → site/locations/[slug]/index.md
+ *   letter    → site/soldiers/[soldier-slug]/letters/[letter-slug].md
  *
- * For documents and anecdotes the slug encodes the author/soldier prefix
- * using the convention that the first segment (up to the second hyphen-word
- * boundary matching a known author folder) is the author slug.  Because
- * the actual folder layout is the source of truth we resolve by scanning
- * rather than by string-splitting, so we don't have to hard-code name
- * lengths.
+ * For documents, anecdotes, and letters the slug encodes or resolves within
+ * nested folders. Because the actual folder layout is the source of truth,
+ * we resolve by scanning rather than by string-splitting.
  */
 
 import { promises as fs } from 'fs';
@@ -40,6 +39,7 @@ export async function resolvePath(type, slug) {
     case 'event':    return resolveEvent(slug);
     case 'anecdote': return resolveAnecdote(slug);
     case 'location': return resolveLocation(slug);
+    case 'letter':   return resolveLetter(slug);
     default:
       throw new Error(`Unknown content type: "${type}"`);
   }
@@ -56,6 +56,7 @@ export async function listSlugs(type) {
     case 'event':    return listEvents();
     case 'anecdote': return listAnecdotes();
     case 'location': return listLocations();
+    case 'letter':   return listLetters();
     default:
       throw new Error(`Unknown content type: "${type}"`);
   }
@@ -82,7 +83,6 @@ async function listSoldiers() {
 
 // ─── documents ───────────────────────────────────────────────────────────────
 // Layout: site/documents/[author-slug]/[doc-slug]/[doc-slug].md
-// We scan all author subdirectories then all doc subdirectories within each.
 
 async function resolveDocument(docSlug) {
   const base = path.join(SITE_ROOT, 'documents');
@@ -130,7 +130,7 @@ async function listEvents() {
 }
 
 // ─── locations ─────────────────────────────────────────────────────────────
-// Layout: site/locations/[slug]/index.md  (same shape as events)
+// Layout: site/locations/[slug]/index.md
 
 async function resolveLocation(slug) {
   const p = path.join(SITE_ROOT, 'locations', slug, 'index.md');
@@ -172,6 +172,42 @@ async function listAnecdotes() {
       const slug = path.basename(anecdoteDir);
       const p = path.join(anecdoteDir, 'index.md');
       if (await exists(p)) results.push({ slug, path: p });
+    }
+  }
+  return results;
+}
+
+// ─── letters ─────────────────────────────────────────────────────────────────
+// Layout: site/soldiers/[soldier-slug]/letters/[letter-slug].md
+
+async function resolveLetter(letterSlug) {
+  const base = path.join(SITE_ROOT, 'soldiers');
+  const soldierDirs = await subdirs(base);
+  for (const soldierDir of soldierDirs) {
+    const p = path.join(soldierDir, 'letters', `${letterSlug}.md`);
+    if (await exists(p)) return p;
+  }
+  return null;
+}
+
+async function listLetters() {
+  const base = path.join(SITE_ROOT, 'soldiers');
+  const soldierDirs = await subdirs(base);
+  const results = [];
+  for (const soldierDir of soldierDirs) {
+    const lettersDir = path.join(soldierDir, 'letters');
+    if (!(await exists(lettersDir))) continue;
+    let entries;
+    try {
+      entries = await fs.readdir(lettersDir, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (entry.isFile() && entry.name.endsWith('.md')) {
+        const slug = path.basename(entry.name, '.md');
+        results.push({ slug, path: path.join(lettersDir, entry.name) });
+      }
     }
   }
   return results;
