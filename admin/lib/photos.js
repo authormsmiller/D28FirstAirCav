@@ -4,6 +4,7 @@ import path from 'path';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import yaml from 'js-yaml';
 import multer from 'multer';
+import { REPO_ROOT } from './records.js';
 
 // ---------------------------------------------------------------------------
 // R2 upload client
@@ -50,9 +51,12 @@ export async function uploadToR2(localPath, r2Key) {
 }
 
 // ---------------------------------------------------------------------------
-// Paths — all relative to repo root (two levels up from admin/lib/)
+// Paths — all relative to repo root.
+// REPO_ROOT is imported from records.js (derived from this file's location via
+// __dirname), so it is correct no matter which directory the server is launched
+// from. Do NOT compute it from process.cwd() — that breaks when the server is
+// started from the repo root instead of admin/.
 // ---------------------------------------------------------------------------
-const REPO_ROOT = path.resolve(process.cwd(), '..');
 const INTAKE_ROOT = path.join(REPO_ROOT, '_intake');
 const RAW_PHOTOS = path.join(INTAKE_ROOT, 'raw', 'photos');
 const STAGING_PHOTOS = path.join(INTAKE_ROOT, 'staging', 'photos');

@@ -2486,7 +2486,8 @@ function seFpRenderPhoto(idx) {
   if (!SE_FP.files.length) return;
   SE_FP.currentIdx = idx;
   const filename = SE_FP.files[idx];
-  const buf = SE_FP.buffer[filename] || {};
+  if (!SE_FP.buffer[filename]) SE_FP.buffer[filename] = {};
+  const buf = SE_FP.buffer[filename];
   const isFirst = idx === 0;
   const isLast = idx === SE_FP.files.length - 1;
 
