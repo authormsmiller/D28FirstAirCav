@@ -1990,12 +1990,27 @@ async function wzFinishCreate() {
     }
   };
 
+  console.log('[wizard] finishCreate: submitting /soldiers/create', { slug, hasPendingPhoto: !!WZ_PPH.dataUrl });
   try {
     const res = await api('POST', '/soldiers/create', payload);
+    console.log('[wizard] /soldiers/create response:', res);
     if (!res.ok) throw new Error(res.error || 'Creation failed');
+
     if (WZ_PPH.dataUrl) {
-      await api('POST', '/soldier/profile-photo', { slug, imageData: WZ_PPH.dataUrl, crop: WZ_PPH.crop, credit: '', photographer: '' });
+      console.log('[wizard] finishCreate: submitting /soldier/profile-photo', { slug });
+      try {
+        const phRes = await api('POST', '/soldier/profile-photo', { slug, imageData: WZ_PPH.dataUrl, crop: WZ_PPH.crop, credit: '', photographer: '' });
+        console.log('[wizard] /soldier/profile-photo response:', phRes);
+      } catch (phErr) {
+        // Soldier record was written successfully; only the photo step
+        // failed (api() throws on non-2xx). Surface it distinctly so it
+        // isn't mistaken for the whole creation having failed.
+        console.error('[wizard] profile photo failed after soldier record was created:', phErr);
+        toast(`Soldier created, but profile photo failed: ${phErr.message}`, 'error');
+      }
     }
+
+    console.log('[wizard] finishCreate: complete', { slug });
     toast(`Soldier created: ${slug}`, 'success');
     await prefetchSlugs('soldier');
     await npPopulateEditSelect();
@@ -2003,7 +2018,10 @@ async function wzFinishCreate() {
     document.getElementById('np-slug-select').value = slug;
     await seLoadSoldier();
     await refreshSessionStatus();
-  } catch (err) { toast(err.message, 'error'); }
+  } catch (err) {
+    console.error('[wizard] finishCreate failed:', err);
+    toast(err.message, 'error');
+  }
   finally { btn.disabled = false; btn.textContent = 'Create Soldier Profile ✓'; }
 }
 
@@ -2391,6 +2409,12 @@ function sePphCropReset() {
 
 async function seSaveProfilePhoto() {
   if (!SE_PPH.dataUrl) { toast('Please choose an image file first.', 'error'); return; }
+  if (!seCurrentSlug) {
+    console.error('[soldier-edit] seSaveProfilePhoto: seCurrentSlug is empty, refusing to upload.');
+    toast('No soldier is loaded — select or create a soldier first.', 'error');
+    return;
+  }
+  console.log('[soldier-edit] seSaveProfilePhoto: uploading for slug=', seCurrentSlug);
   const btn = document.getElementById('btn-save-profile-photo');
   btn.disabled = true;
   btn.textContent = 'Uploading to R2...';
@@ -2403,6 +2427,7 @@ async function seSaveProfilePhoto() {
       credit: document.getElementById('se-pph-credit').value.trim(),
       photographer: document.getElementById('se-pph-photographer').value.trim()
     });
+    console.log('[soldier-edit] /soldier/profile-photo response:', res);
 
     if (res.ok) {
       toast(`Profile picture saved: ${res.filename}`, 'success');
@@ -2410,9 +2435,11 @@ async function seSaveProfilePhoto() {
       await npPhLoad();
       await refreshSessionStatus();
     } else {
+      console.error('[soldier-edit] profile photo save failed:', res.error);
       toast(res.error || 'Failed to save profile picture.', 'error');
     }
   } catch (err) {
+    console.error('[soldier-edit] seSaveProfilePhoto failed for slug=', seCurrentSlug, err);
     toast(err.message, 'error');
   } finally {
     btn.disabled = false;

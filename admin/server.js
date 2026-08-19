@@ -542,8 +542,22 @@ app.post('/api/alongside', async (req, res) => {
 app.post('/api/soldier/profile-photo', async (req, res) => {
   try {
     const { slug, imageData, crop, credit = '', photographer = '' } = req.body;
+    console.log(`[profile-photo] request: slug=${slug}`);
     if (!slug || !imageData) {
+      console.error('[profile-photo] rejected: slug and imageData are required');
       return res.status(400).json({ error: 'slug and imageData are required' });
+    }
+
+    // Guard: don't let this endpoint create an orphan photos/ folder for a
+    // soldier that doesn't have a record yet. Previously this wrote the
+    // image + index.md and returned {ok:true} even with no <slug>.md,
+    // silently skipping the profile_photo write and leaving a soldier
+    // folder that made /api/soldiers/create think the slug already existed
+    // (see pellaton-leon incident, Aug 2026).
+    const existingSoldierPath = await resolvePath('soldier', slug);
+    if (!existingSoldierPath) {
+      console.error(`[profile-photo] rejected: no soldier record found for slug=${slug}`);
+      return res.status(404).json({ error: `No soldier record found for "${slug}". Create the soldier first, then add the profile photo.` });
     }
 
     const matches = imageData.match(/^data:image\/(\w+);base64,(.+)$/s);
@@ -596,15 +610,14 @@ photos:
 
     await uploadToR2(outPath, `soldiers/${slug}/profile/${filename}`);
 
-    const soldierPath = await resolvePath('soldier', slug);
-    if (soldierPath) {
-      const { data, content } = await readRecord(soldierPath);
-      data.profile_photo = filename;
-      await writeRecord(soldierPath, data, content);
-    }
+    const { data, content } = await readRecord(existingSoldierPath);
+    data.profile_photo = filename;
+    await writeRecord(existingSoldierPath, data, content);
 
+    console.log(`[profile-photo] success: slug=${slug} filename=${filename}`);
     res.json({ ok: true, filename });
   } catch (err) {
+    console.error(`[profile-photo] error for slug=${req.body && req.body.slug}:`, err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -888,9 +901,20 @@ app.get('/api/soldier/photos/containing', async (req, res) => {
 app.post('/api/soldier/profile-photo/from-existing', async (req, res) => {
   try {
     const { slug, sourceSlug, subfolder, filename, crop, credit = '', photographer = '' } = req.body || {};
+    console.log(`[from-existing] request: slug=${slug} sourceSlug=${sourceSlug} subfolder=${subfolder} filename=${filename}`);
     if (!slug || !sourceSlug || !subfolder || !filename) {
+      console.error('[from-existing] rejected: slug, sourceSlug, subfolder, and filename are required');
       return res.status(400).json({ error: 'slug, sourceSlug, subfolder, and filename are required' });
     }
+
+    // Same guard as /api/soldier/profile-photo: don't create an orphan
+    // photos/ folder for a soldier record that doesn't exist yet.
+    const existingSoldierPath = await resolvePath('soldier', slug);
+    if (!existingSoldierPath) {
+      console.error(`[from-existing] rejected: no soldier record found for slug=${slug}`);
+      return res.status(404).json({ error: `No soldier record found for "${slug}". Create the soldier first, then add the profile photo.` });
+    }
+
     const cdnUrl = `https://angryskipperarchive.org/media/photos/soldiers/${sourceSlug}/${subfolder}/${encodeURIComponent(filename)}`;
     console.log('[from-existing] fetching:', cdnUrl);
     const fetchRes = await fetch(cdnUrl);
@@ -943,13 +967,11 @@ app.post('/api/soldier/profile-photo/from-existing', async (req, res) => {
 
     await uploadToR2(outPath, `soldiers/${slug}/profile/${outFilename}`);
 
-    const soldierPath = await resolvePath('soldier', slug);
-    if (soldierPath) {
-      const { data, content } = await readRecord(soldierPath);
-      data.profile_photo = outFilename;
-      await writeRecord(soldierPath, data, content);
-    }
+    const { data, content } = await readRecord(existingSoldierPath);
+    data.profile_photo = outFilename;
+    await writeRecord(existingSoldierPath, data, content);
 
+    console.log(`[from-existing] success: slug=${slug} filename=${outFilename}`);
     res.json({ ok: true, filename: outFilename });
   } catch (err) {
     console.error('[from-existing] error:', err);

@@ -7,11 +7,12 @@ photos:
       Capt. Jim Bedsole on the beach at Vung Tao
     caption_short: ""
     credit: "Howard McGrew Collection"
-    photographer: ""
+    photographer: "mcgrew-howard"
     date: 1971-03
     date_known: true
     event: ""
     quality: 
-    contains: []
+    contains:
+      - bedsole-jim
     tagged: []
 ---
