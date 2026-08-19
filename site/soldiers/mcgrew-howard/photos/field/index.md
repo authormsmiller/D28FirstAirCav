@@ -15,4 +15,16 @@ photos:
     contains:
       - bedsole-jim
     tagged: []
+  - filename: 1971-03-22 Howard-McGrew Bees - At-FB-Mace McGrew-Photo.JPG
+    caption: >
+      Howard McGrew after his encounter with some angry Vietnamese bees
+    caption_short: ""
+    credit: "Courtesy of Howard McGrew"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains: []
+    tagged: []
 ---
