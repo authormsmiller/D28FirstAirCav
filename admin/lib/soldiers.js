@@ -6,10 +6,21 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const SITE_SOLDIERS  = path.resolve('..', 'site', 'soldiers');
-const SITE_ANECDOTES = path.resolve('..', 'site', 'anecdotes');
-const SITE_DOCUMENTS = path.resolve('..', 'site', 'documents');
+// IMPORTANT: resolve relative to this file, not process.cwd(). The old
+// path.resolve('..', 'site', 'soldiers') resolved against the CWD at
+// import time — since server.js is documented to be launched with
+// `node admin/server.js` from the repo root, that put '..' one directory
+// ABOVE the repo (i.e. the parent of the repo folder), so every soldier
+// ever created via this endpoint was written outside the git repo entirely
+// and never showed up in the site. Mirrors records.js's SITE_ROOT pattern.
+// See pearson-james / pellaton-leon incidents, Aug 2026.
+const __dirname      = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT      = path.resolve(__dirname, '..', '..');
+const SITE_SOLDIERS  = path.join(REPO_ROOT, 'site', 'soldiers');
+const SITE_ANECDOTES = path.join(REPO_ROOT, 'site', 'anecdotes');
+const SITE_DOCUMENTS = path.join(REPO_ROOT, 'site', 'documents');
 
 // ---------------------------------------------------------------------------
 // buildSoldierStub(slug, fm)

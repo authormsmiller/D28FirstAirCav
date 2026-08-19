@@ -1423,6 +1423,13 @@
           <div class="form-field"><input type="text" id="fp-credit" placeholder="Collection of..."></div>
           <label class="form-label">Date</label>
           <div class="form-field"><input type="text" id="fp-date" placeholder="YYYY-MM (e.g. 1971-05)"></div>
+          <label class="form-label">Photographer</label>
+          <div class="form-field">
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="fp-photographer-cb" onchange="seFpPhotographerToggled()">
+              <span id="fp-photographer-label">This soldier took the photo (not in it)</span>
+            </label>
+          </div>
         </div>
 
         <div id="fp-tag-control-box" style="margin-bottom:14px;"></div>
@@ -1613,7 +1620,7 @@ class TaggingControl {
 
   async handleTagOperation(field, soldierSlug, op) {
     soldierSlug = soldierSlug.trim();
-    if (!soldierSlug) return;
+    if (!soldierSlug) { console.warn('[tagging-control] ignored empty slug for', field, op); return; }
 
     if (op === 'add') {
       if (field === 'contains' && !this.contains.includes(soldierSlug)) this.contains.push(soldierSlug);
@@ -1623,6 +1630,7 @@ class TaggingControl {
       else if (field === 'tagged') this.tagged = this.tagged.filter(s => s !== soldierSlug);
     }
 
+    console.log(`[tagging-control] ${op} ${field}=${soldierSlug} → contains=[${this.contains}] tagged=[${this.tagged}]`);
     this.render();
     if (this.onChange) this.onChange({ contains: this.contains, tagged: this.tagged });
 
@@ -1653,14 +1661,14 @@ class TaggingControl {
             ${this.contains.length ? this.contains.map(slug => `
               <span class="tag-chip chip-contains">
                 ${escHtml(slug)}
-                <span class="tag-chip-remove" onclick="window._activeTagControl.handleTagOperation('contains', '${escHtml(slug)}', 'remove')">×</span>
+                <span class="tag-chip-remove" data-field="contains" data-slug="${escHtml(slug)}">×</span>
               </span>
             `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">None listed.</span>'}
           </div>
           <div class="tag-input-row">
             <input type="text" id="tc-contains-input" list="tc-contains-dl" placeholder="Add soldier slug..." autocomplete="off">
             <datalist id="tc-contains-dl">${containsOptions}</datalist>
-            <button class="btn btn-secondary btn-sm" onclick="window._activeTagControl.addFromInput('contains')">Add</button>
+            <button class="btn btn-secondary btn-sm" data-add-field="contains">Add</button>
           </div>
         </div>
 
@@ -1673,20 +1681,34 @@ class TaggingControl {
             ${this.tagged.length ? this.tagged.map(slug => `
               <span class="tag-chip chip-tagged">
                 ${escHtml(slug)}
-                <span class="tag-chip-remove" onclick="window._activeTagControl.handleTagOperation('tagged', '${escHtml(slug)}', 'remove')">×</span>
+                <span class="tag-chip-remove" data-field="tagged" data-slug="${escHtml(slug)}">×</span>
               </span>
             `).join('') : '<span style="color:var(--muted);font-size:11px;font-style:italic;">None listed.</span>'}
           </div>
           <div class="tag-input-row">
             <input type="text" id="tc-tagged-input" list="tc-tagged-dl" placeholder="Add soldier slug..." autocomplete="off">
             <datalist id="tc-tagged-dl">${taggedOptions}</datalist>
-            <button class="btn btn-secondary btn-sm" onclick="window._activeTagControl.addFromInput('tagged')">Add</button>
+            <button class="btn btn-secondary btn-sm" data-add-field="tagged">Add</button>
           </div>
         </div>
       </div>
     `;
 
-    window._activeTagControl = this;
+    // Bind directly to this instance instead of a global singleton pointer.
+    // A page-wide `window._activeTagControl` used to get reassigned by
+    // *any* TaggingControl rendering anywhere on the page (another tab,
+    // a background refresh) — whichever one rendered last silently stole
+    // every other control's Add/Remove buttons, so clicks on a visible
+    // control could end up mutating a different, invisible one. That's
+    // why "contains" additions in the Field Photos modal weren't sticking.
+    // See pearson-james field photo incident, Aug 2026.
+    this.container.querySelectorAll('.tag-chip-remove').forEach(el => {
+      el.addEventListener('click', () => this.handleTagOperation(el.dataset.field, el.dataset.slug, 'remove'));
+    });
+    this.container.querySelectorAll('[data-add-field]').forEach(el => {
+      el.addEventListener('click', () => this.addFromInput(el.dataset.addField));
+    });
+
     const cInput = this.container.querySelector('#tc-contains-input');
     if (cInput) cInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); this.addFromInput('contains'); } });
     const tInput = this.container.querySelector('#tc-tagged-input');
@@ -1780,13 +1802,23 @@ async function saveAddModal() {
     contains: ADD_MODAL.tagControl?.contains || [],
     tagged: ADD_MODAL.tagControl?.tagged || []
   };
+  console.log(`[add-modal] submitting ${ADD_MODAL.config.createEndpoint}`, payload);
 
   try {
     const res = await api('POST', ADD_MODAL.config.createEndpoint, payload);
+    console.log(`[add-modal] ${ADD_MODAL.config.createEndpoint} response:`, res);
     if (res.ok) {
+      // Grab onSuccess before closeAddModal() nulls out ADD_MODAL.config —
+      // reading it after close threw "Cannot read properties of null
+      // (reading 'onSuccess')" on every successful save (documents,
+      // letters, and anecdotes all share this modal). The save itself was
+      // going through fine; only this callback crashed, which stomped the
+      // "Saved successfully" toast with the crash message right after.
+      // See mcgrew-howard anecdote incident, Aug 2026.
+      const onSuccess = ADD_MODAL.config.onSuccess;
       toast('Saved successfully.', 'success');
       closeAddModal();
-      if (ADD_MODAL.config.onSuccess) ADD_MODAL.config.onSuccess(res);
+      if (onSuccess) onSuccess(res);
       await refreshSessionStatus();
     } else {
       toast(res.error || 'Failed to save.', 'error');
@@ -2525,20 +2557,49 @@ function seFpRenderPhoto(idx) {
   document.getElementById('fp-caption').value = buf.caption || '';
   document.getElementById('fp-credit').value = buf.credit || '';
   document.getElementById('fp-date').value = buf.date || '';
+  document.getElementById('fp-photographer-cb').checked = !!buf.isPhotographer;
+  document.getElementById('fp-photographer-label').textContent =
+    `${sePhotographerName()} took this photo (not in it)`;
 
   document.getElementById('fp-btn-prev').disabled = isFirst;
   document.getElementById('fp-btn-next').style.display = isLast ? 'none' : 'inline-block';
   document.getElementById('fp-btn-finish').style.display = isLast ? 'inline-block' : 'none';
 
+  // "contains" is who's IN the photo — don't default it to the loaded
+  // soldier's own slug. That assumption breaks as soon as the soldier is
+  // the one behind the camera rather than in frame (use the photographer
+  // checkbox for that case instead). Only restore it if already set on
+  // this photo's buffer.
   const tagBox = document.getElementById('fp-tag-control-box');
   new TaggingControl(tagBox, {
-    initialContains: buf.contains ? buf.contains.split(',').map(s => s.trim()).filter(Boolean) : [seCurrentSlug],
+    initialContains: buf.contains ? buf.contains.split(',').map(s => s.trim()).filter(Boolean) : [],
     initialTagged: buf.tagged ? buf.tagged.split(',').map(s => s.trim()).filter(Boolean) : [],
     onChange: ({ contains, tagged }) => {
       buf.contains = contains.join(',');
       buf.tagged = tagged.join(',');
     }
   });
+}
+
+// Display name for the checkbox label only — the field itself stores the
+// soldier's slug (see sePhotographerSlug), not this name.
+function sePhotographerName() {
+  if (!seCurrentData) return seCurrentSlug;
+  return seCurrentData.title
+    || [seCurrentData.first_name, seCurrentData.last_name].filter(Boolean).join(' ')
+    || seCurrentSlug;
+}
+
+// Value actually written to the photo's `photographer` field: the
+// soldier's slug, consistent with how `contains`/`tagged` reference people.
+function sePhotographerSlug() {
+  return seCurrentSlug;
+}
+
+function seFpPhotographerToggled() {
+  const filename = SE_FP.files[SE_FP.currentIdx];
+  if (!SE_FP.buffer[filename]) SE_FP.buffer[filename] = {};
+  SE_FP.buffer[filename].isPhotographer = document.getElementById('fp-photographer-cb').checked;
 }
 
 function seFpSavePhotoBuffer(advance = false) {
@@ -2551,7 +2612,8 @@ function seFpSavePhotoBuffer(advance = false) {
   buf.caption = document.getElementById('fp-caption').value.trim();
   buf.caption_short = '';
   buf.credit = document.getElementById('fp-credit').value.trim();
-  buf.photographer = '';
+  buf.isPhotographer = document.getElementById('fp-photographer-cb').checked;
+  buf.photographer = buf.isPhotographer ? sePhotographerSlug() : '';
   buf.date = document.getElementById('fp-date').value.trim();
   buf.date_known = !!buf.date;
 

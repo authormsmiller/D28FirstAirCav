@@ -23,7 +23,7 @@ photos:
     photographer: ""
     date: 
     date_known: false
-    event: ""
+    event: "bee-incident-1971-03-22"
     quality: 
     contains: []
     tagged: []
