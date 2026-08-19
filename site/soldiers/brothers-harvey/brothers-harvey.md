@@ -18,10 +18,10 @@ platoon: Range
 arrived: null
 departed: null
 character_of_service: Honorable
-status: researching
+status: deceased
 hometown: null
-current_location: null
-year_deceased: null
+current_location: Idaho
+year_deceased: 2018
 cause_of_death: null
 profile_photo: brothers-harvey-profile.jpg
 decorations: null
