@@ -145,6 +145,7 @@ brothers:
 
 related_events:
   - chieu-hoi-fsb-fontaine-1971-05
+  - bee-incident-1971-03-22
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-27

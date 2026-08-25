@@ -52,6 +52,7 @@ documents: null
 brothers: null
 related_events:
   - duds-firebase-fontaine-1971-03
+  - bee-incident-1971-03-22
 date_added: 2026-06-22T00:00:00.000Z
 last_updated: 2026-06-22T00:00:00.000Z
 contributed_by: null

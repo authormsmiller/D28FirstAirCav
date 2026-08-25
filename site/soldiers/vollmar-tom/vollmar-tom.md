@@ -43,7 +43,25 @@ links:
   other: null
 timeline_source: |
   Service timeline not yet compiled. If you served with or knew Tom Vollmar, please use the contribute form to share what you remember.
-timeline: null
+timeline:
+  - date: "1970-07-22"
+    phase: in-country
+    type: service
+    headline: Arrived in Vietnam
+  - date: "1970-08-03"
+    phase: in-country
+    type: service
+    headline: Joined Delta Company
+    body: Joined up with Angry Skipper in Quan Loy province
+  - date: "1970-08-05"
+    phase: in-country
+    type: service
+    headline: First Combat Assault
+    body: Went on Combat Assault for the first time, on his 21st birthday
+  - date: "1971-07-22"
+    phase: in-country
+    type: service
+    headline: Left Vietnam
 photo_intro: |
   Photographs pending.
 wartime_content_notice: false

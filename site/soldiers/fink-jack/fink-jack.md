@@ -1,30 +1,30 @@
 ---
 layout: layouts/soldier.njk
-title: SSG Stan Dillon
-slug: dillon-stan
-breadcrumb: Stan Dillon
-permalink: /soldiers/dillon-stan/
+title: Jack Fink
+slug: fink-jack
+breadcrumb: Jack Fink
+permalink: /soldiers/fink-jack/
 tags:
   - soldier
 
 # ── IDENTITY ──────────────────────────────────────
-first_name: Stan
-last_name: Dillon
+first_name: Jack
+last_name: Fink
 middle_name: 
 suffix: 
 nickname: 
 birth_year: 
 
 # ── RANK & ASSIGNMENT ─────────────────────────────
-rank: SSG
+rank: 
 mos: 
 platoon: Range
 
 # ── SERVICE ───────────────────────────────────────
-arrived:
-departed:
+arrived: 
+departed: 
 character_of_service: Honorable
-status: veteran
+status: researching
 
 # ── POST-SERVICE ──────────────────────────────────
 hometown: 
@@ -41,62 +41,35 @@ decorations:
 distinguished_decorations:
 
 decorations_unconfirmed:
-  - "Purple Heart"    # severely wounded 20 Apr 1971 — qualifies by regulation, not yet sourced from primary document
 
 # ── SERVICE RECORD ────────────────────────────────
 service_record:
   induction:
-    status: 
-    location: 
-    date: 
+    status:
+    location:
+    date:
   assignments:
 
 # ── CONTACT ───────────────────────────────────────
-# Phone, email, and address live in _private/contacts.json (gitignored).
-# This block carries only what is safe to commit.
 share_contact: false
 contact:
   name: 
   relation: 
-  last_verified: 
+  last_verified:
 
 # ── EXTERNAL LINKS ────────────────────────────────
 links:
-  wall: 
+  wall:
   other:
 
 # ── TIMELINE SOURCE NOTE ──────────────────────────
 timeline_source: >
-  Partial timeline sourced from Dillon's written deposition regarding the
-  April 20, 1971 contact north of FSB Fanning, supplemented by accounts
-  from fellow unit members.
+  Service timeline not yet compiled. If you served with or knew Jack Fink, please use the contribute form to share what you remember.
 
 # ── SERVICE TIMELINE ──────────────────────────────
-# phase values: training | staging | in-country | post-service
 timeline:
-  - date: "20 Apr 1971"
-    phase: in-country
-    type: combat
-    tags:
-      - { type: c, label: Combat Action }
-      - { type: ph, label: Wounded }
-    headline: Severely wounded — contact north of FSB Fanning
-    body: >
-      During contact with an NVA base camp north of Route 1, east of Gia Rai
-      Mountain, SSG Dillon — Range Platoon Sergeant — was severely wounded when
-      the platoon walked into a fortified bunker complex on the north bank.
-      CPL James Cardwell, CPL Danny Drinkard, and CPL Joseph Hall were killed
-      in the same action. Dillon later provided a written deposition detailing
-      the engagement.
-    source_notice: >
-      Sourced from the written deposition of SSgt Stan Dillon and the deposition
-      of Capt. Bill Neal, supplemented by accounts from unit members. Individual
-      perspectives recorded years after the event; details may vary between accounts.
 
 # ── PHOTOS ────────────────────────────────────────
-# Canonical photo metadata lives in photos/[subfolder]/index.md.
-# The photos array below is retained for template compatibility only.
-# Do not add new photos here — add them to the index files only.
 photo_intro: >
   Photographs pending.
 
@@ -114,12 +87,10 @@ related_events:
   - bee-incident-1971-03-22
 
 # ── ADMIN ─────────────────────────────────────────
-date_added: 
-last_updated: 2026-05-22
+date_added: 2026-08-19
+last_updated:
 contributed_by: 
 notes: >
-  Written deposition from Dillon exists regarding 20 Apr 1971 contact — add
-  to documents when sourced. Purple Heart unconfirmed but wound is well-documented
-  across multiple accounts; move to decorations when primary source located.
+  Identified from a Facebook comment thread on Howard McGrew's "Bees 22Mar 1971" post (D Co. Range Book group). Fink quoted his own diary entry for March 22, 1971, confirming he was present in Range platoon (his diary says "someone in Range 3 stirred up a bee hive") and was not himself stung.
 
 ---
