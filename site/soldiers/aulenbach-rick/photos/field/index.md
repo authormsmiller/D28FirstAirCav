@@ -138,4 +138,17 @@ photos:
     quality: 
     contains: []
     tagged: []
+  - filename: 1970 Ollie-Nam-061 Little Andy-Anderson Silver.jpg
+    caption: >
+      Andy Anderson posing for a photo on FSB Silver
+    caption_short: ""
+    credit: "Collection of Rick Aulenbach"
+    photographer: "aulenbach-rick"
+    date: 1970
+    date_known: true
+    event: ""
+    quality: 
+    contains:
+      - anderson-andy
+    tagged: []
 ---
