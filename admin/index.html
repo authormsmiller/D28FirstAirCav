@@ -763,6 +763,7 @@
           <span id="wz-step-indicator" style="font-size:12px; font-weight:600; color:var(--muted)">Step 1 of 8</span>
           <button class="btn btn-primary" id="wz-btn-next" onclick="wzNav(1)">Next →</button>
           <button class="btn btn-commit" id="wz-btn-finish" onclick="wzFinishCreate()" style="display:none;">Create Soldier Profile ✓</button>
+          <button class="btn btn-secondary" id="wz-btn-clear" onclick="wzClearForm()" style="margin-left:auto; color:var(--red);" title="Clear all entered values, the pending profile photo, and start over from Step 1">Clear &amp; Start Over</button>
         </div>
       </div>
 
@@ -1862,6 +1863,38 @@ function setSoldierMode(mode) {
   if (mode === 'create') initWizardDecorations();
 }
 
+function wzClearForm(skipConfirm) {
+  if (!skipConfirm && !confirm('Clear everything entered in this wizard, including any pending profile photo, and start over from Step 1?')) {
+    return;
+  }
+
+  // Text/number inputs and textareas under the wizard container.
+  document.querySelectorAll('#wz-container input[type="text"], #wz-container textarea').forEach(el => { el.value = ''; });
+  // Selects: back to their first option (each select's blank/default choice).
+  document.querySelectorAll('#wz-container select').forEach(el => { el.selectedIndex = 0; });
+  // Decoration checkboxes.
+  document.querySelectorAll('#wz-container .wz-dec-cb, #wz-container .wz-dist-cb').forEach(cb => { cb.checked = false; });
+
+  // Profile photo: this is the specific case that prompted this button —
+  // a wrong or stale photo staying attached to WZ_PPH across soldiers,
+  // since it lives only in memory until Finish and isn't tied to any
+  // input's value. Clear it explicitly.
+  WZ_PPH.file = null;
+  WZ_PPH.dataUrl = null;
+  WZ_PPH.crop = null;
+  WZ_PPH.dragging = false;
+  const pphFileInput = document.getElementById('wz-pph-file-input');
+  if (pphFileInput) pphFileInput.value = '';
+  const cropArea = document.getElementById('wz-pph-crop-area');
+  if (cropArea) cropArea.style.display = 'none';
+  const cropImg = document.getElementById('wz-pph-crop-img');
+  if (cropImg) cropImg.src = '';
+  wzPphCropReset();
+
+  wzGoToStep(1);
+  if (!skipConfirm) toast('Wizard cleared — starting over.', 'success');
+}
+
 function wzDeriveSlug() {
   const first = document.getElementById('wz-first_name').value.trim().toLowerCase();
   const last = document.getElementById('wz-last_name').value.trim().toLowerCase();
@@ -2044,6 +2077,12 @@ async function wzFinishCreate() {
 
     console.log('[wizard] finishCreate: complete', { slug });
     toast(`Soldier created: ${slug}`, 'success');
+    // Reset the wizard now so the next time it's opened it doesn't still
+    // have this soldier's name, decorations, or (especially) profile photo
+    // sitting in memory — that stale-photo case is exactly what prompted
+    // the "Clear & Start Over" button. skipConfirm=true: this is an
+    // automatic post-success reset, not a destructive user action.
+    wzClearForm(true);
     await prefetchSlugs('soldier');
     await npPopulateEditSelect();
     setSoldierMode('edit');
