@@ -137,4 +137,16 @@ photos:
     contains:
       - guidara-frank
     tagged: []
+  - filename: Face Book 16Feb2025.jpg
+    caption: >
+      Capt. Bill Neal (center) interacting with locals
+    caption_short: ""
+    credit: "Collection of Dale Tincher"
+    photographer: "tincher-dale"
+    date: 1971
+    date_known: true
+    event: ""
+    quality: 
+    contains: []
+    tagged: []
 ---
