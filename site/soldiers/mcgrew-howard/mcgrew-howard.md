@@ -363,6 +363,8 @@ photos:
 documents:
   - mcgrew-howard-dd214
   - mcgrew-howard-arcom
+  - mcgrew-howard-medevac-19710322
+  - mcgrew-howard-bee-incident-fb-thread
 
 # ── RELATED ───────────────────────────────────────
 brothers:

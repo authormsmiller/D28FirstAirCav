@@ -124,8 +124,6 @@ app.get('/api/record', async (req, res) => {
  * POST /api/attach
  * Body: { type, slug, field, value }
  * Appends or sets a value on a front matter field.
- *
- * This is the core Tab 1 action.
  */
 app.post('/api/attach', async (req, res) => {
   try {
@@ -143,8 +141,6 @@ app.post('/api/attach', async (req, res) => {
     if (!filePath) return res.status(404).json({ error: `No file found for ${type}:${slug}` });
 
     const { data, content } = await readRecord(filePath);
-    const beforeSnapshot = JSON.parse(JSON.stringify(data)); // deep copy for diff
-
     const result = attachValue(data, field, value);
 
     if (!result.changed) {
@@ -201,7 +197,6 @@ app.post('/api/detach', async (req, res) => {
  * POST /api/edit
  * Body: { type, slug, field, value }
  * Sets a field to an exact value — scalar or full array replacement.
- * Unlike /api/attach which appends, this overwrites unconditionally.
  */
 app.post('/api/edit', async (req, res) => {
   try {
@@ -236,7 +231,6 @@ app.post('/api/edit', async (req, res) => {
  * POST /api/remove-from-array
  * Body: { type, slug, field, index }
  * Removes an item from an array field by index position.
- * Used by Edit Record to remove a specific entry from contains/tagged/etc.
  */
 app.post('/api/remove-from-array', async (req, res) => {
   try {
@@ -265,55 +259,333 @@ app.post('/api/remove-from-array', async (req, res) => {
   }
 });
 
-// ─── tab 4: photo intake ──────────────────────────────────────────────────────
+// ─── Phase 2 Write & Tag Endpoints ───────────────────────────────────────────
 
-// ─── profile photo ────────────────────────────────────────────────────────────
+/**
+ * T2.1: POST /api/document/create
+ * Schema: site/documents/<author>/<slug>/<slug>.md
+ */
+app.post('/api/document/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      title = '',
+      author = '',
+      event = '',
+      date = '',
+      type = 'account',
+      status = 'published',
+      contains = [],
+      tagged = [],
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+    if (!author) return res.status(400).json({ error: 'author is required' });
+
+    const docDir = path.join(SITE_ROOT, 'documents', author, slug);
+    await fs.mkdir(docDir, { recursive: true });
+    const absPath = path.join(docDir, `${slug}.md`);
+
+    const data = {
+      layout: 'layouts/document.njk',
+      slug,
+      title,
+      author,
+      event: event || '',
+      date: date || '',
+      type,
+      status,
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      permalink: `/documents/${author}/${slug}/`,
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * T2.2: POST /api/letter/create
+ * Schema: site/soldiers/<author>/letters/<slug>.md
+ */
+app.post('/api/letter/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      title = '',
+      author = '',
+      doc_date = '',
+      date_known = false,
+      recipient = '',
+      source = '',
+      status = 'published',
+      contains = [],
+      tagged = [],
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+    if (!author) return res.status(400).json({ error: 'author (soldier slug) is required' });
+
+    const letterDir = path.join(SITE_ROOT, 'soldiers', author, 'letters');
+    await fs.mkdir(letterDir, { recursive: true });
+    const absPath = path.join(letterDir, `${slug}.md`);
+
+    const data = {
+      layout: 'layouts/document.njk',
+      slug,
+      title,
+      type: 'letter',
+      author,
+      doc_date: doc_date || '',
+      date_known: date_known === true || date_known === 'true',
+      recipient: recipient || '',
+      source: source || '',
+      status,
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      permalink: `/soldiers/${author}/letters/${slug}/`,
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * T2.3: POST /api/anecdote/create
+ * Schema: site/anecdotes/<soldier>/<slug>/index.md
+ */
+app.post('/api/anecdote/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      soldier = '',
+      title = '',
+      summary = '',
+      date = '',
+      date_known = false,
+      source_short = '',
+      event = '',
+      status = 'published',
+      contains = [],
+      tagged = [],
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+    if (!soldier) return res.status(400).json({ error: 'soldier slug is required' });
+
+    const anecdoteDir = path.join(SITE_ROOT, 'anecdotes', soldier, slug);
+    await fs.mkdir(anecdoteDir, { recursive: true });
+    const absPath = path.join(anecdoteDir, 'index.md');
+
+    const data = {
+      layout: 'layouts/anecdote.njk',
+      slug,
+      title,
+      type: 'anecdote',
+      summary: summary || '',
+      date: date || '',
+      date_known: date_known === true || date_known === 'true',
+      source_short: source_short || '',
+      event: event || '',
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      status,
+      permalink: `/anecdotes/${soldier}/${slug}/`,
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * T2.4: POST /api/contains
+ * Attach/detach a soldier slug on any item's contains/tagged
+ * Body: { type, slug, field: 'contains'|'tagged', value: <soldierSlug>, op: 'add'|'remove' }
+ */
+app.post('/api/contains', async (req, res) => {
+  try {
+    const { type, slug, field, value, op = 'add' } = req.body || {};
+
+    if (!type || !slug || !field || !value) {
+      return res.status(400).json({ error: 'type, slug, field, and value are required' });
+    }
+    if (!['contains', 'tagged'].includes(field)) {
+      return res.status(400).json({ error: 'field must be contains or tagged' });
+    }
+
+    const filePath = await resolvePath(type, slug);
+    if (!filePath) return res.status(404).json({ error: `No file found for ${type}:${slug}` });
+
+    const { data, content } = await readRecord(filePath);
+    let result;
+
+    if (op === 'add') {
+      result = attachValue(data, field, value);
+    } else if (op === 'remove') {
+      result = detachValue(data, field, value);
+    } else {
+      return res.status(400).json({ error: 'op must be add or remove' });
+    }
+
+    if (result.changed) {
+      await writeRecord(filePath, data, content);
+    }
+
+    res.json({
+      ok: true,
+      changed: result.changed,
+      field,
+      value,
+      op,
+      filePath,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * T2.5: POST /api/alongside
+ * Add/remove manual link in _alongside.json writing both directions
+ * Body: { soldier, other, basis, notes, op: 'add'|'remove' }
+ */
+app.post('/api/alongside', async (req, res) => {
+  try {
+    const { soldier, other, basis = 'unspecified', notes = '', op = 'add' } = req.body || {};
+
+    if (!soldier || !other) {
+      return res.status(400).json({ error: 'soldier and other slugs are required' });
+    }
+    if (soldier === other) {
+      return res.status(400).json({ error: 'soldier and other cannot be identical' });
+    }
+
+    const soldierPath = path.join(SITE_ROOT, 'soldiers', soldier, '_alongside.json');
+    const otherPath = path.join(SITE_ROOT, 'soldiers', other, '_alongside.json');
+
+    const readLinks = async (filePath) => {
+      try {
+        const raw = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(raw);
+      } catch (err) {
+        if (err.code === 'ENOENT') return [];
+        throw err;
+      }
+    };
+
+    const writeLinks = async (filePath, links) => {
+      await fs.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.writeFile(filePath, JSON.stringify(links, null, 2) + '\n', 'utf8');
+    };
+
+    let soldierLinks = await readLinks(soldierPath);
+    let otherLinks = await readLinks(otherPath);
+
+    if (op === 'add') {
+      // Forward: soldier -> other
+      const existsForward = soldierLinks.some((l) => l.slug === other);
+      if (!existsForward) {
+        soldierLinks.push({ slug: other, basis, notes: notes || '' });
+      }
+
+      // Reverse: other -> soldier (empty notes if not specified)
+      const existsReverse = otherLinks.some((l) => l.slug === soldier);
+      if (!existsReverse) {
+        otherLinks.push({ slug: soldier, basis, notes: '' });
+      }
+    } else if (op === 'remove') {
+      soldierLinks = soldierLinks.filter((l) => l.slug !== other);
+      otherLinks = otherLinks.filter((l) => l.slug !== soldier);
+    } else {
+      return res.status(400).json({ error: 'op must be add or remove' });
+    }
+
+    await writeLinks(soldierPath, soldierLinks);
+    await writeLinks(otherPath, otherLinks);
+
+    res.json({ ok: true, op, soldier, other });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ─── tab 4: photo intake & profile photo ──────────────────────────────────────
 
 /**
  * POST /api/soldier/profile-photo
  * Body: { slug, imageData (base64 data URL), crop: {x,y,w,h}|null, credit, photographer }
- *
- * 1. Decodes base64 → sharp → optional crop → saves as {slug}-profile.jpg
- * 2. Writes site/soldiers/{slug}/photos/profile/index.md
- * 3. Sets profile_photo: {slug}-profile.jpg in the soldier stub
  */
 app.post('/api/soldier/profile-photo', async (req, res) => {
   try {
     const { slug, imageData, crop, credit = '', photographer = '' } = req.body;
+    console.log(`[profile-photo] request: slug=${slug}`);
     if (!slug || !imageData) {
+      console.error('[profile-photo] rejected: slug and imageData are required');
       return res.status(400).json({ error: 'slug and imageData are required' });
     }
 
-    // Decode base64 data URL
+    // Guard: don't let this endpoint create an orphan photos/ folder for a
+    // soldier that doesn't have a record yet. Previously this wrote the
+    // image + index.md and returned {ok:true} even with no <slug>.md,
+    // silently skipping the profile_photo write and leaving a soldier
+    // folder that made /api/soldiers/create think the slug already existed
+    // (see pellaton-leon incident, Aug 2026).
+    const existingSoldierPath = await resolvePath('soldier', slug);
+    if (!existingSoldierPath) {
+      console.error(`[profile-photo] rejected: no soldier record found for slug=${slug}`);
+      return res.status(404).json({ error: `No soldier record found for "${slug}". Create the soldier first, then add the profile photo.` });
+    }
+
     const matches = imageData.match(/^data:image\/(\w+);base64,(.+)$/s);
     if (!matches) return res.status(400).json({ error: 'Invalid image data URL' });
     const buffer = Buffer.from(matches[2], 'base64');
 
-    // Ensure profile directory exists
     const profileDir = path.join(SITE_ROOT, 'soldiers', slug, 'photos', 'profile');
     await fs.mkdir(profileDir, { recursive: true });
 
     const filename = `${slug}-profile.jpg`;
-    const outPath  = path.join(profileDir, filename);
+    const outPath = path.join(profileDir, filename);
 
-    // Crop + convert with sharp (dynamic import — avoids Windows binary path issues)
     const { default: sharp } = await import('sharp');
     let pipeline = sharp(buffer);
 
     if (crop && crop.w > 0.02 && crop.h > 0.02) {
       const meta = await pipeline.metadata();
       pipeline = pipeline.extract({
-        left:   Math.round(crop.x * meta.width),
-        top:    Math.round(crop.y * meta.height),
-        width:  Math.round(crop.w * meta.width),
+        left: Math.round(crop.x * meta.width),
+        top: Math.round(crop.y * meta.height),
+        width: Math.round(crop.w * meta.width),
         height: Math.round(crop.h * meta.height),
       });
     }
 
     await pipeline.jpeg({ quality: 90 }).toFile(outPath);
 
-    // Write profile/index.md
-    const creditStr       = credit      ? `"${credit.replace(/"/g, '\\"')}"` : '""';
+    const creditStr = credit ? `"${credit.replace(/"/g, '\\"')}"` : '""';
     const photographerStr = photographer ? `"${photographer}"` : '""';
     const indexMd =
 `---
@@ -336,19 +608,16 @@ photos:
 `;
     await fs.writeFile(path.join(profileDir, 'index.md'), indexMd, 'utf8');
 
-    // Upload to R2
     await uploadToR2(outPath, `soldiers/${slug}/profile/${filename}`);
 
-    // Update soldier stub: set profile_photo field
-    const soldierPath = await resolvePath('soldier', slug);
-    if (soldierPath) {
-      const { data, content } = await readRecord(soldierPath);
-      data.profile_photo = filename;
-      await writeRecord(soldierPath, data, content);
-    }
+    const { data, content } = await readRecord(existingSoldierPath);
+    data.profile_photo = filename;
+    await writeRecord(existingSoldierPath, data, content);
 
+    console.log(`[profile-photo] success: slug=${slug} filename=${filename}`);
     res.json({ ok: true, filename });
   } catch (err) {
+    console.error(`[profile-photo] error for slug=${req.body && req.body.slug}:`, err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -358,7 +627,7 @@ registerSoldiersRoutes(app);
 
 // ─── private contacts ─────────────────────────────────────────────────────────
 
-const PRIVATE_CONTACTS_PATH = path.resolve('..', '_private', 'contacts.json');
+const PRIVATE_CONTACTS_PATH = path.resolve(__dirname, '..', 'site', '_private', 'contacts.json');
 
 async function readPrivateContacts() {
   try {
@@ -374,7 +643,6 @@ async function writePrivateContacts(data) {
   await fs.writeFile(PRIVATE_CONTACTS_PATH, JSON.stringify(data, null, 2), 'utf8');
 }
 
-// GET /api/private/contact?slug=miller-marvin-dale
 app.get('/api/private/contact', async (req, res) => {
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug is required' });
@@ -382,16 +650,13 @@ app.get('/api/private/contact', async (req, res) => {
   res.json(all[slug] || {});
 });
 
-// POST /api/private/contact
-// Body: { slug, email?, phone?, address?, notes? }
-// Merges supplied fields into the existing entry — omitted fields are preserved.
 app.post('/api/private/contact', async (req, res) => {
   try {
-    const { slug, ...fields } = req.body;
+    const { slug, ...fields } = req.body || {};
     if (!slug) return res.status(400).json({ error: 'slug is required' });
     const ALLOWED = new Set(['email', 'phone', 'address', 'notes']);
     const update = Object.fromEntries(
-      Object.entries(fields).filter(([k]) => ALLOWED.has(k))
+      Object.entries(fields).filter(([k, v]) => ALLOWED.has(k) && v !== '' && v != null)
     );
     const all = await readPrivateContacts();
     all[slug] = { ...(all[slug] || {}), ...update };
@@ -402,224 +667,154 @@ app.post('/api/private/contact', async (req, res) => {
   }
 });
 
-// ─── links.other management ───────────────────────────────────────────────────
+// ─── soldier links: other ─────────────────────────────────────────────────────
 
-// POST /api/soldier/links/other/add
-// Body: { slug, label, url }
 app.post('/api/soldier/links/other/add', async (req, res) => {
   try {
-    const { slug, label, url } = req.body;
-    if (!slug || !label || !url) return res.status(400).json({ error: 'slug, label, and url are required' });
+    const { slug, label, url } = req.body || {};
+    if (!slug || !url) return res.status(400).json({ error: 'slug and url required' });
     const filePath = await resolvePath('soldier', slug);
     if (!filePath) return res.status(404).json({ error: `Soldier "${slug}" not found` });
     const { data, content } = await readRecord(filePath);
     if (!data.links) data.links = {};
-    if (!Array.isArray(data.links.other)) data.links.other = [];
-    data.links.other.push({ label, url });
+    if (!Array.isArray(data.links.other)) {
+      data.links.other = data.links.other ? [data.links.other] : [];
+    }
+    data.links.other.push({ label: label || '', url });
     await writeRecord(filePath, data, content);
-    res.json({ ok: true, links: data.links });
+    res.json({ ok: true, links: { other: data.links.other } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// POST /api/soldier/links/other/remove
-// Body: { slug, index }
 app.post('/api/soldier/links/other/remove', async (req, res) => {
   try {
-    const { slug, index } = req.body;
-    if (!slug || index === undefined) return res.status(400).json({ error: 'slug and index are required' });
+    const { slug, index } = req.body || {};
+    if (!slug || index === undefined) return res.status(400).json({ error: 'slug and index required' });
     const filePath = await resolvePath('soldier', slug);
     if (!filePath) return res.status(404).json({ error: `Soldier "${slug}" not found` });
     const { data, content } = await readRecord(filePath);
-    const others = Array.isArray(data.links?.other) ? data.links.other : [];
+    const others = Array.isArray(data.links?.other) ? [...data.links.other] : [];
     if (index < 0 || index >= others.length) return res.status(400).json({ error: 'Index out of range' });
-    others.splice(index, 1);
+    others.splice(Number(index), 1);
+    if (!data.links) data.links = {};
     data.links.other = others;
     await writeRecord(filePath, data, content);
-    res.json({ ok: true, links: data.links });
+    res.json({ ok: true, links: { other: data.links.other } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
-
-// ─── tab 5: todo / flags ──────────────────────────────────────────────────────
-
-registerTodoRoutes(app);
-
-// ─── infra-task-068: submissions pull ────────────────────────────────────────
-
-registerSubmissionsRoutes(app, REPO_ROOT);
-
-// ─── photo ID proposals (public lightbox suggestions) ────────────────────────
-
-registerProposalsRoutes(app);
-
-// ─── site feedback (requests, accounts, documents) ───────────────────────────
-
-registerFeedbackRoutes(app, REPO_ROOT);
-
-// ─── start ────────────────────────────────────────────────────────────────────
-
-app.listen(PORT, () => {
-  console.log(`\n  D Co. Admin Tool`);
-  console.log(`  ─────────────────────────────────────`);
-  console.log(`  UI:  http://localhost:${PORT}`);
-  console.log(`  API: http://localhost:${PORT}/api`);
-  console.log(`\n  Ctrl+C to stop\n`);
-});
-
-// POST /api/private/contact
-// Body: { slug, email?, phone?, address?, notes? }
-// Merges supplied fields — omitted/blank fields are preserved.
-app.post('/api/private/contact', async (req, res) => {
-  const { slug, ...fields } = req.body || {};
-  if (!slug) return res.status(400).json({ error: 'slug is required' });
-  const all = await readPrivateContacts();
-  const existing = all[slug] || {};
-  for (const [k, v] of Object.entries(fields)) {
-    if (v !== '' && v != null) existing[k] = v;
-  }
-  all[slug] = existing;
-  await writePrivateContacts(all);
-  res.json({ ok: true });
-});
-
-// ─── soldier links: other ─────────────────────────────────────────────────────
-
-// POST /api/soldier/links/other/add
-// Body: { slug, label, url }
-app.post('/api/soldier/links/other/add', async (req, res) => {
-  const { slug, label, url } = req.body || {};
-  if (!slug || !url) return res.status(400).json({ error: 'slug and url required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  if (!data.links) data.links = {};
-  if (!Array.isArray(data.links.other)) {
-    data.links.other = data.links.other ? [data.links.other] : [];
-  }
-  data.links.other.push({ label: label || '', url });
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, links: { other: data.links.other } });
-});
-
-// POST /api/soldier/links/other/remove
-// Body: { slug, index }
-app.post('/api/soldier/links/other/remove', async (req, res) => {
-  const { slug, index } = req.body || {};
-  if (!slug || index == null) return res.status(400).json({ error: 'slug and index required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  const other = Array.isArray(data.links?.other) ? [...data.links.other] : [];
-  other.splice(Number(index), 1);
-  if (!data.links) data.links = {};
-  data.links.other = other;
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, links: { other: data.links.other } });
 });
 
 // ─── service record ───────────────────────────────────────────────────────────
 
-// POST /api/soldier/service-record/induction
-// Body: { slug, status?, location?, date? }
 app.post('/api/soldier/service-record/induction', async (req, res) => {
-  const { slug, ...fields } = req.body || {};
-  if (!slug) return res.status(400).json({ error: 'slug required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  if (!data.service_record) data.service_record = {};
-  if (!data.service_record.induction || typeof data.service_record.induction !== 'object') {
-    data.service_record.induction = {};
+  try {
+    const { slug, ...fields } = req.body || {};
+    if (!slug) return res.status(400).json({ error: 'slug required' });
+    const filePath = await resolvePath('soldier', slug);
+    if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
+    const { data, content } = await readRecord(filePath);
+    if (!data.service_record) data.service_record = {};
+    if (!data.service_record.induction || typeof data.service_record.induction !== 'object') {
+      data.service_record.induction = {};
+    }
+    for (const k of ['status', 'location', 'date']) {
+      if (fields[k] != null) data.service_record.induction[k] = fields[k] || null;
+    }
+    await writeRecord(filePath, data, content);
+    res.json({ ok: true, induction: data.service_record.induction });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  for (const k of ['status', 'location', 'date']) {
-    if (fields[k] != null) data.service_record.induction[k] = fields[k] || null;
-  }
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, induction: data.service_record.induction });
 });
 
-// POST /api/soldier/service-record/assignment/add
-// Body: { slug, type, label, unit, location, from, to, notes }
 app.post('/api/soldier/service-record/assignment/add', async (req, res) => {
-  const { slug, ...entry } = req.body || {};
-  if (!slug) return res.status(400).json({ error: 'slug required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  if (!data.service_record) data.service_record = {};
-  if (!Array.isArray(data.service_record.assignments)) data.service_record.assignments = [];
-  const clean = {};
-  for (const k of ['type', 'label', 'unit', 'location', 'from', 'to', 'notes']) {
-    if (entry[k] != null && entry[k] !== '') clean[k] = entry[k];
+  try {
+    const { slug, ...entry } = req.body || {};
+    if (!slug) return res.status(400).json({ error: 'slug required' });
+    const filePath = await resolvePath('soldier', slug);
+    if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
+    const { data, content } = await readRecord(filePath);
+    if (!data.service_record) data.service_record = {};
+    if (!Array.isArray(data.service_record.assignments)) data.service_record.assignments = [];
+    const clean = {};
+    for (const k of ['type', 'label', 'unit', 'location', 'from', 'to', 'notes']) {
+      if (entry[k] != null && entry[k] !== '') clean[k] = entry[k];
+    }
+    data.service_record.assignments.push(clean);
+    await writeRecord(filePath, data, content);
+    res.json({ ok: true, assignments: data.service_record.assignments });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  data.service_record.assignments.push(clean);
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, assignments: data.service_record.assignments });
 });
 
-// POST /api/soldier/service-record/assignment/remove
-// Body: { slug, index }
 app.post('/api/soldier/service-record/assignment/remove', async (req, res) => {
-  const { slug, index } = req.body || {};
-  if (!slug || index == null) return res.status(400).json({ error: 'slug and index required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  const assignments = Array.isArray(data.service_record?.assignments)
-    ? [...data.service_record.assignments] : [];
-  assignments.splice(Number(index), 1);
-  data.service_record.assignments = assignments;
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, assignments: data.service_record.assignments });
+  try {
+    const { slug, index } = req.body || {};
+    if (!slug || index == null) return res.status(400).json({ error: 'slug and index required' });
+    const filePath = await resolvePath('soldier', slug);
+    if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
+    const { data, content } = await readRecord(filePath);
+    const assignments = Array.isArray(data.service_record?.assignments)
+      ? [...data.service_record.assignments] : [];
+    assignments.splice(Number(index), 1);
+    data.service_record.assignments = assignments;
+    await writeRecord(filePath, data, content);
+    res.json({ ok: true, assignments: data.service_record.assignments });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ─── timeline ─────────────────────────────────────────────────────────────────
 
-// POST /api/soldier/timeline/add
-// Body: { slug, date, phase, type, headline, body }
 app.post('/api/soldier/timeline/add', async (req, res) => {
-  const { slug, ...entry } = req.body || {};
-  if (!slug) return res.status(400).json({ error: 'slug required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  if (!Array.isArray(data.timeline)) data.timeline = [];
-  const clean = {};
-  for (const k of ['date', 'phase', 'type', 'headline', 'body']) {
-    if (entry[k] != null && entry[k] !== '') clean[k] = entry[k];
+  try {
+    const { slug, ...entry } = req.body || {};
+    if (!slug) return res.status(400).json({ error: 'slug required' });
+    const filePath = await resolvePath('soldier', slug);
+    if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
+    const { data, content } = await readRecord(filePath);
+    if (!Array.isArray(data.timeline)) data.timeline = [];
+    const clean = {};
+    for (const k of ['date', 'phase', 'type', 'headline', 'body']) {
+      if (entry[k] != null && entry[k] !== '') clean[k] = entry[k];
+    }
+    data.timeline.push(clean);
+    data.timeline.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+    await writeRecord(filePath, data, content);
+    res.json({ ok: true, timeline: data.timeline });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  data.timeline.push(clean);
-  data.timeline.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, timeline: data.timeline });
 });
 
-// POST /api/soldier/timeline/remove
-// Body: { slug, index }
 app.post('/api/soldier/timeline/remove', async (req, res) => {
-  const { slug, index } = req.body || {};
-  if (!slug || index == null) return res.status(400).json({ error: 'slug and index required' });
-  const filePath = await resolvePath('soldier', slug);
-  if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
-  const { data, content } = await readRecord(filePath);
-  const tl = Array.isArray(data.timeline) ? [...data.timeline] : [];
-  tl.splice(Number(index), 1);
-  data.timeline = tl;
-  await writeRecord(filePath, data, content);
-  res.json({ ok: true, timeline: data.timeline });
+  try {
+    const { slug, index } = req.body || {};
+    if (!slug || index == null) return res.status(400).json({ error: 'slug and index required' });
+    const filePath = await resolvePath('soldier', slug);
+    if (!filePath) return res.status(404).json({ error: 'Soldier not found' });
+    const { data, content } = await readRecord(filePath);
+    const tl = Array.isArray(data.timeline) ? [...data.timeline] : [];
+    tl.splice(Number(index), 1);
+    data.timeline = tl;
+    await writeRecord(filePath, data, content);
+    res.json({ ok: true, timeline: data.timeline });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ─── soldier photo listing ────────────────────────────────────────────────────
 
-
-// GET /api/soldier/photos?slug=
 app.get('/api/soldier/photos', async (req, res) => {
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug required' });
-  const SOLDIERS_ROOT = path.resolve('..', 'site', 'soldiers');
+  const SOLDIERS_ROOT = path.join(SITE_ROOT, 'soldiers');
   let profilePhoto = null;
   const soldierPath = await resolvePath('soldier', slug);
   if (soldierPath) {
@@ -634,11 +829,10 @@ app.get('/api/soldier/photos', async (req, res) => {
   res.json({ ok: true, profile_photo: profilePhoto, field_count: fieldFiles.length, field_files: fieldFiles });
 });
 
-// GET /api/soldier/documents?slug=
 app.get('/api/soldier/documents', async (req, res) => {
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug required' });
-  const docRoot = path.resolve('..', 'site', 'documents', slug);
+  const docRoot = path.join(SITE_ROOT, 'documents', slug);
   const docs = [];
   try {
     const entries = await fs.readdir(docRoot, { withFileTypes: true });
@@ -646,12 +840,12 @@ app.get('/api/soldier/documents', async (req, res) => {
       if (!e.isDirectory()) continue;
       const docSlug = e.name;
       let title = docSlug;
-      let type  = '';
+      let type = '';
       for (const candidate of [`${docSlug}.md`, 'index.md']) {
         try {
           const { data } = await readRecord(path.join(docRoot, docSlug, candidate));
           if (data.title) title = data.title;
-          if (data.type)  type  = data.type;
+          if (data.type) type = data.type;
           break;
         } catch {}
       }
@@ -661,9 +855,6 @@ app.get('/api/soldier/documents', async (req, res) => {
   res.json({ ok: true, documents: docs });
 });
 
-// GET /api/soldier/photos/containing?slug=
-// Walks site/soldiers/*/photos/*/index.md and returns all photos whose
-// contains[] array includes the requested slug.
 app.get('/api/soldier/photos/containing', async (req, res) => {
   const { slug } = req.query;
   if (!slug) return res.status(400).json({ error: 'slug required' });
@@ -692,8 +883,8 @@ app.get('/api/soldier/photos/containing', async (req, res) => {
                 sourceSlug,
                 subfolder,
                 filename: photo.filename,
-                caption:  photo.caption_short || photo.caption || '',
-                credit:   photo.credit || '',
+                caption: photo.caption_short || photo.caption || '',
+                credit: photo.credit || '',
                 url: `https://angryskipperarchive.org/media/photos/soldiers/${sourceSlug}/${subfolder}/${encodeURIComponent(photo.filename)}`,
               });
             }
@@ -707,42 +898,50 @@ app.get('/api/soldier/photos/containing', async (req, res) => {
   res.json({ ok: true, photos: results });
 });
 
-// POST /api/soldier/profile-photo/from-existing
-// Body: { slug, sourceSlug, subfolder, filename, crop, credit, photographer }
-// Reads the source photo from disk, crops/converts with sharp, saves as profile photo.
 app.post('/api/soldier/profile-photo/from-existing', async (req, res) => {
   try {
     const { slug, sourceSlug, subfolder, filename, crop, credit = '', photographer = '' } = req.body || {};
+    console.log(`[from-existing] request: slug=${slug} sourceSlug=${sourceSlug} subfolder=${subfolder} filename=${filename}`);
     if (!slug || !sourceSlug || !subfolder || !filename) {
+      console.error('[from-existing] rejected: slug, sourceSlug, subfolder, and filename are required');
       return res.status(400).json({ error: 'slug, sourceSlug, subfolder, and filename are required' });
     }
+
+    // Same guard as /api/soldier/profile-photo: don't create an orphan
+    // photos/ folder for a soldier record that doesn't exist yet.
+    const existingSoldierPath = await resolvePath('soldier', slug);
+    if (!existingSoldierPath) {
+      console.error(`[from-existing] rejected: no soldier record found for slug=${slug}`);
+      return res.status(404).json({ error: `No soldier record found for "${slug}". Create the soldier first, then add the profile photo.` });
+    }
+
     const cdnUrl = `https://angryskipperarchive.org/media/photos/soldiers/${sourceSlug}/${subfolder}/${encodeURIComponent(filename)}`;
     console.log('[from-existing] fetching:', cdnUrl);
     const fetchRes = await fetch(cdnUrl);
     if (!fetchRes.ok) throw new Error(`CDN fetch failed: ${fetchRes.status} ${cdnUrl}`);
     const arrayBuf = await fetchRes.arrayBuffer();
-    const buffer   = Buffer.from(arrayBuf);
+    const buffer = Buffer.from(arrayBuf);
 
     const profileDir = path.join(SITE_ROOT, 'soldiers', slug, 'photos', 'profile');
     await fs.mkdir(profileDir, { recursive: true });
 
     const outFilename = `${slug}-profile.jpg`;
-    const outPath     = path.join(profileDir, outFilename);
+    const outPath = path.join(profileDir, outFilename);
 
     const { default: sharp } = await import('sharp');
     let pipeline = sharp(buffer);
     if (crop && crop.w > 0.02 && crop.h > 0.02) {
       const meta = await pipeline.metadata();
       pipeline = pipeline.extract({
-        left:   Math.round(crop.x * meta.width),
-        top:    Math.round(crop.y * meta.height),
-        width:  Math.round(crop.w * meta.width),
+        left: Math.round(crop.x * meta.width),
+        top: Math.round(crop.y * meta.height),
+        width: Math.round(crop.w * meta.width),
         height: Math.round(crop.h * meta.height),
       });
     }
     await pipeline.jpeg({ quality: 90 }).toFile(outPath);
 
-    const creditStr       = credit      ? `"${credit.replace(/"/g, '\\"')}"` : '""';
+    const creditStr = credit ? `"${credit.replace(/"/g, '\\"')}"` : '""';
     const photographerStr = photographer ? `"${photographer}"` : '""';
     const indexMd = [
       '---',
@@ -766,16 +965,13 @@ app.post('/api/soldier/profile-photo/from-existing', async (req, res) => {
     ].join('\n');
     await fs.writeFile(path.join(profileDir, 'index.md'), indexMd, 'utf8');
 
-    // Upload to R2
     await uploadToR2(outPath, `soldiers/${slug}/profile/${outFilename}`);
 
-    const soldierPath = await resolvePath('soldier', slug);
-    if (soldierPath) {
-      const { data, content } = await readRecord(soldierPath);
-      data.profile_photo = outFilename;
-      await writeRecord(soldierPath, data, content);
-    }
+    const { data, content } = await readRecord(existingSoldierPath);
+    data.profile_photo = outFilename;
+    await writeRecord(existingSoldierPath, data, content);
 
+    console.log(`[from-existing] success: slug=${slug} filename=${outFilename}`);
     res.json({ ok: true, filename: outFilename });
   } catch (err) {
     console.error('[from-existing] error:', err);
@@ -783,40 +979,283 @@ app.post('/api/soldier/profile-photo/from-existing', async (req, res) => {
   }
 });
 
-// POST /api/soldier/documents/create
-// Body: { soldierSlug, docSlug, title, type }
-app.post('/api/soldier/documents/create', async (req, res) => {
-  const { soldierSlug, docSlug, title, type } = req.body || {};
-  if (!soldierSlug || !docSlug) return res.status(400).json({ error: 'soldierSlug and docSlug required' });
-  if (!/^[a-z0-9-]+$/.test(docSlug)) return res.status(400).json({ error: 'docSlug: lowercase letters, numbers, hyphens only' });
-  const docDir = path.resolve('..', 'site', 'documents', soldierSlug, docSlug);
-  try { await fs.access(docDir); return res.status(409).json({ error: `"${docSlug}" already exists` }); } catch {}
-  await fs.mkdir(docDir, { recursive: true });
-  const stub = [
-    '---',
-    `slug: ${docSlug}`,
-    `title: ${title ? JSON.stringify(title) : '""'}`,
-    `type: ${type || 'account'}`,
-    'status: draft',
-    'doc_date: ""',
-    'date_known: false',
-    `author: ${soldierSlug}`,
-    'event: ""',
-    'source: ""',
-    'contains:',
-    'tagged:',
-    '---',
-    '',
-  ].join('\n');
-  await fs.writeFile(path.join(docDir, 'index.md'), stub, 'utf8');
-  const soldierPath = await resolvePath('soldier', soldierSlug);
-  if (soldierPath) {
-    const { data, content } = await readRecord(soldierPath);
-    const current = Array.isArray(data.documents) ? data.documents : [];
-    if (!current.includes(docSlug)) {
-      data.documents = [...current, docSlug];
-      await writeRecord(soldierPath, data, content);
+// ─── tab 5: todo / flags ──────────────────────────────────────────────────────
+
+registerTodoRoutes(app);
+
+// ─── infra-task-068: submissions pull ────────────────────────────────────────
+
+registerSubmissionsRoutes(app, REPO_ROOT);
+
+// ─── photo ID proposals ──────────────────────────────────────────────────────
+
+registerProposalsRoutes(app);
+
+// ─── site feedback ───────────────────────────────────────────────────────────
+
+registerFeedbackRoutes(app, REPO_ROOT);
+
+// ─── Phase 3 Helper Endpoints: Alongside, Letters, Anecdotes ─────────────────
+
+// GET /api/soldier/alongside?slug=
+app.get('/api/soldier/alongside', async (req, res) => {
+  try {
+    const { slug } = req.query;
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+
+    const alongsidePath = path.join(SITE_ROOT, 'soldiers', slug, '_alongside.json');
+    let manualLinks = [];
+    try {
+      const raw = await fs.readFile(alongsidePath, 'utf8');
+      manualLinks = JSON.parse(raw);
+    } catch (err) {
+      if (err.code !== 'ENOENT') console.error(err);
     }
+
+    res.json({ ok: true, slug, links: manualLinks });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  res.json({ ok: true, docSlug });
+});
+
+// GET /api/soldier/letters?slug=
+app.get('/api/soldier/letters', async (req, res) => {
+  try {
+    const { slug } = req.query;
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+
+    const lettersDir = path.join(SITE_ROOT, 'soldiers', slug, 'letters');
+    const letters = [];
+    try {
+      const entries = await fs.readdir(lettersDir, { withFileTypes: true });
+      for (const e of entries) {
+        if (!e.isFile() || !e.name.endsWith('.md')) continue;
+        const letterSlug = path.basename(e.name, '.md');
+        const { data } = await readRecord(path.join(lettersDir, e.name));
+        letters.push({
+          slug: letterSlug,
+          title: data.title || letterSlug,
+          doc_date: data.doc_date || data.date || '',
+          recipient: data.recipient || '',
+          contains: data.contains || [],
+          tagged: data.tagged || []
+        });
+      }
+    } catch {}
+
+    res.json({ ok: true, letters });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/soldier/anecdotes?slug=
+app.get('/api/soldier/anecdotes', async (req, res) => {
+  try {
+    const { slug } = req.query;
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+
+    const soldierAnecDir = path.join(SITE_ROOT, 'anecdotes', slug);
+    const anecdotes = [];
+    try {
+      const dirs = await fs.readdir(soldierAnecDir, { withFileTypes: true });
+      for (const d of dirs) {
+        if (!d.isDirectory()) continue;
+        const anecSlug = d.name;
+        const filePath = path.join(soldierAnecDir, anecSlug, 'index.md');
+        try {
+          const { data } = await readRecord(filePath);
+          anecdotes.push({
+            slug: anecSlug,
+            title: data.title || anecSlug,
+            summary: data.summary || '',
+            date: data.date || '',
+            event: data.event || '',
+            contains: data.contains || [],
+            tagged: data.tagged || []
+          });
+        } catch {}
+      }
+    } catch {}
+
+    res.json({ ok: true, anecdotes });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+/**
+ * T5.1: POST /api/locations/create
+ * Schema: site/locations/<slug>/index.md
+ */
+app.post('/api/locations/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      display_name = '',
+      short_name = '',
+      type = 'lz',
+      also_known_as = '',
+      named_for = '',
+      named_for_note = '',
+      location = {},
+      dates = {},
+      related_bases = {},
+      photo_sources = [],
+      related_events = [],
+      contains = [],
+      tagged = [],
+      command_post = false,
+      contributed_by = '',
+      notes = '',
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+
+    const locDir = path.join(SITE_ROOT, 'locations', slug);
+    await fs.mkdir(locDir, { recursive: true });
+    const absPath = path.join(locDir, 'index.md');
+
+    const title = display_name || short_name || slug;
+    const breadcrumb = short_name || display_name || slug;
+
+    const data = {
+      layout: 'layouts/location.njk',
+      tags: ['location'],
+      slug,
+      title,
+      breadcrumb,
+      display_name,
+      short_name,
+      type,
+      also_known_as,
+      named_for,
+      named_for_note,
+      location: {
+        mgrs: location.mgrs || '',
+        lat: location.lat || '',
+        lon: location.lon || '',
+        province: location.province || '',
+        modern_landmark: location.modern_landmark || '',
+        coordinate_source: location.coordinate_source || '',
+        coordinate_confidence: location.coordinate_confidence || ''
+      },
+      dates: {
+        established: {
+          date: dates.established?.date || '',
+          source: dates.established?.source || '',
+          confidence: dates.established?.confidence || ''
+        },
+        closed: {
+          date: dates.closed?.date || '',
+          source: dates.closed?.source || '',
+          confidence: dates.closed?.confidence || ''
+        },
+        notes: dates.notes || ''
+      },
+      related_bases: {
+        predecessor: related_bases.predecessor || '',
+        successor: related_bases.successor || '',
+        split_from: related_bases.split_from || '',
+        split_into: related_bases.split_into || ''
+      },
+      photo_sources: Array.isArray(photo_sources) ? photo_sources : [],
+      related_events: Array.isArray(related_events) ? related_events : [],
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      command_post: command_post === true || command_post === 'true',
+      status: 'published',
+      date_added: new Date().toISOString().slice(0, 10),
+      last_updated: new Date().toISOString().slice(0, 10),
+      contributed_by,
+      notes,
+      permalink: `/locations/${slug}/`
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+/**
+ * T6.1: POST /api/events/create
+ * Schema: site/events/<slug>/index.md
+ */
+app.post('/api/events/create', async (req, res) => {
+  try {
+    const {
+      slug,
+      title = '',
+      type = 'contact',
+      date = '',
+      date_end = '',
+      date_known = true,
+      operation = '',
+      location = '',
+      location_precision = '',
+      units = { primary: [], supporting: [] },
+      sources = [],
+      images = [],
+      related_events = [],
+      contains = [],
+      tagged = [],
+      casualties = {},
+      content = '',
+      body = ''
+    } = req.body || {};
+
+    if (!slug) return res.status(400).json({ error: 'slug is required' });
+    if (!/^[a-z0-9-]+$/.test(slug)) return res.status(400).json({ error: 'slug: lowercase letters, numbers, hyphens only' });
+
+    const eventDir = path.join(SITE_ROOT, 'events', slug);
+    await fs.mkdir(eventDir, { recursive: true });
+    const absPath = path.join(eventDir, 'index.md');
+
+    const data = {
+      layout: 'layouts/event.njk',
+      slug,
+      title: title || slug,
+      status: 'published',
+      publish: true,
+      type,
+      date: date || '',
+      date_end: date_end || '',
+      date_known: date_known === true || date_known === 'true',
+      operation: operation || '',
+      location: location || '',
+      location_precision: location_precision || '',
+      units: {
+        primary: Array.isArray(units.primary) ? units.primary : [],
+        supporting: Array.isArray(units.supporting) ? units.supporting : []
+      },
+      sources: Array.isArray(sources) ? sources : [],
+      images: Array.isArray(images) ? images : [],
+      related_events: Array.isArray(related_events) ? related_events : [],
+      contains: Array.isArray(contains) ? contains : [],
+      tagged: Array.isArray(tagged) ? tagged : [],
+      casualties: typeof casualties === 'object' && casualties !== null ? casualties : {},
+      permalink: `/events/${slug}/`
+    };
+
+    const markdownBody = content || body || '';
+    await writeRecord(absPath, data, markdownBody);
+
+    res.json({ ok: true, path: absPath, slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// ─── start ────────────────────────────────────────────────────────────────────
+
+app.listen(PORT, () => {
+  console.log(`\n  D Co. Admin Tool`);
+  console.log(`  ─────────────────────────────────────`);
+  console.log(`  UI:  http://localhost:${PORT}`);
+  console.log(`  API: http://localhost:${PORT}/api`);
+  console.log(`\n  Ctrl+C to stop\n`);
 });

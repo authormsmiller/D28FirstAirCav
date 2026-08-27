@@ -111,6 +111,7 @@ brothers:
 related_events:
   - bunker-complex-1971-06-24
   - contact-nui-ba-1971-10-21
+  - bee-incident-1971-03-22
 
 # ── ADMIN ─────────────────────────────────────────────────
 date_added: 

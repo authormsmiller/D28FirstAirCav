@@ -6,97 +6,86 @@ breadcrumb: Rick Aulenbach
 permalink: /soldiers/aulenback-rick/
 tags:
   - soldier
-
-# ── IDENTITY ──────────────────────────────────────
 first_name: Rick
 last_name: Aulenbach
-middle_name: 
-suffix:             # Jr. | Sr. | III | IV
+middle_name: null
+suffix: null
 nickname: Ollie
-birth_year:         # YYYY
-
-# ── RANK & ASSIGNMENT ─────────────────────────────
-rank: 
-mos: 
+birth_year: null
+rank: null
+mos: null
 platoon: Cat
-
-# ── SERVICE ───────────────────────────────────────
 arrived: 13 May 1970
 departed: 26 May 1971
 character_of_service: Honorable
 status: active
-
-# ── POST-SERVICE ──────────────────────────────────
-hometown: 
-current_location:   # last known city/state — not a full address
-year_deceased:      # YYYY
-cause_of_death:     # natural | kia | accident | unknown
-
-# ── PROFILE PHOTO ─────────────────────────────────
-profile_photo:
-
-# ── DECORATIONS ───────────────────────────────────
-decorations:
-
-distinguished_decorations:
-
-decorations_unconfirmed:    # probable based on documented evidence — not yet sourced
-
-# ── SERVICE RECORD ────────────────────────────────
+hometown: null
+current_location: null
+year_deceased: null
+cause_of_death: null
+profile_photo: aulenbach-rick-profile.jpg
+decorations: null
+distinguished_decorations: null
+decorations_unconfirmed: null
 service_record:
   induction:
-    status:         # drafted | enlisted | ra (regular army) | commissioned (reserve/ROTC/OCS)
-    location:
-    date:
-  assignments:
-
-# ── CONTACT ───────────────────────────────────────
-# Phone, email, and address live in _private/contacts.json (gitignored).
-# This block carries only what is safe to commit.
+    status: null
+    location: null
+    date: null
+  assignments: null
 share_contact: false
 contact:
-  name: 
-  relation:         # son | daughter | spouse | self | other
-  last_verified:    # YYYY-MM-DD
-
-# ── EXTERNAL LINKS ────────────────────────────────
+  name: null
+  relation: null
+  last_verified: null
 links:
-  wall: 
-  other:
-
-# ── TIMELINE SOURCE NOTE ──────────────────────────
-timeline_source: >
-  Service timeline not yet compiled. If you served with or knew Rick Aulenbach,
-  please use the contribute form to share what you remember.
-
-# ── SERVICE TIMELINE ──────────────────────────────
-# phase values: training | staging | in-country | post-service
+  wall: null
+  other: null
+timeline_source: |
+  Service timeline not yet compiled. If you served with or knew Rick Aulenbach, please use the contribute form to share what you remember.
 timeline:
-
-# ── PHOTOS ────────────────────────────────────────
-# Canonical photo metadata lives in photos/[subfolder]/index.md.
-# The photos array below is retained for template compatibility only.
-# Do not add new photos here — add them to the index files only.
-photo_intro: >
+  - date: "1970-05-13"
+    phase: in-country
+    type: service
+    headline: Arrived in Vietnam
+  - date: "1970-06-06"
+    phase: in-country
+    type: service
+    headline: Assigned to 1st Cav (Airmobile) 2/8 Delta Company
+  - date: "1970-06-07"
+    phase: in-country
+    type: service
+    headline: Met with Delta Company in Cambodia
+    body: As the helicopter flew over Cambodia the door gunner tapped him on the shoulder and pointed to a little opening in the jungle and told him, that’s where we are going to put you in. A few minutes later he was reporting to LT Thackery
+  - date: "1970-08-25"
+    phase: in-country
+    type: personal
+    headline: Birthday celebration in Bien Hoa
+    body: While on Stand Down in Bien Hoa Rick celebrated his birthday with a bunch of guys at a Korean restaurant. The next day he remembers going with a guy from Range named Bob Rezek, to the EM club where they played pool.
+  - date: 1970-11
+    phase: in-country
+    type: service
+    headline: Assigned as company clerk
+  - date: 1971-02
+    phase: in-country
+    type: service
+    headline: Assigned as Officer Records Clerk
+    body: Clerk position was in Bien Hoa
+  - date: "1971-05-26"
+    phase: in-country
+    type: service
+    headline: Discharged from Service
+    body: Completed tour and sent back to the U.S.
+photo_intro: |
   Photographs pending.
-
 wartime_content_notice: false
-
-photos:
-
-# ── DOCUMENTS ─────────────────────────────────────
-documents:
-
-# ── RELATED ───────────────────────────────────────
-brothers:
-
-related_events:
-
-# ── ADMIN ─────────────────────────────────────────
-date_added: 2026-08-17
-last_updated: 2026-08-17
-contributed_by: 
-notes: >
+photos: null
+documents: null
+brothers: null
+related_events: null
+date_added: 2026-08-17T00:00:00.000Z
+last_updated: 2026-08-17T00:00:00.000Z
+contributed_by: null
+notes: |
   Created manually.
-
 ---

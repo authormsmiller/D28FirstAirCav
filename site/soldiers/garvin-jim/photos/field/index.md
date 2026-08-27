@@ -140,3 +140,17 @@ photos:
       - colburn-richard
     tagged: []
 ---
+  - filename: 1970 Garvin-Photo.jpg
+    caption: >
+      Capt. Jim Bedsole (center, seated right) with his troops on what looks to be a log day in the bush.
+    caption_short: ""
+    credit: "Collection of Jim Garvin"
+    photographer: "garvin-jim"
+    date: 1970
+    date_known: true
+    event: ""
+    quality: 
+    contains:
+      - bedsole-jim
+    tagged: []
+---

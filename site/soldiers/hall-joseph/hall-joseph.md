@@ -129,6 +129,7 @@ brothers:
 
 related_events:
   - contact-fsb-fontaine-1971-04-20
+  - bee-incident-1971-03-22
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-22

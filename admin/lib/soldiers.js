@@ -6,10 +6,21 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const SITE_SOLDIERS  = path.resolve('..', 'site', 'soldiers');
-const SITE_ANECDOTES = path.resolve('..', 'site', 'anecdotes');
-const SITE_DOCUMENTS = path.resolve('..', 'site', 'documents');
+// IMPORTANT: resolve relative to this file, not process.cwd(). The old
+// path.resolve('..', 'site', 'soldiers') resolved against the CWD at
+// import time — since server.js is documented to be launched with
+// `node admin/server.js` from the repo root, that put '..' one directory
+// ABOVE the repo (i.e. the parent of the repo folder), so every soldier
+// ever created via this endpoint was written outside the git repo entirely
+// and never showed up in the site. Mirrors records.js's SITE_ROOT pattern.
+// See pearson-james / pellaton-leon incidents, Aug 2026.
+const __dirname      = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT      = path.resolve(__dirname, '..', '..');
+const SITE_SOLDIERS  = path.join(REPO_ROOT, 'site', 'soldiers');
+const SITE_ANECDOTES = path.join(REPO_ROOT, 'site', 'anecdotes');
+const SITE_DOCUMENTS = path.join(REPO_ROOT, 'site', 'documents');
 
 // ---------------------------------------------------------------------------
 // buildSoldierStub(slug, fm)
@@ -128,9 +139,15 @@ export function buildSoldierStub(slug, fm) {
 
 // ---------------------------------------------------------------------------
 // soldierExists(slug) → boolean
+// IMPORTANT: checks for the <slug>.md record itself, not just the soldier
+// directory. Other flows (e.g. the profile-photo endpoint) can create
+// site/soldiers/<slug>/photos/... before the record exists — checking the
+// directory alone caused /api/soldiers/create to wrongly 409 "already
+// exists" and silently skip writing the .md. See pellaton-leon incident,
+// Aug 2026.
 // ---------------------------------------------------------------------------
 function soldierExists(slug) {
-  return fs.existsSync(path.join(SITE_SOLDIERS, slug));
+  return fs.existsSync(path.join(SITE_SOLDIERS, slug, `${slug}.md`));
 }
 
 // ---------------------------------------------------------------------------
@@ -158,11 +175,15 @@ export function registerSoldiersRoutes(app) {
     if (!req.body) req.body = {};
     const { slug, ...fm } = req.body;
 
+    console.log(`[soldiers/create] request: slug=${slug}`);
+
     if (!slug || typeof slug !== 'string' || !/^[a-z0-9-]+$/.test(slug)) {
+      console.error(`[soldiers/create] rejected: invalid or missing slug (${slug})`);
       return res.status(400).json({ ok: false, error: 'Invalid or missing slug.' });
     }
 
     if (soldierExists(slug)) {
+      console.error(`[soldiers/create] rejected: "${slug}" already has a record`);
       return res.status(409).json({ ok: false, alreadyExists: true,
         error: `Soldier "${slug}" already exists.` });
     }
@@ -189,8 +210,10 @@ export function registerSoldiersRoutes(app) {
       const filePath = path.join(soldierDir, `${slug}.md`);
       fs.writeFileSync(filePath, buildSoldierStub(slug, fm), 'utf8');
 
+      console.log(`[soldiers/create] success: wrote ${filePath.replace(/\\/g, '/')}`);
       res.json({ ok: true, path: filePath.replace(/\\/g, '/') });
     } catch (err) {
+      console.error(`[soldiers/create] error for slug=${slug}:`, err);
       res.status(500).json({ ok: false, error: err.message });
     }
   });

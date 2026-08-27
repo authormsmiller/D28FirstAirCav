@@ -91,6 +91,7 @@ documents:
 brothers:
 
 related_events:
+  - bee-incident-1971-03-22
 
 # ── ADMIN ─────────────────────────────────────────
 date_added: 2026-05-27
