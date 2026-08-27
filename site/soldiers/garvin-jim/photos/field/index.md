@@ -153,4 +153,17 @@ photos:
     contains:
       - bedsole-jim
     tagged: []
+  - filename: VNamS233m Jim Arms Room.jpg
+    caption: >
+      Jim Garvin inspecting an M-16 in the arms room in the rear.
+    caption_short: ""
+    credit: "Collection of Jim Garvin"
+    photographer: ""
+    date: 
+    date_known: false
+    event: ""
+    quality: 
+    contains:
+      - garvin-jim
+    tagged: []
 ---
