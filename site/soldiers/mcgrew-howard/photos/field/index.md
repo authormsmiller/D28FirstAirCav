@@ -79,4 +79,17 @@ photos:
     contains:
       - mcgrew-howard
     tagged: []
+  - filename: 1971 Jim-Catterson McGrew-Photo.jpg
+    caption: >
+      Jim Catterson catching up on the news.
+    caption_short: ""
+    credit: "Courtesy of Howard McGrew"
+    photographer: "mcgrew-howard"
+    date: 1971
+    date_known: true
+    event: ""
+    quality: 
+    contains:
+      - catterson-jim
+    tagged: []
 ---
