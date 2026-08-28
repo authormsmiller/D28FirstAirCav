@@ -139,7 +139,6 @@ photos:
     contains:
       - colburn-richard
     tagged: []
----
   - filename: 1970 Garvin-Photo.jpg
     caption: >
       Capt. Jim Bedsole (center, seated right) with his troops on what looks to be a log day in the bush.
@@ -165,5 +164,31 @@ photos:
     quality: 
     contains:
       - garvin-jim
+    tagged: []
+  - filename: 1970 Russel-Burnett Garvin-Photo (2).jpg
+    caption: >
+      Russell Barnett wielding a jungle necessity, a machete, while standing on the berm of a firebase
+    caption_short: ""
+    credit: "Collection of Jim Garvin"
+    photographer: "garvin-jim"
+    date: 1970
+    date_known: true
+    event: ""
+    quality: 
+    contains:
+      - barnett-russell
+    tagged: []
+  - filename: 1970 Russel-Burnett Garvin-Photo.jpg
+    caption: >
+      Russell Barnett on the radio in the bush
+    caption_short: ""
+    credit: "Collection of Jim Garvin"
+    photographer: "garvin-jim"
+    date: 1970
+    date_known: true
+    event: ""
+    quality: 
+    contains:
+      - barnett-russell
     tagged: []
 ---
