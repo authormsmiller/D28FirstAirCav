@@ -90,8 +90,11 @@ casualties:
       date_wounded: 1971-04-20T00:00:00.000Z
       date_of_death: 1971-04-21T00:00:00.000Z
       note: >
-        Severely wounded by Chicom mine; carried across the stream by Tom Poore (per Schneck
-        interview); medevaced; died April 21.
+        Severely wounded by Chicom mine; carried across the stream by Tom Poore. Per Poore's own
+        account, he was with Dillon and Sargent when the charge went off, then stayed with Sargent
+        afterward — who he knew was dying but wasn't dead yet — for what felt like a stretch of
+        time when the two of them were the front line alone, before getting him across. Medevaced;
+        died April 21.
   wia:
     - slug: dillon-stan
       name: SSG Stan Dillon
@@ -101,13 +104,19 @@ casualties:
         the stream by Gary Collins. Declined morphine on reaching Doc Brothers, wanting to return
         to his men. Per Dillon's own account: noticed commo wire and recognized the bunker complex
         seconds before being hit; recalls two Chicom mines in the trees and Bott positioned to his
-        left. [Sensitive/uncorroborated: Dillon's account of the crossing describes a third soldier
-        as frozen and unresponsive until Collins intervened — not independently corroborated and
-        not for publication pending review; see archivist_notes.]
+        left. Poore's account independently corroborates being present at the charge and recalls
+        the hole in Dillon's hand. [Sensitive/uncorroborated: Dillon's account of the crossing
+        describes a third soldier as frozen and unresponsive until Collins intervened — not
+        independently corroborated and not for publication pending review; see archivist_notes.]
     - slug: bott-bill
       name: LT Bill Bott
       role: Range Six (platoon leader)
-      note: Wounded; last man to cross the stream
+      note: >
+        Wounded in the left arm — shrapnel between the two bones of the forearm, per his own
+        account; continued firing with his right arm and directing the platoon (corroborated by
+        Vollmar). Crossed the stream once for initial treatment, then declined further evacuation
+        to stay with his men; per Vollmar, he refused a seat on the second medevac helicopter and
+        was not fully evacuated until the following day.
     - slug: schneck-steve
       name: Steve Schneck
       role: M60 gunner
@@ -120,14 +129,14 @@ casualties:
     - slug: collins-gary
       name: PFC Gary Collins
       note: Took over M60 from Schneck; carried Dillon across stream; among last to cross
-    - slug: vollmar-tom
-      name: Tom Vollmar
+    - slug: holtsclaw-bill
+      name: Bill Holtsclaw
+      role: RTO (Dillon's point team)
       note: >
-        Came forward alone to escort a wounded LT Bott back across the stream — "I'm here to take
-        you back" (Bott account, from which this document takes its title; source now identified,
-        see oq-05). Discarded what Bott describes as sound-detection equipment ("large fat golf
-        tees") into the stream before crossing. Unit/assignment and reason for presence still
-        unconfirmed.
+        Wounded; confirmed by Poore's own account, which describes finding him after the charge,
+        covering him, and getting him back across the stream. Formerly listed as "holtzclaw-bill"
+        (tentative, per Bott) — renamed here after two independent sources (Bott and Poore) both
+        spell it "Holtsclaw."
   wia_count_note: Approximately 15 WIA total per multiple accounts; only named individuals above confirmed from sources
 tagged:
   - slug: mcgrew-howard
@@ -159,9 +168,6 @@ tagged:
   - slug: jenkins
     name: LT Jenkins
     note: Cat Platoon leader; on R&R during the engagement (per Bott)
-  - slug: holtzclaw-bill
-    name: Bill Holtzclaw
-    note: "RTO on Dillon's point team the morning of the engagement — per Bott, name uncertain (\"Bill Holtsclaw?\")"
   - slug: catterson
     name: Catterson (RTO)
     note: Bott's RTO; wounded alongside Bott by the command-detonated charge. Full name not yet identified.
@@ -179,20 +185,22 @@ tagged:
       Placed to the left of Bott's position on Neal's diagram of the wounded. Bott's phrasing leaves
       it ambiguous whether Hilts was himself wounded by the charge or simply positioned nearby —
       do not add to the WIA list until confirmed. See oq-10.
-  - slug: poore-tom
-    name: Tom Poore
-    note: >
-      Carried the severely wounded Sargent across the stream, per Schneck's account. See
-      citations — potential valor candidate, unconfirmed.
   - slug: pfromm-rocky
     name: Rocky Pfromm
     note: >
       [Sensitive/uncorroborated — not for publication] Named in Dillon's account of his own
       evacuation across the stream; the account describes Pfromm as unresponsive until Collins
-      intervened. This is a single, secondhand characterization of a named individual's reaction
-      under fire and has not been independently corroborated. Retained in the archive for
-      completeness but should not appear in any published narrative pending further sourcing or
-      contact with Pfromm/family. See archivist_notes.
+      intervened. Possibly the same person as the unnamed "medic assigned to the CP" whom Vollmar's
+      letter describes freezing and refusing to cross the stream (prompting Vollmar to go himself) —
+      not confirmed as the same individual/incident. See oq-12. Regardless of how well-sourced this
+      becomes, it should not appear in any published narrative pending direct contact with
+      Pfromm/family. See archivist_notes.
+  - slug: chabot-steve
+    name: Rep. Steve Chabot (OH-1)
+    note: Presented Bott's award at the 13 June 2016 ceremony at Harrison Township Civic Center; also attended Bott's talks at Whitewater Crossing Church, 19 June 2016.
+  - slug: bott-mary-alice
+    name: Mary Alice Bott
+    note: Bill Bott's wife; attended both the 2016 award ceremony and his subsequent church talks.
 citations:
   - slug: hall-joseph
     award: unknown
@@ -210,6 +218,26 @@ citations:
     award: unknown
     status: unconfirmed
     note: Carrying severely wounded Sargent across the stream under fire is consistent with a valor citation; no award documentation found
+  - slug: bott-bill
+    award: Bronze Star Medal with "V" Device
+    status: confirmed
+    date_awarded: 2016-06-13
+    note: >
+      Not recognized at the time, despite a ceremony at the forward fire base about a week later
+      where others reportedly received Bronze/Silver Stars (per Vollmar). Recognized 45 years
+      later, at a formal ceremony 13 June 2016 at Harrison Township Civic Center, presented by
+      Congressman Steve Chabot (OH-1), with Mary Alice Bott, Stan Dillon, Bill Neal, and others
+      in attendance. Vollmar's 1971-written recommendation letter (vollmar-tom-account-042071) is
+      among the documents supporting the belated nomination. Confirmed by photo evidence from the
+      ceremony (see archivist_notes): plain gold/bronze five-pointed star pendant, scarlet ribbon
+      with white-blue-white center stripe, and a gold "V" device pinned to the ribbon — the Bronze
+      Star Medal's ribbon and pendant, not the Silver Star's. This record previously carried a
+      Silver Star vs. Bronze Star discrepancy (oq-13); resolved 2026-09-01 in favor of Bronze Star
+      with "V" Device.
+  - slug: vollmar-tom
+    award: unknown
+    status: unconfirmed
+    note: Repeatedly crossed the stream under fire to retrieve wounded and organize medevac, after the CP's own medic froze; no award documentation found
 related_events:
   - slug: 3rd-brigade-separate-garryowen-1971
     relationship: operational-period
@@ -252,17 +280,25 @@ open_questions:
       Was the bunker complex subsequently swept or occupied? Multiple sources confirm it was bombarded through the night of 4/20–21. Check battalion logs and after-action reports via NARA.
   - id: oq-05
     publish: false
-    resolved: partial
+    resolved: true
     resolved_date: 2026-09-01
     question: |
       Tom Vollmar appears in the testing brief as having crossed the stream under fire with a medical kit. The originating source has not been identified. Do not create his soldier record until this is confirmed.
     resolution: |
-      Source identified: LT Bill Bott's first-person account (bott-042071-account, "I'm Here to Take
-      You Back") names Vollmar directly. Bott describes Vollmar coming forward alone, discarding
-      sound-detection equipment ("large fat golf tees") into the stream, and telling Bott "I'm here
-      to take you back" before escorting him across. Remaining open: Vollmar's unit/assignment, why
-      he was carrying that equipment, and whether "medical kit" (per the testing brief) is accurate
-      or a conflation with Doc Brothers.
+      Fully resolved. Vollmar's own letter (vollmar-tom-account-042071, "Not Leaving Them Alone") —
+      a 1971 Silver Star recommendation letter written on Bott's behalf — is the definitive source.
+      Vollmar identifies himself as PFC E-3, acting Supply Sergeant at the Company CP under Neal.
+      He confirms the "medical kit" detail from the testing brief: the CP's own medic froze and would
+      not cross the stream, so Vollmar grabbed that medic's bag himself and crossed to help Doc
+      Brothers. This supersedes the earlier reading (from Bott's account alone) that the item Vollmar
+      discarded into the stream was sound-detection gear — that item is now understood to be
+      something else Vollmar carried or discarded separately; the medical bag is confirmed by
+      Vollmar's own telling. Vollmar was not himself wounded; his casualties.wia entry has been
+      removed and he has been promoted to the top-level `contains` list. Note: Vollmar's letter says
+      Bott refused evacuation and was not lifted out until the next day, while Bott's own account
+      describes crossing the stream with Vollmar that same day for initial treatment before returning
+      to his men — the two are read here as sequential stages of the same evacuation, not a conflict,
+      but this has not been explicitly confirmed by either author.
   - id: oq-06
     publish: false
     question: |
@@ -302,6 +338,8 @@ open_questions:
       imprecision in one or both recollections more than 30 years after the event. Not yet reconciled.
   - id: oq-10
     publish: true
+    resolved: partial
+    resolved_date: 2026-09-01
     question: |
       LT Bott's account names several men not otherwise documented in this record: his RTO
       "Catterson," a wounded soldier "James Gator" ("a guy from California"), SGT Don Miller
@@ -309,6 +347,11 @@ open_questions:
       on R&R), Bill Holtzclaw (tentative — Bott spells it "Holtsclaw?"), and Doug Hilts (placement
       on the wounded diagram unclear). If you have full names, service records, or can confirm
       whether Gator and Hilts were wounded, please contact us.
+    resolution: |
+      Holtsclaw resolved by Poore's account (poore-tom-account-042071): confirms the spelling
+      "Holtsclaw" (matching Bott's tentative guess) and confirms he was wounded — moved from
+      tagged to casualties.wia. Remaining open: Catterson, Gator, Miller, Jenkins, and Hilts's
+      wounded status.
   - id: oq-11
     publish: false
     resolved: partial
@@ -327,6 +370,38 @@ open_questions:
       "Bite on This Stick") and registered under accounts/sources below. Interview date still
       unconfirmed. Remaining open: the Pfromm characterization is deliberately excluded from the
       published account and remains flagged not-for-publication pending corroboration.
+  - id: oq-12
+    publish: false
+    question: |
+      Vollmar's letter (vollmar-tom-account-042071) states that the medic assigned to the Company CP
+      froze and would not cross the stream, prompting Vollmar to grab that medic's bag and cross
+      himself. Vollmar does not name this medic. This raises the possibility that he is the same
+      person Dillon's account names as Rocky Pfromm, frozen near the creek during Dillon's own
+      evacuation (see tagged: pfromm-rocky) — a second, independent primary source describing
+      similar behavior. Not confirmed as the same incident or person. Given the sensitivity of
+      characterizing a named individual's reaction under fire, this connection should not be
+      asserted publicly, however well-sourced it becomes, without corroboration or direct contact
+      with Pfromm/family.
+  - id: oq-13
+    publish: true
+    resolved: true
+    resolved_date: 2026-09-01
+    question: |
+      What award did Bott ultimately receive in 2016 — Silver Star or Bronze Star with "V" Device?
+      This record previously stated Silver Star (matching what Vollmar's 1971 letter recommended).
+      Davis's account of the 13 June 2016 ceremony (davis-kirk-bott-award-account-2016) specifically
+      names the Bronze Star with "V" Device as the award presented by Congressman Steve Chabot.
+      Needs clarification/documentation (award citation, news coverage, program from the ceremony)
+      before either can be marked confirmed. Separately, Davis's phrasing "four KIA" in the same
+      account is read here as folding in Sargent's death of wounds alongside Cardwell, Drinkard,
+      and Hall's same-day deaths — consistent with the record's existing count of three KIA plus
+      one DOW, not a new or conflicting fatality count.
+    resolution: |
+      Resolved by a photo of the ceremony (1788294254621_image.png, added to archivist_notes.sources):
+      the medal is a plain gold/bronze five-pointed star pendant on a scarlet ribbon with a
+      white-blue-white center stripe, with a gold "V" device pinned to the ribbon — the Bronze
+      Star Medal, not the Silver Star (whose ribbon and pendant are visually distinct). Davis's
+      account was correct; the citation has been updated accordingly.
 
   - id: oq-07
     publish: false
@@ -354,11 +429,31 @@ archivist_notes:
                                           # and Rocky Pfromm (see tagged — deliberately not in published
                                           # account; sensitive/uncorroborated). Interview date still
                                           # unconfirmed.
+    - vollmar-tom-account-042071.md       # "Not Leaving Them Alone" — Vollmar's 1971 Silver Star recommendation
+                                          # letter for Bott. Resolves oq-05 definitively (Vollmar not wounded;
+                                          # promoted from wia to contains). Confirms Bott's left-arm wound and
+                                          # his belated 2016 Silver Star. Raises oq-12 (possible link between
+                                          # the frozen CP medic Vollmar describes and Rocky Pfromm).
+    - poore-tom-account-042071.md         # "Sometimes I Wish I Was on Point That Day" — Poore's own account,
+                                          # paraphrased for clarity/punctuation from raw notes. Confirms and
+                                          # spells "Holtsclaw" (moved from tagged to wia), corroborates Dillon's
+                                          # and Sargent's wounds. Promoted Poore from tagged to contains.
+    - davis-kirk-bott-award-account-2016.md  # "An Award Late in Coming But Well Earned" — Davis's own tribute
+                                          # on Bott's 13 June 2016 award ceremony. Names the award as Bronze
+                                          # Star with "V" Device. Confirmed by ceremony photo below. See oq-13,
+                                          # resolved.
+    - bott-bronze-star-ceremony-2016.png  # Photo of Bott and Rep. Steve Chabot at the 13 June 2016 ceremony,
+                                          # holding the open medal case. Used to resolve oq-13: pendant, ribbon,
+                                          # and "V" device confirm Bronze Star Medal with "V" Device, not
+                                          # Silver Star.
 accounts:
   - bacon-wg-account-042071
   - bott-042071-account
   - schneck-steve-account-042071
+  - vollmar-tom-account-042071
+  - poore-tom-account-042071
   - davis-kirk-account-042071
+  - davis-kirk-bott-award-account-2016
   - neal-bill-account-042071
   - dillon-stan-account-042071
 contains:
@@ -369,14 +464,17 @@ contains:
   - dillon-stan
   - drinkard-danny
   - hall-joseph
+  - holtsclaw-bill
   - neal-bill
+  - poore-tom
   - sargent-stan
   - schneck-steve
+  - vollmar-tom
 ---
 
 ## Summary
 
-On April 20, 1971, D Company (less Skull Platoon, which was on a separate assignment) moved out from its overnight position near Gia Ray, Long Khanh Province. Around midday, after Cat Platoon located a well-used trail on the south side of the Suối Gia Ui stream, CPT Neal split the company to reconnoiter along the stream — Cat to the east, Range under LT Bill Bott to the west on the north bank — with an agreement not to fire across the stream at one another. Range Platoon, moving along the Suối Gia Ui stream approximately 12 kilometers southeast of Gia Ray and 2 kilometers north of Highway 1, walked into the fortified base camp of the 83rd NVA rear service unit and its security detachment. The lead elements — CPL James Cardwell and CPL Danny Drinkard walking point — were killed instantly by tree-mounted, command-detonated Chicom claymore mines. A second, larger tree-mounted charge followed shortly after: M60 gunner Steve Schneck spotted a commo wire running to it and was told to cut it, but the charge — apparently command-detonated via that same wire — went off regardless, wounding LT Bott and several others nearby. Heavy automatic weapons fire from bunkers with six feet of mud and log overhead cover pinned the platoon. Range suffered nearly 90% casualties: three killed, approximately eighteen wounded, with only three men uninjured.
+On April 20, 1971, D Company (less Skull Platoon, which was on a separate assignment) moved out from its overnight position near Gia Ray, Long Khanh Province. Around midday, after Cat Platoon located a well-used trail on the south side of the Suối Gia Ui stream, CPT Neal split the company to reconnoiter along the stream — Cat to the east, Range under LT Bill Bott to the west on the north bank — with an agreement not to fire across the stream at one another. Range Platoon, moving along the Suối Gia Ui stream approximately 12 kilometers southeast of Gia Ray and 2 kilometers north of Highway 1, walked into the fortified base camp of the 83rd NVA rear service unit and its security detachment. The lead elements — CPL James Cardwell and CPL Danny Drinkard walking point — were killed instantly by tree-mounted, command-detonated Chicom claymore mines. A second, larger tree-mounted charge followed shortly after: M60 gunner Steve Schneck spotted a commo wire running to it and was told to cut it, but the charge — apparently command-detonated via that same wire — went off regardless, wounding LT Bott and several others nearby. Heavy automatic weapons fire from bunkers with six feet of mud and log overhead cover, along with B-40 rockets (per Vollmar), pinned the platoon. Range suffered nearly 90% casualties: three killed, approximately eighteen wounded, with only three men uninjured.
 
 CPL Joseph Hall moved forward to assist the wounded and was killed. With SSG Stan Dillon, the platoon sergeant, down with multiple wounds, CPL Stanton Sargent took over the M-60 machine gun[^sargent-m60] and held the enemy at bay with sustained fire while wounded soldiers were evacuated across the stream. Company Commander CPT William Neal later recalled hearing the M-60 and thinking, "I hoped it was one of ours." Sargent was struck by shrapnel from a Chicom claymore and was medevacked unconscious. He died the following day. Four members of Range Platoon were awarded the Silver Star for their actions: Sargent, SSG Dillon, and the two men on the second M-60.
 
@@ -396,7 +494,11 @@ The night of April 20–21 was spent in a defensive perimeter east of the bunker
 
 Bott's account lends support to Neal's version of events: Bott describes remaining in direct radio contact with Neal throughout the fight, with Neal requesting a casualty count, ordering that the three men left forward be presumed dead rather than risk further recovery attempts, and stating he was "in the process of unleashing the Air Force" on the bunker complex — consistent with Neal actively directing the fight rather than remaining passive on the south bank. This corroborates Neal's own account of his engagement with the withdrawal; it does not speak to Davis's specific claim about Cat Platoon's physical position.
 
-**Tom Vollmar identified:** LT Bott's account resolves part of oq-05 — Vollmar is named directly as the soldier who came forward alone to escort a wounded Bott back across the stream, discarding equipment Bott describes as sound-detection gear into the water. Vollmar's unit and reason for being there remain unconfirmed.
+**Tom Vollmar identified:** Vollmar's own 1971 letter (vollmar-tom-account-042071, written to support Bott's Silver Star nomination) fully resolves oq-05. Vollmar was PFC E-3, acting Supply Sergeant at the Company CP; when the CP's own medic froze and refused to cross the stream, Vollmar grabbed that medic's bag and crossed himself, making multiple trips to carry wounded back and helping organize the medevac. He was not himself wounded.
+
+**Bott's Bronze Star with "V" Device (resolved):** Despite Vollmar's contemporaneous 1971 recommendation for a Silver Star — and a ceremony at the forward fire base about a week after the engagement where others reportedly received Bronze or Silver Stars — Bott was not recognized in 1971. He was finally honored 45 years later, at a formal ceremony on 13 June 2016 at Harrison Township Civic Center, presented by Congressman Steve Chabot (OH-1), with Mary Alice Bott, Stan Dillon, Bill Neal, and others in attendance. The award was the Bronze Star Medal with "V" Device, for his actions saving the majority of Range Platoon until air support destroyed the bunker complex — confirmed both by Davis's account of the ceremony and by a photo of the medal itself (see oq-13, resolved). This record previously carried an unresolved Silver Star/Bronze Star discrepancy; that has now been settled in favor of the Bronze Star.
+
+**Survivors' reflections (Poore):** Poore's own account (poore-tom-account-042071) adds firsthand testimony placing him with Dillon and Sargent at the moment of the charge, and confirms he stayed with the dying Sargent rather than assisting others — a decision he says he later heard questioned, behind his back, at a reunion. He also discloses that he declined to help recover the dead, out of fear of what he might find, and that he went on to walk point often afterward, eventually saying he wished he'd been on point the day of the ambush instead of Cardwell and Drinkard.
 
 **Sargent DOW date:** Davis states Sargent "died the next day." The Linda Martin oral history (widow's testimony, Angelo State University, 2018) confirms April 21 as the date of death. The Honor Roll entry for Sargent should reflect April 21.
 
