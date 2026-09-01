@@ -80,18 +80,30 @@ casualties:
     - slug: hall-joseph
       name: CPL Joseph Lindsey Hall
       date: 1971-04-20T00:00:00.000Z
-      note: Moved forward from rear of column to assist Dillon; killed covering the withdrawal
+      note: >
+        Moved forward from rear of column to assist Dillon; killed covering the withdrawal. Per
+        Dillon's account, Hall crawled up after the firefight started and asked "Where do you want
+        me?" — Dillon's response was "What are you doing up here?"
   dow:
     - slug: sargent-stan
       name: CPL Stanton Gerald Sargent
       date_wounded: 1971-04-20T00:00:00.000Z
       date_of_death: 1971-04-21T00:00:00.000Z
-      note: Severely wounded by Chicom mine; medevaced; died April 21
+      note: >
+        Severely wounded by Chicom mine; carried across the stream by Tom Poore (per Schneck
+        interview); medevaced; died April 21.
   wia:
     - slug: dillon-stan
       name: SSG Stan Dillon
       role: Range Platoon Sergeant
-      note: Multiple wounds — collarbone, arm, kneecap, lung, eardrum; carried across stream by Collins
+      note: >
+        Multiple wounds — collarbone, arm, kneecap, lung, eardrum, finger shot off; carried across
+        the stream by Gary Collins. Declined morphine on reaching Doc Brothers, wanting to return
+        to his men. Per Dillon's own account: noticed commo wire and recognized the bunker complex
+        seconds before being hit; recalls two Chicom mines in the trees and Bott positioned to his
+        left. [Sensitive/uncorroborated: Dillon's account of the crossing describes a third soldier
+        as frozen and unresponsive until Collins intervened — not independently corroborated and
+        not for publication pending review; see archivist_notes.]
     - slug: bott-bill
       name: LT Bill Bott
       role: Range Six (platoon leader)
@@ -99,13 +111,23 @@ casualties:
     - slug: schneck-steve
       name: Steve Schneck
       role: M60 gunner
-      note: Shrapnel wounds across back; continued firing M60 after being wounded
+      note: >
+        Shrapnel wounds across back; continued firing M60 after being wounded. Per his own account:
+        called for a medic and was told none could come forward; crawled back an estimated 15-50 feet
+        (uncertain) to reach Doc Brothers, who was out of morphine; no memory after that until arriving
+        at the 24th Evac Hospital. Witnessed Dillon's wounding directly ("I saw Stan's shoulder
+        explode") and Tom Poore carrying Sargent across the stream.
     - slug: collins-gary
       name: PFC Gary Collins
       note: Took over M60 from Schneck; carried Dillon across stream; among last to cross
     - slug: vollmar-tom
       name: Tom Vollmar
-      note: Role unconfirmed — source document not yet identified; do not create record until verified
+      note: >
+        Came forward alone to escort a wounded LT Bott back across the stream — "I'm here to take
+        you back" (Bott account, from which this document takes its title; source now identified,
+        see oq-05). Discarded what Bott describes as sound-detection equipment ("large fat golf
+        tees") into the stream before crossing. Unit/assignment and reason for presence still
+        unconfirmed.
   wia_count_note: Approximately 15 WIA total per multiple accounts; only named individuals above confirmed from sources
 tagged:
   - slug: mcgrew-howard
@@ -131,6 +153,46 @@ tagged:
   - slug: martin-michael
     name: LT Michael Martin
     note: Skull Platoon leader; took command of perimeter defense after reinforcement
+  - slug: miller-don
+    name: SGT Don Miller
+    note: Range Platoon's usual point team leader; on R&R during the engagement — Dillon took over his responsibilities
+  - slug: jenkins
+    name: LT Jenkins
+    note: Cat Platoon leader; on R&R during the engagement (per Bott)
+  - slug: holtzclaw-bill
+    name: Bill Holtzclaw
+    note: "RTO on Dillon's point team the morning of the engagement — per Bott, name uncertain (\"Bill Holtsclaw?\")"
+  - slug: catterson
+    name: Catterson (RTO)
+    note: Bott's RTO; wounded alongside Bott by the command-detonated charge. Full name not yet identified.
+  - slug: garvin-jim
+    name: Jim Garvin
+    note: Range Company member, not present at the contact itself; interviewed Schneck (with corroborating quotes from Dillon and Davis) for schneck-steve-account-042071.
+  - slug: gator-james
+    name: James Gator
+    note: >
+      Wounded by the command-detonated charge alongside Bott, per Bott's account; described as
+      "a guy from California." "Gator" may be a nickname rather than surname — full name unconfirmed.
+  - slug: hilts-doug
+    name: Doug Hilts
+    note: >
+      Placed to the left of Bott's position on Neal's diagram of the wounded. Bott's phrasing leaves
+      it ambiguous whether Hilts was himself wounded by the charge or simply positioned nearby —
+      do not add to the WIA list until confirmed. See oq-10.
+  - slug: poore-tom
+    name: Tom Poore
+    note: >
+      Carried the severely wounded Sargent across the stream, per Schneck's account. See
+      citations — potential valor candidate, unconfirmed.
+  - slug: pfromm-rocky
+    name: Rocky Pfromm
+    note: >
+      [Sensitive/uncorroborated — not for publication] Named in Dillon's account of his own
+      evacuation across the stream; the account describes Pfromm as unresponsive until Collins
+      intervened. This is a single, secondhand characterization of a named individual's reaction
+      under fire and has not been independently corroborated. Retained in the archive for
+      completeness but should not appear in any published narrative pending further sourcing or
+      contact with Pfromm/family. See archivist_notes.
 citations:
   - slug: hall-joseph
     award: unknown
@@ -144,6 +206,10 @@ citations:
     award: unknown
     status: unconfirmed
     note: Actions consistent with valor citation; no award documentation found
+  - slug: poore-tom
+    award: unknown
+    status: unconfirmed
+    note: Carrying severely wounded Sargent across the stream under fire is consistent with a valor citation; no award documentation found
 related_events:
   - slug: 3rd-brigade-separate-garryowen-1971
     relationship: operational-period
@@ -186,8 +252,17 @@ open_questions:
       Was the bunker complex subsequently swept or occupied? Multiple sources confirm it was bombarded through the night of 4/20–21. Check battalion logs and after-action reports via NARA.
   - id: oq-05
     publish: false
+    resolved: partial
+    resolved_date: 2026-09-01
     question: |
       Tom Vollmar appears in the testing brief as having crossed the stream under fire with a medical kit. The originating source has not been identified. Do not create his soldier record until this is confirmed.
+    resolution: |
+      Source identified: LT Bill Bott's first-person account (bott-042071-account, "I'm Here to Take
+      You Back") names Vollmar directly. Bott describes Vollmar coming forward alone, discarding
+      sound-detection equipment ("large fat golf tees") into the stream, and telling Bott "I'm here
+      to take you back" before escorting him across. Remaining open: Vollmar's unit/assignment, why
+      he was carrying that equipment, and whether "medical kit" (per the testing brief) is accurate
+      or a conflation with Doc Brothers.
   - id: oq-06
     publish: false
     question: |
@@ -212,6 +287,47 @@ open_questions:
       the Cat element that executed the flanking movement has not been confirmed by name from participant
       accounts.
 
+      Further corroborated 2026-09-01 by LT Bill Bott's independent account, which states the company
+      moved out that morning "less one platoon (White Skull)" — confirming Skull's absence from a
+      second, separate primary source. This strengthens the case against the Maxey diagrams' placement
+      of Skull at the crossover but does not resolve the remaining open items above.
+  - id: oq-09
+    publish: false
+    question: |
+      Bott's account states the M-60 was "manned by Steve Schneck and Stan Sargent" from when it was
+      brought forward before contact began — implying both were on the gun together from the start of
+      the fight. This is not fully consistent with SSG Dillon's 2005 interview (Maxey account), which
+      describes Sargent taking over the gun specifically after Hall was killed covering the withdrawal.
+      Possible explanations: a gunner/assistant-gunner pairing that later required a hand-off, or
+      imprecision in one or both recollections more than 30 years after the event. Not yet reconciled.
+  - id: oq-10
+    publish: true
+    question: |
+      LT Bott's account names several men not otherwise documented in this record: his RTO
+      "Catterson," a wounded soldier "James Gator" ("a guy from California"), SGT Don Miller
+      (Range's usual point team leader, on R&R that day), LT Jenkins (Cat Platoon's leader, also
+      on R&R), Bill Holtzclaw (tentative — Bott spells it "Holtsclaw?"), and Doug Hilts (placement
+      on the wounded diagram unclear). If you have full names, service records, or can confirm
+      whether Gator and Hilts were wounded, please contact us.
+  - id: oq-11
+    publish: false
+    resolved: partial
+    resolved_date: 2026-09-01
+    question: |
+      Interview notes covering Schneck's account (with corroborating quotes from Dillon and Davis)
+      were added to the archive without a source citation — no interviewer name or interview date
+      on record. Needs proper citation before this can be registered as a formal account alongside
+      Bacon's, Bott's, Neal's, Dillon's, and Davis's. Separately, Dillon's account of his own
+      evacuation names Rocky Pfromm in a sensitive, uncorroborated characterization (see tagged) —
+      this should not be published without either independent corroboration or direct contact with
+      Pfromm/family.
+    resolution: |
+      Interviewer identified as Jim Garvin, a Range Company member not present at the contact
+      itself. Notes have been written up as a first-person account (schneck-steve-account-042071,
+      "Bite on This Stick") and registered under accounts/sources below. Interview date still
+      unconfirmed. Remaining open: the Pfromm characterization is deliberately excluded from the
+      published account and remains flagged not-for-publication pending corroboration.
+
   - id: oq-07
     publish: false
     question: |
@@ -221,16 +337,30 @@ archivist_notes:
   session: 16
   location_research: "Center point confirmed 2026-06-03 as Suoi Gia Ui (10.860500N, 107.498639E) from Maxey account Google Earth placemark and geographic analysis. Previous coordinates (107.560E) were derived from Suoi Tầm Bông — a separate tributary ~6km west — and have been superseded. Suoi Tầm Bông feeds into the Suoi Gia Ui basin northwest of the ambush site (approx. 10°51'54\"N, 107°28'42\"E). Tactical sub-points (crossover, LZ, bunker complex) are pending re-derivation from Suoi Gia Ui satellite imagery."
   sources:
-    - 20Apr71_Cap_Neal_Deposition.docx
-    - 20Apr71_Stan_Dillon_Deposition.docx
-    - davis-kirk-account-042071.docx
+    - 20Apr71_Cap_Neal_Deposition.docx    # = neal-bill-account-042071
+    - 20Apr71_Stan_Dillon_Deposition.docx # = dillon-stan-account-042071
+    - davis-kirk-account-042071.docx      # = davis-kirk-account-042071
     - interviewwithlindamartintranscript.pdf
     - sargent-stan-silver-star-story.pdf  # Maxey account — contains Neal account, Dillon phone interview (2005),
                                           # tactical diagrams, and topo/satellite maps. Note: "Skull" label in
                                           # diagrams and narrative is disputed — working theory is misidentification
                                           # of Cat's trail squad. See oq-08.
+    - bott-042071-account.md             # LT Bill Bott (Range Six), "I'm Here to Take You Back." Corroborates
+                                          # Skull Platoon's absence (oq-08) and Neal's active management of the
+                                          # withdrawal (see Contested Details). Identifies Tom Vollmar (oq-05).
+    - schneck-steve-account-042071.md     # "Bite on This Stick" — first-person account written up from
+                                          # Jim Garvin's interview with Schneck, with corroborating quotes
+                                          # from Dillon and Davis. Introduces Tom Poore (citations candidate)
+                                          # and Rocky Pfromm (see tagged — deliberately not in published
+                                          # account; sensitive/uncorroborated). Interview date still
+                                          # unconfirmed.
 accounts:
   - bacon-wg-account-042071
+  - bott-042071-account
+  - schneck-steve-account-042071
+  - davis-kirk-account-042071
+  - neal-bill-account-042071
+  - dillon-stan-account-042071
 contains:
   - bott-bill
   - cardwell-james
@@ -246,11 +376,11 @@ contains:
 
 ## Summary
 
-On April 20, 1971, D Company, 2/8 Cavalry air-assaulted into an area near Gia Ray, Long Khanh Province. Range Platoon, moving along the Suối Gia Ui stream approximately 12 kilometers southeast of Gia Ray and 2 kilometers north of Highway 1, walked into the fortified base camp of the 83rd NVA rear service unit and its security detachment. The lead elements — CPL James Cardwell and CPL Danny Drinkard walking point — were killed instantly by tree-mounted, command-detonated Chicom claymore mines. Heavy automatic weapons fire from bunkers with six feet of mud and log overhead cover pinned the platoon. Range suffered nearly 90% casualties: three killed, approximately eighteen wounded, with only three men uninjured.
+On April 20, 1971, D Company (less Skull Platoon, which was on a separate assignment) moved out from its overnight position near Gia Ray, Long Khanh Province. Around midday, after Cat Platoon located a well-used trail on the south side of the Suối Gia Ui stream, CPT Neal split the company to reconnoiter along the stream — Cat to the east, Range under LT Bill Bott to the west on the north bank — with an agreement not to fire across the stream at one another. Range Platoon, moving along the Suối Gia Ui stream approximately 12 kilometers southeast of Gia Ray and 2 kilometers north of Highway 1, walked into the fortified base camp of the 83rd NVA rear service unit and its security detachment. The lead elements — CPL James Cardwell and CPL Danny Drinkard walking point — were killed instantly by tree-mounted, command-detonated Chicom claymore mines. A second, larger tree-mounted charge followed shortly after: M60 gunner Steve Schneck spotted a commo wire running to it and was told to cut it, but the charge — apparently command-detonated via that same wire — went off regardless, wounding LT Bott and several others nearby. Heavy automatic weapons fire from bunkers with six feet of mud and log overhead cover pinned the platoon. Range suffered nearly 90% casualties: three killed, approximately eighteen wounded, with only three men uninjured.
 
 CPL Joseph Hall moved forward to assist the wounded and was killed. With SSG Stan Dillon, the platoon sergeant, down with multiple wounds, CPL Stanton Sargent took over the M-60 machine gun[^sargent-m60] and held the enemy at bay with sustained fire while wounded soldiers were evacuated across the stream. Company Commander CPT William Neal later recalled hearing the M-60 and thinking, "I hoped it was one of ours." Sargent was struck by shrapnel from a Chicom claymore and was medevacked unconscious. He died the following day. Four members of Range Platoon were awarded the Silver Star for their actions: Sargent, SSG Dillon, and the two men on the second M-60.
 
-The surviving elements of Range Platoon withdrew across the stream under fire. The terrain compounded every difficulty: the north bank of Suối Gia Ui is significantly higher than the south, a product of centuries of drainage off Núi Chứa Chan cutting a recessed channel into the rising ground. The 83rd NVA had built their bunker complex into this elevated reverse slope, giving them direct downward fire onto the stream crossing and the south bank. Cat Platoon on the lower south bank was effectively firing straight up into a steep earthen wall; their rounds hit the bank face while the enemy fired down from prepared positions on the lip above. Cat Platoon maintained suppressing fire from the south bank, but the elevation differential meant the direct fire support Range most needed could not reach the bunkers. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered in a combat assault on April 23.
+The surviving elements of Range Platoon withdrew across the stream under fire. The terrain compounded every difficulty: the north bank of Suối Gia Ui is significantly higher than the south, a product of centuries of drainage off Núi Chứa Chan cutting a recessed channel into the rising ground. The 83rd NVA had built their bunker complex into this elevated reverse slope, giving them direct downward fire onto the stream crossing and the south bank. Cat Platoon on the lower south bank was effectively firing straight up into a steep earthen wall; their rounds hit the bank face while the enemy fired down from prepared positions on the lip above. Cat Platoon maintained suppressing fire from the south bank, but the elevation differential meant the direct fire support Range most needed could not reach the bunkers. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered in a combat assault on April 23. Bott himself was among the last across the stream, wounded and still directing an aerial rocket artillery pilot ("Rash Bird") onto the bunker complex by radio; he was eventually retrieved from the north bank by Tom Vollmar. Col. Bacon, observing by radio, at one point suggested Bott fire a LAW rocket to clear brush obstructing his view — the Rash Bird pilot intervened to warn against it given the density of the vegetation.
 
 The night of April 20–21 was spent in a defensive perimeter east of the bunker complex, with continuous artillery fire directed through the night by Capt. Neal and acting FO SGT Steve Kahnke. Skull Platoon was choppered in as a late-afternoon reinforcement to reconstitute D Company's strength. The event directly precipitated the helicopter crash four days later that killed pilot CW2 Martin Fanning, for whom the next FSB was named.
 
@@ -262,7 +392,11 @@ The night of April 20–21 was spent in a defensive perimeter east of the bunker
 
 **Platoon naming:** Bacon refers to the ambushed unit as "2d platoon," its numerical designation. All soldier accounts use the call-sign Range. This record uses Range throughout.
 
-**Contested — Neal's position during the firefight:** Davis states (in a section redacted from his published account) that Neal and Cat Platoon remained on the south bank throughout the firefight and provided no direct support to Range. Neal's own account describes actively managing the withdrawal, directing medevacs, and ordering Cat's trail squad across the stream to flank behind Range. These accounts are not fully reconciled. Davis's characterization is retained in the archive repository but is not part of his published account.
+**Contested — Neal's position during the firefight:** Davis states (in a section redacted from his published account) that Neal and Cat Platoon remained on the south bank throughout the firefight and provided no direct support to Range. Neal's own account describes actively managing the withdrawal, directing medevacs, and ordering Cat's trail squad across the stream to flank behind Range. These accounts are not fully reconciled. Davis's characterization is retained in the archive repository but is not part of his published account. In interview notes on Schneck's account, Davis is separately quoted recalling "no medics from Cat helping" when he brought Schneck across the stream — consistent with, though not itself conclusive proof of, his broader claim about the lack of Cat support.
+
+Bott's account lends support to Neal's version of events: Bott describes remaining in direct radio contact with Neal throughout the fight, with Neal requesting a casualty count, ordering that the three men left forward be presumed dead rather than risk further recovery attempts, and stating he was "in the process of unleashing the Air Force" on the bunker complex — consistent with Neal actively directing the fight rather than remaining passive on the south bank. This corroborates Neal's own account of his engagement with the withdrawal; it does not speak to Davis's specific claim about Cat Platoon's physical position.
+
+**Tom Vollmar identified:** LT Bott's account resolves part of oq-05 — Vollmar is named directly as the soldier who came forward alone to escort a wounded Bott back across the stream, discarding equipment Bott describes as sound-detection gear into the water. Vollmar's unit and reason for being there remain unconfirmed.
 
 **Sargent DOW date:** Davis states Sargent "died the next day." The Linda Martin oral history (widow's testimony, Angelo State University, 2018) confirms April 21 as the date of death. The Honor Roll entry for Sargent should reflect April 21.
 
