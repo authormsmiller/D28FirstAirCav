@@ -7,7 +7,7 @@ photos:
       The tiki-style entrance of the French-deco Bong Lai Bar was a welcome sight to soldiers needing a break.
     caption_short: ""
     credit: "Collection of Wayne Robinson"
-    photographer: ""
+    photographer: "robinson-wayne"
     date: 1971
     date_known: true
     event: ""
@@ -20,7 +20,7 @@ photos:
       One of the more prominent buildings in downtown Vung Tau was the Palace Hotel
     caption_short: ""
     credit: "Collection of Wayne Robinson"
-    photographer: ""
+    photographer: "robinson-wayne"
     date: 1971
     date_known: true
     event: ""
@@ -33,7 +33,7 @@ photos:
       The My Linh was one of many nightclubs/bars catering to GIs on R&R. The kiosk on the left offered services to make audio reel tapes.
     caption_short: ""
     credit: "Collection of Wayne Robinson"
-    photographer: ""
+    photographer: "robinson-wayne"
     date: 1971
     date_known: true
     event: ""
@@ -46,7 +46,7 @@ photos:
       The Monaco and Star Light bars in Vung Tau. Aside from many establishments offering alcohol, this photograph also shows a photo studio (Nhiep Anh), where a GI could have portrait taken or get their film developed.
     caption_short: ""
     credit: "Collection of Wayne Robinson"
-    photographer: ""
+    photographer: "robinson-wayne"
     date: 1971
     date_known: true
     event: ""
@@ -59,7 +59,7 @@ photos:
       The outdoor patio at the Bong Lai Bar
     caption_short: ""
     credit: "Collection of Wayne Robinson"
-    photographer: ""
+    photographer: "robinson-wayne"
     date: 1971
     date_known: true
     event: ""
