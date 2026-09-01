@@ -15,6 +15,27 @@ permalink: /roster/
     align-items: center;
     flex-wrap: wrap;
   }
+  .roster-search-wrap {
+    flex: 1;
+    min-width: 220px;
+  }
+  .roster-search-input {
+    width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--pg);
+    border: 1px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    padding: 7px 12px;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+  .roster-search-input:focus {
+    outline: none;
+    border-color: var(--ink);
+    border-bottom-color: var(--y);
+  }
   .roster-filters select {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 12px;
@@ -31,7 +52,7 @@ permalink: /roster/
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235A5448'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
-    min-width: 160px;
+    min-width: 140px;
   }
   .roster-filters select:focus {
     outline: none;
@@ -44,6 +65,14 @@ permalink: /roster/
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--dim);
+  }
+  .roster-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-left: auto;
   }
 
   /* ── LEGEND ───────────────────────────────────────────────── */
@@ -137,6 +166,17 @@ permalink: /roster/
 
   .icon-cluster { display: flex; gap: 6px; align-items: center; }
 
+  .roster-empty {
+    display: none;
+    padding: 36px 48px;
+    text-align: center;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--dim);
+    background: var(--pg);
+  }
+
   /* ── MODAL ────────────────────────────────────────────────── */
   .roster-modal-bg {
     display: none; position: fixed; inset: 0;
@@ -228,10 +268,12 @@ permalink: /roster/
   /* ── RESPONSIVE ───────────────────────────────────────────── */
   @media (max-width: 768px) {
     .roster-filters { padding: 12px 16px; }
+    .roster-count { width: 100%; margin-left: 0; order: 4; }
     .roster-legend { padding: 10px 16px; display: none; }
     .legend-toggle { display: block; }
     .roster-table-wrap { display: none; }
     .roster-cards { display: block; }
+    .roster-empty { padding: 24px 16px; }
   }
 </style>
 
@@ -250,6 +292,11 @@ permalink: /roster/
 {# ── FILTERS ──────────────────────────────────────────────────────────── #}
 <div class="roster-filters">
   <span class="roster-filter-label">Filter</span>
+  
+  <div class="roster-search-wrap">
+    <input type="text" id="filter-search" class="roster-search-input" placeholder="Search by name or nickname..." oninput="applyFilters()" autocomplete="off">
+  </div>
+
   <select id="filter-platoon" onchange="applyFilters()">
     <option value="">All platoons</option>
     <option value="cat">Cat</option>
@@ -257,6 +304,7 @@ permalink: /roster/
     <option value="recon">Recon</option>
     <option value="hq">HQ / Skipper</option>
   </select>
+
   <select id="filter-year" onchange="applyFilters()">
     <option value="">All years</option>
     <option value="69">1969</option>
@@ -264,6 +312,8 @@ permalink: /roster/
     <option value="71">1971</option>
     <option value="72">1972</option>
   </select>
+
+  <span class="roster-count" id="roster-count"></span>
 </div>
 
 {# ── LEGEND ───────────────────────────────────────────────────────────── #}
@@ -362,6 +412,7 @@ permalink: /roster/
         {% set platoonKey = s.platoon | lower %}
         {% set isDim = s.status == "researching" %}
         <tr class="roster-row{% if isDim %} row-dim{% endif %}"
+            data-name="{{ s.last_name }} {{ s.first_name }} {{ s.middle_name }} {{ s.nickname }}"
             data-platoon="{{ platoonKey }}"
             data-years="{{ s.arrived }}{{ s.departed }}">
           <td>
@@ -428,6 +479,7 @@ permalink: /roster/
         {% set platoonKey = s.platoon | lower %}
         {% set isDim = s.status == "researching" and not s.contact.name %}
         <tr class="roster-row{% if isDim %} row-dim{% endif %}"
+            data-name="{{ s.last_name }} {{ s.first_name }} {{ s.middle_name }} {{ s.nickname }}"
             data-platoon="{{ platoonKey }}"
             data-years="{{ s.years }}">
           <td>
@@ -488,6 +540,7 @@ permalink: /roster/
 
     </tbody>
   </table>
+  <div class="roster-empty" id="roster-empty">No soldiers match your search criteria.</div>
 </div>
 
 {# ── MOBILE CARDS ─────────────────────────────────────────────────────── #}
@@ -498,6 +551,7 @@ permalink: /roster/
     {% set s = soldier.data %}
     {% set platoonKey = s.platoon | lower %}
     <div class="roster-card{% if s.status == 'researching' %} card-dim{% endif %}"
+         data-name="{{ s.last_name }} {{ s.first_name }} {{ s.middle_name }} {{ s.nickname }}"
          data-platoon="{{ platoonKey }}"
          data-years="{{ s.arrived }}{{ s.departed }}">
       <div class="roster-card-body">
@@ -545,6 +599,7 @@ permalink: /roster/
   {% for s in roster | sort(false, false, 'last_name') %}
     {% set platoonKey = s.platoon | lower %}
     <div class="roster-card{% if s.status == 'researching' and not s.contact.name %} card-dim{% endif %}"
+         data-name="{{ s.last_name }} {{ s.first_name }} {{ s.middle_name }} {{ s.nickname }}"
          data-platoon="{{ platoonKey }}"
          data-years="{{ s.years }}">
       <div class="roster-card-body">
@@ -615,20 +670,46 @@ permalink: /roster/
     return rowVal.includes(filterVal);
   }
 
+  function nameMatch(nameVal, searchVal) {
+    if (!searchVal) return true;
+    return nameVal.includes(searchVal);
+  }
+
   function applyFilters() {
+    const search  = document.getElementById('filter-search').value.trim().toLowerCase();
     const platoon = document.getElementById('filter-platoon').value;
     const year    = document.getElementById('filter-year').value;
 
-    document.querySelectorAll('.roster-row').forEach(row => {
+    let visibleCount = 0;
+    const rows = document.querySelectorAll('.roster-row');
+    const total = rows.length;
+
+    rows.forEach(row => {
+      const n = (row.dataset.name    || '').toLowerCase();
       const p = (row.dataset.platoon || '').toLowerCase();
-      const y = (row.dataset.years  || '').toLowerCase();
-      row.style.display = (platoonMatch(p, platoon) && yearMatch(y, year)) ? '' : 'none';
+      const y = (row.dataset.years   || '').toLowerCase();
+      const match = nameMatch(n, search) && platoonMatch(p, platoon) && yearMatch(y, year);
+      row.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
     });
 
     document.querySelectorAll('.roster-card').forEach(card => {
+      const n = (card.dataset.name    || '').toLowerCase();
       const p = (card.dataset.platoon || '').toLowerCase();
       const y = (card.dataset.years   || '').toLowerCase();
-      card.style.display = (platoonMatch(p, platoon) && yearMatch(y, year)) ? '' : 'none';
+      card.style.display = (nameMatch(n, search) && platoonMatch(p, platoon) && yearMatch(y, year)) ? '' : 'none';
     });
+
+    const countEl = document.getElementById('roster-count');
+    if (countEl) {
+      countEl.textContent = `Showing ${visibleCount} of ${total}`;
+    }
+
+    const emptyEl = document.getElementById('roster-empty');
+    if (emptyEl) {
+      emptyEl.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
   }
+
+  document.addEventListener('DOMContentLoaded', applyFilters);
 </script>

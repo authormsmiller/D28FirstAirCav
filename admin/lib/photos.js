@@ -264,16 +264,16 @@ function yamlStr(val) {
 
 // ---------------------------------------------------------------------------
 // Flush buffer to disk
-// Each entry in buffer: { filename, dest, eventSlug, caption, caption_short,
+// Each entry in buffer: { filename, dest, eventSlug, locationSlug, caption, caption_short,
 //   credit, contains, tagged, quality, date, date_known }
-// dest: 'field' | 'profile' | 'event'
+// dest: 'field' | 'profile' | 'event' | 'location'
 // ---------------------------------------------------------------------------
 async function flushBuffer(slug, buffer) {
   const stagingDir = path.join(STAGING_PHOTOS, slug);
 
   // Group by destination.
   // Profile entries use subjectSlug override if provided, otherwise fall back to folder slug.
-  const byDest = { field: [], profile: {}, event: {} };
+  const byDest = { field: [], profile: {}, event: {}, location: {} };
   for (const entry of buffer) {
     if (entry.dest === 'profile') {
       const subject = (entry.subjectSlug && entry.subjectSlug.trim()) ? entry.subjectSlug.trim() : slug;
@@ -283,14 +283,16 @@ async function flushBuffer(slug, buffer) {
       const es = entry.eventSlug || 'unknown';
       if (!byDest.event[es]) byDest.event[es] = [];
       byDest.event[es].push(entry);
+    } else if (entry.dest === 'location') {
+      const ls = entry.locationSlug || 'unknown';
+      if (!byDest.location[ls]) byDest.location[ls] = [];
+      byDest.location[ls].push(entry);
     } else {
       byDest.field.push(entry);
     }
   }
 
   // ── Phase 1: collect upload jobs ───────────────────────────────────────────
-  // Build a flat list of { entry, photosSubdir, effectiveSlug, r2Key, localPath }
-  // before touching anything on disk.
   const uploadJobs = [];
 
   function collectJobs(entries, photosSubdir, targetSlug) {
@@ -313,10 +315,11 @@ async function flushBuffer(slug, buffer) {
   for (const [eventSlug, entries] of Object.entries(byDest.event)) {
     collectJobs(entries, `field/events/${eventSlug}`, null);
   }
+  for (const [locationSlug, entries] of Object.entries(byDest.location)) {
+    collectJobs(entries, `locations/${locationSlug}`, null);
+  }
 
   // ── Phase 2: upload all images to R2 ──────────────────────────────────────
-  // Atomic rule: if ANY upload fails, return errors immediately.
-  // Do NOT write index.md or clear staging.
   const uploadErrors = [];
   const uploaded = [];
 
@@ -333,10 +336,9 @@ async function flushBuffer(slug, buffer) {
     return { moved: [], written: [], errors: uploadErrors, uploaded };
   }
 
-  // ── Phase 3: write index.md files (only reached if all uploads succeeded) ──
+  // ── Phase 3: write index.md files ─────────────────────────────────────────
   const results = { moved: uploaded, written: [], errors: [] };
 
-  // Group jobs by (effectiveSlug, photosSubdir) for index.md writing.
   const indexGroups = new Map();
   for (const job of uploadJobs) {
     const key = `${job.effectiveSlug}::${job.photosSubdir}`;
@@ -364,7 +366,8 @@ async function flushBuffer(slug, buffer) {
         `    photographer: ${yamlStr(e.photographer)}`,
         `    date: ${e.date || ''}`,
         `    date_known: ${e.date_known === true || e.date_known === 'true' ? 'true' : 'false'}`,
-        `    event: ${e.eventSlug || '""'}`,
+        `    event: ${e.eventSlug ? yamlStr(e.eventSlug) : '""'}`,
+        `    location: ${e.locationSlug ? yamlStr(e.locationSlug) : '""'}`,
         `    quality: ${e.quality || ''}`,
         contains.length ? `    contains:\n${contains.map(c => `      - ${c}`).join('\n')}` : `    contains: []`,
         tagged.length   ? `    tagged:\n${tagged.map(t => `      - ${t}`).join('\n')}`     : `    tagged: []`,
@@ -379,16 +382,12 @@ async function flushBuffer(slug, buffer) {
       await fsp.writeFile(indexPath, header + yamlBlocks.join('\n') + '\n---\n', 'utf-8');
     } else {
       let existing = await fsp.readFile(indexPath, 'utf-8');
-      // Normalize CRLF → LF so the closing-marker check works regardless of
-      // whether the file was written on Windows (CRLF) or Unix (LF).
       existing = existing.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       const closeMarker = '\n---\n';
       if (existing.endsWith(closeMarker)) {
         existing = existing.slice(0, -closeMarker.length);
         existing += '\n' + yamlBlocks.join('\n') + closeMarker;
       } else {
-        // No closing marker — file may be front-matter-only (no trailing ---).
-        // Ensure we're inserting inside the photos: list, not after stray content.
         existing = existing.trimEnd() + '\n' + yamlBlocks.join('\n') + '\n---\n';
       }
       await fsp.writeFile(indexPath, existing, 'utf-8');
@@ -406,7 +405,6 @@ async function flushBuffer(slug, buffer) {
 
   return results;
 }
-
 // ---------------------------------------------------------------------------
 // Edit — read / write production photo metadata
 // ---------------------------------------------------------------------------

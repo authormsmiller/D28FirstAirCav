@@ -34,7 +34,7 @@ casualties:
       name: SGT Richard Colburn
       role: Battalion Armor (HQ Co., 2nd Bn., 8th Cavalry); passenger
       date: 1971-04-24
-      note: Not organic to D Co.; was not originally scheduled on the flight
+      note: Not organic to D Co.; 
   wia:
     - slug: stanfield-nathan
       name: Nathan Stanfield
@@ -91,7 +91,7 @@ images:
 
 open_questions:
   - id: oq-01
-    publish: true
+    publish: false
     question: >
       Richard Colburn was not originally scheduled to be on this flight. James
       Garvin was bumped from the passenger manifest and survived by chance. If
@@ -160,6 +160,6 @@ The fire support base was subsequently renamed FSB Fanning in honor of CPT Marti
 
 **FSB naming:** The renaming occurred between April 24 and May 2, 1971, based on McGrew's calendar. All events prior to and including April 24 took place at FSB Fontaine. References to FSB Fanning in accounts of the April 20 contact are retrospective errors, flagged in that event record.
 
-**Colburn's presence:** Richard Colburn was not organic to D Co. The circumstances that placed him on this flight are not documented in available sources.
+**Colburn's presence:** Richard Colburn was not organic to D Co.
 
 **Garvin's account:** Garvin's survival by being bumped gives his account unusual weight as an eyewitness to the crash site and aftermath. His is the only firsthand D Co. narrative currently known for this event.
