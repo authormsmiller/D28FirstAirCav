@@ -896,6 +896,15 @@
               <div id="np-ph-field" style="padding:14px"></div>
             </div>
 
+            <!-- Location Photos Section -->
+            <div class="np-section">
+              <div class="np-section-head">
+                <span>Location Photos</span>
+                <button class="btn btn-primary btn-sm" onclick="seOpenLocationPhotosModal()">+ Add Location Photos</button>
+              </div>
+              <div id="np-ph-locations" style="padding:14px"></div>
+            </div>
+
             <!-- Photos Containing Soldier -->
             <div class="np-section">
               <div class="np-section-head"><span>Photos of Soldier in Archive</span></div>
@@ -1445,6 +1454,72 @@
   </div>
 </div>
 
+<!-- Modal: Location Photos Intake -->
+<div class="modal-overlay" id="locationPhotosModal" onclick="if(event.target===this)closeLocationPhotosModal()">
+  <div class="add-modal-box" style="width:720px; height:85vh;">
+    <div class="add-modal-header">
+      <span class="add-modal-title" id="locationPhotosModalTitle">Add Location Photos</span>
+      <button class="modal-close" onclick="closeLocationPhotosModal()" style="color:var(--paper);background:none;border:none;font-size:18px;cursor:pointer;">✕</button>
+    </div>
+    
+    <div class="add-modal-body">
+      <!-- Step 1: Pick Location & Upload Files -->
+      <div id="lp-step-upload">
+        <div class="form-grid" style="margin-bottom:14px;">
+          <label class="form-label">Target Location *</label>
+          <div class="form-field">
+            <input type="text" id="lp-location-slug" list="lp-locations-dl" placeholder="Search or enter location slug (e.g. vung-tau)..." autocomplete="off">
+            <datalist id="lp-locations-dl"></datalist>
+          </div>
+        </div>
+
+        <div style="border:2px dashed var(--rule); padding:32px; text-align:center; background:#fff; cursor:pointer;" onclick="document.getElementById('lp-files-input').click()">
+          <div style="font-size:28px; margin-bottom:8px;">📍</div>
+          <div style="font-weight:600; font-size:13px; margin-bottom:4px;">Click to select photos for this location</div>
+          <div style="font-size:11px; color:var(--muted);">Supports JPG, PNG, WEBP, TIFF</div>
+        </div>
+        <input type="file" id="lp-files-input" multiple accept="image/*" style="display:none" onchange="seLpFilesSelected(this.files)">
+        <div id="lp-upload-status" style="margin-top:10px; font-size:12px; font-weight:600; color:var(--blue);"></div>
+      </div>
+
+      <!-- Step 2: Per-photo Tagging -->
+      <div id="lp-step-tag" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="font-weight:700; font-size:13px;" id="lp-photo-progress">Photo 1 of 1</span>
+          <span style="font-family:monospace; font-size:11px; color:var(--muted);" id="lp-photo-filename"></span>
+        </div>
+        <div style="text-align:center; margin-bottom:12px;">
+          <img id="lp-photo-preview" src="" style="max-height:200px; max-width:100%; border:1px solid var(--rule); border-radius:3px; background:#111; object-fit:contain;" />
+        </div>
+        
+        <div class="form-grid" style="margin-bottom:12px;">
+          <label class="form-label">Caption</label>
+          <div class="form-field"><textarea id="lp-caption" rows="2" placeholder="Describe the scene at this location..."></textarea></div>
+          <label class="form-label">Credit</label>
+          <div class="form-field"><input type="text" id="lp-credit" placeholder="Collection of..."></div>
+          <label class="form-label">Date</label>
+          <div class="form-field"><input type="text" id="lp-date" placeholder="YYYY-MM"></div>
+          <label class="form-label">Photographer</label>
+          <div class="form-field">
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" id="lp-photographer-cb" onchange="seLpPhotographerToggled()">
+              <span id="lp-photographer-label">This soldier took the photo (photographer)</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="lp-tag-control-box" style="margin-bottom:14px;"></div>
+      </div>
+    </div>
+
+    <div class="add-modal-footer" id="lp-modal-footer" style="display:none;">
+      <button class="btn btn-secondary" id="lp-btn-prev" onclick="seLpNavPhoto(-1)">← Previous</button>
+      <button class="btn btn-primary" id="lp-btn-next" onclick="seLpSavePhotoBuffer(true)">Save &amp; Next →</button>
+      <button class="btn btn-commit" id="lp-btn-finish" onclick="seLpFlushAll()" style="display:none;">Upload to R2 &amp; Save Location Photos ✓</button>
+    </div>
+  </div>
+</div>
+
 <!-- Generic Add Modal -->
 <div class="modal-overlay" id="addGenericModal" onclick="if(event.target===this)closeAddModal()">
   <div class="add-modal-box">
@@ -1569,6 +1644,198 @@ function switchTab(name) {
   if (panel) panel.classList.add('active');
 }
 
+// ─── Location Photos Controller ──────────────────────────────────────────────
+const SE_LP = {
+  rawFolder: null,
+  files: [],
+  currentIdx: 0,
+  locationSlug: '',
+  buffer: {}
+};
+
+async function seOpenLocationPhotosModal() {
+  const slug = seCurrentSlug || document.getElementById('np-slug-select')?.value;
+  if (!slug) { toast('Please select a soldier profile first.', 'error'); return; }
+  seCurrentSlug = slug;
+
+  SE_LP.rawFolder = null;
+  SE_LP.files = [];
+  SE_LP.currentIdx = 0;
+  SE_LP.locationSlug = '';
+  SE_LP.buffer = {};
+
+  const locs = slugCache.location || [];
+  const dl = document.getElementById('lp-locations-dl');
+  if (dl) dl.innerHTML = locs.map(l => `<option value="${typeof l === 'object' ? l.slug : l}">`).join('');
+
+  document.getElementById('locationPhotosModalTitle').textContent = `Add Location Photos for ${seCurrentSlug}`;
+  document.getElementById('lp-location-slug').value = '';
+  document.getElementById('lp-step-upload').style.display = 'block';
+  document.getElementById('lp-step-tag').style.display = 'none';
+  document.getElementById('lp-modal-footer').style.display = 'none';
+  document.getElementById('lp-upload-status').textContent = '';
+  document.getElementById('locationPhotosModal').classList.add('open');
+}
+
+function closeLocationPhotosModal() {
+  document.getElementById('locationPhotosModal').classList.remove('open');
+}
+
+async function seLpFilesSelected(files) {
+  if (!files || !files.length) return;
+  const locSlug = document.getElementById('lp-location-slug').value.trim();
+  if (!locSlug) {
+    toast('Please specify the target location slug first.', 'error');
+    document.getElementById('lp-files-input').value = '';
+    return;
+  }
+  SE_LP.locationSlug = locSlug;
+
+  const status = document.getElementById('lp-upload-status');
+  status.textContent = `Uploading ${files.length} file(s)...`;
+
+  const fd = new FormData();
+  fd.append('folderName', `${seCurrentSlug}-loc-${locSlug}`);
+  Array.from(files).forEach(f => fd.append('files', f));
+
+  try {
+    const res = await fetch(`/api/photos/raw/upload?folderName=${encodeURIComponent(seCurrentSlug)}`, {
+      method: 'POST',
+      body: fd
+    });
+    const d = await res.json();
+    if (!res.ok || !d.ok || !d.folder || d.count === 0) throw new Error(d.error || 'Upload failed');
+
+    SE_LP.rawFolder = d.folder;
+    status.textContent = 'Staging photos...';
+
+    const stRes = await api('POST', '/photos/raw/stage', { folder: d.folder, slug: seCurrentSlug });
+    if (!stRes.ok) throw new Error(stRes.error || 'Staging failed');
+
+    const stageDetail = await api('GET', `/photos/staging/${encodeURIComponent(seCurrentSlug)}`);
+    SE_LP.files = stageDetail.photos || [];
+
+    document.getElementById('lp-step-upload').style.display = 'none';
+    document.getElementById('lp-step-tag').style.display = 'block';
+    document.getElementById('lp-modal-footer').style.display = 'flex';
+
+    seLpRenderPhoto(0);
+  } catch (err) {
+    status.textContent = err.message;
+    toast(err.message, 'error');
+  }
+}
+
+function seLpPhotographerToggled() {
+  const filename = SE_LP.files[SE_LP.currentIdx];
+  if (!SE_LP.buffer[filename]) SE_LP.buffer[filename] = {};
+  SE_LP.buffer[filename].isPhotographer = document.getElementById('lp-photographer-cb').checked;
+}
+
+function seLpRenderPhoto(idx) {
+  if (!SE_LP.files.length) return;
+  SE_LP.currentIdx = idx;
+  const filename = SE_LP.files[idx];
+  
+  if (!SE_LP.buffer[filename]) {
+    SE_LP.buffer[filename] = {
+      isPhotographer: true,
+      photographer: seCurrentSlug,
+      contains: '',
+      tagged: ''
+    };
+  }
+  const buf = SE_LP.buffer[filename];
+  const isFirst = idx === 0;
+  const isLast = idx === SE_LP.files.length - 1;
+
+  document.getElementById('lp-photo-progress').textContent = `Photo ${idx + 1} of ${SE_LP.files.length}`;
+  document.getElementById('lp-photo-filename').textContent = filename;
+  document.getElementById('lp-photo-preview').src = `/api/photos/staging/${encodeURIComponent(seCurrentSlug)}/image/${encodeURIComponent(filename)}`;
+
+  document.getElementById('lp-caption').value = buf.caption || '';
+  document.getElementById('lp-credit').value = buf.credit || (seCurrentData ? `Collection of ${sePhotographerName()}` : '');
+  document.getElementById('lp-date').value = buf.date || '';
+
+  const cb = document.getElementById('lp-photographer-cb');
+  if (cb) {
+    cb.checked = buf.isPhotographer !== false;
+    document.getElementById('lp-photographer-label').textContent = `${sePhotographerName()} took this photo (photographer)`;
+  }
+
+  document.getElementById('lp-btn-prev').disabled = isFirst;
+  document.getElementById('lp-btn-next').style.display = isLast ? 'none' : 'inline-block';
+  document.getElementById('lp-btn-finish').style.display = isLast ? 'inline-block' : 'none';
+
+  const tagBox = document.getElementById('lp-tag-control-box');
+  new TaggingControl(tagBox, {
+    initialContains: buf.contains ? buf.contains.split(',').map(s => s.trim()).filter(Boolean) : [],
+    initialTagged: buf.tagged ? buf.tagged.split(',').map(s => s.trim()).filter(Boolean) : [],
+    onChange: ({ contains, tagged }) => {
+      buf.contains = contains.join(',');
+      buf.tagged = tagged.join(',');
+    }
+  });
+}
+
+function seLpSavePhotoBuffer(advance = false) {
+  const filename = SE_LP.files[SE_LP.currentIdx];
+  if (!SE_LP.buffer[filename]) SE_LP.buffer[filename] = {};
+  const buf = SE_LP.buffer[filename];
+
+  buf.filename = filename;
+  buf.dest = 'location';
+  buf.locationSlug = SE_LP.locationSlug;
+  buf.caption = document.getElementById('lp-caption').value.trim();
+  buf.caption_short = '';
+  buf.credit = document.getElementById('lp-credit').value.trim();
+  
+  const cb = document.getElementById('lp-photographer-cb');
+  buf.isPhotographer = cb ? cb.checked : true;
+  buf.photographer = buf.isPhotographer ? seCurrentSlug : '';
+  buf.date = document.getElementById('lp-date').value.trim();
+  buf.date_known = !!buf.date;
+
+  if (advance && SE_LP.currentIdx < SE_LP.files.length - 1) {
+    seLpNavPhoto(1);
+  }
+}
+
+function seLpNavPhoto(dir) {
+  seLpSavePhotoBuffer(false);
+  const next = SE_LP.currentIdx + dir;
+  if (next >= 0 && next < SE_LP.files.length) {
+    seLpRenderPhoto(next);
+  }
+}
+
+async function seLpFlushAll() {
+  seLpSavePhotoBuffer(false);
+  const bufferArr = SE_LP.files.map(f => SE_LP.buffer[f]).filter(Boolean);
+  if (!bufferArr.length) { toast('No photo metadata to save.', 'error'); return; }
+
+  const finishBtn = document.getElementById('lp-btn-finish');
+  finishBtn.disabled = true;
+  finishBtn.textContent = 'Uploading to R2...';
+
+  try {
+    const res = await api('POST', '/photos/flush', { slug: seCurrentSlug, buffer: bufferArr });
+    if (res.errors && res.errors.length) {
+      toast(`Upload completed with warnings: ${res.errors.join('; ')}`, 'error');
+    } else {
+      toast(`Saved ${res.moved.length} location photo(s) to ${SE_LP.locationSlug}.`, 'success');
+      closeLocationPhotosModal();
+      await npPhLoad();
+      await refreshSessionStatus();
+    }
+  } catch (err) {
+    toast(err.message, 'error');
+  } finally {
+    finishBtn.disabled = false;
+    finishBtn.textContent = 'Upload to R2 & Save Location Photos ✓';
+  }
+}
+
 // ─── Commit Modal ─────────────────────────────────────────────────────────────
 function openCommitModal() {
   const changes = sessionData?.changes || [];
@@ -1631,7 +1898,6 @@ class TaggingControl {
       else if (field === 'tagged') this.tagged = this.tagged.filter(s => s !== soldierSlug);
     }
 
-    console.log(`[tagging-control] ${op} ${field}=${soldierSlug} → contains=[${this.contains}] tagged=[${this.tagged}]`);
     this.render();
     if (this.onChange) this.onChange({ contains: this.contains, tagged: this.tagged });
 
@@ -1695,14 +1961,6 @@ class TaggingControl {
       </div>
     `;
 
-    // Bind directly to this instance instead of a global singleton pointer.
-    // A page-wide `window._activeTagControl` used to get reassigned by
-    // *any* TaggingControl rendering anywhere on the page (another tab,
-    // a background refresh) — whichever one rendered last silently stole
-    // every other control's Add/Remove buttons, so clicks on a visible
-    // control could end up mutating a different, invisible one. That's
-    // why "contains" additions in the Field Photos modal weren't sticking.
-    // See pearson-james field photo incident, Aug 2026.
     this.container.querySelectorAll('.tag-chip-remove').forEach(el => {
       el.addEventListener('click', () => this.handleTagOperation(el.dataset.field, el.dataset.slug, 'remove'));
     });
@@ -1803,19 +2061,10 @@ async function saveAddModal() {
     contains: ADD_MODAL.tagControl?.contains || [],
     tagged: ADD_MODAL.tagControl?.tagged || []
   };
-  console.log(`[add-modal] submitting ${ADD_MODAL.config.createEndpoint}`, payload);
 
   try {
     const res = await api('POST', ADD_MODAL.config.createEndpoint, payload);
-    console.log(`[add-modal] ${ADD_MODAL.config.createEndpoint} response:`, res);
     if (res.ok) {
-      // Grab onSuccess before closeAddModal() nulls out ADD_MODAL.config —
-      // reading it after close threw "Cannot read properties of null
-      // (reading 'onSuccess')" on every successful save (documents,
-      // letters, and anecdotes all share this modal). The save itself was
-      // going through fine; only this callback crashed, which stomped the
-      // "Saved successfully" toast with the crash message right after.
-      // See mcgrew-howard anecdote incident, Aug 2026.
       const onSuccess = ADD_MODAL.config.onSuccess;
       toast('Saved successfully.', 'success');
       closeAddModal();
@@ -1868,17 +2117,10 @@ function wzClearForm(skipConfirm) {
     return;
   }
 
-  // Text/number inputs and textareas under the wizard container.
   document.querySelectorAll('#wz-container input[type="text"], #wz-container textarea').forEach(el => { el.value = ''; });
-  // Selects: back to their first option (each select's blank/default choice).
   document.querySelectorAll('#wz-container select').forEach(el => { el.selectedIndex = 0; });
-  // Decoration checkboxes.
   document.querySelectorAll('#wz-container .wz-dec-cb, #wz-container .wz-dist-cb').forEach(cb => { cb.checked = false; });
 
-  // Profile photo: this is the specific case that prompted this button —
-  // a wrong or stale photo staying attached to WZ_PPH across soldiers,
-  // since it lives only in memory until Finish and isn't tied to any
-  // input's value. Clear it explicitly.
   WZ_PPH.file = null;
   WZ_PPH.dataUrl = null;
   WZ_PPH.crop = null;
@@ -2055,33 +2297,19 @@ async function wzFinishCreate() {
     }
   };
 
-  console.log('[wizard] finishCreate: submitting /soldiers/create', { slug, hasPendingPhoto: !!WZ_PPH.dataUrl });
   try {
     const res = await api('POST', '/soldiers/create', payload);
-    console.log('[wizard] /soldiers/create response:', res);
     if (!res.ok) throw new Error(res.error || 'Creation failed');
 
     if (WZ_PPH.dataUrl) {
-      console.log('[wizard] finishCreate: submitting /soldier/profile-photo', { slug });
       try {
-        const phRes = await api('POST', '/soldier/profile-photo', { slug, imageData: WZ_PPH.dataUrl, crop: WZ_PPH.crop, credit: '', photographer: '' });
-        console.log('[wizard] /soldier/profile-photo response:', phRes);
+        await api('POST', '/soldier/profile-photo', { slug, imageData: WZ_PPH.dataUrl, crop: WZ_PPH.crop, credit: '', photographer: '' });
       } catch (phErr) {
-        // Soldier record was written successfully; only the photo step
-        // failed (api() throws on non-2xx). Surface it distinctly so it
-        // isn't mistaken for the whole creation having failed.
-        console.error('[wizard] profile photo failed after soldier record was created:', phErr);
         toast(`Soldier created, but profile photo failed: ${phErr.message}`, 'error');
       }
     }
 
-    console.log('[wizard] finishCreate: complete', { slug });
     toast(`Soldier created: ${slug}`, 'success');
-    // Reset the wizard now so the next time it's opened it doesn't still
-    // have this soldier's name, decorations, or (especially) profile photo
-    // sitting in memory — that stale-photo case is exactly what prompted
-    // the "Clear & Start Over" button. skipConfirm=true: this is an
-    // automatic post-success reset, not a destructive user action.
     wzClearForm(true);
     await prefetchSlugs('soldier');
     await npPopulateEditSelect();
@@ -2090,10 +2318,11 @@ async function wzFinishCreate() {
     await seLoadSoldier();
     await refreshSessionStatus();
   } catch (err) {
-    console.error('[wizard] finishCreate failed:', err);
     toast(err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Create Soldier Profile ✓';
   }
-  finally { btn.disabled = false; btn.textContent = 'Create Soldier Profile ✓'; }
 }
 
 // ─── Phase 3: Soldier Edit View Controller ───────────────────────────────────
@@ -2382,6 +2611,25 @@ async function npPhLoad() {
   } else {
     fieldEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No field photos uploaded.</p>';
   }
+
+  const locEl = document.getElementById('np-ph-locations');
+  if (locEl) {
+    if (d.location_files && d.location_files.length) {
+      locEl.innerHTML = `
+        <p style="font-size:12px; margin-bottom:8px;">${d.location_files.length} location photo(s):</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          ${d.location_files.map(f => `
+            <div style="text-align:center; width:90px;">
+              <img src="https://angryskipperarchive.org/media/photos/soldiers/${encodeURIComponent(seCurrentSlug)}/locations/${encodeURIComponent(f.location || '')}/${encodeURIComponent(f.filename || f)}" style="width:90px; height:90px; object-fit:cover; border-radius:3px; border:1px solid var(--rule);" />
+              <div style="font-family:monospace; font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escHtml(f.filename || f)}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      locEl.innerHTML = '<p class="np-stub-msg" style="padding:0">No location photos uploaded.</p>';
+    }
+  }
 }
 
 async function npPhLoadContaining() {
@@ -2481,11 +2729,9 @@ function sePphCropReset() {
 async function seSaveProfilePhoto() {
   if (!SE_PPH.dataUrl) { toast('Please choose an image file first.', 'error'); return; }
   if (!seCurrentSlug) {
-    console.error('[soldier-edit] seSaveProfilePhoto: seCurrentSlug is empty, refusing to upload.');
     toast('No soldier is loaded — select or create a soldier first.', 'error');
     return;
   }
-  console.log('[soldier-edit] seSaveProfilePhoto: uploading for slug=', seCurrentSlug);
   const btn = document.getElementById('btn-save-profile-photo');
   btn.disabled = true;
   btn.textContent = 'Uploading to R2...';
@@ -2498,7 +2744,6 @@ async function seSaveProfilePhoto() {
       credit: document.getElementById('se-pph-credit').value.trim(),
       photographer: document.getElementById('se-pph-photographer').value.trim()
     });
-    console.log('[soldier-edit] /soldier/profile-photo response:', res);
 
     if (res.ok) {
       toast(`Profile picture saved: ${res.filename}`, 'success');
@@ -2506,11 +2751,9 @@ async function seSaveProfilePhoto() {
       await npPhLoad();
       await refreshSessionStatus();
     } else {
-      console.error('[soldier-edit] profile photo save failed:', res.error);
       toast(res.error || 'Failed to save profile picture.', 'error');
     }
   } catch (err) {
-    console.error('[soldier-edit] seSaveProfilePhoto failed for slug=', seCurrentSlug, err);
     toast(err.message, 'error');
   } finally {
     btn.disabled = false;
@@ -2527,6 +2770,13 @@ const SE_FP = {
 };
 
 function seOpenFieldPhotosModal() {
+  const slug = seCurrentSlug || document.getElementById('np-slug-select')?.value;
+  if (!slug) {
+    toast('Please select a soldier profile first.', 'error');
+    return;
+  }
+  seCurrentSlug = slug;
+
   SE_FP.rawFolder = null;
   SE_FP.files = [];
   SE_FP.currentIdx = 0;
@@ -2546,6 +2796,14 @@ function closeFieldPhotosModal() {
 
 async function seFpFilesSelected(files) {
   if (!files || !files.length) return;
+
+  const slug = seCurrentSlug || document.getElementById('np-slug-select')?.value;
+  if (!slug) {
+    toast('No soldier selected.', 'error');
+    return;
+  }
+  seCurrentSlug = slug;
+
   const status = document.getElementById('fp-upload-status');
   status.textContent = `Uploading ${files.length} file(s)...`;
 
@@ -2554,20 +2812,28 @@ async function seFpFilesSelected(files) {
   Array.from(files).forEach(f => fd.append('files', f));
 
   try {
-    const res = await fetch('/api/photos/raw/upload', { method: 'POST', body: fd });
+    const res = await fetch(`/api/photos/raw/upload?folderName=${encodeURIComponent(seCurrentSlug)}`, {
+      method: 'POST',
+      body: fd
+    });
     const d = await res.json();
-    if (!d.ok) throw new Error(d.error || 'Upload failed');
+    
+    if (!res.ok || !d.ok || !d.folder || d.count === 0) {
+      throw new Error(d.error || 'Upload failed: no valid image files were received.');
+    }
 
     SE_FP.rawFolder = d.folder;
     status.textContent = 'Moving to staging...';
 
-    // Auto-stage to current soldier slug
     const stRes = await api('POST', '/photos/raw/stage', { folder: d.folder, slug: seCurrentSlug });
     if (!stRes.ok) throw new Error(stRes.error || 'Staging failed');
 
-    // Retrieve staged files
     const stageDetail = await api('GET', `/photos/staging/${encodeURIComponent(seCurrentSlug)}`);
     SE_FP.files = stageDetail.photos || [];
+
+    if (!SE_FP.files.length) {
+      throw new Error('No photos found in staging folder.');
+    }
 
     document.getElementById('fp-step-upload').style.display = 'none';
     document.getElementById('fp-step-tag').style.display = 'block';
@@ -2604,11 +2870,6 @@ function seFpRenderPhoto(idx) {
   document.getElementById('fp-btn-next').style.display = isLast ? 'none' : 'inline-block';
   document.getElementById('fp-btn-finish').style.display = isLast ? 'inline-block' : 'none';
 
-  // "contains" is who's IN the photo — don't default it to the loaded
-  // soldier's own slug. That assumption breaks as soon as the soldier is
-  // the one behind the camera rather than in frame (use the photographer
-  // checkbox for that case instead). Only restore it if already set on
-  // this photo's buffer.
   const tagBox = document.getElementById('fp-tag-control-box');
   new TaggingControl(tagBox, {
     initialContains: buf.contains ? buf.contains.split(',').map(s => s.trim()).filter(Boolean) : [],
@@ -2620,8 +2881,6 @@ function seFpRenderPhoto(idx) {
   });
 }
 
-// Display name for the checkbox label only — the field itself stores the
-// soldier's slug (see sePhotographerSlug), not this name.
 function sePhotographerName() {
   if (!seCurrentData) return seCurrentSlug;
   return seCurrentData.title
@@ -2629,8 +2888,6 @@ function sePhotographerName() {
     || seCurrentSlug;
 }
 
-// Value actually written to the photo's `photographer` field: the
-// soldier's slug, consistent with how `contains`/`tagged` reference people.
 function sePhotographerSlug() {
   return seCurrentSlug;
 }
