@@ -8,13 +8,13 @@
 //   .byContains[slug]  — photos whose contains[] includes slug
 //   .byTagged[slug]    — photos whose tagged[] includes slug
 //   .byEvent[slug]     — photos whose event == slug
-//   .byFsb[loc-slug]   — photos whose fsb == loc-slug (projects onto a location page)
+//   .byFsb[loc-slug]   — photos whose location/fsb == loc-slug (projects onto a location page)
 //
 // Subfolders scanned:
 //   profile, field            (flat KNOWN_SUBFOLDERS)
 //   field/events[/slug]       (event photos, dynamic)
 //   locations/[loc-slug]      (location-tied photos, dynamic — e.g. a contributor's
-//                              firebase deck; each entry carries fsb: <loc-slug>)
+//                              firebase deck; each entry carries location or fsb: <loc-slug>)
 
 const fs = require("fs");
 const path = require("path");
@@ -64,6 +64,11 @@ function parsePhotoIndex(indexPath) {
 function resolvePhoto(entry, soldierSlug, subfolder) {
   if (!entry.filename) return null;
 
+  // Derive location slug from entry.location, legacy entry.fsb, or folder path
+  const derivedLocation = entry.location 
+    || entry.fsb 
+    || (subfolder.startsWith("locations/") ? subfolder.replace(/^locations\//, "") : "");
+
   return {
     // Source fields (pass through as-is)
     filename: entry.filename,
@@ -75,7 +80,8 @@ function resolvePhoto(entry, soldierSlug, subfolder) {
     date: entry.date || "",
     date_known: entry.date_known === true,
     event: entry.event || "",
-    fsb: entry.fsb || "",
+    location: derivedLocation,
+    fsb: derivedLocation, // Backwards-compatible alias for templates referencing photo.fsb
     subject: entry.subject || "",
     quality: entry.quality || "",
     note: entry.note || "",
@@ -110,8 +116,9 @@ module.exports = function () {
     if (photo.event) {
       (byEvent[photo.event] = byEvent[photo.event] || []).push(photo);
     }
-    if (photo.fsb) {
-      (byFsb[photo.fsb] = byFsb[photo.fsb] || []).push(photo);
+    const locKey = photo.location || photo.fsb;
+    if (locKey) {
+      (byFsb[locKey] = byFsb[locKey] || []).push(photo);
     }
   }
 
@@ -177,7 +184,7 @@ module.exports = function () {
     }
 
     // Dynamic: locations/[loc-slug]/index.md — location-tied photos.
-    // Each entry carries fsb: <loc-slug>, projecting it onto that location page.
+    // Each entry carries location: <loc-slug>, projecting it onto that location page.
     const locationsDir = path.join(photosRoot, "locations");
     if (fs.existsSync(locationsDir)) {
       const locSlugs = fs.readdirSync(locationsDir, { withFileTypes: true })
