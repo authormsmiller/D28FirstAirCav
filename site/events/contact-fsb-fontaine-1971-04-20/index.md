@@ -105,7 +105,9 @@ casualties:
         to his men. Per Dillon's own account: noticed commo wire and recognized the bunker complex
         seconds before being hit; recalls two Chicom mines in the trees and Bott positioned to his
         left. Poore's account independently corroborates being present at the charge and recalls
-        the hole in Dillon's hand. [Sensitive/uncorroborated: Dillon's account of the crossing
+        the hole in Dillon's hand. Per Jack Fink's diary (written from Relay Mountain), Dillon's
+        severe wounds briefly led to word reaching the rear that he might have died of them —
+        corrected in the same diary entry to "still in critical condition." [Sensitive/uncorroborated: Dillon's account of the crossing
         describes a third soldier as frozen and unresponsive until Collins intervened — not
         independently corroborated and not for publication pending review; see archivist_notes.]
     - slug: bott-bill
@@ -169,8 +171,12 @@ tagged:
     name: LT Jenkins
     note: Cat Platoon leader; on R&R during the engagement (per Bott)
   - slug: catterson
-    name: Catterson (RTO)
-    note: Bott's RTO; wounded alongside Bott by the command-detonated charge. Full name not yet identified.
+    name: Jim Catterson (RTO)
+    note: >
+      Bott's RTO; wounded alongside Bott by the command-detonated charge. First name confirmed by
+      Fink's diary (fink-jack-diary-1971-full), April 1, 1971: "Jim Catterson & Stan Dillon got the
+      highest scores in the company" at a rifle-range competition — plausibly the same Catterson,
+      given the shared unit and timeframe, though not certain beyond the surname match.
   - slug: garvin-jim
     name: Jim Garvin
     note: Range Company member, not present at the contact itself; interviewed Schneck (with corroborating quotes from Dillon and Davis) for schneck-steve-account-042071.
@@ -201,6 +207,14 @@ tagged:
   - slug: bott-mary-alice
     name: Mary Alice Bott
     note: Bill Bott's wife; attended both the 2016 award ceremony and his subsequent church talks.
+  - slug: fink-jack
+    name: Jack Fink
+    note: >
+      Range Platoon member, 1971; stationed on Relay Mountain (likely a commo/relay position) and
+      not present at the April 20 contact itself. His diary (fink-jack-diary-042071), kept in real
+      time, is a rare contemporaneous source — corroborates Sargent's April 21 DOW date, raises a
+      new conflict over the KIA recovery date (see oq-01), and documents Alpha Company's April 21
+      reinforcement.
 citations:
   - slug: hall-joseph
     award: unknown
@@ -238,18 +252,49 @@ citations:
     award: unknown
     status: unconfirmed
     note: Repeatedly crossed the stream under fire to retrieve wounded and organize medevac, after the CP's own medic froze; no award documentation found
+  - slug: dillon-stan
+    award: Silver Star
+    status: reported, unconfirmed
+    date_awarded: 1971-04-25 (approximate)
+    note: >
+      Per Fink's diary (fink-jack-diary-1971-full), a visiting Major told Fink on April 24 that
+      Dillon "was doing all right" and that a General would award him a Silver Star for valor the
+      following day — a striking contrast to Bott's 45-year wait. This is secondhand (Fink heard it
+      from a Major, not from Dillon or an award document) and not yet corroborated by any other
+      source. No prior citation existed for Dillon in this record. Needs confirmation.
 related_events:
   - slug: 3rd-brigade-separate-garryowen-1971
     relationship: operational-period
     note: "Higher command / operational frame — the 3rd Brigade (Separate) under which 2/8 Cav operated in 1971 (from BG Burton's debriefing report, AD0520447)."
   - slug: crash-fsb-fontaine-1971-04-24
     relationship: causal
-    note: UH-1H crash four days later occurred in context of post-contact operations; FSB subsequently renamed Fanning
+    note: >
+      UH-1H crash four days later occurred in context of post-contact operations. FLAGGED: this
+      entry has stated the FSB was "subsequently renamed Fanning," but Fink's diary
+      (fink-jack-diary-1971-full) places a distinct, newly-built LZ "Fanny" only from May 7 — after
+      the crash — with Fontaine still standing and in use up to that point. The crash likely
+      occurred at Fontaine while still known by that name; "renamed Fanning" is probably incorrect
+      and should be revised once oq-07 is fully resolved.
 open_questions:
   - id: oq-01
     publish: true
+    resolved: partial
+    resolved_date: 2026-09-01
     question: |
       The three KIA — Cardwell, Drinkard, and Hall — could not be recovered from the ambush site on April 20. McGrew's calendar places a CA to Fontaine on April 23, corroborating recovery, but no source explicitly documents that mission. If you were there or know what happened, we want to hear from you.
+    resolution: |
+      Conflicting contemporaneous evidence found, not yet reconciled. Jack Fink's diary
+      (fink-jack-diary-042071), kept in real time from Relay Mountain, states under Thursday,
+      April 22: "Range cut a log pad to get resupplied. Range recovered the 3 bodies & the
+      rucksacks." This is one day earlier than McGrew's calendar entry (a CA to Fontaine on
+      April 23) previously treated as corroborating the recovery. Both are contemporaneous,
+      real-time personal records, and they disagree by a day. Possible explanations: two separate
+      missions (log pad/resupply on the 22nd, a further CA to Fontaine on the 23rd, not
+      necessarily the same operation as the body recovery); Fink misdating an entry received
+      secondhand from Relay Mountain; or McGrew's calendar reflecting a later logistics move
+      rather than the recovery itself. The record's summary text has been softened to reflect
+      this uncertainty rather than asserting April 23 outright. Still seeking a source that
+      explicitly documents the recovery mission.
   - id: oq-02
     publish: true
     question: |
@@ -350,8 +395,11 @@ open_questions:
     resolution: |
       Holtsclaw resolved by Poore's account (poore-tom-account-042071): confirms the spelling
       "Holtsclaw" (matching Bott's tentative guess) and confirms he was wounded — moved from
-      tagged to casualties.wia. Remaining open: Catterson, Gator, Miller, Jenkins, and Hilts's
-      wounded status.
+      tagged to casualties.wia. Catterson's first name (Jim) plausibly confirmed by Fink's diary
+      (fink-jack-diary-1971-full), April 1, 1971 entry — see tagged. That same diary's July 16
+      entry mentions a "Doug" active and uninjured months later, a possible but unconfirmed lead
+      on Hilts's wounded status (see fink-jack-diary-notable-events-1971). Remaining open: Gator,
+      Miller, and Jenkins's full names/records, and firm confirmation on both Catterson and Hilts.
   - id: oq-11
     publish: false
     resolved: partial
@@ -402,11 +450,44 @@ open_questions:
       white-blue-white center stripe, with a gold "V" device pinned to the ribbon — the Bronze
       Star Medal, not the Silver Star (whose ribbon and pendant are visually distinct). Davis's
       account was correct; the citation has been updated accordingly.
+  - id: oq-14
+    publish: true
+    question: |
+      Fink's diary (fink-jack-diary-1971-full) notes on April 17, 1971 — three days before the
+      ambush — "We met the new skipper & seems to have his shit together." CPT Neal is named as
+      commander in every account of April 20. Was Neal newly in command as of mid-April 1971? If
+      so, he'd have been leading Delta Company for less than a week when it walked into the
+      ambush — a meaningful piece of context. Can anyone confirm when Neal took command?
+  - id: oq-15
+    publish: true
+    question: |
+      Was Dillon actually awarded a Silver Star around April 25, 1971 (see citations)? Fink's diary
+      reports this secondhand, from a Major, the day before the reported ceremony — it has not been
+      confirmed by Dillon himself, an award citation, or any other source. If confirmed, this would
+      be a rare same-week valor recognition, unlike Bott's 45-year wait for his Bronze Star.
 
   - id: oq-07
     publish: false
+    resolved: partial
+    resolved_date: 2026-09-01
     question: |
       What was the fire support base actually called on April 20, 1971? Bacon's deposition uses "FSB Fanning" — the name the base received after the 4/24 crash — when describing events that morning. This has been treated as a retrospective slip, and the record uses "Fontaine" throughout. McGrew's calendar, kept in real time, places a CA to "Fontaine" on April 23, lending that name more authority than either Neal's or Bacon's retrospective accounts. One possibility: if the base was unnamed or informally designated on April 20, Neal may have used the next official name he associated with it (Fanning), and Bacon — writing from Neal's account or from the same recalled frame — may have followed. This remains unresolved. A veteran who was at the base in April 1971 could confirm whether "Fontaine" was the working name during operations.
+    resolution: |
+      Substantially strengthened by Fink's diary (fink-jack-diary-1971-full), a contemporaneous
+      source. "LZ Fontaine" appears by name starting February 6, 1971 — over two months before the
+      ambush — and recurs through mid-April, confirming Fontaine was the base's real, in-use name
+      during operations, not a name applied only in retrospect. This record's use of "Fontaine"
+      throughout is well supported. However, Fink's May 7 entry adds a new wrinkle: "we're at a new
+      LZ being built called Fanny & LZ Fontaine is being torn down." If "Fanny" is an informal
+      rendering of "Fanning," this means Fanning was a distinct, newly-built base — not a renaming
+      of Fontaine — and it did not exist yet on April 24, the date of the crash this record
+      currently describes as having occurred at "FSB Fontaine, subsequently renamed Fanning." That
+      note likely needs revision: the crash probably occurred at Fontaine while still known by that
+      name, with Fanning/Fanny built afterward, nearby, as a separate replacement rather than a
+      renaming. The related_events entry for the 4/24 crash has been flagged accordingly. Bacon's
+      use of "Fanning" for the morning of April 20 remains unexplained by this new evidence — if
+      anything, it's now harder to attribute to a same-time renaming, and more likely a later
+      conflation on Bacon's part.
 archivist_notes:
   created: 2026-05-11T00:00:00.000Z
   session: 16
@@ -446,6 +527,19 @@ archivist_notes:
                                           # holding the open medal case. Used to resolve oq-13: pendant, ribbon,
                                           # and "V" device confirm Bronze Star Medal with "V" Device, not
                                           # Silver Star.
+    - fink-jack-diary-042071.md           # "All Could Have Been Me Down There" — diary excerpt from Jack Fink,
+                                          # Range Platoon, kept in real time from Relay Mountain (not present
+                                          # at the contact). Corroborates Sargent's April 21 DOW date; conflicts
+                                          # with McGrew's calendar on the KIA recovery date (oq-01, still open);
+                                          # documents Alpha Company's April 21 reinforcement. Preserves Fink's
+                                          # own crossed-out corrections as struck-through text.
+    - fink-jack-diary-1971-full.md        # Fink's complete diary, Jan 1-Aug 8 1971. Confirms "Fontaine" as the
+                                          # base's real contemporaneous name from Feb 6 on (oq-07, strengthened);
+                                          # identifies Jim Catterson (oq-10); surfaces Dillon's reported
+                                          # near-immediate Silver Star (oq-15, new); raises a question about
+                                          # Neal's tenure as CO (oq-14, new). Full notable-events list in
+                                          # fink-jack-diary-notable-events-1971.md (not yet cross-referenced
+                                          # into this record beyond the items above).
 accounts:
   - bacon-wg-account-042071
   - bott-042071-account
@@ -454,6 +548,8 @@ accounts:
   - poore-tom-account-042071
   - davis-kirk-account-042071
   - davis-kirk-bott-award-account-2016
+  - fink-jack-diary-042071
+  - fink-jack-diary-1971-full
   - neal-bill-account-042071
   - dillon-stan-account-042071
 contains:
@@ -478,7 +574,7 @@ On April 20, 1971, D Company (less Skull Platoon, which was on a separate assign
 
 CPL Joseph Hall moved forward to assist the wounded and was killed. With SSG Stan Dillon, the platoon sergeant, down with multiple wounds, CPL Stanton Sargent took over the M-60 machine gun[^sargent-m60] and held the enemy at bay with sustained fire while wounded soldiers were evacuated across the stream. Company Commander CPT William Neal later recalled hearing the M-60 and thinking, "I hoped it was one of ours." Sargent was struck by shrapnel from a Chicom claymore and was medevacked unconscious. He died the following day. Four members of Range Platoon were awarded the Silver Star for their actions: Sargent, SSG Dillon, and the two men on the second M-60.
 
-The surviving elements of Range Platoon withdrew across the stream under fire. The terrain compounded every difficulty: the north bank of Suối Gia Ui is significantly higher than the south, a product of centuries of drainage off Núi Chứa Chan cutting a recessed channel into the rising ground. The 83rd NVA had built their bunker complex into this elevated reverse slope, giving them direct downward fire onto the stream crossing and the south bank. Cat Platoon on the lower south bank was effectively firing straight up into a steep earthen wall; their rounds hit the bank face while the enemy fired down from prepared positions on the lip above. Cat Platoon maintained suppressing fire from the south bank, but the elevation differential meant the direct fire support Range most needed could not reach the bunkers. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered in a combat assault on April 23. Bott himself was among the last across the stream, wounded and still directing an aerial rocket artillery pilot ("Rash Bird") onto the bunker complex by radio; he was eventually retrieved from the north bank by Tom Vollmar. Col. Bacon, observing by radio, at one point suggested Bott fire a LAW rocket to clear brush obstructing his view — the Rash Bird pilot intervened to warn against it given the density of the vegetation.
+The surviving elements of Range Platoon withdrew across the stream under fire. The terrain compounded every difficulty: the north bank of Suối Gia Ui is significantly higher than the south, a product of centuries of drainage off Núi Chứa Chan cutting a recessed channel into the rising ground. The 83rd NVA had built their bunker complex into this elevated reverse slope, giving them direct downward fire onto the stream crossing and the south bank. Cat Platoon on the lower south bank was effectively firing straight up into a steep earthen wall; their rounds hit the bank face while the enemy fired down from prepared positions on the lip above. Cat Platoon maintained suppressing fire from the south bank, but the elevation differential meant the direct fire support Range most needed could not reach the bunkers. Supporting fires were brought to bear throughout the afternoon: direct and general support artillery (including 8-inch guns from Xuan Loc), aerial rocket artillery, Air Cav gunships, and six USAF F-100s dropping 500-lb bombs on the bunker complex. Three KIA could not be retrieved from the ambush site that day and were left under enemy guns with great reluctance. They were recovered a few days later — April 22 or 23, per two contemporaneous but conflicting sources; see oq-01. Alpha Company was rushed into the area on April 21 as reinforcement, per Fink's diary; air strikes continued into the following day as NVA forces remained in the area. Bott himself was among the last across the stream, wounded and still directing an aerial rocket artillery pilot ("Rash Bird") onto the bunker complex by radio; he was eventually retrieved from the north bank by Tom Vollmar. Col. Bacon, observing by radio, at one point suggested Bott fire a LAW rocket to clear brush obstructing his view — the Rash Bird pilot intervened to warn against it given the density of the vegetation.
 
 The night of April 20–21 was spent in a defensive perimeter east of the bunker complex, with continuous artillery fire directed through the night by Capt. Neal and acting FO SGT Steve Kahnke. Skull Platoon was choppered in as a late-afternoon reinforcement to reconstitute D Company's strength. The event directly precipitated the helicopter crash four days later that killed pilot CW2 Martin Fanning, for whom the next FSB was named.
 
@@ -500,7 +596,7 @@ Bott's account lends support to Neal's version of events: Bott describes remaini
 
 **Survivors' reflections (Poore):** Poore's own account (poore-tom-account-042071) adds firsthand testimony placing him with Dillon and Sargent at the moment of the charge, and confirms he stayed with the dying Sargent rather than assisting others — a decision he says he later heard questioned, behind his back, at a reunion. He also discloses that he declined to help recover the dead, out of fear of what he might find, and that he went on to walk point often afterward, eventually saying he wished he'd been on point the day of the ambush instead of Cardwell and Drinkard.
 
-**Sargent DOW date:** Davis states Sargent "died the next day." The Linda Martin oral history (widow's testimony, Angelo State University, 2018) confirms April 21 as the date of death. The Honor Roll entry for Sargent should reflect April 21.
+**Sargent DOW date:** Davis states Sargent "died the next day." The Linda Martin oral history (widow's testimony, Angelo State University, 2018) confirms April 21 as the date of death. Jack Fink's diary provides a third, independent, contemporaneous corroboration: writing from Relay Mountain on Thursday, April 22, Fink notes "just found out one more man died of wounds" — consistent with news of Sargent's April 21 death reaching a rear position a day late. The Honor Roll entry for Sargent should reflect April 21. Fink's same diary entry briefly worried the news was about Dillon rather than Sargent, before correcting himself: "Stan Dillion is still in critical condition" — a documented moment of information lag/confusion at the time, not a conflicting death report. See dillon-stan's WIA note.
 
 **Stream name — resolved as Suối Gia Ui:** The firefight took place on Suối Gia Ui, not Suối Tầm Bông. Geographic analysis (June 2026) confirms these are two distinct streams: Suối Gia Ui is the main stream flowing east out of Chứa Chan Mountain, running north of QL 1, at approximately 10°51'37.8"N, 107°29'55.1"E. Suối Tầm Bông is a smaller tributary that feeds into the Suoi Gia Ui basin from the northwest, located approximately 6km west at 10°51'54"N, 107°28'42"E. SSG Dillon's 2005 interview and the Maxey account both use Suoi Gia Ui, which aligns with Neal's directional descriptions. The record and all coordinates have been updated accordingly.
 
